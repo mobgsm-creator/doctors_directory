@@ -8,13 +8,17 @@ import { ServicesSection } from "@/components/services-section"
 import { PractitionerInsights } from "@/components/practitioner-insights"
 import { ReviewCard } from "@/components/review-card"
 import type { Practitioner } from "@/lib/types"
-let cachedPractitioners: Practitioner[] | null = null;
+import fs from 'fs';
+import path from 'path';
+let cachedPractitioners: Practitioner[] = [];
 
 async function getPractitioners(): Promise<Practitioner[]> {
   if (cachedPractitioners) return cachedPractitioners;
 
-  const res = await fetch('http://localhost:3000/api/getData', { cache: 'no-store' });
-  const data: any[] = await res.json();
+  const filePath = path.join(process.cwd(), 'public', 'derms.json');
+  const fileContents = fs.readFileSync(filePath, 'utf-8');
+  
+  const data = JSON.parse(fileContents);
   cachedPractitioners = data.map(transformPractitioner);
   return cachedPractitioners;
 }

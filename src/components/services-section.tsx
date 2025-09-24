@@ -9,7 +9,7 @@ interface ServicesSectionProps {
 }
 
 export function ServicesSection({ practitioner }: ServicesSectionProps) {
-  const reviewAnalysis = practitioner.reviewAnalysis[0]
+  const reviewAnalysis = practitioner.reviewAnalysis
 
   return (
     <div className="space-y-6">
@@ -73,7 +73,7 @@ export function ServicesSection({ practitioner }: ServicesSectionProps) {
           )}
 
           {/* Products */}
-          {(reviewAnalysis.products.injectables.length > 0 || reviewAnalysis.products.skin_treatments.length > 0) && (
+          { reviewAnalysis.products.skin_treatments && (reviewAnalysis.products.injectables.length > 0 || reviewAnalysis.products.skin_treatments.length > 0) && (
             <Card className="border-border/50">
               <CardHeader>
                 <CardTitle className="text-lg">Products & Treatments</CardTitle>

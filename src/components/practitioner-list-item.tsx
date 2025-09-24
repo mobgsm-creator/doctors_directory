@@ -20,7 +20,10 @@ export function PractitionerListItem({ practitioner }: PractitionerListItemProps
       .toUpperCase()
   }
 
-  const practitionerName = practitioner.reviewAnalysis[0]?.practitioners[0]?.name || "Practitioner"
+  const practitionerName = practitioner.slug
+  .split("-")
+  .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+  .join(" ") || "Practitioner"
 
   return (
     <Card className="group hover:shadow-lg transition-all duration-300 hover:scale-[1.01] border-border/50 hover:border-accent/50">
