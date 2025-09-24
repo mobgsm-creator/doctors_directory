@@ -8,13 +8,22 @@ import { ServicesSection } from "@/components/services-section"
 import { PractitionerInsights } from "@/components/practitioner-insights"
 import { ReviewCard } from "@/components/review-card"
 import type { Practitioner } from "@/lib/types"
-let cachedPractitioners: Practitioner[] | null = null;
+import fs from 'fs';
+import path from 'path';
+const filePath = path.join(process.cwd(), 'public', 'derms.json');
+const fileContents = fs.readFileSync(filePath, 'utf-8');
+let cachedPractitioners: Practitioner[] = [];
 
-export async function getPractitioners(): Promise<Practitioner[]> {
-  if (cachedPractitioners) return cachedPractitioners;
+async function getPractitioners(): Promise<Practitioner[]> {
+  if (cachedPractitioners.length > 0) {
+    return cachedPractitioners;
+  }
 
-  const res = await fetch('http://localhost:3000/api/getData', { cache: 'no-store' });
-  const data: any[] = await res.json();
+  const data = JSON.parse(fileContents);
+
+  
+  
+  
   cachedPractitioners = data.map(transformPractitioner);
   return cachedPractitioners;
 }
@@ -61,8 +70,9 @@ interface ProfilePageProps {
 }
 
 export default async function ProfilePage({ params }: ProfilePageProps) {
+  
   const practitioners = await getPractitioners();
-
+  
   const practitioner = practitioners.find(p => p.slug === params.slug);
   
   
@@ -135,12 +145,12 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
   )
 }
 
-export async function generateStaticParams() {
-  const practitioners = await getPractitioners();
-  return practitioners.map((practitioner) => ({
-    slug: practitioner.slug,
-  }))
-}
+// export async function generateStaticParams() {
+//   const practitioners = await getPractitioners();
+//   return practitioners.map((practitioner) => ({
+//     slug: practitioner.slug,
+//   }))
+// }
 
 
 export async function generateMetadata({ params }: ProfilePageProps) {
