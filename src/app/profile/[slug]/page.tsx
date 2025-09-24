@@ -10,7 +10,7 @@ import { ReviewCard } from "@/components/review-card"
 import type { Practitioner } from "@/lib/types"
 let cachedPractitioners: Practitioner[] | null = null;
 
-export async function getPractitioners(): Promise<Practitioner[]> {
+async function getPractitioners(): Promise<Practitioner[]> {
   if (cachedPractitioners) return cachedPractitioners;
 
   const res = await fetch('http://localhost:3000/api/getData', { cache: 'no-store' });
@@ -60,10 +60,12 @@ interface ProfilePageProps {
   }
 }
 
-export default async function ProfilePage({ params }: ProfilePageProps) {
+export default async function ProfilePage(props: ProfilePageProps) {
+  const { params } = await props;
+  const { slug } = await params;
   const practitioners = await getPractitioners();
 
-  const practitioner = practitioners.find(p => p.slug === params.slug);
+  const practitioner = practitioners.find(p => p.slug === slug);
   
   
 
@@ -143,9 +145,11 @@ export async function generateStaticParams() {
 }
 
 
-export async function generateMetadata({ params }: ProfilePageProps) {
+export async function generateMetadata(props: ProfilePageProps) {
+  const { params } = await props
+  const { slug } = await params;
   const practitioners = await getPractitioners();
-  const practitioner = practitioners.find((p) => p.slug === params.slug)
+  const practitioner = practitioners.find((p) => p.slug === slug)
 
   if (!practitioner) {
     return {

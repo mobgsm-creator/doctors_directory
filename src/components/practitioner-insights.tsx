@@ -75,7 +75,7 @@ export function PractitionerInsights({ practitioner }: PractitionerInsightsProps
       {/* Additional Insights */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Treatment Outcomes */}
-        {reviewAnalysis.treatment_outcomes.length > 0 && (
+        {reviewAnalysis.treatment_outcomes?.length > 0 && (
           <Card className="border-border/50">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-lg">
@@ -85,7 +85,7 @@ export function PractitionerInsights({ practitioner }: PractitionerInsightsProps
             </CardHeader>
             <CardContent>
               <div className="flex flex-wrap gap-2">
-                {reviewAnalysis.treatment_outcomes.map((outcome, index) => (
+                {reviewAnalysis.treatment_outcomes?.map((outcome, index) => (
                   <Badge key={index} variant="secondary">
                     {outcome}
                   </Badge>
@@ -96,7 +96,7 @@ export function PractitionerInsights({ practitioner }: PractitionerInsightsProps
         )}
 
         {/* Clinic Environment */}
-        {reviewAnalysis.clinic_environment.length > 0 && (
+        {reviewAnalysis?.clinic_environment?.length > 0 && (
           <Card className="border-border/50">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-lg">
@@ -106,7 +106,7 @@ export function PractitionerInsights({ practitioner }: PractitionerInsightsProps
             </CardHeader>
             <CardContent>
               <div className="flex flex-wrap gap-2">
-                {reviewAnalysis.clinic_environment.map((env, index) => (
+                {reviewAnalysis?.clinic_environment?.map((env, index) => (
                   <Badge key={index} variant="outline">
                     {env}
                   </Badge>
@@ -117,7 +117,7 @@ export function PractitionerInsights({ practitioner }: PractitionerInsightsProps
         )}
 
         {/* Patient Loyalty */}
-        {reviewAnalysis.reviewer_demographics.loyalty_repeat_visits.length > 0 && (
+        {reviewAnalysis.reviewer_demographics?.loyalty_repeat_visits?.length > 0 && (
           <Card className="border-border/50">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-lg">
@@ -127,7 +127,7 @@ export function PractitionerInsights({ practitioner }: PractitionerInsightsProps
             </CardHeader>
             <CardContent>
               <div className="flex flex-wrap gap-2">
-                {reviewAnalysis.reviewer_demographics.loyalty_repeat_visits.map((loyalty, index) => (
+                {reviewAnalysis.reviewer_demographics?.loyalty_repeat_visits?.map((loyalty, index) => (
                   <Badge key={index} variant="default" className="bg-accent text-accent-foreground">
                     {loyalty}
                   </Badge>
@@ -138,7 +138,7 @@ export function PractitionerInsights({ practitioner }: PractitionerInsightsProps
         )}
 
         {/* Recommendations */}
-        {reviewAnalysis.referrals_recommendations.length > 0 && (
+        {reviewAnalysis?.referrals_recommendations?.length > 0 && (
           <Card className="border-border/50">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-lg">
@@ -148,7 +148,7 @@ export function PractitionerInsights({ practitioner }: PractitionerInsightsProps
             </CardHeader>
             <CardContent>
               <div className="flex flex-wrap gap-2">
-                {reviewAnalysis.referrals_recommendations.map((rec, index) => (
+                {reviewAnalysis?.referrals_recommendations?.map((rec, index) => (
                   <Badge key={index} variant="default" className="bg-accent text-accent-foreground">
                     {rec}
                   </Badge>
