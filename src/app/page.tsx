@@ -95,12 +95,12 @@ export default function HomePage() {
       if (filters.query) {
         const query = filters.query.toLowerCase()
         const searchableText = [
-          practitioner.reviewAnalysis?.practitioners[0]?.name || "",
+       
           practitioner.profession,
           practitioner.category,
           practitioner.gmapsAddress,
           ...practitioner.modality.flat(),
-          ...(practitioner.reviewAnalysis?.procedures_offered.categories || []),
+          ...(practitioner.reviewAnalysis?.procedures_offered?.categories || []),
         ]
           .join(" ")
           .toLowerCase()
