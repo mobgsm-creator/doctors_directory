@@ -1,3 +1,17 @@
+export interface Clinic {
+  slug: string
+  image: string
+  url: string
+  rating: number
+  reviewCount: number
+  category: string
+  gmapsAddress: string
+  gmapsLink: string
+  gmapsPhone: string
+  gmapsReviews: Review[]
+  reviewAnalysis: ReviewAnalysis
+}
+
 export interface Practitioner {
   id: string
   slug: string

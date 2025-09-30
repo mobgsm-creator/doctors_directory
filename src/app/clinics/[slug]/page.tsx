@@ -3,20 +3,20 @@ import Link from "next/link"
 import { ArrowLeft, MessageSquare } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ProfileHeader } from "@/components/Practitioner/profile-header"
-import { ServicesSection } from "@/components/Practitioner/services-section"
-import { PractitionerInsights } from "@/components/Practitioner/practitioner-insights"
+import { ProfileHeader } from "@/components/Clinic/profile-header"
+import { ServicesSection } from "@/components/Clinic/services-section"
+import { PractitionerInsights } from "@/components/Clinic/practitioner-insights"
 import { ReviewCard } from "@/components/review-card"
-import type { Practitioner } from "@/lib/types"
+import type { Clinic } from "@/lib/types"
 import fs from 'fs';
 import path from 'path';
-const filePath = path.join(process.cwd(), 'public', 'derms.json');
+const filePath = path.join(process.cwd(), 'public', 'clinics.json');
 const fileContents = fs.readFileSync(filePath, 'utf-8');
-let cachedPractitioners: Practitioner[] = [];
+let cachedClinics : Clinic[] = [];
 
-async function getPractitioners(): Promise<Practitioner[]> {
-  if (cachedPractitioners.length > 0) {
-    return cachedPractitioners;
+async function getClinics(): Promise<Clinic[]> {
+  if (cachedClinics.length > 0) {
+    return cachedClinics;
   }
 
   const data = JSON.parse(fileContents);
@@ -24,8 +24,9 @@ async function getPractitioners(): Promise<Practitioner[]> {
   
   
   
-  cachedPractitioners = data.map(transformPractitioner);
-  return cachedPractitioners;
+  cachedClinics = data.map(transformClinic);
+  
+  return cachedClinics;
 }
 
 function safeParse(str: string) {
@@ -34,24 +35,15 @@ function safeParse(str: string) {
     
     return JSON.parse(str);
   } catch (e) {
-    console.error("Parsing failed:", e, "Input String: ",str);
+    console.error("Parsing failed:", e);
     return null;
   }
 }
-function transformPractitioner(raw: any): Practitioner {
+function transformClinic(raw: any): Clinic {
  
   return {
-    id: raw["Unnamed: 0"].toString(),
     slug: raw.Name.toLowerCase().replace(/\s+/g, "-"),
     image: raw.Image,
-    profession: raw["PROFESSION:"].trim(),
-    regulatoryBody: raw["REGULATORY BODY:"],
-    registrationPin: raw["REGISTRATION PIN NUMBER:"],
-    qualification: raw["QUALIFICATION:\n(To Date)"].trim(),
-    modality: JSON.parse(raw["MODALITY:"]),
-    memberSince: raw["MEMBER SINCE:"],
-    otherMemberships: raw["OTHER MEMBERSHIPS:"],
-    restrictions: raw["RESTRICTIONS:"],
     url: raw.url,
     rating: parseFloat(raw.rating),
     reviewCount: parseInt(raw.review_count),
@@ -71,13 +63,14 @@ interface ProfilePageProps {
 
 export default async function ProfilePage({ params }: ProfilePageProps) {
   
-  const practitioners = await getPractitioners();
   
-  const practitioner = practitioners.find(p => p.slug === params.slug);
+  const clinics = await getClinics();
+  
+  const clinic = clinics.find(p => p.slug=== params.slug);
   
   
 
-  if (!practitioner) {
+  if (!clinic) {
     notFound()
   }
 
@@ -97,40 +90,40 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
 
       <div className="container mx-auto max-w-6xl px-4 py-8 space-y-8">
         {/* Profile Header */}
-        <ProfileHeader practitioner={practitioner} />
+        <ProfileHeader clinic={clinic} />
 
-        {/* Main Content Tabs */}
+        {/* Tabs for Services, Insights, Reviews */}
         <Tabs defaultValue="services" className="w-full">
           <TabsList className="grid w-full grid-cols-3">
             <TabsTrigger value="services">Services & Treatments</TabsTrigger>
             <TabsTrigger value="insights">Professional Insights</TabsTrigger>
             <TabsTrigger value="reviews" className="gap-2">
               <MessageSquare className="h-4 w-4" />
-              Reviews ({practitioner.reviewCount})
+              Reviews ({clinic.reviewCount})
             </TabsTrigger>
           </TabsList>
 
           <TabsContent value="services" className="mt-8">
-            <ServicesSection practitioner={practitioner} />
+            <ServicesSection clinic={clinic} />
           </TabsContent>
 
           <TabsContent value="insights" className="mt-8">
-            <PractitionerInsights practitioner={practitioner} />
+            <PractitionerInsights clinic={clinic} />
           </TabsContent>
 
           <TabsContent value="reviews" className="mt-8">
             <div className="space-y-6">
               <div className="flex items-center justify-between">
-                <h2 className="text-2xl font-semibold text-foreground">Patient Reviews ({practitioner.reviewCount})</h2>
+                <h2 className="text-2xl font-semibold text-foreground">Patient Reviews ({clinic.reviewCount})</h2>
               </div>
 
               <div className="grid gap-6">
-                {practitioner.gmapsReviews.map((review, index) => (
+                {clinic.gmapsReviews.map((review, index) => (
                   <ReviewCard key={index} review={review} />
                 ))}
               </div>
 
-              {practitioner.gmapsReviews.length === 0 && (
+              {clinic.gmapsReviews.length === 0 && (
                 <div className="text-center py-12">
                   <MessageSquare className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
                   <h3 className="text-lg font-medium text-foreground mb-2">No reviews yet</h3>
@@ -154,19 +147,19 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
 
 
 export async function generateMetadata({ params }: ProfilePageProps) {
-  const practitioners = await getPractitioners();
-  const practitioner = practitioners.find((p) => p.slug === params.slug)
+  const clinics = await getClinics();
+  const clinic = clinics.find((p) => p.slug === params.slug)
 
-  if (!practitioner) {
+  if (!clinic) {
     return {
       title: "Practitioner Not Found",
     }
   }
 
-  const practitionerName = practitioner.reviewAnalysis?.practitioners[0]?.name || "Practitioner"
+  const clinicName = clinic.slug
 
   return {
-    title: `${practitionerName} - Healthcare Directory`,
-    description: `View the profile of ${practitionerName}, a qualified ${practitioner.profession} offering professional healthcare services. Read reviews and book appointments.`,
+    title: `${clinicName} - Healthcare Directory`,
+    description: `View the profile of ${clinicName}, a qualified ${clinic.category} offering professional healthcare services. Read reviews and book appointments.`,
   }
 }
