@@ -10,44 +10,38 @@ import { PractitionerCardSkeleton, PractitionerListSkeleton } from "@/components
 import type { SearchFilters, Practitioner } from "@/lib/types"
 import { Button } from "@/components/ui/button"
 import { ChevronLeft, ChevronRight } from "lucide-react"
-
+import {consolidate, parse_text, parse_addresses, parse_numbers} from "@/lib/utils"
 const ITEMS_PER_PAGE = 9
 
 
-function safeParse(str: string) {
-  try {
-    
-    
-    return JSON.parse(str);
-  } catch (e) {
-    console.error("Parsing failed:", e);
-    return null;
-  }
-}
 
 function transformPractitioner(raw: any): Practitioner {
  
   return {
-    id: raw["Unnamed: 0"].toString(),
+    //id: raw["ID"].toString(),
+    Name: raw.Name,
     slug: raw.Name.toLowerCase().replace(/\s+/g, "-"),
-    image: raw.Image,
-    profession: raw["PROFESSION:"].trim(),
-    regulatoryBody: raw["REGULATORY BODY:"],
-    registrationPin: raw["REGISTRATION PIN NUMBER:"],
-    qualification: raw["QUALIFICATION:\n(To Date)"].trim(),
-    modality: JSON.parse(raw["MODALITY:"]),
-    memberSince: raw["MEMBER SINCE:"],
-    otherMemberships: raw["OTHER MEMBERSHIPS:"],
-    restrictions: raw["RESTRICTIONS:"],
-    url: raw.url,
-    rating: parseFloat(raw.rating),
-    reviewCount: parseInt(raw.review_count),
-    category: raw.category,
-    gmapsAddress: raw.gmaps_address.replace(/\n/g, "").trim(),
-    gmapsLink: raw.gmaps_link,
-    gmapsPhone: raw.gmaps_phone.replace("Phone: ", "").trim(),
-    gmapsReviews: JSON.parse(raw.gmaps_reviews),
-    reviewAnalysis: safeParse(raw["Review Analysis"]),
+    image: !raw.Image || raw.Image === "https://www.jccp.org.uk/content/images/no-image.jpg"
+  ? parse_text(raw.image)
+  : raw.Image,
+
+    profession: parse_text(raw["PROFESSION:"]).trim(),
+    // regulatoryBody: raw["REGULATORY BODY:"],
+    // registrationPin: raw["REGISTRATION PIN NUMBER:"],
+    qualification: raw["QUALIFICATION: (To Date)"].trim(),
+     modality: consolidate(raw["SPECIALTIES"]),
+    // memberSince: raw["MEMBER SINCE:"],
+    // otherMemberships: raw["OTHER MEMBERSHIPS:"],
+    // restrictions: raw["RESTRICTIONS:"],
+    // url: raw.url,
+     rating: parse_numbers(raw.rating),
+     reviewCount: parse_numbers(raw.review_count),
+     category: raw.category,
+     gmapsAddress: parse_addresses(raw.gmaps_address),
+    // gmapsLink: raw.gmaps_link,
+    // gmapsPhone: raw.gmaps_phone.replace("Phone: ", "").trim(),
+    // gmapsReviews: JSON.parse(raw.gmaps_reviews),
+    // reviewAnalysis: safeParse(raw["Review Analysis"]),
   };
 }
 
@@ -75,6 +69,7 @@ export default function HomePage() {
       
         
         setPractitioners(transformedData);
+        console.log(practitioners.length)
    
       } catch (err) {
         console.error(err);
@@ -95,7 +90,7 @@ export default function HomePage() {
       if (filters.query) {
         const query = filters.query.toLowerCase()
         const searchableText = [
-       
+          practitioner.Name,
           practitioner.profession,
           practitioner.category,
           practitioner.gmapsAddress,
@@ -145,8 +140,7 @@ export default function HomePage() {
           return b.rating - a.rating
         case "reviews":
           return b.reviewCount - a.reviewCount
-        case "newest":
-          return new Date(b.memberSince).getTime() - new Date(a.memberSince).getTime()
+        
         default:
           return 0
       }
@@ -241,7 +235,7 @@ export default function HomePage() {
               ) : (
                 <div className="space-y-4 animate-fade-in">
                   {paginatedPractitioners.map((practitioner, index) => (
-                    <div key={practitioner.id} style={{ animationDelay: `${index * 50}ms` }}>
+                    <div key={index} style={{ animationDelay: `${index * 50}ms` }}>
                       <PractitionerListItem practitioner={practitioner} />
                     </div>
                   ))}

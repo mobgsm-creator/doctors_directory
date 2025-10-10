@@ -82,7 +82,7 @@ export function PractitionerListItem({ practitioner }: PractitionerListItemProps
                   <span className="text-muted-foreground text-pretty">{practitioner.gmapsAddress}</span>
                 </div>
 
-                <div className="flex items-center gap-2 text-sm">
+                {/* <div className="flex items-center gap-2 text-sm">
                   <Phone className="h-4 w-4 text-muted-foreground" />
                   <span className="text-muted-foreground">{practitioner.gmapsPhone}</span>
                 </div>
@@ -99,11 +99,11 @@ export function PractitionerListItem({ practitioner }: PractitionerListItemProps
                       View on Maps
                     </a>
                   </div>
-                )}
+                )} */}
               </div>
 
               {/* Professional Info */}
-              <div className="space-y-2">
+              {/* <div className="space-y-2">
                 <div className="flex items-center gap-2 text-sm">
                   <Calendar className="h-4 w-4 text-muted-foreground" />
                   <span className="text-muted-foreground">
@@ -120,7 +120,7 @@ export function PractitionerListItem({ practitioner }: PractitionerListItemProps
                   <span className="text-muted-foreground">PIN: </span>
                   <span className="text-foreground">{practitioner.registrationPin}</span>
                 </div>
-              </div>
+              </div> */}
             </div>
 
             <Separator />

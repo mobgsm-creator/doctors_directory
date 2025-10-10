@@ -10,31 +10,57 @@ export interface Clinic {
   gmapsPhone: string
   gmapsReviews: Review[]
   reviewAnalysis: ReviewAnalysis
-}
 
+}
+interface WeightedAnalysis {
+  [category: string]: ItemMeta
+}
 export interface Practitioner {
-  id: string
+  //id: string
+  Name: string
   slug: string
   image: string
-  profession: string
-  regulatoryBody: string
-  registrationPin: string
-  qualification: string
-  modality: string[][]
-  memberSince: string
-  otherMemberships: string
-  restrictions: string
-  url: string
-  rating: number
-  reviewCount: number
-  category: string
-  gmapsAddress: string
-  gmapsLink: string
-  gmapsPhone: string
-  gmapsReviews: Review[]
-  reviewAnalysis: ReviewAnalysis
+   profession: string
+  // regulatoryBody: string
+  // registrationPin: string
+   qualification: string
+   modality: string[]
+  // memberSince: string
+  // otherMemberships: string
+  // restrictions: string
+  url?: string
+   rating: number
+   reviewCount: number
+   category: string
+   gmapsAddress: string
+   //gmapsLink: string
+  // gmapsPhone: string
+  gmapsReviews?: Review[]
+  reviewAnalysis?: ReviewAnalysis
+  weighted_analysis?: WeightedAnalysis
 }
-
+export interface ItemMeta {
+  weighted_score: number
+  confidence: number
+  num_mentions: number
+  top_sentence: string[]
+}
+export interface BoxPlotDatum {
+  // Short key for internal reference (matches your stats keys)
+  key: string
+  // Human-readable label for display (matches your provided display names)
+  label: string
+  stats: BoxStats
+  item: ItemMeta
+}
+export interface BoxStats {
+  min: number
+  q1: number
+  median: number
+  q3: number
+  max: number
+  mean: number
+}
 export interface Review {
   reviewer_name: string
   rating: string

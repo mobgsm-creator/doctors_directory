@@ -22,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className="root">
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
         <NavigationHeader />
         <Suspense fallback={null}>{children}</Suspense>

@@ -18,7 +18,7 @@ export function ProfileHeader({ clinic }: ProfileHeaderProps) {
       .join("")
       .toUpperCase()
   }
-
+  
   const clinicName = clinic.slug
   .split("-")
   .map(word => word.charAt(0).toUpperCase() + word.slice(1))

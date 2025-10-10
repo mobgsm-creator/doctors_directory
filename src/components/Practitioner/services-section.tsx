@@ -1,127 +1,88 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Separator } from "@/components/ui/separator"
-import { CheckCircle } from "lucide-react"
+import { Accordion } from "@/components/ui/accordion"
+import { AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion"
 import type { Practitioner } from "@/lib/types"
-
+import { TagGalaxy } from "@/components/tag-galaxy"
+import { useMemo } from "react"
 interface ServicesSectionProps {
   practitioner: Practitioner
 }
 
 export function ServicesSection({ practitioner }: ServicesSectionProps) {
   const reviewAnalysis = practitioner.reviewAnalysis
+  const practitionerData = reviewAnalysis!.practitioners[0]
+  function toCloud(words: string[] | undefined, group: string) {
+    return (words ?? []).map((w, i, arr) => ({
+      text: w,
+      group,
+      // naive weight by position/length; replace with frequency or embedding strength if available
+      weight: Math.max(0.05, Math.min(1, (w.length % 10) / 10 + (arr.length ? i / arr.length : 0) * 0.3)),
+    }))
+  }
+  const clusters = useMemo(() => {
+    return [
+      { header: "Treatment Modalities", keywords: practitioner.modality ?? [] },
+      { header: "Procedures Offered", keywords: reviewAnalysis!.procedures_offered?.categories ?? [] },
+      { header: "Patient Experience", keywords: reviewAnalysis!.procedures_offered?.patient_experience ?? [] },
+      { header: "Injectables", keywords: reviewAnalysis!.products?.injectables ?? [] },
+      { header: "Skin Treatments", keywords: reviewAnalysis!.products?.skin_treatments ?? [] },
+      { header: "Product Experience", keywords: reviewAnalysis!.products?.product_experience ?? [] },
+      { header: "Treatment Outcomes", keywords: reviewAnalysis!.treatment_outcomes ?? [] },
+      { header: "Clinic Environment", keywords: reviewAnalysis!.clinic_environment ?? [] },
+      { header: "Patient Loyalty", keywords: reviewAnalysis!.reviewer_demographics?.loyalty_repeat_visits ?? [] },
+      { header: "Recommendations", keywords: reviewAnalysis!.referrals_recommendations ?? [] },
+      { header: "Professional Attributes", keywords: practitionerData.attributes ?? [] },
+      { header: "Interpersonal Skills", keywords: practitionerData.interpersonal_skills ?? [] },
+      { header: "Trust Signals", keywords: practitionerData.trust_signals ?? [] },
+    ].filter((c) => (c.keywords?.length ?? 0) > 0)
+  }, [reviewAnalysis, practitionerData])
+
+  const cloudWords = useMemo(() => clusters.flatMap((c) => toCloud(c.keywords, c.header)), [clusters])
+
 
   return (
     <div className="space-y-6">
-      {/* Treatment Modalities */}
-      <Card className="border-border/50">
+      {/* Tag Galaxy */}
+      <Card>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <CheckCircle className="h-5 w-5 text-accent" />
-            Treatment Modalities
-          </CardTitle>
+          <CardTitle className="text-lg">Tag Galaxy</CardTitle>
+      
         </CardHeader>
-        <CardContent className="space-y-6">
-          {practitioner.modality.map((modality, index) => (
-            <div key={index} className="space-y-3">
-              <div className="flex items-start justify-between">
-                <div className="flex-1">
-                  <h4 className="font-semibold text-foreground mb-1">{modality[0]}</h4>
-                  <p className="text-sm text-muted-foreground text-pretty">{modality[1]}</p>
-                </div>
-                <Badge variant="outline" className="ml-4 text-xs">
-                  {modality[2]}
-                </Badge>
-              </div>
-              {index < practitioner.modality.length - 1 && <Separator />}
-            </div>
-          ))}
+        <CardContent>
+          <TagGalaxy
+            data={clusters.map((c) => ({ header: c.header, keywords: c.keywords }))}
+            className="w-full"
+            width={920}
+            height={440}
+          />
         </CardContent>
       </Card>
-
-      {/* Services from Review Analysis */}
-      {reviewAnalysis && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Procedures Offered */}
-          {reviewAnalysis.procedures_offered?.categories?.length > 0 && (
-            <Card className="border-border/50">
-              <CardHeader>
-                <CardTitle className="text-lg">Popular Procedures</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {reviewAnalysis.procedures_offered?.categories?.map((procedure, index) => (
-                    <Badge key={index} variant="secondary">
-                      {procedure}
-                    </Badge>
-                  ))}
-                </div>
-                {reviewAnalysis.procedures_offered.patient_experience.length > 0 && (
-                  <div>
-                    <h5 className="font-medium text-sm text-foreground mb-2">Patient Experience</h5>
-                    <div className="flex flex-wrap gap-1">
-                      {reviewAnalysis.procedures_offered.patient_experience.map((experience, index) => (
-                        <Badge key={index} variant="outline" className="text-xs">
-                          {experience}
-                        </Badge>
-                      ))}
-                    </div>
+     
+      {/* Expandable sections for scanning */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-lg">Sections</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <Accordion type="multiple" className="space-y-3">
+            {clusters.map((c) => (
+              <AccordionItem key={c.header} value={c.header}>
+                <AccordionTrigger className="text-left">{c.header}</AccordionTrigger>
+                <AccordionContent>
+                  <div className="flex flex-wrap gap-2">
+                    {c.keywords.slice(0, 60).map((k) => (
+                      <Badge key={k} variant="secondary">
+                        {k}
+                      </Badge>
+                    ))}
                   </div>
-                )}
-              </CardContent>
-            </Card>
-          )}
-
-          {/* Products */}
-          { reviewAnalysis.products?.skin_treatments && (reviewAnalysis.products?.injectables?.length > 0 || reviewAnalysis.products?.skin_treatments?.length > 0) && (
-            <Card className="border-border/50">
-              <CardHeader>
-                <CardTitle className="text-lg">Products & Treatments</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                {reviewAnalysis.products?.injectables?.length > 0 && (
-                  <div>
-                    <h5 className="font-medium text-sm text-foreground mb-2">Injectables</h5>
-                    <div className="flex flex-wrap gap-1">
-                      {reviewAnalysis.products?.injectables?.map((injectable, index) => (
-                        <Badge key={index} variant="secondary" className="text-xs">
-                          {injectable}
-                        </Badge>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {reviewAnalysis.products?.skin_treatments?.length > 0 && (
-                  <div>
-                    <h5 className="font-medium text-sm text-foreground mb-2">Skin Treatments</h5>
-                    <div className="flex flex-wrap gap-1">
-                      {reviewAnalysis.products?.skin_treatments?.map((treatment, index) => (
-                        <Badge key={index} variant="secondary" className="text-xs">
-                          {treatment}
-                        </Badge>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {reviewAnalysis.products?.product_experience?.length > 0 && (
-                  <div>
-                    <h5 className="font-medium text-sm text-foreground mb-2">Product Experience</h5>
-                    <div className="flex flex-wrap gap-1">
-                      {reviewAnalysis.products?.product_experience.map((experience, index) => (
-                        <Badge key={index} variant="outline" className="text-xs">
-                          {experience}
-                        </Badge>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </CardContent>
-            </Card>
-          )}
-        </div>
-      )}
-    </div>
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </CardContent>
+      </Card>
+      </div>
   )
 }

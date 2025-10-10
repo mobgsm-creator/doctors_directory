@@ -2,25 +2,15 @@ import Link from "next/link"
 import { Star, MapPin, Phone, Calendar } from "lucide-react"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Separator } from "@/components/ui/separator"
 import type { Practitioner } from "@/lib/types"
-
+import Image from "next/image"
 interface PractitionerCardProps {
   practitioner: Practitioner
 }
 
 export function PractitionerCard({ practitioner }: PractitionerCardProps) {
-
-  const getInitials = (name: string) => {
-    return name
-      .split(" ")
-      .map((n) => n[0])
-      .join("")
-      .toUpperCase()
-  }
-
-  const practitionerName = practitioner.slug
+   const practitionerName = practitioner.slug
   .split("-")
   .map(word => word.charAt(0).toUpperCase() + word.slice(1))
   .join(" ") || "Practitioner"
@@ -30,31 +20,40 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
       <Card className="group hover:shadow-lg transition-all duration-300 hover:scale-[1.02] cursor-pointer border-border/50 hover:border-accent/50">
         <CardHeader className="pb-4">
           <div className="flex items-start gap-4">
-            <Avatar className="h-16 w-16 border-2 border-border">
-              <AvatarImage src={practitioner.image || "/placeholder.svg"} alt={practitionerName} />
-              <AvatarFallback className="text-lg font-semibold bg-accent text-accent-foreground">
-                {getInitials(practitionerName)}
-              </AvatarFallback>
-            </Avatar>
+          
 
-            <div className="flex-1 min-w-0">
-              <h3 className="font-semibold text-lg text-foreground group-hover:text-accent transition-colors text-balance">
+            <div className="flex-1 min-w-0 items-center flex flex-col">
+              <h3 className="flex justify-center font-semibold text-lg text-foreground group-hover:text-primary/70 transition-colors text-balance">
                 {practitionerName}
               </h3>
-              <p className="text-sm text-muted-foreground mb-2 text-pretty">
+              <p className="flex justify-center text-sm text-muted-foreground mb-2 text-pretty">
                 {practitioner.profession.split("|")[2]?.trim() || practitioner.profession}
               </p>
+              <Image
+              src={practitioner.image.replace("&w=256&q=75","") || "/placeholder.svg"}
+              alt={"/placeholder.svg"}
+              className="flex border rounded-lg flex object-contain p-1 drop-shadow-sm"
+              width={240} height={240}
 
-              <div className="flex items-center gap-4 text-sm">
+            />
+              <div className="flex flex-col items-center text-sm">
                 <div className="flex items-center gap-1">
-                  <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                  <span className="font-medium">{practitioner.rating}</span>
-                  <span className="text-muted-foreground">({practitioner.reviewCount} reviews)</span>
+                  
+                  <div className="flex items-center mt-4">
+                  {Array.from({ length: 5 }, (_, i) => (
+                    <Star
+                      key={i}
+                      className={`h-4 w-4 ${
+                        i < practitioner.rating ? "fill-yellow-400 text-yellow-400" : "text-muted-foreground/30"
+                      }`}
+                    />
+                  ))}
                 </div>
+                  
+                </div>
+                <span className="text-muted-foreground mt-1 ">({practitioner.reviewCount} reviews)</span>
 
-                <Badge variant="secondary" className="text-xs">
-                  {practitioner.category}
-                </Badge>
+               
               </div>
             </div>
           </div>
@@ -66,10 +65,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
             <span className="text-muted-foreground text-pretty">{practitioner.gmapsAddress}</span>
           </div>
 
-          <div className="flex items-center gap-2 text-sm">
-            <Phone className="h-4 w-4 text-muted-foreground" />
-            <span className="text-muted-foreground">{practitioner.gmapsPhone}</span>
-          </div>
+        
 
           <Separator />
 
@@ -77,8 +73,8 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
             <h4 className="font-medium text-sm mb-2 text-foreground">Specialties</h4>
             <div className="flex flex-wrap gap-1">
               {practitioner.modality.slice(0, 3).map((modality, index) => (
-                <Badge key={index} variant="outline" className="text-xs">
-                  {modality[0]}
+                <Badge key={index} variant="outline" className="text-xs text-wrap">
+                  {modality.replaceAll('"',"")}
                 </Badge>
               ))}
               {practitioner.modality.length > 3 && (
@@ -89,10 +85,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
             </div>
           </div>
 
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <Calendar className="h-4 w-4" />
-            <span>Member since {new Date(practitioner.memberSince).getFullYear()}</span>
-          </div>
+          
         </CardContent>
       </Card>
     </Link>

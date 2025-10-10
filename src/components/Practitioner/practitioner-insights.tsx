@@ -9,7 +9,7 @@ interface PractitionerInsightsProps {
 }
 
 export function PractitionerInsights({ practitioner }: PractitionerInsightsProps) {
-  const reviewAnalysis: ReviewAnalysis = practitioner.reviewAnalysis
+  const reviewAnalysis: ReviewAnalysis = practitioner.reviewAnalysis!
   
 
   if (!reviewAnalysis) return null
@@ -42,7 +42,7 @@ export function PractitionerInsights({ practitioner }: PractitionerInsightsProps
 
           <Separator />
 
-          {practitionerData.interpersonal_skills.length > 0 && (
+          {practitionerData.interpersonal_skills?.length > 0 && (
             <div>
               <h4 className="font-medium text-foreground mb-3">Interpersonal Skills</h4>
               <div className="flex flex-wrap gap-2">

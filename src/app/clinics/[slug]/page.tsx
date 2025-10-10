@@ -35,15 +35,15 @@ function safeParse(str: string) {
     
     return JSON.parse(str);
   } catch (e) {
-    console.error("Parsing failed:", e);
+    console.error("Parsing failed:", e, "Input String: ",str);  
     return null;
   }
 }
 function transformClinic(raw: any): Clinic {
  
   return {
-    slug: raw.Name.toLowerCase().replace(/\s+/g, "-"),
-    image: raw.Image,
+    slug: raw.slug,
+    image: raw.image,
     url: raw.url,
     rating: parseFloat(raw.rating),
     reviewCount: parseInt(raw.review_count),
@@ -65,6 +65,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
   
   
   const clinics = await getClinics();
+
   
   const clinic = clinics.find(p => p.slug=== params.slug);
   
