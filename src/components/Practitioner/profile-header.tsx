@@ -29,14 +29,14 @@ export function ProfileHeader({ practitioner }: ProfileHeaderProps) {
 
       <Card className="justify-center border-border/50 mt-8">
         <div className="flex flex-col sm:flex-row items-center justify-center">
-         
+        <div className="w-60 h-60 flex items-center justify-center overflow-hidden rounded-full border p-1 drop-shadow-sm bg-white">
           <Image
               src={practitioner.image.replace("&w=256&q=75","") || "/placeholder.svg"}
               alt={"/placeholder.svg"}
-              className="border rounded-full flex object-cover p-1 drop-shadow-sm"
+              className="border rounded-full flex object-cover p-1 drop-shadow-sm min-w-full min-h-full"
               width={180} height={180}
 
-            />
+            /></div>
             <div className ='gap-1 flex items-center flex-col sm:ml-4 '>
               <h1 className="text-balance text-lg sm:text-2xl font-semibold text-foreground leading-tight">
                 {practitionerName}
