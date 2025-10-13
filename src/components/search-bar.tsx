@@ -70,69 +70,9 @@ export function SearchBar({ onSearch, initialFilters }: SearchBarProps) {
         </Button>
       </div>
 
-      {/* Filters */}
-      <div className="flex flex-wrap gap-4 items-center">
-        <Select
-          value={filters.category}
-          onValueChange={(value) => setFilters((prev) => ({ ...prev, category: value }))}
-        >
-          <SelectTrigger className="w-48">
-            <SelectValue placeholder="Category" />
-          </SelectTrigger>
-          <SelectContent>
-            {categories.map((category) => (
-              <SelectItem key={category} value={category}>
-                {category}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-
-        <div className="flex items-center gap-2">
-          <Filter className="h-4 w-4 text-muted-foreground" />
-          <span className="text-sm text-muted-foreground">Services:</span>
-        </div>
-      </div>
-
-      {/* Service badges */}
-      <div className="flex flex-wrap gap-2">
-        {services.map((service) => (
-          <Badge
-            key={service}
-            variant={filters.services.includes(service) ? "default" : "outline"}
-            className="cursor-pointer hover:bg-accent transition-colors"
-            onClick={() => handleServiceToggle(service)}
-          >
-            {service}
-          </Badge>
-        ))}
-      </div>
-
-      {/* Active filters display */}
-      {(filters.services.length > 0 || filters.category) && (
-        <div className="flex flex-wrap gap-2 pt-2 border-t border-border">
-          <span className="text-sm text-muted-foreground">Active filters:</span>
-          {filters.category && (
-            <Badge variant="secondary" className="gap-1">
-              {filters.category}
-              <button
-                onClick={() => setFilters((prev) => ({ ...prev, category: "" }))}
-                className="ml-1 hover:text-destructive"
-              >
-                ×
-              </button>
-            </Badge>
-          )}
-          {filters.services.map((service) => (
-            <Badge key={service} variant="secondary" className="gap-1">
-              {service}
-              <button onClick={() => handleServiceToggle(service)} className="ml-1 hover:text-destructive">
-                ×
-              </button>
-            </Badge>
-          ))}
-        </div>
-      )}
+      
+      
+      
     </div>
   )
 }

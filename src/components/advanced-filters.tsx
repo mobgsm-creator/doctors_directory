@@ -52,17 +52,7 @@ export function AdvancedFilters({ filters, onFiltersChange, isOpen, onToggle }: 
 
   return (
     <Collapsible open={isOpen} onOpenChange={onToggle}>
-      <CollapsibleTrigger asChild>
-        <Button variant="outline" className="gap-2 bg-transparent">
-          Advanced Filters
-          {activeFiltersCount > 0 && (
-            <Badge variant="secondary" className="ml-1 h-5 w-5 rounded-full p-0 text-xs">
-              {activeFiltersCount}
-            </Badge>
-          )}
-          <ChevronDown className={`h-4 w-4 transition-transform ${isOpen ? "rotate-180" : ""}`} />
-        </Button>
-      </CollapsibleTrigger>
+      
 
       <CollapsibleContent className="mt-4">
         <Card className="border-border/50">

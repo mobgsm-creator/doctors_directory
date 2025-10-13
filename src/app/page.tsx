@@ -117,7 +117,7 @@ export default function HomePage() {
 
       // Services filter
       if (filters.services.length > 0) {
-        const practitionerServices = practitioner.modality.map((m) => m[0].toLowerCase())
+        const practitionerServices = practitioner.modality.map((m) => m.toLowerCase())
         const hasMatchingService = filters.services.some((service) =>
           practitionerServices.some((ps) => ps.includes(service.toLowerCase())),
         )

@@ -23,19 +23,22 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
           
 
             <div className="flex-1 min-w-0 items-center flex flex-col">
-              <h3 className="flex justify-center font-semibold text-lg text-foreground group-hover:text-primary/70 transition-colors text-balance">
+              <h3 className="flex justify-center font-semibold text-sm text-foreground group-hover:text-primary/70 transition-colors text-balance">
                 {practitionerName}
               </h3>
               <p className="flex justify-center text-sm text-muted-foreground mb-2 text-pretty">
                 {practitioner.profession.split("|")[2]?.trim() || practitioner.profession}
               </p>
-              <Image
-              src={practitioner.image.replace("&w=256&q=75","") || "/placeholder.svg"}
-              alt={"/placeholder.svg"}
-              className="flex border rounded-lg flex object-contain p-1 drop-shadow-sm"
-              width={240} height={240}
+              <div className="w-60 h-60 flex items-center justify-center overflow-hidden rounded-full border p-1 drop-shadow-sm bg-white">
+  <Image
+    src={practitioner.image.replace("&w=256&q=75","") || "/placeholder.svg"}
+    alt="Profile photo"
+    width={240}
+    height={240}
+    className="object-cover rounded-full min-w-full min-h-full"
+  />
+</div>
 
-            />
               <div className="flex flex-col items-center text-sm">
                 <div className="flex items-center gap-1">
                   
