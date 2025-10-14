@@ -147,7 +147,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
       <div className="container mx-auto max-w-6xl px-4 space-y-8">
         {/* Profile Header */}
         <ProfileHeader practitioner={practitioner} />
-        <div className='flex flex-row gap-2'>
+        <div className='flex flex-col sm:flex-row gap-2'>
           {practitioner.gmapsReviews &&
            <div className="grid gap-6 h-113 overflow-auto">
 
