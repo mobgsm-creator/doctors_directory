@@ -20,21 +20,44 @@ export function ServicesSection({ practitioner }: ServicesSectionProps) {
       weight: Math.max(0.05, Math.min(1, (w.length % 10) / 10 + (arr.length ? i / arr.length : 0) * 0.3)),
     }))
   }
+  function capitalizeFirstLetter(arr: string[]) {
+    return arr.filter(Boolean) // remove falsy or empty values
+  .map(str => 
+    str
+      .toLowerCase()
+      .replaceAll('"',"")
+      .replace(/\b\w/g, char => char.toUpperCase()) // capitalize first letter of each word
+  )
+}
+
   const clusters = useMemo(() => {
     return [
-      { header: "Treatment Modalities", keywords: practitioner.modality ?? [] },
-      { header: "Procedures Offered", keywords: reviewAnalysis!.procedures_offered?.categories ?? [] },
-      { header: "Patient Experience", keywords: reviewAnalysis!.procedures_offered?.patient_experience ?? [] },
-      { header: "Injectables", keywords: reviewAnalysis!.products?.injectables ?? [] },
-      { header: "Skin Treatments", keywords: reviewAnalysis!.products?.skin_treatments ?? [] },
-      { header: "Product Experience", keywords: reviewAnalysis!.products?.product_experience ?? [] },
-      { header: "Treatment Outcomes", keywords: reviewAnalysis!.treatment_outcomes ?? [] },
-      { header: "Clinic Environment", keywords: reviewAnalysis!.clinic_environment ?? [] },
-      { header: "Patient Loyalty", keywords: reviewAnalysis!.reviewer_demographics?.loyalty_repeat_visits ?? [] },
-      { header: "Recommendations", keywords: reviewAnalysis!.referrals_recommendations ?? [] },
-      { header: "Professional Attributes", keywords: practitionerData.attributes ?? [] },
-      { header: "Interpersonal Skills", keywords: practitionerData.interpersonal_skills ?? [] },
-      { header: "Trust Signals", keywords: practitionerData.trust_signals ?? [] },
+      {
+        header: "Treatment Modalities",
+        keywords: capitalizeFirstLetter(Array.from(new Set([
+          ...(practitioner.modality ?? []),
+          ...((reviewAnalysis?.products?.injectables) ?? []),
+          ...((reviewAnalysis?.products?.skin_treatments) ?? []),
+          ...((reviewAnalysis!.procedures_offered?.categories) ?? [])
+        ])))
+      },
+      { header: "Patient Experience", keywords: capitalizeFirstLetter(Array.from(new Set([
+        ...(reviewAnalysis!.procedures_offered?.patient_experience ?? []),
+        ...((reviewAnalysis?.products?.product_experience) ?? []),
+        ...((reviewAnalysis?.treatment_outcomes) ?? []),
+      ]))) },
+      { header: "Clinic Environment", keywords: capitalizeFirstLetter(reviewAnalysis!.clinic_environment) ?? [] },
+      { header: "Recommendations", keywords: capitalizeFirstLetter(Array.from(new Set([
+        ...(reviewAnalysis!.referrals_recommendations ?? []), 
+        ...(reviewAnalysis!.reviewer_demographics?.loyalty_repeat_visits ?? [])
+      ])))},
+      { header: "Interpersonal Skills", keywords: capitalizeFirstLetter(Array.from(new Set([
+        ...(practitionerData.interpersonal_skills ?? []),
+        ...(practitionerData.attributes ?? []),
+        ...(practitionerData.trust_signals ?? [])
+      ]))) },
+       
+      
     ].filter((c) => (c.keywords?.length ?? 0) > 0)
   }, [reviewAnalysis, practitionerData])
 

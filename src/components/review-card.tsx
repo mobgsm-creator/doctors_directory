@@ -4,8 +4,10 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 import type { Review } from "@/lib/types"
 
+import Image from "next/image"
 interface ReviewCardProps {
   review: Review
+
 }
 
 export function ReviewCard({ review }: ReviewCardProps) {
@@ -24,18 +26,26 @@ export function ReviewCard({ review }: ReviewCardProps) {
   const starCount = getStarCount(review.rating)
 
   return (
+  
     <Card className="border-border/50">
       <CardHeader className="pb-4">
         <div className="flex items-start gap-4">
+        <Image
+    src={ review.reviewer_name ? "/googlemaps.png" : "/doctify.jpg"}
+    alt="Label"
+    width={40}
+    height={40}
+    className="object-cover rounded-full "
+  />
           <Avatar className="h-10 w-10">
             <AvatarFallback className="text-sm bg-accent text-accent-foreground">
-              {getInitials(review.reviewer_name)}
+              {getInitials(review.reviewer_name ?? "anonymous")}
             </AvatarFallback>
           </Avatar>
 
           <div className="flex-1 min-w-0">
             <div className="flex items-center justify-between mb-2">
-              <h4 className="font-medium text-foreground">{review.reviewer_name}</h4>
+              <h4 className="font-medium text-foreground">{review.reviewer_name ?? "Anonymous"}</h4>
               <div className="flex items-center gap-2">
                 <div className="flex items-center">
                   {Array.from({ length: 5 }, (_, i) => (
@@ -62,7 +72,7 @@ export function ReviewCard({ review }: ReviewCardProps) {
       </CardHeader>
 
       <CardContent className="pt-0">
-        <p className="text-muted-foreground text-pretty leading-relaxed">{review.review_text}</p>
+        <p className="text-muted-foreground text-pretty leading-relaxed">{review.review_text ?? review.text}</p>
 
         {review.owner_response && (
           <div className="mt-4 p-4 bg-muted/50 rounded-lg border-l-4 border-accent">
@@ -76,5 +86,6 @@ export function ReviewCard({ review }: ReviewCardProps) {
         )}
       </CardContent>
     </Card>
+   
   )
 }

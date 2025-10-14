@@ -65,8 +65,9 @@ export interface Review {
   reviewer_name: string
   rating: string
   date: string
-  review_text: string
+  review_text?: string
   owner_response: string | null
+  text?: string
 }
 export interface ReviewAnalysis {
   practitioners: Array<{

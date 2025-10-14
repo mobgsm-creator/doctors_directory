@@ -10,6 +10,7 @@ import VisxBoxPlot from "@/components/boxplot-graph"
 import { boxplotDatas } from "@/lib/data"
 import { BoxPlotDatum, ItemMeta } from "@/lib/types"
 import { ReviewCard } from "@/components/review-card"
+import { GoogleMapsEmbed } from "@/components/gmaps-embed"
 import fs from 'fs';
 import path from 'path';
 import {consolidate, parse_text, parse_addresses, parse_numbers} from "@/lib/utils"
@@ -146,8 +147,9 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
       <div className="container mx-auto max-w-6xl px-4 space-y-8">
         {/* Profile Header */}
         <ProfileHeader practitioner={practitioner} />
-        {practitioner.gmapsReviews &&
-         <div className="grid gap-6">
+        <div className='flex flex-row gap-2'>
+          {practitioner.gmapsReviews &&
+           <div className="grid gap-6 h-113 overflow-auto">
 
 
 
@@ -161,6 +163,64 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
 
 
               </div> }
+              <GoogleMapsEmbed
+          url={practitioner.url!}
+          
+          className="w-full h-80"
+        /></div>
+              <h1 className="flex justify-center text-pretty text-2xl font-semibold">Community Experience</h1>
+        <h2 className="flex justify-center text-pretty text-md font-semibold">Legend</h2>
+        <div className="w-full overflow-x-auto py-2">
+          <div className="flex min-w-[1080px] gap-x-8 gap-y-2 flex-wrap items-start">
+            {/* Fixed Quartiles */}
+            <div className="flex flex-row gap-x-3">
+              <div className="flex items-center gap-x-2">
+                <div className="w-3.5 h-2.5 rounded-sm" style={{ background: qColors.q1 }} />
+                <span className="text-xs text-[var(--color-axis)]">Q1 (Min→Q1)</span>
+              </div>
+              <div className="flex items-center gap-x-2">
+                <div className="w-3.5 h-2.5 rounded-sm" style={{ background: qColors.q2 }} />
+                <span className="text-xs text-[var(--color-axis)]">Q2 (Q1→Median)</span>
+              </div>
+              <div className="flex items-center gap-x-2">
+                <div className="w-3.5 h-2.5 rounded-sm" style={{ background: qColors.q3 }} />
+                <span className="text-xs text-[var(--color-axis)]">Q3 (Median→Q3)</span>
+              </div>
+              <div className="flex items-center gap-x-2">
+                <div className="w-3.5 h-2.5 rounded-sm" style={{ background: qColors.q4 }} />
+                <span className="text-xs text-[var(--color-axis)]">Q4 (Q3→Max)</span>
+              </div>
+              {boxplotData.map((d) => (
+              <div key={`legend-${d.key}`} className="flex flex-col gap-y-1">
+                <div className="flex items-center gap-x-2">
+                  <div className="w-3.5 h-2.5 rounded-sm" style={{ background: categoryColorFor(d.label) }} />
+                  <span className="text-xs text-[var(--color-axis)]">{d.key}</span>
+                </div>
+              </div>
+            ))}
+            </div>
+          </div>
+        </div>
+        <VisxBoxPlot data={boxplotData} height={540} />
+        <div className="flex justify-center">
+          <h2 className="text-pretty text-xl font-semibold">About Section</h2>
+        </div>
+        
+
+        
+
+        {/* Main Content Tabs */}
+        <Tabs defaultValue="services" className="w-full">
+       
+
+          <TabsContent value="services" className="mt-8">
+            <ServicesSection practitioner={practitioner} />
+          </TabsContent>
+
+        
+
+        </Tabs>
+      
        </div>
     </main>
   )
