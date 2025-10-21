@@ -9,8 +9,10 @@ import type { Practitioner } from "@/lib/types"
 import VisxBoxPlot from "@/components/boxplot-graph"
 import { boxplotDatas } from "@/lib/data"
 import { BoxPlotDatum, ItemMeta } from "@/lib/types"
+import VisxDonutChart from "@/components/visx-donut"
 import { ReviewCard } from "@/components/review-card"
 import { GoogleMapsEmbed } from "@/components/gmaps-embed"
+import PerformanceSummary from "@/components/performace-summary"
 import fs from 'fs';
 import path from 'path';
 import {consolidate, parse_text, parse_addresses, parse_numbers} from "@/lib/utils"
@@ -117,7 +119,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
   const practitioners = await getPractitioners();
   
   const practitioner = practitioners.find(p => p.slug === params.slug);
-  console.log(practitioner?.gmapsReviews)
+  //console.log(practitioner?.gmapsReviews)
   const boxplotData = mergeBoxplotDataFromDict(
     boxplotDatas,
     practitioner?.weighted_analysis ?? {}
@@ -147,6 +149,8 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
       <div className="container mx-auto max-w-6xl px-4 space-y-8">
         {/* Profile Header */}
         <ProfileHeader practitioner={practitioner} />
+        <VisxDonutChart data={boxplotData} height={200} />
+        <PerformanceSummary data={boxplotData} />
         <div className='flex flex-col sm:flex-row gap-2'>
           {practitioner.gmapsReviews &&
            <div className="grid gap-6 h-113 overflow-auto">
@@ -222,6 +226,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
         </Tabs>
       
        </div>
+       
     </main>
   )
 }

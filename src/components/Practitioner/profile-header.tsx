@@ -24,7 +24,7 @@ export function ProfileHeader({ practitioner }: ProfileHeaderProps) {
   .map(word => word.charAt(0).toUpperCase() + word.slice(1))
   .join(" ")
   const roleTitle = practitioner.profession
-  console.log(practitioner.image)
+  //console.log(practitioner.image)
   return (
 
       <Card className="justify-center border-border/50 mt-8">
@@ -38,10 +38,10 @@ export function ProfileHeader({ practitioner }: ProfileHeaderProps) {
 
             /></div>
             <div className ='gap-1 flex items-center flex-col sm:ml-4 '>
-              <h1 className="text-balance text-lg sm:text-2xl font-semibold text-foreground leading-tight">
+              <h1 className="flex flex-col justify-center text-balance text-lg sm:text-2xl font-semibold text-foreground leading-tight">
                 {practitionerName}
-                <span className="text-muted-foreground font-normal">
-                  {", "}
+                <span className="flex justify-center text-muted-foreground font-normal">
+              
                   {roleTitle}
                 </span>
               
@@ -56,7 +56,7 @@ export function ProfileHeader({ practitioner }: ProfileHeaderProps) {
               
               <address className="ml-6 not-italic text-muted-foreground text-xs leading-relaxed flex items-center justify-center sm:items-start gap-2">
                 <MapPin className="h-4 w-4 mt-0.5 shrink-0 text-muted-foreground" aria-hidden="true" />
-                <span className="sm:whitespace-normal">{practitioner.gmapsAddress}</span>
+                <span className="block max-w-[300px] break-words sm:whitespace-normal">{practitioner.gmapsAddress}</span>
               </address>
               <div className="flex items-center justify-center sm:justify-start mt-4">
                {Array.from({ length: 5 }, (_, i) => (
@@ -76,7 +76,7 @@ export function ProfileHeader({ practitioner }: ProfileHeaderProps) {
            
 
           </div>
-          <div className="flex flex-col gap-3 mt-6">
+          <div className="flex ml-10 flex-col gap-3 mt-6">
         <Button variant="default" className="rounded-full px-6 py-8">
           Request Consultation
         </Button>

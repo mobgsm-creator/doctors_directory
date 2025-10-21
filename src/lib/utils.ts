@@ -50,7 +50,7 @@ export function parse_addresses(input: string): string {
 export function safeParse(str: string) {
   try {
     
-    console.log(str)
+    //console.log(str)
     return JSON.parse(str);
   } catch (e) {
     console.error("Parsing failed:", e);

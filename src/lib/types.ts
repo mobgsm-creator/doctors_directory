@@ -6,10 +6,12 @@ export interface Clinic {
   reviewCount: number
   category: string
   gmapsAddress: string
-  gmapsLink: string
+  //gmapsLink: string
   gmapsPhone: string
-  gmapsReviews: Review[]
-  reviewAnalysis: ReviewAnalysis
+  gmapsReviews?: Review[]
+  reviewAnalysis?: ReviewAnalysis
+  weighted_analysis?: WeightedAnalysis
+  City: string
 
 }
 interface WeightedAnalysis {
@@ -99,6 +101,7 @@ export interface ReviewAnalysis {
   owner_response_sentiment?: string[]
   pain_points?: string[]
   treatment_journey?: string[]
+  negative_keywords?: string[]
 }
 
 export interface SearchFilters {

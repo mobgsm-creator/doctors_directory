@@ -69,12 +69,12 @@ export default function HomePage() {
       
         
         setPractitioners(transformedData);
-        console.log(practitioners.length)
+        //console.log(practitioners.length)
    
       } catch (err) {
         console.error(err);
       } finally {
-        console.log("done")
+        //console.log("done")
       }
     };
 
