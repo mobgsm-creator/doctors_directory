@@ -115,7 +115,9 @@ interface ProfilePageProps {
 }
 
 export default async function ProfilePage({ params }: ProfilePageProps) {
-  
+  const width = typeof window !== "undefined" ? window.innerWidth : 0;
+  console.log(width)
+  const isMobile = width >= 640 ? false : true;
   const practitioners = await getPractitioners();
   
   const practitioner = practitioners.find(p => p.slug === params.slug);
@@ -149,8 +151,11 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
       <div className="container mx-auto max-w-6xl px-4 space-y-8">
         {/* Profile Header */}
         <ProfileHeader practitioner={practitioner} />
-        <VisxDonutChart data={boxplotData} height={200} />
-        <PerformanceSummary data={boxplotData} />
+        <div className="flex flex-col">
+        <VisxDonutChart data={boxplotData}  />
+        
+        <PerformanceSummary data={boxplotData} /></div> 
+        <ServicesSection practitioner={practitioner} />
         <div className='flex flex-col sm:flex-row gap-2'>
           {practitioner.gmapsReviews &&
            <div className="grid gap-6 h-113 overflow-auto">
@@ -172,11 +177,11 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
           
           className="w-full h-80"
         /></div>
-              <h1 className="flex justify-center text-pretty text-2xl font-semibold">Community Experience</h1>
+             {/* <h1 className="flex justify-center text-pretty text-2xl font-semibold">Community Experience</h1>
         <h2 className="flex justify-center text-pretty text-md font-semibold">Legend</h2>
         <div className="w-full overflow-x-auto py-2">
           <div className="flex min-w-[1080px] gap-x-8 gap-y-2 flex-wrap items-start">
-            {/* Fixed Quartiles */}
+        
             <div className="flex flex-row gap-x-3">
               <div className="flex items-center gap-x-2">
                 <div className="w-3.5 h-2.5 rounded-sm" style={{ background: qColors.q1 }} />
@@ -208,22 +213,11 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
         <VisxBoxPlot data={boxplotData} height={540} />
         <div className="flex justify-center">
           <h2 className="text-pretty text-xl font-semibold">About Section</h2>
-        </div>
+        </div> */}
         
 
         
 
-        {/* Main Content Tabs */}
-        <Tabs defaultValue="services" className="w-full">
-       
-
-          <TabsContent value="services" className="mt-8">
-            <ServicesSection practitioner={practitioner} />
-          </TabsContent>
-
-        
-
-        </Tabs>
       
        </div>
        

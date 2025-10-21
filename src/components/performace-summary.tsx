@@ -28,7 +28,7 @@ export default function PerformanceSummary({ data }: PerformanceSummaryProps) {
     filtered_data.forEach(d => {
       const label = d.label
       const { weighted_score } = d.item
-      console.log(label,weighted_score)
+      //console.log(label,weighted_score)
       const { q1, q3, median, min, max } = d.stats
       const variability = max - min
 

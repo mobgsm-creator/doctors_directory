@@ -96,6 +96,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
   
   
   
+  
 
   if (!clinic) {
     notFound()
@@ -118,10 +119,15 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
       <div className="container mx-auto max-w-6xl px-4 py-8 space-y-8">
         {/* Profile Header */}
         <ProfileHeader clinic={clinic} />
-        <VisxDonutChart data={boxplotData} height={200} />
+       
+        <VisxDonutChart data={boxplotData} />
+
+
       <PerformanceSummary data={boxplotData} />
         
-        <div className='flex flex-col sm:flex-row gap-2'>
+        
+      <ServicesSection clinic={clinic} />
+      <div className='flex flex-col sm:flex-row gap-2'>
           {clinic.gmapsReviews &&
            <div className="grid gap-6 h-113 overflow-auto">
 
@@ -142,7 +148,6 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
           
           className="w-full h-80"
         /></div>
-      <ServicesSection clinic={clinic} />
       </div>
 
       

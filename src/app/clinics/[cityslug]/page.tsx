@@ -87,7 +87,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
   return (
     <main>
    
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 animate-fade-in">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 animate-fade-in">
             {cityClinics.map((clinic, index) => (
             <div key={index} style={{ animationDelay: `${index * 50}ms` }}>
                 <Link href={`/clinics/${clinic.City}/${clinic.slug}`}>

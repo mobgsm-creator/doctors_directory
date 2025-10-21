@@ -12,14 +12,14 @@ interface ServicesSectionProps {
 export function ServicesSection({ practitioner }: ServicesSectionProps) {
   const reviewAnalysis = practitioner.reviewAnalysis
   const practitionerData = reviewAnalysis!.practitioners[0]
-  function toCloud(words: string[] | undefined, group: string) {
-    return (words ?? []).map((w, i, arr) => ({
-      text: w,
-      group,
-      // naive weight by position/length; replace with frequency or embedding strength if available
-      weight: Math.max(0.05, Math.min(1, (w.length % 10) / 10 + (arr.length ? i / arr.length : 0) * 0.3)),
-    }))
-  }
+  // function toCloud(words: string[] | undefined, group: string) {
+  //   return (words ?? []).map((w, i, arr) => ({
+  //     text: w,
+  //     group,
+  //     // naive weight by position/length; replace with frequency or embedding strength if available
+  //     weight: Math.max(0.05, Math.min(1, (w.length % 10) / 10 + (arr.length ? i / arr.length : 0) * 0.3)),
+  //   }))
+  // }
   function capitalizeFirstLetter(arr: string[]) {
     return arr.filter(Boolean) // remove falsy or empty values
   .map(str => 
@@ -61,13 +61,13 @@ export function ServicesSection({ practitioner }: ServicesSectionProps) {
     ].filter((c) => (c.keywords?.length ?? 0) > 0)
   }, [reviewAnalysis, practitionerData])
 
-  const cloudWords = useMemo(() => clusters.flatMap((c) => toCloud(c.keywords, c.header)), [clusters])
+  //const cloudWords = useMemo(() => clusters.flatMap((c) => toCloud(c.keywords, c.header)), [clusters])
 
 
   return (
     <div className="space-y-6">
       {/* Tag Galaxy */}
-      <Card>
+      {/* <Card>
         <CardHeader>
           <CardTitle className="text-lg">Tag Galaxy</CardTitle>
       
@@ -80,7 +80,7 @@ export function ServicesSection({ practitioner }: ServicesSectionProps) {
             height={440}
           />
         </CardContent>
-      </Card>
+      </Card> */}
      
       {/* Expandable sections for scanning */}
       <Card>

@@ -24,7 +24,7 @@ export default function HomePage() {
     return (
         <main>
    
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 animate-fade-in">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 animate-fade-in">
             {Object.keys(cityMap).map((city, index) => (
             <div key={index} style={{ animationDelay: `${index * 50}ms` }}>
                 <Link href={`/clinics/${city}`}>

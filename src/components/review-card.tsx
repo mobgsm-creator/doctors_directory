@@ -57,9 +57,7 @@ export function ReviewCard({ review }: ReviewCardProps) {
                     />
                   ))}
                 </div>
-                <Badge variant="outline" className="text-xs">
-                  {review.rating}
-                </Badge>
+              
               </div>
             </div>
 

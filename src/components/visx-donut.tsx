@@ -8,6 +8,7 @@ export interface VisxDonutChartProps {
   data: BoxPlotDatum[]
   height?: number
   margin?: { top: number; right: number; bottom: number; left: number }
+  
 }
 
 interface DonutSegment {
@@ -20,12 +21,18 @@ interface DonutSegment {
 function DonutChartSvg({
   data,
   width,
-  height,
+  
   margin = { top: 20, right: 24, bottom: 20, left: 24 },
+  
 }: VisxDonutChartProps & {
   width: number
-  height: number
+  
+  
 }) {
+  const screenwidth = typeof window !== "undefined" ? window.innerWidth : 0;
+  const height = screenwidth > 640 ? 200 : 400;
+
+  
   const categoryColorByLabel: Record<string, string> = {
     "Clinical Expertise": "#E63946",
     Communication: "#F77F00",
@@ -61,6 +68,7 @@ function DonutChartSvg({
     ]
   }
   const filtered_data = data.filter(d => skip.includes(d.label))
+  
 
 
   return (
@@ -70,13 +78,13 @@ function DonutChartSvg({
         const segments = getDonutSegments(d)
 
         // Calculate grid position
-        const cols = filtered_data.length
+        const cols = screenwidth > 640 ? filtered_data.length : 2
         const col = idx % cols
         const row = Math.floor(idx / cols)
         const cellWidth = width / cols
-        const cellHeight = (height / Math.ceil(filtered_data.length / cols))*0.8
+        const cellHeight = screenwidth > 640 ? (height / Math.ceil(filtered_data.length / cols))*0.8 : (height / Math.ceil(filtered_data.length / cols)) 
         const centerX = cellWidth * col + cellWidth / 2
-        const centerY = cellHeight * row + cellHeight / 2
+        const centerY = cellHeight * row + cellHeight / 2 
         const chartRadius = Math.min(cellWidth, cellHeight) / 2 - 20
 
         return (
@@ -139,12 +147,14 @@ function DonutChartSvg({
   )
 }
 
-export default function VisxDonutChart({ data, height = 600, margin }: VisxDonutChartProps) {
+export default function VisxDonutChart({ data, margin }: VisxDonutChartProps) {
+   
+
   return (
     <div className="w-full rounded-lg border bg-card p-4" style={{ borderColor: "var(--color-border)" }}>
-      <div style={{ width: "100%", height, position: "relative" }}>
+      <div style={{ width: "100%", position: "relative" }}>
         <ParentSize>
-          {({ width, height }) => <DonutChartSvg data={data} width={width} height={height} margin={margin} />}
+          {({ width, height }) => <DonutChartSvg data={data} width={width} height={height} margin={margin}  />}
         </ParentSize>
       </div>
     </div>
