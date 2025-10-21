@@ -30,15 +30,15 @@ export default function HomePage() {
                 <Link href={`/clinics/${city}`}>
                         <Card className="group hover:shadow-lg transition-all duration-300 hover:scale-[1.02] cursor-pointer border-border/50 hover:border-accent/50">
                             <CardHeader >
-                            <h2 className='justify-center font-semibold text-sm text-foreground group-hover:text-primary/70 transition-colors text-balance'>{city}</h2>
+                            <h2 className='flex justify-center font-semibold text-sm text-foreground group-hover:text-primary/70 transition-colors text-balance'>{city}</h2>
                             </CardHeader>
-                            <CardContent className='pt-0'>
+                            <CardContent className='flex items-center justify-center pt-0'>
                             <Image
                         src={cityMap[city].split("?w")[0] || "/placeholder.svg"}
                         alt="Profile photo"
                         width={240}
                         height={240}
-                        className="object-cover rounded-bl rounded-ee rounded-tr rounded-tl w-60 h-60"
+                        className="flex items-center justify-center object-cover rounded-bl rounded-ee rounded-tr rounded-tl w-60 h-60"
                     />
                             </CardContent>
 
