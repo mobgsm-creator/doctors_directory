@@ -70,8 +70,8 @@ export async function getCachedData(cachedData:[Clinic[], Practitioner[]] | null
     return [cachedData as [Clinic[], Practitioner[]], lastFetched];
   }
 
-  const allclinics = await import('@/../public/clinics.json').then(m => m.default as Clinic[]);
-  const allpractitioners = await import('@/../public/derms.json').then(m => m.default as Practitioner[]);
+  const allclinics = await import('@/../public/clinics.json').then(m => m.default as unknown as Clinic[]);
+  const allpractitioners = await import('@/../public/derms.json').then(m => m.default as unknown as Practitioner[]);
   const clinics = allclinics.slice(0,allclinics.length).map(transformClinic);
   const practitioners = allpractitioners.slice(0,allpractitioners.length).map(transformPractitioner);
 
