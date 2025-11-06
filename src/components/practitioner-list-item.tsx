@@ -5,10 +5,11 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Separator } from "@/components/ui/separator"
-import type { Practitioner } from "@/lib/types"
+import type { Practitioner, Clinic } from "@/lib/types"
 
 interface PractitionerListItemProps {
-  practitioner: Practitioner
+  practitioner: Practitioner | Clinic
+  
 }
 
 export function PractitionerListItem({ practitioner }: PractitionerListItemProps) {
@@ -26,6 +27,7 @@ export function PractitionerListItem({ practitioner }: PractitionerListItemProps
   .join(" ") || "Practitioner"
 
   return (
+ 
     <Card className="group hover:shadow-lg transition-all duration-300 hover:scale-[1.01] border-border/50 hover:border-accent/50">
       <CardContent className="p-6">
         <div className="flex gap-6">
@@ -47,9 +49,12 @@ export function PractitionerListItem({ practitioner }: PractitionerListItemProps
                     {practitionerName}
                   </h3>
                 </Link>
-                <p className="text-muted-foreground mb-2 text-pretty">
-                  {practitioner.profession.split("|")[2]?.trim() || practitioner.profession}
-                </p>
+                {'profession' in practitioner && practitioner.profession && (
+                  <p className="text-muted-foreground mb-2 text-pretty">
+                    {practitioner.profession.split("|")[2]?.trim() || practitioner.profession}
+                  </p>
+                )}
+
 
                 <div className="flex items-center gap-4 text-sm">
                   <div className="flex items-center gap-1">
@@ -129,16 +134,30 @@ export function PractitionerListItem({ practitioner }: PractitionerListItemProps
             <div>
               <h4 className="font-medium text-sm mb-2 text-foreground">Specialties</h4>
               <div className="flex flex-wrap gap-1">
-                {practitioner.modality.slice(0, 4).map((modality, index) => (
+                {'profession' in practitioner && practitioner.profession && (
+                practitioner.modality.slice(0, 4).map((modality, index) => (
                   <Badge key={index} variant="outline" className="text-xs">
-                    {modality[0]}
+                    {modality}
                   </Badge>
-                ))}
-                {practitioner.modality.length > 4 && (
+                )))}
+                {'profession' in practitioner && practitioner.profession && (
+                  practitioner.modality.length > 4 && (
                   <Badge variant="outline" className="text-xs">
                     +{practitioner.modality.length - 4} more
                   </Badge>
-                )}
+                ))}
+                {!('profession' in practitioner) && (
+                practitioner.reviewAnalysis?.procedures_offered?.categories.slice(0, 4).map((modality, index) => (
+                  <Badge key={index} variant="outline" className="text-xs">
+                    {modality}
+                  </Badge>
+                )))}
+                {!('profession' in practitioner) && (
+                  practitioner.reviewAnalysis?.procedures_offered?.categories?.length! > 4 && (
+                  <Badge variant="outline" className="text-xs">
+                    +{practitioner.reviewAnalysis?.procedures_offered?.categories!.length! - 4} more
+                  </Badge>
+                ))}
               </div>
             </div>
           </div>

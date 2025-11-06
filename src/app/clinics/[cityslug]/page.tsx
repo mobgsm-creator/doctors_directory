@@ -2,64 +2,14 @@ import { notFound } from "next/navigation"
 import Link from "next/link"
 import { Card, CardHeader, CardContent } from "@/components/ui/card"
 import Image from "next/image"
-import type { Clinic } from "@/lib/types"
-import {consolidate, parse_text, parse_addresses, parse_numbers} from "@/lib/utils"
-import fs from 'fs';
+import type { Clinic, Practitioner } from "@/lib/types"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
-import path from 'path';
 import { Star, MapPin  } from "lucide-react"
-const filePath = path.join(process.cwd(), 'public', 'clinics.json');
-const fileContents = fs.readFileSync(filePath, 'utf-8');
-let cachedClinics : Clinic[] = [];
+import { getCachedData } from "@/lib/cachedData"
+let cachedData: [Clinic[], Practitioner[]] | null = null;
+let lastFetched = 0;
 
-async function getClinics(): Promise<Clinic[]> {
-  if (cachedClinics.length > 0) {
-    return cachedClinics;
-  }
-
-  const data = JSON.parse(fileContents);
-
-  
-  
-  
-  cachedClinics = data.map(transformClinic);
-  
-  return cachedClinics;
-}
-
-function safeParse(str: string) {
-  try {
-    
-    
-    return JSON.parse(str);
-  } catch (e) {
-    //console.error("Parsing failed:", e, "Input String: ",str);  
-    return null;
-  }
-}
-function transformClinic(raw: any): Clinic {
- 
-  return {
-    slug: raw.slug.toLowerCase()
-    .replace(/&|\+/g, 'and')
-    
-    .replace(/\s+/g, '-')
-    .replace(/[()]/g, ''),
-    image: raw.image,
-    url: raw.links,
-    rating: parseFloat(raw.rating),
-    reviewCount: parseInt(raw.review_count),
-    category: raw.category,
-    gmapsAddress: parse_addresses(raw.gmaps_address),
-    //gmapsLink: raw.gmaps_link,
-    gmapsPhone: raw.gmaps_phone.replace("Phone: ", "").trim(),
-    gmapsReviews: safeParse(raw.gmaps_reviews),
-    reviewAnalysis: safeParse(raw["Review Analysis"]),
-    weighted_analysis: safeParse(raw["weighted_analysis"]),
-    City: raw.City,
-  };
-}
 interface ProfilePageProps {
   params: {
     cityslug: string
@@ -68,13 +18,12 @@ interface ProfilePageProps {
 }
 
 export default async function ProfilePage({ params }: ProfilePageProps) {
-  const { cityslug } = params;
+  [cachedData,lastFetched] = await getCachedData(cachedData,lastFetched);
+  const clinics = cachedData[0]
 
-  
-  const clinics = await getClinics();
+  const citySlug = params.cityslug;
+  const cityClinics:Clinic[]= clinics.filter(p => p.City === citySlug);
 
-  const cityClinics:Clinic[]= clinics.filter(p => p.City === cityslug);
-  //console.log(cityClinics[0].reviewAnalysis)
   
 
   

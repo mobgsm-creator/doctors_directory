@@ -105,9 +105,11 @@ export interface ReviewAnalysis {
 }
 
 export interface SearchFilters {
+  type: string
   query: string
   category: string
   location: string
   rating: number
   services: string[]
+  
 }

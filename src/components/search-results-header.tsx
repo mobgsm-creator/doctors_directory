@@ -41,7 +41,7 @@ export function SearchResultsHeader({
     <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
       <div className="flex-1">
         <h2 className="text-2xl font-semibold text-foreground mb-2">
-          {totalResults > 0 ? "Healthcare Practitioners" : "No Results Found"}
+          {totalResults > 0 ? "Aesthetics Directory" : "No Results Found"}
         </h2>
         <div className="flex items-center gap-4 text-sm text-muted-foreground">
           {totalResults > 0 ? (
@@ -94,14 +94,7 @@ export function SearchResultsHeader({
           >
             <Grid className="h-4 w-4" />
           </Button>
-          <Button
-            variant={viewMode === "list" ? "default" : "ghost"}
-            size="sm"
-            onClick={() => onViewModeChange("list")}
-            className="rounded-l-none"
-          >
-            <List className="h-4 w-4" />
-          </Button>
+          
         </div>
       </div>
     </div>

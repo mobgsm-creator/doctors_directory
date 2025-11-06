@@ -8,8 +8,7 @@ interface GoogleMapsEmbedProps {
 }
 
 export function GoogleMapsEmbed({ url, width = "100%", height = "450", className = "" }: GoogleMapsEmbedProps) {
-  //console.log("url",url)
-  // Convert Google Maps URL to embed URL
+
   const getEmbedUrl = (mapsUrl: string): string => {
     try {
       // Extract place ID from the URL if it exists

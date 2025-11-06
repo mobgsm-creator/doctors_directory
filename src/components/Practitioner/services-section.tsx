@@ -3,15 +3,15 @@ import { Badge } from "@/components/ui/badge"
 import { Accordion } from "@/components/ui/accordion"
 import { AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion"
 import type { Practitioner } from "@/lib/types"
-import { TagGalaxy } from "@/components/tag-galaxy"
 import { useMemo } from "react"
 interface ServicesSectionProps {
   practitioner: Practitioner
 }
 
 export function ServicesSection({ practitioner }: ServicesSectionProps) {
+
   const reviewAnalysis = practitioner.reviewAnalysis
-  const practitionerData = reviewAnalysis!.practitioners[0]
+  const practitionerData = reviewAnalysis!.practitioners[0];
   // function toCloud(words: string[] | undefined, group: string) {
   //   return (words ?? []).map((w, i, arr) => ({
   //     text: w,

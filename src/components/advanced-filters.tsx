@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { ChevronDown, X, Star } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -9,8 +9,8 @@ import { Label } from "@/components/ui/label"
 import { Slider } from "@/components/ui/slider"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import { Badge } from "@/components/ui/badge"
-import { categories, services } from "@/lib/data"
 import type { SearchFilters } from "@/lib/types"
+import { useDataStore } from "@/app/stores/datastore"
 
 interface AdvancedFiltersProps {
   filters: SearchFilters
@@ -21,13 +21,18 @@ interface AdvancedFiltersProps {
 
 export function AdvancedFilters({ filters, onFiltersChange, isOpen, onToggle }: AdvancedFiltersProps) {
   const [localFilters, setLocalFilters] = useState<SearchFilters>(filters)
-
+  const {fetchData,categories,modalities, loading } = useDataStore();
+  useEffect(() => {
+    fetchData();  // <-- this must run to fill the store
+  }, [fetchData]);
+  const services = modalities
   const handleApplyFilters = () => {
     onFiltersChange(localFilters)
   }
 
   const handleClearFilters = () => {
     const clearedFilters: SearchFilters = {
+      type: filters.type,
       query: filters.query, // Keep the search query
       category: "",
       location: filters.location, // Keep the location

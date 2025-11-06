@@ -24,7 +24,7 @@ export function ProfileHeader({ practitioner }: ProfileHeaderProps) {
   .map(word => word.charAt(0).toUpperCase() + word.slice(1))
   .join(" ")
   const roleTitle = practitioner.profession
-  //console.log(practitioner.image)
+
   return (
 
       <Card className="justify-center border-border/50 mt-8">

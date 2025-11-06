@@ -2,23 +2,18 @@ import { notFound } from "next/navigation"
 import Link from "next/link"
 import { ArrowLeft, MessageSquare } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ProfileHeader } from "@/components/Practitioner/profile-header"
 import { ServicesSection } from "@/components/Practitioner/services-section"
-import type { Practitioner } from "@/lib/types"
-import VisxBoxPlot from "@/components/boxplot-graph"
 import { boxplotDatas } from "@/lib/data"
 import { BoxPlotDatum, ItemMeta } from "@/lib/types"
 import VisxDonutChart from "@/components/visx-donut"
 import { ReviewCard } from "@/components/review-card"
 import { GoogleMapsEmbed } from "@/components/gmaps-embed"
 import PerformanceSummary from "@/components/performace-summary"
-import fs from 'fs';
-import path from 'path';
-import {consolidate, parse_text, parse_addresses, parse_numbers} from "@/lib/utils"
-const filePath = path.join(process.cwd(), 'public', 'derms.json');
-const fileContents = fs.readFileSync(filePath, 'utf-8');
-let cachedPractitioners: Practitioner[] = [];
+import { getCachedData } from "@/lib/cachedData"
+import { Clinic, Practitioner } from "@/lib/types";
+let cachedData: [Clinic[], Practitioner[]] | null = null;
+let lastFetched = 0;
 function mergeBoxplotDataFromDict(
   base: BoxPlotDatum[],
   incoming: Record<string, ItemMeta>
@@ -30,30 +25,6 @@ function mergeBoxplotDataFromDict(
   })
 }
 
-async function getPractitioners(): Promise<Practitioner[]> {
-  if (cachedPractitioners.length > 0) {
-    return cachedPractitioners;
-  }
-
-  const data = JSON.parse(fileContents);
-
-  
-  
-  
-  cachedPractitioners = data.map(transformPractitioner);
-  return cachedPractitioners;
-}
-
-function safeParse(str: string) {
-  try {
-    
-    
-    return JSON.parse(str);
-  } catch (e) {
-    console.error("Parsing failed:", e, "Input String: ",str);
-    return null;
-  }
-}
 const qColors = {
   q1: "#1a1a1a", // Min → Q1
   q2: "#4a4a4a", // Q1 → Median
@@ -79,35 +50,7 @@ const categoryColorByLabel: Record<string, string> = {
   "Honesty & Realistic Expectations": "#5C6BC0",
   "Long-term Relationship & Loyalty": "#D32F2F",
 }
-const meanFill = "var(--color-chart-4)"
-const categoryColorFor = (label: string) => categoryColorByLabel[label] ?? "#888888"
-function transformPractitioner(raw: any): Practitioner {
- 
-  return {
-    //id: raw["ID"].toString(),
-    Name: raw.Name,
-    slug: raw.Name.toLowerCase().replace(/\s+/g, "-"),
-    image: raw.Image === 'https://www.jccp.org.uk/content/images/no-image.jpg' ? raw.image : raw.Image,
-    profession: parse_text(raw["PROFESSION:"]).trim(),
-    //regulatoryBody: parse_text(raw["REGULATORY BODY:"]),
-    // registrationPin: raw["REGISTRATION PIN NUMBER:"],
-    qualification: raw["QUALIFICATION: (To Date)"].trim(),
-    modality: consolidate(raw["SPECIALTIES"]),
-    // memberSince: raw["MEMBER SINCE:"],
-    // otherMemberships: raw["OTHER MEMBERSHIPS:"],
-    // restrictions: raw["RESTRICTIONS:"],
-     url: raw.url,
-     rating: parse_numbers(raw.rating),
-     reviewCount: parse_numbers(raw.review_count),
-     category: raw.category,
-     gmapsAddress: parse_addresses(raw.gmaps_address),
-    // gmapsLink: raw.gmaps_link,
-    // gmapsPhone: raw.gmaps_phone.replace("Phone: ", "").trim(),
-    gmapsReviews: JSON.parse(raw.gmaps_reviews),
-    reviewAnalysis: safeParse(raw["Review Analysis"]),
-    weighted_analysis: safeParse(raw["weighted_analysis"]),
-  };
-}
+
 interface ProfilePageProps {
   params: {
     slug: string
@@ -115,13 +58,12 @@ interface ProfilePageProps {
 }
 
 export default async function ProfilePage({ params }: ProfilePageProps) {
+  [cachedData,lastFetched] = await getCachedData(cachedData,lastFetched);
+  const practitioners = cachedData[1]
   const width = typeof window !== "undefined" ? window.innerWidth : 0;
-  console.log(width)
   const isMobile = width >= 640 ? false : true;
-  const practitioners = await getPractitioners();
   
   const practitioner = practitioners.find(p => p.slug === params.slug);
-  //console.log(practitioner?.gmapsReviews)
   const boxplotData = mergeBoxplotDataFromDict(
     boxplotDatas,
     practitioner?.weighted_analysis ?? {}
@@ -234,7 +176,9 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
 
 
 export async function generateMetadata({ params }: ProfilePageProps) {
-  const practitioners = await getPractitioners();
+  [cachedData,lastFetched] = await getCachedData(cachedData,lastFetched);
+  const practitioners = cachedData[1]
+
   const practitioner = practitioners.find((p) => p.slug === params.slug)
 
   if (!practitioner) {

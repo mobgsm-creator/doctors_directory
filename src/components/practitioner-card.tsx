@@ -3,10 +3,10 @@ import { Star, MapPin, Phone, Calendar } from "lucide-react"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
-import type { Practitioner } from "@/lib/types"
+import type { Practitioner, Clinic } from "@/lib/types"
 import Image from "next/image"
 interface PractitionerCardProps {
-  practitioner: Practitioner
+  practitioner: Practitioner | Clinic
 }
 
 export function PractitionerCard({ practitioner }: PractitionerCardProps) {
@@ -16,7 +16,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
   .join(" ") || "Practitioner"
 
   return (
-    <Link href={`/profile/${practitioner.slug}`}>
+    <Link href={'profession' in practitioner && practitioner.profession ? `/profile/${practitioner.slug}` : `/clinics/${(practitioner as Clinic).City}/${practitioner.slug}`}>
       <Card className="group hover:shadow-lg transition-all duration-300 hover:scale-[1.02] cursor-pointer border-border/50 hover:border-accent/50">
         <CardHeader className="pb-4">
           <div className="flex items-start gap-4">
@@ -26,9 +26,11 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
               <h3 className="flex justify-center font-semibold text-sm text-foreground group-hover:text-primary/70 transition-colors text-balance">
                 {practitionerName}
               </h3>
-              <p className="flex justify-center text-sm text-muted-foreground mb-2 text-pretty">
-                {practitioner.profession.split("|")[2]?.trim() || practitioner.profession}
-              </p>
+              {'profession' in practitioner && practitioner.profession && (
+                  <p className="text-muted-foreground mb-2 text-pretty">
+                    {practitioner.profession.split("|")[2]?.trim() || practitioner.profession}
+                  </p>
+                )}
               <div className="w-60 h-60 flex items-center justify-center overflow-hidden rounded-full border p-1 drop-shadow-sm bg-white">
   <Image
     src={practitioner.image.replace("&w=256&q=75","") || "/placeholder.svg"}
@@ -75,17 +77,33 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
           <div>
             <h4 className="font-medium text-sm mb-2 text-foreground">Specialties</h4>
             <div className="flex flex-wrap gap-1">
-              {practitioner.modality.slice(0, 3).map((modality, index) => (
-                <Badge key={index} variant="outline" className="text-xs text-wrap">
-                  {modality.replaceAll('"',"")}
-                </Badge>
-              ))}
-              {practitioner.modality.length > 3 && (
-                <Badge variant="outline" className="text-xs">
-                  +{practitioner.modality.length - 3} more
-                </Badge>
-              )}
-            </div>
+                {'profession' in practitioner && practitioner.profession && (
+                practitioner.modality.slice(0, 4).map((modality, index) => (
+                  <Badge key={index} variant="outline" className="text-xs">
+                    {modality}
+                  </Badge>
+                )))}
+                {'profession' in practitioner && practitioner.profession && (
+                  practitioner.modality.length > 4 && (
+                  <Badge variant="outline" className="text-xs">
+                    +{practitioner.modality.length - 4} more
+                  </Badge>
+                ))}
+                {!('profession' in practitioner) && (
+                practitioner.reviewAnalysis?.procedures_offered?.categories.slice(0, 4).map((modality, index) => (
+                  <Badge key={index} variant="outline" className="text-xs">
+                    {modality.split(" ")                                   // split into words
+                    .map(word => word.charAt(0).toUpperCase() + word.slice(1)) // capitalize each
+                    .join(" ")}
+                  </Badge>
+                )))}
+                {!('profession' in practitioner) && (
+                  practitioner.reviewAnalysis?.procedures_offered?.categories?.length! > 4 && (
+                  <Badge variant="outline" className="text-xs">
+                    +{practitioner.reviewAnalysis?.procedures_offered?.categories!.length! - 4} more
+                  </Badge>
+                ))}
+              </div>
           </div>
 
           

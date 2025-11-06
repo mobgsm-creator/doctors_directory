@@ -2,22 +2,18 @@ import { notFound } from "next/navigation"
 import Link from "next/link"
 import { ArrowLeft, MessageSquare } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ProfileHeader } from "@/components/Clinic/profile-header"
 import { ReviewCard } from "@/components/review-card"
 import { GoogleMapsEmbed } from "@/components/gmaps-embed"
-import type { Clinic } from "@/lib/types"
-import {consolidate, parse_text, parse_addresses, parse_numbers} from "@/lib/utils"
+import type { Clinic, Practitioner } from "@/lib/types"
 import { boxplotDatas_clinic } from "@/lib/data"
 import { BoxPlotDatum, ItemMeta } from "@/lib/types"
 import PerformanceSummary from "@/components/performace-summary"
 import VisxDonutChart from "@/components/visx-donut"
 import { ServicesSection } from "@/components/Clinic/services-section"
-import fs from 'fs';
-import path from 'path';
-const filePath = path.join(process.cwd(), 'public', 'clinics.json');
-const fileContents = fs.readFileSync(filePath, 'utf-8');
-let cachedClinics : Clinic[] = [];
+import { getCachedData } from "@/lib/cachedData"
+let cachedData: [Clinic[], Practitioner[]] | null = null;
+let lastFetched = 0;
 function mergeBoxplotDataFromDict(
   base: BoxPlotDatum[],
   incoming: Record<string, ItemMeta>
@@ -28,52 +24,7 @@ function mergeBoxplotDataFromDict(
     return result
   })
 }
-async function getClinics(): Promise<Clinic[]> {
-  if (cachedClinics.length > 0) {
-    return cachedClinics;
-  }
 
-  const data = JSON.parse(fileContents);
-
-  
-  
-  
-  cachedClinics = data.map(transformClinic);
-  
-  return cachedClinics;
-}
-
-function safeParse(str: string) {
-  try {
-    
-    
-    return JSON.parse(str);
-  } catch (e) {
-    //console.error("Parsing failed:", e, "Input String: ",str);  
-    return null;
-  }
-}
-function transformClinic(raw: any): Clinic {
- 
-  return {
-    slug: raw.slug.toLowerCase()
-    .replace(/&|\+/g, 'and')
-    .replace(/\s+/g, '-')
-    .replace(/[()]/g, ''),
-    image: raw.image,
-    url: raw.links,
-    rating: parseFloat(raw.rating),
-    reviewCount: parseInt(raw.review_count),
-    category: raw.category,
-    gmapsAddress: parse_addresses(raw.gmaps_address),
-    //gmapsLink: raw.gmaps_link,
-    gmapsPhone: raw.gmaps_phone.replace("Phone: ", "").trim(),
-    gmapsReviews: safeParse(raw.gmaps_reviews),
-    reviewAnalysis: safeParse(raw["Review Analysis"]),
-    weighted_analysis: safeParse(raw["weighted_analysis"]),
-    City: raw.City,
-  };
-}
 interface ProfilePageProps {
   params: {
     citySlug: string
@@ -82,13 +33,10 @@ interface ProfilePageProps {
 }
 
 export default async function ProfilePage({ params }: ProfilePageProps) {
+  [cachedData,lastFetched] = await getCachedData(cachedData,lastFetched);
+  const clinics = cachedData[0]
   const { slug } = params;
-  //console.log(slug)
-  
-  const clinics = await getClinics();
-
- 
-  const clinic = clinics.find(p => p.slug=== slug);
+  const clinic = clinics.find(p => p.slug === slug);
   const boxplotData = mergeBoxplotDataFromDict(
     boxplotDatas_clinic,
     clinic?.weighted_analysis ?? {}
@@ -165,7 +113,8 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
 
 
 export async function generateMetadata({ params }: ProfilePageProps) {
-  const clinics = await getClinics();
+  [cachedData,lastFetched] = await getCachedData(cachedData,lastFetched);
+  const clinics = cachedData[0]
   const clinic = clinics.find((p) => p.slug === params.slug)
 
   if (!clinic) {

@@ -7,11 +7,12 @@ import { Search, Menu, Home, User } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { cn } from "@/lib/utils"
-
+import { SearchBar } from "./search-bar"
 export function NavigationHeader() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const pathname = usePathname()
+  const [isSearch, setIsSearch] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -45,6 +46,7 @@ export function NavigationHeader() {
             </div>
             HealthDirectory
           </Link>
+        
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-6">
