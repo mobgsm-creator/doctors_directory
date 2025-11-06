@@ -8,7 +8,7 @@ export async function getCachedData(cachedData:[Clinic[], Practitioner[]] | null
   const cacheTTL = 1000 * 60 * 60 * 24 * 364; // 1 year
 
   if (now - lastFetched < cacheTTL) {
-    //console.log("✅ Using cached data");
+    console.log("✅ Using cached data");
     return [cachedData as [Clinic[], Practitioner[]], lastFetched];
   }
 
