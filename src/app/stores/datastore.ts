@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { Clinic, Practitioner } from "@/lib/types";
-
+import { transformClinic, transformPractitioner } from "@/lib/cachedData";
 // -----------------------------
 // Types
 // -----------------------------
@@ -40,18 +40,56 @@ export const useDataStore = create<DataStore>()(
 
         try {
           console.log("trying")
-          const [
-            [clinics, clinicCategories, clinicModalities, clinicLocations],
-            [practitioners, practitionerCategories, practitionerModalities, professions, practitionerLocations]
+          const 
+            [allclinics, 
+            allpractitioners
           ] = await Promise.all([
             fetch("/api/getClinicData").then(res => res.json()),
             fetch("/api/getPractitionerData").then(res => res.json()),
           ]);
+          const practitioners = allpractitioners.slice(0,allpractitioners.length).map(transformPractitioner);
+          const clinics = allclinics.slice(0,allclinics.length).map(transformClinic);
 
-          // Merge + dedupe arrays
-          const categories = Array.from(new Set([...clinicCategories, ...practitionerCategories]));
-          const modalities = Array.from(new Set([...clinicModalities, ...practitionerModalities]));
-          const locations = Array.from(new Set([...clinicLocations, ...practitionerLocations]));
+          // ---- Derive unique sets ----
+            const categories : string[] = Array.from(
+              new Set([
+                ...practitioners.map((c: Practitioner) => c.category).filter(Boolean),
+                
+              ])
+            );
+
+            let modalities : string[] = Array.from(
+              new Set([
+                  
+                  ...practitioners.flatMap((p: Practitioner) =>{
+                    return p.modality.map(m => m.toLowerCase())}).filter(Boolean),
+                ])
+            );
+            modalities =[...new Set(modalities)]
+            .map(item =>
+              item
+                .split(" ")                                   // split into words
+                .map(word => word.charAt(0).toUpperCase() + word.slice(1)) // capitalize each
+                .join(" ")                                    // join back into a phrase
+            );
+
+
+            const professions = Array.from(
+              new Set([
+                
+                  practitioners.map((p: Practitioner) => p.profession).filter(Boolean),
+                ])
+            );
+
+            const locations: string[] = Array.from(
+              new Set(
+                
+                  practitioners.map((p: Practitioner) => {
+                    const parts = p.gmapsAddress?.split(",");
+                    return parts?.[parts.length - 2].trim().split(" ")[0]
+                  }).filter(Boolean)
+                )
+            );
 
 
           set({
