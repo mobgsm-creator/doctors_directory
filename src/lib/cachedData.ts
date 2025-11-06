@@ -71,12 +71,12 @@ export async function getCachedData(cachedData:[Clinic[], Practitioner[]] | null
   }
 
   //console.log("🆕 Fetching new data...");
-  const allclinics: Clinic[] = await fetch("http://localhost:3000/api/getClinicData", {
+  const allclinics: Clinic[] = await fetch("https://doctors-directory-five.vercel.app/api/getClinicData", {
     cache: "no-store", // bypass Next.js fetch cache
   }).then(res => res.json());
  
 
-  const allpractitioners: Practitioner[] = await fetch("http://localhost:3000/api/getPractitionerData", {
+  const allpractitioners: Practitioner[] = await fetch("https://doctors-directory-five.vercel.app/api/getPractitionerData", {
     cache: "no-store",
   }).then(res => res.json());
   const clinics = allclinics.slice(0,allclinics.length).map(transformClinic);
