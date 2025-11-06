@@ -10,23 +10,24 @@ csv_file = doctify_jccp
 
 # Load CSV
 #df = pd.read_csv(csv_file)
-df = pd.read_excel(doctify_jccp,sheet_name='Sheet1')
-def clean(x):
-    if "Show less" in x:
-        x = x.split("Show less")
-        clean_x = "".join(x[:len(x)-1])+'"]'
-        return clean_x
-    else: 
-        return x
-df['SPECIALTIES'] = df['SPECIALTIES'].apply(lambda x: clean(x))
+df = pd.read_excel(r"C:\Users\agney\Documents\Files\Projects\UK-Dermatologists\prod_DB\clinics\5600_UK_slug.xlsx",sheet_name='Sheet2')
+
+# def clean(x):
+#     if "Show less" in x:
+#         x = x.split("Show less")
+#         clean_x = "".join(x[:len(x)-1])+'"]'
+#         return clean_x
+#     else: 
+#         return x
+# df['SPECIALTIES'] = df['SPECIALTIES'].apply(lambda x: clean(x))
 
 # Convert DataFrame to list of dicts
-devices_list = df.to_dict(orient='records')
+devices_list = df[:500].to_dict(orient='records')
 
 
 
 # # Write JSON file
-with open('derms.json', 'w', encoding='utf-8') as f:
+with open('clinics.json', 'w', encoding='utf-8') as f:
     json.dump(devices_list, f, indent=2, ensure_ascii=False)
 
 # print("JSON file generated successfully at devices.json")

@@ -70,8 +70,15 @@ export async function getCachedData(cachedData:[Clinic[], Practitioner[]] | null
     return [cachedData as [Clinic[], Practitioner[]], lastFetched];
   }
 
-  const allclinics = await import('@/../public/clinics.json').then(m => m.default as unknown as Clinic[]);
-  const allpractitioners = await import('@/../public/derms.json').then(m => m.default as unknown as Practitioner[]);
+  //console.log("🆕 Fetching new data...");
+  const allclinics: Clinic[] = await fetch("http://localhost:3000/api/getClinicData", {
+    cache: "no-store", // bypass Next.js fetch cache
+  }).then(res => res.json());
+ 
+
+  const allpractitioners: Practitioner[] = await fetch("http://localhost:3000/api/getPractitionerData", {
+    cache: "no-store",
+  }).then(res => res.json());
   const clinics = allclinics.slice(0,allclinics.length).map(transformClinic);
   const practitioners = allpractitioners.slice(0,allpractitioners.length).map(transformPractitioner);
 
