@@ -1,11 +1,28 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { Clinic, Practitioner } from "@/lib/types";
+import { Clinic, Practitioner, SearchFilters } from "@/lib/types";
 import { transformClinic, transformPractitioner } from "@/lib/cachedData";
 // -----------------------------
 // Types
 // -----------------------------
+interface SearchState {
+  filters: SearchFilters
+  setFilters: (filters: SearchFilters) => void
 
+}
+
+export const useSearchStore = create<SearchState>((set) => ({
+  filters: {
+    type: "practitioner",
+    query: "",
+    category: "",
+    location: "",
+    rating: 0,
+    services: [],
+  
+  },
+  setFilters: (filters) => set({ filters }),
+}))
 interface DataStore {
   clinics: Clinic[];
   practitioners: Practitioner[];
