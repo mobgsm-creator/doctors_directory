@@ -104,12 +104,12 @@ export async function getCachedData(cachedData:[Clinic[], Practitioner[]] | null
   const now = Date.now();
   const cacheTTL = 1000 * 60 * 60 * 24 * 364; // 1 year
 
-  // if (now - lastFetched < cacheTTL) {
-  //   console.log("✅ Using cached data");
-  //   return [cachedData as [Clinic[], Practitioner[]], lastFetched];
-  // }
+  if (now - lastFetched < cacheTTL) {
+    console.log("✅ Using cached data");
+    return [cachedData as [Clinic[], Practitioner[]], lastFetched];
+  }
 
-  //console.log("🆕 Fetching new data...");
+  console.log("🆕 Fetching new data...");
   const allclinics: Clinic[] = await fetch("https://doctors-directory-five.vercel.app/api/getClinicData_sb", {
     cache: "no-store", // bypass Next.js fetch cache
   }).then(res => res.json());
