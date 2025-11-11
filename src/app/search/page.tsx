@@ -14,14 +14,17 @@ const ITEMS_PER_PAGE = 9
 
 export default async function SearchPage() {
 
+
     
   const { clinics, practitioners } = useDataStore()
   const { filters, setFilters } = useSearchStore()
   const [currentPage, setCurrentPage] = useState(1)
-  const [sortBy, setSortBy] = useState("rating")
+  const [sortBy, setSortBy] = useState("default")
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid")
   const [showAdvancedFilters, setShowAdvancedFilters] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+
+
  
 
   const filteredAndSortedData = useMemo(() => {
@@ -137,9 +140,11 @@ export default async function SearchPage() {
     return filtered
   }, [filters, sortBy, practitioners])
 
+
   const totalPages = Math.ceil(filteredAndSortedData.length / ITEMS_PER_PAGE)
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE
   const paginatedPractitioners = filteredAndSortedData.slice(startIndex, startIndex + ITEMS_PER_PAGE)
+
 
   const handleSearch = async (newFilters: SearchFilters) => {
     setIsLoading(true)

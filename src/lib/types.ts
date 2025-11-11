@@ -12,6 +12,28 @@ export interface Clinic {
   reviewAnalysis?: ReviewAnalysis
   weighted_analysis?: WeightedAnalysis
   City: string
+  facebook: string
+  twitter: string	
+  Linkedin: string	
+  instagram: string	
+  youtube: string	
+  website: string	
+  email: string	
+  isSaveFace: boolean	
+  isDoctor: boolean	
+  isJCCP: [boolean, string] | null	
+  isCQC: [boolean, string] | null	
+  isHIW: [boolean, string] | null
+  isHIS: [boolean, string] | null	
+  isRQIA: [boolean, string] | null	
+  about_section: string	
+  hours: string	
+  Practitioners: string	
+  Insurace: string	
+  Payments: string	
+  Fees: string	
+  x_twitter: string
+
 
 }
 interface WeightedAnalysis {

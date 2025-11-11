@@ -13,7 +13,7 @@ interface SearchState {
 
 export const useSearchStore = create<SearchState>((set) => ({
   filters: {
-    type: "practitioner",
+    type: "Clinic",
     query: "",
     category: "",
     location: "",
@@ -50,22 +50,21 @@ export const useDataStore = create<DataStore>()(
 
       fetchData: async () => {
         if (get().clinics.length && get().practitioners.length){ 
-          console.log("Cached")
           return;} // cached
 
         set({ loading: true, error: undefined });
 
         try {
-          console.log("trying")
           const 
             [allclinics, 
             allpractitioners
           ] = await Promise.all([
-            fetch("/api/getClinicData").then(res => res.json()),
+            fetch("/api/getClinicData_sb").then(res => res.json()),
             fetch("/api/getPractitionerData").then(res => res.json()),
           ]);
+         
           const practitioners = allpractitioners.slice(0,allpractitioners.length).map(transformPractitioner);
-          const clinics = allclinics.slice(0,allclinics.length).map(transformClinic);
+          const clinics = allclinics.result.slice(0,allclinics.result.length).map(transformClinic);
 
           // ---- Derive unique sets ----
             const categories : string[] = Array.from(

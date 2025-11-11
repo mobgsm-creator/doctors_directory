@@ -8,10 +8,11 @@ import { GoogleMapsEmbed } from "@/components/gmaps-embed"
 import type { Clinic, Practitioner } from "@/lib/types"
 import { boxplotDatas_clinic } from "@/lib/data"
 import { BoxPlotDatum, ItemMeta } from "@/lib/types"
-import PerformanceSummary from "@/components/performace-summary"
 import VisxDonutChart from "@/components/visx-donut"
 import { ServicesSection } from "@/components/Clinic/services-section"
 import { getCachedData } from "@/lib/cachedData"
+import ClinicDetailsMarkdown from "@/components/Clinic/clinicDetailsMD"
+
 let cachedData: [Clinic[], Practitioner[]] | null = null;
 let lastFetched = 0;
 function mergeBoxplotDataFromDict(
@@ -37,6 +38,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
   const clinics = cachedData[0]
   const { slug } = params;
   const clinic = clinics.find(p => p.slug === slug);
+
   const boxplotData = mergeBoxplotDataFromDict(
     boxplotDatas_clinic,
     clinic?.weighted_analysis ?? {}
@@ -71,7 +73,9 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
         <VisxDonutChart data={boxplotData} />
 
 
-      <PerformanceSummary data={boxplotData} />
+      
+      <ClinicDetailsMarkdown clinic={clinic} />
+    
         
         
       <ServicesSection clinic={clinic} />

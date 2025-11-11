@@ -57,7 +57,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                             <CardContent className='pt-0 flex justify-center '>
                             
                     <div className="flex flex-col items-center text-sm">
-                    <Image
+                    <img
                         src={clinic.image.split("?w")[0] || "/placeholder.svg"}
                         alt="Profile photo"
                         width={240}

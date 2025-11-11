@@ -3,7 +3,6 @@ import { Badge } from "@/components/ui/badge"
 import { Accordion } from "@/components/ui/accordion"
 import { AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion"
 import type { Clinic } from "@/lib/types"
-import { TagGalaxy } from "@/components/tag-galaxy"
 import { useMemo } from "react"
 interface ServicesSectionProps {
   clinic: Clinic

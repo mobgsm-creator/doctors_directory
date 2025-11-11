@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import type { Practitioner, Clinic } from "@/lib/types"
 import Image from "next/image"
+import ClinicLabels from "./Clinic/clinicLabels"
 interface PractitionerCardProps {
   practitioner: Practitioner | Clinic
 }
@@ -32,7 +33,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                   </p>
                 )}
               <div className="w-60 h-60 flex items-center justify-center overflow-hidden rounded-full border p-1 drop-shadow-sm bg-white">
-  <Image
+  <img
     src={practitioner.image.replace("&w=256&q=75","") || "/placeholder.svg"}
     alt="Profile photo"
     width={240}
@@ -105,6 +106,20 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                 ))}
               </div>
           </div>
+          
+          {!('profession' in practitioner) && (
+            <>
+            <Separator />
+            <ClinicLabels clinic={practitioner} />
+
+          
+     
+          
+          
+          
+          
+          </>
+          )}
 
           
         </CardContent>

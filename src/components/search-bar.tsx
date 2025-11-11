@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import type { SearchFilters } from "@/lib/types"
 import { useDataStore } from "@/app/stores/datastore";
-import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog"
+import { Dialog, DialogContent, DialogHeader, DialogClose } from "@/components/ui/dialog"
 import {
   Select,
   SelectContent,
@@ -29,7 +29,7 @@ export function SearchBar({ onSearch, initialFilters }: SearchBarProps) {
 
   const [filters, setFilters] = useState<SearchFilters>(
     initialFilters || {
-      type: "Practitioner",
+      type: "Clinic",
       query: "",
       category: "",
       location: "",
@@ -184,16 +184,18 @@ export function SearchBar({ onSearch, initialFilters }: SearchBarProps) {
       >
         <Search className="h-5 w-5 text-gray-500 mr-2" />
         <span className="text-gray-500 text-sm">Search practitioners, clinics, or locations</span>
-        {showMobileSearch && (
+       
           
-<Dialog open={showMobileSearch} onOpenChange={setShowMobileSearch}>
-  <DialogContent className="p-0 sm:max-w-lg max-w-full h-screen sm:h-auto rounded-none sm:rounded-lg">
-    <DialogHeader className="p-4 border-b">
-      <div className="flex justify-between items-center">
-        <span className="font-semibold text-lg">Search</span>
-        <Button variant="ghost" size="icon" onClick={() => setShowMobileSearch(false)}>✕</Button>
+
       </div>
-    </DialogHeader>
+      <Dialog open={showMobileSearch} onOpenChange={setShowMobileSearch}>
+  <DialogContent className="p-0 sm:max-w-lg max-w-full h-screen sm:h-auto rounded-none sm:rounded-lg"
+  onInteractOutside={() => setShowMobileSearch(false)}>
+    <DialogHeader className="p-4 border-b">
+        <div className="flex justify-between items-center">
+          <span className="font-semibold text-lg">Search</span>
+        </div>
+      </DialogHeader>
 
     <div className="p-4 space-y-6 overflow-y-auto">
       {/* Section 1: Type */}
@@ -276,8 +278,7 @@ export function SearchBar({ onSearch, initialFilters }: SearchBarProps) {
       </Button>
     </div>
   </DialogContent>
-</Dialog>)}
-      </div>
+</Dialog>
 
     </div>
     </>

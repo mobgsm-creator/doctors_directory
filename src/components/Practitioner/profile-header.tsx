@@ -1,11 +1,7 @@
-import { Star, MapPin, Phone, Calendar, ExternalLink, ShieldCheck } from "lucide-react"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
+import { Star, MapPin, ShieldCheck } from "lucide-react"
+import { Card} from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { GoogleMapsEmbed } from "@/components/gmaps-embed"
-import { Separator } from "@/components/ui/separator"
 import type { Practitioner } from "@/lib/types"
-import Image from "next/image"
 interface ProfileHeaderProps {
   practitioner: Practitioner
 }
@@ -30,7 +26,7 @@ export function ProfileHeader({ practitioner }: ProfileHeaderProps) {
       <Card className="justify-center border-border/50 mt-8">
         <div className="flex flex-col sm:flex-row items-center justify-center">
         <div className="w-60 h-60 flex items-center justify-center overflow-hidden rounded-full border p-1 drop-shadow-sm bg-white">
-          <Image
+          <img
               src={practitioner.image.replace("&w=256&q=75","") || "/placeholder.svg"}
               alt={"/placeholder.svg"}
               className="border rounded-full flex object-cover p-1 drop-shadow-sm min-w-full min-h-full"

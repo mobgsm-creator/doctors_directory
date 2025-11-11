@@ -34,7 +34,7 @@ export default function HomePage() {
                             <h2 className='flex justify-center font-semibold text-sm text-foreground group-hover:text-primary/70 transition-colors text-balance'>{city}</h2>
                             </CardHeader>
                             <CardContent className='flex items-center justify-center pt-0'>
-                            <Image
+                            <img
                         src={cityMap[city].split("?w")[0] || "/placeholder.svg"}
                         alt="Profile photo"
                         width={240}
