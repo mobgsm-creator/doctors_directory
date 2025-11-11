@@ -7,6 +7,7 @@ export async function GET() {
     const { data, error} = await supabase
       .from('clinics')
       .select('*')  // Use 'exact' to get the precise count
+      .range(0,400)
       if (error) {
         console.error("Supabase error:", error);
         return NextResponse.json({ error: error.message }, { status: 500 });
