@@ -1,5 +1,5 @@
 "use client"
-import { useState, useMemo } from "react"
+import { useState, useMemo, useEffect } from "react"
 import { SearchBar } from "@/components/search-bar"
 import { PractitionerCard } from "@/components/practitioner-card"
 import { PractitionerListItem } from "@/components/practitioner-list-item"
@@ -16,7 +16,7 @@ export default function SearchPage() {
 
 
     
-  const { clinics, practitioners } = useDataStore()
+  const { fetchData,clinics, practitioners } = useDataStore()
   const { filters, setFilters } = useSearchStore()
   const [currentPage, setCurrentPage] = useState(1)
   const [sortBy, setSortBy] = useState("default")
@@ -168,6 +168,10 @@ export default function SearchPage() {
     setCurrentPage(page)
     window.scrollTo({ top: 0, behavior: "smooth" })
   }
+
+  useEffect(() => {
+    fetchData()
+  }, [filters])
 
   return (
     <main className="min-h-screen">

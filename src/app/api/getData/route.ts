@@ -117,9 +117,10 @@ async function loadFromFileSystem() {
   const filePath_1 = path.join(process.cwd(), 'public', 'clinics.json');
   const fileContents_1 = fs.readFileSync(filePath_1, 'utf-8');
   const clinics = JSON.parse(fileContents_1);
+  console.log("Loaded")
   const clinicsData = clinics.map(transformClinic);
   const practitionersData = practitioners.map(transformPractitioner);
-
+  console.log("Transformed")
   console.log(`✅ API: Loaded ${clinics?.length} clinics and ${practitioners?.length} practitioners from file`);
   
   return {clinicsData, practitionersData};
@@ -128,21 +129,12 @@ async function loadFromFileSystem() {
 export async function GET() {
   try {
     // Try to get from cache first
-    let data = nodeCache.get<any>(CACHE_KEY);
     
-    if (data) {
-      console.log("✅ API: Cache hit! Serving from memory");
-    } else {
-      console.log("💾 API: Cache miss - loading from file system");
     const { clinicsData, practitionersData } = await loadFromFileSystem();
       
       // Store in cache
-      data = {clinicsData, practitionersData}
-      nodeCache.set(CACHE_KEY, { clinicsData, practitionersData });
-      console.log("💾 API: Data cached in memory");
-    }
-
-    return NextResponse.json({clinics: data.clinicsData, practitioners: data.practitionersData}, {
+ 
+    return NextResponse.json({clinics: clinicsData, practitioners: practitionersData}, {
      
     });
   } catch (error: any) {
@@ -154,9 +146,4 @@ export async function GET() {
   }
 }
 
-// Optional: Add a way to clear cache
-export async function DELETE() {
-  nodeCache.del(CACHE_KEY);
-  console.log("🗑️ API: Cache cleared");
-  return NextResponse.json({ message: "Cache cleared" });
-}
+

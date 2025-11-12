@@ -66,20 +66,15 @@ export const useDataStore = create<DataStore>((set, get) => ({
     try {
 
       
-      const [clinics, practitioners] = await Promise.all([
-        getClinics(),
-        getPractitioners(),
-      ]);
-      // ---- Derive unique sets ----
-      const { categories, modalities, professions, locations } = await import("@/lib/data");
-
+      const response = await fetch("http://128.199.165.212:8765/api/getData", {
+        next: { revalidate: 3600 * 24 * 365 } // Cache for 1 hour
+      });
+      const {clinics, practitioners} = await response.json();
+      
+     
       set({
         clinics,
         practitioners,
-        categories,
-        modalities,
-        professions,
-        locations,
         loading: false,
         initialized: true,
         error: undefined,
