@@ -93,11 +93,13 @@ export default function HomePage() {
   </div>
 </section>
 
-<section className="py-16 bg-blue-50 text-center px-6 md:px-12">
-  <h2 className="text-3xl font-bold mb-6 text-blue-900">
+<section className="py-16 bg-gray-50 text-center px-6 md:px-12">
+
+  
+  <img src="/pic.jpg" alt="data chart" className="w-full" />
+  <h2 className="text-3xl font-bold mt-4 mb-6">
     What This Data Means
-  </h2>
-  <p className="max-w-3xl mx-auto text-lg text-gray-700 leading-relaxed mb-10">
+  </h2><p className="max-w-3xl mx-auto text-lg text-gray-600 leading-relaxed mb-10">
     These charts show how people in the community feel about different parts of
     their clinic experience. Each category, like <strong>Trust</strong> or{" "}
     <strong>Communication</strong>, comes from real reviews and feedback shared
@@ -107,8 +109,8 @@ export default function HomePage() {
 
   <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
     <div className="bg-white rounded-2xl shadow p-6">
-      <h3 className="text-xl font-semibold text-blue-700 mb-2">
-        📊 The Scores
+      <h3 className="text-xl font-semibold mb-2">
+        The Scores
       </h3>
       <p className="text-gray-600">
         Every score shows how positive or strong people’s feelings were. Higher
@@ -118,8 +120,8 @@ export default function HomePage() {
     </div>
 
     <div className="bg-white rounded-2xl shadow p-6">
-      <h3 className="text-xl font-semibold text-blue-700 mb-2">
-        💬 The Mentions
+      <h3 className="text-xl font-semibold mb-2">
+        The Mentions
       </h3>
       <p className="text-gray-600">
         “Mentions” tell us how many people talked about that topic in their
@@ -130,8 +132,8 @@ export default function HomePage() {
     </div>
 
     <div className="bg-white rounded-2xl shadow p-6">
-      <h3 className="text-xl font-semibold text-blue-700 mb-2">
-        🤝 Community Voice
+      <h3 className="text-xl font-semibold mb-2">
+        Community Voice
       </h3>
       <p className="text-gray-600">
         This data doesn’t come from one opinion — it comes from many voices
@@ -148,7 +150,7 @@ export default function HomePage() {
 </section>
 
 <section className="py-20 bg-white text-center px-6 md:px-12">
-  <h2 className="text-3xl font-bold mb-6 text-gray-900">
+  <h2 className="text-3xl font-bold mb-6">
     Explore Procedures & Conditions
   </h2>
   <p className="max-w-3xl mx-auto text-gray-600 text-lg leading-relaxed mb-10">
@@ -160,9 +162,9 @@ export default function HomePage() {
 
   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto text-left">
     {/* Injectables */}
-    <div className="bg-blue-50 rounded-2xl p-6 shadow hover:shadow-lg transition">
-      <h3 className="text-xl font-semibold text-blue-800 mb-3">
-        💉 Injectables
+    <div className="bg-gray-50 rounded-2xl p-6 shadow hover:shadow-lg transition">
+      <h3 className="text-xl font-semibold mb-3">
+        Injectables
       </h3>
       <p className="text-gray-700 mb-4">
         Smooth lines, add volume, or balance facial features with treatments
@@ -177,9 +179,9 @@ export default function HomePage() {
     </div>
 
     {/* Skin Rejuvenation */}
-    <div className="bg-green-50 rounded-2xl p-6 shadow hover:shadow-lg transition">
-      <h3 className="text-xl font-semibold text-green-800 mb-3">
-        🌿 Skin Rejuvenation
+    <div className="bg-gray-50 rounded-2xl p-6 shadow hover:shadow-lg transition">
+      <h3 className="text-xl font-semibold mb-3">
+        Skin Rejuvenation
       </h3>
       <p className="text-gray-700 mb-4">
         Treatments that refresh your skin’s glow, smoothness, and hydration using
@@ -194,9 +196,9 @@ export default function HomePage() {
     </div>
 
     {/* Body Contouring */}
-    <div className="bg-pink-50 rounded-2xl p-6 shadow hover:shadow-lg transition">
-      <h3 className="text-xl font-semibold text-pink-800 mb-3">
-        💪 Body Contouring
+    <div className="bg-gray-50 rounded-2xl p-6 shadow hover:shadow-lg transition">
+      <h3 className="text-xl font-semibold mb-3">
+        Body Contouring
       </h3>
       <p className="text-gray-700 mb-4">
         Shape and tone your body with safe, non-surgical options like fat
@@ -211,9 +213,9 @@ export default function HomePage() {
     </div>
 
     {/* Hair & Scalp */}
-    <div className="bg-yellow-50 rounded-2xl p-6 shadow hover:shadow-lg transition">
-      <h3 className="text-xl font-semibold text-yellow-800 mb-3">
-        💇 Hair & Scalp Health
+    <div className="bg-gray-50 rounded-2xl p-6 shadow hover:shadow-lg transition">
+      <h3 className="text-xl font-semibold mb-3">
+        Hair & Scalp Health
       </h3>
       <p className="text-gray-700 mb-4">
         Restore confidence with modern hair regrowth and scalp care therapies,
@@ -234,43 +236,9 @@ export default function HomePage() {
     journey.
   </p>
 
-  <button
-    onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-    className="mt-8 bg-blue-600 text-white px-8 py-3 rounded-xl font-semibold hover:bg-blue-700 transition"
-  >
-    Find a Treatment Near You
-  </button>
+
 </section>
 
-
-
-<section className="py-20 text-center bg-white">
-  <h2 className="text-3xl font-bold mb-8">How It Works</h2>
-  <div className="flex flex-col sm:flex-row justify-center items-center gap-8 max-w-5xl mx-auto">
-    {[
-      { step: "1", title: "Search", desc: "Find clinics or practitioners by name or treatment." },
-      { step: "2", title: "Compare", desc: "See verified profiles, reviews, and credentials." },
-      { step: "3", title: "Book", desc: "Connect safely with trusted professionals." },
-    ].map((item) => (
-      <div key={item.step} className="p-6 rounded-2xl border w-64 hover:shadow-lg transition">
-        <div className="text-4xl font-bold text-blue-600 mb-2">{item.step}</div>
-        <h3 className="font-semibold text-lg mb-2">{item.title}</h3>
-        <p className="text-gray-600">{item.desc}</p>
-      </div>
-    ))}
-  </div>
-</section>
-
-<section className="py-16 bg-blue-600 text-white text-center">
-  <h2 className="text-3xl font-bold mb-4">Find Your Verified Clinic Today</h2>
-  <p className="mb-6 text-blue-100">Search by treatment, practitioner, or location — it’s fast and safe.</p>
-  <button
-    onClick={() => router.push("/search")}
-    className="bg-white text-blue-600 px-6 py-3 rounded-xl font-semibold hover:bg-blue-50"
-  >
-    Start Searching
-  </button>
-</section>
 <SearchBar onSearch={handleSearch} />
 
 
