@@ -1,5 +1,13 @@
 import { Clinic, Practitioner } from "@/lib/types";
 import {consolidate, parse_text, parse_addresses, parse_numbers} from "@/lib/utils"
+import { supabase } from "@/lib/supabase";
+
+export async function getAllClinics() {
+  const { data, error } = await supabase.from("clinics").select("*");
+  if (error) throw new Error(error.message);
+  return data;
+}
+
 function parseLabels(label: string): [boolean, string] | null {
   try {
     const jsonReady = label
@@ -109,19 +117,17 @@ export async function getCachedData(cachedData:[Clinic[], Practitioner[]] | null
     return [cachedData as [Clinic[], Practitioner[]], lastFetched];
   }
 
-  console.log("🆕 Fetching new data...");
-  const allclinics = await fetch("https://doctors-directory-five.vercel.app/api/getClinicData_sb", {
-    cache: "no-store", // bypass Next.js fetch cache
-  }).then(res => res.json());
- 
+  const allclinics = await getAllClinics();
 
-  const allpractitioners: Practitioner[] = await fetch("https://doctors-directory-five.vercel.app/api/getPractitionerData", {
+  
+  const allpractitioners: Practitioner[] = await fetch("http://localhost:3000/api/getPractitionerData", {
     cache: "no-store",
   }).then(res => res.json());
-  const clinics = allclinics.result.slice(0,allclinics.result.length).map(transformClinic);
+  const clinics = allclinics.slice(0,allclinics.length).map(transformClinic);
   const practitioners = allpractitioners.slice(0,allpractitioners.length).map(transformPractitioner);
 
   cachedData = [clinics, practitioners];
+  
   lastFetched = now;
   return [cachedData as [Clinic[], Practitioner[]], lastFetched];
 }

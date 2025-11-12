@@ -2,6 +2,7 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { Clinic, Practitioner, SearchFilters } from "@/lib/types";
 import { transformClinic, transformPractitioner } from "@/lib/cachedData";
+
 // -----------------------------
 // Types
 // -----------------------------
@@ -64,7 +65,7 @@ export const useDataStore = create<DataStore>()(
           ]);
          
           const practitioners = allpractitioners.slice(0,allpractitioners.length).map(transformPractitioner);
-          const clinics = allclinics.result.slice(0,allclinics.result.length).map(transformClinic);
+          const clinics = allclinics.slice(0,allclinics.length).map(transformClinic);
 
           // ---- Derive unique sets ----
             const categories : string[] = Array.from(

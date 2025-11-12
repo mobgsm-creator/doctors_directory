@@ -15,7 +15,7 @@ export function HeroSection({ onSearch }: HeroSectionProps) {
             <span className="text-accent block">Practitioners</span>
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto text-pretty leading-relaxed">
-            Discover certified aesthetic and healthcare professionals in your area. Browse verified profiles, read
+            Discover certified aesthetic and healthcare professionals in the United Kingdom. Browse verified profiles, read
             authentic reviews, and book with confidence.
           </p>
         </div>

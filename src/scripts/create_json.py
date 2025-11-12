@@ -25,11 +25,11 @@ def slugify(value: str) -> str:
 #     else: 
 #         return x
 # df['SPECIALTIES'] = df['SPECIALTIES'].apply(lambda x: clean(x))
-df = pd.read_csv(r"C:\Users\agney\Documents\Files\Projects\doctor-directory\src\scripts\test-1.csv")
+df = pd.read_csv(r"C:\Users\agney\Downloads\clinics_rows.csv")
 # Convert DataFrame to list of dicts
 df['slug'] = df['slug'].apply(slugify)
 df = df.replace([None, np.nan, "None"], "")
-df.to_csv("Clinics3.5k.csv")
+#df.to_csv("Clinics3.5k.csv")
 devices_list = df.to_dict(orient='records')
 
 

@@ -10,7 +10,7 @@ interface ServicesSectionProps {
 
 export function ServicesSection({ clinic }: ServicesSectionProps) {
   const reviewAnalysis = clinic.reviewAnalysis
-  const practitionerData = reviewAnalysis!.practitioners[0]
+  //const practitionerData = reviewAnalysis!.practitioners[0]
   
   function capitalizeFirstLetter(arr: string[]) {
     return arr.filter(Boolean) // remove falsy or empty values
@@ -30,7 +30,7 @@ export function ServicesSection({ clinic }: ServicesSectionProps) {
           ...((reviewAnalysis?.procedures_offered.categories) ?? []),
           ])))
       },
-      { header: "Clinic Environment", keywords: capitalizeFirstLetter(reviewAnalysis!.clinic_environment) ?? [] },
+      { header: "Clinic Environment", keywords: capitalizeFirstLetter(Array.from(new Set([...(reviewAnalysis?.clinic_environment) ?? []]))) },
       { header: "Recommendations", keywords: capitalizeFirstLetter(Array.from(new Set([
         ...(reviewAnalysis?.referrals_recommendations ?? []), 
         
@@ -46,7 +46,8 @@ export function ServicesSection({ clinic }: ServicesSectionProps) {
        
       
     ].filter((c) => (c.keywords?.length ?? 0) > 0)
-  }, [reviewAnalysis, practitionerData])
+  }, [reviewAnalysis])
+
 
   return (
     <div className="space-y-6">
@@ -67,6 +68,7 @@ export function ServicesSection({ clinic }: ServicesSectionProps) {
       </Card> */}
      
       {/* Expandable sections for scanning */}
+      { clusters.length !== 0 && (
       <Card>
         <CardHeader>
           <CardTitle className="text-lg">Sections</CardTitle>
@@ -89,7 +91,7 @@ export function ServicesSection({ clinic }: ServicesSectionProps) {
             ))}
           </Accordion>
         </CardContent>
-      </Card>
+      </Card>)}
       </div>
   )
 }
