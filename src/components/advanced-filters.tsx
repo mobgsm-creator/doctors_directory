@@ -10,7 +10,7 @@ import { Slider } from "@/components/ui/slider"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import { Badge } from "@/components/ui/badge"
 import type { SearchFilters } from "@/lib/types"
-import { useDataStore } from "@/app/stores/datastore"
+import { categories, modalities as services, professions, locations } from "@/lib/data"
 
 interface AdvancedFiltersProps {
   filters: SearchFilters
@@ -21,11 +21,7 @@ interface AdvancedFiltersProps {
 
 export function AdvancedFilters({ filters, onFiltersChange, isOpen, onToggle }: AdvancedFiltersProps) {
   const [localFilters, setLocalFilters] = useState<SearchFilters>(filters)
-  const {fetchData,categories,modalities, loading } = useDataStore();
-  useEffect(() => {
-    fetchData();  // <-- this must run to fill the store
-  }, [fetchData]);
-  const services = modalities
+  
   const handleApplyFilters = () => {
     onFiltersChange(localFilters)
   }

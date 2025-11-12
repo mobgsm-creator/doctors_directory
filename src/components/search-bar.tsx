@@ -5,8 +5,9 @@ import { Search, Locate } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import type { SearchFilters } from "@/lib/types"
-import { useDataStore } from "@/app/stores/datastore";
-import { Dialog, DialogContent, DialogHeader, DialogClose } from "@/components/ui/dialog"
+import { categories, modalities,locations } from "@/lib/data"
+;
+import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog"
 import {
   Select,
   SelectContent,
@@ -20,12 +21,7 @@ interface SearchBarProps {
 }
 
 export function SearchBar({ onSearch, initialFilters }: SearchBarProps) {
-  const {fetchData,clinics,modalities,categories,professions,locations, loading } = useDataStore();
-
-  useEffect(() => {
-    fetchData();  // <-- this must run to fill the store
-  }, [fetchData]);
-
+ 
 
   const [filters, setFilters] = useState<SearchFilters>(
     initialFilters || {

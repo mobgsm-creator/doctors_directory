@@ -110,14 +110,15 @@ async function loadFromFileSystem() {
   console.log("📂 API: Reading from file system...");
   
   const filePath = path.join(process.cwd(), 'public', 'derms.json');
-    const fileContents = fs.readFileSync(filePath, 'utf-8');
-    const practitioners = JSON.parse(fileContents);
+  console.log(filePath)
+  const fileContents = fs.readFileSync(filePath, 'utf-8');
+  const practitioners = JSON.parse(fileContents);
 
-    const filePath_1 = path.join(process.cwd(), 'public', 'clinics.json');
-    const fileContents_1 = fs.readFileSync(filePath_1, 'utf-8');
-    const clinics = JSON.parse(fileContents_1);
-    const clinicsData = clinics.map(transformClinic);
-    const practitionersData = practitioners.map(transformPractitioner);
+  const filePath_1 = path.join(process.cwd(), 'public', 'clinics.json');
+  const fileContents_1 = fs.readFileSync(filePath_1, 'utf-8');
+  const clinics = JSON.parse(fileContents_1);
+  const clinicsData = clinics.map(transformClinic);
+  const practitionersData = practitioners.map(transformPractitioner);
 
   console.log(`✅ API: Loaded ${clinics?.length} clinics and ${practitioners?.length} practitioners from file`);
   
@@ -133,14 +134,15 @@ export async function GET() {
       console.log("✅ API: Cache hit! Serving from memory");
     } else {
       console.log("💾 API: Cache miss - loading from file system");
-      const { clinicsData, practitionersData } = await loadFromFileSystem();
+    const { clinicsData, practitionersData } = await loadFromFileSystem();
       
       // Store in cache
+      data = {clinicsData, practitionersData}
       nodeCache.set(CACHE_KEY, { clinicsData, practitionersData });
       console.log("💾 API: Data cached in memory");
     }
 
-    return NextResponse.json({clinics: data.clinics, practitioners: data.practitioners}, {
+    return NextResponse.json({clinics: data.clinicsData, practitioners: data.practitionersData}, {
      
     });
   } catch (error: any) {

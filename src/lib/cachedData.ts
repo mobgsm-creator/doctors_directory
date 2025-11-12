@@ -10,7 +10,8 @@ export const getGlobalData = cache(async () => {
     next: { revalidate: 3600 * 24 * 365 } // Cache for 1 hour
   });
   const cachedData = await response.json();
-  const { clinics: allclinics, practitioners: allpractitioners } = cachedData;
+  console.log(cachedData)
+  const {allclinics, allpractitioners } = cachedData;
 
   
 
@@ -20,7 +21,7 @@ export const getGlobalData = cache(async () => {
 });
 
 export async function getClinics(): Promise<Clinic[]> {
-  const { allclinics } = await getGlobalData();
+  const { allclinics, } = await getGlobalData();
   return allclinics;
 }
 
