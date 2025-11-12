@@ -33,7 +33,7 @@ function safeParse(v: any) {
   }
 }
 
-export function transformClinic(raw: any): Clinic {
+function transformClinic(raw: any): Clinic {
  
   return {
     slug: raw.slug.toLowerCase()
@@ -75,7 +75,7 @@ export function transformClinic(raw: any): Clinic {
     Fees: safeParse(raw.Fees),
   };
 }
-export function transformPractitioner(raw: any): Practitioner {
+function transformPractitioner(raw: any): Practitioner {
  
   return {
     //id: raw["ID"].toString(),
