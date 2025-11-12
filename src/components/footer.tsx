@@ -762,7 +762,7 @@ export function Footer() {
             <h3 className="font-semibold text-foreground">Clinics</h3>
             <div className="space-y-2 max-h-[100px] overflow-auto">
               {cityList.map((city, index) => (
-                <Link href={`/clinics/top-clinics/${city}`} key={index} className="block text-sm text-muted-foreground hover:text-muted-foreground/20 transition-colors">
+                <Link href={`/clinics/${city}`} key={index} className="block text-sm text-muted-foreground hover:text-muted-foreground/20 transition-colors">
                   Top Clinics in {city}
                 </Link>
               ))}

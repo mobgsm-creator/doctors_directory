@@ -18,9 +18,7 @@ interface ProfilePageProps {
 }
 
 export default async function ProfilePage({ params }: ProfilePageProps) {
-  [cachedData,lastFetched] = await getCachedData(cachedData,lastFetched);
-  const clinics = cachedData[0]
-
+  const [clinics, ] = await getCachedData();
   const citySlug = params.cityslug;
   const cityClinics:Clinic[]= clinics.filter(p => p.City === citySlug);
 
