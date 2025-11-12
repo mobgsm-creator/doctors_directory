@@ -13,8 +13,7 @@ import { ServicesSection } from "@/components/Clinic/services-section"
 import { getCachedData } from "@/lib/cachedData"
 import ClinicDetailsMarkdown from "@/components/Clinic/clinicDetailsMD"
 
-let cachedData: [Clinic[], Practitioner[]] | null = null;
-let lastFetched = 0;
+
 function mergeBoxplotDataFromDict(
   base: BoxPlotDatum[],
   incoming: Record<string, ItemMeta>
@@ -34,8 +33,8 @@ interface ProfilePageProps {
 }
 
 export default async function ProfilePage({ params }: ProfilePageProps) {
-  [cachedData,lastFetched] = await getCachedData(cachedData,lastFetched);
-  const clinics = cachedData[0]
+  const [clinics,] = await getCachedData();
+
   const { slug } = params;
   const clinic = clinics.find(p => p.slug === slug);
 
@@ -117,8 +116,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
 
 
 export async function generateMetadata({ params }: ProfilePageProps) {
-  [cachedData,lastFetched] = await getCachedData(cachedData,lastFetched);
-  const clinics = cachedData[0]
+  const [clinics] = await getCachedData();
   const clinic = clinics.find((p) => p.slug === params.slug)
 
   if (!clinic) {

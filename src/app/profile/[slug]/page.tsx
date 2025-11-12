@@ -58,8 +58,7 @@ interface ProfilePageProps {
 }
 
 export default async function ProfilePage({ params }: ProfilePageProps) {
-  [cachedData,lastFetched] = await getCachedData(cachedData,lastFetched);
-  const practitioners = cachedData[1]
+  const [, practitioners] = await getCachedData();
   const width = typeof window !== "undefined" ? window.innerWidth : 0;
   const isMobile = width >= 640 ? false : true;
   
@@ -176,8 +175,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
 
 
 export async function generateMetadata({ params }: ProfilePageProps) {
-  [cachedData,lastFetched] = await getCachedData(cachedData,lastFetched);
-  const practitioners = cachedData[1]
+  const [, practitioners] = await getCachedData();
 
   const practitioner = practitioners.find((p) => p.slug === params.slug)
 

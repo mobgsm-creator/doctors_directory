@@ -108,26 +108,41 @@ export function transformPractitioner(raw: any): Practitioner {
   };
 }
 
-export async function getCachedData(cachedData:[Clinic[], Practitioner[]] | null = null, lastFetched:number ): Promise<[[Clinic[], Practitioner[]], number]> {
-  const now = Date.now();
-  const cacheTTL = 1000 * 60 * 60 * 24 * 364; // 1 year
 
-  if (now - lastFetched < cacheTTL) {
-    console.log("✅ Using cached data");
-    return [cachedData as [Clinic[], Practitioner[]], lastFetched];
+interface CacheState {
+  data: [Clinic[], Practitioner[]] | null;
+  lastFetched: number;
+}
+
+const cache: CacheState = {
+  data: null,
+  lastFetched: 0,
+};
+
+const CACHE_TTL = 1000 * 60 * 60 * 12; // 12 hours (adjust as needed)
+
+export async function getCachedData(): Promise<[Clinic[], Practitioner[]]> {
+  const now = Date.now();
+
+  // ✅ If cache still valid, reuse it
+  if (cache.data && now - cache.lastFetched < CACHE_TTL) {
+    console.log("✅ Using global cached data");
+    return cache.data;
   }
 
-  const allclinics = await getAllClinics();
+  console.log("♻️ Refreshing global cache…");
 
-  
-  const allpractitioners: Practitioner[] = await fetch("http://localhost:3000/api/getPractitionerData", {
+  // Fetch fresh data only once per TTL
+  const allClinicsRaw = await getAllClinics();
+  const practitionersRaw = await fetch("http://localhost:3000/api/getPractitionerData", {
     cache: "no-store",
-  }).then(res => res.json());
-  const clinics = allclinics.slice(0,allclinics.length).map(transformClinic);
-  const practitioners = allpractitioners.slice(0,allpractitioners.length).map(transformPractitioner);
+  }).then((res) => res.json());
 
-  cachedData = [clinics, practitioners];
-  
-  lastFetched = now;
-  return [cachedData as [Clinic[], Practitioner[]], lastFetched];
+  const clinics = allClinicsRaw.map(transformClinic);
+  const practitioners = practitionersRaw.map(transformPractitioner);
+
+  cache.data = [clinics, practitioners];
+  cache.lastFetched = now;
+
+  return cache.data;
 }

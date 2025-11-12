@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { Clinic, Practitioner, SearchFilters } from "@/lib/types";
 import { transformClinic, transformPractitioner } from "@/lib/cachedData";
-
+import { getCachedData } from "@/lib/cachedData";
 // -----------------------------
 // Types
 // -----------------------------
@@ -56,13 +56,7 @@ export const useDataStore = create<DataStore>()(
         set({ loading: true, error: undefined });
 
         try {
-          const 
-            [allclinics, 
-            allpractitioners
-          ] = await Promise.all([
-            fetch("/api/getClinicData_sb").then(res => res.json()),
-            fetch("/api/getPractitionerData").then(res => res.json()),
-          ]);
+          const [allclinics, allpractitioners] = await getCachedData();
          
           const practitioners = allpractitioners.slice(0,allpractitioners.length).map(transformPractitioner);
           const clinics = allclinics.slice(0,allclinics.length).map(transformClinic);
@@ -92,10 +86,10 @@ export const useDataStore = create<DataStore>()(
 
 
             const professions = Array.from(
-              new Set([
+              new Set(
                 
                   practitioners.map((p: Practitioner) => p.profession).filter(Boolean),
-                ])
+                )
             );
 
             const locations: string[] = Array.from(
