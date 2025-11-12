@@ -114,8 +114,8 @@ export function SearchBar({ onSearch, initialFilters }: SearchBarProps) {
             {/* Popular conditions and procedures */}
             <div>
               <h3 className="font-semibold text-gray-900 mb-4">Popular conditions and procedures</h3>
-              <div className="space-y-2">
-                {modalities.filter((category : string) => category.toLowerCase().includes(filters.query.toLowerCase())).slice(0,15).map((condition : string) => (
+              <div className="space-y-2 overflow-auto max-h-100">
+                {modalities.filter((category : string) => category.toLowerCase().includes(filters.query.toLowerCase())).map((condition : string) => (
                   <button
                     key={condition}
                     onClick={() => {
@@ -133,8 +133,8 @@ export function SearchBar({ onSearch, initialFilters }: SearchBarProps) {
             {/* Popular specialties */}
             <div>
               <h3 className="font-semibold text-gray-900 mb-4">Service Cateogries</h3>
-              <div className="space-y-2">
-                {categories.filter((category : string) => category.toLowerCase().includes(filters.query.toLowerCase())).slice(0,15).map((specialty: string) => (
+              <div className="space-y-2 overflow-auto max-h-100">
+                {categories.filter((category : string) => category.toLowerCase().includes(filters.query.toLowerCase())).map((specialty: string) => (
                   <button
                     key={specialty}
                     onClick={() => {
@@ -152,8 +152,8 @@ export function SearchBar({ onSearch, initialFilters }: SearchBarProps) {
             {/* Popular Locations */}
             <div>
               <h3 className="font-semibold text-gray-900 mb-4">Locations</h3>
-              <div className="space-y-2">
-              {locations.filter((loc) => typeof loc === 'string' && loc.toLowerCase().includes((filters.location || '').toLowerCase())).slice(0,15).map((loc: string) => (
+              <div className="space-y-2 overflow-auto max-h-100">
+              {locations.filter((loc) => typeof loc === 'string' && loc.toLowerCase().includes((filters.location || '').toLowerCase())).map((loc: string) => (
                   <button
                     key={loc}
                     onClick={() => {

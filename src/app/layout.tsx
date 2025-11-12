@@ -7,6 +7,7 @@ import { Suspense } from "react"
 import { NavigationHeader } from "@/components/navigation-header"
 import { Footer } from "@/components/footer"
 import { ScrollToTop } from "@/components/scroll-to-top"
+  
 import "./globals.css"
 
 export const metadata: Metadata = {
@@ -16,11 +17,12 @@ export const metadata: Metadata = {
   generator: "v0.app",
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+
   return (
     <html lang="en" className="root">
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>

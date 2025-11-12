@@ -5,13 +5,12 @@ import { Button } from "@/components/ui/button"
 import { ProfileHeader } from "@/components/Clinic/profile-header"
 import { ReviewCard } from "@/components/review-card"
 import { GoogleMapsEmbed } from "@/components/gmaps-embed"
-import type { Clinic, Practitioner } from "@/lib/types"
 import { boxplotDatas_clinic } from "@/lib/data"
 import { BoxPlotDatum, ItemMeta } from "@/lib/types"
 import VisxDonutChart from "@/components/visx-donut"
 import { ServicesSection } from "@/components/Clinic/services-section"
-import { getCachedData } from "@/lib/cachedData"
 import ClinicDetailsMarkdown from "@/components/Clinic/clinicDetailsMD"
+import { getClinics } from "@/lib/cachedData"
 
 
 function mergeBoxplotDataFromDict(
@@ -33,7 +32,7 @@ interface ProfilePageProps {
 }
 
 export default async function ProfilePage({ params }: ProfilePageProps) {
-  const [clinics,] = await getCachedData();
+  const clinics = await getClinics()
 
   const { slug } = params;
   const clinic = clinics.find(p => p.slug === slug);
@@ -116,7 +115,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
 
 
 export async function generateMetadata({ params }: ProfilePageProps) {
-  const [clinics] = await getCachedData();
+  const clinics = await getClinics()
   const clinic = clinics.find((p) => p.slug === params.slug)
 
   if (!clinic) {

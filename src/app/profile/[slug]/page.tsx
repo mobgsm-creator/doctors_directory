@@ -10,10 +10,9 @@ import VisxDonutChart from "@/components/visx-donut"
 import { ReviewCard } from "@/components/review-card"
 import { GoogleMapsEmbed } from "@/components/gmaps-embed"
 import PerformanceSummary from "@/components/performace-summary"
-import { getCachedData } from "@/lib/cachedData"
-import { Clinic, Practitioner } from "@/lib/types";
-let cachedData: [Clinic[], Practitioner[]] | null = null;
-let lastFetched = 0;
+import { getPractitioners, } from "@/lib/cachedData"
+
+
 function mergeBoxplotDataFromDict(
   base: BoxPlotDatum[],
   incoming: Record<string, ItemMeta>
@@ -58,7 +57,7 @@ interface ProfilePageProps {
 }
 
 export default async function ProfilePage({ params }: ProfilePageProps) {
-  const [, practitioners] = await getCachedData();
+  const practitioners = await getPractitioners()
   const width = typeof window !== "undefined" ? window.innerWidth : 0;
   const isMobile = width >= 640 ? false : true;
   
@@ -118,43 +117,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
           
           className="w-full h-80"
         /></div>
-             {/* <h1 className="flex justify-center text-pretty text-2xl font-semibold">Community Experience</h1>
-        <h2 className="flex justify-center text-pretty text-md font-semibold">Legend</h2>
-        <div className="w-full overflow-x-auto py-2">
-          <div className="flex min-w-[1080px] gap-x-8 gap-y-2 flex-wrap items-start">
-        
-            <div className="flex flex-row gap-x-3">
-              <div className="flex items-center gap-x-2">
-                <div className="w-3.5 h-2.5 rounded-sm" style={{ background: qColors.q1 }} />
-                <span className="text-xs text-[var(--color-axis)]">Q1 (Min→Q1)</span>
-              </div>
-              <div className="flex items-center gap-x-2">
-                <div className="w-3.5 h-2.5 rounded-sm" style={{ background: qColors.q2 }} />
-                <span className="text-xs text-[var(--color-axis)]">Q2 (Q1→Median)</span>
-              </div>
-              <div className="flex items-center gap-x-2">
-                <div className="w-3.5 h-2.5 rounded-sm" style={{ background: qColors.q3 }} />
-                <span className="text-xs text-[var(--color-axis)]">Q3 (Median→Q3)</span>
-              </div>
-              <div className="flex items-center gap-x-2">
-                <div className="w-3.5 h-2.5 rounded-sm" style={{ background: qColors.q4 }} />
-                <span className="text-xs text-[var(--color-axis)]">Q4 (Q3→Max)</span>
-              </div>
-              {boxplotData.map((d) => (
-              <div key={`legend-${d.key}`} className="flex flex-col gap-y-1">
-                <div className="flex items-center gap-x-2">
-                  <div className="w-3.5 h-2.5 rounded-sm" style={{ background: categoryColorFor(d.label) }} />
-                  <span className="text-xs text-[var(--color-axis)]">{d.key}</span>
-                </div>
-              </div>
-            ))}
-            </div>
-          </div>
-        </div>
-        <VisxBoxPlot data={boxplotData} height={540} />
-        <div className="flex justify-center">
-          <h2 className="text-pretty text-xl font-semibold">About Section</h2>
-        </div> */}
+            
         
 
         
@@ -175,7 +138,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
 
 
 export async function generateMetadata({ params }: ProfilePageProps) {
-  const [, practitioners] = await getCachedData();
+  const practitioners = await getPractitioners()
 
   const practitioner = practitioners.find((p) => p.slug === params.slug)
 

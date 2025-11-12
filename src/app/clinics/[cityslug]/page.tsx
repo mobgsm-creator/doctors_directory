@@ -6,9 +6,8 @@ import type { Clinic, Practitioner } from "@/lib/types"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import { Star, MapPin  } from "lucide-react"
-import { getCachedData } from "@/lib/cachedData"
-let cachedData: [Clinic[], Practitioner[]] | null = null;
-let lastFetched = 0;
+import { getClinics} from "@/lib/cachedData"
+
 
 interface ProfilePageProps {
   params: {
@@ -18,7 +17,8 @@ interface ProfilePageProps {
 }
 
 export default async function ProfilePage({ params }: ProfilePageProps) {
-  const [clinics, ] = await getCachedData();
+ 
+  const clinics= await getClinics();
   const citySlug = params.cityslug;
   const cityClinics:Clinic[]= clinics.filter(p => p.City === citySlug);
 
