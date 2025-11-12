@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { Clinic, Practitioner, SearchFilters } from "@/lib/types";
-import { getClinics, getPractitioners} from "@/lib/cachedData";
+
 
 // -----------------------------
 // Types

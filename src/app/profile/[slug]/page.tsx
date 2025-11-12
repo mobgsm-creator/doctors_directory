@@ -10,7 +10,7 @@ import VisxDonutChart from "@/components/visx-donut"
 import { ReviewCard } from "@/components/review-card"
 import { GoogleMapsEmbed } from "@/components/gmaps-embed"
 import PerformanceSummary from "@/components/performace-summary"
-import { getPractitioners, } from "@/lib/cachedData"
+import { Practitioner } from "@/lib/types"
 
 
 function mergeBoxplotDataFromDict(
@@ -57,7 +57,10 @@ interface ProfilePageProps {
 }
 
 export default async function ProfilePage({ params }: ProfilePageProps) {
-  const practitioners = await getPractitioners()
+  const response = await fetch("http://128.199.165.212:8765/api/getData", {
+    next: { revalidate: 3600 * 24 * 365 } // Cache for 1 hour
+  });
+  const {practitioners }: {practitioners:Practitioner[]} = await response.json();
   const width = typeof window !== "undefined" ? window.innerWidth : 0;
   const isMobile = width >= 640 ? false : true;
   
@@ -138,7 +141,10 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
 
 
 export async function generateMetadata({ params }: ProfilePageProps) {
-  const practitioners = await getPractitioners()
+  const response = await fetch("http://128.199.165.212:8765/api/getData", {
+    next: { revalidate: 3600 * 24 * 365 } // Cache for 1 hour
+  });
+  const {practitioners }: {practitioners:Practitioner[]} = await response.json();
 
   const practitioner = practitioners.find((p) => p.slug === params.slug)
 

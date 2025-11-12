@@ -10,7 +10,7 @@ import { BoxPlotDatum, ItemMeta } from "@/lib/types"
 import VisxDonutChart from "@/components/visx-donut"
 import { ServicesSection } from "@/components/Clinic/services-section"
 import ClinicDetailsMarkdown from "@/components/Clinic/clinicDetailsMD"
-import { getClinics } from "@/lib/cachedData"
+import { Clinic } from "@/lib/types"
 
 
 function mergeBoxplotDataFromDict(
@@ -32,7 +32,10 @@ interface ProfilePageProps {
 }
 
 export default async function ProfilePage({ params }: ProfilePageProps) {
-  const clinics = await getClinics()
+  const response = await fetch("http://128.199.165.212:8765/api/getData", {
+    next: { revalidate: 3600 * 24 * 365 } // Cache for 1 hour
+  });
+  const {clinics, }: {clinics:Clinic[]} = await response.json();
 
   const { slug } = params;
   const clinic = clinics.find(p => p.slug === slug);
@@ -115,7 +118,10 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
 
 
 export async function generateMetadata({ params }: ProfilePageProps) {
-  const clinics = await getClinics()
+  const response = await fetch("http://128.199.165.212:8765/api/getData", {
+    next: { revalidate: 3600 * 24 * 365 } // Cache for 1 hour
+  });
+  const {clinics, }: {clinics:Clinic[]} = await response.json();
   const clinic = clinics.find((p) => p.slug === params.slug)
 
   if (!clinic) {

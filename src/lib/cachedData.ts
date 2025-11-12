@@ -20,12 +20,3 @@ export const getGlobalData = cache(async () => {
   return { allclinics, allpractitioners };
 });
 
-export async function getClinics(): Promise<Clinic[]> {
-  const { allclinics, } = await getGlobalData();
-  return allclinics;
-}
-
-export async function getPractitioners(): Promise<Practitioner[]> {
-  const { allpractitioners } = await getGlobalData();
-  return allpractitioners;
-}

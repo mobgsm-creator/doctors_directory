@@ -12,13 +12,13 @@ export default function ClinicLabels({ clinic }: { clinic: Clinic }) {
               {clinic.isHIW?.[0] && (
 
                   <a href={clinic.isHIW?.[1]} target="_blank" rel="noopener noreferrer">
-                    <img src="/hiw.jpg" alt="HIW" className="w-20 h-8 rounded-full" /></a>
+                    <img src="/HIW.jpg" alt="HIW" className="w-20 h-8 rounded-full" /></a>
 
 
                 )}
               {clinic.isHIS?.[0] && (
                   <a href={clinic.isHIS?.[1]} target="_blank" rel="noopener noreferrer">
-                    <img src="/his.jpg" alt="HIS" className="w-12 h-8 rounded-full" /></a>
+                    <img src="/HIS.jpg" alt="HIS" className="w-12 h-8 rounded-full" /></a>
   
                 )}
               {clinic.isJCCP?.[0] && (
