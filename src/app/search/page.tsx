@@ -16,13 +16,13 @@ export default function SearchPage() {
 
 
     
-  const { fetchData,clinics, practitioners } = useDataStore()
+  const { fetchData,clinics, practitioners, loading } = useDataStore()
   const { filters, setFilters } = useSearchStore()
   const [currentPage, setCurrentPage] = useState(1)
   const [sortBy, setSortBy] = useState("default")
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid")
   const [showAdvancedFilters, setShowAdvancedFilters] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
+  
 
 
  
@@ -147,21 +147,21 @@ export default function SearchPage() {
 
 
   const handleSearch = async (newFilters: SearchFilters) => {
-    setIsLoading(true)
+ 
     setFilters(newFilters)
     setCurrentPage(1)
     // Simulate loading delay for better UX
     await new Promise((resolve) => setTimeout(resolve, 300))
-    setIsLoading(false)
+
   }
 
   const handleFiltersChange = async (newFilters: SearchFilters) => {
-    setIsLoading(true)
+
     setFilters(newFilters)
     setCurrentPage(1)
     // Simulate loading delay for better UX
     await new Promise((resolve) => setTimeout(resolve, 200))
-    setIsLoading(false)
+
   }
 
   const handlePageChange = (page: number) => {
@@ -202,7 +202,7 @@ export default function SearchPage() {
             onToggle={() => setShowAdvancedFilters(!showAdvancedFilters)}
           />
 
-          {isLoading ? (
+          {loading ? (
             <>
               {viewMode === "grid" ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
