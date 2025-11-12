@@ -1,12 +1,5 @@
 import { Clinic, Practitioner } from "@/lib/types";
 import {consolidate, parse_text, parse_addresses, parse_numbers} from "@/lib/utils"
-import { supabase } from "@/lib/supabase";
-
-export async function getAllClinics() {
-  const { data, error } = await supabase.from("clinics").select("*");
-  if (error) throw new Error(error.message);
-  return data;
-}
 
 function parseLabels(label: string): [boolean, string] | null {
   try {
@@ -133,13 +126,11 @@ export async function getCachedData(): Promise<[Clinic[], Practitioner[]]> {
   console.log("♻️ Refreshing global cache…");
 
   // Fetch fresh data only once per TTL
-  const allClinicsRaw = await getAllClinics();
-  const practitionersRaw = await fetch("http://localhost:3000/api/getPractitionerData", {
-    cache: "no-store",
-  }).then((res) => res.json());
-
-  const clinics = allClinicsRaw.map(transformClinic);
-  const practitioners = practitionersRaw.map(transformPractitioner);
+  const cachedData = await fetch("/api/getData").then((res) => res.json());
+  const { clinics: allclinics, practitioners: allpractitioners } = cachedData;
+  const clinics = allclinics.map(transformClinic);
+  const practitioners = allpractitioners.map(transformPractitioner);
+  console.log(clinics.length,practitioners.length)
 
   cache.data = [clinics, practitioners];
   cache.lastFetched = now;

@@ -12,7 +12,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react"
 import { useSearchStore, useDataStore } from "@/app/stores/datastore"
 const ITEMS_PER_PAGE = 9
 
-export default async function SearchPage() {
+export default function SearchPage() {
 
 
     
