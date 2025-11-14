@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import { HeroSection } from "@/components/hero-section"
 import type { SearchFilters} from "@/lib/types"
 import { useRouter } from "next/navigation"
-import { useSearchStore, useDataStore } from "@/app/stores/datastore"
+import { useSearchStore } from "@/app/stores/datastore"
 import LogoLoop from './LogoLoop';
 import { SearchBar } from "./search-bar"
 const imageLogos = [
@@ -26,13 +26,9 @@ export default function HomePage() {
 
   const router = useRouter()
   const {filters, setFilters} = useSearchStore()
-  const { fetchData,clinics, practitioners } = useDataStore()
+  
   
   const [isLoading, setIsLoading] = useState(false)
-  useEffect(() => {
-    fetchData()
-  }, [])
-
 
  
 
