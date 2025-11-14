@@ -6,7 +6,7 @@ import { cache } from 'react';
 export const getGlobalData = cache(async () => {
   console.log("🔄 Fetching data...");
   
-  const response = await fetch("http://128.199.165.212:8765/api/getData", {
+  const response = await fetch("http://localhost:3000/api/getData", {
     next: { revalidate: 3600 * 24 * 365 } // Cache for 1 hour
   });
   const cachedData = await response.json();

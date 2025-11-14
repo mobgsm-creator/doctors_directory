@@ -1,3 +1,4 @@
+"use client"
 import { create } from "zustand";
 import { Clinic, Practitioner, SearchFilters } from "@/lib/types";
 
@@ -66,7 +67,7 @@ export const useDataStore = create<DataStore>((set, get) => ({
     try {
 
       
-      const response = await fetch("http://128.199.165.212:8765/api/getData", {
+      const response = await fetch("http://localhost:3000/api/getData", {
         next: { revalidate: 3600 * 24 * 365 } // Cache for 1 hour
       });
       const {clinics, practitioners} = await response.json();

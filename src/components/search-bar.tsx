@@ -1,12 +1,11 @@
 "use client"
 
-import { useState, useEffect } from "react"
-import { Search, Locate } from "lucide-react"
+import { useState, useEffect, useTransition } from "react"
+import { Search, Locate, Loader2 } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import type { SearchFilters } from "@/lib/types"
 import { categories, modalities,locations } from "@/lib/data"
-;
 import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog"
 import {
   Select,
@@ -22,7 +21,7 @@ interface SearchBarProps {
 
 export function SearchBar({ onSearch, initialFilters }: SearchBarProps) {
  
-
+  const [isPending, startTransition] = useTransition()
   const [filters, setFilters] = useState<SearchFilters>(
     initialFilters || {
       type: "Clinic",
@@ -40,7 +39,9 @@ export function SearchBar({ onSearch, initialFilters }: SearchBarProps) {
   const [showMobileSearch, setShowMobileSearch] = useState(false)
 
   const handleSearch = () => {
+    startTransition(async () => {
     onSearch(filters)
+    })
   }
 
   return (
@@ -101,7 +102,12 @@ export function SearchBar({ onSearch, initialFilters }: SearchBarProps) {
           size="lg"
           className="h-14 w-14 rounded-full p-0 bg-black hover:bg-gray-800 flex items-center justify-center"
         >
-          <Search className="h-6 w-6" />
+          {isPending ? (
+    <Loader2 className="h-6 w-6 animate-spin" />
+  ) : (
+    <Search className="h-6 w-6" />
+  )}
+              
         </Button>
       </div>
       {showResults && (

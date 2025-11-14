@@ -1,6 +1,6 @@
 
 import type { SearchFilters } from "@/lib/types"
-
+import { SearchBar } from "@/components/search-bar"
 interface HeroSectionProps {
   onSearch: (filters: SearchFilters) => void
 }
@@ -23,6 +23,7 @@ export function HeroSection({ onSearch }: HeroSectionProps) {
         
 
       </div>
+      <SearchBar onSearch={onSearch} />
     </section>
   )
 }

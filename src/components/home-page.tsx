@@ -239,7 +239,7 @@ export default function HomePage() {
 
 </section>
 
-<SearchBar onSearch={handleSearch} />
+
 
 
 
