@@ -10,7 +10,7 @@ export async function searchPractitioners(
   sortBy: string = "default"
 ) {
   // Fetch data on the server
-  const response = await fetch("http://localhost:3000/api/getData", {
+  const response = await fetch("http://128.199.165.212:8765/api/getData", {
     cache: 'no-store' // or use appropriate caching strategy
   });
   const cachedData = await response.json();
