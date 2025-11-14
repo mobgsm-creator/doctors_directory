@@ -36,9 +36,10 @@ export default function HomePage() {
   const handleSearch = async (newFilters: SearchFilters) => {
     setIsLoading(true)
     setFilters(newFilters)
-    // Simulate loading delay for better UX
-    await new Promise((resolve) => setTimeout(resolve, 300))
+    console.log(newFilters)
+    
     router.push("/search")
+    console.log("pushed")
   }
 
 

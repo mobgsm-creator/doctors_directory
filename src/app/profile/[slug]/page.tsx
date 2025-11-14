@@ -11,7 +11,8 @@ import { ReviewCard } from "@/components/review-card"
 import { GoogleMapsEmbed } from "@/components/gmaps-embed"
 import PerformanceSummary from "@/components/performace-summary"
 import { Practitioner } from "@/lib/types"
-
+import fs from "fs";
+import path from 'path';
 
 function mergeBoxplotDataFromDict(
   base: BoxPlotDatum[],
@@ -57,10 +58,10 @@ interface ProfilePageProps {
 }
 
 export default async function ProfilePage({ params }: ProfilePageProps) {
-  const response = await fetch("http://128.199.165.212:8765/api/getData", {
-    next: { revalidate: 3600 * 24 * 365 } // Cache for 1 hour
-  });
-  const {practitioners }: {practitioners:Practitioner[]} = await response.json();
+  const filePath = path.join(process.cwd(), 'public', 'derms_processed.json');
+  const fileContents = fs.readFileSync(filePath, 'utf-8');
+  const practitioners: Practitioner[] = JSON.parse(fileContents);
+  console.log("Number of practitioners",practitioners.length)
   const width = typeof window !== "undefined" ? window.innerWidth : 0;
   const isMobile = width >= 640 ? false : true;
   
@@ -132,20 +133,20 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
   )
 }
 
-// export async function generateStaticParams() {
-//   const practitioners = await getPractitioners();
-//   return practitioners.map((practitioner) => ({
-//     slug: practitioner.slug,
-//   }))
-// }
-
+export async function generateStaticParams() {
+  const filePath = path.join(process.cwd(), 'public', 'derms_processed.json');
+  const fileContents = fs.readFileSync(filePath, 'utf-8');
+  const clinics: Practitioner[] = JSON.parse(fileContents);
+  return clinics.map((practitioner) => ({
+    slug: practitioner.slug,
+  }))
+}
 
 export async function generateMetadata({ params }: ProfilePageProps) {
-  const response = await fetch("http://128.199.165.212:8765/api/getData", {
-    next: { revalidate: 3600 * 24 * 365 } // Cache for 1 hour
-  });
-  const {practitioners }: {practitioners:Practitioner[]} = await response.json();
-
+  const filePath = path.join(process.cwd(), 'public', 'derms_processed.json');
+  const fileContents = fs.readFileSync(filePath, 'utf-8');
+  const practitioners: Practitioner[] = JSON.parse(fileContents);
+ 
   const practitioner = practitioners.find((p) => p.slug === params.slug)
 
   if (!practitioner) {

@@ -11,7 +11,8 @@ import VisxDonutChart from "@/components/visx-donut"
 import { ServicesSection } from "@/components/Clinic/services-section"
 import ClinicDetailsMarkdown from "@/components/Clinic/clinicDetailsMD"
 import { Clinic } from "@/lib/types"
-
+import fs from "fs";
+import path from 'path';
 
 function mergeBoxplotDataFromDict(
   base: BoxPlotDatum[],
@@ -32,11 +33,9 @@ interface ProfilePageProps {
 }
 
 export default async function ProfilePage({ params }: ProfilePageProps) {
-  const response = await fetch("http://128.199.165.212:8765/api/getData", {
-    next: { revalidate: 3600 * 24 * 365 } // Cache for 1 hour
-  });
-  const {clinics, }: {clinics:Clinic[]} = await response.json();
-
+  const filePath = path.join(process.cwd(), 'public', 'clinics_processed.json');
+  const fileContents = fs.readFileSync(filePath, 'utf-8');
+  const clinics: Clinic[] = JSON.parse(fileContents);
   const { slug } = params;
   const clinic = clinics.find(p => p.slug === slug);
 
@@ -109,19 +108,22 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
   )
 }
 
-// export async function generateStaticParams() {
-//   const practitioners = await getPractitioners();
-//   return practitioners.map((practitioner) => ({
-//     slug: practitioner.slug,
-//   }))
-// }
+export async function generateStaticParams() {
+
+  const filePath = path.join(process.cwd(), 'public', 'clinics_processed.json');
+  const fileContents = fs.readFileSync(filePath, 'utf-8');
+  const clinics: Clinic[] = JSON.parse(fileContents);
+  return clinics.map((clinic) => ({
+    cityslug: clinic.City,   // <-- MUST include this!
+    slug: clinic.slug,
+  }));
+}
 
 
 export async function generateMetadata({ params }: ProfilePageProps) {
-  const response = await fetch("http://128.199.165.212:8765/api/getData", {
-    next: { revalidate: 3600 * 24 * 365 } // Cache for 1 hour
-  });
-  const {clinics, }: {clinics:Clinic[]} = await response.json();
+  const filePath = path.join(process.cwd(), 'public', 'clinics_processed.json');
+  const fileContents = fs.readFileSync(filePath, 'utf-8');
+  const clinics: Clinic[] = JSON.parse(fileContents);
   const clinic = clinics.find((p) => p.slug === params.slug)
 
   if (!clinic) {

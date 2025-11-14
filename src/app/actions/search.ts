@@ -10,12 +10,19 @@ export async function searchPractitioners(
   sortBy: string = "default"
 ) {
   // Fetch data on the server
-  const response = await fetch("http://128.199.165.212:8765/api/getData", {
-    cache: 'no-store' // or use appropriate caching strategy
-  });
-  const cachedData = await response.json();
+  const [clinics, practitioners] = await Promise.all([
+    fetch("http://localhost:3000/clinics_processed.json", {
+      cache: "no-store",
+    }).then(res => res.json()),
   
-  const { clinics, practitioners } = cachedData;
+    fetch("http://localhost:3000/derms_processed.json", {
+      cache: "no-store",
+    }).then(res => res.json()),
+  ]);
+  
+
+  
+
   // ---- Derive unique sets ----
   // const categories : string[] = Array.from(
   //   new Set([

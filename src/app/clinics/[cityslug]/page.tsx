@@ -6,7 +6,8 @@ import type { Clinic, Practitioner } from "@/lib/types"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import { Star, MapPin  } from "lucide-react"
-
+import fs from "fs";
+import path from 'path';
 
 
 interface ProfilePageProps {
@@ -18,10 +19,9 @@ interface ProfilePageProps {
 
 export default async function ProfilePage({ params }: ProfilePageProps) {
  
-  const response = await fetch("http://128.199.165.212:8765/api/getData", {
-    next: { revalidate: 3600 * 24 * 365 } // Cache for 1 hour
-  });
-  const {clinics, }: {clinics:Clinic[]} = await response.json();
+  const filePath = path.join(process.cwd(), 'public', 'clinics_processed.json');
+  const fileContents = fs.readFileSync(filePath, 'utf-8');
+  const clinics: Clinic[] = JSON.parse(fileContents);
   const citySlug = params.cityslug;
   const cityClinics:Clinic[]= clinics.filter(p => p.City === citySlug);
 
