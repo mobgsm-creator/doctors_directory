@@ -1,0 +1,41 @@
+{
+  "Clinic Name": "Allure Aesthetics Ltd",
+  "LOGO": "Not publicly listed",
+  "ABOUT": "Allure Aesthetics Ltd is a nurse-led medical skin and laser clinic based in Pontllanfraith (Blackwood), South Wales. The clinic offers advanced laser hair removal, dermal fillers, anti-ageing injectables, microneedling, skin rejuvenation, HIFU, tattoo removal, mole/skin-tag removal and a range of medical-grade skincare products and packages. The clinic describes itself as medical/nurse-led with an independent nurse prescriber and delivers treatments from a dedicated clinic building on Commercial Street.",
+  "FOUNDED_YEAR": "2016",
+  "OWNER_OR_MEDICAL_DIRECTOR": "Sophia Roisin (Roisin) Hopkins (Director / Clinical Lead)",
+  "ACCREDITATIONS": [
+    "Registered company at Companies House (Allure Aesthetics Ltd, company no. 10321696).",
+    "Listed/registered with Healthcare Inspectorate Wales (HIW) as a private clinic provider (HIW listing).",
+    "Practitioner-level registration: Lead clinician described as a Registered Nurse & Independent Nurse Prescriber (stated on clinic site and verified on Glowday)."
+  ],
+  "REGULATORY_BODY": "Healthcare Inspectorate Wales (clinic-level); Nursing & Midwifery Council (practitioner-level - independent nurse prescriber).",
+  "PRACTITIONERS": [
+    {
+      "Full Name": "Roisin Hopkins (Sophia Roisin Hopkins)",
+      "Title": "Director / Clinical Lead / Independent Nurse Prescriber",
+      "Specialty": "Nurse-led aesthetic & medical treatments — independent nurse prescriber providing injectables (Botox, dermal fillers), skin procedures and clinical oversight",
+      "LinkedInURL": "https://uk.linkedin.com/in/roisin-hopkins-172a951b4",
+      "ProfileURL": "https://www.glowday.com/clinic/allure-aesthetics-ltd/roisin-hopkins"
+    }
+  ],
+  "CONTACT": {
+    "Phone": "01495 222111",
+    "Email": "info@allureaestheticsltd.com",
+    "WhatsApp": "Not publicly listed",
+    "Website": "https://www.allureaestheticsltd.com/",
+    "BookingURL": "https://partner.pabau.com/",
+    "EmergencyNumber": "Not publicly listed"
+  },
+  "SOCIAL_MEDIA": {
+    "LinkedIn": "Not publicly listed",
+    "Facebook": "https://www.facebook.com/allureaestheticsltd/",
+    "Instagram": "https://www.instagram.com/allureaestheticsltd/",
+    "Twitter": "Not publicly listed",
+    "YouTube": "Not publicly listed",
+    "TikTok": "Not publicly listed"
+  },
+  "IMAGES": [
+    {
+      "Type": "Website / Clinic treatment shot",
+      "URL": "https://static.wixstatic.com/media/ac29f8_34af59a0658e42a38d3c9c40eea03552~mv2.jpg/v1/fill/w_980%2Ch_653%2_

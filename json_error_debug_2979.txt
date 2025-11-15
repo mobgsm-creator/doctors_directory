@@ -1,0 +1,4 @@
+{
+  "Clinic Name": "AKB Aesthetics - Skin, Aesthetics and Well-being",
+  "LOGO": "https://akbaesthetics.com/wp-content/uploads/2023/10/Alumier-products-AKB-Aesthetics-1.jpg",
+  "ABOUT": "AKB Aesthetics is a Bedfordshire-based medical aesthetic clinic founded and led by Dr Amrita K. Bhogal (BDS, MFDS, PgCert Aesthetics, Level 7 Diploma in Clinical Aesthetics). The clinic offers a holistic, pro-ageing approach to skin health and wellbeing with services including injectables (anti-wrinkle treatments, dermal fillers), Profhilo, Seventy Hyal, SkinPen microneedling, Dermalux LED therapy, chemical peels (AlumierMD / DIBI), bespoke facials and wellbeing injections

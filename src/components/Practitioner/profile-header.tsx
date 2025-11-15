@@ -64,7 +64,9 @@ export function ProfileHeader({ practitioner }: ProfileHeaderProps) {
                     />
                   ))}
                   <span className="ml-2 text-xs text-muted-foreground" aria-label={`${practitioner.reviewCount} reviews`}>
-                    {practitioner.reviewCount.toLocaleString()} reviews
+                  {practitioner.gmapsReviews
+    ? practitioner.gmapsReviews.filter((review) => review.rating === '5 stars').length
+    : 0}{'+ '} 5 Star Reviews
                 </span>
               </div>
                {/* --- Buttons --- */}

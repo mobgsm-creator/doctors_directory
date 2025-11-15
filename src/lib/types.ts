@@ -27,6 +27,7 @@ export interface Clinic {
   isHIS: [boolean, string] | null	
   isRQIA: [boolean, string] | null	
   about_section: string	
+  accreditations: string	
   hours: string	
   Practitioners: string	
   Insurace: string	

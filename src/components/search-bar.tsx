@@ -75,6 +75,7 @@ export function SearchBar({ onSearch, initialFilters }: SearchBarProps) {
             onKeyDown={(e) => e.key === "Enter" && handleSearch()}
             onFocus={() => filters.query && setShowResults(true)}
             onBlur={() => setTimeout(() => setShowResults(false), 200)}
+            onClick={() => setShowResults(true)}
           />
  
         </div>
@@ -93,6 +94,7 @@ export function SearchBar({ onSearch, initialFilters }: SearchBarProps) {
             onKeyDown={(e) => e.key === "Enter" && handleSearch()}
             onFocus={() => filters.location && setShowResults(true)}
             onBlur={() => setTimeout(() => setShowResults(false), 200)}
+            onClick={() => setShowResults(true)}
           />
         </div>
 

@@ -1,0 +1,52 @@
+{
+  "Clinic Name": "Allison Jeffery Laser and Skin Clinic Ltd",
+  "LOGO": "https://www.allisonjeffery.com/img/home/slider/new/Ameela_3.jpg",
+  "ABOUT": "Multi award-winning skin health and laser clinic in Westdene, Brighton offering advanced non-surgical aesthetic treatments (anti-wrinkle injections, dermal fillers, Designer Lips™, Profhilo, HydraFacial, Dermapen, laser hair removal, medical-grade skincare). Clinic states it is doctor-led with Harley Street doctors and nurse prescribers on site and emphasises regulated, evidence-based care and 24-hour aftercare.",
+  "FOUNDED_YEAR": "2017",
+  "OWNER_OR_MEDICAL_DIRECTOR": "Allison Jeffery (Founder & Designer Lips™ Specialist)",
+  "ACCREDITATIONS": [
+    "Multiple WhatClinic Excellent Customer Service Awards (listed on clinic site and WhatClinic).",
+    "IAAFA Lip Sculpting Award (International Academy Of Advanced Facial Aesthetics) — listed on clinic site (Allison Jeffery recipient).",
+    "Listed as a regulated clinic with on-site Doctors and Nurse Prescribers on official website."
+  ],
+  "REGULATORY_BODY": "General Medical Council (GMC) for practising doctors; clinic describes itself as fully regulated (clinic statement).",
+  "PRACTITIONERS": [
+    {
+      "Full Name": "Allison Jeffery",
+      "Title": "Founder, Designer Lips™ Specialist",
+      "Specialty": "Designer Lips™, dermal fillers, facial aesthetics",
+      "LinkedInURL": "https://uk.linkedin.com/in/allison-jeffery-1a993445",
+      "ProfileURL": "https://www.allisonjeffery.com/about-us/meet-team-brighton.php"
+    },
+    {
+      "Full Name": "Dr Raj",
+      "Title": "Advanced Aesthetic Practitioner (Harley Street Doctor / Trainer)",
+      "Specialty": "Advanced aesthetic injections & training",
+      "LinkedInURL": "Not publicly listed",
+      "ProfileURL": "https://www.allisonjeffery.com/about-us/meet-team-brighton.php"
+    },
+    {
+      "Full Name": "Dr Patel",
+      "Title": "Advanced Aesthetic Practitioner",
+      "Specialty": "Dermal fillers, Botox, full facial rejuvenation",
+      "LinkedInURL": "Not publicly listed",
+      "ProfileURL": "https://www.allisonjeffery.com/about-us/meet-team-brighton.php"
+    },
+    {
+      "Full Name": "Jayne (Jayne Deacy)",
+      "Title": "Nurse Prescriber",
+      "Specialty": "Nurse prescriber, consultations and prescribing",
+      "LinkedInURL": "Not publicly listed",
+      "ProfileURL": "https://www.allisonjeffery.com/about-us/meet-team-brighton.php"
+    },
+    {
+      "Full Name": "Dr Haroon",
+      "Title": "Advanced Aesthetic Practitioner / Trainer",
+      "Specialty": "Aesthetic medicine, dermal filler & neurotoxin procedures",
+      "LinkedInURL": "Not publicly listed",
+      "ProfileURL": "https://www.allisonjeffery.com/about-us/meet-team-brighton.php"
+    },
+    {
+      "Full Name": "Dr Zack",
+      "Title": "Advanced Aesthetic Practitioner / Trainer",
+      "Specialty": "Full range neurotoxin & dermal

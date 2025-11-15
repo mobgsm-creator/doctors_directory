@@ -66,6 +66,7 @@ function transformClinic(raw: any): Clinic {
     isHIS: parseLabels(raw.isHIS),
     isRQIA: parseLabels(raw.isRQIA),
     about_section: raw.about_section,
+    accreditations: raw.accreditations,
     hours: safeParse(raw.hours),
     Practitioners: safeParse(raw.Practitioners),
     Insurace: safeParse(raw.Insurace),
@@ -105,27 +106,27 @@ function transformPractitioner(raw: any): Practitioner {
 async function loadFromFileSystem() {
   console.log("📂 API: Reading from file system...");
   
-  const filePath = path.join(process.cwd(), 'public', 'derms.json');
-  console.log(filePath)
-  const fileContents = fs.readFileSync(filePath, 'utf-8');
-  const practitioners = JSON.parse(fileContents);
+  // const filePath = path.join(process.cwd(), 'public', 'derms.json');
+  // console.log(filePath)
+  // const fileContents = fs.readFileSync(filePath, 'utf-8');
+  // const practitioners = JSON.parse(fileContents);
 
   const filePath_1 = path.join(process.cwd(), 'public', 'clinics.json');
   const fileContents_1 = fs.readFileSync(filePath_1, 'utf-8');
   const clinics = JSON.parse(fileContents_1);
   console.log("Loaded")
   const clinicsData = clinics.map(transformClinic);
-  const practitionersData = practitioners.map(transformPractitioner);
+  //const practitionersData = practitioners.map(transformPractitioner);
   console.log("Transformed")
-  console.log(`✅ API: Loaded ${clinics?.length} clinics and ${practitioners?.length} practitioners from file`);
+  //console.log(`✅ API: Loaded ${clinics?.length} clinics and ${practitioners?.length} practitioners from file`);
   
-  return {clinicsData, practitionersData};
+  return {clinicsData, };
 }
-const { clinicsData, practitionersData } = await loadFromFileSystem();
-fs.writeFileSync(
-  "public/derms_processed.json",
-  JSON.stringify(practitionersData)
-);
+const { clinicsData,  } = await loadFromFileSystem();
+// fs.writeFileSync(
+//   "public/derms_processed.json",
+//   JSON.stringify(practitionersData)
+// );
 fs.writeFileSync(
   "public/clinics_processed.json",
   JSON.stringify(clinicsData)

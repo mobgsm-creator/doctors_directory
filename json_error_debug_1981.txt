@@ -1,0 +1,49 @@
+{
+  "Clinic Name": "Allure Laser & Skin Clinic",
+  "LOGO": "https://static.wixstatic.com/media/0646cc_f52c80d1ca31481eaf9f8b0afd802e36~mv2.jpg/v1/fill/w_316%2Ch_126%2Cal_c%2Cq_80%2Cusm_0.66_1.00_0.01%2Cenc_avif%2Cquality_auto/Logo%20for%20website.jpg",
+  "ABOUT": "Allure Laser & Skin Clinic is a Batley-based laser, skin and beauty clinic offering a range of aesthetic and beauty services including laser hair removal, skin rejuvenation, microneedling, chemical peels, facials, waxing, holistic treatments and body contouring packages. The site describes an experienced, fully qualified therapist delivering both beauty and clinical aesthetic services from unit 2, 31B Wellington Street, Batley.",
+  "FOUNDED_YEAR": "2018",
+  "OWNER_OR_MEDICAL_DIRECTOR": "Janine Stankiewicz (Director)",
+  "ACCREDITATIONS": [
+    "Company incorporation (Companies House record for ALLURE SKIN & LASER CLINIC LTD, incorporated 5 March 2018).",
+    "Fresha Highly Recommended badge displayed on clinic website.",
+    "Public listings and third-party booking/review platforms (Fresha, Birdeye, Trip.com) showing clinic presence and reviews."
+  ],
+  "REGULATORY_BODY": "Not publicly listed",
+  "PRACTITIONERS": [
+    {
+      "Full Name": "Not publicly listed",
+      "Title": "Therapist / Aesthetic Practitioner",
+      "Specialty": "Beauty, laser and skin treatments (laser hair removal, microneedling, skin rejuvenation, facials, waxing)",
+      "LinkedInURL": "Not publicly listed",
+      "ProfileURL": "Not publicly listed"
+    }
+  ],
+  "CONTACT": {
+    "Phone": "01924 724320",
+    "Email": "Not publicly listed",
+    "WhatsApp": "Not publicly listed",
+    "Website": "https://www.allureskinclinicbatley.com",
+    "BookingURL": "https://book.getslick.com/#/salon/4572/",
+    "EmergencyNumber": "Not publicly listed"
+  },
+  "SOCIAL_MEDIA": {
+    "LinkedIn": "Not publicly listed",
+    "Facebook": "https://www.facebook.com/Allurelaserskinclinic/",
+    "Instagram": "https://www.instagram.com/allurelaser_skinclinic/",
+    "Twitter": "Not publicly listed",
+    "YouTube": "Not publicly listed",
+    "TikTok": "Not publicly listed"
+  },
+  "IMAGES": [
+    {
+      "Type": "Logo",
+      "URL": "https://static.wixstatic.com/media/0646cc_f52c80d1ca31481eaf9f8b0afd802e36~mv2.jpg/v1/fill/w_316%2Ch_126%2Cal_c%2Cq_80%2Cusm_0.66_1.00_0.01%2Cenc_avif%2Cquality_auto/Logo%20for%20website.jpg"
+    },
+    {
+      "Type": "Website / Skin assessment graphic",
+      "URL": "https://static.wixstatic.com/media/0646cc_f1a61a41ab214ff092441ded9669218b~mv2.jpg/v1/fill/w_410%2Ch_321%2Cal_c%2Cq_80%2Cusm_0.66_1.00_0.01%2Cenc_avif%2Cquality_auto/Skin%20Renew%20Assessment%20image.jpg"
+    },
+    {
+      "Type": "Website / Award badge",
+      "URL": "https://static.wixstatic.com/media/0646cc_d46dfc245ce74b9583ad1219c_

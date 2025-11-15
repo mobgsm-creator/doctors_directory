@@ -45,11 +45,15 @@ for index,row in df.iterrows():
         except Exception as e:
             pass
         try:
-            about_section=about_section+parse_accreditations(data_dict['AWARDS'])
+            accreditiations = parse_accreditations(data_dict['ACCREDITATIONS'])
         except Exception as e:
             pass
         try:
-            about_section=about_section+parse_accreditations(data_dict['AFFILIATIONS'])
+            accreditiations=accreditiations+"\n"+parse_accreditations(data_dict['AWARDS'])
+        except Exception as e:
+            pass
+        try:
+            accreditiations=accreditiations+"\n"+parse_accreditations(data_dict['AFFILIATIONS'])
         except Exception as e:
             pass
         # try:
@@ -188,7 +192,7 @@ for index,row in df.iterrows():
         try:
 
             df.at[index,'about_section']=about_section
-            #df.at[index,'compliance_section']=compliance_section
+            df.at[index,'accreditations']=accreditiations
             df.at[index,'hours']=json.dumps(hours)
             df.at[index,'Practitioners']=json.dumps(data_dict['PRACTITIONERS'])
             df.at[index, 'Insurace'] = json.dumps(data_dict['INSURANCE_ACCEPTED'])

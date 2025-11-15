@@ -108,16 +108,16 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
   )
 }
 
-export async function generateStaticParams() {
+// export async function generateStaticParams() {
 
-  const filePath = path.join(process.cwd(), 'public', 'clinics_processed.json');
-  const fileContents = fs.readFileSync(filePath, 'utf-8');
-  const clinics: Clinic[] = JSON.parse(fileContents);
-  return clinics.map((clinic) => ({
-    cityslug: clinic.City,   // <-- MUST include this!
-    slug: clinic.slug,
-  }));
-}
+//   const filePath = path.join(process.cwd(), 'public', 'clinics_processed.json');
+//   const fileContents = fs.readFileSync(filePath, 'utf-8');
+//   const clinics: Clinic[] = JSON.parse(fileContents);
+//   return clinics.map((clinic) => ({
+//     cityslug: clinic.City,   // <-- MUST include this!
+//     slug: clinic.slug,
+//   }));
+// }
 
 
 export async function generateMetadata({ params }: ProfilePageProps) {

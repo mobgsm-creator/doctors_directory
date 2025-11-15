@@ -18,7 +18,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
 
   return (
     <Link href={'profession' in practitioner && practitioner.profession ? `/profile/${practitioner.slug}` : `/clinics/${(practitioner as Clinic).City}/${practitioner.slug}`}>
-      <Card className="group hover:shadow-lg transition-all duration-300 hover:scale-[1.02] cursor-pointer border-border/50 hover:border-accent/50">
+      <Card className="group h-155 hover:shadow-lg transition-all duration-300 hover:scale-[1.02] cursor-pointer border-border/50 hover:border-accent/50">
         <CardHeader className="pb-4">
           <div className="flex items-start gap-4">
           

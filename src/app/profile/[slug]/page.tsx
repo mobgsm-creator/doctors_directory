@@ -133,14 +133,14 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
   )
 }
 
-export async function generateStaticParams() {
-  const filePath = path.join(process.cwd(), 'public', 'derms_processed.json');
-  const fileContents = fs.readFileSync(filePath, 'utf-8');
-  const clinics: Practitioner[] = JSON.parse(fileContents);
-  return clinics.map((practitioner) => ({
-    slug: practitioner.slug,
-  }))
-}
+// export async function generateStaticParams() {
+//   const filePath = path.join(process.cwd(), 'public', 'derms_processed.json');
+//   const fileContents = fs.readFileSync(filePath, 'utf-8');
+//   const clinics: Practitioner[] = JSON.parse(fileContents);
+//   return clinics.map((practitioner) => ({
+//     slug: practitioner.slug,
+//   }))
+// }
 
 export async function generateMetadata({ params }: ProfilePageProps) {
   const filePath = path.join(process.cwd(), 'public', 'derms_processed.json');

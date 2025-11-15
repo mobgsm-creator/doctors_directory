@@ -25,9 +25,9 @@ def slugify(value: str) -> str:
 #     else: 
 #         return x
 # df['SPECIALTIES'] = df['SPECIALTIES'].apply(lambda x: clean(x))
-df = pd.read_csv(r"C:\Users\agney\Documents\Files\Projects\UK-Dermatologists\prod_DB\Practitioners.csv")
+df = pd.read_csv(r"C:\Users\agney\Documents\Files\Projects\doctor-directory\test1.csv")
 # Convert DataFrame to list of dicts
-#df['slug'] = df['slug'].apply(slugify)
+df['slug'] = df['slug'].apply(slugify)
 df = df.replace([None, np.nan, "None"], "")
 #df.to_csv("Clinics3.5k.csv")
 devices_list = df.to_dict(orient='records')
@@ -35,7 +35,7 @@ devices_list = df.to_dict(orient='records')
 
 
 # # # Write JSON file
-with open('derms.json', 'w', encoding='utf-8') as f:
+with open('clinics.json', 'w', encoding='utf-8') as f:
     json.dump(devices_list, f, indent=2, ensure_ascii=False)
 
 # print("JSON file generated successfully at devices.json")

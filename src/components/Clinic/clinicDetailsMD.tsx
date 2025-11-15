@@ -27,8 +27,13 @@ function mapKeyValueToMarkdown(obj: Record<string, any>, depth = 0): string {
   
 export default function ClinicDetailsMarkdown({ clinic}:{clinic: Clinic}) {
   const markdownContent = `
-## 🏥 About
+## 📜 About
 ${clinic.about_section || "Not publicly listed"}
+
+---
+
+## Accreditations 
+${clinic.accreditations || "Not publicly listed"}
 
 ---
 
