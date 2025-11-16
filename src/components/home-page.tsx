@@ -24,29 +24,9 @@ const ITEMS_PER_PAGE = 9
 
 export default function HomePage() {
 
-  const router = useRouter()
-  const {filters, setFilters} = useSearchStore()
-  
-  
-  const [isLoading, setIsLoading] = useState(false)
-
- 
-
-
-  const handleSearch = async (newFilters: SearchFilters) => {
-    setIsLoading(true)
-    setFilters(newFilters)
-    console.log(newFilters)
-    
-    router.push("/search")
-    console.log("pushed")
-  }
-
-
-
   return (
     <main>
-      <HeroSection onSearch={handleSearch} />
+      <HeroSection />
       <LogoLoop
 
         logos={imageLogos}

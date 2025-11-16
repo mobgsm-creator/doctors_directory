@@ -14,14 +14,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import { useRouter } from "next/navigation"
 interface SearchBarProps {
-  onSearch: (filters: SearchFilters) => void
   initialFilters?: SearchFilters
 }
 
-export function SearchBar({ onSearch, initialFilters }: SearchBarProps) {
+export function SearchBar({ initialFilters }: SearchBarProps) {
  
-  const [isPending, startTransition] = useTransition()
+
   const [filters, setFilters] = useState<SearchFilters>(
     initialFilters || {
       type: "Clinic",
@@ -33,16 +33,23 @@ export function SearchBar({ onSearch, initialFilters }: SearchBarProps) {
      
     },
   )
-
+  const router = useRouter()
+  const [isLoading, setIsLoading] = useState(false)
   const [showResults, setShowResults] = useState(false)
   const [activeField, setActiveField] = useState<keyof SearchFilters>()
   const [showMobileSearch, setShowMobileSearch] = useState(false)
-
-  const handleSearch = () => {
-    startTransition(async () => {
-    onSearch(filters)
-    })
+  const handleSearch = async () => {
+    console.log("handle search")
+    setIsLoading(true)
+    setFilters(filters)
+    console.log(filters)
+    
+    await router.push("/search")
+    console.log("pushed")
   }
+
+
+  
 
   return (
     <>
@@ -104,7 +111,7 @@ export function SearchBar({ onSearch, initialFilters }: SearchBarProps) {
           size="lg"
           className="h-14 w-14 rounded-full p-0 bg-black hover:bg-gray-800 flex items-center justify-center"
         >
-          {isPending ? (
+          {isLoading ? (
     <Loader2 className="h-6 w-6 animate-spin" />
   ) : (
     <Search className="h-6 w-6" />

@@ -62,7 +62,7 @@ export default function SearchPage({
 
   return (
     <main className="min-h-screen">
-      <SearchBar onSearch={setFilters} />
+      <SearchBar/>
 
       <section className="py-16 px-4">
         <div className="container mx-auto max-w-6xl space-y-8">
@@ -99,9 +99,9 @@ export default function SearchPage({
               <div className={viewMode === "grid" ? "grid gap-6 md:grid-cols-2 lg:grid-cols-3" : "space-y-4"}>
                 {data.map((item) => (
                   viewMode === "grid" ? (
-                    <PractitionerCard practitioner={item} />
+                    <PractitionerCard key = {item.slug} practitioner={item} />
                   ) : (
-                    <PractitionerListItem practitioner={item} />
+                    <PractitionerListItem key = {item.slug} practitioner={item} />
                   )
                 ))}
               </div>

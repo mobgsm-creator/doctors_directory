@@ -1,6 +1,11 @@
 'use server'
 
 import { Clinic, Practitioner, SearchFilters } from "@/lib/types"
+import clinicsJson from "../../../public/clinics_processed.json";
+import practitionersJson from "../../../public/derms_processed.json";
+
+const clinics = clinicsJson as Clinic[];
+const practitioners = practitionersJson as Practitioner[];
 
 const ITEMS_PER_PAGE = 9
 
@@ -9,17 +14,6 @@ export async function searchPractitioners(
   page: number = 1,
   sortBy: string = "default"
 ) {
-  // Fetch data on the server
-  const [clinics, practitioners] = await Promise.all([
-    fetch("http://localhost:3000/clinics_processed.json", {
-      cache: "no-store",
-    }).then(res => res.json()),
-  
-    fetch("http://localhost:3000/derms_processed.json", {
-      cache: "no-store",
-    }).then(res => res.json()),
-  ]);
-  
 
   
 
@@ -66,7 +60,7 @@ export async function searchPractitioners(
   //     )
   // );
   //console.log(locations)
-
+  const start = performance.now();
   // Apply filtering logic
   const filteredClinics = clinics.filter((clinic: Clinic) => {
     if (filters.query) {
@@ -155,7 +149,8 @@ export async function searchPractitioners(
         return 0
     }
   })
-
+  const end = performance.now();
+  console.log(end-start)
   // Pagination
   const totalCount = filtered.length
   const totalPages = Math.ceil(totalCount / ITEMS_PER_PAGE)

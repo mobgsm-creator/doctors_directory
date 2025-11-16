@@ -1,11 +1,9 @@
 
 import type { SearchFilters } from "@/lib/types"
 import { SearchBar } from "@/components/search-bar"
-interface HeroSectionProps {
-  onSearch: (filters: SearchFilters) => void
-}
 
-export function HeroSection({ onSearch }: HeroSectionProps) {
+
+export function HeroSection() {
   return (
     <section className="relative py-20 px-4 bg-gradient-to-br from-background via-background to-muted/20">
       <div className="container mx-auto max-w-6xl">
@@ -23,7 +21,7 @@ export function HeroSection({ onSearch }: HeroSectionProps) {
         
 
       </div>
-      <SearchBar onSearch={onSearch} />
+      <SearchBar />
     </section>
   )
 }
