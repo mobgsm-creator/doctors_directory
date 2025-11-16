@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useTransition } from "react"
+import { useState} from "react"
 import { Search, Locate, Loader2 } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
@@ -15,24 +15,12 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { useRouter } from "next/navigation"
-interface SearchBarProps {
-  initialFilters?: SearchFilters
-}
+import { useSearchStore } from "@/app/stores/datastore"
 
-export function SearchBar({ initialFilters }: SearchBarProps) {
+export function SearchBar() {
+  const {filters, setFilters} = useSearchStore()
  
 
-  const [filters, setFilters] = useState<SearchFilters>(
-    initialFilters || {
-      type: "Clinic",
-      query: "",
-      category: "",
-      location: "",
-      rating: 0,
-      services: [],
-     
-    },
-  )
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
   const [showResults, setShowResults] = useState(false)
