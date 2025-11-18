@@ -5,7 +5,10 @@ import type { SearchFilters} from "@/lib/types"
 import { useRouter } from "next/navigation"
 import { useSearchStore } from "@/app/stores/datastore"
 import LogoLoop from './LogoLoop';
+import Header from "@/components/header"
 import { SearchBar } from "./search-bar"
+import { Button } from "@/components/ui/button"
+import { Smile, Scissors, Wind, Zap, Heart, Check } from "lucide-react"
 const imageLogos = [
 
   { src: "/HIS.jpg", alt: "HIS", href: "https://www.healthcareimprovementscotland.scot/" },
@@ -15,6 +18,21 @@ const imageLogos = [
   { src: "/rqia.jpg", alt: "RQIA", href: "https://www.rqia.org.uk/" },
   { src: "/save-face-partner.jpg", alt: "Save Face", href: "https://www.saveface.co.uk/" },
 
+];
+const specialists = [
+  { name: 'Facial Aesthetics', icon: Smile },
+  { name: 'Cosmetology', icon: Scissors },
+  { name: 'Hair & Scalp', icon: Wind },
+  { name: 'Skin Technology & Laser', icon: Zap },
+  { name: 'Wellness', icon: Heart },
+];
+
+const treatments = [
+  { name: 'Facial', image: '/facial-treatment-aesthetics.jpg' },
+  { name: 'Hands', image: '/hand-treatment-skincare.jpg' },
+  { name: 'Eyes', image: '/eye-treatment-cosmetic.jpg' },
+  { name: 'Skin', image: '/skin-treatment-laser.jpg' },
+  { name: 'Hairline', image: '/hairline-treatment-restoration.jpg' },
 ];
 const ITEMS_PER_PAGE = 9
 
@@ -26,7 +44,51 @@ export default function HomePage() {
 
   return (
     <main>
+
       <HeroSection />
+      <section className="bg-gray-50 py-20">
+        <div className="max-w-7xl mx-auto px-6">
+          <h2 className="text-3xl font-bold text-center mb-16">Contact a Specialist</h2>
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
+            {specialists.map((specialist, index) => {
+              const IconComponent = specialist.icon;
+              return (
+                <div key={index} className="flex flex-col items-center gap-4">
+                  <div className="w-24 h-24 rounded-full border-2 border-gray-300 flex items-center justify-center hover:border-black transition">
+                    <IconComponent className="w-10 h-10 text-gray-600" />
+                  </div>
+                  <p className="text-sm font-medium text-center">{specialist.name}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+      {/* Most Popular Treatments */}
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex items-center justify-between mb-12">
+            <h2 className="text-3xl font-bold">Most Popular Treatments</h2>
+            <Button className="bg-black text-white hover:bg-gray-800">
+              See all Treatments
+            </Button>
+          </div>
+          <div className="relative">
+            <div className="grid grid-cols-5 gap-4 overflow-x-auto pb-4">
+              {treatments.map((treatment, index) => (
+                <div key={index} className="flex-shrink-0 w-48">
+                  <img 
+                    src={treatment.image || "/placeholder.svg"} 
+                    alt={treatment.name}
+                    className="w-full h-48 object-cover rounded-lg"
+                  />
+                  <p className="mt-4 font-medium text-center">{treatment.name}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
       <LogoLoop
 
         logos={imageLogos}
@@ -50,172 +112,81 @@ export default function HomePage() {
         ariaLabel="Regulatory Compliance"
 
       />
+      {/* Trust Section */}
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-6">
+          <h2 className="text-3xl font-bold text-center mb-16">Building trust and clarity in healthcare</h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              { title: 'Our commitment', desc: 'We deliver a home to real ethical professionals. All professionals boast on our platform are verified and trusted by patients.' },
+              { title: 'Insight that matters', desc: 'We ensure that patient reviews are genuine, with verified services with confidence by providing transparent information.' },
+              { title: 'Safe & reliable', desc: 'We protect your data and ensure secure medical quality information is secured and protected from abuse, helping them.' },
+            ].map((item, index) => (
+              <div key={index} className="border border-gray-200 rounded-lg p-8">
+                <div className="w-12 h-12 rounded-full border-2 border-gray-300 flex items-center justify-center mb-4">
+                  <Check className="w-6 h-6 text-gray-600" />
+                </div>
+                <h3 className="font-bold text-lg mb-4">{item.title}</h3>
+                <p className="text-gray-600 text-sm leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      {/* For Service Providers Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">For Service Providers</h2>
+              <p className="text-gray-600 mb-8">Harness medical-grade care with our digital</p>
+              <ul className="space-y-4 mb-8">
+                <li className="flex gap-3 items-start">
+                  <Check className="w-5 h-5 text-black flex-shrink-0 mt-0.5" />
+                  <span className="text-gray-700">Streamline and calibrate your clinical expertise</span>
+                </li>
+                <li className="flex gap-3 items-start">
+                  <Check className="w-5 h-5 text-black flex-shrink-0 mt-0.5" />
+                  <span className="text-gray-700">Customize, engage, and better understand your</span>
+                </li>
+                <li className="flex gap-3 items-start">
+                  <Check className="w-5 h-5 text-black flex-shrink-0 mt-0.5" />
+                  <span className="text-gray-700">Access real-time insights to continually enhance your</span>
+                </li>
+                <li className="flex gap-3 items-start">
+                  <Check className="w-5 h-5 text-black flex-shrink-0 mt-0.5" />
+                  <span className="text-gray-700">Integrate with like-minded healthcare partners</span>
+                </li>
+              </ul>
+              <Button className="bg-black text-white hover:bg-gray-800">
+                Learn More
+              </Button>
+            </div>
+            <div className="flex justify-center">
+              <img 
+                src="/laptop-healthcare-interface.jpg" 
+                alt="Healthcare dashboard on laptop" 
+                className="max-w-md"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
 
-      <section className="py-20 bg-gray-50 text-center">
-  <h2 className="text-3xl font-bold mb-6">Why Choose Verified Clinics</h2>
-  <p className="max-w-2xl mx-auto text-gray-600 mb-10">
-    We only list clinics verified by top healthcare regulators like CQC, HIS, and JCCP — ensuring you’re in safe hands.
-  </p>
-  <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-5xl mx-auto">
-    {[
-      { title: "Safety First", desc: "Clinics adhere to strict safety and hygiene standards." },
-      { title: "Qualified Practitioners", desc: "All practitioners are vetted and licensed." },
-      { title: "Transparent Reviews", desc: "Patient feedback verified from trusted sources." },
-    ].map((item) => (
-      <div key={item.title} className="bg-white rounded-2xl p-8 shadow hover:shadow-lg transition">
-        <h3 className="font-semibold text-xl mb-3">{item.title}</h3>
-        <p className="text-gray-600">{item.desc}</p>
-      </div>
-    ))}
-  </div>
-</section>
+      {/* Ready to Get Started CTA Section */}
+      <section className="py-20 bg-black text-white">
+        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+          <div>
+            <h2 className="text-3xl md:text-4xl font-bold mb-2">Ready to Get Started?</h2>
+            <p className="text-gray-300">Join over 250+ clinics already growing with Consentz</p>
+          </div>
+          <Button className="bg-white text-black hover:bg-gray-200">
+            BOOK DEMO
+          </Button>
+        </div>
+      </section>
 
-<section className="py-16 bg-gray-50 text-center px-6 md:px-12">
-
-  
-  <img src="/pic.jpg" alt="data chart" className="w-full" />
-  <h2 className="text-3xl font-bold mt-4 mb-6">
-    What This Data Means
-  </h2><p className="max-w-3xl mx-auto text-lg text-gray-600 leading-relaxed mb-10">
-    These charts show how people in the community feel about different parts of
-    their clinic experience. Each category, like <strong>Trust</strong> or{" "}
-    <strong>Communication</strong>, comes from real reviews and feedback shared
-    by patients. The taller the bars or wider the boxes, the more people talked
-    about it and how strongly they felt.
-  </p>
-
-  <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-    <div className="bg-white rounded-2xl shadow p-6">
-      <h3 className="text-xl font-semibold mb-2">
-        The Scores
-      </h3>
-      <p className="text-gray-600">
-        Every score shows how positive or strong people’s feelings were. Higher
-        scores mean more trust, comfort, and happiness with the clinic or
-        practitioner.
-      </p>
-    </div>
-
-    <div className="bg-white rounded-2xl shadow p-6">
-      <h3 className="text-xl font-semibold mb-2">
-        The Mentions
-      </h3>
-      <p className="text-gray-600">
-        “Mentions” tell us how many people talked about that topic in their
-        reviews. For example, if lots of people mention{" "}
-        <strong>Communication</strong>, it means that part really stood out to
-        them.
-      </p>
-    </div>
-
-    <div className="bg-white rounded-2xl shadow p-6">
-      <h3 className="text-xl font-semibold mb-2">
-        Community Voice
-      </h3>
-      <p className="text-gray-600">
-        This data doesn’t come from one opinion — it comes from many voices
-        together. That helps us understand what patients truly value and how
-        clinics can keep improving.
-      </p>
-    </div>
-  </div>
-
-  <p className="mt-12 text-gray-700 text-base italic">
-    In short: these numbers are a reflection of how people <strong>feel</strong>
-    — their trust, comfort, and experiences — shown in a fair and simple way.
-  </p>
-</section>
-
-<section className="py-20 bg-white text-center px-6 md:px-12">
-  <h2 className="text-3xl font-bold mb-6">
-    Explore Procedures & Conditions
-  </h2>
-  <p className="max-w-3xl mx-auto text-gray-600 text-lg leading-relaxed mb-10">
-    From simple skin refreshers to advanced rejuvenation — our community of
-    clinics and practitioners covers hundreds of trusted, medical-grade
-    treatments. Each one is reviewed and performed by trained professionals to
-    help you look and feel your best, safely.
-  </p>
-
-  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto text-left">
-    {/* Injectables */}
-    <div className="bg-gray-50 rounded-2xl p-6 shadow hover:shadow-lg transition">
-      <h3 className="text-xl font-semibold mb-3">
-        Injectables
-      </h3>
-      <p className="text-gray-700 mb-4">
-        Smooth lines, add volume, or balance facial features with treatments
-        like Botox, dermal fillers, and skin boosters.
-      </p>
-      <ul className="text-sm text-gray-600 space-y-1">
-        <li>• Botox / Anti-wrinkle Injections</li>
-        <li>• Lip & Cheek Fillers</li>
-        <li>• Profhilo & Skin Boosters</li>
-        <li>• Non-surgical Rhinoplasty</li>
-      </ul>
-    </div>
-
-    {/* Skin Rejuvenation */}
-    <div className="bg-gray-50 rounded-2xl p-6 shadow hover:shadow-lg transition">
-      <h3 className="text-xl font-semibold mb-3">
-        Skin Rejuvenation
-      </h3>
-      <p className="text-gray-700 mb-4">
-        Treatments that refresh your skin’s glow, smoothness, and hydration using
-        gentle medical-grade facials, peels, or energy-based devices.
-      </p>
-      <ul className="text-sm text-gray-600 space-y-1">
-        <li>• Chemical Peels & Facials</li>
-        <li>• Microneedling & PRP</li>
-        <li>• Morpheus8 / HIFU / Ultherapy</li>
-        <li>• Laser & Light Rejuvenation</li>
-      </ul>
-    </div>
-
-    {/* Body Contouring */}
-    <div className="bg-gray-50 rounded-2xl p-6 shadow hover:shadow-lg transition">
-      <h3 className="text-xl font-semibold mb-3">
-        Body Contouring
-      </h3>
-      <p className="text-gray-700 mb-4">
-        Shape and tone your body with safe, non-surgical options like fat
-        dissolving injections, CoolSculpting, or radiofrequency tightening.
-      </p>
-      <ul className="text-sm text-gray-600 space-y-1">
-        <li>• Aqualyx Fat-dissolving</li>
-        <li>• CoolSculpting / Emsculpt Neo</li>
-        <li>• Vaser Liposuction</li>
-        <li>• BodyTite / Endolift</li>
-      </ul>
-    </div>
-
-    {/* Hair & Scalp */}
-    <div className="bg-gray-50 rounded-2xl p-6 shadow hover:shadow-lg transition">
-      <h3 className="text-xl font-semibold mb-3">
-        Hair & Scalp Health
-      </h3>
-      <p className="text-gray-700 mb-4">
-        Restore confidence with modern hair regrowth and scalp care therapies,
-        performed by experienced clinicians.
-      </p>
-      <ul className="text-sm text-gray-600 space-y-1">
-        <li>• PRP / PRF for Hair Loss</li>
-        <li>• DHI / FUE Hair Transplants</li>
-        <li>• Mesotherapy for Hair</li>
-        <li>• Scalp Micropigmentation</li>
-      </ul>
-    </div>
-  </div>
-
-  <p className="mt-12 text-gray-700 text-base italic">
-    Whether you’re looking to smooth, lift, rejuvenate, or restore — our verified
-    clinics offer safe, science-backed solutions for every skin and confidence
-    journey.
-  </p>
-
-
-</section>
-
+      
 
 
 

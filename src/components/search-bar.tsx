@@ -41,72 +41,71 @@ export function SearchBar() {
 
   return (
     <>
-    <div className="w-full max-w-6xl mx-auto space-y-6 hidden sm:block">
+    <div className="w-full max-w-6xl mx-auto space-y-6 h-20 hidden sm:block">
       {/* Main search bar with 3 sections */}
-      <div className="flex flex-col sm:flex-row gap-3 items-center">
-        {/* Section 1: Select either Clinic or Practitioner */}
-        <Select value={filters.type } onValueChange={(value: string) => {
-            setFilters((prev) => ({ ...prev, type: value }));
-          }}>
-            <SelectTrigger className="h-[40px] w-[180px] flex-none bg-white rounded-full shadow-sm border border-gray-200 px-4 py-3">
-              <SelectValue placeholder="Practitioner"></SelectValue>
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="Practitioner">Practitioner</SelectItem>
-              <SelectItem value="Clinic">Clinic</SelectItem>
-            </SelectContent>
-          </Select>
+      {/* Main search bar with 3 sections */}
+  <div className="flex flex-col sm:flex-row items-center">
+    {/* Section 1: Select either Clinic or Practitioner */}
+    <Select value={filters.type} onValueChange={(value: string) => {
+      setFilters((prev) => ({ ...prev, type: value }));
+    }}>
+      <SelectTrigger className="h-12 w-32 flex-none bg-gray-800 text-white rounded-lg shadow-sm border-0 px-4 py-3 font-medium hover:bg-gray-700">
+        <SelectValue placeholder="Clinic"></SelectValue>
+      </SelectTrigger>
+      <SelectContent>
+        <SelectItem value="Practitioner">Practitioner</SelectItem>
+        <SelectItem value="Clinic">Clinic</SelectItem>
+      </SelectContent>
+    </Select>
 
-        {/* Section 2: Filter by Procedure, Speciality, Specialist */}
-        <div className="flex-1 bg-white rounded-full shadow-sm border border-gray-200 px-4 py-3">
-        <Input
-            placeholder="What are you searching for"
-            value={filters.query}
-            onChange={(e) => {
-              setFilters((prev) => ({ ...prev, query: e.target.value }))
-              setShowResults(e.target.value.length > 0)
-            }}
-            className="border-0 shadow-none p-0 h-auto text-base placeholder:text-gray-500"
-            onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-            onFocus={() => filters.query && setShowResults(true)}
-            onBlur={() => setTimeout(() => setShowResults(false), 200)}
-            onClick={() => setShowResults(true)}
-          />
- 
-        </div>
+    {/* Section 2: Filter by Procedure, Speciality, Specialist */}
+    <div className="flex-1 bg-white rounded-lg shadow-sm border border-gray-300 px-4 py-3">
+      <Input
+        placeholder="I'm searching for"
+        value={filters.query}
+        onChange={(e) => {
+          setFilters((prev) => ({ ...prev, query: e.target.value }))
+          setShowResults(e.target.value.length > 0)
+        }}
+        className="border-0 shadow-none p-0 h-auto text-base placeholder:text-gray-500"
+        onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+        onFocus={() => filters.query && setShowResults(true)}
+        onBlur={() => setTimeout(() => setShowResults(false), 200)}
+        onClick={() => setShowResults(true)}
+      />
+    </div>
 
-        {/* Section 3: Location */}
-        <div className="flex-1 bg-white rounded-full shadow-sm border border-gray-200 px-4 py-3 flex items-center gap-2">
-          <Locate />
-          <Input
-            placeholder="Location"
-            value={filters.location}
-            onChange={(e) => {
-              setFilters((prev) => ({ ...prev, location: e.target.value }))
-              setShowResults(e.target.value.length > 0)
-            }}
-            className="border-0 shadow-none p-0 h-auto text-base placeholder:text-gray-500"
-            onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-            onFocus={() => filters.location && setShowResults(true)}
-            onBlur={() => setTimeout(() => setShowResults(false), 200)}
-            onClick={() => setShowResults(true)}
-          />
-        </div>
+    {/* Section 3: Location */}
+    <div className="flex-1 bg-white rounded-lg shadow-sm border border-gray-300 px-4 py-3 flex items-center gap-2">
+      <Locate className="w-5 h-5 text-gray-600 flex-shrink-0" />
+      <Input
+        placeholder="Location"
+        value={filters.location}
+        onChange={(e) => {
+          setFilters((prev) => ({ ...prev, location: e.target.value }))
+          setShowResults(e.target.value.length > 0)
+        }}
+        className="border-0 shadow-none p-0 h-auto text-base placeholder:text-gray-500"
+        onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+        onFocus={() => filters.location && setShowResults(true)}
+        onBlur={() => setTimeout(() => setShowResults(false), 200)}
+        onClick={() => setShowResults(true)}
+      />
+    </div>
 
-        {/* Search Button */}
-        <Button
-          onClick={handleSearch}
-          size="lg"
-          className="h-14 w-14 rounded-full p-0 bg-black hover:bg-gray-800 flex items-center justify-center"
-        >
-          {isLoading ? (
-    <Loader2 className="h-6 w-6 animate-spin" />
-  ) : (
-    <Search className="h-6 w-6" />
-  )}
-              
-        </Button>
-      </div>
+    {/* Search Button */}
+    <Button
+      onClick={handleSearch}
+      size="lg"
+      className="h-12 w-12 rounded-lg p-0 bg-gray-800 hover:bg-gray-700 text-white flex items-center justify-center flex-shrink-0"
+    >
+      {isLoading ? (
+        <Loader2 className="h-6 w-6 animate-spin" />
+      ) : (
+        <Search className="h-6 w-6" />
+      )}
+    </Button>
+  </div>
       {showResults && (
         <div className="bg-white rounded-lg shadow-lg border border-gray-200 p-6">
           <div className="grid grid-cols-3 gap-6">

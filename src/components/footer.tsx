@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { Search, Mail, Phone, MapPin } from "lucide-react"
 import { Separator } from "@/components/ui/separator"
+import { Button } from "@/components/ui/button"
 const cityList = ["Aberaeron",
 "Aberdare",
 "Aberdeen",
@@ -738,27 +739,103 @@ const cityList = ["Aberaeron",
 "Yeovil",
 "York",
 ]
+
 export function Footer() {
-  return (
-    <footer className="bg-card border-t border-border/50 mt-20">
-      <div className="container mx-auto max-w-6xl px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Brand */}
-          <div className="space-y-4">
-            <Link href="/" className="flex items-center gap-2 font-bold text-xl text-foreground">
-              <div className="w-8 h-8 bg-accent rounded-lg flex items-center justify-center">
-                <Search className="h-4 w-4 text-accent-foreground" />
+  return (     
+    <>
+    <section className="py-16 bg-gray-800 text-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex items-center justify-between">
+            <div>
+              <h2 className="text-4xl font-bold mb-2">Ready To Get Started?</h2>
+              <p className="text-gray-300">Join over 200+ clinics already growing with Consentz.</p>
+            </div>
+            <Button className="bg-white text-black hover:bg-gray-200 px-6">
+              BOOK DEMO
+            </Button>
+          </div>
+          <div className="border-t border-gray-600 my-12"></div>
+
+          <div className="grid grid-cols-5 gap-8 mb-12">
+            {/* CONSENTZ + Contact */}
+            <div>
+              <div className="font-bold text-lg mb-6">CONSENTZ.</div>
+              <div className="text-sm text-gray-300 space-y-2">
+                <p className="flex items-center gap-2">
+                  <span>📱</span>
+                  <span>[UK] +44 (0) 208 050 3372</span>
+                </p>
+                <p className="flex items-center gap-2">
+                  <span>📱</span>
+                  <span>(US) +1 646 786 1949</span>
+                </p>
+                <p className="flex items-center gap-2">
+                  <span>✉️</span>
+                  <span>contact@consentz.com</span>
+                </p>
               </div>
-              HealthDirectory
-            </Link>
-            <p className="text-sm text-muted-foreground text-pretty leading-relaxed">
-              Find qualified healthcare and aesthetic practitioners in your area. Verified profiles, authentic reviews,
-              and regulatory compliance.
-            </p>
+            </div>
+
+            {/* Consentz vs Column */}
+            <div>
+              <h4 className="font-bold text-white mb-6">Consentz vs</h4>
+              <ul className="space-y-3 text-sm text-gray-300">
+                <li><a href="#" className="hover:text-white transition">Zenoti</a></li>
+                <li><a href="#" className="hover:text-white transition">AestheticsPro</a></li>
+                <li><a href="#" className="hover:text-white transition">Pabau</a></li>
+                <li><a href="#" className="hover:text-white transition">Aesthetic Record</a></li>
+                <li><a href="#" className="hover:text-white transition">ClinicsEnse</a></li>
+                <li><a href="#" className="hover:text-white transition">Nextech</a></li>
+              </ul>
+            </div>
+
+            {/* Features Column */}
+            <div>
+              <h4 className="font-bold text-white mb-6">Features</h4>
+              <ul className="space-y-3 text-sm text-gray-300">
+                <li><a href="#" className="hover:text-white transition">Clinic Management</a></li>
+                <li><a href="#" className="hover:text-white transition">Patient Engagement</a></li>
+                <li><a href="#" className="hover:text-white transition">Photos and Records</a></li>
+                <li><a href="#" className="hover:text-white transition">Personalise</a></li>
+                <li><a href="#" className="hover:text-white transition">Analytics</a></li>
+                <li><a href="#" className="hover:text-white transition">Stock and Billing</a></li>
+              </ul>
+            </div>
+
+            {/* Marketing Column */}
+            <div>
+              <h4 className="font-bold text-white mb-6">Marketing</h4>
+              <ul className="space-y-3 text-sm text-gray-300">
+                <li><a href="#" className="hover:text-white transition">FAQs</a></li>
+                <li><a href="#" className="hover:text-white transition">Blog</a></li>
+                <li><a href="#" className="hover:text-white transition">Articles</a></li>
+                <li><a href="#" className="hover:text-white transition">Support</a></li>
+                <li><a href="#" className="hover:text-white transition">Terms & Conditions</a></li>
+                <li><a href="#" className="hover:text-white transition">Partners</a></li>
+                <li><a href="#" className="hover:text-white transition">Privacy Policy</a></li>
+              </ul>
+            </div>
+
+            {/* Get the App Column */}
+            <div>
+              <h4 className="font-bold text-white mb-6">Get the app</h4>
+              <Button className="bg-white text-black hover:bg-gray-200 w-full text-sm font-semibold">
+                🍎 App Store
+              </Button>
+            </div>
           </div>
 
-          {/* Quick Links */}
-          <div className="space-y-4">
+          <div className="border-t border-gray-600 my-8"></div>
+
+          <div className="grid grid-cols-4 gap-8 text-sm">
+            {/* Column 1: Description */}
+            <div>
+              <p className="font-bold text-white mb-3">Find qualified healthcare and aesthetic practitioners in your area. Verified profiles, authentic reviews, and regulatory compliance.</p>
+            </div>
+
+            {/* Column 2: Clinics */}
+            {/* Quick Links */}
+            <div className="space-y-4">
             <h3 className="font-semibold text-foreground">Clinics</h3>
             <div className="space-y-2 max-h-[100px] overflow-auto">
               {cityList.map((city, index) => (
@@ -767,64 +844,34 @@ export function Footer() {
                 </Link>
               ))}
             </div>
-          </div>
-
-          {/* For Practitioners */}
-          <div className="space-y-4">
-            <h3 className="font-semibold text-foreground">For Practitioners</h3>
-            <div className="space-y-2">
-              <Link href="#" className="block text-sm text-muted-foreground hover:text-accent transition-colors">
-                Join Directory
-              </Link>
-              <Link href="#" className="block text-sm text-muted-foreground hover:text-accent transition-colors">
-                Update Profile
-              </Link>
-              <Link href="#" className="block text-sm text-muted-foreground hover:text-accent transition-colors">
-                Verification Process
-              </Link>
-              <Link href="#" className="block text-sm text-muted-foreground hover:text-accent transition-colors">
-                Support
-              </Link>
             </div>
-          </div>
 
-          {/* Contact */}
-          <div className="space-y-4">
-            <h3 className="font-semibold text-foreground">Contact</h3>
-            <div className="space-y-3">
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <Mail className="h-4 w-4" />
-                <span>info@healthdirectory.com</span>
-              </div>
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <Phone className="h-4 w-4" />
-                <span>+44 20 1234 5678</span>
-              </div>
-              <div className="flex items-start gap-2 text-sm text-muted-foreground">
-                <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0" />
-                <span>London, United Kingdom</span>
-              </div>
+            {/* Column 3: For Practitioners */}
+            <div>
+              <h4 className="font-bold text-white mb-4">For Practitioners</h4>
+              <ul className="space-y-2 text-gray-300">
+                <li><a href="#" className="hover:text-white transition">Join Directory</a></li>
+                <li><a href="#" className="hover:text-white transition">Update Profile</a></li>
+                <li><a href="#" className="hover:text-white transition">Verification Process</a></li>
+                <li><a href="#" className="hover:text-white transition">Support</a></li>
+              </ul>
+            </div>
+
+            {/* Column 4: Contact */}
+            <div>
+              <h4 className="font-bold text-white mb-4">Contact</h4>
+              <ul className="space-y-2 text-gray-300">
+                <li><a href="#" className="hover:text-white transition">Info@healthdirectory.com</a></li>
+                <li><a href="#" className="hover:text-white transition">+44 208 050 3372</a></li>
+                <li><a href="#" className="hover:text-white transition">Contact@consentz.com</a></li>
+              </ul>
             </div>
           </div>
         </div>
+      </section> 
+      </>
 
-        <Separator className="my-8" />
 
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-muted-foreground">© 2025 HealthDirectory. All rights reserved.</p>
-          <div className="flex gap-6">
-            <Link href="#" className="text-sm text-muted-foreground hover:text-accent transition-colors">
-              Privacy Policy
-            </Link>
-            <Link href="#" className="text-sm text-muted-foreground hover:text-accent transition-colors">
-              Terms of Service
-            </Link>
-            <Link href="#" className="text-sm text-muted-foreground hover:text-accent transition-colors">
-              Cookie Policy
-            </Link>
-          </div>
-        </div>
-      </div>
-    </footer>
-  )
+      
+)
 }

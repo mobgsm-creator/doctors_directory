@@ -4,7 +4,7 @@ import { GeistSans } from "geist/font/sans"
 import { GeistMono } from "geist/font/mono"
 import { Analytics } from "@vercel/analytics/next"
 import { Suspense } from "react"
-import { NavigationHeader } from "@/components/navigation-header"
+import Header  from "@/components/header"
 import { Footer } from "@/components/footer"
 import { ScrollToTop } from "@/components/scroll-to-top"
   
@@ -26,7 +26,7 @@ export default async function RootLayout({
   return (
     <html lang="en" className="root">
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
-        <NavigationHeader />
+        <Header />
         <Suspense fallback={null}>{children}</Suspense>
         <Footer />
         <ScrollToTop />

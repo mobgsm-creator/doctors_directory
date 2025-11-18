@@ -5,23 +5,25 @@ import { SearchBar } from "@/components/search-bar"
 
 export function HeroSection() {
   return (
-    <section className="relative py-20 px-4 bg-gradient-to-br from-background via-background to-muted/20">
-      <div className="container mx-auto max-w-6xl">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6 text-balance">
-            Find Qualified Healthcare
-            <span className="text-accent block">Practitioners</span>
+    <section className="max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <h1 className="text-5xl md:text-6xl font-bold leading-tight mb-6">
+            The Home of Aesthetics & Wellbeing
           </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto text-pretty leading-relaxed">
-            Discover certified aesthetic and healthcare professionals in the United Kingdom. Browse verified profiles, read
-            authentic reviews, and book with confidence.
+          <p className="text-lg text-gray-600 mb-8">
+            Connect ethical aesthetics and healthcare professionals. Discover patient reviews, real aesthetic reviews, and book with confidence.
           </p>
+          <SearchBar />
+          </div>
+        <div className="flex justify-center">
+          <img 
+            src="/mobile-app-interface-healthcare-aesthetics.jpg" 
+            alt="Mobile app interface" 
+            className="max-w-xs"
+          />
         </div>
+      </section>
+      
 
-        
-
-      </div>
-      <SearchBar />
-    </section>
   )
 }
