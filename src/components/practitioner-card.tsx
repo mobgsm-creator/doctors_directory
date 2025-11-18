@@ -78,19 +78,8 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
           <div>
             <h4 className="font-medium text-sm mb-2 text-foreground">Specialties</h4>
             <div className="flex flex-wrap gap-1">
-                {'profession' in practitioner && practitioner.profession && (
-                practitioner.modality.slice(0, 4).map((modality, index) => (
-                  <Badge key={index} variant="outline" className="text-xs">
-                    {modality}
-                  </Badge>
-                )))}
-                {'profession' in practitioner && practitioner.profession && (
-                  practitioner.modality.length > 4 && (
-                  <Badge variant="outline" className="text-xs">
-                    +{practitioner.modality.length - 4} more
-                  </Badge>
-                ))}
-                {!('profession' in practitioner) && (
+         
+                {('profession' in practitioner) && (
                 practitioner.reviewAnalysis?.procedures_offered?.categories.slice(0, 4).map((modality, index) => (
                   <Badge key={index} variant="outline" className="text-xs">
                     {modality.split(" ")                                   // split into words
@@ -98,7 +87,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                     .join(" ")}
                   </Badge>
                 )))}
-                {!('profession' in practitioner) && (
+                {('profession' in practitioner) && (
                   practitioner.reviewAnalysis?.procedures_offered?.categories?.length! > 4 && (
                   <Badge variant="outline" className="text-xs">
                     +{practitioner.reviewAnalysis?.procedures_offered?.categories!.length! - 4} more

@@ -5,7 +5,7 @@ import { Search, Locate, Loader2 } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import type { SearchFilters } from "@/lib/types"
-import { categories, modalities,locations } from "@/lib/data"
+import { search_categories, modalities,locations } from "@/lib/data"
 import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog"
 import {
   Select,
@@ -35,13 +35,20 @@ export function SearchBar() {
     await router.push("/search")
     console.log("pushed")
   }
+  const visibleModalities =
+  filters.query.trim().length === 0
+    ? modalities
+    : modalities.filter((m) =>
+        m.toLowerCase().includes(filters.query.toLowerCase())
+      );
+
 
 
   
 
   return (
     <>
-    <div className="w-full max-w-6xl mx-auto space-y-6 h-20 hidden sm:block">
+    <div className="w-full max-w-6xl mx-auto space-y-6 hidden sm:block">
       {/* Main search bar with 3 sections */}
       {/* Main search bar with 3 sections */}
   <div className="flex flex-col sm:flex-row items-center">
@@ -113,17 +120,32 @@ export function SearchBar() {
             <div>
               <h3 className="font-semibold text-gray-900 mb-4">Popular conditions and procedures</h3>
               <div className="space-y-2 overflow-auto max-h-100">
-                {modalities.filter((category : string) => category.toLowerCase().includes(filters.query.toLowerCase())).map((condition : string) => (
-                  <button
-                    key={condition}
-                    onClick={() => {
-                      setFilters((prev) => ({ ...prev, query: condition }))
-                   
-                    }}
-                    className="block text-left text-blue-600 hover:text-blue-800 hover:underline text-sm"
+                {(modalities.filter((category : string) => category.toLowerCase().includes(filters.query.toLowerCase())).length > 0 ? modalities.filter((category : string) => category.toLowerCase().includes(filters.query.toLowerCase())) : modalities).map((condition : string,index) => (
+                  <div key={condition} className="flex flex-col items-start gap-1">
+                  {/* Index Badge */}
+       
+                
+                  {/* Hover-highlight wrapper */}
+                  <div
+                    className="
+                      w-full px-3 py-2 rounded-lg transition
+                      hover:bg-blue-50 hover:text-blue-700 active:bg-blue-100
+                    "
                   >
-                    {condition}
-                  </button>
+                    <button
+                      onClick={() =>
+                        setFilters((prev) => ({
+                          ...prev,
+                          condition: condition,
+                        }))
+                      }
+                      className="text-left text-sm font-medium w-full flex items-center gap-3"
+                    >
+                      {condition}
+                    </button>
+                  </div>
+                </div>
+                
                 ))}
               </div>
             </div>
@@ -132,17 +154,31 @@ export function SearchBar() {
             <div>
               <h3 className="font-semibold text-gray-900 mb-4">Service Cateogries</h3>
               <div className="space-y-2 overflow-auto max-h-100">
-                {categories.filter((category : string) => category.toLowerCase().includes(filters.query.toLowerCase())).map((specialty: string) => (
-                  <button
-                    key={specialty}
-                    onClick={() => {
-                      setFilters((prev) => ({ ...prev, query: specialty }))
-                  
-                    }}
-                    className="block text-left text-blue-600 hover:text-blue-800 hover:underline text-sm"
+                {(search_categories.filter((category : string) => category.toLowerCase().includes(filters.query.toLowerCase())).length > 0 ? search_categories.filter((category : string) => category.toLowerCase().includes(filters.query.toLowerCase())) : search_categories).map((specialty: string, index) => (
+                  <div key={specialty} className="flex flex-col items-start gap-1">
+      
+                
+                  {/* Hover-highlight wrapper */}
+                  <div
+                    className="
+                      w-full px-3 py-2 rounded-lg transition
+                      hover:bg-blue-50 hover:text-blue-700 active:bg-blue-100
+                    "
                   >
-                    {specialty}
-                  </button>
+                    <button
+                      onClick={() =>
+                        setFilters((prev) => ({
+                          ...prev,
+                          specialty: specialty,
+                        }))
+                      }
+                      className="text-left text-sm font-medium w-full flex items-center gap-3"
+                    >
+                      {specialty}
+                    </button>
+                  </div>
+                </div>
+                
                 ))}
               </div>
             </div>
@@ -151,18 +187,32 @@ export function SearchBar() {
             <div>
               <h3 className="font-semibold text-gray-900 mb-4">Locations</h3>
               <div className="space-y-2 overflow-auto max-h-100">
-              {locations.filter((loc) => typeof loc === 'string' && loc.toLowerCase().includes((filters.location || '').toLowerCase())).map((loc: string) => (
-                  <button
-                    key={loc}
-                    onClick={() => {
-                      const selectedLocation = loc;
-                      setFilters((prev) => ({ ...prev, location: selectedLocation }))
-                    
-                    }}
-                    className="block text-left text-blue-600 hover:text-blue-800 hover:underline text-sm"
+              {(locations.filter((loc) => typeof loc === 'string' && loc.toLowerCase().includes((filters.location || '').toLowerCase())).length > 0 ? locations.filter((loc) => typeof loc === 'string' && loc.toLowerCase().includes((filters.location || '').toLowerCase())) : locations).map((loc: string, index) => (
+                  <div key={loc} className="flex flex-col items-start gap-1">
+                  {/* Index Badge */}
+
+                
+                  {/* Hover-highlight wrapper */}
+                  <div
+                    className="
+                      w-full px-3 py-2 rounded-lg transition
+                      hover:bg-blue-50 hover:text-blue-700 active:bg-blue-100
+                    "
                   >
-                    {loc}
-                  </button>
+                    <button
+                      onClick={() =>
+                        setFilters((prev) => ({
+                          ...prev,
+                          location: loc,
+                        }))
+                      }
+                      className="text-left text-sm font-medium w-full flex items-center gap-3"
+                    >
+                      {loc}
+                    </button>
+                  </div>
+                </div>
+                
                 ))}
               </div>
             </div>

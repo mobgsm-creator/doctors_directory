@@ -35,6 +35,7 @@ export default function SearchPage({
   const [totalPages, setTotalPages] = useState(initialTotalPages)
   const [isPending, startTransition] = useTransition()
 
+
   // Fetch data when filters, page, or sort changes
   useEffect(() => {
     startTransition(async () => {

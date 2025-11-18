@@ -39,7 +39,8 @@ def parse_accreditations(accreditations):
 
 for index,row in df.iterrows():
     try:
-        data_dict=json.loads(re.sub(r':contentReference\[oaicite:\d+\]\{index=\d+\}', '', json.loads(row['json_response'])))
+        laoded_json = json.loads(row['json_response'])
+        data_dict=json.loads(re.sub(r':contentReference\[oaicite:\d+\]\{index=\d+\}', '', laoded_json))
         try:
             about_section=data_dict['ABOUT']+parse_accreditations(data_dict['ACCREDITATIONS'])
         except Exception as e:
