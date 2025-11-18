@@ -7,10 +7,10 @@ import fs from "fs";
 
 
 export const loadData = cache(() => {
-  console.time("loadData"); // optional profiling
+
   const clinics = clinicsJson as Clinic[];
   const practitioners = practitionersJson as Practitioner[];
-  console.timeEnd("loadData");
+
 
   return { clinics, practitioners };
 });

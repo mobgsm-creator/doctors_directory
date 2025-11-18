@@ -78,19 +78,19 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
           <div>
             <h4 className="font-medium text-sm mb-2 text-foreground">Specialties</h4>
             <div className="flex flex-wrap gap-1">
-         
-                {('profession' in practitioner) && (
-                practitioner.reviewAnalysis?.procedures_offered?.categories.slice(0, 4).map((modality, index) => (
+           
+                {true && (
+                practitioner.reviewAnalysis?.procedures_offered?.categories.slice(0, 2).map((modality, index) => (
                   <Badge key={index} variant="outline" className="text-xs">
                     {modality.split(" ")                                   // split into words
                     .map(word => word.charAt(0).toUpperCase() + word.slice(1)) // capitalize each
                     .join(" ")}
                   </Badge>
                 )))}
-                {('profession' in practitioner) && (
-                  practitioner.reviewAnalysis?.procedures_offered?.categories?.length! > 4 && (
+                {true && (
+                  practitioner.reviewAnalysis?.procedures_offered?.categories?.length! > 2 && (
                   <Badge variant="outline" className="text-xs">
-                    +{practitioner.reviewAnalysis?.procedures_offered?.categories!.length! - 4} more
+                    +{practitioner.reviewAnalysis?.procedures_offered?.categories!.length! - 2} more
                   </Badge>
                 ))}
               </div>

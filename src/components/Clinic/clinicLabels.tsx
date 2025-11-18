@@ -32,7 +32,7 @@ export default function ClinicLabels({ clinic }: { clinic: Clinic }) {
                 <img src="/save-face-partner.jpg" alt="Save Face" className="w-8 h-8 rounded-full" />
                 )}
               {clinic.isDoctor && (
-                <img src="/consentz.jpg" alt="Doctor" className="w-8 h-8 rounded-full" />
+               <div className="inline-block px-3 py-1 rounded-full shadow-sm bg-green-800 text-white text-xs">Licensed Medic On-Site</div>
                 )}
                   </div>
     )}

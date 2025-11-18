@@ -19,8 +19,9 @@ import { useSearchStore } from "@/app/stores/datastore"
 
 export function SearchBar() {
   const {filters, setFilters} = useSearchStore()
- 
-
+  const [localQuery, setLocalQuery] = useState('')
+  const [localLocation, setLocalLocation] = useState('')
+  console.log(localQuery)
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
   const [showResults, setShowResults] = useState(false)
@@ -69,15 +70,12 @@ export function SearchBar() {
     <div className="flex-1 bg-white rounded-lg shadow-sm border border-gray-300 px-4 py-3">
       <Input
         placeholder="I'm searching for"
-        value={filters.query}
+        value={localQuery}
         onChange={(e) => {
-          setFilters((prev) => ({ ...prev, query: e.target.value }))
-          setShowResults(e.target.value.length > 0)
+          setLocalQuery(e.target.value)
         }}
         className="border-0 shadow-none p-0 h-auto text-base placeholder:text-gray-500"
-        onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-        onFocus={() => filters.query && setShowResults(true)}
-        onBlur={() => setTimeout(() => setShowResults(false), 200)}
+        onFocus={() => localQuery && setShowResults(true)}
         onClick={() => setShowResults(true)}
       />
     </div>
@@ -87,14 +85,14 @@ export function SearchBar() {
       <Locate className="w-5 h-5 text-gray-600 flex-shrink-0" />
       <Input
         placeholder="Location"
-        value={filters.location}
+        value={localLocation}
         onChange={(e) => {
-          setFilters((prev) => ({ ...prev, location: e.target.value }))
-          setShowResults(e.target.value.length > 0)
+          setLocalLocation(e.target.value)
+          
         }}
         className="border-0 shadow-none p-0 h-auto text-base placeholder:text-gray-500"
-        onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-        onFocus={() => filters.location && setShowResults(true)}
+        onKeyDown={(e) => e.key === "Enter"}
+        onFocus={() => localLocation && setShowResults(true)}
         onBlur={() => setTimeout(() => setShowResults(false), 200)}
         onClick={() => setShowResults(true)}
       />
@@ -120,7 +118,7 @@ export function SearchBar() {
             <div>
               <h3 className="font-semibold text-gray-900 mb-4">Popular conditions and procedures</h3>
               <div className="space-y-2 overflow-auto max-h-100">
-                {(modalities.filter((category : string) => category.toLowerCase().includes(filters.query.toLowerCase())).length > 0 ? modalities.filter((category : string) => category.toLowerCase().includes(filters.query.toLowerCase())) : modalities).map((condition : string,index) => (
+                {(modalities.filter((category : string) => category.toLowerCase().includes(localQuery.toLowerCase())).length > 0 ? modalities.filter((category : string) => category.toLowerCase().includes(localQuery.toLowerCase())) : modalities).map((condition : string,index) => (
                   <div key={condition} className="flex flex-col items-start gap-1">
                   {/* Index Badge */}
        
@@ -136,7 +134,7 @@ export function SearchBar() {
                       onClick={() =>
                         setFilters((prev) => ({
                           ...prev,
-                          condition: condition,
+                          query: condition,
                         }))
                       }
                       className="text-left text-sm font-medium w-full flex items-center gap-3"
@@ -154,7 +152,7 @@ export function SearchBar() {
             <div>
               <h3 className="font-semibold text-gray-900 mb-4">Service Cateogries</h3>
               <div className="space-y-2 overflow-auto max-h-100">
-                {(search_categories.filter((category : string) => category.toLowerCase().includes(filters.query.toLowerCase())).length > 0 ? search_categories.filter((category : string) => category.toLowerCase().includes(filters.query.toLowerCase())) : search_categories).map((specialty: string, index) => (
+                {(search_categories.filter((category : string) => category.toLowerCase().includes(localQuery.toLowerCase())).length > 0 ? search_categories.filter((category : string) => category.toLowerCase().includes(localQuery.toLowerCase())) : search_categories).map((specialty: string, index) => (
                   <div key={specialty} className="flex flex-col items-start gap-1">
       
                 
@@ -169,7 +167,7 @@ export function SearchBar() {
                       onClick={() =>
                         setFilters((prev) => ({
                           ...prev,
-                          specialty: specialty,
+                          query: specialty,
                         }))
                       }
                       className="text-left text-sm font-medium w-full flex items-center gap-3"
@@ -187,7 +185,7 @@ export function SearchBar() {
             <div>
               <h3 className="font-semibold text-gray-900 mb-4">Locations</h3>
               <div className="space-y-2 overflow-auto max-h-100">
-              {(locations.filter((loc) => typeof loc === 'string' && loc.toLowerCase().includes((filters.location || '').toLowerCase())).length > 0 ? locations.filter((loc) => typeof loc === 'string' && loc.toLowerCase().includes((filters.location || '').toLowerCase())) : locations).map((loc: string, index) => (
+              {(locations.filter((loc) => typeof loc === 'string' && loc.toLowerCase().includes((localLocation || '').toLowerCase())).length > 0 ? locations.filter((loc) => typeof loc === 'string' && loc.toLowerCase().includes((localLocation || '').toLowerCase())) : locations).map((loc: string, index) => (
                   <div key={loc} className="flex flex-col items-start gap-1">
                   {/* Index Badge */}
 

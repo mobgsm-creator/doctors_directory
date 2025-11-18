@@ -5,7 +5,7 @@ import { SearchBar } from "@/components/search-bar"
 import { PractitionerCard } from "@/components/practitioner-card"
 import { PractitionerListItem } from "@/components/practitioner-list-item"
 import { SearchResultsHeader } from "@/components/search-results-header"
-import { AdvancedFilters } from "@/components/advanced-filters"
+import { AdvancedFilterSidebar } from "@/components/filterSidebar"
 import { PractitionerCardSkeleton, PractitionerListSkeleton } from "@/components/loading-skeleton"
 import type { SearchFilters } from "@/lib/types"
 import { Button } from "@/components/ui/button"
@@ -15,7 +15,7 @@ import { useSearchStore } from "@/app/stores/datastore"
 
 const ITEMS_PER_PAGE = 9
 
-export default function SearchPage({
+export default async function SearchPage({
   initialData,
   initialTotalCount,
   initialTotalPages
@@ -54,6 +54,8 @@ export default function SearchPage({
   const handleFiltersChange = (newFilters: SearchFilters) => {
     setFilters(newFilters)
     setCurrentPage(1)
+
+
   }
 
   const handlePageChange = (page: number) => {
@@ -80,8 +82,8 @@ export default function SearchPage({
               filters={filters}
             />
           </div>
-
-          <AdvancedFilters
+          <div className="flex flex-row gap-4">
+          <AdvancedFilterSidebar
             filters={filters}
             onFiltersChange={handleFiltersChange}
             isOpen={showAdvancedFilters}
@@ -95,7 +97,7 @@ export default function SearchPage({
               ))}
             </div>
           ) : (
-            <>
+            <div className = 'flex flex-col justify-items-center '>
               {/* Render your data here */}
               <div className={viewMode === "grid" ? "grid gap-6 md:grid-cols-2 lg:grid-cols-3" : "space-y-4"}>
                 {data.map((item) => (
@@ -105,8 +107,8 @@ export default function SearchPage({
                     <PractitionerListItem key = {item.slug} practitioner={item} />
                   )
                 ))}
+                
               </div>
-
               {/* Pagination */}
               {totalPages > 1 && (
                 <div className="flex justify-center gap-2 mt-8">
@@ -150,9 +152,11 @@ export default function SearchPage({
                   </Button>
                 </div>
               )}
-            </>
+
+              
+            </div>
           )}
-        </div>
+        </div></div>
       </section>
     </main>
   )
