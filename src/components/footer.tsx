@@ -743,34 +743,38 @@ const cityList = ["Aberaeron",
 export function Footer() {
   return (     
     <>
-    <section className="py-16 bg-gray-800 text-white">
+    <section className="footer py-16 text-white">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <h2 className="text-4xl font-bold mb-2">Ready To Get Started?</h2>
-              <p className="text-gray-300">Join over 200+ clinics already growing with Consentz.</p>
+          <div className="flex items-center flex-col md:flex-row justify-between">
+            <div className="w-full md:w-auto">
+              <h2 className="text-lg md:text-4xl font-bold mb-2">Ready To Get Started?</h2>
+              <p className="">Join over 200+ clinics already growing with Consentz.</p>
             </div>
-            <Button className="bg-white text-black hover:bg-gray-200 px-6">
-              BOOK DEMO
-            </Button>
+            <div className="flex justify-start w-full md:w-auto pt-10 md:pt-0">
+              <Button className="h-auto rounded-lg md:text-lg px-4 py-2 md:px-6 md:py-2 bg-white text-black hover:bg-gray-200">
+                BOOK DEMO
+              </Button>
+            </div>
           </div>
-          <div className="border-t border-gray-600 my-12"></div>
+          <div className="border-t border-white my-12"></div>
 
-          <div className="grid grid-cols-5 gap-8 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8 mb-12">
             {/* CONSENTZ + Contact */}
             <div>
-              <div className="font-bold text-lg mb-6">CONSENTZ.</div>
-              <div className="text-sm text-gray-300 space-y-2">
+              <div className="font-bold text-lg mb-6">
+                <img src="/images/c-logo-light.svg" alt="Logo" width={180} />
+              </div>
+              <div className="text-sm  space-y-2">
                 <p className="flex items-center gap-2">
-                  <span>📱</span>
+                  <Phone className="w-5 h-5 text-white mr-2 flex-shrink-0 mt-0.5" />
                   <span>[UK] +44 (0) 208 050 3372</span>
                 </p>
                 <p className="flex items-center gap-2">
-                  <span>📱</span>
+                  <Phone className="w-5 h-5 text-white mr-2 flex-shrink-0 mt-0.5" />
                   <span>(US) +1 646 786 1949</span>
                 </p>
                 <p className="flex items-center gap-2">
-                  <span>✉️</span>
+                  <Mail className="w-5 h-5 text-white mr-2 flex-shrink-0 mt-0.5" />
                   <span>contact@consentz.com</span>
                 </p>
               </div>
@@ -778,8 +782,8 @@ export function Footer() {
 
             {/* Consentz vs Column */}
             <div>
-              <h4 className="font-bold text-white mb-6">Consentz vs</h4>
-              <ul className="space-y-3 text-sm text-gray-300">
+              <h3 className="font-bold text-lg text-white mb-6">Consentz vs</h3>
+              <ul className="space-y-3 text-sm">
                 <li><a href="#" className="hover:text-white transition">Zenoti</a></li>
                 <li><a href="#" className="hover:text-white transition">AestheticsPro</a></li>
                 <li><a href="#" className="hover:text-white transition">Pabau</a></li>
@@ -791,8 +795,8 @@ export function Footer() {
 
             {/* Features Column */}
             <div>
-              <h4 className="font-bold text-white mb-6">Features</h4>
-              <ul className="space-y-3 text-sm text-gray-300">
+              <h3 className="font-bold text-lg text-white mb-6">Features</h3>
+              <ul className="space-y-3 text-sm">
                 <li><a href="#" className="hover:text-white transition">Clinic Management</a></li>
                 <li><a href="#" className="hover:text-white transition">Patient Engagement</a></li>
                 <li><a href="#" className="hover:text-white transition">Photos and Records</a></li>
@@ -804,8 +808,8 @@ export function Footer() {
 
             {/* Marketing Column */}
             <div>
-              <h4 className="font-bold text-white mb-6">Marketing</h4>
-              <ul className="space-y-3 text-sm text-gray-300">
+              <h3 className="font-bold text-lg text-white mb-6">Marketing</h3>
+              <ul className="space-y-3 text-sm">
                 <li><a href="#" className="hover:text-white transition">FAQs</a></li>
                 <li><a href="#" className="hover:text-white transition">Blog</a></li>
                 <li><a href="#" className="hover:text-white transition">Articles</a></li>
@@ -818,16 +822,16 @@ export function Footer() {
 
             {/* Get the App Column */}
             <div>
-              <h4 className="font-bold text-white mb-6">Get the app</h4>
-              <Button className="bg-white text-black hover:bg-gray-200 w-full text-sm font-semibold">
-                🍎 App Store
-              </Button>
+              <h3 className="font-bold text-lg text-white mb-6">Get the app</h3>
+              <div className="">
+                <img src="/images/app-store.png" alt="" width={139} />
+              </div>
             </div>
           </div>
 
-          <div className="border-t border-gray-600 my-8"></div>
+          <div className="border-t border-white my-8"></div>
 
-          <div className="grid grid-cols-4 gap-8 text-sm">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 text-sm">
             {/* Column 1: Description */}
             <div>
               <p className="font-bold text-white mb-3">Find qualified healthcare and aesthetic practitioners in your area. Verified profiles, authentic reviews, and regulatory compliance.</p>
@@ -836,10 +840,10 @@ export function Footer() {
             {/* Column 2: Clinics */}
             {/* Quick Links */}
             <div className="space-y-4">
-            <h3 className="font-semibold text-foreground">Clinics</h3>
+            <h3 className="font-semibold">Clinics</h3>
             <div className="space-y-2 max-h-[100px] overflow-auto">
               {cityList.map((city, index) => (
-                <Link href={`/clinics/${city}`} key={index} className="block text-sm text-muted-foreground hover:text-muted-foreground/20 transition-colors">
+                <Link href={`/clinics/${city}`} key={index} className="block text-sm">
                   Top Clinics in {city}
                 </Link>
               ))}
@@ -849,7 +853,7 @@ export function Footer() {
             {/* Column 3: For Practitioners */}
             <div>
               <h4 className="font-bold text-white mb-4">For Practitioners</h4>
-              <ul className="space-y-2 text-gray-300">
+              <ul className="space-y-2">
                 <li><a href="#" className="hover:text-white transition">Join Directory</a></li>
                 <li><a href="#" className="hover:text-white transition">Update Profile</a></li>
                 <li><a href="#" className="hover:text-white transition">Verification Process</a></li>
@@ -860,7 +864,7 @@ export function Footer() {
             {/* Column 4: Contact */}
             <div>
               <h4 className="font-bold text-white mb-4">Contact</h4>
-              <ul className="space-y-2 text-gray-300">
+              <ul className="space-y-2">
                 <li><a href="#" className="hover:text-white transition">Info@healthdirectory.com</a></li>
                 <li><a href="#" className="hover:text-white transition">+44 208 050 3372</a></li>
                 <li><a href="#" className="hover:text-white transition">Contact@consentz.com</a></li>
