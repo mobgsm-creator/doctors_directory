@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Sans+Arabic:wght@100..900&family=Noto+Serif+Georgian:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -51,6 +53,7 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
+  --primary-bg-color: #F2EEE5;
   --primary: oklch(0.205 0 0);
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
@@ -76,6 +79,19 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  --head-color: #374151; 
+  --text-color: #000000; 
+  --mineshaft:#2e2e2e;
+  --grey: #696969;
+  --white: #ffffff;
+  --alabaster:#FAFAFA;
+  --alto:#DEDBDB;
+  --dune:#262422;
+  --border-color-ebb: #E5E1DE;
+  --font-family-base: "Inter", sans-serif;
+  --font-noto: "Noto Serif Georgian", serif;
+  --font-noto-arabic: "Noto Sans Arabic", sans-serif;
+  --font-playfair: "Playfair Display", serif;
 }
 
 .dark {
@@ -119,4 +135,38 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+body {
+  color: var(--text-color);
+  font-family: var(--font-noto-arabic);
+}
+
+.btn svg {
+  color: var(--white);
+  opacity: 1;
+}
+
+h1 {
+  color: var(--head-color);
+}
+
+.popular-treatments-section {
+  position: relative;
+}
+
+.popular-treatments-section:after {
+  content: "";
+  width: 300px;
+  height: 2px;
+  background-color: var(--grey);
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.hero-holder h1 {
+  color: var(--mineshaft);
+  font-family: var(--font-playfair);
 }

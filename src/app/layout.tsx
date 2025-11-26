@@ -26,11 +26,13 @@ export default async function RootLayout({
   return (
     <html lang="en" className="root">
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
-        <Header />
-        <Suspense fallback={null}>{children}</Suspense>
-        <Footer />
-        <ScrollToTop />
-        <Analytics />
+        <div className="overflow-hidden">
+          <Header />
+          <Suspense fallback={null}>{children}</Suspense>
+          <Footer />
+          <ScrollToTop />
+          <Analytics />
+        </div>
       </body>
     </html>
   )

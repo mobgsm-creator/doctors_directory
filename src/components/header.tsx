@@ -1,19 +1,88 @@
-import { Button } from "@/components/ui/button"
+"use client";
+
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+
 export default function Header() {
-    return (
-        <header className="border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-6 py-6 flex items-center justify-between">
-          <div className="font-bold text-xl">CONSENTZ.</div>
-          <nav className="hidden md:flex gap-8 items-center">
-            <a href="#" className="text-sm text-gray-600 hover:text-black">HOME</a>
-            <a href="#" className="text-sm text-gray-600 hover:text-black">FEATURES</a>
-            <a href="#" className="text-sm text-gray-600 hover:text-black">BLOG</a>
-            <a href="#" className="text-sm text-gray-600 hover:text-black">FAQS</a>
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.classList.add("menu-open");
+    } else {
+      document.body.classList.remove("menu-open");
+    }
+  }, [menuOpen]);
+
+  return (
+    <header className="bg-[var(--primary-bg-color)]">
+      <div className="max-w-7xl mx-auto px-6 py-6 flex items-center justify-center md:justify-between">
+        <div className="font-bold text-xl">
+          <img src="/images/logo.png" alt="Logo" width={180} />
+        </div>
+
+        <div className="nav-drop hidden md:flex gap-8 items-center w-full justify-between">
+          <nav className="flex gap-8 items-center mx-auto">
+            <a href="#" className="font-bold hover:text-black">HOME</a>
+            <a href="#" className="font-bold hover:text-black">FEATURES</a>
+            <a href="#" className="font-bold hover:text-black">BLOG</a>
+            <a href="#" className="font-bold hover:text-black">FAQS</a>
           </nav>
-          <Button className="text-sm border border-black bg-transparent text-black hover:bg-black hover:text-white">
+          <Button className="font-bold border-2 py-3 px-6 w-auto h-auto border-black bg-transparent text-black hover:bg-black hover:text-white">
             BOOK DEMO
           </Button>
         </div>
-      </header>
-    )
+
+        <div className="md:hidden">
+          <button className="absolute top-4 left-2 mt-2 ml-1" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
+            {menuOpen ? (
+              <svg
+                className="w-8 h-8 text-black"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            ) : (
+              <svg
+                className="w-8 h-8 text-black"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            )}
+          </button>
+        </div>
+      </div>
+
+      {menuOpen && (
+        <div className="md:hidden px-6 py-4">
+          <nav className="flex flex-col gap-4">
+            <a href="#" className="font-bold hover:text-black">HOME</a>
+            <a href="#" className="font-bold hover:text-black">FEATURES</a>
+            <a href="#" className="font-bold hover:text-black">BLOG</a>
+            <a href="#" className="font-bold hover:text-black">FAQS</a>
+          </nav>
+          <Button className="font-bold border-2 py-3 px-6 w-full mt-4 border-black bg-transparent text-black hover:bg-black hover:text-white">
+            BOOK DEMO
+          </Button>
+        </div>
+      )}
+    </header>
+  );
 }

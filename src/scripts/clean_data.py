@@ -4,37 +4,7 @@ import textwrap
 import re
 import ast
 
-df = pd.read_excel(r"C:\Users\agney\Documents\Files\Projects\UK-Dermatologists\prod_DB\Clinics.xlsx", sheet_name='exists')
-count = 0
-rows = []
-for index,row in df.iterrows():
-    try:
-        laoded_json = json.loads(row['json_response'])
-        data_dict=json.loads(re.sub(r':contentReference\[oaicite:\d+\]\{index=\d+\}', '', laoded_json))
-    
-        for item in data_dict["PRACTITIONERS"]:
-             # Create full row: original row + practitioner fields
-            combined = {}
 
-            # 1. Add full original row (convert to dict)
-            combined.update(row.to_dict())
-            
-            if type(item) == dict:
-            # 2. Add practitioner fields
-                combined.update(item)
-            elif type(item) == str:
-                combined.update({'Practitioners': item})
-            else:
-                combined.update({'Practitioners': json.dumps(item)})
-            rows.append(combined)
-
-    except json.JSONDecodeError as e:
-        # Print and write debug info to a file
-        print(e)
-        pass
-df_practitioners = pd.DataFrame(rows)
-df_practitioners.to_csv(r"C:\Users\agney\Documents\Files\Projects\UK-Dermatologists\prod_DB\Practitioners_8k.csv")
-time.sleep(10000)
 patterns = {
     "x_twitter": r"(https?://(?:www\.)?(?:x\.com|twitter\.com)/[A-Za-z0-9_/?=&\.-]+)",
     "facebook": r"(https?://(?:www\.)?facebook\.com/[A-Za-z0-9_/?=&\.-]+)",
