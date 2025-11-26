@@ -20,19 +20,20 @@ const imageLogos = [
 
 ];
 const specialists = [
-  { name: 'Facial Aesthetics', icon: Smile },
-  { name: 'Cosmetology', icon: Scissors },
-  { name: 'Hair & Scalp', icon: Wind },
+  { name: 'Facial Aesthetics', image: '/smile.png' },
+  { name: 'Cosmetology', image: '/derm-skin.png' },
+  { name: 'Hair & Scalp', image: '/hair.png' },
   { name: 'Skin Technology & Laser', icon: Zap },
   { name: 'Wellness', icon: Heart },
 ];
 
+
 const treatments = [
-  { name: 'Facial', image: '/facial-treatment-aesthetics.jpg' },
-  { name: 'Hands', image: '/hand-treatment-skincare.jpg' },
-  { name: 'Eyes', image: '/eye-treatment-cosmetic.jpg' },
-  { name: 'Skin', image: '/skin-treatment-laser.jpg' },
-  { name: 'Hairline', image: '/hairline-treatment-restoration.jpg' },
+  { name: 'Facial', image: '/facial.png' },
+  { name: 'Neck', image: '/neck.png' },
+  { name: 'Eyes', image: '/eye.png' },
+  { name: 'Skin', image: '/skin.png' },
+  { name: 'Jawline', image: '/jaw.png' },
 ];
 const ITEMS_PER_PAGE = 9
 
@@ -51,7 +52,16 @@ export default function HomePage() {
           <h2 className="text-3xl font-bold text-center mb-16">Contact a Specialist</h2>
           <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
             {specialists.map((specialist, index) => {
-              const IconComponent = specialist.icon;
+              const IconComponent = specialist.icon
+              ? specialist.icon
+              : () => (
+                  <img
+                    src={specialist.image}
+                    alt={specialist.name}
+                    className="w-full h-full object-cover"
+                  />
+                );
+            
               return (
                 <div key={index} className="flex flex-col items-center gap-4">
                   <div className="w-24 h-24 rounded-full border-2 border-gray-300 flex items-center justify-center hover:border-black transition">
@@ -164,7 +174,7 @@ export default function HomePage() {
             </div>
             <div className="flex justify-center">
               <img 
-                src="/laptop-healthcare-interface.jpg" 
+                src="/pc-img.png" 
                 alt="Healthcare dashboard on laptop" 
                 className="max-w-md"
               />

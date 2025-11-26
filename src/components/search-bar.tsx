@@ -54,34 +54,35 @@ export function SearchBar() {
       {/* Main search bar with 3 sections */}
   <div className="flex flex-col sm:flex-row items-center">
     {/* Section 1: Select either Clinic or Practitioner */}
-    <Select value={filters.type} onValueChange={(value: string) => {
-      setFilters((prev) => ({ ...prev, type: value }));
-    }}>
-      <SelectTrigger className="h-12 w-32 flex-none bg-gray-800 text-white rounded-lg shadow-sm border-0 px-4 py-3 font-medium hover:bg-gray-700">
-        <SelectValue placeholder="Clinic"></SelectValue>
-      </SelectTrigger>
-      <SelectContent>
-        <SelectItem value="Practitioner">Practitioner</SelectItem>
-        <SelectItem value="Clinic">Clinic</SelectItem>
-      </SelectContent>
-    </Select>
+    <select
+  value={filters.type}
+  onChange={(e) => {
+    const value = e.target.value;
+    setFilters((prev) => ({ ...prev, type: value }));
+  }}
+  className="h-12 w-32 flex-none bg-gray-800 text-white rounded-l-lg shadow-sm border-0 px-4 py-3 font-medium hover:bg-gray-700"
+>
+  <option value="Practitioner">Practitioner</option>
+  <option value="Clinic">Clinic</option>
+</select>
+
 
     {/* Section 2: Filter by Procedure, Speciality, Specialist */}
-    <div className="flex-1 bg-white rounded-lg shadow-sm border border-gray-300 px-4 py-3">
+    <div className="flex-1 bg-white shadow-sm border border-gray-300 px-4 py-3">
       <Input
         placeholder="I'm searching for"
         value={localQuery}
         onChange={(e) => {
           setLocalQuery(e.target.value)
         }}
-        className="border-0 shadow-none p-0 h-auto text-base placeholder:text-gray-500"
+        className="border-0 shadow-none p-0 h-auto w-60 text-base placeholder:text-gray-500"
         onFocus={() => localQuery && setShowResults(true)}
         onClick={() => setShowResults(true)}
       />
     </div>
 
     {/* Section 3: Location */}
-    <div className="flex-1 bg-white rounded-lg shadow-sm border border-gray-300 px-4 py-3 flex items-center gap-2">
+    <div className="flex-1 bg-white rounded-r-lg shadow-sm border border-gray-300 px-4 py-3 flex items-center gap-2">
       <Locate className="w-5 h-5 text-gray-600 flex-shrink-0" />
       <Input
         placeholder="Location"
@@ -90,7 +91,7 @@ export function SearchBar() {
           setLocalLocation(e.target.value)
           
         }}
-        className="border-0 shadow-none p-0 h-auto text-base placeholder:text-gray-500"
+        className="border-0 shadow-none p-0 h-6 text-base placeholder:text-gray-500"
         onKeyDown={(e) => e.key === "Enter"}
         onFocus={() => localLocation && setShowResults(true)}
         onBlur={() => setTimeout(() => setShowResults(false), 200)}
@@ -102,7 +103,7 @@ export function SearchBar() {
     <Button
       onClick={handleSearch}
       size="lg"
-      className="h-12 w-12 rounded-lg p-0 bg-gray-800 hover:bg-gray-700 text-white flex items-center justify-center flex-shrink-0"
+      className="ml-4 h-12 w-12 rounded-lg p-0 bg-gray-800 hover:bg-gray-700 text-white flex items-center justify-center flex-shrink-0"
     >
       {isLoading ? (
         <Loader2 className="h-6 w-6 animate-spin" />

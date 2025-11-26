@@ -17,7 +17,7 @@ export function HeroSection() {
           </div>
         <div className="flex justify-center">
           <img 
-            src="/mobile-app-interface-healthcare-aesthetics.jpg" 
+            src="/home-page-phone-image.png" 
             alt="Mobile app interface" 
             className="max-w-xs"
           />
