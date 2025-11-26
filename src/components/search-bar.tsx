@@ -49,7 +49,7 @@ export function SearchBar() {
         {/* Main search bar with 3 sections */}
         {/* Main search bar with 3 sections */}
         <div className="flex flex-col sm:flex-row items-center">
-          <div className="border-2 flex rounded-xl border-ebb">
+          <div className="flex rounded-xl border-2 border-[var(--border-color-ebb)]">
             {/* Section 1: Select either Clinic or Practitioner */}
             <Select
               value={filters.type}
@@ -58,8 +58,8 @@ export function SearchBar() {
               }}
             >
               <SelectTrigger
-                className="btn !rounded-tr-none !rounded-br-none !h-12
- w-32 flex-none bg-gray-800 text-white shadow-sm border-0 px-4 py-3 font-medium"
+                className="btn bg-[var(--mineshaft)] hover:bg-black !rounded-tr-none !rounded-br-none !h-12
+ w-32 flex-none text-white shadow-sm border-0 px-4 py-3 font-medium"
               >
                 <SelectValue placeholder="Clinic"></SelectValue>
               </SelectTrigger>
@@ -85,7 +85,7 @@ export function SearchBar() {
 
             {/* Section 3: Location */}
             <div
-              className="flex-1 border-ebb border-l
+              className="flex-1 border-1 border-[var(--border-color-ebb)] border-l
  rounded-xl rounded-tl-none rounded-bl-none bg-white shadow-none px-4 py-3 flex items-center gap-2"
             >
               <Locate className="w-5 h-5 text-gray-600 flex-shrink-0" />
@@ -108,7 +108,7 @@ export function SearchBar() {
           <Button
             onClick={handleSearch}
             size="lg"
-            className="btn h-12 w-12 rounded ml-5 p-0 hover:bg-gray-700 text-white flex items-center justify-center flex-shrink-0"
+            className="bg-[var(--mineshaft)] hover:bg-black h-12 w-12 rounded ml-5 p-0 text-white flex items-center justify-center flex-shrink-0"
           >
             {isLoading ? (
               <Loader2 className="h-6 w-6 animate-spin" />

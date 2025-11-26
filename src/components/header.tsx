@@ -15,8 +15,8 @@ export default function Header() {
   }, [menuOpen]);
 
   return (
-    <header id="header">
-      <div className="max-w-7xl mx-auto px-6 py-6 flex items-center justify-center justify-md-between">
+    <header className="bg-[var(--primary-bg-color)]">
+      <div className="max-w-7xl mx-auto px-6 py-6 flex items-center justify-center md:justify-between">
         <div className="font-bold text-xl">
           <img src="/images/logo.png" alt="Logo" width={180} />
         </div>

@@ -142,30 +142,13 @@ body {
   font-family: var(--font-noto-arabic);
 }
 
-.btn {
-  background: var(--mineshaft);
-}
-
 .btn svg {
   color: var(--white);
   opacity: 1;
 }
 
-.btn:hover {
-  background: var(--text-color);
-  cursor: pointer;
-}
-
-.border-ebb {
-  border-color: var(--border-color-ebb);
-}
-
 h1 {
   color: var(--head-color);
-}
-
-#header {
-  background-color: var(--primary-bg-color);
 }
 
 .popular-treatments-section {
@@ -183,28 +166,7 @@ h1 {
   transform: translateX(-50%);
 }
 
-.hero-holder {
-  background-color: var(--primary-bg-color);
-}
-
 .hero-holder h1 {
   color: var(--mineshaft);
   font-family: var(--font-playfair);
-}
-
-.info-card {
-  background-color: var(--alabaster);
-  border: 1px solid var(--alto);
-}
-
-.before-footer {
-  background-color: var(--dune);
-}
-
-.footer {
-  background-color: var(--dune);
-}
-
-.wrapper {
-  overflow: hidden;
 }

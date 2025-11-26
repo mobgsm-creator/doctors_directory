@@ -743,7 +743,7 @@ const cityList = ["Aberaeron",
 export function Footer() {
   return (     
     <>
-    <section className="footer py-16 text-white">
+    <section className="bg-[var(--dune)] py-16 text-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center flex-col md:flex-row justify-between">
             <div className="w-full md:w-auto">

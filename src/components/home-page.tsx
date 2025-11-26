@@ -60,7 +60,7 @@ export default function HomePage() {
   return (
     <main>
       <HeroSection />
-      <section className="bg-white-50 py-15 py-md-20">
+      <section className="bg-white-50 py-15 md:py-20">
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-xl md:text-4xl font-bold text-center mb-16">
             Contact a Specialist
@@ -82,13 +82,13 @@ export default function HomePage() {
         </div>
       </section>
       {/* Most Popular Treatments */}
-      <section className="py-15 py-md-20 popular-treatments-section">
+      <section className="py-15 md:py-20 popular-treatments-section">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center flex-col justify-between mb-12">
             <h2 className="text-xl md:text-4xl font-bold text-center mb-10">
               Most Popular Treatments
             </h2>
-            <Button className="btn h-auto rounded-lg text-lg px-8 py-4 text-white hover:bg-gray-800">
+            <Button className="bg-[var(--mineshaft)] hover:bg-black h-auto rounded-lg text-lg px-8 py-4 text-white">
               See all Treatments
             </Button>
           </div>
@@ -121,12 +121,12 @@ export default function HomePage() {
         ariaLabel="Regulatory Compliance"
       />
       {/* Trust Section */}
-      <section className="py-15 py-md-20">
+      <section className="py-15 md:py-20">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-xl md:text-4xl font-bold text-center mb-10 mb-md-16">
+          <h2 className="text-xl md:text-4xl font-bold text-center mb-10 md:mb-16">
             Building trust and clarity in healthcare
           </h2>
-          <div className="grid md:grid-cols-3 gap-6 gap-md-12">
+          <div className="grid md:grid-cols-3 gap-6 md:gap-12">
             {[
               {
                 icon: Handshake,
@@ -144,7 +144,7 @@ export default function HomePage() {
                 desc: "We protect your data and ensure secure medical quality information is secured and protected from abuse, helping them.",
               },
             ].map((item, index) => (
-              <div key={index} className="info-card rounded-xl py-8 px-6 py-md-12 px-md-8 flex items-center flex-col">
+              <div key={index} className="info-card bg-[var(--alabaster)] border-1 border-[var(--alto)] rounded-xl py-8 px-6 md:py-12 md:px-8 flex items-center flex-col">
                  <item.icon className="w-12 h-12 mb-8 hidden md:flex" />
                 <h3 className="font-bold text-lg mb-4">{item.title}</h3>
                 <p className="text-base font-normal text-center text-sm leading-relaxed">{item.desc}</p>
@@ -154,7 +154,7 @@ export default function HomePage() {
         </div>
       </section>
       {/* For Service Providers Section */}
-      <section className="py-10 py-md-20">
+      <section className="py-10 md:py-20">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-2 items-center">
             <div>
@@ -194,7 +194,7 @@ export default function HomePage() {
                 </li>
               </ul>
               <div className="text-center md:text-left mb-10 md:mb-0">
-                <Button className="btn h-auto rounded-lg text-lg px-8 py-4 text-white hover:bg-gray-800">
+                <Button className="bg-[var(--mineshaft)] hover:bg-black h-auto rounded-lg text-lg px-8 py-4 text-white">
                   Learn More
                 </Button>
               </div>
@@ -211,7 +211,7 @@ export default function HomePage() {
       </section>
 
       {/* Ready to Get Started CTA Section */}
-      <section className="py-20 before-footer text-white hidden">
+      <section className="bg-[var(--dune)] py-20 text-white hidden">
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           <div>
             <h2 className="text-3xl md:text-4xl font-bold mb-2">Ready to Get Started?</h2>
