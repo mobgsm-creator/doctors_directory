@@ -62,7 +62,7 @@ export default function HomePage() {
       <HeroSection />
       <section className="bg-white-50 py-15 py-md-20">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-xl text-md-4xl font-bold text-center mb-16">
+          <h2 className="text-xl md:text-4xl font-bold text-center mb-16">
             Contact a Specialist
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-5 gap-8 align-items-center">
@@ -85,7 +85,7 @@ export default function HomePage() {
       <section className="py-15 py-md-20 popular-treatments-section">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center flex-col justify-between mb-12">
-            <h2 className="text-xl text-md-4xl font-bold text-center mb-10">
+            <h2 className="text-xl md:text-4xl font-bold text-center mb-10">
               Most Popular Treatments
             </h2>
             <Button className="btn h-auto rounded-lg text-lg px-8 py-4 text-white hover:bg-gray-800">
@@ -123,7 +123,7 @@ export default function HomePage() {
       {/* Trust Section */}
       <section className="py-15 py-md-20">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-xl text-md-4xl font-bold text-center mb-10 mb-md-16">
+          <h2 className="text-xl md:text-4xl font-bold text-center mb-10 mb-md-16">
             Building trust and clarity in healthcare
           </h2>
           <div className="grid md:grid-cols-3 gap-6 gap-md-12">
