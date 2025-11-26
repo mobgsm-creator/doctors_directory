@@ -82,7 +82,7 @@ export default function HomePage() {
         </div>
       </section>
       {/* Most Popular Treatments */}
-      <section className="py-15 md:py-20 popular-treatments-section">
+      <section className="py-15 md:py-20 relative">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center flex-col justify-between mb-12">
             <h2 className="text-xl md:text-4xl font-bold text-center mb-10">

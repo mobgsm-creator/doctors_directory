@@ -25,8 +25,8 @@ export default async function RootLayout({
 
   return (
     <html lang="en" className="root">
-      <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
-        <div className="overflow-hidden">
+      <body className={`${GeistSans.variable} ${GeistMono.variable} text-textColor font-noto-arabic`}>
+      <div className="overflow-hidden">
           <Header />
           <Suspense fallback={null}>{children}</Suspense>
           <Footer />

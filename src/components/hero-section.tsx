@@ -3,10 +3,10 @@ import { SearchBar } from "@/components/search-bar";
 
 export function HeroSection() {
   return (
-    <div className="hero-holder bg-[var(--primary-bg-color)]">
+    <div className="bg-[var(--primary-bg-color)]">
       <section className="bg-[var(--primary-bg-color)] max-w-7xl text-center md:text-left mx-auto px-6 pb-20 pt-8 md:pb-0 md:pt-20 grid md:grid-cols-2 gap-12 items-start">
         <div className="pt-5">
-          <h1 className="text-3xl md:text-5xl mb-6">
+          <h1 className="text-3xl md:text-5xl mb-6 text-[var(--mineshaft)] font-[family:var(--font-playfair)]">
             The Home of Aesthetics & Wellbeing
           </h1>
           <p className="text-sm md:text-lg mb-8">
