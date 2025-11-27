@@ -751,7 +751,7 @@ export function Footer() {
               <p className="">Join over 200+ clinics already growing with Consentz.</p>
             </div>
             <div className="flex justify-start w-full md:w-auto pt-10 md:pt-0">
-              <Button className="h-auto rounded-lg md:text-lg px-4 py-2 md:px-6 md:py-2 bg-white text-black hover:bg-gray-200">
+              <Button className="h-auto rounded-lg md:text-lg px-4 py-2 md:px-5 md:py-2 bg-white text-black hover:bg-gray-200">
                 BOOK DEMO
               </Button>
             </div>
@@ -762,7 +762,7 @@ export function Footer() {
             {/* CONSENTZ + Contact */}
             <div>
               <div className="font-bold text-lg mb-6">
-                <img src="/images/c-logo-light.svg" alt="Logo" width={180} />
+                <img src="/images/Consentz Logo light.svg" alt="Logo" width={180} />
               </div>
               <div className="text-sm  space-y-2">
                 <p className="flex items-center gap-2">
@@ -824,7 +824,7 @@ export function Footer() {
             <div>
               <h3 className="font-bold text-lg text-white mb-6">Get the app</h3>
               <div className="">
-                <img src="/images/app-store.png" alt="" width={139} />
+                <img src="/images/Consentz Iphone App.webp" alt="" width={139} />
               </div>
             </div>
           </div>

@@ -1,12 +1,16 @@
 import type { SearchFilters } from "@/lib/types";
 import { SearchBar } from "@/components/search-bar";
+import "../app/globals.css";
 
 export function HeroSection() {
   return (
     <div className="bg-[var(--primary-bg-color)]">
       <section className="bg-[var(--primary-bg-color)] max-w-7xl text-center md:text-left mx-auto px-6 pb-20 pt-8 md:pb-0 md:pt-20 grid md:grid-cols-2 gap-12 items-start">
         <div className="pt-5">
-          <h1 className="text-3xl md:text-5xl mb-6 text-[var(--mineshaft)] font-serif">
+          <h1
+            className="text-3xl md:text-5xl mb-6 text-[var(--mineshaft)] font-[var(--font-noto)]"
+            style={{ fontFamily: "var(--font-noto)" }}
+          >
             The Home of Aesthetics & Wellbeing
           </h1>
           <p className="text-sm md:text-lg mb-8">
@@ -17,7 +21,7 @@ export function HeroSection() {
         </div>
         <div className="flex justify-center hidden md:flex">
           <img
-            src="images/img001.png"
+            src="images/Consentz Aesthetic Clinic Directory.webp"
             alt="Mobile app interface"
             className="max-w-xs"
           />
