@@ -68,13 +68,12 @@ export function SearchBar() {
 
 
     {/* Section 2: Filter by Procedure, Speciality, Specialist */}
-    <div className="flex-1 bg-white shadow-sm border border-gray-300 px-4 py-3">
+    <div className="flex-1 bg-white shadow-sm border border-r-0 border-gray-300 px-4 py-3">
       <Input
         placeholder="I'm searching for"
-        value={localQuery}
-        onChange={(e) => {
-          setLocalQuery(e.target.value)
-        }}
+        value={filters.query}
+        onChange={(e) => setFilters(prev => ({ ...prev, query: e.target.value }))}
+
         className="border-0 shadow-none p-0 h-auto w-60 text-base placeholder:text-gray-500"
         onFocus={() => localQuery && setShowResults(true)}
         onClick={() => setShowResults(true)}
@@ -86,11 +85,8 @@ export function SearchBar() {
       <Locate className="w-5 h-5 text-gray-600 flex-shrink-0" />
       <Input
         placeholder="Location"
-        value={localLocation}
-        onChange={(e) => {
-          setLocalLocation(e.target.value)
-          
-        }}
+        value={filters.location}
+        onChange={(e) => setFilters(prev => ({ ...prev, location: e.target.value }))}
         className="border-0 shadow-none p-0 h-6 text-base placeholder:text-gray-500"
         onKeyDown={(e) => e.key === "Enter"}
         onFocus={() => localLocation && setShowResults(true)}
