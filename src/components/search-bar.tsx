@@ -24,25 +24,16 @@ export function SearchBar() {
   const [showResults, setShowResults] = useState(false)
   const [activeField, setActiveField] = useState<keyof SearchFilters>()
   const [showMobileSearch, setShowMobileSearch] = useState(false)
+  const [localFilters, setLocalFilters] = useState(filters)
   const handleSearch = async () => {
     console.log("handle search")
     setIsLoading(true)
-    setFilters(filters)
+    setFilters(localFilters)
     console.log(filters)
     
     await router.push("/search")
     console.log("pushed")
   }
-  const visibleModalities =
-  filters.query.trim().length === 0
-    ? modalities
-    : modalities.filter((m) =>
-        m.toLowerCase().includes(filters.query.toLowerCase())
-      );
-
-
-
-  
 
   return (
     <>
@@ -52,10 +43,10 @@ export function SearchBar() {
   <div className="flex flex-col sm:flex-row items-center">
     {/* Section 1: Select either Clinic or Practitioner */}
     <select
-  value={filters.type}
+  value={localFilters.type}
   onChange={(e) => {
     const value = e.target.value;
-    setFilters((prev) => ({ ...prev, type: value }));
+    setLocalFilters((prev) => ({ ...prev, type: value }));
   }}
   className="h-12 w-32 flex-none bg-gray-800 text-white rounded-l-lg shadow-sm border-0 px-4 py-3 font-medium hover:bg-gray-700"
 >
@@ -68,8 +59,8 @@ export function SearchBar() {
     <div className="flex-1 bg-white shadow-sm border border-r-0 border-gray-300 px-4 py-3">
       <Input
         placeholder="I'm searching for"
-        value={filters.query}
-        onChange={(e) => setFilters(prev => ({ ...prev, query: e.target.value }))}
+        value={localFilters.query}
+        onChange={(e) => setLocalFilters(prev => ({ ...prev, query: e.target.value }))}
 
         className="border-0 shadow-none p-0 h-auto w-60 text-base placeholder:text-gray-500"
         onFocus={() => filters.query && setShowResults(true)}
@@ -82,8 +73,8 @@ export function SearchBar() {
       <Locate className="w-5 h-5 text-gray-600 flex-shrink-0" />
       <Input
         placeholder="Location"
-        value={filters.location}
-        onChange={(e) => setFilters(prev => ({ ...prev, location: e.target.value }))}
+        value={localFilters.location}
+        onChange={(e) => setLocalFilters(prev => ({ ...prev, location: e.target.value }))}
         className="border-0 shadow-none p-0 h-6 text-base placeholder:text-gray-500"
         onKeyDown={(e) => e.key === "Enter"}
         onFocus={() => filters.location && setShowResults(true)}
@@ -112,7 +103,7 @@ export function SearchBar() {
             <div>
               <h3 className="font-semibold text-gray-900 mb-4">Popular conditions and procedures</h3>
               <div className="space-y-2 overflow-auto max-h-100">
-                {(modalities.filter((category : string) => category.toLowerCase().includes(filters.query.toLowerCase())).length > 0 ? modalities.filter((category : string) => category.toLowerCase().includes(filters.query.toLowerCase())) : modalities).map((condition : string,index) => (
+                {(modalities.filter((category : string) => category.toLowerCase().includes(localFilters.query.toLowerCase())).length > 0 ? modalities.filter((category : string) => category.toLowerCase().includes(localFilters.query.toLowerCase())) : modalities).map((condition : string,index) => (
                   <div key={condition} className="flex flex-col items-start gap-1">
                   {/* Index Badge */}
        
@@ -126,7 +117,7 @@ export function SearchBar() {
                   >
                     <button
                       onClick={() =>
-                        setFilters((prev) => ({
+                        setLocalFilters((prev) => ({
                           ...prev,
                           query: condition,
                         }))
@@ -146,7 +137,7 @@ export function SearchBar() {
             <div>
               <h3 className="font-semibold text-gray-900 mb-4">Service Cateogries</h3>
               <div className="space-y-2 overflow-auto max-h-100">
-                {(search_categories.filter((category : string) => category.toLowerCase().includes(filters.query.toLowerCase())).length > 0 ? search_categories.filter((category : string) => category.toLowerCase().includes(filters.query.toLowerCase())) : search_categories).map((specialty: string, index) => (
+                {(search_categories.filter((category : string) => category.toLowerCase().includes(localFilters.query.toLowerCase())).length > 0 ? search_categories.filter((category : string) => category.toLowerCase().includes(localFilters.query.toLowerCase())) : search_categories).map((specialty: string, index) => (
                   <div key={specialty} className="flex flex-col items-start gap-1">
       
                 
@@ -159,7 +150,7 @@ export function SearchBar() {
                   >
                     <button
                       onClick={() =>
-                        setFilters((prev) => ({
+                        setLocalFilters((prev) => ({
                           ...prev,
                           query: specialty,
                         }))
@@ -179,7 +170,7 @@ export function SearchBar() {
             <div>
               <h3 className="font-semibold text-gray-900 mb-4">Locations</h3>
               <div className="space-y-2 overflow-auto max-h-100">
-              {(locations.filter((loc) => typeof loc === 'string' && loc.toLowerCase().includes((filters.location || '').toLowerCase())).length > 0 ? locations.filter((loc) => typeof loc === 'string' && loc.toLowerCase().includes((filters.location || '').toLowerCase())) : locations).map((loc: string, index) => (
+              {(locations.filter((loc) => typeof loc === 'string' && loc.toLowerCase().includes((localFilters.location || '').toLowerCase())).length > 0 ? locations.filter((loc) => typeof loc === 'string' && loc.toLowerCase().includes((localFilters.location || '').toLowerCase())) : locations).map((loc: string, index) => (
                   <div key={loc} className="flex flex-col items-start gap-1">
                   {/* Index Badge */}
 
@@ -193,7 +184,7 @@ export function SearchBar() {
                   >
                     <button
                       onClick={() =>
-                        setFilters((prev) => ({
+                        setLocalFilters((prev) => ({
                           ...prev,
                           location: loc,
                         }))
@@ -242,8 +233,8 @@ export function SearchBar() {
       <div>
         <h3 className="text-sm font-semibold mb-2">Type</h3>
         <Select
-          value={filters.type}
-          onValueChange={(value) => setFilters(prev => ({ ...prev, type: value }))}
+          value={localFilters.type}
+          onValueChange={(value) => setLocalFilters(prev => ({ ...prev, type: value }))}
         >
           <SelectTrigger className="w-full bg-gray-50 border border-gray-200">
             <SelectValue placeholder="Practitioner" />
@@ -260,16 +251,16 @@ export function SearchBar() {
         <h3 className="text-sm font-semibold mb-2">Condition or Service</h3>
         <Input
           placeholder="Search for condition, specialty, or service"
-          value={filters.query}
-          onChange={(e) => setFilters(prev => ({ ...prev, query: e.target.value }))}
+          value={localFilters.query}
+          onChange={(e) => setLocalFilters(prev => ({ ...prev, query: e.target.value }))}
           onFocus={() => setActiveField("query")}
         />
-        {activeField === "query" && filters.query && (
+        {activeField === "query" && localFilters.query && (
           <div className="bg-white border border-gray-200 rounded-lg mt-2 shadow-md p-3 space-y-2 overflow-auto max-h-[200px]">
-            {modalities.filter((m: string) => m.toLowerCase().includes(filters.query.toLowerCase())).map((m) => (
+            {modalities.filter((m: string) => m.toLowerCase().includes(localFilters.query.toLowerCase())).map((m) => (
               <button
                 key={m}
-                onClick={() => setFilters(prev => ({ ...prev, query: m }))}
+                onClick={() => setLocalFilters(prev => ({ ...prev, query: m }))}
                 className="block w-full text-left text-blue-600 hover:text-blue-800"
               >
                 {m}
@@ -284,18 +275,18 @@ export function SearchBar() {
         <h3 className="text-sm font-semibold mb-2">Location</h3>
         <Input
           placeholder="Enter city or area"
-          value={filters.location}
-          onChange={(e) => setFilters(prev => ({ ...prev, location: e.target.value }))}
+          value={localFilters.location}
+          onChange={(e) => setLocalFilters(prev => ({ ...prev, location: e.target.value }))}
           onFocus={() => setActiveField("location")}
         />
-        {activeField === "location" && filters.location && (
+        {activeField === "location" && localFilters.location && (
           <div className="bg-white border border-gray-200 rounded-lg mt-2 shadow-md p-3 space-y-2 overflow-auto max-h-[200px]">
             {locations.filter((loc: string) =>
-              loc.toLowerCase().includes(filters.location.toLowerCase())
+              loc.toLowerCase().includes(localFilters.location.toLowerCase())
             ).map((loc) => (
               <button
                 key={loc}
-                onClick={() => setFilters(prev => ({ ...prev, location: loc }))}
+                onClick={() => setLocalFilters(prev => ({ ...prev, location: loc }))}
                 className="block w-full text-left text-blue-600 hover:text-blue-800"
               >
                 {loc}
