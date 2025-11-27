@@ -33,6 +33,7 @@ export function SearchBar() {
     
     await router.push("/search")
     console.log("pushed")
+    setIsLoading(false)
   }
 
   return (
