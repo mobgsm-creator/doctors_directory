@@ -19,9 +19,6 @@ import { useSearchStore } from "@/app/stores/datastore"
 
 export function SearchBar() {
   const {filters, setFilters} = useSearchStore()
-  const [localQuery, setLocalQuery] = useState('')
-  const [localLocation, setLocalLocation] = useState('')
-  console.log(localQuery)
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
   const [showResults, setShowResults] = useState(false)
@@ -75,7 +72,7 @@ export function SearchBar() {
         onChange={(e) => setFilters(prev => ({ ...prev, query: e.target.value }))}
 
         className="border-0 shadow-none p-0 h-auto w-60 text-base placeholder:text-gray-500"
-        onFocus={() => localQuery && setShowResults(true)}
+        onFocus={() => filters.query && setShowResults(true)}
         onClick={() => setShowResults(true)}
       />
     </div>
@@ -89,7 +86,7 @@ export function SearchBar() {
         onChange={(e) => setFilters(prev => ({ ...prev, location: e.target.value }))}
         className="border-0 shadow-none p-0 h-6 text-base placeholder:text-gray-500"
         onKeyDown={(e) => e.key === "Enter"}
-        onFocus={() => localLocation && setShowResults(true)}
+        onFocus={() => filters.location && setShowResults(true)}
         onBlur={() => setTimeout(() => setShowResults(false), 200)}
         onClick={() => setShowResults(true)}
       />
@@ -115,7 +112,7 @@ export function SearchBar() {
             <div>
               <h3 className="font-semibold text-gray-900 mb-4">Popular conditions and procedures</h3>
               <div className="space-y-2 overflow-auto max-h-100">
-                {(modalities.filter((category : string) => category.toLowerCase().includes(localQuery.toLowerCase())).length > 0 ? modalities.filter((category : string) => category.toLowerCase().includes(localQuery.toLowerCase())) : modalities).map((condition : string,index) => (
+                {(modalities.filter((category : string) => category.toLowerCase().includes(filters.query.toLowerCase())).length > 0 ? modalities.filter((category : string) => category.toLowerCase().includes(filters.query.toLowerCase())) : modalities).map((condition : string,index) => (
                   <div key={condition} className="flex flex-col items-start gap-1">
                   {/* Index Badge */}
        
@@ -149,7 +146,7 @@ export function SearchBar() {
             <div>
               <h3 className="font-semibold text-gray-900 mb-4">Service Cateogries</h3>
               <div className="space-y-2 overflow-auto max-h-100">
-                {(search_categories.filter((category : string) => category.toLowerCase().includes(localQuery.toLowerCase())).length > 0 ? search_categories.filter((category : string) => category.toLowerCase().includes(localQuery.toLowerCase())) : search_categories).map((specialty: string, index) => (
+                {(search_categories.filter((category : string) => category.toLowerCase().includes(filters.query.toLowerCase())).length > 0 ? search_categories.filter((category : string) => category.toLowerCase().includes(filters.query.toLowerCase())) : search_categories).map((specialty: string, index) => (
                   <div key={specialty} className="flex flex-col items-start gap-1">
       
                 
@@ -182,7 +179,7 @@ export function SearchBar() {
             <div>
               <h3 className="font-semibold text-gray-900 mb-4">Locations</h3>
               <div className="space-y-2 overflow-auto max-h-100">
-              {(locations.filter((loc) => typeof loc === 'string' && loc.toLowerCase().includes((localLocation || '').toLowerCase())).length > 0 ? locations.filter((loc) => typeof loc === 'string' && loc.toLowerCase().includes((localLocation || '').toLowerCase())) : locations).map((loc: string, index) => (
+              {(locations.filter((loc) => typeof loc === 'string' && loc.toLowerCase().includes((filters.location || '').toLowerCase())).length > 0 ? locations.filter((loc) => typeof loc === 'string' && loc.toLowerCase().includes((filters.location || '').toLowerCase())) : locations).map((loc: string, index) => (
                   <div key={loc} className="flex flex-col items-start gap-1">
                   {/* Index Badge */}
 
