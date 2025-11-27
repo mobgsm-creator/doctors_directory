@@ -18,23 +18,35 @@ export default function Header() {
     <header className="bg-[var(--primary-bg-color)]">
       <div className="max-w-7xl mx-auto px-6 py-6 flex items-center justify-center md:justify-between">
         <div className="font-bold text-xl">
-          <img src="/images/logo.png" alt="Logo" width={180} />
+          <img src="/images/Consentz Logo.webp" alt="Logo" width={180} />
         </div>
 
         <div className="nav-drop hidden md:flex gap-8 items-center w-full justify-between">
           <nav className="flex gap-8 items-center mx-auto">
-            <a href="#" className="font-bold hover:text-black">HOME</a>
-            <a href="#" className="font-bold hover:text-black">FEATURES</a>
-            <a href="#" className="font-bold hover:text-black">BLOG</a>
-            <a href="#" className="font-bold hover:text-black">FAQS</a>
+            <a href="#" className="font-medium hover:text-black">
+              HOME
+            </a>
+            <a href="#" className="font-medium hover:text-black">
+              FEATURES
+            </a>
+            <a href="#" className="font-medium hover:text-black">
+              BLOG
+            </a>
+            <a href="#" className="font-medium hover:text-black">
+              FAQS
+            </a>
           </nav>
-          <Button className="font-bold border-2 py-3 px-6 w-auto h-auto border-black bg-transparent text-black hover:bg-black hover:text-white">
+          <Button className="font-bold border-2 py-2 px-5 w-auto h-auto border-black bg-transparent text-black hover:bg-black hover:text-white">
             BOOK DEMO
           </Button>
         </div>
 
         <div className="md:hidden">
-          <button className="absolute top-4 left-2 mt-2 ml-1" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
+          <button
+            className="absolute top-4 left-2 mt-2 ml-1"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
+          >
             {menuOpen ? (
               <svg
                 className="w-8 h-8 text-black"
@@ -73,12 +85,20 @@ export default function Header() {
       {menuOpen && (
         <div className="md:hidden px-6 py-4">
           <nav className="flex flex-col gap-4">
-            <a href="#" className="font-bold hover:text-black">HOME</a>
-            <a href="#" className="font-bold hover:text-black">FEATURES</a>
-            <a href="#" className="font-bold hover:text-black">BLOG</a>
-            <a href="#" className="font-bold hover:text-black">FAQS</a>
+            <a href="#" className="font-bold hover:text-black">
+              HOME
+            </a>
+            <a href="#" className="font-bold hover:text-black">
+              FEATURES
+            </a>
+            <a href="#" className="font-bold hover:text-black">
+              BLOG
+            </a>
+            <a href="#" className="font-bold hover:text-black">
+              FAQS
+            </a>
           </nav>
-          <Button className="font-bold border-2 py-3 px-6 w-full mt-4 border-black bg-transparent text-black hover:bg-black hover:text-white">
+          <Button className="mt-4 font-bold border-2 py-3 px-6 w-auto h-auto border-black bg-transparent text-black hover:bg-black hover:text-white">
             BOOK DEMO
           </Button>
         </div>
