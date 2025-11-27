@@ -1,6 +1,6 @@
-import type { SearchFilters } from "@/lib/types";
+
 import { SearchBar } from "@/components/search-bar";
-import "../app/globals.css";
+
 
 export function HeroSection() {
   return (

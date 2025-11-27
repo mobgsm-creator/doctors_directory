@@ -9,6 +9,7 @@ const config: Config = {
     extend: {
       fontFamily: {
         playfair: "var(--font-playfair)",
+        base: "var(--font-family-base)",
       }
     }
   },

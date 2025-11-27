@@ -25,8 +25,8 @@ export default async function RootLayout({
   return (
     <html lang="en" className="root">
       <body
-        className={`${GeistSans.variable} ${GeistMono.variable}`}
-        style={{ fontFamily: "var(--font-family-base)" }}
+        className={`${GeistSans.variable} ${GeistMono.variable} font-base`}
+        
       >
         <div className="overflow-hidden">
           <Header />

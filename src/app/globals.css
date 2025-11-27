@@ -87,7 +87,7 @@
   --alto:#DEDBDB;
   --dune:#262422;
   --border-color-ebb: #E5E1DE;
-  --font-family-base: "Inter", sans-serif;
+  --font-family-base: 'GeistSans',"Inter", sans-serif;
   --font-noto: "Noto Serif Georgian", serif;
   --font-playfair: "Playfair Display", serif;
 }

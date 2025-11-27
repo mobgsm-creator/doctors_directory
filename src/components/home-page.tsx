@@ -137,9 +137,9 @@ const faqData = [
 const ITEMS_PER_PAGE = 9;
 
 export default function HomePage() {
-  const [openIndex, setOpenIndex] = useState(null);
+  const [openIndex, setOpenIndex] = useState<number|null>(null);
 
-  const toggleFAQ = (index) => {
+  const toggleFAQ = (index: number | null) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
