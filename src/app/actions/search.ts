@@ -3,13 +3,12 @@ import { cache } from "react";
 import { Clinic, Practitioner, SearchFilters } from "@/lib/types"
 import clinicsJson from "../../../public/clinics_processed.json";
 import practitionersJson from "../../../public/derms_processed.json";
-import fs from "fs";
 
 
 export const loadData = cache(() => {
 
-  const clinics = clinicsJson as Clinic[];
-  const practitioners = practitionersJson as Practitioner[];
+  const clinics = clinicsJson as unknown as Clinic[];
+  const practitioners = practitionersJson as unknown as Practitioner[];
 
 
   return { clinics, practitioners };
@@ -29,57 +28,6 @@ export async function searchPractitioners(
 
 
   
-
-  // ---- Derive unique sets ----
-  // ---- Derive unique sets ----
-  // const categories : string[] = Array.from(
-  //   new Set([
-  //     ...practitioners.map((c: Practitioner) => c.category).filter(Boolean),
-      
-  //   ])
-  // );
-  // // fs.writeFileSync("categories.txt", categories.join("\n"), "utf8");
-  // // console.log("Create file: categories.txt")
-
-
-  // let modalities : (string|undefined)[] = Array.from(
-  //   new Set([
-        
-  //       ...clinics.flatMap((p: Clinic) =>{
-  //         return p.reviewAnalysis?.procedures_offered?.categories?.map(m => m.toLowerCase())}).filter(Boolean),
-  //       ...practitioners.flatMap((p: Practitioner) =>{
-  //         return p.reviewAnalysis?.procedures_offered?.categories?.map(m => m.toLowerCase())}).filter(Boolean),
-  //     ])
-  // );
-  // modalities =[...new Set(modalities)]
-  // .map(item =>
-  //   item?.split(" ")                                   // split into words
-  //     .map(word => word.charAt(0).toUpperCase() + word.slice(1)) // capitalize each
-  //     .join(" ")                                    // join back into a phrase
-  // );
-
-  // fs.writeFileSync("modalities.txt", modalities.join("\n"), "utf8");
-  // console.log("Create file: modalities.txt")
-
-  // const professions = Array.from(
-  //   new Set([
-      
-  //       practitioners.map((p: Practitioner) => p.profession).filter(Boolean),
-  //     ])
-  // );
-  // fs.writeFileSync("modalities.txt", professions.join("\n"), "utf8");
-  // console.log("Create file: modalities.txt")
-  //console.log(professions)
-  // const locations: string[] = Array.from(
-  //   new Set(
-      
-  //       practitioners.map((p: Practitioner) => {
-  //         const parts = p.gmapsAddress?.split(",");
-  //         return parts?.[parts.length - 2].trim().split(" ")[0]
-  //       }).filter(Boolean)
-  //     )
-  // );
-  //console.log(locations)
   const start = performance.now();
   // Apply filtering logic
   const filteredClinics = clinics.filter((clinic: Clinic) => {
