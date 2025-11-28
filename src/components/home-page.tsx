@@ -57,20 +57,20 @@ const treatments = [
 const blogs = [
   {
     id: 1,
-    title: "Top 10 Aesthetic Clinic Software Hawaii – Medspa Software HI",
-    img: "/images/Aesthetic-Clinic-Software-in-Hawaii_result-768x432.webp",
-    link: "#",
-  },
-  {
-    id: 2,
     title: "10 Best HIPAA Compliant Medical Spa Software in 2025",
     img: "/images/HIPAA-Compliant-Medical-Spa-Software-768x432.webp",
     link: "#",
   },
   {
+    id: 2,
+    title: "Top 10 Best Aesthetic Clinic Software in USA [2025]",
+    img: "/images/Aesthetic-Clinic-Software-in-the-USA-1536x864.webp",
+    link: "#",
+  },
+  {
     id: 3,
-    title: "How to Start a Medspa in 2025 [Complete Guide]",
-    img: "/images/How-to-Start-a-Medspa-768x432.webp",
+    title: "Aesthetic Clinic Marketing: Complete Guide [2025]",
+    img: "/images/Aesthetic-Clinic-Marketing-Guide-1536x864.webp",
     link: "#",
   },
 ];
@@ -95,42 +95,6 @@ const faqData = [
   {
     q: "How do I search for treatments?",
     a: "Browse our 'Most Popular Treatments' section featuring face, neck, eyes, skin, and jawline procedures, or click 'See all Treatments' to explore the complete range of aesthetic services available through our verified providers.",
-  },
-  {
-    q: "Are the patient reviews verified?",
-    a: "Yes. All reviews come from verified patients through our digital platform, ensuring transparency, trustworthiness, and authenticity in every review you read.",
-  },
-  {
-    q: "Can I book appointments through the directory?",
-    a: "Absolutely. You can book appointments directly with providers through the directory. Many clinics using Consentz offer online booking tools integrated into their profiles.",
-  },
-  {
-    q: "How does Consentz ensure provider quality?",
-    a: "We verify all providers are certified professionals registered with relevant regulatory bodies like the CQC. Our platform ensures safe, regulated, and high-quality care by only listing accredited practitioners.",
-  },
-  {
-    q: "Is the directory free for patients to use?",
-    a: "Yes, browsing provider profiles, reading reviews, and booking appointments through the Consentz Directory is completely free for patients.",
-  },
-  {
-    q: "What information can I find about each provider?",
-    a: "Each provider profile includes their certifications, specialties, available treatments, authentic patient reviews, clinic information, and booking availability.",
-  },
-  {
-    q: "How can my clinic be featured in the directory?",
-    a: "We'd love to have your clinic featured in the Consentz Aesthetic Directory! To get started, please contact our team to discuss how we can showcase your practice and connect you with new patients. Reach us at: UK: +44 (0) 208 050 3372, US: +1 646 786 1949, Email: contact@consentz.com. Or click 'BOOK DEMO' to schedule a consultation with our team.",
-  },
-  {
-    q: "Can I read reviews before booking?",
-    a: "Yes. We prioritize transparency by displaying verified patient reviews on each provider's profile, helping you make informed decisions about your aesthetic treatments.",
-  },
-  {
-    q: "What makes the Consentz Directory trustworthy?",
-    a: "Our commitment to building trust and clarity in healthcare means we only feature verified providers, showcase authentic reviews, and ensure all information is transparent. We've been powering elite aesthetics practices since 2012.",
-  },
-  {
-    q: "How do I contact support if I have questions?",
-    a: "You can reach our support team at: UK: +44 (0) 208 050 3372 US: +1 646 786 1949 Email: contact@consentz.com",
   },
 ];
 
@@ -254,7 +218,7 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-2 items-center">
             <div>
-              <h2 className="text-lg md:text-3xl text-center md:text-left md:text-4xl font-bold mb-6">
+              <h2 className="text-lg md:text-3xl text-center md:text-left md:text-4xl font-bold mb-7">
                 For Service Providers
               </h2>
               <ul className="space-y-4 mb-8">
@@ -348,7 +312,7 @@ export default function HomePage() {
                 <img
                   src={img}
                   alt={title}
-                  className="w-full h-[212px] object-cover"
+                  className="w-full object-cover"
                   loading="lazy"
                 />
               </a>
@@ -378,7 +342,7 @@ export default function HomePage() {
         </div>
       </section>
       {/* FAQ */}
-      <section className="max-w-4xl mx-auto pt-4 pb-25 px-6">
+      <section className="max-w-4xl mx-auto pt-4 pb-20 px-6">
         <h2 className="text-lg md:text-3xl text-center md:text-4xl font-bold mb-6">
           Frequently Asked Questions
         </h2>
@@ -396,10 +360,10 @@ export default function HomePage() {
                 className="border border-gray-300 rounded-3xl p-4 transition-all duration-300"
               >
                 <div
-                  className="w-full flex items-center gap-4 text-left text-lg font-semibold cursor-pointer"
+                  className="w-full flex items-center gap-4 text-left text-lg font-semibold cursor-pointer flex flex-row flex-wrap pl-10 relative"
                   onClick={() => toggleFAQ(index)}
                 >
-                  <span className="text-2xl font-normal text-center w-6 h-7 rounded-full leading-6 text-black transition-all select-none bg-black text-white">
+                  <span className="text-2xl font-normal text-center w-7 h-7 rounded-full leading-6 text-black transition-all select-none bg-black text-white absolute left-0">
                     {isOpen ? "−" : "+"}
                   </span>
                   <span className="font-medium underline">{item.q}</span>
@@ -415,6 +379,11 @@ export default function HomePage() {
               </div>
             );
           })}
+        </div>
+        <div className="flex align-items-center justify-center pt-6 mt-6 mb-4">
+          <Button className="font-base text-lg border-1 px-4 py-3 md:px-7 md:py-3 w-auto h-auto border-black bg-transparent text-black hover:bg-black hover:text-white">
+            Read All FAQ'S
+          </Button>
         </div>
       </section>
     </main>
