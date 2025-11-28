@@ -3,14 +3,14 @@ import Link from "next/link"
 import { ArrowLeft, MessageSquare } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ProfileHeader } from "@/components/Practitioner/profile-header"
-import { ServicesSection } from "@/components/Practitioner/services-section"
-import { boxplotDatas } from "@/lib/data"
-import { BoxPlotDatum, ItemMeta } from "@/lib/types"
-import VisxDonutChart from "@/components/visx-donut"
 import { ReviewCard } from "@/components/review-card"
 import { GoogleMapsEmbed } from "@/components/gmaps-embed"
-import PerformanceSummary from "@/components/performace-summary"
-import { Practitioner } from "@/lib/types"
+import { boxplotDatas_clinic } from "@/lib/data"
+import { BoxPlotDatum, ItemMeta } from "@/lib/types"
+import VisxDonutChart from "@/components/visx-donut"
+import { ServicesSection } from "@/components/Clinic/services-section"
+import ClinicDetailsMarkdown from "@/components/Practitioner/practitionerDetailsMD"
+import { Clinic, Practitioner } from "@/lib/types"
 import fs from "fs";
 import path from 'path';
 
@@ -25,32 +25,6 @@ function mergeBoxplotDataFromDict(
   })
 }
 
-const qColors = {
-  q1: "#1a1a1a", // Min → Q1
-  q2: "#4a4a4a", // Q1 → Median
-  q3: "#7a7a7a", // Median → Q3
-  q4: "#b0b0b0", // Q3 → Max
-}
-
-const categoryColorByLabel: Record<string, string> = {
-  "Clinical Expertise": "#E63946",
-  "Communication": "#F77F00",
-  "Treatment Results": "#FCBF49",
-  "Bedside Manner": "#06A77D",
-  "Trust & Safety": "#118AB2",
-  "Environment": "#073B4C",
-  "Personalization": "#9B59B6",
-  "Post-Care": "#E91E63",
-  "Professionalism": "#2E7D32",
-  "Staff Support": "#00BCD4",
-  "Value & Transparency": "#FF6F00",
-  "Pain Management & Comfort": "#8B4789",
-  "Anxiety & Nervousness Management": "#7CB342",
-  "Booking & Accessibility": "#FFB300",
-  "Honesty & Realistic Expectations": "#5C6BC0",
-  "Long-term Relationship & Loyalty": "#D32F2F",
-}
-
 interface ProfilePageProps {
   params: {
     slug: string
@@ -60,21 +34,21 @@ interface ProfilePageProps {
 export default async function ProfilePage({ params }: ProfilePageProps) {
   const filePath = path.join(process.cwd(), 'public', 'derms_processed.json');
   const fileContents = fs.readFileSync(filePath, 'utf-8');
-  const practitioners: Practitioner[] = JSON.parse(fileContents);
-  console.log("Number of practitioners",practitioners.length)
-  const width = typeof window !== "undefined" ? window.innerWidth : 0;
-  const isMobile = width >= 640 ? false : true;
-  
-  const practitioner = practitioners.find(p => p.slug === params.slug);
+  const clinics: Practitioner[] = JSON.parse(fileContents);
+  const { slug } = params;
+  const clinic = clinics.find(p => p.practitioner_name === slug);
+
+
   const boxplotData = mergeBoxplotDataFromDict(
-    boxplotDatas,
-    practitioner?.weighted_analysis ?? {}
+    boxplotDatas_clinic,
+    clinic?.weighted_analysis ?? {}
   )
   
   
   
+  
 
-  if (!practitioner) {
+  if (!clinic) {
     notFound()
   }
 
@@ -91,22 +65,27 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
           </Link>
         </div>
       </div>
-
-      <div className="container mx-auto max-w-6xl px-4 space-y-8">
+      
+      <div className="container mx-auto max-w-6xl px-4 py-8 space-y-8">
         {/* Profile Header */}
-        <ProfileHeader practitioner={practitioner} />
-        <div className="flex flex-col">
-        <VisxDonutChart data={boxplotData}  />
+        <ProfileHeader clinic={clinic} />
+       
+        <VisxDonutChart data={boxplotData} />
+
+
+      
+      <ClinicDetailsMarkdown clinic={clinic} />
+    
         
-        <PerformanceSummary data={boxplotData} /></div> 
-        <ServicesSection practitioner={practitioner} />
-        <div className='flex flex-col sm:flex-row gap-2'>
-          {practitioner.gmapsReviews &&
+        
+      <ServicesSection clinic={clinic} />
+      <div className='flex flex-col sm:flex-row gap-2'>
+          {clinic.gmapsReviews &&
            <div className="grid gap-6 h-113 overflow-auto">
 
 
 
-                {practitioner.gmapsReviews.map((review, index) => (
+                {clinic.gmapsReviews.map((review, index) => (
 
 
                   <ReviewCard key={index} review={review} />
@@ -117,48 +96,46 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
 
               </div> }
               <GoogleMapsEmbed
-          url={practitioner.url!}
+          url={clinic.url!}
           
           className="w-full h-80"
         /></div>
-            
-        
-
-        
+      </div>
 
       
-       </div>
-       
+      
     </main>
   )
 }
 
 // export async function generateStaticParams() {
-//   const filePath = path.join(process.cwd(), 'public', 'derms_processed.json');
+
+//   const filePath = path.join(process.cwd(), 'public', 'clinics_processed.json');
 //   const fileContents = fs.readFileSync(filePath, 'utf-8');
-//   const clinics: Practitioner[] = JSON.parse(fileContents);
-//   return clinics.map((practitioner) => ({
-//     slug: practitioner.slug,
-//   }))
+//   const clinics: Clinic[] = JSON.parse(fileContents);
+//   return clinics.map((clinic) => ({
+//     cityslug: clinic.City,   // <-- MUST include this!
+//     slug: clinic.slug,
+//   }));
 // }
+
 
 export async function generateMetadata({ params }: ProfilePageProps) {
   const filePath = path.join(process.cwd(), 'public', 'derms_processed.json');
   const fileContents = fs.readFileSync(filePath, 'utf-8');
-  const practitioners: Practitioner[] = JSON.parse(fileContents);
- 
-  const practitioner = practitioners.find((p) => p.slug === params.slug)
+  const clinics: Practitioner[] = JSON.parse(fileContents);
+  const clinic = clinics.find((p) => p.practitioner_name === params.slug)
 
-  if (!practitioner) {
+  if (!clinic) {
     return {
       title: "Practitioner Not Found",
     }
   }
 
-  const practitionerName = practitioner.Name || practitioner.reviewAnalysis?.practitioners[0]?.name || "Practitioner"
+  const clinicName = clinic.slug
 
   return {
-    title: `${practitionerName} - Healthcare Directory`,
-    description: `View the profile of ${practitionerName}, a qualified ${practitioner.profession} offering professional healthcare services. Read reviews and book appointments.`,
+    title: `${clinicName} - Healthcare Directory`,
+    description: `View the profile of ${clinicName}, a qualified ${clinic.category} offering professional healthcare services. Read reviews and book appointments.`,
   }
 }

@@ -19,15 +19,19 @@ patterns = {
     "rqia": r"(https?://(?:www\.)?(?:rqia\.org\.uk)(?:/[^\s]*)?)"
 }
 df= pd.read_excel(r"C:\Users\agney\Downloads\5600_UK_slug_search_results_2k_.xlsx",sheet_name='exists')
+# df = pd.read_csv(
+#     r"C:\Users\agney\Downloads\Practitioners_8k.csv",
+#     encoding="latin-1",
+#     engine="c",
+#     on_bad_lines="warn"  # pandas 1.3+ (for 1.2 use: error_bad_lines=False)
+# )
+print(len(df))
 print(len(df))
 def parse_accreditations(accreditations):
     result = ""
     try:
         if type(accreditations) == list:
-            try:
-                result = "".join(accreditations)
-            except Exception as e:
-                result = "".join(accreditations[0])
+            result = str(accreditations)
         elif type(accreditations) == dict:
             result="".join([key+": "+accreditations[key]+"\n" for key in accreditations.keys()])
         elif type(accreditations) == str:
@@ -37,12 +41,13 @@ def parse_accreditations(accreditations):
     return result
 
 
+
 for index,row in df.iterrows():
     try:
         laoded_json = json.loads(row['json_response'])
         data_dict=json.loads(re.sub(r':contentReference\[oaicite:\d+\]\{index=\d+\}', '', laoded_json))
         try:
-            about_section=data_dict['ABOUT']+parse_accreditations(data_dict['ACCREDITATIONS'])
+            about_section=data_dict['ABOUT']
         except Exception as e:
             pass
         try:
@@ -50,11 +55,11 @@ for index,row in df.iterrows():
         except Exception as e:
             pass
         try:
-            accreditiations=accreditiations+"\n"+parse_accreditations(data_dict['AWARDS'])
+            awards=parse_accreditations(data_dict['AWARDS'])
         except Exception as e:
             pass
         try:
-            accreditiations=accreditiations+"\n"+parse_accreditations(data_dict['AFFILIATIONS'])
+            affiliations=parse_accreditations(data_dict['AFFILIATIONS'])
         except Exception as e:
             pass
         # try:
@@ -194,6 +199,8 @@ for index,row in df.iterrows():
 
             df.at[index,'about_section']=about_section
             df.at[index,'accreditations']=accreditiations
+            df.at[index,'awards']=awards
+            df.at[index,'affiliations']=affiliations
             df.at[index,'hours']=json.dumps(hours)
             df.at[index,'Practitioners']=json.dumps(data_dict['PRACTITIONERS'])
             df.at[index, 'Insurace'] = json.dumps(data_dict['INSURANCE_ACCEPTED'])
@@ -230,13 +237,67 @@ for index,row in df.iterrows():
  
         
 
-        # # Write the error info to file
-        with open(f"json_error_debug_{index}.txt", "w", encoding="utf-8") as f:
-            f.write(e.doc)
+        # # # Write the error info to file
+        # with open(f"json_error_debug_{index}.txt", "w", encoding="utf-8") as f:
+        #     f.write(e.doc)
         
         # print("JSON error details written to json_error_debug.txt")
         # print(f"\n{error_info}")
         pass
+    try:
+        loaded_json = json.loads(row['json_response_'])
+        data_dict=json.loads(re.sub(r':contentReference\[oaicite:\d+\]\{index=\d+\}', '', loaded_json))
+        # Roles
+        try:
+            roles = parse_accreditations(data_dict['Roles_And_Positions'])
+            df.at[index, 'Roles_And_Positions'] = roles
+        except Exception as e:
+            print(f"[WARN] Roles_And_Positions failed at index {index}: {e}")
+        
+        # Qualifications
+        try:
+            qualifications = parse_accreditations(data_dict['Qualifications_And_Professional_Affiliations'])
+            df.at[index, 'Qualifications_And_Professional_Affiliations'] = qualifications
+        except Exception as e:
+            print(f"[WARN] Qualifications failed at index {index}: {e}")
 
+        # Awards
+        try:
+            awards = parse_accreditations(data_dict['Awards_And_Recognition'])
+            df.at[index, 'Awards_And_Recognition'] = awards
+        except Exception as e:
+            print(f"[WARN] Awards failed at index {index}: {e}")
 
-df.to_csv("test1.csv")
+        # Media / News
+        try:
+            news = parse_accreditations(data_dict['Media_And_News_Features'])
+            df.at[index, 'Media_And_News_Features'] = news
+        except Exception as e:
+            print(f"[WARN] Media_And_News_Features failed at index {index}: {e}")
+
+        # Experience
+        try:
+            exp = parse_accreditations(data_dict['Experience_And_Practice_Profile'])
+            df.at[index, 'Experience_And_Practice_Profile'] = exp
+        except Exception as e:
+            print(f"[WARN] Experience failed at index {index}: {e}")
+
+        # Image link (no parsing)
+        try:
+            img = data_dict['image_link']
+            df.at[index, 'practitioner_image_link'] = img
+        except Exception as e:
+            print(f"[WARN] image_link assignment failed at index {index}: {e}")
+
+        try:
+            name = data_dict['Practitioner_Name']
+            df.at[index, 'Practitioner_Name'] = name.split("(")[0]
+        except Exception as e:
+            print(f"[WARN] name assignment failed at index {index}: {e}")
+
+    except Exception as e:
+        print(f"[WARN] Exception at index {index}: {e}")
+        pass
+    
+
+df.to_csv("test2_clinics.csv")

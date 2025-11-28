@@ -122,11 +122,10 @@ export async function searchPractitioners(
     if (filters.query) {
       const query = filters.query.toLowerCase()
       const searchableText = [
-        practitioner.Name,
-        practitioner.profession,
+        practitioner.practitioner_name,
+        practitioner.practitioner_qualifications,
         practitioner.category,
         practitioner.gmapsAddress,
-        ...practitioner.modality.flat(),
         ...(practitioner.reviewAnalysis?.procedures_offered?.categories || []),
       ].join(" ").toLowerCase()
       if (!searchableText.includes(query)) return false
@@ -142,7 +141,7 @@ export async function searchPractitioners(
     }
 
     if (filters.services.length > 0) {
-      const practitionerServices = practitioner.modality.map((m) => m.toLowerCase())
+      const practitionerServices = practitioner.reviewAnalysis?.procedures_offered?.categories || []
       const hasMatchingService = filters.services.some((service) =>
         practitionerServices.some((ps) => ps.includes(service.toLowerCase())),
       )

@@ -28,6 +28,8 @@ export interface Clinic {
   isRQIA: [boolean, string] | null	
   about_section: string	
   accreditations: string	
+  awards: string
+  affiliations: string
   hours: string	
   Practitioners: string	
   Insurace: string	
@@ -41,28 +43,55 @@ interface WeightedAnalysis {
   [category: string]: ItemMeta
 }
 export interface Practitioner {
-  //id: string
-  Name: string
   slug: string
   image: string
-   profession: string
-  // regulatoryBody: string
-  // registrationPin: string
-   qualification: string
-   modality: string[]
-  // memberSince: string
-  // otherMemberships: string
-  // restrictions: string
-  url?: string
-   rating: number
-   reviewCount: number
-   category: string
-   gmapsAddress: string
-   //gmapsLink: string
-  // gmapsPhone: string
+  url: string
+  rating: number
+  reviewCount: number
+  category: string
+  gmapsAddress: string
+  //gmapsLink: string
+  gmapsPhone: string
   gmapsReviews?: Review[]
   reviewAnalysis?: ReviewAnalysis
   weighted_analysis?: WeightedAnalysis
+  City: string
+  facebook: string
+  twitter: string	
+  Linkedin: string	
+  instagram: string	
+  youtube: string	
+  website: string	
+  email: string	
+  isSaveFace: boolean	
+  isDoctor: boolean	
+  isJCCP: [boolean, string] | null	
+  isCQC: [boolean, string] | null	
+  isHIW: [boolean, string] | null
+  isHIS: [boolean, string] | null	
+  isRQIA: [boolean, string] | null	
+  about_section: string	
+  accreditations: string	
+  awards: string
+  affiliations: string
+  hours: string	
+  Practitioners: string	
+  Insurace: string	
+  Payments: string	
+  Fees: string	
+  x_twitter: string
+  practitioner_image_link: string
+  practitioner_roles: string
+  practitioner_qualifications: string
+  practitioner_awards: string
+  practitioner_media: string
+  practitioner_experience: string
+  practitioner_name:string
+  practitioner_title: string	,
+  practitioner_specialty:string,	
+  practitioner_education:string,	
+
+
 }
 export interface ItemMeta {
   weighted_score: number

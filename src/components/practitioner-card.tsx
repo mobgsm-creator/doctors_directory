@@ -11,13 +11,20 @@ interface PractitionerCardProps {
 }
 
 export function PractitionerCard({ practitioner }: PractitionerCardProps) {
-   const practitionerName = practitioner.slug
-  .split("-")
-  .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-  .join(" ") || "Practitioner"
+  const practitionerName = 
+  (practitioner as Practitioner).practitioner_name
+    ? (practitioner as Practitioner).practitioner_name
+        .split("-")
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" ")
+    : practitioner.slug
+        .split("-")
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" ")
+
 
   return (
-    <Link href={'profession' in practitioner && practitioner.profession ? `/profile/${practitioner.slug}` : `/clinics/${(practitioner as Clinic).City}/${practitioner.slug}`}>
+    <Link href={'practitioner_image_link' in practitioner && practitioner.practitioner_name ? `/profile/${practitioner.practitioner_name}` :   `/clinics/${(practitioner as Clinic).City}/${practitioner.slug}`}>
       <Card className="group h-155 hover:shadow-lg transition-all duration-300 hover:scale-[1.02] cursor-pointer border-border/50 hover:border-accent/50">
         <CardHeader className="pb-4">
           <div className="flex items-start gap-4">
@@ -27,9 +34,14 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
               <h3 className="flex justify-center font-semibold text-sm text-foreground group-hover:text-primary/70 transition-colors text-balance">
                 {practitionerName}
               </h3>
-              {'profession' in practitioner && practitioner.profession && (
+              {('practitioner_image_link' in practitioner) && practitioner.practitioner_name && (
                   <p className="text-muted-foreground mb-2 text-pretty">
-                    {practitioner.profession.split("|")[2]?.trim() || practitioner.profession}
+                    {practitioner.practitioner_title.trim()}
+                  </p>
+                )}
+                {!('practitioner_image_link' in practitioner) && practitioner.category && (
+                  <p className="text-muted-foreground mb-2 text-pretty">
+                    {practitioner.category.trim()}
                   </p>
                 )}
               <div className="w-60 h-60 flex items-center justify-center overflow-hidden rounded-full border p-1 drop-shadow-sm bg-white">
@@ -72,11 +84,12 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
           </div>
 
         
-
+          {practitioner.reviewAnalysis?.procedures_offered?.categories.length! > 0&& (
           <Separator />
+          )}
 
           <div>
-            <h4 className="font-medium text-sm mb-2 text-foreground">Specialties</h4>
+            
             <div className="flex flex-wrap gap-1">
            
                 {true && (

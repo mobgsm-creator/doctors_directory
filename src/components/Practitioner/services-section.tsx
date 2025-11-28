@@ -5,21 +5,13 @@ import { AccordionItem, AccordionTrigger, AccordionContent } from "@/components/
 import type { Practitioner } from "@/lib/types"
 import { useMemo } from "react"
 interface ServicesSectionProps {
-  practitioner: Practitioner
+  clinic: Practitioner
 }
 
-export function ServicesSection({ practitioner }: ServicesSectionProps) {
-
-  const reviewAnalysis = practitioner.reviewAnalysis
-  const practitionerData = reviewAnalysis!.practitioners[0];
-  // function toCloud(words: string[] | undefined, group: string) {
-  //   return (words ?? []).map((w, i, arr) => ({
-  //     text: w,
-  //     group,
-  //     // naive weight by position/length; replace with frequency or embedding strength if available
-  //     weight: Math.max(0.05, Math.min(1, (w.length % 10) / 10 + (arr.length ? i / arr.length : 0) * 0.3)),
-  //   }))
-  // }
+export function ServicesSection({ clinic }: ServicesSectionProps) {
+  const reviewAnalysis = clinic.reviewAnalysis
+  //const practitionerData = reviewAnalysis!.practitioners[0]
+  
   function capitalizeFirstLetter(arr: string[]) {
     return arr.filter(Boolean) // remove falsy or empty values
   .map(str => 
@@ -35,33 +27,26 @@ export function ServicesSection({ practitioner }: ServicesSectionProps) {
       {
         header: "Treatment Modalities",
         keywords: capitalizeFirstLetter(Array.from(new Set([
-          ...(practitioner.modality ?? []),
-          ...((reviewAnalysis?.products?.injectables) ?? []),
-          ...((reviewAnalysis?.products?.skin_treatments) ?? []),
-          ...((reviewAnalysis!.procedures_offered?.categories) ?? [])
-        ])))
+          ...((reviewAnalysis?.procedures_offered.categories) ?? []),
+          ])))
       },
-      { header: "Patient Experience", keywords: capitalizeFirstLetter(Array.from(new Set([
-        ...(reviewAnalysis!.procedures_offered?.patient_experience ?? []),
-        ...((reviewAnalysis?.products?.product_experience) ?? []),
-        ...((reviewAnalysis?.treatment_outcomes) ?? []),
-      ]))) },
-      { header: "Clinic Environment", keywords: capitalizeFirstLetter(reviewAnalysis!.clinic_environment) ?? [] },
+      { header: "Clinic Environment", keywords: capitalizeFirstLetter(Array.from(new Set([...(reviewAnalysis?.clinic_environment) ?? []]))) },
       { header: "Recommendations", keywords: capitalizeFirstLetter(Array.from(new Set([
-        ...(reviewAnalysis!.referrals_recommendations ?? []), 
-        ...(reviewAnalysis!.reviewer_demographics?.loyalty_repeat_visits ?? [])
+        ...(reviewAnalysis?.referrals_recommendations ?? []), 
+        
       ])))},
       { header: "Interpersonal Skills", keywords: capitalizeFirstLetter(Array.from(new Set([
-        ...(practitionerData.interpersonal_skills ?? []),
-        ...(practitionerData.attributes ?? []),
-        ...(practitionerData.trust_signals ?? [])
+        ...(reviewAnalysis?.professionalism_safety ?? []),
+        
+      ]))) },
+      { header: "Negative Keywords", keywords: capitalizeFirstLetter(Array.from(new Set([
+        ...(reviewAnalysis?.negative_keywords ?? []),
+        
       ]))) },
        
       
     ].filter((c) => (c.keywords?.length ?? 0) > 0)
-  }, [reviewAnalysis, practitionerData])
-
-  //const cloudWords = useMemo(() => clusters.flatMap((c) => toCloud(c.keywords, c.header)), [clusters])
+  }, [reviewAnalysis])
 
 
   return (
@@ -83,6 +68,7 @@ export function ServicesSection({ practitioner }: ServicesSectionProps) {
       </Card> */}
      
       {/* Expandable sections for scanning */}
+      { clusters.length !== 0 && (
       <Card>
         <CardHeader>
           <CardTitle className="text-lg">Sections</CardTitle>
@@ -105,7 +91,7 @@ export function ServicesSection({ practitioner }: ServicesSectionProps) {
             ))}
           </Accordion>
         </CardContent>
-      </Card>
+      </Card>)}
       </div>
   )
 }

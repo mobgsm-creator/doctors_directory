@@ -3,6 +3,22 @@ import remarkGfm from "remark-gfm";
 import remarkSlug from "remark-slug";
 import remarkAutolinkHeadings from "remark-autolink-headings";
 import { Clinic } from "@/lib/types";
+const fixPythonArrayString = (str: string) => {
+  if (!str) return null
+
+  try {
+    // 1. remove broken outer quotes
+    let fixed = str.trim().replace(/^"\[|\]"$/g, (m) => (m === '"[' ? "[" : "]"))
+
+    // 2. convert single-quoted Python list → JSON list
+    fixed = fixed.replaceAll(/'([^']*)'/g, '"$1"')
+
+    return JSON.parse(fixed)
+  } catch {
+    return null
+  }
+}
+
 function mapKeyValueToMarkdown(obj: Record<string, any>, depth = 0): string {
     if (!obj || typeof obj !== "object") return "";
   
@@ -32,9 +48,46 @@ ${clinic.about_section || "Not publicly listed"}
 
 ---
 
-## Accreditations 
-${clinic.accreditations || "Not publicly listed"}
+## 📜 Accreditations
+${
+  (() => {
+    const parsed = fixPythonArrayString(clinic.accreditations)
 
+    return parsed
+      ? `- ${parsed.join("\n- ")}`
+      : clinic.accreditations
+      ? `- ${clinic.accreditations}`
+      : "- Not publicly listed"
+  })()
+}
+
+---
+
+## Awards 
+${
+  (() => {
+    const parsed = fixPythonArrayString(clinic.awards)
+
+    return parsed
+      ? `- ${parsed.join("\n- ")}`
+      : clinic.awards
+      ? `- ${clinic.awards}`
+      : "- Not publicly listed"
+  })()
+}
+---
+## Affiliations 
+${
+  (() => {
+    const parsed = fixPythonArrayString(clinic.affiliations)
+
+    return parsed
+      ? `- ${parsed.join("\n- ")}`
+      : clinic.affiliations
+      ? `- ${clinic.affiliations}`
+      : "- Not publicly listed"
+  })()
+}
 ---
 
 ## ⏰ Hours
