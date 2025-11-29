@@ -37,6 +37,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
   const clinics: Practitioner[] = JSON.parse(fileContents);
   const { slug } = params;
   const clinic = clinics.find(p => p.practitioner_name === slug);
+  console.log(clinic)
 
 
   const boxplotData = mergeBoxplotDataFromDict(
@@ -108,16 +109,15 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
   )
 }
 
-// export async function generateStaticParams() {
+export async function generateStaticParams() {
 
-//   const filePath = path.join(process.cwd(), 'public', 'clinics_processed.json');
-//   const fileContents = fs.readFileSync(filePath, 'utf-8');
-//   const clinics: Clinic[] = JSON.parse(fileContents);
-//   return clinics.map((clinic) => ({
-//     cityslug: clinic.City,   // <-- MUST include this!
-//     slug: clinic.slug,
-//   }));
-// }
+  const filePath = path.join(process.cwd(), 'public', 'derms_processed.json');
+  const fileContents = fs.readFileSync(filePath, 'utf-8');
+  const clinics: Practitioner[] = JSON.parse(fileContents);
+  return clinics.map((clinic) => ({
+    slug: clinic.practitioner_name,
+  }));
+}
 
 
 export async function generateMetadata({ params }: ProfilePageProps) {
@@ -132,10 +132,10 @@ export async function generateMetadata({ params }: ProfilePageProps) {
     }
   }
 
-  const clinicName = clinic.slug
+  const clinicName = clinic.practitioner_name
 
   return {
     title: `${clinicName} - Healthcare Directory`,
-    description: `View the profile of ${clinicName}, a qualified ${clinic.category} offering professional healthcare services. Read reviews and book appointments.`,
+    description: `View the profile of ${clinicName}, a qualified ${clinic.practitioner_title} offering professional healthcare services. Read reviews and book appointments.`,
   }
 }

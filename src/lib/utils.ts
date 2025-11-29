@@ -48,12 +48,72 @@ export function parse_addresses(input: string): string {
   return arr[0].replace('"', '');
 }
 
-export function safeParse(str: string) {
+export function cleanRouteSlug(slug: string) {
   try {
-    
-    return JSON.parse(str);
-  } catch (e) {
-    console.error("Parsing failed:", e);
+  return slug.toLowerCase()
+  .replace(/&|\+/g, 'and')          // & + → 'and'
+  .replace(/[\/\\]+/g, '-')         // / \ → -
+  //.normalize('NFKD')                // á í ü ñ → a i u n etc           // spaces → -
+          // trim starting/ending dashes
+  }
+  catch (e) {
+
+    return slug
+  }
+}
+export function parseLabels(label: string): [boolean, string] | null {
+  try {
+    const jsonReady = label
+      .trim()
+      // normalize Python-style booleans
+      .replace(/\bTrue\b/g, "true")
+      .replace(/\bFalse\b/g, "false")
+      .replace(/\b,']/g, "]")
+      // normalize single quotes to double quotes
+  
+      // handle empty string edge case: [False, ""] or [False, ]
+
+
+    const parsed = JSON.parse(jsonReady);
+    return parsed;
+  } catch (err) {
+    console.log(label)
     return null;
+  }
+}
+
+
+
+export function safeParse(v: any) {
+  try {
+    return JSON.parse(v.replaceAll(/[\u0000-\u001F]/g, ""));
+  } catch (err) {
+    const msg = String(err) 
+ // ✅ convert error to text so includes() works
+
+    if (msg.includes("Unterminated string in JSON") ||
+        msg.includes("Unterminated string in JSON")) {
+    
+      // 🔧 handle truncated array case here
+      if (typeof v === "string" && v.trim().startsWith("[") ) {
+
+        const last = v.lastIndexOf("}")
+
+        if (last !== -1) {
+          let fixed = v.slice(0, last + 1).replace(/\s*,\s*$/, "") + "]"
+          try {
+            return JSON.parse(fixed) // ✅ retry parsing fixed JSON
+          } catch {
+            return null // still broken? give up safely
+          }
+        }
+      }
+    }
+    else {
+      console.log("Value:",v,"Message: ",msg)
+    }
+
+    
+    return null
   }
 }

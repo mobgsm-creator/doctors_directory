@@ -1,47 +1,14 @@
 import fs from "fs";
 import path from 'path';
-import {consolidate, parse_text, parse_addresses, parse_numbers} from "@/lib/utils"
+import {cleanRouteSlug, parseLabels, safeParse, consolidate, parse_text, parse_addresses, parse_numbers} from "@/lib/utils"
 import { Clinic, Practitioner } from "@/lib/types";
-function parseLabels(label: string): [boolean, string] | null {
-  try {
-    const jsonReady = label
-      .trim()
-      // normalize Python-style booleans
-      .replace(/\bTrue\b/g, "true")
-      .replace(/\bFalse\b/g, "false")
-      .replace(/\b,']/g, "]")
-      // normalize single quotes to double quotes
-  
-      // handle empty string edge case: [False, ""] or [False, ]
 
 
-    const parsed = JSON.parse(jsonReady);
-    return parsed;
-  } catch (err) {
-    console.log(err)
-    return null;
-  }
-}
-
-
-
-function safeParse(v: any) {
-  try {
-
-    return JSON.parse(v.replaceAll(/[\u0000-\u001F]/g, ""));
-  } catch (e) {
-    console.log(e);
-    return null;
-  }
-}
 
 function transformClinic(raw: any): Clinic {
  
   return {
-    slug: raw.slug.toLowerCase()
-    .replace(/&|\+/g, 'and')
-    .replace(/\s+/g, '-')
-    .replace(/[()]/g, ''),
+    slug: cleanRouteSlug(raw.slug),
     image: raw.image,
     url: raw.links,
     rating: parseFloat(raw.rating),
@@ -83,10 +50,7 @@ function transformClinic(raw: any): Clinic {
 function transformPractitioner(raw: any): Practitioner {
  
   return {
-    slug: raw.slug.toLowerCase()
-    .replace(/&|\+/g, 'and')
-    .replace(/\s+/g, '-')
-    .replace(/[()]/g, ''),
+    slug: cleanRouteSlug(raw.slug),
     image: raw.image,
     url: raw.links,
     rating: parseFloat(raw.rating),
@@ -129,10 +93,7 @@ function transformPractitioner(raw: any): Practitioner {
     practitioner_awards: raw.Awards_And_Recognition,
     practitioner_media: raw.Media_And_News_Features,  
     practitioner_experience: raw.Experience_And_Practice_Profile,
-    practitioner_name: raw.Practitioner_Name.toLowerCase()
-    .replace(/&|\+/g, 'and')
-    .replace(/\s+/g, '-')
-    .replace(/[()]/g, ''),
+    practitioner_name: cleanRouteSlug(raw.practitioner_name),
     practitioner_title: raw.Title	,
     practitioner_specialty:raw.Specialty,	
     practitioner_education:raw.Education,	
@@ -147,6 +108,7 @@ async function loadFromFileSystem() {
   console.log(filePath)
   const fileContents = fs.readFileSync(filePath, 'utf-8');
   const practitioners = JSON.parse(fileContents);
+  console.log(practitioners.length)
 
   const filePath_1 = path.join(process.cwd(), 'public', 'clinics.json');
   const fileContents_1 = fs.readFileSync(filePath_1, 'utf-8');
@@ -156,18 +118,18 @@ async function loadFromFileSystem() {
   console.log("Transformed Clinics")
   const practitionersData = practitioners.map(transformPractitioner);
   console.log("Transformed Practitioners")
-  // console.log(`✅ API: Loaded ${clinics?.length} clinics and ${practitioners?.length} practitioners from file`);
 
-  return { clinicsData,practitionersData };
+  return {clinicsData,practitionersData };
 }
 const { clinicsData,practitionersData  } = await loadFromFileSystem();
-// fs.writeFileSync(
-//   "public/derms_processed.json",
-//   JSON.stringify(practitionersData)
-// );
-// fs.writeFileSync(
-//   "public/clinics_processed.json",
-//   JSON.stringify(clinicsData)
-// );
+
+fs.writeFileSync(
+  "public/derms_processed.json",
+  JSON.stringify(practitionersData)
+);
+fs.writeFileSync(
+  "public/clinics_processed.json",
+  JSON.stringify(clinicsData)
+);
 
 console.log("Generated derms_processed.json");
