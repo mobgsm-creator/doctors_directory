@@ -762,7 +762,7 @@ export function Footer() {
             {/* CONSENTZ + Contact */}
             <div>
               <div className="font-bold text-lg mb-6">
-                <img src="directory/images/Consentz Logo light.svg" alt="Logo" width={180} />
+                <img src="/directory/images/Consentz Logo light.svg" alt="Logo" width={180} />
               </div>
               <div className="text-sm  space-y-2">
                 <p className="flex items-center gap-2">
@@ -824,7 +824,7 @@ export function Footer() {
             <div>
               <h3 className="font-bold text-lg text-white mb-6">Get the app</h3>
               <div className="">
-                <img src="directory/images/Consentz Iphone App.webp" alt="" width={139} />
+                <img src="/directory/images/Consentz Iphone App.webp" alt="" width={139} />
               </div>
             </div>
           </div>
