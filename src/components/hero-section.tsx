@@ -1,5 +1,6 @@
 import { SearchBar } from "@/components/search-bar";
 import LogoLoop from "./LogoLoop";
+import Link from 'next/link';
 
 export function HeroSection() {
   const imageLogos = [
@@ -61,6 +62,11 @@ export function HeroSection() {
               confidence.
             </p>
             <SearchBar />
+            <div className="flex pt-4 md:pt-6 justify-center md:justify-start">
+              <a href="/search" className="font-medium hover:text-black">
+                OR Explore the Aesthetics Directory →
+              </a>
+            </div>
           </div>
           <div className="flex justify-center">
             <img
