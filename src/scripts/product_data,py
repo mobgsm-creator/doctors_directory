@@ -1,0 +1,88 @@
+import pandas as pd
+import numpy as np
+import os
+
+dir = r"C:\Users\agney\Desktop\Aesthetic Products"
+
+def read_all_csv_and_xlsx_files(dir):
+    files = os.listdir(dir)
+    dfs = []
+    total_length=0
+
+    for index, file in enumerate(files):
+        try:
+            if file.endswith(".csv"):
+                print("csv file at index", index)
+                df = pd.read_csv(os.path.join(dir, file), encoding='latin-1')
+                result =consolidate_file(df)
+                dfs.append(result)
+                total_length+=len(df)
+            elif file.endswith(".xlsx"):
+                print("xlsx file at index", index)
+                sheet_names = pd.ExcelFile(os.path.join(dir, file)).sheet_names
+                for name in sheet_names:
+                    df = pd.read_excel(os.path.join(dir, file), sheet_name=name)
+                    result =consolidate_file(df)
+                    dfs.append(result)
+                    total_length+=len(df)
+            print("✅ File processed. Total length of dataframes is", total_length)
+        except Exception as e:
+            print(e)  
+    master_df = pd.concat(dfs, ignore_index=True)
+    master_df.to_csv("consolidated_output.csv", index=False)
+    print("✅ Consolidation complete. Saved to consolidated_output.csv")
+# Your final standardized headers
+FINAL_NAME = "Product Name"
+FINAL_PRICE = "Product Price"
+FINAL_URL = "Product URL"
+FINAL_TEXT = "full_text"
+
+# Possible column variations that might map to each final header
+NAME_MAP = [
+    "Name", "Product Name", "Product_name", "product_name", "Product_Name",
+    "Product Name", "Product_title", "Product Title", "product_title", "Product_name"
+]
+
+PRICE_MAP = [
+    "Price", "Product Price", "Product_price", "Product_price", "product_price",
+    "product price", "Product_Price", "Retail_price", "Product_price_display",
+    "detailed_price", "price_display", "Product_price_display", "Product_price"
+]
+
+URL_MAP = [
+    "URL", "Link", "Product URL", "Product_url", "product_url", "Product_URL",
+    "Product Link", "Product link", "Link", "Product URL"
+]
+
+def pick_column(df, candidates):
+    """Return the first matching column from candidate list that exists in df"""
+    for col in candidates:
+        for existing in df.columns:
+            if existing.lower() == col.lower():
+                return existing
+    return None     
+
+def consolidate_file(df):
+
+    # Identify best matching columns
+    name_col = pick_column(df, NAME_MAP)
+    price_col = pick_column(df, PRICE_MAP)
+    url_col = pick_column(df, URL_MAP)
+
+    # Create standardized dataframe
+    new_df = pd.DataFrame()
+    new_df[FINAL_NAME] = df[name_col] if name_col else ""
+    new_df[FINAL_PRICE] = df[price_col] if price_col else ""
+    new_df[FINAL_URL] = df[url_col] if url_col else ""
+
+    # Concatenate all remaining columns into full_text
+    remaining_cols = [c for c in df.columns if c not in [name_col, price_col, url_col]]
+    new_df[FINAL_TEXT] = df[remaining_cols].fillna("").astype(str).agg(" ".join, axis=1) if remaining_cols else ""
+
+    return new_df     
+read_all_csv_and_xlsx_files(dir)
+
+
+
+#read consolidated_output.csv
+#What we can do: 1. Split string and check keyword match 2. fuzzywuzzy 3. contextual embeddings
