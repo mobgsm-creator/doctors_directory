@@ -761,7 +761,9 @@ const cityList = [
   "York",
 ];
 
-const cityItems: LogoItem[] = cityList.map((city) => ({
+const cityItems: {
+  node: React.ReactNode;
+}[] = cityList.map((city) => ({
   node: (
     <Link
       href={`/clinics/${city}`}
