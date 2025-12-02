@@ -4,27 +4,28 @@ import LogoLoop from "./LogoLoop";
 export function HeroSection() {
   const imageLogos = [
     {
-      src: "images/Aesthetic-Medicine.webp",
+      src: "directory/images/Aesthetic-Medicine.webp",
+      alt: "",
+      href: "",
+
+    },
+    {
+      src: "directory/images/Galderma.webp",
       alt: "",
       href: "",
     },
     {
-      src: "images/Galderma.webp",
+      src: "directory/images/Save Face.webp",
       alt: "",
       href: "",
     },
     {
-      src: "images/Save Face.webp",
+      src: "directory/images/Awards.webp",
       alt: "",
       href: "",
     },
     {
-      src: "images/Awards.webp",
-      alt: "",
-      href: "",
-    },
-    {
-      src: "images/Prime.webp",
+      src: "directory/images/Prime.webp",
       alt: "",
       href: "",
     },
@@ -64,7 +65,7 @@ export function HeroSection() {
           </div>
           <div className="flex justify-center">
             <img
-              src="images/Consentz Aesthetic Clinic Directory.webp"
+              src="directory/images/Consentz Aesthetic Clinic Directory.webp"
               alt="Mobile app interface"
               className="max-w-xs"
             />
