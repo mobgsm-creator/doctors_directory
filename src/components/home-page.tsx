@@ -774,60 +774,54 @@ const cityItems: LogoItem[] = cityList.map((city) => ({
 
 const imageLogos = [
   {
-    src: "/HIS.jpg",
+    src: "directory/HIS.jpg",
     alt: "HIS",
     href: "https://www.healthcareimprovementscotland.scot/",
   },
-  { src: "/HIW.jpg", alt: "HIW", href: "https://www.hiw.org.uk" },
-  { src: "/jccp.jpg", alt: "JCCP", href: "https://www.jccp.org.uk/" },
-  { src: "/qcc.jpg", alt: "CQC", href: "https://cqc.org.uk" },
-  { src: "/rqia.jpg", alt: "RQIA", href: "https://www.rqia.org.uk/" },
+  { src: "directory/HIW.jpg", alt: "HIW", href: "https://www.hiw.org.uk" },
+  { src: "directory/jccp.jpg", alt: "JCCP", href: "https://www.jccp.org.uk/" },
+  { src: "directory/qcc.jpg", alt: "CQC", href: "https://cqc.org.uk" },
+  { src: "directory/rqia.jpg", alt: "RQIA", href: "https://www.rqia.org.uk/" },
   {
-    src: "/save-face-partner.jpg",
+    src: "directory/save-face-partner.jpg",
     alt: "Save Face",
     href: "https://www.saveface.co.uk/",
   },
 ];
 
 const specialists = [
-  {
-    name: "Facial Aesthetics",
-    image: "images/Facial Aesthetics Specialist.webp",
-  },
-  { name: "Cosmetology", image: "images/Cosmetology Specialist.webp" },
-  { name: "Hair & Scalp", image: "images/Hair & Scalp Specialist.webp" },
-  {
-    name: "Skin Technology & Laser",
-    image: "images/Skin Technology & Laser Specialist.webp",
-  },
-  { name: "Wellness", image: "images/Wellness Specialist.webp" },
+  { name: "Facial Aesthetics", image: "directory/images/Facial Aesthetics Specialist.webp" },
+  { name: "Cosmetology", image: "directory/images/Cosmetology Specialist.webp" },
+  { name: "Hair & Scalp", image: "directory/images/Hair & Scalp Specialist.webp" },
+  { name: "Skin Technology & Laser", image: "directory/images/Skin Technology & Laser Specialist.webp" },
+  { name: "Wellness", image: "directory/images/Wellness Specialist.webp" },
 ];
 
 const treatments = [
-  { name: "Facial", image: "images/Facial Treatment.webp" },
-  { name: "Hands", image: "images/Hands  Treatment.webp" },
-  { name: "Eyes", image: "images/Eyes Treatment.webp" },
-  { name: "Skin", image: "images/Skin Treatment.webp" },
-  { name: "Hairline", image: "images/Hairline Treatment.webp" },
+  { name: "Facial", image: "directory/images/Facial Treatment.webp" },
+  { name: "Hands", image: "directory/images/Hands  Treatment.webp" },
+  { name: "Eyes", image: "directory/images/Eyes Treatment.webp" },
+  { name: "Skin", image: "directory/images/Skin Treatment.webp" },
+  { name: "Hairline", image: "directory/images/Hairline Treatment.webp" },
 ];
 
 const blogs = [
   {
     id: 1,
     title: "10 Best HIPAA Compliant Medical Spa Software in 2025",
-    img: "/images/HIPAA-Compliant-Medical-Spa-Software-768x432.webp",
+    img: "directory/images/HIPAA-Compliant-Medical-Spa-Software-768x432.webp",
     link: "#",
   },
   {
     id: 2,
     title: "Top 10 Best Aesthetic Clinic Software in USA [2025]",
-    img: "/images/Aesthetic-Clinic-Software-in-the-USA-1536x864.webp",
+    img: "directory/images/Aesthetic-Clinic-Software-in-the-USA-1536x864.webp",
     link: "#",
   },
   {
     id: 3,
     title: "Aesthetic Clinic Marketing: Complete Guide [2025]",
-    img: "/images/Aesthetic-Clinic-Marketing-Guide-1536x864.webp",
+    img: "directory/images/Aesthetic-Clinic-Marketing-Guide-1536x864.webp",
     link: "#",
   },
 ];
@@ -1034,7 +1028,7 @@ export default function HomePage() {
             </div>
             <div className="flex justify-center">
               <img
-                src="images/Aesthetic Software Interface.webp"
+                src="directory/images/Aesthetic Software Interface.webp"
                 alt="Healthcare dashboard on laptop"
                 className="max-w-full"
               />
