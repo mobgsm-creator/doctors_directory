@@ -55,12 +55,10 @@ export function HeroSection() {
               className="text-3xl md:text-5xl mb-6 text-[var(--mineshaft)] font-[var(--font-noto)]"
               style={{ fontFamily: "var(--font-noto)" }}
             >
-              The Home of Aesthetics & Wellbeing
+              The Premier Aesthetic Directory for Beauty & Wellbeing
             </h1>
             <p className="text-sm md:text-lg mb-8">
-              Discover certified aesthetic and healthcare professionals. Browse
-              verified profiles, read authentic reviews, and book with
-              confidence.
+            Browse certified aethetic professionals, compare real patient reviews, and book your next treatment with total confidence.
             </p>
             <SearchBar />
             <div className="flex pt-4 md:pt-6 justify-center md:justify-start">

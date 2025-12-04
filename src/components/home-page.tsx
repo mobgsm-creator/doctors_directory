@@ -1,24 +1,12 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { HeroSection } from "@/components/hero-section";
-import type { SearchFilters } from "@/lib/types";
-import { useRouter } from "next/navigation";
-import { useSearchStore } from "@/app/stores/datastore";
 import LogoLoop from "./LogoLoop";
-import Header from "@/components/header";
-import { SearchBar } from "./search-bar";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import {
-  Smile,
-  Scissors,
-  Wind,
-  Zap,
-  Heart,
-  Check,
   Handshake,
   ChartBarDecreasing,
-  Circle,
   CircleCheck,
 } from "lucide-react";
 
@@ -887,8 +875,8 @@ export default function HomePage() {
         </div>
       </section>
       <section className="bg-white-50 py-5 md:py-5">
-        <h2 className="text-xl md:text-4xl font-bold text-center mb-16">
-            Top Clinics In
+        <h2 className="text-xl md:text-3xl font-bold text-center mb-16">
+        Find Top-Rated Aesthetic Clinics Near You
         </h2>
         <div className="w-full">
           <LogoLoop
@@ -909,11 +897,9 @@ export default function HomePage() {
             <h2 className="text-xl md:text-4xl font-bold text-center mb-10">
               Most Popular Treatments
             </h2>
-            <Button className="bg-[var(--text-color)] hover:bg-black h-auto rounded-lg text-lg px-7 py-3 text-white">
-              See all Treatments
-            </Button>
+            
           </div>
-          <div className="relative">
+          <div className="relative flex flex-col items-center justify-center">
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 justify-items-center items-center gap-4 pb-4">
               {treatments.map((treatment, index) => (
                 <div key={index} className="flex-shrink-0">
@@ -928,7 +914,11 @@ export default function HomePage() {
                 </div>
               ))}
             </div>
+            <Button className="bg-[var(--text-color)] hover:bg-black h-auto rounded-lg text-lg px-7 py-3 text-white">
+              See all Treatments
+            </Button>
           </div>
+          
         </div>
       </section>
       <LogoLoop

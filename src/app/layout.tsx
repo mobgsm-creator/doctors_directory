@@ -9,14 +9,24 @@ import { Footer } from "@/components/footer";
 import { ScrollToTop } from "@/components/scroll-to-top";
 
 import "./globals.css";
-
 export const metadata: Metadata = {
-  title: "Healthcare Directory - Find Qualified Practitioners",
+  title: "Aesthetic Directory - List Your Clinic & Grow Your Practice",
   description:
-    "Discover qualified healthcare and aesthetic practitioners in your area. Browse profiles, read reviews, and find the right professional for your needs.",
-  generator: "v0.app",
-};
+    "Join the premier Aesthetic Directory. Increase your visibility, showcase your treatments, and connect with high-quality leads looking for aesthetic services.",
 
+  robots: {
+    index: true,
+    follow: true,
+    nocache: false,
+    "max-snippet": -1,
+    "max-video-preview": -1,
+    "max-image-preview": "large",
+  },
+
+  alternates: {
+    canonical: "https://staging.consentz.com/directory",
+  },
+};
 export default async function RootLayout({
   children,
 }: Readonly<{
