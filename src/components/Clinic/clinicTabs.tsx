@@ -1,7 +1,7 @@
 "use client"
 
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-export default function PractitionerTabs() {
+export default function ClinicTabs() {
     const sections = [
         { id: "about", label: "About" },
         { id: "accreditations", label: "Accreditations" },
