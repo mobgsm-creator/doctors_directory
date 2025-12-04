@@ -17,8 +17,8 @@ export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
     }
   }
 
-  const Section = ({ title, children }: any) => (
-    <section className="mb-10">
+  const Section = ({ id, title, children }: any) => (
+    <section id={id} className="mb-10">
       <h2 className="text-xl font-semibold text-foreground border-b border-border/30 pb-2 mb-4">
         {title}
       </h2>
