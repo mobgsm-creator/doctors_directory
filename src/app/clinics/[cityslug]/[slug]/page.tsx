@@ -7,13 +7,13 @@ import { ReviewCard } from "@/components/review-card"
 import { GoogleMapsEmbed } from "@/components/gmaps-embed"
 import { boxplotDatas_clinic } from "@/lib/data"
 import { BoxPlotDatum, ItemMeta } from "@/lib/types"
-import VisxDonutChart from "@/components/visx-donut"
+import { Stats } from "@/components/visx-donut"
 import { ServicesSection } from "@/components/Clinic/services-section"
 import ClinicDetailsMarkdown from "@/components/Clinic/clinicDetailsMD"
 import { Clinic } from "@/lib/types"
 import fs from "fs";
 import path from 'path';
-
+import ClinicTabs from "@/components/Clinic/clinicTabs"
 function mergeBoxplotDataFromDict(
   base: BoxPlotDatum[],
   incoming: Record<string, ItemMeta>
@@ -70,10 +70,10 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
         {/* Profile Header */}
         <ProfileHeader clinic={clinic} />
        
-        <VisxDonutChart data={boxplotData} />
+        <Stats data={boxplotData} />
 
 
-      
+      <ClinicTabs />
       <ClinicDetailsMarkdown clinic={clinic} />
     
         

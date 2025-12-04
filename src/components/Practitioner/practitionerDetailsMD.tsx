@@ -1,214 +1,256 @@
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
-import remarkSlug from "remark-slug";
-import remarkAutolinkHeadings from "remark-autolink-headings";
-import { Practitioner } from "@/lib/types";
-const fixPythonArrayString = (str: string) => {
-  if (!str) return null
+// New component rewriting markdown renderer into section-based layout
+// Matching the design shown in the reference image (clean sections, headings, lists, tables)
 
-  try {
-    // 1. remove broken outer quotes
-    let fixed = str.trim().replace(/^"\[|\]"$/g, (m) => (m === '"[' ? "[" : "]"))
-
-    // 2. convert single-quoted Python list → JSON list
-    fixed = fixed.replaceAll(/'([^']*)'/g, '"$1"')
-
-    return JSON.parse(fixed)
-  } catch {
-    return null
-  }
-}
-
-function mapKeyValueToMarkdown(obj: Record<string, any>, depth = 0): string {
-    if (!obj || typeof obj !== "object") return "";
-  
-    const rows: string[] = [];
-  
-    for (const [k, v] of Object.entries(obj)) {
-      if (typeof v === "object" && v !== null) {
-        // Render nested object
-        rows.push(`| ${" ".repeat(depth)}**${k}** | |`);
-        rows.push(mapKeyValueToMarkdown(v, depth + 1));
-      } else {
-        // Render key-value pair
-        rows.push(`| ${" ".repeat(depth)}${k} | ${v ?? "Not listed"} |`);
+import { Practitioner } from "@/lib/types"
+import PractitionerTabs from "./PractitionerTabs"
+export default function PractitionerDetailsSections({ clinic }: { clinic: Practitioner }) {
+  const parseList = (val: any) => {
+    if (!val) return []
+    try {
+      if (typeof val === "string" && val.startsWith("[") && val.endsWith("]")) {
+        return JSON.parse(val.replace(/'/g, '"'))
       }
+      if (Array.isArray(val)) return val
+      return [val]
+    } catch {
+      return [val]
     }
+  }
+  const fixPythonArrayString = (str: string) => {
+    if (!str) return null
   
-    // Only add table header for top-level objects
-    return depth === 0
-      ? `| Key | Value |\n|------|--------|\n${rows.join("\n")}`
-      : rows.join("\n");
+    try {
+      // 1. remove broken outer quotes
+      let fixed = str.trim().replace(/^"\[|\]"$/g, (m) => (m === '"[' ? "[" : "]"))
+  
+      // 2. convert single-quoted Python list → JSON list
+      fixed = fixed.replaceAll(/'([^']*)'/g, '"$1"')
+  
+      return JSON.parse(fixed)
+    } catch {
+      return null
+    }
   }
   
-export default function ClinicDetailsMarkdown({ clinic}:{clinic: Practitioner}) {
-  const markdownContent = `
 
-## 📜 Practitioner Roles
-${
-  (() => {
-    const parsed = fixPythonArrayString(clinic.practitioner_roles)
 
-    return parsed
-      ? `- ${parsed.join("\n- ")}`
-      : clinic.practitioner_roles
-      ? `- ${clinic.practitioner_roles}`
-      : "- Not publicly listed"
-  })()
-}
-
----
-
-## Qualifications 
-${
-  (() => {
-    const parsed = fixPythonArrayString(clinic.practitioner_qualifications)
-
-    return parsed
-      ? `- ${parsed.join("\n- ")}`
-      : clinic.practitioner_roles
-      ? `- ${clinic.practitioner_roles}`
-      : "- Not publicly listed"
-  })()
-}
-
----
-## Experience
-${
-  (() => {
-    const parsed = fixPythonArrayString(clinic.practitioner_experience)
-
-    return parsed
-      ? `- ${parsed.join("\n- ")}`
-      : clinic.practitioner_experience
-      ? `- ${clinic.practitioner_experience}`
-      : "- Not publicly listed"
-  })()
-}
-
----
-## News & Media 
-${
-  (() => {
-    const parsed = fixPythonArrayString(clinic.practitioner_media)
-
-    return parsed
-      ? `- ${parsed.join("\n- ")}`
-      : clinic.practitioner_media
-      ? `- ${clinic.practitioner_media}`
-      : "- Not publicly listed"
-  })()
-}
-
----
-## Awards
-${
-  (() => {
-    const parsed = fixPythonArrayString(clinic.practitioner_awards)
-
-    return parsed
-      ? `- ${parsed.join("\n- ")}`
-      : clinic.practitioner_awards
-      ? `- ${clinic.practitioner_awards}`
-      : "- Not publicly listed"
-  })()
-}
-
----
-
-## ⏰ Hours
-
-${
-  clinic.hours && typeof clinic.hours === "object"
-    ? `| Day | Time |\n|------|------|\n${Object.entries(clinic.hours)
-        .map(([day, time]) => `| ${day} | ${time} |`)
-        .join("\n")}`
-    : ""
-}
-
----
-
-## 🩺 Insurance Accepted
-${
-  Array.isArray(clinic.Insurace)
-    ? clinic.Insurace.map((i) => `- ${i}`).join("\n")
-    : clinic.Insurace && typeof clinic.Insurace === "object"
-    ? `| Type | Details |\n|------|----------|\n${Object.entries(clinic.Insurace)
-        .map(([k, v]) => `| ${k} | ${v} |`)
-        .join("\n")}`
-    : clinic.Insurace || "Not listed"
-}
-
----
-
-## 💳 Payment Options
-${
-  Array.isArray(clinic.Payments)
-    ? clinic.Payments.map((p) => `- ${p}`).join("\n")
-    : clinic.Payments && typeof clinic.Payments === "object"
-    ? `| Method | Details |\n|---------|----------|\n${Object.entries(
-        clinic.Payments
-      )
-        .map(([k, v]) => `| ${k} | ${v} |`)
-        .join("\n")}`
-    : clinic.Payments || "Not listed"
-}
-
----
-
-## 💰 Estimated Fees
-${
-  clinic.Fees && typeof clinic.Fees === "object"
-    ? mapKeyValueToMarkdown(clinic.Fees)
-    : clinic.Fees || "Not listed"
-}
-
-  `;
+  const Section = ({ id, title, children }: any) => (
+    <section id={id} className="mb-10">
+      <h2 className="text-xl font-semibold text-foreground border-b border-border/30 pb-2 mb-4">
+        {title}
+      </h2>
+      <div className="text-muted-foreground text-base leading-7">{children}</div>
+    </section>
+  )
+  
 
   return (
-    <div className="bg-white rounded-2xl shadow-sm p-6 border border-border/20 items-center">
-      <ReactMarkdown
-        // @ts-expect-error vfile deps for remark-slug and remark-autolink-headings+
-        remarkPlugins={[remarkGfm, remarkSlug, remarkAutolinkHeadings]}
-        components={{
-          h1: (props) => (
-            <h1 className="text-4xl font-bold my-16 text-foreground" {...props} />
-          ),
-          h2: (props) => (
-            <h2 className="text-2xl font-semibold my-6 text-foreground flex items-center gap-2 border-b border-border/20 pb-2 text-center">
-              {props.children}
-            </h2>
-          ),
-          p: (props) => (
-            <p className="text-base leading-7 my-3 text-muted-foreground" {...props} />
-          ),
-          li: (props) => (
-            <li className="list-disc ml-6 text-muted-foreground" {...props} />
-          ),
-          table: (props) => (
-            <div className="overflow-x-auto my-4 rounded-xl border border-gray-200 shadow-sm">
-              <table className="w-full text-sm sm:text-base border-collapse bg-white">
-                {props.children}
-              </table>
-            </div>
-          ),
-          th: (props) => (
-            <th
-              className="border border-gray-200 px-4 py-2 font-semibold bg-gray-50 text-left text-foreground"
-              {...props}
-            />
-          ),
-          td: (props) => (
-            <td
-              className="border border-gray-200 px-4 py-2 text-muted-foreground"
-              {...props}
-            />
-          ),
-          hr: () => <hr className="my-8 border-border/40" />,
-        }}
-      >
-        {markdownContent}
-      </ReactMarkdown>
+    <div className="bg-white rounded-2xl shadow-sm p-6 border border-border/20">
+      {/* Roles */}
+      <PractitionerTabs />
+      <Section title="Roles" id='roles'>
+        {parseList(fixPythonArrayString(clinic.practitioner_roles)).length ? (
+          <ul className="list-disc ml-6 space-y-1">
+            {parseList(fixPythonArrayString(clinic.accreditations)).map((a:string, i:number) => (
+              <li key={i}>{a}</li>
+            ))}
+          </ul>
+        ) : (
+          "Not publicly listed"
+        )}
+      </Section>
+
+      {/* Qualifications */}
+      <Section title="Qualifications" id='qualifications'>
+        {parseList(fixPythonArrayString(clinic.practitioner_qualifications)).length ? (
+          <ul className="list-disc ml-6 space-y-1">
+            {parseList(fixPythonArrayString(clinic.practitioner_qualifications)).map((a:string, i:number) => (
+              <li key={i}>{a}</li>
+            ))}
+          </ul>
+        ) : (
+          "Not publicly listed"
+        )}
+      </Section>
+      {/* Experience */}
+      <Section title="Experience" id='experience'>
+        {parseList(fixPythonArrayString(clinic.practitioner_experience)).length ? (
+          <ul className="list-disc ml-6 space-y-1">
+            {parseList(fixPythonArrayString(clinic.practitioner_experience)).map((a:string, i:number) => (
+              <li key={i}>{a}</li>
+            ))}
+          </ul>
+        ) : (
+          "Not publicly listed"
+        )}
+      </Section>
+      {/* News */}
+      <Section title="News" id='news'>
+        {parseList(fixPythonArrayString(clinic.practitioner_media)).length ? (
+          <ul className="list-disc ml-6 space-y-1">
+            {parseList(fixPythonArrayString(clinic.practitioner_media)).map((a:string, i:number) => (
+              <li key={i}>{a}</li>
+            ))}
+          </ul>
+        ) : (
+          "Not publicly listed"
+        )}
+      </Section>
+      {/* AWARDS */}
+      <Section title="Awards" id='awards'>
+        {parseList(fixPythonArrayString(clinic.practitioner_awards)).length ? (
+          <ul className="list-disc ml-6 space-y-1">
+            {parseList(fixPythonArrayString(clinic.practitioner_awards)).map((a:string, i:number) => (
+              <li key={i}>{a}</li>
+            ))}
+          </ul>
+        ) : (
+          "Not publicly listed"
+        )}
+      </Section>
+
+
+      {/* HOURS */}
+      {clinic.hours && typeof clinic.hours === "object" && (
+        <Section title="Hours" id='hours'>
+          <div className="overflow-x-auto rounded-xl border border-gray-200 shadow-sm">
+            <table className="w-full text-sm bg-white border-collapse">
+              <tbody>
+                {Object.entries(clinic.hours).map(([day, time]) => (
+                  <tr key={day}>
+                    <td className="border border-gray-200 px-4 py-2 font-medium text-foreground">{day?.toString()}</td>
+                    <td className="border border-gray-200 px-4 py-2 text-muted-foreground">{time?.toString()}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </Section>
+      )}
+
+      {/* INSURANCE */}
+      <Section title="Insurance Accepted" id='insurance'>
+        {Array.isArray(clinic.Insurace) ? (
+          <ul className="list-disc ml-6 space-y-1">
+            {clinic.Insurace.map((i: any, idx: number) => (
+              <li key={idx}>{i}</li>
+            ))}
+          </ul>
+        ) : clinic.Insurace && typeof clinic.Insurace === "object" ? (
+          <div className="overflow-x-auto rounded-xl border border-gray-200 shadow-sm">
+            <table className="w-full text-sm bg-white">
+              <tbody>
+                {Object.entries(clinic.Insurace).map(([k, v]) => (
+                  <tr key={k}>
+                    <td className="border px-4 py-2 font-medium">{k?.toString()}</td>
+                    <td className="border px-4 py-2">{v?.toString()}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        ) : (
+          clinic.Insurace || "Not listed"
+        )}
+      </Section>
+
+      {/* PAYMENTS */}
+      <Section title="Payment Options" id='payments'>
+        {Array.isArray(clinic.Payments) ? (
+          <ul className="list-disc ml-6 space-y-1">
+            {clinic.Payments.map((p: any, idx: number) => (
+              <li key={idx}>{p}</li>
+            ))}
+          </ul>
+        ) : clinic.Payments && typeof clinic.Payments === "object" ? (
+          <div className="overflow-x-auto rounded-xl border border-gray-200 shadow-sm">
+            <table className="w-full text-sm bg-white">
+              <tbody>
+                {Object.entries(clinic.Payments).map(([k, v]) => (
+                  <tr key={k}>
+                    <td className="border px-4 py-2 font-medium">{k?.toString()}</td>
+                    <td className="border px-4 py-2">{v?.toString()}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        ) : (
+          clinic.Payments || "Not listed"
+        )}
+      </Section>
+
+      {/* FEES */}
+      <Section title="Estimated Fees" id='fees'>
+        {clinic.Fees && typeof clinic.Fees === "object" ? (
+          <div className="overflow-x-auto rounded-xl border border-gray-200 shadow-sm">
+            <table className="w-full text-sm bg-white">
+              <tbody>
+                {Object.entries(clinic.Fees).map(([k, v]) => (
+                  k !== 'Source' ? (
+                  <tr key={k}>
+                    
+                    <td className="border px-4 py-2 font-medium">{k}</td>
+                    <td className="border px-4 py-2 align-top">
+                    {(() => {
+                      // 1. If value is already an object → convert to bullets
+                      if (typeof v === "object" && v !== null) {
+                        return (
+                          <ul className="list-disc ml-6 space-y-1">
+                            {Object.entries(v).map(([key, value]: any) => (
+                        
+                              <li key={key}>
+                                <span className="font-medium">{key}</span>: {String(value)}
+                              </li>
+                            ))}
+                          </ul>
+                        );
+                      }
+
+                      // 2. If value is a JSON string → try parsing it
+                      if (typeof v === "string") {
+                        try {
+                          const parsed = JSON.parse(v);
+
+                          if (typeof parsed === "object" && parsed !== null) {
+                            return (
+                              <ul className="list-disc ml-6 space-y-1">
+                                {Object.entries(parsed).map(([key, value]: any) => (
+                                  <li key={key}>
+                                    <span className="font-medium">{key}</span>: {String(value)}
+                                  </li>
+                                ))}
+                              </ul>
+                            );
+                          }
+                        } catch (e) {
+                          // If parse fails → fall back to raw string
+                          return String(v);
+                        }
+                      }
+
+                      // 3. Primitive fallback
+                      return String(v ?? "Not listed");
+                    })()}
+                  </td>
+
+
+                  </tr>
+                  ) : null
+                ))}
+              </tbody>
+            </table>
+          </div>
+        ) : (
+          clinic.Fees || "Not listed"
+        )}
+      </Section>
     </div>
-  );
+  )
 }
+
+
+
+
+
+

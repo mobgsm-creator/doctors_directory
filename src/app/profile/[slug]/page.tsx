@@ -7,10 +7,18 @@ import { ReviewCard } from "@/components/review-card"
 import { GoogleMapsEmbed } from "@/components/gmaps-embed"
 import { boxplotDatas_clinic } from "@/lib/data"
 import { BoxPlotDatum, ItemMeta } from "@/lib/types"
-import VisxDonutChart from "@/components/visx-donut"
+import { Stats } from "@/components/visx-donut"
 import { ServicesSection } from "@/components/Clinic/services-section"
 import ClinicDetailsMarkdown from "@/components/Practitioner/practitionerDetailsMD"
 import { Clinic, Practitioner } from "@/lib/types"
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb"
 import fs from "fs";
 import path from 'path';
 
@@ -37,7 +45,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
   const clinics: Practitioner[] = JSON.parse(fileContents);
   const { slug } = params;
   const clinic = clinics.find(p => p.practitioner_name === slug);
-  console.log(clinic)
+  //console.log(clinic)
 
 
   const boxplotData = mergeBoxplotDataFromDict(
@@ -71,10 +79,10 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
         {/* Profile Header */}
         <ProfileHeader clinic={clinic} />
        
-        <VisxDonutChart data={boxplotData} />
+        <Stats data={boxplotData} />
 
 
-      
+  
       <ClinicDetailsMarkdown clinic={clinic} />
     
         

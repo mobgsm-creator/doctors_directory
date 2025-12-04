@@ -3,12 +3,10 @@ import { Group } from "@visx/group"
 import { Pie } from "@visx/shape"
 import { ParentSize } from "@visx/responsive"
 import type { BoxPlotDatum } from "@/lib/data"
-
+import { useMemo } from "react"
 export interface VisxDonutChartProps {
   data: BoxPlotDatum[]
-  height?: number
-  margin?: { top: number; right: number; bottom: number; left: number }
-  
+
 }
 
 interface DonutSegment {
@@ -18,17 +16,11 @@ interface DonutSegment {
   isActive: boolean
 }
 
-function DonutChartSvg({
+export function Stats({
   data,
-  width,
+
   
-  margin = { top: 20, right: 24, bottom: 20, left: 24 },
-  
-}: VisxDonutChartProps & {
-  width: number
-  
-  
-}) {
+}: VisxDonutChartProps ) {
   const screenwidth = typeof window !== "undefined" ? window.innerWidth : 0;
   const height = screenwidth > 640 ? 200 : 400;
 
@@ -67,96 +59,39 @@ function DonutChartSvg({
       { label: d.label, value: 100 - percentage, color: "#E5E7EB", isActive: false },
     ]
   }
-  const filtered_data = data.filter(d => skip.includes(d.label))
+  const filtered = useMemo(() => data.filter((d) => skip.includes(d.label)), [data])
   
-
-
+  
+  const rows = filtered.map((d) => {
+  const max = d.stats?.max ?? 1
+  const percentage = Math.max(0, Math.min(100, (30 * d.item.weighted_score) / max + 70))
+  return {
+  label: d.label,
+  percentage,
+  color: categoryColorFor(d.label),
+  }
+  })
+  
+  
   return (
-    <svg width={width} height={height} role="img" aria-label="Percentage donut charts">
-      {filtered_data.map((d, idx) => {
-   
-        const segments = getDonutSegments(d)
-
-        // Calculate grid position
-        const cols = screenwidth > 640 ? filtered_data.length : 2
-        const col = idx % cols
-        const row = Math.floor(idx / cols)
-        const cellWidth = width / cols
-        const cellHeight = screenwidth > 640 ? (height / Math.ceil(filtered_data.length / cols))*0.8 : (height / Math.ceil(filtered_data.length / cols)) 
-        const centerX = cellWidth * col + cellWidth / 2
-        const centerY = cellHeight * row + cellHeight / 2 
-        const chartRadius = Math.min(cellWidth, cellHeight) / 2 - 20
-
-        return (
-          <Group key={d.key} left={centerX} top={centerY}>
-            <Pie
-              data={segments}
-              pieValue={(d) => d.value}
-              outerRadius={chartRadius}
-              innerRadius={chartRadius * 0.65}
-              cornerRadius={4}
-              padAngle={0}
-            >
-              {(pie) => {
-                return pie.arcs.map((arc, arcIdx) => {
-                  const segment = segments[arcIdx]
-
-                  return (
-                    <path
-                      key={`arc-${arcIdx}`}
-                      d={pie.path(arc) || ""}
-                      fill={segment.color}
-                      stroke="white"
-                      strokeWidth={2}
-                      aria-label={`${segment.label} ${segment.isActive ? "filled" : "empty"}`}
-                    />
-                  )
-                })
-              }}
-            </Pie>
-
-            {/* Percentage text in center */}
-            <text
-              x={0}
-              y={0}
-              textAnchor="middle"
-              dy="0.33em"
-              fill="var(--color-foreground)"
-              fontSize={24}
-              fontWeight="bold"
-            >
-              {((30*d.item.weighted_score/d.stats.max)+70).toFixed(0)}%
-              
-            </text>
-
-            {/* Category label below */}
-            <text
-              x={0}
-              y={chartRadius + 30}
-              textAnchor="middle"
-              fill="var(--color-foreground)"
-              fontSize={12}
-              fontWeight={500}
-            >
-              {d.label}
-            </text>
-          </Group>
-        )
-      })}
-    </svg>
+  <div className="space-y-4 p-4">
+  {rows.map((row) => (
+  <div key={row.label} className="bg-white p-4 rounded-lg shadow-sm">
+  <div className="flex items-center justify-between mb-2">
+  <p className="text-sm font-medium text-gray-800">{row.label}</p>
+  <span className="text-sm font-semibold">{Math.round(row.percentage)}%</span>
+  </div>
+  
+  
+  {/* shadcn style progress bar */}
+  <div className="w-full h-3 bg-gray-200 rounded-full overflow-hidden">
+  <div
+  className="h-full rounded-full transition-all"
+  style={{ width: `${row.percentage}%`, background: row.color }}
+  />
+  </div>
+  </div>
+  ))}
+  </div>
   )
-}
-
-export default function VisxDonutChart({ data, margin }: VisxDonutChartProps) {
-   
-
-  return (
-    <div className="w-full rounded-lg border bg-card p-4" style={{ borderColor: "var(--color-border)" }}>
-      <div style={{ width: "100%", position: "relative" }}>
-        <ParentSize>
-          {({ width, height }) => <DonutChartSvg data={data} width={width} height={height} margin={margin}  />}
-        </ParentSize>
-      </div>
-    </div>
-  )
-}
+  }

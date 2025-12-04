@@ -26,13 +26,13 @@ export function SearchBar() {
   const [showMobileSearch, setShowMobileSearch] = useState(false);
   const [localFilters, setLocalFilters] = useState(filters);
   const handleSearch = async () => {
-    console.log("handle search");
+    //console.log("handle search");
     setIsLoading(true);
     setFilters(localFilters);
-    console.log(filters);
+    //console.log(filters);
 
     await router.push("/search");
-    console.log("pushed");
+    //console.log("pushed");
     setIsLoading(false);
   };
 
