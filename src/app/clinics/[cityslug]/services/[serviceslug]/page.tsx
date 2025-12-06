@@ -49,7 +49,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 animate-fade-in">
           {filteredClinics.map((clinic, index) => (
             <div key={index} style={{ animationDelay: `${index * 50}ms` }}>
-              <Card className="h-full relative pb-[60px] shadow-none group transition-all duration-300 rounded-27 border border-[var(--alto)] cursor-pointer">
+              <Card className="rounded-lg h-full relative pb-[60px] shadow-none group transition-all duration-300 rounded-27 border border-[var(--alto)] cursor-pointer">
                 <CardHeader className="pb-0 px-2">
                   <div className="flex items-start gap-4">
                     <div className="text-center flex-1 min-w-0 items-center flex flex-col">
@@ -140,7 +140,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                       </div>
                     </div>
                   <Link 
-                    href={`/clinics/${clinic.City}/${clinic.slug}`}
+                    href={`/clinics/${clinic.City}/clinic/${clinic.slug}`}
                     className="mt-6 absolute left-4 right-4 bottom-4 flex border rounded-lg font-weight px-4 py-2 bg-black align-items-center justify-center text-white hover:bg-white hover:text-black"
                   >
                     Contact
