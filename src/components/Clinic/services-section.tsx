@@ -71,7 +71,7 @@ export function ServicesSection({ clinic }: ServicesSectionProps) {
       { clusters.length !== 0 && (
       <Card>
         <CardHeader>
-          <CardTitle className="text-lg">Sections</CardTitle>
+          <CardTitle className="text-xl">Sections</CardTitle>
         </CardHeader>
         <CardContent>
           <Accordion type="multiple" className="space-y-3">

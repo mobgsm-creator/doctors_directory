@@ -82,6 +82,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                 ({practitioner.reviewCount} reviews)
               </span>
             </div>
+            
           </div>
         </div>
       </CardHeader>

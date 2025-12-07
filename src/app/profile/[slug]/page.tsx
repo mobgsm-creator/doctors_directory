@@ -1,16 +1,16 @@
-import { notFound } from "next/navigation"
-import Link from "next/link"
-import { ArrowLeft, MessageSquare } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { ProfileHeader } from "@/components/Practitioner/profile-header"
-import { ReviewCard } from "@/components/review-card"
-import { GoogleMapsEmbed } from "@/components/gmaps-embed"
-import { boxplotDatas_clinic } from "@/lib/data"
-import { BoxPlotDatum, ItemMeta } from "@/lib/types"
-import { Stats } from "@/components/visx-donut"
-import { ServicesSection } from "@/components/Clinic/services-section"
-import ClinicDetailsMarkdown from "@/components/Practitioner/practitionerDetailsMD"
-import { Clinic, Practitioner } from "@/lib/types"
+import { notFound } from "next/navigation";
+import Link from "next/link";
+import { ArrowLeft, MessageSquare } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { ProfileHeader } from "@/components/Practitioner/profile-header";
+import { ReviewCard } from "@/components/review-card";
+import { GoogleMapsEmbed } from "@/components/gmaps-embed";
+import { boxplotDatas_clinic } from "@/lib/data";
+import { BoxPlotDatum, ItemMeta } from "@/lib/types";
+import { Stats } from "@/components/visx-donut";
+import { ServicesSection } from "@/components/Clinic/services-section";
+import ClinicDetailsMarkdown from "@/components/Practitioner/practitionerDetailsMD";
+import { Clinic, Practitioner } from "@/lib/types";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -18,47 +18,42 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
+} from "@/components/ui/breadcrumb";
 import fs from "fs";
-import path from 'path';
+import path from "path";
 
 function mergeBoxplotDataFromDict(
   base: BoxPlotDatum[],
   incoming: Record<string, ItemMeta>
 ): BoxPlotDatum[] {
-  return base.map(datum => {
-    const match = incoming[datum.label]
-    const result = { ...datum, item: { ...datum.item, ...match } }
-    return result
-  })
+  return base.map((datum) => {
+    const match = incoming[datum.label];
+    const result = { ...datum, item: { ...datum.item, ...match } };
+    return result;
+  });
 }
 
 interface ProfilePageProps {
   params: {
-    slug: string
-  }
+    slug: string;
+  };
 }
 
 export default async function ProfilePage({ params }: ProfilePageProps) {
-  const filePath = path.join(process.cwd(), 'public', 'derms_processed.json');
-  const fileContents = fs.readFileSync(filePath, 'utf-8');
+  const filePath = path.join(process.cwd(), "public", "derms_processed.json");
+  const fileContents = fs.readFileSync(filePath, "utf-8");
   const clinics: Practitioner[] = JSON.parse(fileContents);
   const { slug } = params;
-  const clinic = clinics.find(p => p.practitioner_name === slug);
+  const clinic = clinics.find((p) => p.practitioner_name === slug);
   //console.log(clinic)
-
 
   const boxplotData = mergeBoxplotDataFromDict(
     boxplotDatas_clinic,
     clinic?.weighted_analysis ?? {}
-  )
-  
-  
-  
-  
+  );
 
   if (!clinic) {
-    notFound()
+    notFound();
   }
 
   return (
@@ -74,47 +69,30 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
           </Link>
         </div>
       </div>
-      
+
       <div className="container mx-auto max-w-6xl px-4 py-8 space-y-8">
         {/* Profile Header */}
         <ProfileHeader clinic={clinic} />
-       
+
         <Stats data={boxplotData} />
 
+        <ClinicDetailsMarkdown clinic={clinic} />
 
-  
-      <ClinicDetailsMarkdown clinic={clinic} />
-    
+        <ServicesSection clinic={clinic} />
         
-        
-      <ServicesSection clinic={clinic} />
-      <div className='flex flex-col sm:flex-row gap-2'>
-          {clinic.gmapsReviews &&
-           <div className="grid gap-6 h-113 overflow-auto">
-
-
-
-                {clinic.gmapsReviews.map((review, index) => (
-
-
-                  <ReviewCard key={index} review={review} />
-
-
-                ))}
-
-
-              </div> }
-              <GoogleMapsEmbed
-          url={clinic.url!}
-          
-          className="w-full h-80"
-        /></div>
+        <div className="flex flex-col sm:flex-row gap-2">
+          {clinic.gmapsReviews && (
+            <div className="grid gap-6 h-113 overflow-auto">
+              {clinic.gmapsReviews.map((review, index) => (
+                <ReviewCard key={index} review={review} />
+              ))}
+            </div>
+          )}
+          <GoogleMapsEmbed url={clinic.url!} className="w-full h-80" />
+        </div>
       </div>
-
-      
-      
     </main>
-  )
+  );
 }
 
 // export async function generateStaticParams() {
@@ -127,23 +105,22 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
 //   }));
 // }
 
-
 export async function generateMetadata({ params }: ProfilePageProps) {
-  const filePath = path.join(process.cwd(), 'public', 'derms_processed.json');
-  const fileContents = fs.readFileSync(filePath, 'utf-8');
+  const filePath = path.join(process.cwd(), "public", "derms_processed.json");
+  const fileContents = fs.readFileSync(filePath, "utf-8");
   const clinics: Practitioner[] = JSON.parse(fileContents);
-  const clinic = clinics.find((p) => p.practitioner_name === params.slug)
+  const clinic = clinics.find((p) => p.practitioner_name === params.slug);
 
   if (!clinic) {
     return {
       title: "Practitioner Not Found",
-    }
+    };
   }
 
-  const clinicName = clinic.practitioner_name
+  const clinicName = clinic.practitioner_name;
 
   return {
     title: `${clinicName} - Healthcare Directory`,
     description: `View the profile of ${clinicName}, a qualified ${clinic.practitioner_title} offering professional healthcare services. Read reviews and book appointments.`,
-  }
+  };
 }
