@@ -37,6 +37,10 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                 width={150}
                 height={150}
                 className="object-cover rounded-full min-w-full min-h-full"
+                onError={(e) => {
+    e.currentTarget.onerror = null; // prevent infinite loop
+    e.currentTarget.src = "/directory/images/doc.png";
+  }}
               />
             </div>
             <h3 className="mb-4 flex align-items-center justify-center font-semibold text-lg transition-colors text-balance">

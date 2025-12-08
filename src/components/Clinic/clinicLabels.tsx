@@ -5,7 +5,7 @@ export default function ClinicLabels({ clinic }: { clinic: Clinic }) {
     <div className="flex justify-center align-items-center gap-2 flex-col">
       {clinic.isDoctor && (
        <div className="flex items-center gap-1 text-green-600"><span>
-                    <Award className="w-4 h-4" />Certified Medic</span>
+                    Certified Medic</span>
                   </div>   
       )}
       <div className="flex gap-2 items-center justify-center">

@@ -36,6 +36,7 @@ export function ProfileHeader({ clinic }: ProfileHeaderProps) {
               src={clinic.image.replace("&w=256&q=75", "") || "/placeholder.svg"}
               alt={"/placeholder.svg"}
               className="rounded-full flex object-cover min-w-full min-h-full w-[180px] h-[180px] md:w-[240px] md:h-[240px]"
+              
             />
           </div>
 

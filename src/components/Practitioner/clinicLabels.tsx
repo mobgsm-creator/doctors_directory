@@ -34,7 +34,7 @@ export default function ClinicLabels({ clinic }: { clinic: Clinic }) {
                 )}
               {clinic.isDoctor && (
                <div className="flex items-center gap-1 text-green-600"><span>
-                    <Hospital className="w-4 h-4" />Certified Medic</span>
+                    Certified Medic</span>
                   </div>  
                 )}
                   </div>

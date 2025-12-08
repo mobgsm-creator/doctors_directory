@@ -48,6 +48,7 @@ export function ProfileHeader({ clinic }: ProfileHeaderProps) {
                     src={clinic.image.replace("&w=256&q=75", "") || "/placeholder.svg"}
                     alt={practitionerName}
                     className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    
                   />
                 </div>
                 
@@ -59,8 +60,8 @@ export function ProfileHeader({ clinic }: ProfileHeaderProps) {
               <div className="mt-4 flex flex-col items-center xl:items-start gap-2">
                 <div className="flex items-center gap-1">
                   <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
-                  <span className="text-sm font-medium text-slate-700">4.9</span>
-                  <span className="text-xs text-slate-500">(127 reviews)</span>
+                  <span className="text-sm font-medium text-slate-700">{clinic.rating}</span>
+                  <span className="text-xs text-slate-500">({clinic.reviewCount})</span>
                 </div>
                 <Badge variant="secondary" className="bg-emerald-50 text-emerald-700 border-emerald-200">
                   Available Today
