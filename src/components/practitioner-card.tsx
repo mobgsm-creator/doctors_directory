@@ -128,7 +128,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
             "practitioner_image_link" in practitioner &&
             practitioner.practitioner_name
               ? `/profile/${practitioner.practitioner_name}`
-              : `/clinics/${(practitioner as Clinic).City}/${practitioner.slug}`
+              : `/clinics/${(practitioner as Clinic).City}/clinic/${practitioner.slug}`
           }
           className="mt-6 absolute left-4 right-4 bottom-4 flex border rounded-lg font-weight px-4 py-2 bg-black align-items-center justify-center text-white hover:bg-white hover:text-black"
         >

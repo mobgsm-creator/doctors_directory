@@ -8,7 +8,6 @@ import { GoogleMapsEmbed } from "@/components/gmaps-embed";
 import { boxplotDatas_clinic } from "@/lib/data";
 import { BoxPlotDatum, ItemMeta } from "@/lib/types";
 import { Stats } from "@/components/visx-donut";
-import { ServicesSection } from "@/components/Clinic/services-section";
 import ClinicDetailsMarkdown from "@/components/Clinic/clinicDetailsMD";
 import { Clinic } from "@/lib/types";
 import fs from "fs";
@@ -72,7 +71,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
           <div className="col-span-1 lg:col-span-6">
             <ClinicDetailsMarkdown clinic={clinic} />
 
-            <ServicesSection clinic={clinic} />
+ 
           </div>
 
           <div className="col-span-1 lg:col-span-4">

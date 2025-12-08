@@ -47,7 +47,7 @@ export default function PractitionerDetailsSections({ clinic }: { clinic: Practi
   return (
     <div className="bg-white rounded-2xl shadow-sm p-6 border border-border/20">
       {/* Roles */}
-      <PractitionerTabs />
+
       <Section title="Roles" id='roles'>
         {parseList(fixPythonArrayString(clinic.practitioner_roles)).length ? (
           <ul className="list-disc ml-6 space-y-1">

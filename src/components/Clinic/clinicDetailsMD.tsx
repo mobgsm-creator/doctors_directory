@@ -33,14 +33,14 @@ export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
   return (
     <div className="">
       {/* ABOUT */}
-      <Section title="About">
+      <Section title="About" id='about'>
         {clinic.about_section || "Not publicly listed"}
       </Section>
 
       <div className="border-t border-gray-300 my-6"></div>
 
       {/* ACCREDITATIONS */}
-      <Section title="Accreditations">
+      <Section title="Accreditations" id='accreditations'>
         {parseList(clinic.accreditations).length ? (
           <ul className="list-disc ml-6 space-y-1">
             {parseList(clinic.accreditations).map((a: string, i: number) => (
@@ -55,7 +55,7 @@ export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
       <div className="border-t border-gray-300 my-6"></div>
 
       {/* AWARDS */}
-      <Section title="Awards">
+      <Section title="Awards" id='awards'>
         {parseList(clinic.awards).length ? (
           <ul className="list-disc ml-6 space-y-1">
             {parseList(clinic.awards).map((a: string, i: number) => (
@@ -70,7 +70,7 @@ export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
       <div className="border-t border-gray-300 my-6"></div>
 
       {/* AFFILIATIONS */}
-      <Section title="Affiliations">
+      <Section title="Affiliations" id='affiliations'>
         {parseList(clinic.affiliations).length ? (
           <ul className="list-disc ml-6 space-y-1">
             {parseList(clinic.affiliations).map((a: string, i: number) => (
@@ -86,7 +86,7 @@ export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
 
       {/* HOURS */}
       {clinic.hours && typeof clinic.hours === "object" && (
-        <Section title="Hours">
+        <Section title="Hours" id='hours'>
           <div className="overflow-x-auto shadow-none">
             <table className="w-full text-sm bg-white border-collapse">
               <tbody>
@@ -107,7 +107,7 @@ export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
       )}
 
       {/* INSURANCE */}
-      <Section title="Insurance Accepted">
+      <Section title="Insurance Accepted" id='insurance'>
         {Array.isArray(clinic.Insurace) ? (
           <ul className="list-disc ml-6 space-y-1">
             {clinic.Insurace.map((i: any, idx: number) => (
@@ -137,7 +137,7 @@ export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
       <div className="border-t border-gray-300 my-6"></div>
 
       {/* PAYMENTS */}
-      <Section title="Payment Options">
+      <Section title="Payment Options" id='payments'>
         {Array.isArray(clinic.Payments) ? (
           <ul className="list-disc ml-6 space-y-1">
             {clinic.Payments.map((p: any, idx: number) => (
@@ -167,7 +167,7 @@ export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
       <div className="border-t border-gray-300 my-6"></div>
 
       {/* FEES */}
-      <Section title="Estimated Fees">
+      <Section title="Estimated Fees" id='fees'>
         {clinic.Fees && typeof clinic.Fees === "object" ? (
           <div className="overflow-x-auto shadow-none">
             <table className="w-full text-sm bg-white">

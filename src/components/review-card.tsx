@@ -29,7 +29,7 @@ export function ReviewCard({ review }: ReviewCardProps) {
       <CardHeader className="pb-4">
         <div className="flex items-start gap-4">
           <img
-            src={review.reviewer_name ? "/googlemaps.png" : "/doctify.jpg"}
+            src={review.reviewer_name ? "/directory/googlemaps.png" : "/directory/doctify.jpg"}
             alt="Label"
             width={40}
             height={40}
