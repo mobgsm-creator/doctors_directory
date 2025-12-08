@@ -43,14 +43,14 @@ export function ProfileHeader({ clinic }: ProfileHeaderProps) {
           <div className="gap-0 flex items-center md:items-start flex-col sm:ml-4 ">
             
             <div className="flex w-full md:w-auto flex-col gap-2 mb-4 items-center md:items-start">
-                <h1 className="mb-1 flex align-items-center justify-center font-semibold text-lg transition-colors text-balance">
+                <h1 className="mb-1 flex align-items-center justify-center font-semibold text-2xl transition-colors text-balance text-center md:text-left">
                   {practitionerName}
                 </h1>
                 <ClinicLabels clinic={clinic} />
             </div>
             
             <div className="flex flex-row gap-2 mb-2 items-center">
-              <p className="text-pretty">
+              <p className="text-pretty font-medium">
                   {roleTitle}
               </p>
             </div>

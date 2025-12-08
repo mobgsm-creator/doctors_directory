@@ -36,16 +36,16 @@ export default function PractitionerDetailsSections({ clinic }: { clinic: Practi
 
   const Section = ({ id, title, children }: any) => (
     <section id={id} className="mb-10">
-      <h2 className="text-xl font-semibold text-foreground border-b border-border/30 pb-2 mb-4">
+      <h2 className="text-xl font-semibold mb-4">
         {title}
       </h2>
-      <div className="text-muted-foreground text-base leading-7">{children}</div>
+      <div className="text-base leading-7">{children}</div>
     </section>
   )
   
 
   return (
-    <div className="bg-white rounded-2xl shadow-sm p-6 border border-border/20">
+    <div>
       {/* Roles */}
 
       <Section title="Roles" id='roles'>
@@ -59,7 +59,7 @@ export default function PractitionerDetailsSections({ clinic }: { clinic: Practi
           "Not publicly listed"
         )}
       </Section>
-
+      <div className="border-t border-gray-300 my-6"></div>
       {/* Qualifications */}
       <Section title="Qualifications" id='qualifications'>
         {parseList(fixPythonArrayString(clinic.practitioner_qualifications)).length ? (
@@ -72,6 +72,7 @@ export default function PractitionerDetailsSections({ clinic }: { clinic: Practi
           "Not publicly listed"
         )}
       </Section>
+      <div className="border-t border-gray-300 my-6"></div>
       {/* Experience */}
       <Section title="Experience" id='experience'>
         {parseList(fixPythonArrayString(clinic.practitioner_experience)).length ? (
@@ -84,6 +85,7 @@ export default function PractitionerDetailsSections({ clinic }: { clinic: Practi
           "Not publicly listed"
         )}
       </Section>
+      <div className="border-t border-gray-300 my-6"></div>
       {/* News */}
       <Section title="News" id='news'>
         {parseList(fixPythonArrayString(clinic.practitioner_media)).length ? (
@@ -96,6 +98,7 @@ export default function PractitionerDetailsSections({ clinic }: { clinic: Practi
           "Not publicly listed"
         )}
       </Section>
+      <div className="border-t border-gray-300 my-6"></div>
       {/* AWARDS */}
       <Section title="Awards" id='awards'>
         {parseList(fixPythonArrayString(clinic.practitioner_awards)).length ? (
@@ -108,18 +111,17 @@ export default function PractitionerDetailsSections({ clinic }: { clinic: Practi
           "Not publicly listed"
         )}
       </Section>
-
-
+      <div className="border-t border-gray-300 my-6"></div>
       {/* HOURS */}
       {clinic.hours && typeof clinic.hours === "object" && (
         <Section title="Hours" id='hours'>
-          <div className="overflow-x-auto rounded-xl border border-gray-200 shadow-sm">
+          <div className="overflow-x-auto shadow-none">
             <table className="w-full text-sm bg-white border-collapse">
               <tbody>
                 {Object.entries(clinic.hours).map(([day, time]) => (
                   <tr key={day}>
-                    <td className="border border-gray-200 px-4 py-2 font-medium text-foreground">{day?.toString()}</td>
-                    <td className="border border-gray-200 px-4 py-2 text-muted-foreground">{time?.toString()}</td>
+                    <td className="border border-gray-200 px-4 py-2 font-medium ">{day?.toString()}</td>
+                    <td className="border border-gray-200 px-4 py-2 ">{time?.toString()}</td>
                   </tr>
                 ))}
               </tbody>
@@ -127,7 +129,6 @@ export default function PractitionerDetailsSections({ clinic }: { clinic: Practi
           </div>
         </Section>
       )}
-
       {/* INSURANCE */}
       <Section title="Insurance Accepted" id='insurance'>
         {Array.isArray(clinic.Insurace) ? (
@@ -153,7 +154,7 @@ export default function PractitionerDetailsSections({ clinic }: { clinic: Practi
           clinic.Insurace || "Not listed"
         )}
       </Section>
-
+      <div className="border-t border-gray-300 my-6"></div>
       {/* PAYMENTS */}
       <Section title="Payment Options" id='payments'>
         {Array.isArray(clinic.Payments) ? (
@@ -179,11 +180,11 @@ export default function PractitionerDetailsSections({ clinic }: { clinic: Practi
           clinic.Payments || "Not listed"
         )}
       </Section>
-
+      <div className="border-t border-gray-300 my-6"></div>
       {/* FEES */}
       <Section title="Estimated Fees" id='fees'>
         {clinic.Fees && typeof clinic.Fees === "object" ? (
-          <div className="overflow-x-auto rounded-xl border border-gray-200 shadow-sm">
+          <div className="overflow-x-auto shadow-none">
             <table className="w-full text-sm bg-white">
               <tbody>
                 {Object.entries(clinic.Fees).map(([k, v]) => (
