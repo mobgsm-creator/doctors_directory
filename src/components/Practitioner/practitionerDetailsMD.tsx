@@ -51,7 +51,7 @@ export default function PractitionerDetailsSections({ clinic }: { clinic: Practi
       <Section title="Roles" id='roles'>
         {parseList(fixPythonArrayString(clinic.practitioner_roles)).length ? (
           <ul className="list-disc ml-6 space-y-1">
-            {parseList(fixPythonArrayString(clinic.accreditations)).map((a:string, i:number) => (
+            {parseList(fixPythonArrayString(clinic.practitioner_roles)).map((a:string, i:number) => (
               <li key={i}>{a}</li>
             ))}
           </ul>

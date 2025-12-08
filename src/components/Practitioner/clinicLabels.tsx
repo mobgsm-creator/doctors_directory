@@ -1,4 +1,5 @@
 import { Clinic } from "@/lib/types";
+import  { Hospital} from "lucide-react";
 export default function ClinicLabels({ clinic }: { clinic: Clinic }) {
     return (
         <div className="flex flex-row gap-2">
@@ -32,7 +33,9 @@ export default function ClinicLabels({ clinic }: { clinic: Clinic }) {
                 <img src="/directory/save-face-partner.jpg" alt="Save Face" className="w-8 h-8 rounded-full" />
                 )}
               {clinic.isDoctor && (
-               <div className="inline-block px-3 py-1 rounded-full shadow-sm bg-green-800 text-white text-xs">Licensed Medic On-Site</div>
+               <div className="flex items-center gap-1 text-green-600"><span>
+                    <Hospital className="w-4 h-4" />Certified Medic</span>
+                  </div>  
                 )}
                   </div>
     )}

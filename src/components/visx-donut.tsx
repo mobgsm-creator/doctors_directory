@@ -20,16 +20,16 @@ export function Stats({ data }: VisxDonutChartProps) {
   const height = screenwidth > 640 ? 200 : 400;
 
   const categoryColorByLabel: Record<string, string> = {
-    "Clinical Expertise": "#B5E3E8",
+    "Clinical Expertise": "#F5F1EB",
     Communication: "#F7C59F",
-    "Treatment Results": "#F8B883",
+    "Treatment Results": "#EFE5DB",
     "Bedside Manner": "#A8E6CF",
     "Trust & Safety": "#B3D9FF",
-    Environment: "#C7E8AC",
+    Environment: "#F2EEE5",
     Personalization: "#D7B3E8",
     "Post-Care": "#F5A9C0",
     Professionalism: "#B4D6A8",
-    "Staff Support": "#D4B3E8",
+    "Staff Support": "#F1EAE1",
     "Value & Transparency": "#FFD6A5",
     "Pain Management & Comfort": "#E8B5D3",
     "Anxiety & Nervousness Management": "#D2E8B5",

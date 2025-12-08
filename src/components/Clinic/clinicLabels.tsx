@@ -1,11 +1,12 @@
 import { Clinic } from "@/lib/types";
+import  { Award } from "lucide-react";
 export default function ClinicLabels({ clinic }: { clinic: Clinic }) {
   return (
     <div className="flex justify-center align-items-center gap-2 flex-col">
       {clinic.isDoctor && (
-        <div className="inline-block px-3 py-1 rounded-full bg-green-100 text-green-800 border border-green-300 text-xs">
-          Licensed Medical Practitioner
-        </div>      
+       <div className="flex items-center gap-1 text-green-600"><span>
+                    <Award className="w-4 h-4" />Certified Medic</span>
+                  </div>   
       )}
       <div className="flex gap-2 items-center justify-center">
         {clinic.isCQC?.[0] && (
