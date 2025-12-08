@@ -900,7 +900,7 @@ export default function HomePage() {
             
           </div>
           <div className="relative flex flex-col items-center justify-center">
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 justify-items-center items-center gap-4 pb-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 justify-items-center items-center gap-4 pb-4 w-full">
               {treatments.map((treatment, index) => (
                 <div key={index} className="flex-shrink-0">
                   <img

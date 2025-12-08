@@ -20,22 +20,22 @@ export function Stats({ data }: VisxDonutChartProps) {
   const height = screenwidth > 640 ? 200 : 400;
 
   const categoryColorByLabel: Record<string, string> = {
-    "Clinical Expertise": "#F5F1EB",
-    Communication: "#F7C59F",
-    "Treatment Results": "#EFE5DB",
-    "Bedside Manner": "#A8E6CF",
-    "Trust & Safety": "#B3D9FF",
-    Environment: "#F2EEE5",
-    Personalization: "#D7B3E8",
-    "Post-Care": "#F5A9C0",
-    Professionalism: "#B4D6A8",
-    "Staff Support": "#F1EAE1",
-    "Value & Transparency": "#FFD6A5",
-    "Pain Management & Comfort": "#E8B5D3",
-    "Anxiety & Nervousness Management": "#D2E8B5",
-    "Booking & Accessibility": "#FFE5A5",
-    "Honesty & Realistic Expectations": "#C5C8F5",
-    "Long-term Relationship & Loyalty": "#F5B5B5",
+    "Clinical Expertise": "#C7EAEF",
+    Communication: "#F2B26E",
+    "Treatment Results": "#C4DFA7",
+    "Bedside Manner": "#D3A9CF",
+    "Trust & Safety": "#F5D1CC",
+    Environment: "#E8D6F7",
+    Personalization: "#F7E3A1",
+    "Post-Care": "#C9F2E7",
+    Professionalism: "#F8C8DC",
+    "Staff Support": "#D0E4F5",
+    "Value & Transparency": "#F6E8C5",
+    "Pain Management & Comfort": "#DFE8C9",
+    "Anxiety & Nervousness Management": "#F4CBB7",
+    "Booking & Accessibility": "#E6CBDC",
+    "Honesty & Realistic Expectations": "#C8D7E1",
+    "Long-term Relationship & Loyalty": "#FFE6F2",
   };
   
 

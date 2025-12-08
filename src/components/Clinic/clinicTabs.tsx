@@ -1,7 +1,6 @@
 "use client";
 
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-
 export default function ClinicTabs() {
   const sections = [
     { id: "about", label: "About" },
@@ -30,7 +29,7 @@ export default function ClinicTabs() {
                   block: "start",
                 });
               }}
-              className="capitalize"
+              className="capitalize data-[state=active]:font-bold data-[state=active]:shadow-none"
             >
               {s.label}
             </TabsTrigger>

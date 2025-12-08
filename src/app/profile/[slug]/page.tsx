@@ -74,16 +74,13 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
         {/* Profile Header */}
         <ProfileHeader clinic={clinic} />
         <PractitionerTabs />
-        
-                <div className="grid grid-cols-1 gap-8 lg:grid-cols-10">
-                  <div className="col-span-1 lg:col-span-6">
-                    <ClinicDetailsMarkdown clinic={clinic} />
-        
-         
-                  </div>
-                  <div className="col-span-1 lg:col-span-4">
+
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-10">
+          <div className="col-span-1 lg:col-span-6">
+            <ClinicDetailsMarkdown clinic={clinic} />
+          </div>
+          <div className="col-span-1 lg:col-span-4">
             <div className="border border-gray-300 rounded-xl p-6">
-              
               <div className="flex flex-row gap-2 pt-2 mb-4 items-center justify-center text-sm">
                 <div className="inline-flex items-center gap-1">
                   <div className="flex items-center">
@@ -113,12 +110,11 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
               </div>
               <div className="border-t border-gray-300 my-6"></div>
               <Stats data={boxplotData} />
-            
             </div>
           </div>
         </div>
 
-       <div className="flex flex-col md:flex-row gap-6">
+        <div className="flex flex-col md:flex-row gap-6">
           {clinic.gmapsReviews && (
             <div className="grid gap-6 h-full md:h-113 overflow-auto">
               {clinic.gmapsReviews.map((review, index) => (
@@ -126,7 +122,10 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
               ))}
             </div>
           )}
-          <GoogleMapsEmbed url={clinic.url!} className="w-full h-full md:h-80" />
+          <GoogleMapsEmbed
+            url={clinic.url!}
+            className="w-full h-full md:h-80"
+          />
         </div>
       </div>
     </main>
