@@ -23,51 +23,57 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
         .join(" ");
 
   return (
-    <Card className="relative pb-[60px] shadow-none group transition-all duration-300 rounded-27 border border-[var(--alto)] cursor-pointer">
-      <CardHeader className="pb-0 px-2">
+    <Card className="gap-0 relative px-4 md:px-0 shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border-t-[1px] rounded-27 md:border md:border-[var(--alto)] cursor-pointer">
+      
+      <CardHeader className="pb-4 px-2">
         <div className="flex items-start gap-4">
           <div className="text-center flex-1 min-w-0 items-center flex flex-col">
-            <div className="w-[150px] h-[150px] flex items-center justify-center overflow-hidden rounded-full bg-gray-300 mb-3">
-              <img
-                src={
-                  practitioner.image.replace("&w=256&q=75", "") ||
-                  "/placeholder.svg"
-                }
-                alt="Profile photo"
-                width={150}
-                height={150}
-                className="object-cover rounded-full min-w-full min-h-full"
-                onError={(e) => {
-    e.currentTarget.onerror = null; // prevent infinite loop
-    e.currentTarget.src = "/directory/images/doc.png";
-  }}
-              />
+            <div className="flex w-full flex-row items-start border-b border-[#C4C4C4] md:border-0 md:flex-col md:items-center">
+              <div className="w-[80px] h-[80px] md:w-[150px] md:h-[150px] flex items-center justify-center overflow-hidden rounded-full bg-gray-300 mb-3 mr-4 md:mr-0">
+                <img
+                  src={
+                    practitioner.image.replace("&w=256&q=75", "") ||
+                    "/placeholder.svg"
+                  }
+                  alt="Profile photo"
+                  width={150}
+                  height={150}
+                  className="object-cover rounded-full min-w-full min-h-full"
+                  onError={(e) => {
+                    e.currentTarget.onerror = null; // prevent infinite loop
+                    e.currentTarget.src = "/directory/images/doc.png";
+                  }}
+                />
+              </div>
+
+              <div className="flex items-start md:items-center flex-col">
+                <h3 className="mb-2 md:mb-4 flex text-left md:text-center md:align-items-center md:justify-center font-semibold text-md md:text-lg transition-colors text-balance">
+                  {practitionerName}
+                </h3>
+
+                {!("profession" in practitioner) && (
+                  <>
+                    <ClinicLabels clinic={practitioner} />
+                  </>
+                )}
+
+                {"practitioner_image_link" in practitioner &&
+                  practitioner.practitioner_name && (
+                    <p className="text-muted-foreground mb-2 text-pretty">
+                      {practitioner.practitioner_title.trim()}
+                    </p>
+                  )}
+
+                {!("practitioner_image_link" in practitioner) &&
+                  practitioner.category && (
+                    <p className="pt-2 mb-2 text-pretty">
+                      {practitioner.category.trim()}
+                    </p>
+                  )}
+              </div>
             </div>
-            <h3 className="mb-4 flex align-items-center justify-center font-semibold text-lg transition-colors text-balance">
-              {practitionerName}
-            </h3>
 
-            {!("profession" in practitioner) && (
-              <>
-                <ClinicLabels clinic={practitioner} />
-              </>
-            )}
-
-            {"practitioner_image_link" in practitioner &&
-              practitioner.practitioner_name && (
-                <p className="text-muted-foreground mb-2 text-pretty">
-                  {practitioner.practitioner_title.trim()}
-                </p>
-              )}
-
-            {!("practitioner_image_link" in practitioner) &&
-              practitioner.category && (
-                <p className="pt-2 mb-2 text-pretty">
-                  {practitioner.category.trim()}
-                </p>
-              )}
-
-            <div className="flex flex-row gap-2 pt-3 items-center text-sm">
+            <div className="flex flex-row gap-2 pt-3 items-center justify-start md:justify-center w-full text-sm">
               <div className="inline-flex items-center gap-1">
                 <div className="flex items-center">
                   {Array.from({ length: 5 }, (_, i) => (
@@ -75,7 +81,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                       key={i}
                       className={`h-4 w-4 ${
                         i < practitioner.rating
-                          ? "fill-yellow-400 text-yellow-400"
+                          ? "fill-black text-black"
                           : "text-muted-foreground/30"
                       }`}
                     />
@@ -86,22 +92,35 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                 ({practitioner.reviewCount} reviews)
               </span>
             </div>
-            
           </div>
         </div>
       </CardHeader>
 
-      <CardContent className="pt-0 space-y-4">
+      <CardContent className="pt-0 px-0 md:px-4 space-y-4">
         <div className="flex items-start gap-2 text-sm">
-          <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0" />
+          <MapPin className="h-4 w-4 mt-0 flex-shrink-0" />
           <span className="text-pretty">{practitioner.gmapsAddress}</span>
         </div>
+
+        <Link
+          href={
+            "practitioner_image_link" in practitioner &&
+            practitioner.practitioner_name
+              ? `/profile/${practitioner.practitioner_name}`
+              : `/clinics/${(practitioner as Clinic).City}/clinic/${
+                  practitioner.slug
+                }`
+          }
+          className="mt-4 mb-0 flex border rounded-lg font-weight px-4 py-2 bg-black align-items-center justify-center text-white hover:bg-white hover:text-black"
+        >
+          Contact
+        </Link>
 
         {practitioner.reviewAnalysis?.procedures_offered?.categories.length! >
           0 && null}
 
         <div>
-          <div className="flex flex-wrap gap-1">
+          <div className="flex flex-wrap gap-1 pt-4">
             {true &&
               practitioner.reviewAnalysis?.procedures_offered?.categories
                 .slice(0, 2)
@@ -127,17 +146,6 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
               )}
           </div>
         </div>
-        <Link
-          href={
-            "practitioner_image_link" in practitioner &&
-            practitioner.practitioner_name
-              ? `/profile/${practitioner.practitioner_name}`
-              : `/clinics/${(practitioner as Clinic).City}/clinic/${practitioner.slug}`
-          }
-          className="mt-6 absolute left-4 right-4 bottom-4 flex border rounded-lg font-weight px-4 py-2 bg-black align-items-center justify-center text-white hover:bg-white hover:text-black"
-        >
-          Contact
-        </Link>
       </CardContent>
     </Card>
   );
