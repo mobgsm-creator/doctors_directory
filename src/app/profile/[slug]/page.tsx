@@ -21,7 +21,16 @@ import {
 import fs from "fs";
 import path from "path";
 import PractitionerTabs from "@/components/Practitioner/PractitionerTabs";
-
+const Section = ({ id, title, children }: any) => (
+    <section id={id} className="mb-6">
+      <h2 className="text-xl font-semibold text-foreground mb-4">
+        {title}
+      </h2>
+      <div className="text-base leading-7">
+        {children}
+      </div>
+    </section>
+  );
 function mergeBoxplotDataFromDict(
   base: BoxPlotDatum[],
   incoming: Record<string, ItemMeta>
@@ -46,6 +55,9 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
   const { slug } = params;
   const clinic = clinics.find((p) => p.practitioner_name === slug);
   //console.log(clinic)
+  const hoursObj = clinic?.hours as unknown as Record<string, any>;
+  const hours = hoursObj["Typical_hours_listed_in_directories"] ?? clinic?.hours;
+
 
   const boxplotData = mergeBoxplotDataFromDict(
     boxplotDatas_clinic,
@@ -110,6 +122,54 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
               </div>
               <div className="border-t border-gray-300 my-6"></div>
               <Stats data={boxplotData} />
+              {hours && typeof hours === "object" && (
+        <Section title="Hours" id='hours'>
+          <div className="overflow-x-auto shadow-none">
+            <table className="w-full text-sm bg-white border-collapse">
+              <tbody>
+                {Object.entries(hours).map(([day, time]) => (
+                  <tr key={day}>
+                    <td className="border border-gray-200 px-4 py-2 font-medium text-foreground">
+                      {day?.toString()}
+                    </td>
+                    <td className="border border-gray-200 px-4 py-2 ">
+                      {time?.toString()}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </Section>
+      )}
+      {/* PAYMENTS */}
+      <Section title="Payment Options" id='payments'>
+        {Array.isArray(clinic.Payments) ? (
+          <ul className="list-disc ml-6 space-y-1">
+            {clinic.Payments.map((p: any, idx: number) => (
+              <li key={idx}>{p}</li>
+            ))}
+          </ul>
+        ) : clinic.Payments && typeof clinic.Payments === "object" ? (
+          <div className="overflow-x-auto shadow-none">
+            <table className="w-full text-sm bg-white">
+              <tbody>
+                {Object.entries(clinic.Payments).map(([k, v]) => (
+                  k !== 'Source' && (
+                  <tr key={k}>
+                    <td className="border px-4 py-2 font-medium">
+                      {k?.toString()}
+                    </td>
+                    <td className="border px-4 py-2">{v?.toString()}</td>
+                  </tr>)
+                ))}
+              </tbody>
+            </table>
+          </div>
+        ) : (
+          clinic.Payments || "Not listed"
+        )}
+      </Section>
             </div>
           </div>
         </div>

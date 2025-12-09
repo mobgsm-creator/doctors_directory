@@ -2,8 +2,7 @@
 // Matching the design shown in the reference image (clean sections, headings, lists, tables)
 
 import { Clinic } from "@/lib/types";
-import { Separator } from "@radix-ui/react-separator";
-import { Divide } from "lucide-react";
+
 
 export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
   const parseList = (val: any) => {
@@ -30,6 +29,8 @@ export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
     </section>
   );
 
+  
+  
   return (
     <div className="">
       {/* ABOUT */}
@@ -84,27 +85,7 @@ export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
 
       <div className="border-t border-gray-300 my-6"></div>
 
-      {/* HOURS */}
-      {clinic.hours && typeof clinic.hours === "object" && (
-        <Section title="Hours" id='hours'>
-          <div className="overflow-x-auto shadow-none">
-            <table className="w-full text-sm bg-white border-collapse">
-              <tbody>
-                {Object.entries(clinic.hours).map(([day, time]) => (
-                  <tr key={day}>
-                    <td className="border border-gray-200 px-4 py-2 font-medium text-foreground">
-                      {day?.toString()}
-                    </td>
-                    <td className="border border-gray-200 px-4 py-2 ">
-                      {time?.toString()}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </Section>
-      )}
+      
 
       {/* INSURANCE */}
       <Section title="Insurance Accepted" id='insurance'>
@@ -119,12 +100,13 @@ export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
             <table className="w-full text-sm bg-white">
               <tbody>
                 {Object.entries(clinic.Insurace).map(([k, v]) => (
+                  k !== 'Source' && (
                   <tr key={k}>
                     <td className="border px-4 py-2 font-medium">
                       {k?.toString()}
                     </td>
                     <td className="border px-4 py-2">{v?.toString()}</td>
-                  </tr>
+                  </tr>)
                 ))}
               </tbody>
             </table>
@@ -136,33 +118,7 @@ export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
 
       <div className="border-t border-gray-300 my-6"></div>
 
-      {/* PAYMENTS */}
-      <Section title="Payment Options" id='payments'>
-        {Array.isArray(clinic.Payments) ? (
-          <ul className="list-disc ml-6 space-y-1">
-            {clinic.Payments.map((p: any, idx: number) => (
-              <li key={idx}>{p}</li>
-            ))}
-          </ul>
-        ) : clinic.Payments && typeof clinic.Payments === "object" ? (
-          <div className="overflow-x-auto shadow-none">
-            <table className="w-full text-sm bg-white">
-              <tbody>
-                {Object.entries(clinic.Payments).map(([k, v]) => (
-                  <tr key={k}>
-                    <td className="border px-4 py-2 font-medium">
-                      {k?.toString()}
-                    </td>
-                    <td className="border px-4 py-2">{v?.toString()}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        ) : (
-          clinic.Payments || "Not listed"
-        )}
-      </Section>
+      
 
       <div className="border-t border-gray-300 my-6"></div>
 
@@ -173,6 +129,7 @@ export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
             <table className="w-full text-sm bg-white">
               <tbody>
                 {Object.entries(clinic.Fees).map(([k, v]) => (
+                  k !== 'Source' && (
                   <tr key={k}>
                     <td className="border px-4 py-2 font-medium">{k}</td>
                     <td className="border px-4 py-2">
@@ -180,7 +137,7 @@ export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
                         ? JSON.stringify(v)
                         : String(v ?? "Not listed")}
                     </td>
-                  </tr>
+                  </tr>)
                 ))}
               </tbody>
             </table>

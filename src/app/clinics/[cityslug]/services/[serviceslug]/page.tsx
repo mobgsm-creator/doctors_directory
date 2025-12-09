@@ -125,7 +125,11 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                               variant="outline"
                               className="text-xs text-wrap"
                             >
-                              {modality.replaceAll('"', "")}
+                              {modality.replaceAll('"', "").split("-")
+                            .map(
+                              (word) => word.charAt(0).toUpperCase() + word.slice(1)
+                            )
+                            .join(" ")}
                             </Badge>
                           ))}
                         {clinic.reviewAnalysis?.procedures_offered.categories
