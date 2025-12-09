@@ -87,12 +87,12 @@ export default async function SearchPage({
             />
           </div>
           <div className="flex flex-row gap-4">
-            <AdvancedFilterSidebar
+            {/* <AdvancedFilterSidebar
               filters={filters}
               onFiltersChange={handleFiltersChange}
               isOpen={showAdvancedFilters}
               onToggle={() => setShowAdvancedFilters(!showAdvancedFilters)}
-            />
+            /> */}
 
             {isPending ? (
               <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">

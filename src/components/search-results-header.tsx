@@ -76,8 +76,8 @@ export function SearchResultsHeader({
         </div>
       </div>
 
-      <div className="flex w-full md:w-auto justify-center items-center gap-2 bg-white p-2 rounded-sm">
-        <Button
+      {/* <div className="flex w-full md:w-auto justify-center items-center gap-2 bg-white p-2 rounded-sm"> */}
+        {/* <Button
           variant="outline"
           size="sm"
           onClick={onToggleFilters}
@@ -93,10 +93,10 @@ export function SearchResultsHeader({
               {activeFiltersCount}
             </Badge>
           )}
-        </Button>
+        </Button> */}
 
         {/* Sort */}
-        <Select value={sortBy} onValueChange={onSortChange}>
+        {/* <Select value={sortBy} onValueChange={onSortChange}>
           <SelectTrigger className="w-40 shadow-none">
             <SelectValue />
           </SelectTrigger>
@@ -105,10 +105,10 @@ export function SearchResultsHeader({
             <SelectItem value="reviews">Most Reviews</SelectItem>
             <SelectItem value="newest">Newest Members</SelectItem>
           </SelectContent>
-        </Select>
+        </Select> */}
 
         {/* View Mode */}
-        <div className="flex border border-border rounded-md">
+        {/* <div className="flex border border-border rounded-md">
           <Button
             variant={viewMode === "grid" ? "default" : "ghost"}
             size="sm"
@@ -117,7 +117,7 @@ export function SearchResultsHeader({
           >
             <Grid className="h-4 w-4" />
           </Button>
-        </div>
+        </div> */}
         <div className="block md:hidden">
           <Button
             onClick={handleToggleFilters}
@@ -126,7 +126,7 @@ export function SearchResultsHeader({
           >
             <Filter className="h-4 w-4" />
           </Button>
-        </div>
+        {/* </div> */}
       </div>
     </div>
   );
