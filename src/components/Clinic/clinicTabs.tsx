@@ -3,6 +3,7 @@
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 export default function ClinicTabs() {
   const sections = [
+    { id: "treatments", label: "Treatments" },
     { id: "about", label: "About" },
     { id: "accreditations", label: "Accreditations" },
     { id: "awards", label: "Awards" },

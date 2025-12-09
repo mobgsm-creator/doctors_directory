@@ -2,7 +2,7 @@
 // Matching the design shown in the reference image (clean sections, headings, lists, tables)
 
 import { Clinic } from "@/lib/types";
-
+import { Badge } from "@/components/ui/badge";
 
 export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
   const parseList = (val: any) => {
@@ -33,6 +33,23 @@ export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
   
   return (
     <div className="">
+      {/* Treatments */}
+      <Section title="Treatmetnts" id='treatmetnts'>
+      <div className="flex flex-wrap gap-1">
+                  {true &&
+                    clinic.reviewAnalysis?.procedures_offered?.categories
+                      .map((modality, index) => (
+                        <Badge key={index} variant="outline" className="text-xs">
+                          {modality
+                            .split(" ") // split into words
+                            .map(
+                              (word) => word.charAt(0).toUpperCase() + word.slice(1)
+                            ) // capitalize each
+                            .join(" ")}
+                        </Badge>
+                      ))}
+                  
+                </div></Section>
       {/* ABOUT */}
       <Section title="About" id='about'>
         {clinic.about_section || "Not publicly listed"}
