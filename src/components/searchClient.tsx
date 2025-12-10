@@ -79,7 +79,7 @@ export default async function SearchPage({
             onClick={handleToggleFilters}
             variant={viewMode === "grid" ? "default" : "ghost"}
             size="sm"
-            className="w-full mt-4 bg-transparent rounded-full border-black border text-black"
+            className="w-full mt-4 bg-transparent rounded-full border-black border text-black hover:bg-transparent"
           >
             Filters
             <Sliders className="h-4 w-4 ml-2" />
