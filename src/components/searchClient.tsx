@@ -15,6 +15,9 @@ import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Clinic, Practitioner } from "@/lib/types";
 import { useSearchStore } from "@/app/stores/datastore";
+import {
+  Sliders
+} from "lucide-react";
 
 const ITEMS_PER_PAGE = 9;
 
@@ -63,10 +66,25 @@ export default async function SearchPage({
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const handleToggleFilters = () => {
+    document.body.classList.toggle("filter-active");
+  };
+
   return (
     <main className="min-h-screen bg-[var(--primary-bg-color)]">
       <div className="py-6 px-4 md:py-12 border-t border-t-[1px]  border-[#C4C4C4] md:border-0">
         <SearchBar />
+        <div className="block md:hidden">
+          <Button
+            onClick={handleToggleFilters}
+            variant={viewMode === "grid" ? "default" : "ghost"}
+            size="sm"
+            className="w-full mt-4 bg-transparent rounded-full border-black border text-black"
+          >
+            Filters
+            <Sliders className="h-4 w-4 ml-2" />
+          </Button>
+      </div>
       </div>
 
       <section className="pt-2 py-10 md:px-4 bg-white md:bg-[var(--primary-bg-color)]">
@@ -86,22 +104,28 @@ export default async function SearchPage({
               filters={filters}
             />
           </div>
-          <div className="flex flex-row gap-4">
-            <AdvancedFilterSidebar
-              filters={filters}
-              onFiltersChange={handleFiltersChange}
-              isOpen={showAdvancedFilters}
-              onToggle={() => setShowAdvancedFilters(!showAdvancedFilters)}
-            />
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-12">
+
+            <div className="col-span-1 md:col-span-3">
+              <AdvancedFilterSidebar
+                filters={filters}
+                onFiltersChange={handleFiltersChange}
+                isOpen={showAdvancedFilters}
+                onToggle={() => setShowAdvancedFilters(!showAdvancedFilters)}
+              />
+            </div>
 
             {isPending ? (
-              <div className="grid md:gap-6 md:grid-cols-2 lg:grid-cols-3">
-                {Array.from({ length: ITEMS_PER_PAGE }).map((_, i) => (
-                  <PractitionerCardSkeleton key={i} />
-                ))}
+              <div className="col-span-1 md:col-span-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3
+              gap-4">
+                  {Array.from({ length: ITEMS_PER_PAGE }).map((_, i) => (
+                    <PractitionerCardSkeleton key={i} />
+                  ))}
+                </div>
               </div>
             ) : (
-              <div className="flex w-full flex-col justify-items-center ">
+              <div className="col-span-1 md:col-span-9 flex w-full flex-col justify-items-center ">
                 {/* Render your data here */}
                 <div
                   className={

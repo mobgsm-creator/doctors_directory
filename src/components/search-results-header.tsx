@@ -11,9 +11,6 @@ import {
 } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import type { SearchFilters } from "@/lib/types";
-import {
-  Filter
-} from "lucide-react";
 
 interface SearchResultsHeaderProps {
   totalResults: number;
@@ -40,10 +37,6 @@ export function SearchResultsHeader({
 }: SearchResultsHeaderProps) {
   const startIndex = (currentPage - 1) * itemsPerPage + 1;
   const endIndex = Math.min(currentPage * itemsPerPage, totalResults);
-
-  const handleToggleFilters = () => {
-    document.body.classList.toggle("filter-active");
-  };
 
   const activeFiltersCount =
     (filters.category && filters.category !== "All Categories" ? 1 : 0) +
@@ -116,15 +109,6 @@ export function SearchResultsHeader({
             <Grid className="h-4 w-4" />
           </Button>
         </div> */}
-        {/* <div className="block md:hidden">
-          <Button
-            onClick={handleToggleFilters}
-            variant={viewMode === "grid" ? "default" : "ghost"}
-            size="sm"
-          >
-            <Filter className="h-4 w-4" />
-          </Button>
-      </div> */}
     </div>
   );
 }
