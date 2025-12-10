@@ -65,13 +65,13 @@ export default async function SearchPage({
 
   return (
     <main className="min-h-screen bg-[var(--primary-bg-color)]">
-      <div className="pt-4 px-4 md:pt-12">
+      <div className="py-6 px-4 md:py-12 border-t border-t-[1px]  border-[#C4C4C4] md:border-0">
         <SearchBar />
       </div>
 
-      <section className="py-10 px-4">
+      <section className="pt-2 py-10 md:px-4 bg-white md:bg-[var(--primary-bg-color)]">
         <div className="container mx-auto max-w-6xl space-y-8">
-          <div className="animate-fade-in">
+          <div className="m-0 md:mb-4">
             <SearchResultsHeader
               totalResults={totalCount}
               currentPage={currentPage}
@@ -95,18 +95,18 @@ export default async function SearchPage({
             />
 
             {isPending ? (
-              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              <div className="grid md:gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {Array.from({ length: ITEMS_PER_PAGE }).map((_, i) => (
                   <PractitionerCardSkeleton key={i} />
                 ))}
               </div>
             ) : (
-              <div className="flex flex-col justify-items-center ">
+              <div className="flex w-full flex-col justify-items-center ">
                 {/* Render your data here */}
                 <div
                   className={
                     viewMode === "grid"
-                      ? "grid gap-6 md:grid-cols-2 lg:grid-cols-3"
+                      ? "grid md:gap-6 md:grid-cols-2 lg:grid-cols-3"
                       : "space-y-4"
                   }
                 >
