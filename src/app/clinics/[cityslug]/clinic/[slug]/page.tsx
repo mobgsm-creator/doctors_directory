@@ -14,8 +14,8 @@ import fs from "fs";
 import path from "path";
 import ClinicTabs from "@/components/Clinic/clinicTabs";
 const Section = ({ id, title, children }: any) => (
-  <section id={id} className="mb-6">
-    <h2 className="text-xl font-semibold text-foreground mb-4">{title}</h2>
+  <section id={id} className="mt-4 mb-4">
+    <h2 className="text-xl font-semibold text-foreground mb-2">{title}</h2>
     <div className="text-base leading-7">{children}</div>
   </section>
 );
@@ -129,18 +129,19 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                 </div>
                 <div className="border-t border-gray-300 my-6"></div>
                 <Stats data={boxplotData} />
-                {/* HOURS */}
-                {flatHours && (
+              </div>
+              {/* HOURS */}
+              {flatHours && (
                   <Section title="Hours" id="hours">
                     <div className="overflow-x-auto shadow-none">
-                      <table className="w-full text-sm bg-white border-collapse">
+                      <table className="w-full align-top text-sm bg-white border-collapse">
                         <tbody>
                           {Object.entries(flatHours).map(([day, time]) => (
                             <tr key={day}>
-                              <td className="border border-gray-200 px-4 py-2 font-medium text-foreground">
+                              <td className="align-top border-0 px-1 py-1 font-medium">
                                 {day?.toString()}
                               </td>
-                              <td className="border border-gray-200 px-4 py-2 ">
+                              <td className="align-top border-0 px-1 py-1">
                                 {time?.toString()}
                               </td>
                             </tr>
@@ -182,7 +183,6 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                     clinic.Payments || "Not listed"
                   )}
                 </Section>
-              </div>
             </div>
             
           </div>

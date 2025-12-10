@@ -41,21 +41,24 @@ export function SearchBar() {
     <>
       <div className="w-full max-w-6xl mx-auto space-y-6 sm:block">
         {/* Main search bar with 3 sections */}
-        
-      <div className="flex flex-row items-center">
-          <div className="block sm:hidden">
-        {/* Mobile Search */}
-        <div
-          className="flex items-center bg-white rounded-full shadow-sm border border-gray-200 px-4 py-2 w-full"
-          onClick={() => {console.log("cicked");setShowResults(true);setShowLocResults(true);}}
-        >
-          <Search className="h-5 w-5 text-gray-500 mr-2" />
-          <span className="text-gray-500 text-sm">
-            Search practitioners, clinics, or locations
-          </span>
-        </div>
-        
-      </div>{/* Section 1: Select either Clinic or Practitioner */}
+
+        <div className="flex flex-row items-center">
+          <div className="block sm:hidden w-full">
+            {/* Mobile Search */}
+            <div
+              className="flex items-center bg-white rounded-full shadow-sm border border-gray-200 px-4 py-3 w-full"
+              onClick={() => {
+                console.log("cicked");
+                setShowResults(true);
+                setShowLocResults(true);
+              }}
+            >
+              <span className="text-gray-500 text-[12px]">
+                Search practitioners, clinics, or locations
+              </span>
+            </div>
+          </div>
+          {/* Section 1: Select either Clinic or Practitioner */}
           <div className="relative hidden sm:block">
             <select
               value={localFilters.type}
@@ -110,7 +113,7 @@ export function SearchBar() {
           <Button
             onClick={handleSearch}
             size="lg"
-            className="ml-4 h-12 w-12 rounded-lg p-0 bg-black hover:bg-black text-white flex items-center justify-center flex-shrink-0"
+            className="ml-4 h-9 w-9 sm:h-12 sm:w-12 rounded-full sm:rounded-lg p-0 bg-black hover:bg-black text-white flex items-center justify-center flex-shrink-0"
           >
             {isLoading ? (
               <Loader2 className="h-6 w-6 animate-spin" />
@@ -121,7 +124,11 @@ export function SearchBar() {
         </div>
         {showResults && (
           <div className="bg-white rounded-lg shadow-lg border border-gray-200 p-6">
-            <div className={`grid ${showLocResults ? "grid-cols-3" : "grid-cols-2"} gap-6`}>
+            <div
+              className={`grid ${
+                showLocResults ? "grid-cols-3" : "grid-cols-2"
+              } gap-6`}
+            >
               {/* Popular conditions and procedures */}
               <div>
                 <h3 className="font-semibold text-gray-900 mb-4">
@@ -217,59 +224,64 @@ export function SearchBar() {
               </div>
 
               {/* Popular Locations */}
-              {showLocResults && ( <div>
-                <h3 className="font-semibold text-gray-900 mb-4">Locations</h3>
-                <div className="space-y-2 overflow-auto max-h-100">
-                  {(locations.filter(
-                    (loc) =>
-                      typeof loc === "string" &&
-                      loc
-                        .toLowerCase()
-                        .includes((localFilters.location || "").toLowerCase())
-                  ).length > 0
-                    ? locations.filter(
-                        (loc) =>
-                          typeof loc === "string" &&
-                          loc
-                            .toLowerCase()
-                            .includes(
-                              (localFilters.location || "").toLowerCase()
-                            )
-                      )
-                    : locations
-                  ).map((loc: string, index) => (
-                    <div key={loc} className="flex flex-col items-start gap-1">
-                      {/* Index Badge */}
-
-                      {/* Hover-highlight wrapper */}
+              {showLocResults && (
+                <div>
+                  <h3 className="font-semibold text-gray-900 mb-4">
+                    Locations
+                  </h3>
+                  <div className="space-y-2 overflow-auto max-h-100">
+                    {(locations.filter(
+                      (loc) =>
+                        typeof loc === "string" &&
+                        loc
+                          .toLowerCase()
+                          .includes((localFilters.location || "").toLowerCase())
+                    ).length > 0
+                      ? locations.filter(
+                          (loc) =>
+                            typeof loc === "string" &&
+                            loc
+                              .toLowerCase()
+                              .includes(
+                                (localFilters.location || "").toLowerCase()
+                              )
+                        )
+                      : locations
+                    ).map((loc: string, index) => (
                       <div
-                        className="
+                        key={loc}
+                        className="flex flex-col items-start gap-1"
+                      >
+                        {/* Index Badge */}
+
+                        {/* Hover-highlight wrapper */}
+                        <div
+                          className="
                       w-full px-3 py-2 rounded-lg transition
                       hover:bg-blue-50 hover:text-blue-700 active:bg-blue-100
                     "
-                      >
-                        <button
-                          onClick={() =>
-                            setLocalFilters((prev) => ({
-                              ...prev,
-                              location: loc,
-                            }))
-                          }
-                          className="text-left text-sm font-medium w-full flex items-center gap-3"
                         >
-                          {loc}
-                        </button>
+                          <button
+                            onClick={() =>
+                              setLocalFilters((prev) => ({
+                                ...prev,
+                                location: loc,
+                              }))
+                            }
+                            className="text-left text-sm font-medium w-full flex items-center gap-3"
+                          >
+                            {loc}
+                          </button>
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
-              </div>)}
+              )}
             </div>
           </div>
         )}
       </div>
-
-      
     </>
   );
 }

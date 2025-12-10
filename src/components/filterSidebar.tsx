@@ -92,9 +92,9 @@ export function AdvancedFilterSidebar({
     <>
       <Card
         className={`
-          bg-transparent shadow-none border-0 rounded-0 pb-[145px] px-4 py-4 relative gap-4
-          md:relative md:block md:pb-[90px] md:px-0 md:py-0 md:h-auto md:w-120 md:bg-transparent md:shadow-none md:translate-x-0
-          fixed top-0 left-0 h-screen w-64 bg-white shadow-lg z-50 transition-transform duration-300 ease-in-out
+          bg-transparent shadow-none border border-transparent rounded-0 pb-[145px] px-4 md:px-0 md:py-0 relative
+          md:relative md:block md:h-auto w-full md:bg-transparent md:translate-x-0
+          fixed top-0 left-0 h-screen bg-white z-50 transition-transform duration-300 ease-in-out
           ${isFilterActive ? "translate-x-0" : "-translate-x-full"}
         `}
       >
@@ -111,7 +111,7 @@ export function AdvancedFilterSidebar({
           </Button>
         </CardHeader>
 
-        <CardContent className="p-0 w-full h-full space-y-4">
+        <CardContent className="p-0 w-full h-full space-y-4 static">
           
           <div>
             <input
@@ -127,7 +127,7 @@ export function AdvancedFilterSidebar({
 
           <div>
             <h3 className="font-medium mb-3">Procedure</h3>
-            <div className="max-h-140 md:max-h-400 space-y-2 overflow-auto">
+            <div className="space-y-2 overflow-auto max-h-[inherit] h-[calc(100vh-300px)] md:max-h-200">
               {modalities.length > 0 ? (
                 modalities.map((brand) => (
                   <div key={brand} className="flex items-center space-x-2">
@@ -141,7 +141,7 @@ export function AdvancedFilterSidebar({
                     />
                     <label
                       htmlFor={brand}
-                      className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                      className="text-sm font-normal leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     >
                       {brand}
                     </label>
@@ -153,7 +153,7 @@ export function AdvancedFilterSidebar({
             </div>
           </div>
 
-          <div className="space-y-2 px-4 w-full absolute md:px-0 md:static bottom-4 left-0 righ-0">
+          <div className="bg-white md:bg-transparent space-y-2 px-4 w-full absolute py-2 md:py-0 md:px-0 md:static bottom-0 left-0 righ-0">
             <Button
               variant="outline"
               onClick={handleApplyFilters}

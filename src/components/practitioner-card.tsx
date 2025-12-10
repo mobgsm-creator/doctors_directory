@@ -29,15 +29,13 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
         <div className="flex items-start gap-4">
           <div className="text-center flex-1 min-w-0 items-center flex flex-col">
             <div className="flex w-full flex-row items-start border-b border-[#C4C4C4] md:border-0 md:flex-col md:items-center">
-              <div className="w-[80px] h-[80px] md:w-[150px] md:h-[150px] flex items-center justify-center overflow-hidden rounded-full bg-gray-300 mb-3 mr-4 md:mr-0">
+              <div className="w-[80px] h-[80px] md:w-[150px] md:h-[150px] flex items-center justify-center overflow-hidden rounded-full bg-gray-300 md:mb-3 mr-0">
                 <img
                   src={
                     practitioner.image.replace("&w=256&q=75", "") ||
                     "/placeholder.svg"
                   }
                   alt="Profile photo"
-                  width={150}
-                  height={150}
                   className="object-cover rounded-full min-w-full min-h-full"
                   onError={(e) => {
                     e.currentTarget.onerror = null; // prevent infinite loop
@@ -46,7 +44,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                 />
               </div>
 
-              <div className="flex items-start md:items-center flex-col">
+              <div className="flex items-start md:items-center flex-col pl-4 md:pl-0 w-[calc(100%-80px)] md:w-full">
                 <h3 className="mb-2 md:mb-4 flex text-left md:text-center md:align-items-center md:justify-center font-semibold text-md md:text-lg transition-colors text-balance">
                   {practitionerName}
                 </h3>
@@ -66,7 +64,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
 
                 {!("practitioner_image_link" in practitioner) &&
                   practitioner.category && (
-                    <p className="pt-2 mb-2 text-pretty">
+                    <p className="pt-2 mb-2">
                       {practitioner.category.trim()}
                     </p>
                   )}
