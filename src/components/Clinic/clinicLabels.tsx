@@ -2,7 +2,7 @@ import { Clinic } from "@/lib/types";
 import { Award } from "lucide-react";
 export default function ClinicLabels({ clinic }: { clinic: Clinic }) {
   return (
-    <div className="flex justify-center align-items-center gap-2 flex-col">
+    <div className="flex justify-center align-items-center gap-2 flex-row">
       {clinic.isDoctor && (
         <div className="flex items-center gap-1 rounded-full bg-green-100 text-green-800 border border-green-300 text-xs px-3 py-1">
           <span>Licensed Medical Practitioner</span>

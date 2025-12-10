@@ -76,7 +76,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                                   key={i}
                                   className={`h-4 w-4 ${
                                     i < clinic.rating
-                                       ? "fill-yellow-400 text-yellow-400"
+                                       ? "fill-black text-black"
                                         : "text-muted-foreground/30"
                                   }`}
                                 />
