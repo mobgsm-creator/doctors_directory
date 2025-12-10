@@ -2,6 +2,7 @@
 // Matching the design shown in the reference image (clean sections, headings, lists, tables)
 
 import { Practitioner } from "@/lib/types"
+import { Badge } from "@/components/ui/badge";
 import PractitionerTabs from "./PractitionerTabs"
 export default function PractitionerDetailsSections({ clinic }: { clinic: Practitioner }) {
   const parseList = (val: any) => {
@@ -46,6 +47,23 @@ export default function PractitionerDetailsSections({ clinic }: { clinic: Practi
 
   return (
     <div>
+      {/* Treatments */}
+      <Section title="Treatmetnts" id='treatmetnts'>
+      <div className="flex flex-wrap gap-1">
+                  {true &&
+                    clinic.reviewAnalysis?.procedures_offered?.categories
+                      .map((modality, index) => (
+                        <Badge key={index} variant="outline" className="text-xs">
+                          {modality
+                            .split(" ") // split into words
+                            .map(
+                              (word) => word.charAt(0).toUpperCase() + word.slice(1)
+                            ) // capitalize each
+                            .join(" ")}
+                        </Badge>
+                      ))}
+                  
+                </div></Section>
       {/* Roles */}
 
       <Section title="Roles" id='roles'>
@@ -113,7 +131,7 @@ export default function PractitionerDetailsSections({ clinic }: { clinic: Practi
       </Section>
       <div className="border-t border-gray-300 my-6"></div>
       {/* HOURS */}
-      {clinic.hours && typeof clinic.hours === "object" && (
+      {/* {clinic.hours && typeof clinic.hours === "object" && (
         <Section title="Hours" id='hours'>
           <div className="overflow-x-auto shadow-none">
             <table className="w-full text-sm bg-white border-collapse">
@@ -128,7 +146,7 @@ export default function PractitionerDetailsSections({ clinic }: { clinic: Practi
             </table>
           </div>
         </Section>
-      )}
+      )} */}
       {/* INSURANCE */}
       <Section title="Insurance Accepted" id='insurance'>
         {Array.isArray(clinic.Insurace) ? (
@@ -156,7 +174,7 @@ export default function PractitionerDetailsSections({ clinic }: { clinic: Practi
       </Section>
       <div className="border-t border-gray-300 my-6"></div>
       {/* PAYMENTS */}
-      <Section title="Payment Options" id='payments'>
+      {/* <Section title="Payment Options" id='payments'>
         {Array.isArray(clinic.Payments) ? (
           <ul className="list-disc ml-6 space-y-1">
             {clinic.Payments.map((p: any, idx: number) => (
@@ -179,7 +197,7 @@ export default function PractitionerDetailsSections({ clinic }: { clinic: Practi
         ) : (
           clinic.Payments || "Not listed"
         )}
-      </Section>
+      </Section> */}
       <div className="border-t border-gray-300 my-6"></div>
       {/* FEES */}
       <Section title="Estimated Fees" id='fees'>

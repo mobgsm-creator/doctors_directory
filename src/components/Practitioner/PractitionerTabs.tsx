@@ -3,6 +3,7 @@
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 export default function PractitionerTabs() {
   const sections = [
+    { id: "treatments", label: "Treatments" },
     { id: "roles", label: "Roles" },
     { id: "qualifications", label: "Qualifications" },
     { id: "experience", label: "Experience" },
