@@ -93,7 +93,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
 
       <CardContent className="pt-0 space-y-4">
         <div className="flex items-start gap-2 text-sm">
-          <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0" />
+          <MapPin className="h-4 w-4 mt-0 flex-shrink-0" />
           <span className="text-pretty">{practitioner.gmapsAddress.split(",")[practitioner.gmapsAddress.split(",").length-2]+", "+practitioner.gmapsAddress.split(",")[practitioner.gmapsAddress.split(",").length-1]}</span>
         </div>
 
