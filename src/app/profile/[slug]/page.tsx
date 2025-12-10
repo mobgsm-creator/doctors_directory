@@ -21,6 +21,18 @@ import {
 import fs from "fs";
 import path from "path";
 import PractitionerTabs from "@/components/Practitioner/PractitionerTabs";
+const flattenObject = (obj: any, parentKey = "", result: any = {}) => {
+  for (const [key, value] of Object.entries(obj)) {
+    const newKey = parentKey ? `${key}` : key;
+
+    if (value && typeof value === "object" && !Array.isArray(value)) {
+      flattenObject(value, newKey, result);
+    } else {
+      result[newKey] = value;
+    }
+  }
+  return result;
+};
 const Section = ({ id, title, children }: any) => (
     <section id={id} className="mb-6">
       <h2 className="text-xl font-semibold text-foreground mb-4">
@@ -57,7 +69,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
   //console.log(clinic)
   const hoursObj = clinic?.hours as unknown as Record<string, any>;
   const hours = hoursObj["Typical_hours_listed_in_directories"] ?? clinic?.hours;
-
+  const flatHours = flattenObject(hours);
 
   const boxplotData = mergeBoxplotDataFromDict(
     boxplotDatas_clinic,
@@ -125,12 +137,12 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                 </div>
                 <div className="border-t border-gray-300 my-6"></div>
                 <Stats data={boxplotData} />
-                {hours && typeof hours === "object" && (
+                {flatHours && (
           <Section title="Hours" id='hours'>
             <div className="overflow-x-auto shadow-none">
               <table className="w-full text-sm bg-white border-collapse">
                 <tbody>
-                  {Object.entries(hours).map(([day, time]) => (
+                  {Object.entries(flatHours).map(([day, time]) => (
                     <tr key={day}>
                       <td className="border border-gray-200 px-4 py-2 font-medium text-foreground">
                         {day?.toString()}

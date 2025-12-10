@@ -8,7 +8,21 @@ import spacy
 import numpy as np
 
 from sklearn.metrics.pairwise import cosine_similarity
-
+#df = pd.read_json(r'C:\Users\agney\Documents\Files\Projects\doctor-directory\public\clinics_processed.json')
+df= pd.read_excel(r"C:\Users\agney\Documents\Files\Projects\clinics_processed.xlsx")
+values = set()
+bl = ['Monday', 'Sat', 'Tue', 'Thu', 'Fri', 'Mon-Fri', 'Sun', 'SourceNote', 'Sat-Sun', 'Mon', 'Wed', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Source','Typical_hours_recorded_in_public_listings', 'Notes', 'Note']
+for index,row in df.iterrows():
+    try:
+        loaded_json = json.loads(row['hours'].replace("'",'"'))
+        if len(loaded_json.keys() - bl)>=3:
+                print(index, loaded_json.keys() - bl)
+                df.at[index,'error']=1
+    except Exception as e:
+        #df.at[index,'error']=1
+        pass
+df.to_csv("test2.csv")
+time.sleep(100)
 nlp = spacy.load("en_core_web_lg")
 
 def dedupe_similar_strings(strings, threshold=0.88):
