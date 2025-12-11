@@ -183,20 +183,48 @@ export function ProfileHeader({ clinic }: ProfileHeaderProps) {
 
         {/* Action Buttons Section */}
         <div className="flex flex-col gap-4">
-          <Button
-            variant="default"
-            size="lg"
-            className="shadow-none h-auto rounded-lg text-md px-7 py-3 text-white hover:cursor-pointer"
-          >
-            Book Consultation
-          </Button>
+    
 
           <Button
+            asChild
             variant="outline"
             className="shadow-none border-black h-auto rounded-lg text-md px-7 py-3 hover:cursor-pointer"
           >
-            Request Pricing
+            <a
+              href={clinic.email || clinic.website ||
+  clinic.instagram ||
+  clinic.facebook ||
+  clinic.twitter ||
+  clinic.Linkedin || // <- use lowercase to match JS naming conventions
+  "#" }
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Book Consultation
+            </a>
           </Button>
+
+
+
+          <Button
+          asChild
+          variant="outline"
+          className="shadow-none border-black h-auto rounded-lg text-md px-7 py-3 hover:cursor-pointer"
+          >
+          <a
+            href={clinic.website ||
+  clinic.instagram ||
+  clinic.facebook ||
+  clinic.twitter ||
+  clinic.Linkedin || // <- use lowercase to match JS naming conventions
+  "#" }
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Request Pricing
+          </a>
+          </Button>
+
 
           <SocialMediaIcons clinic={clinic} />
         </div>

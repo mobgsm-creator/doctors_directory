@@ -16,9 +16,9 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Clinic, Practitioner } from "@/lib/types";
 import { useSearchStore } from "@/app/stores/datastore";
 import {
-  Sliders
+  Sliders, ArrowLeft
 } from "lucide-react";
-
+import Link from "next/link";
 const ITEMS_PER_PAGE = 9;
 
 export default function SearchPage() {
@@ -68,6 +68,16 @@ export default function SearchPage() {
 
   return (
     <main className="min-h-screen bg-[var(--primary-bg-color)]">
+      <div className="bg-[var(--primary-bg-color)] backdrop-blur-sm sticky top-0 z-10">
+        <div className="container mx-auto max-w-6xl px-4 py-4">
+          <Link href="/">
+            <Button variant="ghost" size="sm" className="gap-2">
+              <ArrowLeft className="h-4 w-4" />
+              Back to Directory
+            </Button>
+          </Link>
+        </div>
+      </div>
       <div className="py-6 px-4 md:py-12 border-t border-t-[1px]  border-[#C4C4C4] md:border-0">
         <SearchBar />
         <div className="block md:hidden">

@@ -63,7 +63,7 @@ export function HeroSection() {
             <SearchBar />
             <div className="flex pt-4 md:pt-6 justify-center md:justify-start">
               <a href="directory/search" className="font-medium hover:text-black">
-                OR Explore the Aesthetics Directory →
+                Explore the Aesthetics Directory →
               </a>
             </div>
           </div>

@@ -7,8 +7,11 @@ import { Button } from "@/components/ui/button";
 import { search_categories, modalities, locations } from "@/lib/data";
 import { useRouter } from "next/navigation";
 import { useSearchStore } from "@/app/stores/datastore";
+import { usePathname } from "next/navigation";
 
 export function SearchBar() {
+  const pathname = usePathname();
+  const isSearchPage = pathname.includes("/search");
   const { filters, setFilters } = useSearchStore();
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
@@ -19,7 +22,7 @@ export function SearchBar() {
     //console.log("handle search");
     setIsLoading(true);
     setFilters(localFilters);
-
+    setShowResults(false);
     await router.push("/search");
     //console.log("pushed");
     setIsLoading(false);
@@ -110,12 +113,11 @@ export function SearchBar() {
             )}
           </Button>
         </div>
+        <div className='flex flex-rows gap-2'>
         {showResults && (
-          <div className="bg-white rounded-lg shadow-lg border border-gray-200 p-6">
+          <div className={`bg-white rounded-lg shadow-lg border border-gray-200 p-6 isSearchPage ? "lg:ml-31" : "" max-w-[660px]`}>
             <div
-              className={`grid ${
-                showLocResults ? "grid-cols-3" : "grid-cols-2"
-              } gap-6`}
+              className={`grid grid-cols-2 isSearchPage ? "lg:grid-cols-[300px_300px]" gap-6`}
             >
               {/* Popular conditions and procedures */}
               <div>
@@ -212,8 +214,12 @@ export function SearchBar() {
               </div>
 
               {/* Popular Locations */}
-              {showLocResults && (
-                <div>
+              
+            </div>
+          </div>
+        )}
+        {showLocResults && (
+                <div className="bg-white rounded-lg shadow-lg border border-gray-200 p-6 max-w-[150px] lg:max-w-[300px]">
                   <h3 className="font-semibold text-gray-900 mb-4">
                     Locations
                   </h3>
@@ -266,10 +272,7 @@ export function SearchBar() {
                   </div>
                 </div>
               )}
-            </div>
-          </div>
-        )}
-      </div>
+      </div></div>
     </>
   );
 }
