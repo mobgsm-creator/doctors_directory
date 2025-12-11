@@ -21,30 +21,26 @@ import {
 
 const ITEMS_PER_PAGE = 9;
 
-export default async function SearchPage({
-  initialData,
-  initialTotalCount,
-  initialTotalPages,
-}: {
-  initialData: (Clinic | Practitioner)[];
-  initialTotalCount: number;
-  initialTotalPages: number;
-}) {
+export default function SearchPage() {
   const { filters, setFilters } = useSearchStore();
   const [currentPage, setCurrentPage] = useState(1);
   const [sortBy, setSortBy] = useState("default");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
 
-  const [data, setData] = useState(initialData);
-  const [totalCount, setTotalCount] = useState(initialTotalCount);
-  const [totalPages, setTotalPages] = useState(initialTotalPages);
+  const [data, setData] = useState<(Clinic | Practitioner)[]>([]);
+  const [totalCount, setTotalCount] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
   const [isPending, startTransition] = useTransition();
 
   // Fetch data when filters, page, or sort changes
   useEffect(() => {
     startTransition(async () => {
-      const result = await searchPractitioners(filters, currentPage, sortBy);
+      const result: {
+  data: (Clinic | Practitioner)[];
+  totalCount: number;
+  totalPages: number;
+} = await searchPractitioners(filters, currentPage, sortBy);
       setData(result.data);
       setTotalCount(result.totalCount);
       setTotalPages(result.totalPages);

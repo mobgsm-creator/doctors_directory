@@ -4,16 +4,7 @@ import { useState } from "react";
 import { Search, Locate, Loader2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import type { SearchFilters } from "@/lib/types";
 import { search_categories, modalities, locations } from "@/lib/data";
-import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { useRouter } from "next/navigation";
 import { useSearchStore } from "@/app/stores/datastore";
 
@@ -23,14 +14,11 @@ export function SearchBar() {
   const [isLoading, setIsLoading] = useState(false);
   const [showResults, setShowResults] = useState(false);
   const [showLocResults, setShowLocResults] = useState(false);
-  const [activeField, setActiveField] = useState<keyof SearchFilters>();
-  const [showMobileSearch, setShowMobileSearch] = useState(false);
   const [localFilters, setLocalFilters] = useState(filters);
   const handleSearch = async () => {
     //console.log("handle search");
     setIsLoading(true);
     setFilters(localFilters);
-    //console.log(filters);
 
     await router.push("/search");
     //console.log("pushed");

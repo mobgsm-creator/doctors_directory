@@ -1,17 +1,8 @@
 "use client";
 
-import { SlidersHorizontal, Grid, List } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import type { SearchFilters } from "@/lib/types";
-
+import { PractitionerCardSkeleton } from "./loading-skeleton";
 interface SearchResultsHeaderProps {
   totalResults: number;
   currentPage: number;
@@ -47,7 +38,7 @@ export function SearchResultsHeader({
     <div className="flex flex-col md:flex-row gap-4 items-start justify-between">
       <div className="flex flex-col pt-2 w-full pb-4 px-4 md:px-0 md:pt-0 md:pb-0 md:border-0 border-b border-[#C4C4C4]">
           <h2 className="text-sm md:text-2xl md:font-semibold mb-1 md:mb-2">
-            {totalResults > 0 ? "Aesthetics Directory" : "No Results Found"}
+            {totalResults > 0 ? "Aesthetics Directory" : ""}
           </h2>
           <div className="flex items-center gap-4 text-sm">
             {totalResults > 0 ? (
@@ -55,7 +46,14 @@ export function SearchResultsHeader({
                 Showing {startIndex}-{endIndex} of {totalResults} practitioners
               </span>
             ) : (
-              <span>Try adjusting your search criteria</span>
+              <div className="col-span-1 md:col-span-8">
+                              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3
+                            gap-4">
+                                {Array.from({ length: 9 }).map((_, i) => (
+                                  <PractitionerCardSkeleton key={i} />
+                                ))}
+                              </div>
+                            </div>
             )}
 
             {activeFiltersCount > 0 && (

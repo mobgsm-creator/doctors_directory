@@ -24,6 +24,7 @@ export async function searchPractitioners(
   page: number = 1,
   sortBy: string = "default"
 ) {
+
   const { clinics, practitioners } = await loadData();
 
 
