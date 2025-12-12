@@ -39,6 +39,7 @@ function transformProduct(raw: any): Product {
     brand: raw.brand,
     manufacturer: raw.manufacturer,
     distributor: raw.distributor,
+    sku: raw.sku,
 
 
     // Media
