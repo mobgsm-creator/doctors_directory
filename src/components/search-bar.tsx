@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Search, Locate, Loader2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -18,6 +18,10 @@ export function SearchBar() {
   const [showResults, setShowResults] = useState(false);
   const [showLocResults, setShowLocResults] = useState(false);
   const [localFilters, setLocalFilters] = useState(filters);
+  const [open, setOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  const options = ["Practitioner", "Clinic"];
   const handleSearch = async () => {
     //console.log("handle search");
     setIsLoading(true);
@@ -26,7 +30,10 @@ export function SearchBar() {
     await router.push("/search");
     //console.log("pushed");
     setIsLoading(false);
+
   };
+  
+  
 
   return (
     <>
@@ -51,19 +58,19 @@ export function SearchBar() {
           </div>
           {/* Section 1: Select either Clinic or Practitioner */}
           <div className="relative hidden sm:block">
-            <select
-              value={localFilters.type}
-              onChange={(e) =>
-                setLocalFilters((prev) => ({ ...prev, type: e.target.value }))
-              }
-              className="h-12 w-full bg-black text-white rounded-l-lg shadow-sm border-0 px-4 pr-6 py-3 font-medium hover:bg-black appearance-none"
-            >
-              <option value="Practitioner">Practitioner</option>
-              <option value="Clinic">Clinic</option>
-            </select>
+             <div className="flex-1 bg-white shadow-sm border border-r-0 border-gray-300 px-4 py-3 rounded-l-lg cursor-pointer"
+           onClick={() => setOpen((o) => !o)}
+      >
+        <Input
+          value={localFilters.type}
+          readOnly
+          className="border-0 shadow-none p-0 h-auto w-30 text-base text-black cursor-pointer"
+        />
+        {/* Small border-only downward arrow */}
+            <div className="pointer-events-none absolute top-1/2 right-3 w-1.5 h-1.5 border-b-[1.5px] border-r-[1.5px] border-black transform rotate-45 -translate-y-1/2"></div>
+      </div>
 
-            {/* Small border-only downward arrow */}
-            <div className="pointer-events-none absolute top-1/2 right-3 w-1.5 h-1.5 border-b-[1.5px] border-r-[1.5px] border-white transform rotate-45 -translate-y-1/2"></div>
+            
           </div>
 
           {/* Section 2: Filter by Procedure, Speciality, Specialist */}
@@ -114,8 +121,25 @@ export function SearchBar() {
           </Button>
         </div>
         <div className='flex flex-rows gap-2'>
+          {/* Dropdown */}
+      {open && (
+        <div className="absolute left-30 mt-1 w-[150px] bg-white z-20 rounded-lg shadow-lg border border-gray-200">
+          {options.map((opt) => (
+            <div
+              key={opt}
+              className="px-4 py-3 hover:bg-gray-100 cursor-pointer text-sm"
+              onClick={() => {
+                setLocalFilters((prev) => ({ ...prev, type: opt }));
+                setOpen(false);
+              }}
+            >
+              {opt}
+            </div>
+          ))}
+        </div>
+      )}
         {showResults && (
-          <div className={`bg-white rounded-lg shadow-lg border border-gray-200 p-6 isSearchPage ? "lg:ml-31" : "" max-w-[660px]`}>
+          <div className={`bg-white rounded-lg shadow-lg border border-gray-200 p-6 ${isSearchPage ? "lg:ml-37" : ""}  max-w-[660px]`}>
             <div
               className={`grid grid-cols-2 isSearchPage ? "lg:grid-cols-[300px_300px]" gap-6`}
             >

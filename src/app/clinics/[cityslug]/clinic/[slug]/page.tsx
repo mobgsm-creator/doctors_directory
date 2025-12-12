@@ -62,7 +62,6 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
     hoursObj["Typical_hours_listed_in_directories"] ?? clinic?.hours;
   const flatHours = flattenObject(hours);
 
-
   const boxplotData = mergeBoxplotDataFromDict(
     boxplotDatas_clinic,
     clinic?.weighted_analysis ?? {}

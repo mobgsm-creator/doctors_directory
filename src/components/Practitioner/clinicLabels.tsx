@@ -1,14 +1,17 @@
 import { Clinic } from "@/lib/types";
 import { Hospital } from "lucide-react";
 export default function ClinicLabels({ clinic }: { clinic: Clinic }) {
+  const labels = clinic.isCQC?.[0] || clinic.isHIW?.[0] || clinic.isHIS?.[0] || clinic.isJCCP?.[0] || clinic.isRQIA?.[0] || clinic.isSaveFace
+   
   return (
+
     <div className="flex justify-center align-items-center gap-2 flex-row">
       {clinic.isDoctor && (
         <div className="px-3 py-1 flex items-center gap-1 rounded-full bg-green-100 text-green-800 border border-green-300 text-xs">
           <span>Licensed Medical Practitioner</span>
         </div>
       )}
-      {clinic.isCQC?.[0] || clinic.isHIW?.[0] || clinic.isHIS?.[0] || clinic.isJCCP?.[0] || clinic.isRQIA?.[0] || clinic.isSaveFace && (
+      {labels && (
       <div className="flex gap-2 items-center justify-center">
         {clinic.isCQC?.[0] && (
           <a
