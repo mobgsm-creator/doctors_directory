@@ -34,15 +34,11 @@ const flattenObject = (obj: any, parentKey = "", result: any = {}) => {
   return result;
 };
 const Section = ({ id, title, children }: any) => (
-    <section id={id} className="mt-4 mb-4">
-      <h2 className="text-xl font-semibold text-foreground mb-4">
-        {title}
-      </h2>
-      <div className="text-base leading-7">
-        {children}
-      </div>
-    </section>
-  );
+  <section id={id} className="mt-4 mb-4">
+    <h2 className="text-xl font-semibold text-foreground mb-4">{title}</h2>
+    <div className="text-base leading-7">{children}</div>
+  </section>
+);
 function mergeBoxplotDataFromDict(
   base: BoxPlotDatum[],
   incoming: Record<string, ItemMeta>
@@ -68,7 +64,8 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
   const clinic = clinics.find((p) => p.practitioner_name === slug);
   //console.log(clinic)
   const hoursObj = clinic?.hours as unknown as Record<string, any>;
-  const hours = hoursObj["Typical_hours_listed_in_directories"] ?? clinic?.hours;
+  const hours =
+    hoursObj["Typical_hours_listed_in_directories"] ?? clinic?.hours;
   const flatHours = flattenObject(hours);
 
   const boxplotData = mergeBoxplotDataFromDict(
@@ -99,10 +96,9 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
         <ProfileHeader clinic={clinic} />
 
         <div className="px-4 md:px-0">
-        
           <PractitionerTabs />
 
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-10">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-10 mb-4">
             <div className="order-2 lg:order-1 col-span-1 lg:col-span-6">
               <ClinicDetailsMarkdown clinic={clinic} />
             </div>
@@ -116,7 +112,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                           key={i}
                           className={`h-4 w-4 ${
                             i < clinic.rating
-                              ? "fill-yellow-400 text-yellow-400"
+                              ? "fill-black text-black"
                               : "/30"
                           }`}
                         />
@@ -139,72 +135,76 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                 <Stats data={boxplotData} />
               </div>
               {flatHours && (
-                  <Section title="Hours" id='hours'>
-                    <div className="overflow-x-auto shadow-none">
-                      <table className="w-full align-top text-sm bg-white border-collapse">
-                        <tbody>
-                          {Object.entries(flatHours).map(([day, time]) => (
-                            <tr key={day}>
-                              <td className="align-top border-0 px-1 py-1 font-medium">
-                                {day?.toString()}
-                              </td>
-                              <td className="align-top border-0 px-1 py-1">
-                                {time?.toString()}
-                              </td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    </div>
-                  </Section>
-                )}
-                {/* PAYMENTS */}
-                <Section title="Payment Options" id='payments'>
-                  {Array.isArray(clinic.Payments) ? (
-                    <ul className="list-disc ml-6 space-y-1">
-                      {clinic.Payments.map((p: any, idx: number) => (
-                        <li key={idx}>{p}</li>
-                      ))}
-                    </ul>
-                  ) : clinic.Payments && typeof clinic.Payments === "object" ? (
-                    <div className="overflow-x-auto shadow-none">
-                      <table className="w-full text-sm bg-white">
-                        <tbody>
-                          {Object.entries(clinic.Payments).map(([k, v]) => (
-                            k !== 'Source' && (
-                            <tr key={k}>
-                              <td className="border px-4 py-2 font-medium">
-                                {k?.toString()}
-                              </td>
-                              <td className="border px-4 py-2">{v?.toString()}</td>
-                            </tr>)
-                          ))}
-                        </tbody>
-                      </table>
-                    </div>
-                  ) : (
-                    clinic.Payments || "Not listed"
-                  )}
+                <Section title="Hours" id="hours">
+                  <div className="overflow-x-auto shadow-none">
+                    <table className="w-full align-top text-sm bg-white border-collapse">
+                      <tbody>
+                        {Object.entries(flatHours).map(([day, time]) => (
+                          <tr key={day}>
+                            <td className="align-top border-0 px-1 py-1 font-medium">
+                              {day?.toString()}
+                            </td>
+                            <td className="align-top border-0 px-1 py-1">
+                              {time?.toString()}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
                 </Section>
+              )}
+              {/* PAYMENTS */}
+              <Section title="Payment Options" id="payments">
+                {Array.isArray(clinic.Payments) ? (
+                  <ul className="list-disc ml-6 space-y-1">
+                    {clinic.Payments.map((p: any, idx: number) => (
+                      <li key={idx}>{p}</li>
+                    ))}
+                  </ul>
+                ) : clinic.Payments && typeof clinic.Payments === "object" ? (
+                  <div className="overflow-x-auto shadow-none">
+                    <table className="w-full text-sm bg-white">
+                      <tbody>
+                        {Object.entries(clinic.Payments).map(
+                          ([k, v]) =>
+                            k !== "Source" && (
+                              <tr key={k}>
+                                <td className="border-0 px-4 py-2 font-medium">
+                                  {k?.toString()}
+                                </td>
+                                <td className="border-0 px-4 py-2">
+                                  {v?.toString()}
+                                </td>
+                              </tr>
+                            )
+                        )}
+                      </tbody>
+                    </table>
+                  </div>
+                ) : (
+                  clinic.Payments || "Not listed"
+                )}
+              </Section>
+              <div className="w-full aspect-video">
+                <GoogleMapsEmbed
+                  url={clinic.url!}
+                  className="w-full h-full [&&_iframe]:w-full [&&_iframe]:h-full"
+                />
+              </div>
             </div>
           </div>
 
-          <div className="flex flex-col md:flex-row gap-6">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-10 mb-4">
             {clinic.gmapsReviews && (
-              <div className="grid gap-6 h-full md:h-113 overflow-auto">
+              <div className="col-span-1 lg:col-span-6 h-full md:h-113 overflow-auto">
                 {clinic.gmapsReviews.map((review, index) => (
                   <ReviewCard key={index} review={review} />
                 ))}
               </div>
             )}
-            <GoogleMapsEmbed
-              url={clinic.url!}
-              className="w-full h-full md:h-80"
-            />
           </div>
-        
         </div>
-
       </div>
     </main>
   );

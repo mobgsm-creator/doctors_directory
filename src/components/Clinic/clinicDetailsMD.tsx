@@ -114,10 +114,10 @@ export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
                   ([k, v]) =>
                     k !== "Source" && (
                       <tr key={k}>
-                        <td className="border px-4 py-2 font-medium">
+                        <td className="align-top border-0 px-1 py-1 font-medium">
                           {k?.toString()}
                         </td>
-                        <td className="border px-4 py-2">{v?.toString()}</td>
+                        <td className="align-top border-0 px-1 py-1">{v?.toString()}</td>
                       </tr>
                     )
                 )}
@@ -141,8 +141,8 @@ export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
                   ([k, v]) =>
                     k !== "Source" && (
                       <tr key={k}>
-                        <td className="border px-4 py-2 font-medium">{k}</td>
-                        <td className="border px-4 py-2">
+                        <td className="align-top border-0 px-1 py-1 font-medium">{k}</td>
+                        <td className="align-top border-0 px-1 py-1">
                           {typeof v === "object" && v !== null
                             ? JSON.stringify(v)
                             : String(v ?? "Not listed")}

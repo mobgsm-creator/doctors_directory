@@ -25,7 +25,7 @@ export function ReviewCard({ review }: ReviewCardProps) {
   const starCount = getStarCount(review.rating);
 
   return (
-    <Card className="border-border/50 shadow-sm rounded-lg">
+    <Card className="border shadow-none rounded-lg mb-4">
       <CardHeader className="pb-4">
         <div className="flex items-start gap-4">
           <img
@@ -53,7 +53,7 @@ export function ReviewCard({ review }: ReviewCardProps) {
                       key={i}
                       className={`h-4 w-4 ${
                         i < starCount
-                          ? "fill-yellow-400 text-yellow-400"
+                          ? "fill-black text-black"
                           : "text-muted-foreground/30"
                       }`}
                     />

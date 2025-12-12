@@ -112,7 +112,7 @@ export function AdvancedFilters({ filters, onFiltersChange, isOpen, onToggle }: 
                 <div className="flex items-center justify-between mt-2 text-sm text-muted-foreground">
                   <span>Any Rating</span>
                   <div className="flex items-center gap-1">
-                    <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
+                    <Star className="h-3 w-3 fill-black text-black" />
                     <span>{localFilters.rating > 0 ? `${localFilters.rating}+` : "0"}</span>
                   </div>
                 </div>

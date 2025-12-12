@@ -174,10 +174,10 @@ export default function PractitionerDetailsSections({
               <tbody>
                 {Object.entries(clinic.Insurace).map(([k, v]) => (
                   <tr key={k}>
-                    <td className="border px-4 py-2 font-medium">
+                    <td className="align-top border-0 px-1 py-1 font-medium">
                       {k?.toString()}
                     </td>
-                    <td className="border px-4 py-2">{v?.toString()}</td>
+                    <td className="align-top border-0 px-1 py-1">{v?.toString()}</td>
                   </tr>
                 ))}
               </tbody>
@@ -222,8 +222,8 @@ export default function PractitionerDetailsSections({
                 {Object.entries(clinic.Fees).map(([k, v]) =>
                   k !== "Source" ? (
                     <tr key={k}>
-                      <td className="border px-4 py-2 font-medium">{k}</td>
-                      <td className="border px-4 py-2 align-top">
+                      <td className="align-top border-0 px-1 py-1 font-medium">{k}</td>
+                      <td className="align-top border-0 px-1 py-1">
                         {(() => {
                           // 1. If value is already an object → convert to bullets
                           if (typeof v === "object" && v !== null) {
