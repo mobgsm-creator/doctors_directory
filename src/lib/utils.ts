@@ -53,8 +53,7 @@ export function cleanRouteSlug(slug: string) {
   return slug.toLowerCase()
   .replace(/&|\+/g, 'and')          // & + → 'and'
   .replace(/[\/\\]+/g, '-')         // / \ → -
-  //.normalize('NFKD')                // á í ü ñ → a i u n etc           // spaces → -
-          // trim starting/ending dashes
+    .replaceAll(" ","-")                // á í ü ñ → a i u n etc           // spaces → -
   }
   catch (e) {
 

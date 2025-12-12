@@ -165,3 +165,55 @@ export interface SearchFilters {
   services: string[]
   
 }
+export interface Product {
+  // Identification
+  slug:string
+  key?: string;                                      // Unique ID / key
+  product_name: string;
+  product_category: string;
+  product_subcategory: string;
+  is_aesthetics_dermatology_related?: boolean | null;
+
+  // Commercial
+  all_prices: any;                                  // Parsed JSON → array/map of prices
+  brand: string | null;
+  manufacturer: string | null;
+  distributor: string | null;
+  sku: string | null;
+
+  // Media
+  image_url: string | null;
+  product_document_pdf_from_manufacturer: string | null;
+
+  // Content
+  description: string 
+  key_benefits: string[] | null;
+  indications: string[] | null;
+  composition: string[] | null;
+  formulation: string[] | null;
+  packaging: string[] | null;
+  usage_instructions: string[] | null;
+  treatment_duration: string | null;
+  onset_of_effect: string | null;
+
+  // Safety
+  contraindications: string[] | null;
+  adverse_effects: string[] | null;
+  storage_conditions: string[] | null;
+
+  // Compliance
+  mhra_approved: boolean | null;
+  ce_marked: boolean | null;
+  mhra_link: string | null;
+  certifications_and_compliance: string[] | null;
+
+  // About
+  brand_about: string | null;
+  seller_about: string | null;
+
+  // Verification Metadata
+  source_verified_on?: string | null;                 // ISO date string
+  data_confidence_score?: number | null;              // 0–1 or 0–100 depending on your system
+  verification_sources?: string[] | null;             // e.g. ["MHRA", "Manufacturer"]
+  sources?: any;                                      // optional JSON blob of raw refs
+}

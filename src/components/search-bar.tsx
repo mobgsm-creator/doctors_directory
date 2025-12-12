@@ -21,7 +21,7 @@ export function SearchBar() {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef(null);
 
-  const options = ["Practitioner", "Clinic"];
+  const options = ["Practitioner", "Clinic", "Product"];
   const handleSearch = async () => {
     //console.log("handle search");
     setIsLoading(true);

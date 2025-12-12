@@ -13,7 +13,7 @@ import {
 import type { SearchFilters } from "@/lib/types";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Clinic, Practitioner } from "@/lib/types";
+import { Clinic, Practitioner, Product } from "@/lib/types";
 import { useSearchStore } from "@/app/stores/datastore";
 import {
   Sliders, ArrowLeft
@@ -28,7 +28,7 @@ export default function SearchPage() {
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
 
-  const [data, setData] = useState<(Clinic | Practitioner)[]>([]);
+  const [data, setData] = useState<(Clinic | Practitioner | Product)[]>([]);
   const [totalCount, setTotalCount] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
   const [isPending, startTransition] = useTransition();
@@ -37,7 +37,7 @@ export default function SearchPage() {
   useEffect(() => {
     startTransition(async () => {
       const result: {
-  data: (Clinic | Practitioner)[];
+  data: (Clinic | Practitioner | Product)[];
   totalCount: number;
   totalPages: number;
 } = await searchPractitioners(filters, currentPage, sortBy);

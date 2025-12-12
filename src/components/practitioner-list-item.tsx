@@ -5,12 +5,24 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Separator } from "@/components/ui/separator"
-import type { Practitioner, Clinic } from "@/lib/types"
+import type { Practitioner, Clinic, Product } from "@/lib/types"
 
 interface PractitionerListItemProps {
-  practitioner: Practitioner | Clinic
+  practitioner: Practitioner | Clinic | Product
   
 }
+function isPractitioner(obj: unknown): obj is Practitioner {
+  return typeof obj === "object" && obj !== null && "practitioner_name" in obj;
+}
+
+function isClinic(obj: unknown): obj is Clinic {
+  return typeof obj === "object" && obj !== null && "City" in obj;
+}
+
+function isProduct(obj: unknown): obj is Product {
+  return typeof obj === "object" && obj !== null && "product_name" in obj;
+}
+
 
 export function PractitionerListItem({ practitioner }: PractitionerListItemProps) {
   const getInitials = (name: string) => {
@@ -27,6 +39,8 @@ export function PractitionerListItem({ practitioner }: PractitionerListItemProps
   .join(" ") || "Practitioner"
 
   return (
+    <>
+      {isPractitioner(practitioner) || isClinic(practitioner) && (
  
     <Card className="group hover:shadow-lg transition-all duration-300 hover:scale-[1.01] border-border/50 hover:border-accent/50">
       <CardContent className="p-6">
@@ -49,9 +63,9 @@ export function PractitionerListItem({ practitioner }: PractitionerListItemProps
                     {practitionerName}
                   </h3>
                 </Link>
-                {'practitioner_image_link' in practitioner && practitioner.practitioner_name && (
+                {'practitioner_image_link' in practitioner && (practitioner as Practitioner).practitioner_name && (
                   <p className="text-muted-foreground mb-2 text-pretty">
-                    {practitioner.practitioner_title.trim()}
+                    {(practitioner as Practitioner).practitioner_title.trim()}
                   </p>
                 )}
 
@@ -153,5 +167,7 @@ export function PractitionerListItem({ practitioner }: PractitionerListItemProps
         </div>
       </CardContent>
     </Card>
+      )}
+      </>
   )
 }

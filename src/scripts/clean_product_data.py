@@ -7,28 +7,43 @@ import unicodedata
 import spacy
 import numpy as np
 
+
 from sklearn.metrics.pairwise import cosine_similarity
 #df = pd.read_json(r'C:\Users\agney\Documents\Files\Projects\doctor-directory\public\clinics_processed.json')
 df= pd.read_excel(r"C:\Users\agney\Desktop\Aesthetic Products\Grouped_Data.xlsx", sheet_name='Sheet2')
 error_count = 0
 for index,row in df.iterrows():
     try:
+        data_dict = {}
+        print(index)
         try:
             loaded_json = json.loads(row['json_response'])
-            data_dict=json.loads(re.sub(r':contentReference\[oaicite:\d+\]\{index=\d+\}', '', loaded_json))
+            try:
+                data_dict=json.loads(re.sub(r':contentReference\[oaicite:\d+\]\{index=\d+\}', '', loaded_json))
+            except Exception as e:
+                data_dict   = loaded_json
         except Exception as e:
-            
-            if row['json_response'][-1] == '"' and row['json_response'][0] == '"':
-                loaded_json = json.loads(row['json_response'][1:-1])
-                if type(loaded_json) != dict:
-                    data_dict=json.loads(re.sub(r':contentReference\[oaicite:\d+\]\{index=\d+\}', '', loaded_json))
-            pass
+            print("1st Exception")
+            try:
+                if row['json_response'][-1] == '"' and row['json_response'][0] == '"':
+                    loaded_json = json.loads(row['json_response'][1:-1])
+                    if type(loaded_json) != dict:
+                        data_dict=json.loads(re.sub(r':contentReference\[oaicite:\d+\]\{index=\d+\}', '', loaded_json))
+                    else:
+                        data_dict = loaded_json
+            except Exception as e:
+                print("2nd Exception",e)
+                pass
         #data_dict=json.loads(re.sub(r':contentReference\[oaicite:\d+\]\{index=\d+\}', '', loaded_json))
     except Exception as e:
+        print("Third Exception",e)
         
         if(type(loaded_json) == dict):
             data_dict=loaded_json
+        print(index,e)
         pass
+
+
 
     #Got data dicts
     try:
