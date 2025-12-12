@@ -72,7 +72,7 @@ export function PractitionerListItem({ practitioner }: PractitionerListItemProps
 
                 <div className="flex items-center gap-4 text-sm">
                   <div className="flex items-center gap-1">
-                    <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                    <Star className="h-4 w-4 fill-black text-black" />
                     <span className="font-medium">{practitioner.rating}</span>
                     <span className="text-muted-foreground">({practitioner.reviewCount} reviews)</span>
                   </div>
