@@ -231,7 +231,6 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
           <div className="flex flex-wrap gap-1 pt-4">
             {true &&
               practitioner.all_prices
-                .slice(0, 2)
                 .map((value: any, index:number) => (
                   <Badge key={index} variant="outline" className="text-xs">
                     {value.price

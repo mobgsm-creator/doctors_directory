@@ -113,6 +113,38 @@ export default function PractitionerDetailsSections({
       <Section title="Onset" id="onset_of_effect">
         {clinic.onset_of_effect}
       </Section>
+      {true &&
+              clinic.all_prices
+                .map((value: any, index:number) => (
+                
+                    <div key={index}>
+                      <table className="table-auto w-full">
+                        <thead>
+                          <tr>
+                            <th className="border-b border-gray-300 p-2 text-left">
+                              Price
+                            </th>
+                            <th className="border-b border-gray-300 p-2 text-left">
+                              Link
+                            </th>
+                          </tr>
+                          </thead>
+                        <tbody>
+                          <tr>
+                            <td className="border-b border-gray-300 p-2 text-left">
+                              {value.price}
+                            </td>
+                            <td className="border-b border-gray-300 p-2 text-left">
+                              <a href={value.url} target="_blank" rel="noreferrer">
+                                {value.url}
+                              </a>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+          
+                ))}
 
 
     </div>
