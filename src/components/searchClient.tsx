@@ -78,7 +78,7 @@ export default function SearchPage() {
           </Link>
         </div>
       </div>
-      <div className="py-6 px-4 md:py-12 border-t border-t-[1px]  border-[#C4C4C4] md:border-0">
+      <div className="py-6 px-4 border-t border-t-[1px]  border-[#C4C4C4] md:border-0">
         <SearchBar />
         <div className="block md:hidden">
           <Button
@@ -110,7 +110,7 @@ export default function SearchPage() {
               filters={filters}
             />
           </div>
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-12">
+          <div className="grid grid-cols-1 md:gap-8 md:grid-cols-12">
 
             <div className="col-span-1 md:col-span-3">
               <AdvancedFilterSidebar

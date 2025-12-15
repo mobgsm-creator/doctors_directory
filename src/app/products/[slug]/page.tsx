@@ -77,8 +77,8 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
         
           <PractitionerTabs />
 
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-10">
-            <div className="order-2 lg:order-1 col-span-1 lg:col-span-6">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
+            <div className="order-2 lg:order-1 col-span-1 lg:col-span-12">
               <ClinicDetailsMarkdown clinic={clinic} />
             </div>
             

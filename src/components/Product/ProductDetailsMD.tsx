@@ -86,30 +86,38 @@ export default function PractitionerDetailsSections({
       <Section title="Composition" id="composition">
         {renderList(clinic.composition)}
       </Section>
+      <div className="border-t border-gray-300 my-6"></div>
       {/* Experience */}
       <Section title="Formulation" id="formulation">
         {renderList(clinic.formulation)}
       </Section>
+      <div className="border-t border-gray-300 my-6"></div>
       {/* Experience */}
       <Section title="Packaging" id="packaging">
         {renderList(clinic.packaging)}
       </Section>
+      <div className="border-t border-gray-300 my-6"></div>
       {/* Experience */}
       <Section title="Usage" id="usage">
         {renderList(clinic.usage_instructions)}
       </Section>
+      <div className="border-t border-gray-300 my-6"></div>
       <Section title="Usage" id="usage">
         {renderList(clinic.contraindications)}
       </Section>
+      <div className="border-t border-gray-300 my-6"></div>
       <Section title="Usage" id="usage">
         {renderList(clinic.adverse_effects)}
       </Section>
+      <div className="border-t border-gray-300 my-6"></div>
       <Section title="Usage" id="usage">
         {renderList(clinic.storage_conditions)}
       </Section>
+      <div className="border-t border-gray-300 my-6"></div>
       <Section title="Duration" id="duration">
         {clinic.treatment_duration}
       </Section>
+      <div className="border-t border-gray-300 my-6"></div>
       <Section title="Onset" id="onset_of_effect">
         {clinic.onset_of_effect}
       </Section>
@@ -118,24 +126,24 @@ export default function PractitionerDetailsSections({
                 .map((value: any, index:number) => (
                 
                     <div key={index}>
-                      <table className="table-auto w-full">
+                      <table className="w-full mb-6 table-fixed md:table-auto">
                         <thead>
                           <tr>
-                            <th className="border-b border-gray-300 p-2 text-left">
+                            <th className="border-none border-gray-300 p-2 text-left">
                               Price
                             </th>
-                            <th className="border-b border-gray-300 p-2 text-left">
+                            <th className="border-none border-gray-300 p-2 text-left">
                               Link
                             </th>
                           </tr>
-                          </thead>
+                        </thead>
                         <tbody>
                           <tr>
-                            <td className="border-b border-gray-300 p-2 text-left">
+                            <td className="border-none border-gray-300 p-2 text-left">
                               {value.price}
                             </td>
-                            <td className="border-b border-gray-300 p-2 text-left">
-                              <a href={value.url} target="_blank" rel="noreferrer">
+                            <td className="border-none border-gray-300 p-2 text-left">
+                              <a href={value.url} className="break-words whitespace-normal" target="_blank" rel="noreferrer">
                                 {value.url}
                               </a>
                             </td>

@@ -30,17 +30,14 @@ export function SearchBar() {
     await router.push("/search");
     //console.log("pushed");
     setIsLoading(false);
-
   };
-  
-  
 
   return (
     <>
-      <div className="w-full max-w-6xl mx-auto space-y-6 sm:block">
+      <div className="w-full max-w-6xl mx-auto space-y-6 sm:block relative">
         {/* Main search bar with 3 sections */}
 
-        <div className="flex flex-row items-center">
+        <div className="flex flex-row items-center mb-2">
           <div className="block sm:hidden w-full">
             {/* Mobile Search */}
             <div
@@ -58,19 +55,24 @@ export function SearchBar() {
           </div>
           {/* Section 1: Select either Clinic or Practitioner */}
           <div className="relative hidden sm:block">
-             <div className="flex-1 bg-white shadow-sm border border-r-0 border-gray-300 px-4 py-3 rounded-l-lg cursor-pointer"
-           onClick={() => setOpen((o) => !o)}
-      >
-        <Input
-          value={localFilters.type}
-          readOnly
-          className="border-0 shadow-none p-0 h-auto w-30 text-base text-black cursor-pointer"
-        />
-        {/* Small border-only downward arrow */}
-            <div className="pointer-events-none absolute top-1/2 right-3 w-1.5 h-1.5 border-b-[1.5px] border-r-[1.5px] border-black transform rotate-45 -translate-y-1/2"></div>
-      </div>
-
-            
+            <div
+              className="flex-1 bg-white shadow-sm border border-r-0 border-gray-300 px-4 py-3 rounded-l-lg cursor-pointer"
+              onClick={() => setOpen((o) => !o)}
+            >
+              <Input
+                value={localFilters.type}
+                readOnly
+                className="border-0 shadow-none p-0 h-auto w-30 text-base text-black cursor-pointer focus:outline-none 
+                focus:ring-0 
+                focus:border-0
+                active:outline-none 
+                active:ring-0
+                focus-visible:outline-none focus-visible:ring-0 focus-visible:border-0
+                "
+              />
+              {/* Small border-only downward arrow */}
+              <div className="pointer-events-none absolute top-1/2 right-3 w-1.5 h-1.5 border-b-[1.5px] border-r-[1.5px] border-black transform rotate-45 -translate-y-1/2"></div>
+            </div>
           </div>
 
           {/* Section 2: Filter by Procedure, Speciality, Specialist */}
@@ -81,7 +83,12 @@ export function SearchBar() {
               onChange={(e) =>
                 setLocalFilters((prev) => ({ ...prev, query: e.target.value }))
               }
-              className="border-0 shadow-none p-0 h-auto w-60 text-base placeholder:text-gray-500"
+              className="border-0 shadow-none p-0 h-auto w-60 text-base placeholder:text-gray-500 focus:outline-none 
+                focus:ring-0 
+                focus:border-0
+                active:outline-none 
+                focus-visible:outline-none focus-visible:ring-0 focus-visible:border-0
+                active:ring-0"
               onFocus={() => filters.query && setShowResults(true)}
               onClick={() => setShowResults(true)}
             />
@@ -99,7 +106,16 @@ export function SearchBar() {
                   location: e.target.value,
                 }))
               }
-              className="border-0 shadow-none p-0 h-6 text-base placeholder:text-gray-500"
+              className="
+                border-0 min-w-[80px] shadow-none p-0 h-6 text-base
+                placeholder:text-gray-500
+                focus:outline-none 
+                focus:ring-0 
+                focus:border-0
+                active:outline-none 
+                active:ring-0
+                focus-visible:outline-none focus-visible:ring-0 focus-visible:border-0
+              "
               onKeyDown={(e) => e.key === "Enter"}
               onFocus={() => filters.location && setShowLocResults(true)}
               onBlur={() => setTimeout(() => setShowLocResults(false), 200)}
@@ -120,154 +136,53 @@ export function SearchBar() {
             )}
           </Button>
         </div>
-        <div className='flex flex-rows gap-2'>
+        <div className="flex flex-col md:flex-rows gap-2">
           {/* Dropdown */}
-      {open && (
-        <div className="absolute left-30 mt-1 w-[150px] bg-white z-20 rounded-lg shadow-lg border border-gray-200">
-          {options.map((opt) => (
-            <div
-              key={opt}
-              className="px-4 py-3 hover:bg-gray-100 cursor-pointer text-sm"
-              onClick={() => {
-                setLocalFilters((prev) => ({ ...prev, type: opt }));
-                setOpen(false);
-              }}
-            >
-              {opt}
-            </div>
-          ))}
-        </div>
-      )}
-        {showResults && (
-          <div className={`bg-white rounded-lg shadow-lg border border-gray-200 p-6 ${isSearchPage ? "lg:ml-37" : ""}  max-w-[660px]`}>
-            <div
-              className={`grid grid-cols-2 isSearchPage ? "lg:grid-cols-[300px_300px]" gap-6`}
-            >
-              {/* Popular conditions and procedures */}
-              <div>
-                <h3 className="font-semibold text-gray-900 mb-4">
-                  Popular conditions and procedures
-                </h3>
-                <div className="space-y-2 overflow-auto max-h-100">
-                  {(modalities.filter((category: string) =>
-                    category
-                      .toLowerCase()
-                      .includes(localFilters.query.toLowerCase())
-                  ).length > 0
-                    ? modalities.filter((category: string) =>
-                        category
-                          .toLowerCase()
-                          .includes(localFilters.query.toLowerCase())
-                      )
-                    : modalities
-                  ).map((condition: string, index) => (
-                    <div
-                      key={condition}
-                      className="flex flex-col items-start gap-1"
-                    >
-                      {/* Index Badge */}
-
-                      {/* Hover-highlight wrapper */}
-                      <div
-                        className="
-                      w-full px-3 py-2 rounded-lg transition
-                      hover:bg-blue-50 hover:text-blue-700 active:bg-blue-100
-                    "
-                      >
-                        <button
-                          onClick={() =>
-                            setLocalFilters((prev) => ({
-                              ...prev,
-                              query: condition,
-                            }))
-                          }
-                          className="text-left text-sm font-medium w-full flex items-center gap-3"
-                        >
-                          {condition}
-                        </button>
-                      </div>
-                    </div>
-                  ))}
+          {open && (
+            <div className="absolute left-0 mt-1 w-[150px] bg-white z-20 rounded-lg shadow-lg border border-gray-200">
+              {options.map((opt) => (
+                <div
+                  key={opt}
+                  className="px-4 py-3 hover:bg-gray-100 cursor-pointer text-sm"
+                  onClick={() => {
+                    setLocalFilters((prev) => ({ ...prev, type: opt }));
+                    setOpen(false);
+                  }}
+                >
+                  {opt}
                 </div>
-              </div>
-
-              {/* Popular specialties */}
-              <div>
-                <h3 className="font-semibold text-gray-900 mb-4">
-                  Service Cateogries
-                </h3>
-                <div className="space-y-2 overflow-auto max-h-100">
-                  {(search_categories.filter((category: string) =>
-                    category
-                      .toLowerCase()
-                      .includes(localFilters.query.toLowerCase())
-                  ).length > 0
-                    ? search_categories.filter((category: string) =>
-                        category
-                          .toLowerCase()
-                          .includes(localFilters.query.toLowerCase())
-                      )
-                    : search_categories
-                  ).map((specialty: string, index) => (
-                    <div
-                      key={specialty}
-                      className="flex flex-col items-start gap-1"
-                    >
-                      {/* Hover-highlight wrapper */}
-                      <div
-                        className="
-                      w-full px-3 py-2 rounded-lg transition
-                      hover:bg-blue-50 hover:text-blue-700 active:bg-blue-100
-                    "
-                      >
-                        <button
-                          onClick={() =>
-                            setLocalFilters((prev) => ({
-                              ...prev,
-                              query: specialty,
-                            }))
-                          }
-                          className="text-left text-sm font-medium w-full flex items-center gap-3"
-                        >
-                          {specialty}
-                        </button>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Popular Locations */}
-              
+              ))}
             </div>
-          </div>
-        )}
-        {showLocResults && (
-                <div className="bg-white rounded-lg shadow-lg border border-gray-200 p-6 max-w-[150px] lg:max-w-[300px]">
-                  <h3 className="font-semibold text-gray-900 mb-4">
-                    Locations
+          )}
+          {showResults && (
+            <div
+              className={`bg-white rounded-lg shadow-lg border border-gray-200 p-6 ${
+                isSearchPage ? "lg:ml-37" : ""
+              }  max-w-[660px]`}
+            >
+              <div
+                className={`grid md:grid-cols-2 isSearchPage ? "lg:grid-cols-[300px_300px]" gap-6`}
+              >
+                {/* Popular conditions and procedures */}
+                <div>
+                  <h3 className="font-semibold text-left text-gray-900 mb-4">
+                    Popular conditions and procedures
                   </h3>
-                  <div className="space-y-2 overflow-auto max-h-100">
-                    {(locations.filter(
-                      (loc) =>
-                        typeof loc === "string" &&
-                        loc
-                          .toLowerCase()
-                          .includes((localFilters.location || "").toLowerCase())
+                  <div className="space-y-2 overflow-auto max-h-50 md:max-h-100">
+                    {(modalities.filter((category: string) =>
+                      category
+                        .toLowerCase()
+                        .includes(localFilters.query.toLowerCase())
                     ).length > 0
-                      ? locations.filter(
-                          (loc) =>
-                            typeof loc === "string" &&
-                            loc
-                              .toLowerCase()
-                              .includes(
-                                (localFilters.location || "").toLowerCase()
-                              )
+                      ? modalities.filter((category: string) =>
+                          category
+                            .toLowerCase()
+                            .includes(localFilters.query.toLowerCase())
                         )
-                      : locations
-                    ).map((loc: string, index) => (
+                      : modalities
+                    ).map((condition: string, index) => (
                       <div
-                        key={loc}
+                        key={condition}
                         className="flex flex-col items-start gap-1"
                       >
                         {/* Index Badge */}
@@ -283,20 +198,118 @@ export function SearchBar() {
                             onClick={() =>
                               setLocalFilters((prev) => ({
                                 ...prev,
-                                location: loc,
+                                query: condition,
                               }))
                             }
                             className="text-left text-sm font-medium w-full flex items-center gap-3"
                           >
-                            {loc}
+                            {condition}
                           </button>
                         </div>
                       </div>
                     ))}
                   </div>
                 </div>
-              )}
-      </div></div>
+
+                {/* Popular specialties */}
+                <div>
+                  <h3 className="font-semibold text-left text-gray-900 mb-4">
+                    Service Cateogries
+                  </h3>
+                  <div className="space-y-2 overflow-auto max-h-50 md:max-h-100">
+                    {(search_categories.filter((category: string) =>
+                      category
+                        .toLowerCase()
+                        .includes(localFilters.query.toLowerCase())
+                    ).length > 0
+                      ? search_categories.filter((category: string) =>
+                          category
+                            .toLowerCase()
+                            .includes(localFilters.query.toLowerCase())
+                        )
+                      : search_categories
+                    ).map((specialty: string, index) => (
+                      <div
+                        key={specialty}
+                        className="flex flex-col items-start gap-1"
+                      >
+                        {/* Hover-highlight wrapper */}
+                        <div
+                          className="
+                      w-full px-3 py-2 rounded-lg transition
+                      hover:bg-blue-50 hover:text-blue-700 active:bg-blue-100
+                    "
+                        >
+                          <button
+                            onClick={() =>
+                              setLocalFilters((prev) => ({
+                                ...prev,
+                                query: specialty,
+                              }))
+                            }
+                            className="text-left text-sm font-medium w-full flex items-center gap-3"
+                          >
+                            {specialty}
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Popular Locations */}
+              </div>
+            </div>
+          )}
+          {showLocResults && (
+            <div className="bg-white rounded-lg shadow-lg border border-gray-200 p-6 md:max-w-[150px] lg:max-w-[300px]">
+              <h3 className="font-semibold text-left text-gray-900 mb-4">Locations</h3>
+              <div className="space-y-2 overflow-auto max-h-50 md:max-h-100">
+                {(locations.filter(
+                  (loc) =>
+                    typeof loc === "string" &&
+                    loc
+                      .toLowerCase()
+                      .includes((localFilters.location || "").toLowerCase())
+                ).length > 0
+                  ? locations.filter(
+                      (loc) =>
+                        typeof loc === "string" &&
+                        loc
+                          .toLowerCase()
+                          .includes((localFilters.location || "").toLowerCase())
+                    )
+                  : locations
+                ).map((loc: string, index) => (
+                  <div key={loc} className="flex flex-col items-start gap-1">
+                    {/* Index Badge */}
+
+                    {/* Hover-highlight wrapper */}
+                    <div
+                      className="
+                      w-full px-3 py-2 rounded-lg transition
+                      hover:bg-blue-50 hover:text-blue-700 active:bg-blue-100
+                    "
+                    >
+                      <button
+                        onClick={() =>
+                          setLocalFilters((prev) => ({
+                            ...prev,
+                            location: loc,
+                          }))
+                        }
+                        className="text-left text-sm font-medium w-full flex items-center gap-3"
+                      >
+                        {loc}
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
     </>
   );
 }

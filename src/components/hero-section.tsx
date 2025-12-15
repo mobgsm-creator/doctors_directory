@@ -49,7 +49,7 @@ export function HeroSection() {
         items-center"
       >
         <div
-          className="flex grid md:grid-cols-2 items-center gap-12 mb-6 pt-10 pb-10">
+          className="flex grid lg:grid-cols-2 items-center gap-12 mb-6 pt-10 pb-10">
           <div className="md:pt-5">
             <h1
               className="text-3xl md:text-5xl mb-6 text-[var(--mineshaft)] font-[var(--font-noto)]"
