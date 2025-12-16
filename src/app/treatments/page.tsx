@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { Card, CardHeader, CardContent } from "@/components/ui/card"
 import Image from "next/image"
-export const TreatmentMap: Record<string, string> = {
+const TreatmentMap: Record<string, string> = {
   "Acne": "/directory/treatments/acne.webp",
   "Alopecia": "/directory/treatments/alopecia.webp",
   "Anti Wrinkle Treatment": "/directory/treatments/anti wrinkle treatment.webp",

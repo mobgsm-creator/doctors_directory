@@ -36,7 +36,7 @@ export interface Clinic {
   Payments: string	
   Fees: string	
   x_twitter: string
-  Treatments: string[]
+  Treatments?: string[]
 
 
 }
