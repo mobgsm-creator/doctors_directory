@@ -94,9 +94,9 @@ export function AdvancedFilterSidebar({
         className={`
           bg-transparent shadow-none border border-transparent rounded-0 pb-[145px] px-4 md:px-0 md:py-0 relative
           md:relative md:block md:h-auto w-full md:bg-transparent md:translate-x-0
-          fixed top-0 left-0 h-screen bg-white z-50 transition-transform duration-300 ease-in-out
+          fixed top-0 left-0 h-screen bg-white z-[9999] md:z-[1] transition-transform duration-300 ease-in-out
           ${isFilterActive ? "translate-x-0" : "-translate-x-full"}
-        `}
+        `}        
       >
         <CardHeader className="p-0 flex justify-between items-center">
           <CardTitle className="text-lg mb-0 md:mb-4">Filters</CardTitle>
