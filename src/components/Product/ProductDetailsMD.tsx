@@ -126,10 +126,10 @@ export default function PractitionerDetailsSections({
                 .map((value: any, index:number) => (
                 
                     <div key={index}>
-                      <table className="w-full mb-6 table-fixed md:table-auto">
+                      <table className="w-full mb-6 table-fixed">
                         <thead>
                           <tr>
-                            <th className="border-none border-gray-300 p-2 text-left">
+                            <th className="border-none md:w-[20%] border-gray-300 p-2 text-left">
                               Price
                             </th>
                             <th className="border-none border-gray-300 p-2 text-left">
@@ -139,7 +139,7 @@ export default function PractitionerDetailsSections({
                         </thead>
                         <tbody>
                           <tr>
-                            <td className="border-none border-gray-300 p-2 text-left">
+                            <td className="border-none md:w-[20%] border-gray-300 p-2 text-left">
                               {value.price}
                             </td>
                             <td className="border-none border-gray-300 p-2 text-left">
@@ -151,10 +151,7 @@ export default function PractitionerDetailsSections({
                         </tbody>
                       </table>
                     </div>
-          
                 ))}
-
-
     </div>
   );
 }

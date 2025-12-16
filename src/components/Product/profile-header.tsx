@@ -14,6 +14,11 @@ import type { Product } from "@/lib/types";
 
 import { cn } from "@/lib/utils";
 
+type BadgeRule = {
+  keywords: string[];
+  className: string;
+};
+
 interface ProfileHeaderProps {
   clinic: Product;
 }
@@ -25,12 +30,38 @@ export function ProfileHeader({ clinic }: ProfileHeaderProps) {
     .join(" ");
   const roleTitle = clinic.brand;
 
+  const BADGE_RULES: BadgeRule[] = [
+    {
+      keywords: ["prescription"],
+      className: "bg-green-100 text-green-800 border-green-300",
+    },
+    {
+      keywords: ["mhra"],
+      className: "bg-orange-100 text-orange-800 border-orange-300 ",
+    },
+    {
+      keywords: ["gmp", "good manufacturing"],
+      className: "bg-purple-100 text-purple-800 border-purple-300",
+    },
+  ];
+  
+
+  function getBadgeClass(text: string) {
+    const lower = text.toLowerCase();
+
+    const rule = BADGE_RULES.find((r) =>
+      r.keywords.some((k) => lower.includes(k))
+    );
+
+    return rule?.className ?? "bg-gray-100 text-gray-800 border-gray-300";
+  }
+
   return (
     <Card className="md:mt-2 flex flex-col gap-6 md:rounded-xl px-0 md:px-6 py-6 relative shadow-none group transition-all duration-300 md:rounded-27 border-t border-b border-[#C4C4C4] md:border-t-[1px] md:border md:border-[var(--alto)] bg-white md:bg-[var(--primary-bg-color)]">
       <div className="px-4 md:px-0 grid grid-cols-1 lg:grid-cols-[4fr_1fr] gap-4 items-center">
         <div className="flex flex-row flex-wrap pb-4 md:pb-0 md:mb-4 px-0 lg:mb-0 items-start border-b border-[#C4C4C4] md:border-0">
           {/* Profile Image Section */}
-          <div className="flex flex-col items-center w-[115px] md:w-[200px] mr-2 md:mr-4">
+          <div className="flex flex-col items-center w-[115px] md:w-[200px] mr-2 md:mr-6">
             <div className="relative group">
               {/* Elegant frame with shadow */}
               <div className="absolute -inset-1 rounded-full blur opacity-25 transition duration-300" />
@@ -72,25 +103,47 @@ export function ProfileHeader({ clinic }: ProfileHeaderProps) {
               </div>
             </div>
 
-            {/* Specializations preview */}
-            <div className="flex flex-wrap gap-2 pt-2">
-              {clinic.certifications_and_compliance?.map((spec: string) => (
-                <Badge
-                  key={spec}
-                  variant="outline"
-                  className="flex items-center gap-1 rounded-full bg-green-100 text-green-800 border border-green-300 text-xs px-3 py-1 mb-1"
-                >
-                  {spec
-                    .split("-")
-                    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-                    .join(" ")}
-                </Badge>
-              ))}
+            <div className="hidden md:block">
+              {/* Specializations preview */}
+              <div className="flex flex-wrap gap-2 pt-2">
+                {clinic.certifications_and_compliance?.map((spec: string) => (
+                  <Badge
+                    key={spec}
+                    variant="outline"
+                    className={`flex items-center px-4 py-2 gap-1 rounded-full border text-xs ${getBadgeClass(
+                      spec
+                    )}`}
+                  >
+                    {spec
+                      .split("-")
+                      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                      .join(" ")}
+                  </Badge>
+                ))}
+              </div>
             </div>
+
           </div>
         </div>
 
         <div className="block md:hidden">
+          {/* Specializations preview */}
+          <div className="flex flex-wrap gap-2">
+                {clinic.certifications_and_compliance?.map((spec: string) => (
+                  <Badge
+                    key={spec}
+                    variant="outline"
+                    className={`flex items-center px-4 py-2 gap-1 rounded-full border text-xs ${getBadgeClass(
+                      spec
+                    )}`}
+                  >
+                    {spec
+                      .split("-")
+                      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                      .join(" ")}
+                  </Badge>
+                ))}
+              </div>
           {/* Contact Information */}
 
           <div className="flex flex-wrap gap-4 my-2">
