@@ -2,6 +2,7 @@ import Link from "next/link"
 import { Search, Mail, Phone, MapPin } from "lucide-react"
 import { Separator } from "@/components/ui/separator"
 import { Button } from "@/components/ui/button"
+import { modalities } from "@/lib/data";
 const cityList = ["Aberaeron",
 "Aberdare",
 "Aberdeen",
@@ -845,6 +846,14 @@ export function Footer() {
               {cityList.map((city, index) => (
                 <Link href={`/clinics/${city}`} key={index} className="block text-sm">
                   Top Clinics in {city}
+                </Link>
+              ))} 
+            </div>
+            <h3 className="font-semibold">Treatments</h3>
+            <div className="space-y-2 max-h-[100px] overflow-auto">
+              {modalities.map((t, index_t) => (
+                <Link href={`/clinics/London/services/${t}`} key={index_t} className="block text-sm">
+                  {t}
                 </Link>
               ))}
             </div>

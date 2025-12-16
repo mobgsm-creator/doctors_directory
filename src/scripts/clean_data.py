@@ -8,59 +8,642 @@ import spacy
 import numpy as np
 
 from sklearn.metrics.pairwise import cosine_similarity
-#df = pd.read_json(r'C:\Users\agney\Documents\Files\Projects\doctor-directory\public\clinics_processed.json')
-df= pd.read_excel(r"C:\Users\agney\Documents\Files\Projects\clinics_processed.xlsx")
-values = set()
-bl = ['Monday', 'Sat', 'Tue', 'Thu', 'Fri', 'Mon-Fri', 'Sun', 'SourceNote', 'Sat-Sun', 'Mon', 'Wed', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Source','Typical_hours_recorded_in_public_listings', 'Notes', 'Note']
+CANONICAL_MAP = {
+    "Acne": ["Acne And Scarring Treatments",
+"Acne Scar Treatment",
+"Acne Scarring Treatment",
+"Acne Treatment",
+"Acne Treatments",
+"Acne",
+],
+"Actinic Keratosis":["Actinic Keratosis (solar Keratosis) Treatment",
+"Actinic Keratosis (solar Keratosis)",
+"Actinic Keratosis Treatment",
+"Actinic Keratosis",
+]
+,
+"Eyes":["Cosmetic Eye Procedure","Under Eye Treatments",
+"Under-eye Filler",
+],
+"Aesthetic Skin Consultation":["Aesthetic Procedure",
+"Aesthetic Procedures",
+"Aesthetic Skin Consultation",
+"Aesthetic Treatment",
+"Aesthetic Treatments",
+"Aesthetics Work",
+"Consultations",
+"Cosmetic Dermatology",
+
+"Cosmetic Injectables",
+"Cosmetic Procedure",
+"Cosmetic Procedures",
+"Cosmetic Treatments",
+"Skin Treatment",
+"Skin Treatments",
+"Skincare Advice",
+"Skincare Consultation",
+"Skincare Routines",
+"Skincare Treatments",
+"Skincare",
+"Skinpen Treatment With Exosomes",
+
+"Skin Care Procedures",
+"Skin Care",
+"Skin Check",
+"Skin Consultation","Skin Problems",
+"Skin Rejuvenation",
+"Skin Resurfacing",
+
+
+],
+"Aged And Sundamaged Skin Care": ["Aged And Sundamaged Skin Care",
+"Aged And Sundamaged Skin Treatment",
+"Aged And Sun-damaged Skin Treatment",
+"Aged And Sundamaged Skin",
+"Aged And Sun-damaged Skin"],
+"Alopecia": ["Alopecia (hair Loss)",
+"Alopecia Areata (hair Loss) Treatment",
+"Alopecia Areata (hair Loss)",
+"Alopecia Areata Treatments",
+"Alopecia Areata",
+"Alopecia Injections",
+"Alopecia Treatment",
+"Alopecia","Female Pattern Baldness",
+],
+"Anti Fungal Therapy":["Anti Fungal Therapy",
+"Anti-fungal Therapy","Fungal Infection Treatment",
+"Fungal Infection"],
+"Anti Wrinkle Treatment": ["Anti Wrinkle Treatment",
+"Anti-aging Consultation",
+"Anti-wrinkle Injections",
+"Anti-wrinkle Treatment",
+"Anti-wrinkle Treatments",
+"Anti-wrinkle",
+],
+"Aqualyx":["Aqualyx","Aqualyx Injections"],
+"B12 Injection":["B12 And Biotin Injection",
+"B12 Injection",
+"B12 Injections",
+"B12 Shot",
+],
+"Aviclear":["Aviclear","Aviclear Treatment"],
+"Basal Cell Carcinoma":["Basal Cell Carcinoma Removal",
+"Basal Cell Carcinoma",
+"Bbl Laser Treatment",
+"Bbl Therapy",
+"Bbl",
+],
+"Bcc Lesions Treatment":["Bcc Lesions Treatment",
+"Bcc Removal",
+],
+"Benign Skin Conditions":["Benign (non-cancerous) Skin Conditions Treatment",
+"Benign (non-cancerous) Skin Conditions",
+"Benign Skin Conditions",
+],
+"Birthmarks":["Birthmarks Treatment",
+"Birthmarks",
+],
+"Blistering Disorders":["Blistering Disorders Treatment",
+"Blistering Disorders",
+],
+"Botox":["Botox For Gummy Smile",
+"Botox Injection",
+"Botox Injections",
+"Botox","Toxin Treatment",
+
+],
+"Breast Augmentation":["Breast Augmentation",
+"Breast Lift",
+"Breast Reconstruction",
+"Breast Reduction",
+],
+"Eyebrows And Lashes":["Brow Wax",
+"Brows","Eyebrow Taming",
+"Eyebrow Tint","Semi-permanent Brows",
+
+"Eyebrow Transplant",
+"Eyebrow Treatment","Permanent Eyebrows",
+
+"Eyebrow Treatments",
+"Eyebrows And Lashes",
+"Eyelash Extensions",
+"Combination Brows","Lash Lift And Tint",
+"Lash Lift",
+"Lash Tint",
+
+
+],
+"Cheek Enhancement":["Cheek And Lower Face Filler",
+"Cheek Enhancement",
+"Cheek Filler",
+"Cheek Fillers",
+],
+"Chemical Peel":["Chemical Peel",
+"Chemical Peels","Peel",
+"Peels","Skin Peel",
+"Skin Peels",
+
+
+],
+"Chin Enhancement":["Chin Filler",
+"Chin Fillers",
+"Chin Liposuction",
+],
+"Contact Dermatitis":["Contact Dermatitis Treatment",
+"Contact Dermatitis",
+],
+"Coolsculpting":["Cool Sculpting",
+"Coolsculpting",
+],
+"Cutaneous Lupus Erythematosus":["Cutaneous Lupus Erythematosus (cle)",
+"Cutaneous Lupus Erythematosus",
+],
+"Cysts Treatment":["Cyst Removal",
+"Cysts Removal",
+"Cysts Treatment",
+"Cysts","Minor Procedures (cyst Removal)",
+
+],
+"Dermapen Treatment":["Dermapen Treatment",
+"Dermapen",
+"Face Dermapen",
+
+],
+"Dermatitis Treatment":["Dermatitis Treatment",
+"Dermatitis",
+],
+"Dermatology Treatments":["Dermatological Treatments",
+"Dermatology Consultation",
+"General Dermatology",
+"Genital Dermatology","Paediatric Dermatology",
+
+"Dermatology Treatments",
+"Dermatology"],
+"Earlobe Reconstruction":["Earlobe Reconstruction",
+"Earlobe Repair Surgery",
+],
+"Eczema Treatment":["Eczema (atopic Dermatitis) Management",
+"Eczema (atopic Dermatitis) Treatment",
+"Eczema (atopic Dermatitis)",
+"Eczema Management",
+"Eczema Treatment",
+"Eczema",
+"Eczema",
+],
+"Facial Treatments":["Facial Aesthetics","Face Rejuvenation",
+"Facelift","Perimenopause Facial","Wellness Facial",
+
+"Skin Storm Facial",
+
+"Facial Aesthetic Treatments",
+"Facial Aesthetics",
+"Dermatology-grade Facials"
+"Facial Hair Growth",
+"Facial Micro-needling","Luxury Facial",
+
+"Facial Rejuvenation",
+"Facial Revival",
+"Facial Slimming",
+"Facial Spots Treatment",
+"Facial Thread Vein Removal",
+"Facial Treatments",
+"Facial Vein Treatments","Mini Face Lift",
+
+"Facial Wart Removal",
+"Facial","Medi-facial",
+"Medik8 Facials",
+"Oxygen Facial",
+"Facials",
+"Fine Lines Treatment",
+"Fire And Ice Facial",
+"Frown Line Treatments",
+"Fusion Facial",
+"Glass Skin Facial",
+"Glow Facial",
+"Hydra Facial","Plasma Facial",
+
+"Hydrafacial","Natural Face Rejuvenation",
+"Non-surgical Facelift",
+"Hydrafacials",
+"Hydro Facial","Ultimate Glow Facial",
+
+"Hydro2facial",
+"Hydrofacial",
+"Hydrotherapy Facial",
+"Instant Glow Facial",
+"Illumi Facial",
+"Lumafuse Facial","Pro Hydrafacial",
+"Profacial",
+
+],
+"Hygienist Appointment":["Hygienist Appointment","Hygiene Appointments",
+"Hygiene Clean",
+"Hygienist Appointment",
+"Hygienist Appointments",
+"Hygienist Services",
+],
+"Hyperhidrosis":["Hyperhidrosis (excessive Sweating)",
+"Hyperhidrosis Treatment",
+"Hyperhidrosis Treatments",
+"Hyperhidrosis",
+"Hyperpigmentation Treatment",
+],
+"Fillers":["Dermal Filler",
+"Dermal Fillers - Forehead","Skin Fillers",
+"Dermal Fillers - Jawline",
+"Dermal Fillers - Non-surgical Facelift",
+"Dermal Fillers - Radiesse",
+"Dermal Fillers",
+"Dermal Lip Filler",
+"Filler Dissolving",
+"Filler Injections","Salmon Dna Gold Facial",
+"Filler",
+"Fillers",
+"Jaw Filler",
+"Jaw Line Filler",
+
+
+],
+"Hair Treatments":["Fue Hair Transplant",
+"Fue Surgery","Hair Color",
+"Hair Coloring",
+"Hair Colouring",
+"Hair Disorders",
+"Hair Laser Removal","Ultraclear Laser Treatment",
+
+"Hair Loss Treatment",
+"Hair Loss Treatments",
+"Hair Perm",
+"Hair Removal",
+"Hair Styling",
+"Hair Thinning Consultation",
+"Hair Transplant",
+"Haircut",
+
+"Folliculitis",
+],
+"Nails":["Gel Manicures",
+"Gel Nails","Manicures","Medical Pedicures","Nail Extensions",
+"Nail Treatments",
+"Paronychia (nail Infection)","Pedicure",
+"Pedicures",
+
+
+
+
+],
+"Hidradenitis Suppurativa":["Hidradenitis Suppurativa Treatment",
+"Hidradenitis Suppurativa",
+],
+"Hifu":["Hifu Treatment",
+"Hifu",
+],
+"Hives Treatment":["Hives Treatment",
+"Hives","Urticaria (hives) Treatment",
+"Urticaria (hives)",
+"Urticaria Treatment",
+"Urticaria",
+
+],
+"Massage":["Hot Stone Massage","Indian Head Massage","Massage",
+"Massages","Swedish Massage",
+
+],
+
+"Inflammatory Skin Conditions":["Inflammatory Skin Conditions Management",
+"Inflammatory Skin Conditions Treatment",
+"Inflammatory Skin Conditions",
+],
+
+"Ipl Treatment":["Ipl Laser Treatments",
+"Ipl Treatment",
+"Ipl",
+],
+"Vitamin Therapy":["Iv Vitamin Therapy",
+"Iv Wellness Drip", "Vitamin B12 Injections",
+"Vitamin D Injections",
+"Vitamin Infusion",
+"Vitamin Therapy",
+],
+"Keloid Removal":["Keloid Removal",
+"Keloids",
+],
+"Tattoo Removal":["Laser Tattoo Removal","Tattoo Removal",],
+"Tear-through Treatment":["Tear Trough Filler",
+"Tear Trough Fillers",
+"Tear-through Treatment",
+],
+"Threading":["Thread Lift",
+"Thread Neck Lift",
+"Threading",
+"Threads",
+],
+"Laser Treatments":["Laser Acne Scar Treatment",
+"Laser Beauty Treatments",
+"Laser For Pigmentation",
+"Laser Hair Removal",
+"Laser Resurfacing",
+
+"Laser Therapy",
+"Laser Treatment For Broken Capillaries",
+"Laser Treatment",
+"Laser Treatments",
+"Laser Vein Surgery",
+],
+"Lips":["Lip Augmentation",
+"Lip Enhancement",
+"Lip Filler Dissolve",
+"Lip Filler",
+"Lip Fillers",
+"Lip Flip",
+"Lip Injections","Lips",
+
+],
+"Liposuction":["Lipo",
+"Lipocontrast",
+"Liposcution",
+],
+
+"Lymphatic Drainage":["Lymphatic Drainage Massage",
+"Lymphatic Drainage",
+],
+
+"Marionettes":["Marionette Lines",
+"Marionettes",
+],
+"Melanoma Treatment":["Melanoma Management",
+"Melanoma Treatment",
+"Melanoma","Wide Local Excision For Melanoma",
+
+],
+"Melasma Treatment":["Melasma Treatment",
+"Melasma",
+],
+"Micro-Needling":["Micro Needling","Microneedling",
+"Micro-needling","Skin Needling",
+
+
+],
+"Microblading":["Microblading Removal",
+"Microblading",
+],
+"Microneedling With Radiofrequency":["Microneedle Radiofrequency",
+"Micro-needling Radio-frequency",
+"Microneedling With Radiofrequency","Radio Frequency Facial",
+"Radio Frequency Micro Needling",
+"Radio Frequency",
+"Radiofrequency Microneedling",
+"Radio-frequency Micro-needling","Rf Microneedling",
+
+
+],
+"Mohs Surgery":["Mohs Surgery",
+"Moh's Surgery",
+],
+"Moles":["Mole And Skin Tag Removal",
+"Mole Check",
+"Mole Checking",
+"Mole Checks",
+"Mole Inspection",
+"Mole Mapping",
+"Mole Removal",
+"Mole Removals",
+"Mole Scan",
+"Moles",
+],
+"Morpheus 8":["Morpheus 8 Treatment",
+"Morpheus 8",
+"Morpheus8 Treatments",
+    ],
+"Rhinoplasty":["Non Surgical Rhinoplasty","Rhinoplasty",
+"Non-surgical Rhinoplasty",
+],
+"Obagi":["Obagi Blue Peel Radiance",
+"Obagi Medical Grade Skincare",
+"Obagi Skin Peels",
+"Obagi Treatment",
+],
+"Patch Testing":["Patch Testing","Patch Test",
+],
+"Pdt Therapy":["Pdl",
+"Pdt Therapy",
+"Pdt Treatment",
+],
+"Photodynamic Therapy (pdt)":["Photodynamic Therapy (pdt)",
+"Photodynamic Therapy",
+],
+"Pigmentation Treatment":["Pigmentation Removal",
+"Pigmentation Treatment","Redness And Pigmentation Treatment",
+],
+"Platelet Rich Plasma":["Platelet Rich Plasma",
+"Platelet-rich Plasma (prp) Treatments For Hair Restoration",
+"Platelet-rich Plasma (prp) Treatments",
+"Platelet-rich Plasma (prp)","Prp Facial","Rf Facials",
+
+"Prp Injection",
+"Prp Microneedling",
+"Prp Treatment",
+"Prp Treatments",
+"Prp Vampire Facial",
+"Prp",
+
+],
+"Polynucleotide Treatment":["Polymyositis And Dermatomyositis",
+"Polynucleotide Injections",
+"Polynucleotide Treatment",
+"Polynucleotides Treatment",
+"Polynucleotides",
+],
+"Profhilo":["Profhilo Treatment",
+"Profhilo Treatments",
+"Profhilo",
+"Profilo Plastica",
+"Profilo","Prophilo",
+
+],
+"Psoriasis":["Psoriasis Treatment",
+"Psoriasis",
+],
+"Rash Treatment":["Rash Treatment",
+"Rash",
+],
+"Rosacea Treatment":["Rosacea Management",
+"Rosacea Treatment",
+"Rosacea",
+],
+"Scarring":["Scar Reduction",
+"Scar Treatment",
+"Scarring Alopecias",
+"Scarring Treatment",
+"Scarring",
+],
+"Seborrheic Keratosis Treatment":["Seborrheic Keratosis Removal",
+"Seborrheic Keratosis Treatment",
+"Seborrheic Keratosis",
+],
+"Seborrhoeic Dermatitis":["Seborrhoeic Dermatitis Treatment",
+"Seborrhoeic Dermatitis",
+"Seborrhoeic Keratosis Treatment",
+],
+"Skin Booster":["Skin Booster Treatment",
+"Skin Booster",
+"Skin Boosters",
+],
+"Skin Cancer":["Skin Cancer Check",
+"Skin Cancer Screening",
+"Skin Cancer Screenings",
+"Skin Cancer Surgery",
+"Skin Cancer Treatment",
+"Skin Cancer",
+],
+"Skin Lesions":["Skin Lesion Removal (warts, Moles And Skin Tags)",
+"Skin Lesion Removal",
+"Skin Lesion Treatments","Legion Excision",
+
+],
+"Skin Tags":["Skin Tag Removal",
+"Skin Tags Removal","Skintag Removal",
+
+"Skin Tags",
+],
+"Skin Texture And Tightening":["Skin Texture And Tightening",
+"Skin Tightening",
+],
+"Squamous Cell Carcinoma":["Squamous Cell Carcinoma (scc)",
+"Squamous Cell Carcinoma Removal",
+"Squamous Cell Carcinoma",
+],
+"Varicose Vein Procedure":["Varicose Vein Procedure",
+"Varicose Vein Removal",
+"Varicose Veins",
+]
+,
+"Verruca Treatment":["Verruca Removal",
+"Verruca Treatment",
+"Verruca","Wart Removal",
+"Wart Treatment",
+"Warts (viral) Treatment",
+"Warts (viral)",
+"Warts Removal",
+"Warts Treatment",
+],
+"Vulval Dermatology":["Vulval Cancer",
+"Vulval Dermatology",
+"Vulvodynia",
+],
+"Weight Loss":["Weight Loss Injections",
+"Weight Loss",
+"Weight Management",
+]
+
+}
+REVERSE_LOOKUP = {
+    variant: canonical
+    for canonical, variants in CANONICAL_MAP.items()
+    for variant in variants
+}
+df_p = pd.read_json(r'C:\Users\agney\Documents\Files\Projects\doctor-directory\public\clinics_processed.json')
+df=pd.read_csv(r"C:\Users\agney\Documents\Files\Projects\doctor-directory\test_cleaned.csv")
+
+# df2 = pd.read_excel(r"C:\Users\agney\Downloads\5600_UK_slug_search_results_2k_.xlsx",sheet_name='exists')
+# print(df_p.columns,df2.columns)
+# df = pd.merge(df_p,df2[['url','json_response']],on='url',how='left')
+# df.to_csv("test.csv")
+# time.sleep(1000)
+# df = pd.read_csv(r"C:\Users\agney\Documents\Files\Projects\doctor-directory\test.csv")
+count = 0
+unique_treatments = set()
+REVERSE_LOOKUP = {
+    k.lower(): v.lower()
+    for k, v in REVERSE_LOOKUP.items()
+}
+error_strings = set()
+
+
+for index,row in df.iterrows():
+    treatments = set()
+    try:
+        for key in REVERSE_LOOKUP.keys():
+            if key.lower() in row['json_response'].lower():
+                treatments.add(key)
+        df.at[index,'Treatments'] = json.dumps(list(treatments))
+    except Exception as e:
+        print(e)
+        pass
+
+
+# time.sleep(1000)
 for index,row in df.iterrows():
     try:
-        loaded_json = json.loads(row['hours'].replace("'",'"'))
-        if len(loaded_json.keys() - bl)>=3:
-                print(index, loaded_json.keys() - bl)
-                df.at[index,'error']=1
+
+        categories = json.loads(row['Treatments'])
+        normalized = list(set([REVERSE_LOOKUP[cat] for cat in categories]))
+        df.at[index,'Treatments_normalized'] = json.dumps(normalized)
+        unique_treatments.update(normalized)
+
     except Exception as e:
-        #df.at[index,'error']=1
+        print(e)
+        count+=1
         pass
-df.to_csv("test2.csv")
-time.sleep(100)
-nlp = spacy.load("en_core_web_lg")
+print(count)
+print(len(CANONICAL_MAP.keys()))
+print(unique_treatments)
+df.to_csv("test_treatmentss.csv")
+print(error_strings)
+time.sleep(1000)
+# #df = pd.read_json(r'C:\Users\agney\Documents\Files\Projects\doctor-directory\public\clinics_processed.json')
+# df= pd.read_excel(r"C:\Users\agney\Documents\Files\Projects\clinics_processed.xlsx")
+# values = set()
+# bl = ['Monday', 'Sat', 'Tue', 'Thu', 'Fri', 'Mon-Fri', 'Sun', 'SourceNote', 'Sat-Sun', 'Mon', 'Wed', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Source','Typical_hours_recorded_in_public_listings', 'Notes', 'Note']
+# for index,row in df.iterrows():
+#     try:
+#         loaded_json = json.loads(row['hours'].replace("'",'"'))
+#         if len(loaded_json.keys() - bl)>=3:
+#                 print(index, loaded_json.keys() - bl)
+#                 df.at[index,'error']=1
+#     except Exception as e:
+#         #df.at[index,'error']=1
+#         pass
+# df.to_csv("test2.csv")
+# time.sleep(100)
+# nlp = spacy.load("en_core_web_lg")
 
-def dedupe_similar_strings(strings, threshold=0.88):
-    """Return list indices to remove based on spaCy semantic similarity."""
-    if not strings or len(strings) < 2:
-        return []
+# def dedupe_similar_strings(strings, threshold=0.88):
+#     """Return list indices to remove based on spaCy semantic similarity."""
+#     if not strings or len(strings) < 2:
+#         return []
 
-    # Compute vectors for each string
-    vectors = []
-    for s in strings:
-        doc = nlp(s)
-        if doc.has_vector:
-            vectors.append(doc.vector)
-        else:
-            # Fallback to zero vector if no vector exists
-            vectors.append(np.zeros((nlp.vocab.vectors_length,), dtype="float32"))
+#     # Compute vectors for each string
+#     vectors = []
+#     for s in strings:
+#         doc = nlp(s)
+#         if doc.has_vector:
+#             vectors.append(doc.vector)
+#         else:
+#             # Fallback to zero vector if no vector exists
+#             vectors.append(np.zeros((nlp.vocab.vectors_length,), dtype="float32"))
 
-    vectors = np.array(vectors)
+#     vectors = np.array(vectors)
 
-    # Deduplicate by comparing to already-kept vectors
-    keep = []
-    for i in range(len(strings)):
-        if not keep:
-            keep.append(i)
-            continue
+#     # Deduplicate by comparing to already-kept vectors
+#     keep = []
+#     for i in range(len(strings)):
+#         if not keep:
+#             keep.append(i)
+#             continue
 
-        sims = cosine_similarity([vectors[i]], [vectors[k] for k in keep])[0]
-        if max(sims) < threshold:
-            keep.append(i)
+#         sims = cosine_similarity([vectors[i]], [vectors[k] for k in keep])[0]
+#         if max(sims) < threshold:
+#             keep.append(i)
 
-    all_idx = list(range(len(strings)))
-    reject = [i for i in all_idx if i not in keep]
-    return reject
+#     all_idx = list(range(len(strings)))
+#     reject = [i for i in all_idx if i not in keep]
+#     return reject
 
 
-#Repetitions in practitioner about section
-#Build errors SSG
-#Data transform errors
+# #Repetitions in practitioner about section
+# #Build errors SSG
+# #Data transform errors
 
 
 #Fix practioner_names and slugs sort by length (/)

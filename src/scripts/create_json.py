@@ -75,10 +75,10 @@ def slugify(raw: str) -> str:
 #     else: 
 #         return x
 # df['SPECIALTIES'] = df['SPECIALTIES'].apply(lambda x: clean(x))
-df_clinics= pd.read_excel(r"C:\Users\agney\Desktop\Aesthetic Products\Products.xlsx", sheet_name='Products')
-# Convert DataFrame to list of dicts
-df_clinics = df_clinics.applymap(clean_string)
-df_clinics['slug'] = df_clinics['product_name'].apply(slugify)
+df_clinics= pd.read_csv(r"C:\Users\agney\Documents\Files\Projects\doctor-directory\test_treatmentss.csv")
+# # Convert DataFrame to list of dicts
+# df_clinics = df_clinics.applymap(clean_string)
+# df_clinics['slug'] = df_clinics['product_name'].apply(slugify)
 df_clinics = df_clinics.replace([None, np.nan, "None"], "")
 #df.to_csv("Clinics3.5k.csv")
 clinics_list = df_clinics.to_dict(orient='records')
@@ -93,11 +93,11 @@ clinics_list = df_clinics.to_dict(orient='records')
 
 
 # # # Write JSON file
-with open(r'C:\Users\agney\Documents\Files\Projects\doctor-directory\public\products.json', 'w', encoding='utf-8') as f:
-    json.dump(clinics_list, f, indent=2, ensure_ascii=False,default=default_serializer)
+# with open(r'C:\Users\agney\Documents\Files\Projects\doctor-directory\public\products.json', 'w', encoding='utf-8') as f:
+#     json.dump(clinics_list, f, indent=2, ensure_ascii=False,default=default_serializer)
 
-# with open(r'C:\Users\agney\Documents\Files\Projects\doctor-directory\public\derms.json', 'w', encoding='utf-8') as f:
-#     json.dump(pract_list, f, indent=2, ensure_ascii=False)
+with open(r'C:\Users\agney\Documents\Files\Projects\doctor-directory\public\clinics_processed_1.json', 'w', encoding='utf-8') as f:
+    json.dump(clinics_list, f, indent=2, ensure_ascii=False)
 print("JSON file generated successfully at devices.json")
 # for index,row in df.iterrows():
 #     df.at[index,'slug']=unquote_plus(row['links'].split("/place/")[-1].split("/")[0].replace("+"," "))
