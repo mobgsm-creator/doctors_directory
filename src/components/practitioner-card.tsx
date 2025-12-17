@@ -143,14 +143,12 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
               Contact
             </Link>
 
-            {practitioner.reviewAnalysis?.procedures_offered?.categories
-              .length! > 0 && null}
+            {practitioner.Treatments?.length! > 0 && null}
 
             <div>
               <div className="flex flex-wrap gap-1 pt-4">
                 {true &&
-                  practitioner.reviewAnalysis?.procedures_offered?.categories
-                    .slice(0, 2)
+                  practitioner.Treatments?.slice(0, 2)
                     .map((modality, index) => (
                       <Badge key={index} variant="outline" className="text-xs">
                         {modality
@@ -163,8 +161,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                       </Badge>
                     ))}
                 {true &&
-                  practitioner.reviewAnalysis?.procedures_offered?.categories
-                    ?.length! > 2 && (
+                  practitioner.Treatments?.length! > 2 && (
                     <Badge variant="outline" className="text-xs">
                       +
                       {practitioner.reviewAnalysis?.procedures_offered

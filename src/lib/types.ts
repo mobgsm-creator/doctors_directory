@@ -91,6 +91,7 @@ export interface Practitioner {
   practitioner_title: string	,
   practitioner_specialty:string,	
   practitioner_education:string,	
+  Treatments?: string[]
 
 
 }

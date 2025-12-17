@@ -150,15 +150,15 @@ export function PractitionerListItem({ practitioner }: PractitionerListItemProps
               <div className="flex flex-wrap gap-1">
                 
                 {(
-                practitioner.reviewAnalysis?.procedures_offered?.categories.slice(0, 4).map((modality, index) => (
+                practitioner.Treatments?.slice(0, 4).map((modality, index) => (
                   <Badge key={index} variant="outline" className="text-xs">
                     {modality}
                   </Badge>
                 )))}
                 {(
-                  practitioner.reviewAnalysis?.procedures_offered?.categories?.length! > 4 && (
+                  practitioner.Treatments?.length! > 4 && (
                   <Badge variant="outline" className="text-xs">
-                    +{practitioner.reviewAnalysis?.procedures_offered?.categories!.length! - 4} more
+                    +{practitioner.Treatments!.length! - 4} more
                   </Badge>
                 ))}
               </div>

@@ -1,8 +1,8 @@
 'use server'
 import { cache } from "react";
 import { Clinic, Practitioner, Product, SearchFilters } from "@/lib/types"
-import clinicsJson from "../../../public/clinics_processed.json";
-import practitionersJson from "../../../public/derms_processed.json";
+import clinicsJson from "../../../public/clinics_processed_new.json";
+import practitionersJson from "../../../public/derms_processed_new.json";
 import productsJson from "../../../public/products_processed.json";
 
 
@@ -40,7 +40,7 @@ export async function searchPractitioners(
         clinic.slug,
         clinic.category,
         clinic.gmapsAddress,
-        ...(clinic.reviewAnalysis?.procedures_offered?.categories || []),
+        ...(clinic.Treatments || []),
       ].join(" ").toLowerCase()
       if (!searchableText.includes(query)) return false
     }
@@ -55,7 +55,7 @@ export async function searchPractitioners(
     }
 
     if (filters.services.length > 0) {
-      const practitionerServices = clinic.reviewAnalysis?.procedures_offered?.categories || []
+      const practitionerServices = clinic.Treatments || []
       const hasMatchingService = filters.services.some((service) =>
         practitionerServices.some((ps) => ps.includes(service.toLowerCase())),
       )
@@ -77,7 +77,7 @@ export async function searchPractitioners(
         practitioner.practitioner_qualifications,
         practitioner.category,
         practitioner.gmapsAddress,
-        ...(practitioner.reviewAnalysis?.procedures_offered?.categories || []),
+        ...(practitioner.Treatments || []),
       ].join(" ").toLowerCase()
       if (!searchableText.includes(query)) return false
     }
@@ -92,7 +92,7 @@ export async function searchPractitioners(
     }
 
     if (filters.services.length > 0) {
-      const practitionerServices = practitioner.reviewAnalysis?.procedures_offered?.categories || []
+      const practitionerServices = practitioner.Treatments || []
       const hasMatchingService = filters.services.some((service) =>
         practitionerServices.some((ps) => ps.includes(service.toLowerCase())),
       )

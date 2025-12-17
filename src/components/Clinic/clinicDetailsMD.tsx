@@ -35,10 +35,10 @@ export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
       <div className="border-t border-gray-300 my-6"></div>
 
       {/* Treatments */}
-      <Section title="Treatmetnts" id="treatmetnts">
+      <Section title="Treatments" id="treatments">
         <div className="flex flex-wrap gap-1">
           {true &&
-            clinic.reviewAnalysis?.procedures_offered?.categories.map(
+            clinic.Treatments?.map(
               (modality, index) => (
                 <Badge key={index} variant="outline" className="text-md bg-gray-100 border-0">
                   {modality

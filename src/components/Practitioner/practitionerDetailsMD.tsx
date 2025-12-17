@@ -68,7 +68,7 @@ export default function PractitionerDetailsSections({
       <Section title="Treatmetnts" id="treatmetnts">
         <div className="flex flex-wrap gap-1">
           {true &&
-            clinic.reviewAnalysis?.procedures_offered?.categories.map(
+            clinic.Treatments?.map(
               (modality, index) => (
                 <Badge key={index} variant="outline" className="text-md bg-gray-100 border-0">
                   {modality

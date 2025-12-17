@@ -76,17 +76,60 @@ function transformProduct(raw: any): Product {
     all_prices: parseCorruptedJson(raw.all_prices),
   };
 }
+function transformClinic_2(raw: any): Clinic {
+ 
+  return {
+    slug: raw.slug,
+    image: raw.image,
+    url: raw.links,
+    rating: raw.rating,
+    reviewCount: raw.reviewCount,
+    category: raw.category,
+    gmapsAddress: raw.gmapsAddress,
+    //gmapsLink: raw.gmaps_link,
+    gmapsPhone: raw.gmapsPhone,
+    gmapsReviews: safeParse(JSON.stringify(raw.gmapsReviews)),
+    reviewAnalysis: raw["Review Analysis"],
+    weighted_analysis: raw["weighted_analysis"],
+    City: raw.City,
+    x_twitter: raw.x_twitter,
+    facebook: raw.facebook,
+    instagram: raw.instagram,
+    twitter: raw.twitter,
+    youtube: raw.youtube,
+    Linkedin: raw.Linkedin,
+    website: raw.website,
+    email: raw.email,
+    isSaveFace: raw.isSaveFace,
+    isDoctor: raw.isDoctor,
+    isJCCP: raw.isJCCP,
+    isCQC: raw.isCQC,
+    isHIW: raw.isHIW,
+    isHIS: raw.isHIS,
+    isRQIA: raw.isRQIA,
+    about_section: raw.about_section,
+    accreditations: raw.accreditations,
+    awards: raw.awards,
+    affiliations: raw.affiliations,
+    hours: raw.hours,
+    Practitioners: raw.Practitioners,
+    Insurace: raw.insurace,
+    Payments: raw.Payments, 
+    Fees: raw.Fees,
+    Treatments: safeParse(raw.Treatments),
+  };
+}
 
 function transformClinic(raw: any): Clinic {
  
   return {
     slug: cleanRouteSlug(raw.slug),
     image: raw.image,
-    url: raw.links,
+    url: raw.url,
     rating: parseFloat(raw.rating),
     reviewCount: parseInt(raw.review_count),
     category: raw.category,
-    gmapsAddress: parse_addresses(raw.gmaps_address),
+    gmapsAddress: parse_addresses(raw.gmapsAddress),
     //gmapsLink: raw.gmaps_link,
     gmapsPhone: raw.gmaps_phone.replace("Phone: ", "").trim(),
     gmapsReviews: safeParse(raw.gmaps_reviews),
@@ -117,7 +160,7 @@ function transformClinic(raw: any): Clinic {
     Insurace: safeParse(raw.Insurace),
     Payments: safeParse(raw.Payments), 
     Fees: safeParse(raw.Fees),
-    Treatments: safeParse(raw.Treatments),
+    Treatments: safeParse(raw.Treatments_normalized),
   };
 }
 function transformPractitioner(raw: any): Practitioner {
@@ -170,6 +213,7 @@ function transformPractitioner(raw: any): Practitioner {
     practitioner_title: raw.Title	,
     practitioner_specialty:raw.Specialty,	
     practitioner_education:raw.Education,	
+    Treatments: safeParse(raw.Treatments_normalized),
 
   };
 }
@@ -177,44 +221,44 @@ function transformPractitioner(raw: any): Practitioner {
 async function loadFromFileSystem() {
   console.log("📂 API: Reading from file system...");
   
-  // const filePath = path.join(process.cwd(), 'public', 'derms.json');
-  // console.log(filePath)
-  // const fileContents = fs.readFileSync(filePath, 'utf-8');
-  // const practitioners = JSON.parse(fileContents);
-  // console.log(practitioners.length)
+  const filePath = path.join(process.cwd(), 'public', 'derms.json');
+  console.log(filePath)
+  const fileContents = fs.readFileSync(filePath, 'utf-8');
+  const practitioners = JSON.parse(fileContents);
+  console.log(practitioners.length)
 
-  // const filePath_1 = path.join(process.cwd(), 'public', 'clinics.json');
-  // const fileContents_1 = fs.readFileSync(filePath_1, 'utf-8');
-  // const clinics = JSON.parse(fileContents_1);
-  // console.log("Loaded")
-  // const clinicsData = clinics.map(transformClinic);
-  // console.log("Transformed Clinics")
-  // const practitionersData = practitioners.map(transformPractitioner);
+  const filePath_1 = path.join(process.cwd(), 'public', 'clinics.json');
+  const fileContents_1 = fs.readFileSync(filePath_1, 'utf-8');
+  const clinics = JSON.parse(fileContents_1);
+  console.log("Loaded")
+  const clinicsData = clinics.map(transformClinic);
+  console.log("Transformed Clinics")
+  const practitionersData = practitioners.map(transformPractitioner);
   // console.log("Transformed Practitioners")
 
-  const filePath_p = path.join(process.cwd(), 'public', 'products.json');
-  const fileContents_p = fs.readFileSync(filePath_p, 'utf-8');
-  const practitioners_p = JSON.parse(fileContents_p);
-  console.log(practitioners_p.length)
-  const productsData = practitioners_p.map(transformProduct);
+  // const filePath_p = path.join(process.cwd(), 'public', 'products.json');
+  // const fileContents_p = fs.readFileSync(filePath_p, 'utf-8');
+  // const practitioners_p = JSON.parse(fileContents_p);
+  // console.log(practitioners_p.length)
+  // const productsData = practitioners_p.map(transformProduct);
 
-  console.log("Transformed Products", productsData.length)
+  // console.log("Transformed Products", productsData.length)
 
-  return {productsData };
+  return {practitionersData,clinicsData };
 }
-const {  productsData  } = await loadFromFileSystem();
+const { practitionersData, clinicsData  } = await loadFromFileSystem();
 
-// fs.writeFileSync(
-//   "public/derms_processed.json",
-//   JSON.stringify(practitionersData)
-// );
+fs.writeFileSync(
+  "public/derms_processed_new.json",
+  JSON.stringify(practitionersData)
+);
 // fs.writeFileSync(
 //   "public/clinics_processed.json",
 //   JSON.stringify(clinicsData)
 // );
 fs.writeFileSync(
-  "public/products_processed.json",
-  JSON.stringify(productsData)
+  "public/clinics_processed_new.json",
+  JSON.stringify(clinicsData)
 );
 
 console.log("Generated derms_processed.json");

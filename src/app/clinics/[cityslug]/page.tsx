@@ -17,7 +17,7 @@ interface ProfilePageProps {
 }
 
 export default async function ProfilePage({ params }: ProfilePageProps) {
-  const filePath = path.join(process.cwd(), "public", "clinics_processed.json");
+  const filePath = path.join(process.cwd(), "public", "clinics_processed_new.json");
   const fileContents = fs.readFileSync(filePath, "utf-8");
   const clinics: Clinic[] = JSON.parse(fileContents);
   const citySlug = params.cityslug;

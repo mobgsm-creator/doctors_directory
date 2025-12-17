@@ -20,7 +20,7 @@ def clean_string(s: str) -> str:
         # if decode didn't change anything and escapes still present, remove them
         if re.search(r'\\u[0-9A-Fa-f]{4}|\\x[0-9A-Fa-f]{2}', decoded):
             decoded = re.sub(r'\\u[0-9A-Fa-f]{4}|\\u\{[0-9A-Fa-f]+\}|\\x[0-9A-Fa-f]{2}', '', decoded)
-        return decoded
+        return decoded.encode("utf-8", "surrogatepass").decode("utf-8", "replace")
     except Exception as e:
         return s
 def default_serializer(o):
@@ -75,29 +75,29 @@ def slugify(raw: str) -> str:
 #     else: 
 #         return x
 # df['SPECIALTIES'] = df['SPECIALTIES'].apply(lambda x: clean(x))
-df_clinics= pd.read_csv(r"C:\Users\agney\Documents\Files\Projects\doctor-directory\test_treatmentss.csv")
+df_clinics= pd.read_csv(r"C:\Users\agney\Documents\Files\Projects\doctor-directory\test2_clinics.csv")
 # # Convert DataFrame to list of dicts
-# df_clinics = df_clinics.applymap(clean_string)
-# df_clinics['slug'] = df_clinics['product_name'].apply(slugify)
+df_clinics = df_clinics.applymap(clean_string)
+df_clinics['slug'] = df_clinics['slug'].apply(slugify)
 df_clinics = df_clinics.replace([None, np.nan, "None"], "")
 #df.to_csv("Clinics3.5k.csv")
 clinics_list = df_clinics.to_dict(orient='records')
 
 
-# df_pract = pd.read_csv(r"C:\Users\agney\Documents\Files\Projects\doctor-directory\test2_pract.csv")
+df_pract = pd.read_csv(r"C:\Users\agney\Documents\Files\Projects\doctor-directory\test2_pract.csv")
 # # Convert DataFrame to list of dicts
-# df_pract['practitioner_name'] = df_pract['Practitioner_Name'].apply(slugify)
-# df_pract = df_pract.replace([None, np.nan, "None"], "")
+df_pract['practitioner_name'] = df_pract['Practitioner_Name'].apply(slugify)
+df_pract = df_pract.replace([None, np.nan, "None"], "")
 # #df.to_csv("Clinics3.5k.csv")
-# pract_list = df_pract.to_dict(orient='records')
+pract_list = df_pract.to_dict(orient='records')
 
 
 # # # Write JSON file
-# with open(r'C:\Users\agney\Documents\Files\Projects\doctor-directory\public\products.json', 'w', encoding='utf-8') as f:
-#     json.dump(clinics_list, f, indent=2, ensure_ascii=False,default=default_serializer)
+with open(r'C:\Users\agney\Documents\Files\Projects\doctor-directory\public\clinics.json', 'w', encoding='utf-8') as f:
+    json.dump(clinics_list, f, indent=2, ensure_ascii=False,default=default_serializer)
 
-with open(r'C:\Users\agney\Documents\Files\Projects\doctor-directory\public\clinics_processed_1.json', 'w', encoding='utf-8') as f:
-    json.dump(clinics_list, f, indent=2, ensure_ascii=False)
+with open(r'C:\Users\agney\Documents\Files\Projects\doctor-directory\public\derms.json', 'w', encoding='utf-8') as f:
+    json.dump(pract_list, f, indent=2, ensure_ascii=False)
 print("JSON file generated successfully at devices.json")
 # for index,row in df.iterrows():
 #     df.at[index,'slug']=unquote_plus(row['links'].split("/place/")[-1].split("/")[0].replace("+"," "))

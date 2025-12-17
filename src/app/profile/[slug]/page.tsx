@@ -57,12 +57,12 @@ interface ProfilePageProps {
 }
 
 export default async function ProfilePage({ params }: ProfilePageProps) {
-  const filePath = path.join(process.cwd(), "public", "derms_processed.json");
+  const filePath = path.join(process.cwd(), "public", "derms_processed_new.json");
   const fileContents = fs.readFileSync(filePath, "utf-8");
   const clinics: Practitioner[] = JSON.parse(fileContents);
   const { slug } = params;
   const clinic = clinics.find((p) => p.practitioner_name === slug);
-  //console.log(clinic)
+  console.log(clinic)
   const hoursObj = clinic?.hours as unknown as Record<string, any>;
   const hours =
     hoursObj["Typical_hours_listed_in_directories"] ?? clinic?.hours;
@@ -221,7 +221,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
 // }
 
 export async function generateMetadata({ params }: ProfilePageProps) {
-  const filePath = path.join(process.cwd(), "public", "derms_processed.json");
+  const filePath = path.join(process.cwd(), "public", "derms_processed_new.json");
   const fileContents = fs.readFileSync(filePath, "utf-8");
   const clinics: Practitioner[] = JSON.parse(fileContents);
   const clinic = clinics.find((p) => p.practitioner_name === params.slug);

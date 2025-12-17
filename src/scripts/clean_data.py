@@ -542,8 +542,8 @@ REVERSE_LOOKUP = {
     for canonical, variants in CANONICAL_MAP.items()
     for variant in variants
 }
-df_p = pd.read_json(r'C:\Users\agney\Documents\Files\Projects\doctor-directory\public\clinics_processed.json')
-df=pd.read_csv(r"C:\Users\agney\Documents\Files\Projects\doctor-directory\test_cleaned.csv")
+# df_p = pd.read_json(r'C:\Users\agney\Documents\Files\Projects\doctor-directory\public\clinics_processed.json')
+# df=pd.read_csv(r"C:\Users\agney\Documents\Files\Projects\doctor-directory\test_cleaned.csv")
 
 # df2 = pd.read_excel(r"C:\Users\agney\Downloads\5600_UK_slug_search_results_2k_.xlsx",sheet_name='exists')
 # print(df_p.columns,df2.columns)
@@ -560,37 +560,37 @@ REVERSE_LOOKUP = {
 error_strings = set()
 
 
-for index,row in df.iterrows():
-    treatments = set()
-    try:
-        for key in REVERSE_LOOKUP.keys():
-            if key.lower() in row['json_response'].lower():
-                treatments.add(key)
-        df.at[index,'Treatments'] = json.dumps(list(treatments))
-    except Exception as e:
-        print(e)
-        pass
+# for index,row in df.iterrows():
+#     treatments = set()
+#     try:
+#         for key in REVERSE_LOOKUP.keys():
+#             if key.lower() in row['json_response'].lower():
+#                 treatments.add(key)
+#         df.at[index,'Treatments'] = json.dumps(list(treatments))
+#     except Exception as e:
+#         print(e)
+#         pass
 
 
+# # time.sleep(1000)
+# for index,row in df.iterrows():
+#     try:
+
+#         categories = json.loads(row['Treatments'])
+#         normalized = list(set([REVERSE_LOOKUP[cat] for cat in categories]))
+#         df.at[index,'Treatments_normalized'] = json.dumps(normalized)
+#         unique_treatments.update(normalized)
+
+#     except Exception as e:
+#         print(e)
+#         count+=1
+#         pass
+# print(count)
+# print(len(CANONICAL_MAP.keys()))
+# print(unique_treatments)
+# df.to_csv("test_treatmentss.csv")
+# print(error_strings)
 # time.sleep(1000)
-for index,row in df.iterrows():
-    try:
-
-        categories = json.loads(row['Treatments'])
-        normalized = list(set([REVERSE_LOOKUP[cat] for cat in categories]))
-        df.at[index,'Treatments_normalized'] = json.dumps(normalized)
-        unique_treatments.update(normalized)
-
-    except Exception as e:
-        print(e)
-        count+=1
-        pass
-print(count)
-print(len(CANONICAL_MAP.keys()))
-print(unique_treatments)
-df.to_csv("test_treatmentss.csv")
-print(error_strings)
-time.sleep(1000)
 # #df = pd.read_json(r'C:\Users\agney\Documents\Files\Projects\doctor-directory\public\clinics_processed.json')
 # df= pd.read_excel(r"C:\Users\agney\Documents\Files\Projects\clinics_processed.xlsx")
 # values = set()
@@ -606,39 +606,39 @@ time.sleep(1000)
 #         pass
 # df.to_csv("test2.csv")
 # time.sleep(100)
-# nlp = spacy.load("en_core_web_lg")
+nlp = spacy.load("en_core_web_lg")
 
-# def dedupe_similar_strings(strings, threshold=0.88):
-#     """Return list indices to remove based on spaCy semantic similarity."""
-#     if not strings or len(strings) < 2:
-#         return []
+def dedupe_similar_strings(strings, threshold=0.88):
+    """Return list indices to remove based on spaCy semantic similarity."""
+    if not strings or len(strings) < 2:
+        return []
 
-#     # Compute vectors for each string
-#     vectors = []
-#     for s in strings:
-#         doc = nlp(s)
-#         if doc.has_vector:
-#             vectors.append(doc.vector)
-#         else:
-#             # Fallback to zero vector if no vector exists
-#             vectors.append(np.zeros((nlp.vocab.vectors_length,), dtype="float32"))
+    # Compute vectors for each string
+    vectors = []
+    for s in strings:
+        doc = nlp(s)
+        if doc.has_vector:
+            vectors.append(doc.vector)
+        else:
+            # Fallback to zero vector if no vector exists
+            vectors.append(np.zeros((nlp.vocab.vectors_length,), dtype="float32"))
 
-#     vectors = np.array(vectors)
+    vectors = np.array(vectors)
 
-#     # Deduplicate by comparing to already-kept vectors
-#     keep = []
-#     for i in range(len(strings)):
-#         if not keep:
-#             keep.append(i)
-#             continue
+    # Deduplicate by comparing to already-kept vectors
+    keep = []
+    for i in range(len(strings)):
+        if not keep:
+            keep.append(i)
+            continue
 
-#         sims = cosine_similarity([vectors[i]], [vectors[k] for k in keep])[0]
-#         if max(sims) < threshold:
-#             keep.append(i)
+        sims = cosine_similarity([vectors[i]], [vectors[k] for k in keep])[0]
+        if max(sims) < threshold:
+            keep.append(i)
 
-#     all_idx = list(range(len(strings)))
-#     reject = [i for i in all_idx if i not in keep]
-#     return reject
+    all_idx = list(range(len(strings)))
+    reject = [i for i in all_idx if i not in keep]
+    return reject
 
 
 # #Repetitions in practitioner about section
@@ -978,7 +978,6 @@ def enrich_data(df):
 
             try:
                 name = data_dict['Practitioner_Name']
-                print(name)
                 df.at[index, 'Practitioner_Name'] = name.split("(")[0]
             except Exception as e:
                 print(f"[WARN] name assignment failed at index {index}: {e}")
@@ -998,7 +997,7 @@ def enrich_data(df):
 
             # Sort in reverse BEFORE deletion to prevent index shifting bugs
             reject.sort(reverse=True)
-            print("Before:",len(roles), len(qualifications), len(awards), len(news), len(exp))
+            #print("Before:",len(roles), len(qualifications), len(awards), len(news), len(exp))
             
             # Remove from original lists based on section boundaries
             for i in reject:
@@ -1026,14 +1025,39 @@ def enrich_data(df):
                 except Exception as e:
                     print(f"[WARN] Failed removing duplicate index {i}: {e}")
             print("After:",len(roles), len(qualifications), len(awards), len(news), len(exp))
-            df.at[index, 'Roles_And_Positions'] = json.dumps(roles)
-            df.at[index, 'Qualifications_And_Professional_Affiliations'] = json.dumps(qualifications)
-            df.at[index, 'Awards_And_Recognition'] = json.dumps(awards)
-            df.at[index, 'Media_And_News_Features'] = json.dumps(news)
-            df.at[index, 'Experience_And_Practice_Profile'] = json.dumps(exp)
+            try:
+                df.at[index, 'Roles_And_Positions'] = json.dumps(roles)
+                df.at[index, 'Qualifications_And_Professional_Affiliations'] = json.dumps(qualifications)
+                df.at[index, 'Awards_And_Recognition'] = json.dumps(awards)
+                df.at[index, 'Media_And_News_Features'] = json.dumps(news)
+                df.at[index, 'Experience_And_Practice_Profile'] = json.dumps(exp)
+            except Exception as e:
+                pass
+            
         except Exception as e:
-            #print(f"[WARN] Exception at index {index}: {e}")
+            print(f"[WARN] Exception at index {index}: {e}")
             pass
+        treatments = set()
+        try:
+            for key in REVERSE_LOOKUP.keys():
+                if key.lower() in row['json_response'].lower():
+                    treatments.add(key)
+            df.at[index,'Treatments'] = json.dumps(list(treatments))
+        
+        except Exception as e:
+            print("Reverse Lookup Error",e)
+            pass
+        try:
+
+            categories = list(treatments)
+            normalized = list(set([REVERSE_LOOKUP[cat] for cat in categories]))
+            
+            df.at[index,'Treatments_normalized'] = json.dumps(normalized)
+            
+        except Exception as e:
+            print(e)
+            pass
+    print(df.columns)
     return df
 
 df_clinics = enrich_data(df_clinics)

@@ -51,7 +51,7 @@ const flattenObject = (obj: any, parentKey = "", result: any = {}) => {
 };
 
 export default async function ProfilePage({ params }: ProfilePageProps) {
-  const filePath = path.join(process.cwd(), "public", "clinics_processed.json");
+  const filePath = path.join(process.cwd(), "public", "clinics_processed_new.json");
   const fileContents = fs.readFileSync(filePath, "utf-8");
   const clinics: Clinic[] = JSON.parse(fileContents);
   const { slug } = params;
@@ -60,6 +60,8 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
   const hours =
     hoursObj["Typical_hours_listed_in_directories"] ?? clinic?.hours;
   const flatHours = flattenObject(hours);
+  console.log(clinic)
+
 
   const boxplotData = mergeBoxplotDataFromDict(
     boxplotDatas_clinic,
@@ -216,7 +218,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
 // }
 
 export async function generateMetadata({ params }: ProfilePageProps) {
-  const filePath = path.join(process.cwd(), "public", "clinics_processed.json");
+  const filePath = path.join(process.cwd(), "public", "clinics_processed_new.json");
   const fileContents = fs.readFileSync(filePath, "utf-8");
   const clinics: Clinic[] = JSON.parse(fileContents);
   const clinic = clinics.find((p) => p.slug === params.slug);

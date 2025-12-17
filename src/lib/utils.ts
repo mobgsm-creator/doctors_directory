@@ -38,14 +38,20 @@ export function parse_text(input: string): string {
 }
 
 export function parse_addresses(input: string): string {
+  let result = ""
+  try {
 
-  const arr = input
+    const arr = input
   .replace(/\[|\]/g, "")   // remove [ and ]
   .replace(/'/g, '"')       // remove all single quotes
   .split('", "')
   .map(x => x.trim());
+  result = arr[0].replace('"', '');
+  } catch (e) {
+    result = input
+  }
 
-  return arr[0].replace('"', '');
+  return result
 }
 
 export function cleanRouteSlug(slug: string) {

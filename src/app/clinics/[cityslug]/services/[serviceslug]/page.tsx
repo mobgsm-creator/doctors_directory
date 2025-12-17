@@ -17,7 +17,7 @@ interface ProfilePageProps {
 }
 
 export default async function ProfilePage({ params }: ProfilePageProps) {
-  const filePath = path.join(process.cwd(), "public", "clinics_processed.json");
+  const filePath = path.join(process.cwd(), "public", "clinics_processed_new.json");
   const fileContents = fs.readFileSync(filePath, "utf-8");
   const clinics: Clinic[] = JSON.parse(fileContents);
   const { cityslug, serviceslug } = params;
@@ -25,16 +25,18 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
   const filteredClinics = clinics.filter((clinic) => {
     // Filter by city
     const cityMatch = clinic.City?.toLowerCase() === cityslug.toLowerCase();
-
     // Filter by offered service category
     const categories =
-      clinic.reviewAnalysis?.procedures_offered?.categories ?? [];
+      clinic.Treatments ?? [];
+  
+
 
     const serviceMatch = categories.some(
-      (cat: string) => cat.toLowerCase() === serviceslug.toLowerCase()
+      (cat: string) => cat.replaceAll(" ","").toLowerCase() === serviceslug.replaceAll("%20","").toLowerCase()
     );
 
-    return cityMatch && serviceMatch;
+
+    return cityMatch && serviceMatch
   });
 
   if (!filteredClinics) {
