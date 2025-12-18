@@ -788,11 +788,11 @@ const specialists = [
 ];
 
 const treatments = [
-  { name: "Facial", image: "directory/images/Facial Treatment.webp" },
-  { name: "Hands", image: "directory/images/Hands  Treatment.webp" },
-  { name: "Eyes", image: "directory/images/Eyes Treatment.webp" },
-  { name: "Skin", image: "directory/images/Skin Treatment.webp" },
-  { name: "Hairline", image: "directory/images/Hairline Treatment.webp" },
+  { name: "Facial", image: "directory/images/Facial Treatment.webp", url: "/treatments/Facial%20Treatments" },
+  { name: "Massage", image: "directory/treatments/massage.webp", url: "/treatments/Massage" },
+  { name: "Lips", image: "directory/treatments/lips.webp", url: "/treatments/Lips" },
+  { name: "Skin", image: "directory/images/Skin Treatment.webp", url: "/treatments/Skin%20Booster" },
+  { name: "Hairline", image: "directory/images/Hairline Treatment.webp", url: "/treatments/Hair%20Treatments" },
 ];
 
 const blogs = [
@@ -903,21 +903,36 @@ export default function HomePage() {
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 justify-items-center items-center gap-4 pb-4 w-full">
               {treatments.map((treatment, index) => (
                 <div key={index} className="flex-shrink-0">
+                  <div
+    className="mx-auto
+               w-32 aspect-square
+               rounded-full overflow-hidden"
+  >               <Link href={treatment.url}>
                   <img
+                  
                     src={treatment.image || "/placeholder.svg"}
                     alt={treatment.name}
-                    className="w-32 h-32 md:w-38 md:h-38 lg:w-45 lg:h-45 ml-auto mr-auto object-cover rounded-lg"
-                  />
+                    className="w-32 h-32 md:w-38 md:h-38 lg:w-45 lg:h-45 ml-auto mr-auto object-cover object-center rounded-lg"
+                  /></Link></div>
                   <p className="mt-4 text-base font-medium text-center">
                     {treatment.name}
                   </p>
                 </div>
               ))}
             </div>
-            <Button className="bg-[var(--text-color)] hover:bg-black h-auto rounded-lg text-lg px-7 py-3 text-white">
-              See all Treatments
-            </Button>
+            <Button
+  asChild
+  className="bg-[var(--text-color)] hover:bg-black
+             h-auto rounded-lg text-lg px-7 py-3 text-white"
+>
+  <Link href="/treatments">
+    See all Treatments
+  </Link>
+</Button>
+
           </div>
+
+
           
         </div>
       </section>
