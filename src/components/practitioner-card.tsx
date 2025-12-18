@@ -164,8 +164,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                   practitioner.Treatments?.length! > 2 && (
                     <Badge variant="outline" className="text-xs">
                       +
-                      {practitioner.reviewAnalysis?.procedures_offered
-                        ?.categories!.length! - 2}{" "}
+                      {practitioner.Treatments?.length! - 2}{" "}
                       more
                     </Badge>
                   )}
