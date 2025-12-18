@@ -88,11 +88,12 @@ interface ProfilePageProps {
 }
 
 export default async function ProfilePage({ params }: ProfilePageProps) {
-  const filePath = path.join(process.cwd(), "public", "clinics_processed_2s.json");
+  const filePath = path.join(process.cwd(), "public", "clinics_processed_new.json");
   const fileContents = fs.readFileSync(filePath, "utf-8");
   const clinics: Clinic[] = JSON.parse(fileContents);
   const { slug } = params;
-  console.log(JSON.parse(treatment_content[slug]))
+  console.log(slug.replaceAll("%20",""))
+  console.log(JSON.parse(treatment_content[slug.replaceAll("%20"," ")]))
   const filteredClinics = clinics.filter((clinic) => {
 
 
@@ -115,7 +116,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
 
   return (
     <main className="bg-[var(--primary-bg-color)]">
-    <FAQ data = {JSON.parse(treatment_content[slug])} />
+    <FAQ data = {JSON.parse(treatment_content[slug.replaceAll("%20"," ")])} />
       <div className="mx-auto max-w-7xl md:px-4 py-4 md:py-7 md:py-12 bg-white md:bg-[var(--primary-bg-color)]">
       <div className="flex flex-col pt-2 w-full pb-4 px-4 md:px-0 md:pt-0 md:border-0 border-b border-[#C4C4C4]">
           <h1 className="text-sm md:text-2xl md:font-semibold mb-1 md:mb-2">
