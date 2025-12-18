@@ -37,23 +37,27 @@ export function ProfileHeader({ clinic }: ProfileHeaderProps) {
     },
     {
       keywords: ["mhra"],
-      className: "bg-orange-100 text-orange-800 border-orange-300 ",
+      className: "bg-orange-100 text-orange-800 borde r-orange-300 ",
     },
     {
-      keywords: ["gmp", "good manufacturing"],
+      keywords: ["gmp", "good manufacturing","ce"],
       className: "bg-purple-100 text-purple-800 border-purple-300",
     },
   ];
   
 
   function getBadgeClass(text: string) {
+    
     const lower = text.toLowerCase();
-
+    console.log("GetBadge Class Input", lower)
     const rule = BADGE_RULES.find((r) =>
       r.keywords.some((k) => lower.includes(k))
     );
+    console.log("Rule:",rule)
 
     return rule?.className ?? "bg-gray-100 text-gray-800 border-gray-300";
+
+
   }
 
   return (
@@ -107,6 +111,7 @@ export function ProfileHeader({ clinic }: ProfileHeaderProps) {
               {/* Specializations preview */}
               <div className="flex flex-wrap gap-2 pt-2">
                 {clinic.certifications_and_compliance?.map((spec: string) => (
+                  
                   <Badge
                     key={spec}
                     variant="outline"

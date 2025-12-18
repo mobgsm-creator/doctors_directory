@@ -10,7 +10,7 @@ import { Slider } from "@/components/ui/slider"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import { Badge } from "@/components/ui/badge"
 import type { SearchFilters } from "@/lib/types"
-import { categories, modalities as services, professions, locations } from "@/lib/data"
+import { categories, modalities as services, locations } from "@/lib/data"
 
 interface AdvancedFiltersProps {
   filters: SearchFilters
