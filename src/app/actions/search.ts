@@ -4,16 +4,17 @@ import { Clinic, Practitioner, Product, SearchFilters } from "@/lib/types"
 import clinicsJson from "../../../public/clinics_processed_new.json";
 import practitionersJson from "../../../public/derms_processed_new.json";
 import productsJson from "../../../public/products_processed.json";
-
+import { modalities } from "@/lib/data";
 
 export const loadData = cache(() => {
 
   const clinics = clinicsJson as unknown as Clinic[];
   const practitioners = practitionersJson as unknown as Practitioner[];
   const products = productsJson as unknown as Product[];
+  const treatments = modalities
 
 
-  return { clinics, practitioners, products };
+  return { clinics, practitioners, products, treatments };
 });
 
 
@@ -27,7 +28,7 @@ export async function searchPractitioners(
   sortBy: string = "default"
 ) {
 
-  const { clinics, practitioners, products } = await loadData();
+  const { clinics, practitioners, products, treatments } = await loadData();
 
 
   
@@ -121,7 +122,18 @@ export async function searchPractitioners(
     return true
   })
 
-  const filtered = filters.type === "Clinic" ? filteredClinics : filters.type === "Product" ? filteredProducts : filteredPractitioners
+  const filteredTreatments = treatments.filter((treatment: string) => {
+    if (filters.query) {
+      const query = filters.query.toLowerCase()
+      const searchableText = [
+        treatments].join(" ").toLowerCase()
+      if (!searchableText.includes(query)) return false
+    }
+
+    return true
+  })
+
+  const filtered = filters.type === "Clinic" ? filteredClinics : filters.type === "Product" ? filteredProducts : filters.type === "Treatments" ? filteredTreatments : filteredPractitioners
 
   // Sort results
   filtered.sort((a: any, b: any) => {

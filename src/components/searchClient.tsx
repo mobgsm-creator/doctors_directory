@@ -28,7 +28,7 @@ export default function SearchPage() {
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
 
-  const [data, setData] = useState<(Clinic | Practitioner | Product)[]>([]);
+  const [data, setData] = useState<(Clinic | Practitioner | Product|string)[]>([]);
   const [totalCount, setTotalCount] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
   const [isPending, startTransition] = useTransition();
@@ -37,7 +37,7 @@ export default function SearchPage() {
   useEffect(() => {
     startTransition(async () => {
       const result: {
-  data: (Clinic | Practitioner | Product)[];
+  data: (Clinic | Practitioner | Product| string)[];
   totalCount: number;
   totalPages: number;
 } = await searchPractitioners(filters, currentPage, sortBy);
@@ -141,13 +141,10 @@ export default function SearchPage() {
                   }
                 >
                   {data.map((item) =>
-                    viewMode === "grid" ? (
-                      <PractitionerCard key={item.slug} practitioner={item} />
+                    typeof item==="string" ? (
+                      <PractitionerCard key={item} practitioner={item} />
                     ) : (
-                      <PractitionerListItem
-                        key={item.slug}
-                        practitioner={item}
-                      />
+                      <PractitionerCard key={item.slug} practitioner={item} />
                     )
                   )}
                 </div>

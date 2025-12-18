@@ -93,7 +93,8 @@ QUESTION_TEMPLATES = [
     "What qualifications should a practitioner offering {treatment} have?",
     "Are there NICE, FDA, or MHRA guidelines for {treatment}?",
 ]
-
+print(TreatmentMap.keys())
+time.sleep(100)
 
 def generate_faqs(treatments: dict) -> dict:
     """
