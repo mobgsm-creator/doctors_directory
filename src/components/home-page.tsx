@@ -755,7 +755,9 @@ const cityItems: {
   node: (
     <Link
       href={`/clinics/${city}`}
-      className="block bg-[var(--alabaster)] border border-gray-300 rounded-lg p-8 text-lg text-center font-medium hover:border-black transition-shadow"
+      className="flex items-center justify-center bg-[var(--alabaster)] border border-gray-300 rounded-full w-44 h-44 text-lg text-center font-medium hover:border-black transition-shadow"
+      title={`Find Top-Rated Aesthetic clinics in ${city}`}
+      aria-label={`Find Top-Rated Aesthetic clinics in ${city}`}
     >
       {city}
     </Link>
