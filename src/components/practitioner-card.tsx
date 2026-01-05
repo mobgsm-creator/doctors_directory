@@ -161,7 +161,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                         <p className="text-muted-foreground mb-2 text-pretty">
                           {(
                             practitioner as Practitioner
-                          ).practitioner_title.trim()}
+                          ).practitioner_title.split("/")[0].split("(")[0].trim()}
                         </p>
                       )}
 
