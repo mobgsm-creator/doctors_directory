@@ -116,11 +116,17 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
   return (
     <>
       {(isPractitioner(practitioner) || isClinic(practitioner)) && (
-        <article className="Card gap-0 relative px-4 md:px-0 shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border-t-[1px] rounded-27 md:border md:border-[var(--alto)] cursor-pointer" aria-labelledby={`practitioner-name-${practitioner.slug}`}>
-          <header className="pb-4 px-2">
+        
+        <article aria-labelledby={`practitioner-name-${practitioner.slug}`}>
+          <Card className="gap-0 relative px-4 md:px-0 shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border-t-[1px] rounded-27 md:border md:border-[var(--alto)] cursor-pointer">
+          
+          <header>
+             <CardHeader className="pb-4 px-2">
+            
             <h2 id={`practitioner-name-${practitioner.slug}`} className="sr-only">
               {practitionerName}
             </h2>
+            
             <div className="flex items-start gap-4">
               <div className="text-center flex-1 min-w-0 items-center flex flex-col">
                 <div className="flex w-full flex-row items-start border-b border-[#C4C4C4] md:border-0 md:flex-col md:items-center">
@@ -191,9 +197,10 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                 </div>
               </div>
             </div>
+            </CardHeader>
            </header>
 
-           <div className="pt-0 px-0 md:px-4 space-y-4">
+           <CardContent className="pt-0 px-0 md:px-4 space-y-4">
              <h4 className="sr-only">Location</h4>
              <div className="flex items-start gap-2 text-sm">
               <MapPin className="h-4 w-4 mt-0 flex-shrink-0" aria-hidden="true" />
@@ -256,13 +263,16 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                   )}
               </ul>
             </div>
-          </div>
+            </CardContent>
+
+
+        </Card>
         </article>
       )}
       {isProduct(practitioner) && (
         <Link href={`/products/${practitioner.slug}`} className="block">
-          <article className="Card gap-0 h-full relative px-4 md:px-0 shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border-t-[1px] rounded-27 md:border md:border-[var(--alto)] cursor-pointer" aria-labelledby={`product-name-${practitioner.slug}`}>
-            <header className="pb-2 px-2">
+          <Card className="gap-0 h-full relative px-4 md:px-0 shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border-t-[1px] rounded-27 md:border md:border-[var(--alto)] cursor-pointer" aria-labelledby={`product-name-${practitioner.slug}`}>
+            <CardHeader className="pb-2 px-2">
               <h2 id={`product-name-${practitioner.slug}`} className="sr-only">
                 {practitioner.product_name}
               </h2>
@@ -294,9 +304,9 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                   </div>
                 </div>
               </div>
-            </header>
+            </CardHeader>
 
-            <div className="pt-0 px-0 md:px-4 space-y-4">
+            <CardContent className="pt-0 px-0 md:px-4 space-y-4">
               <div className="flex md:items-center md:justify-center gap-2 text-sm">
                 <span className="text-pretty text-center">
                   {practitioner.manufacturer?.trim()}
@@ -324,14 +334,14 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
               )} */}
                 </ul>
               </div>
-            </div>
-          </article>
+            </CardContent>
+          </Card>
         </Link>
       )}
       {isTreatment(practitioner) && (
         <Link href={`/treatments/${practitioner}`} className="block">
-          <article className="Card gap-0 h-full relative px-4 md:px-0 shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border-t-[1px] rounded-27 md:border md:border-[var(--alto)] cursor-pointer" aria-labelledby={`treatment-name-${practitioner}`}>
-            <header className="pb-2 px-2">
+          <Card className="gap-0 h-full relative px-4 md:px-0 shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border-t-[1px] rounded-27 md:border md:border-[var(--alto)] cursor-pointer" aria-labelledby={`treatment-name-${practitioner}`}>
+            <CardHeader className="pb-2 px-2">
               <h2 id={`treatment-name-${practitioner}`} className="sr-only">
                 {practitioner}
               </h2>
@@ -355,8 +365,8 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                   </div>
                 </div>
               </div>
-            </header>
-          </article>
+            </CardHeader>
+          </Card>
         </Link>
       )}
     </>

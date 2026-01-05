@@ -27,8 +27,8 @@ export function ReviewCard({ review }: ReviewCardProps) {
   const reviewId = `${review.reviewer_name}-${review.date}-${review.rating}`.replace(/\s+/g, '-');
 
   return (
-    <article className="Card border shadow-none rounded-lg mb-4" aria-labelledby={`review-title-${reviewId}`}>
-      <header className="pb-4">
+    <Card className="border shadow-none rounded-lg mb-4" aria-labelledby={`review-title-${reviewId}`}>
+      <CardHeader className="pb-4">
         <h2 id={`review-title-${reviewId}`} className="sr-only">
           Review by {review.reviewer_name ?? "Anonymous"}
         </h2>
@@ -74,9 +74,9 @@ export function ReviewCard({ review }: ReviewCardProps) {
             </div>
           </div>
         </div>
-      </header>
+      </CardHeader>
 
-      <div className="pt-0">
+      <CardContent className="pt-0">
         <p className="text-muted-foreground text-pretty leading-relaxed">
           {review.review_text ?? review.text}
         </p>
@@ -93,7 +93,7 @@ export function ReviewCard({ review }: ReviewCardProps) {
             </p>
           </aside>
         )}
-      </div>
-    </article>
+      </CardContent>
+    </Card>
   );
 }
