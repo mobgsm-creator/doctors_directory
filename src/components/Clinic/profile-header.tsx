@@ -55,6 +55,7 @@ export function ProfileHeader({ clinic }: ProfileHeaderProps) {
               </div>
 
               <div className="hidden md:block gap-0 flex items-center md:items-start flex-col ">
+                <h2 className="sr-only">Contact Information</h2>
                 <address className="mb-2 not-italic text-sm leading-relaxed flex items-start justify-start sm:items-start gap-2">
                   <MapPin
                     className="h-4 w-4 mt-1 shrink-0 "
@@ -78,6 +79,7 @@ export function ProfileHeader({ clinic }: ProfileHeaderProps) {
         </div>
 
         <div className="block md:hidden gap-0 flex items-start md:mb-4 md:items-start flex-col ">
+          <h2 className="sr-only">Contact Information</h2>
           <address className="mb-2 not-italic text-sm leading-relaxed flex items-start justify-start sm:items-start gap-2">
             <MapPin
               className="h-4 w-4 mt-1 shrink-0 "

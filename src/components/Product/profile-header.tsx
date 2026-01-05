@@ -105,11 +105,11 @@ export function ProfileHeader({ clinic }: ProfileHeaderProps) {
               <div className="flex flex-wrap gap-4 my-2">
                 <span>{clinic.product_subcategory}</span>
               </div>
-            </div>
+             </div>
 
-            <div className="hidden md:block">
-              {/* Specializations preview */}
-              <ul className="flex flex-wrap gap-2 pt-2" aria-label="Certifications">
+             <div className="hidden md:block">
+               <h2 className="sr-only">Certifications</h2>
+               <ul className="flex flex-wrap gap-2 pt-2" aria-label="Certifications">
                 {clinic.certifications_and_compliance?.map((spec: string) => (
                   <li key={spec}>
                     <Badge
@@ -129,11 +129,11 @@ export function ProfileHeader({ clinic }: ProfileHeaderProps) {
             </div>
 
           </div>
-        </div>
+         </div>
 
-        <div className="block md:hidden">
-          {/* Specializations preview */}
-          <ul className="flex flex-wrap gap-2" aria-label="Certifications">
+         <div className="block md:hidden">
+           <h2 className="sr-only">Certifications</h2>
+           <ul className="flex flex-wrap gap-2" aria-label="Certifications">
                 {clinic.certifications_and_compliance?.map((spec: string) => (
                   <li key={spec}>
                     <Badge

@@ -48,9 +48,9 @@ export function ReviewCard({ review }: ReviewCardProps) {
 
           <div className="flex-1 min-w-0">
             <div className="flex items-center justify-between mb-2">
-              <h4 className="font-medium text-foreground">
+              <p className="font-medium text-foreground">
                 {review.reviewer_name ?? "Anonymous"}
-              </h4>
+              </p>
               <div className="flex items-center gap-2" aria-label={`Rating: ${starCount} out of 5 stars`}>
                 <div className="flex items-center">
                   {Array.from({ length: 5 }, (_, i) => (

@@ -113,8 +113,9 @@ export function AdvancedFilterSidebar({
         </CardHeader>
 
         <CardContent className="p-0 w-full h-full space-y-4 static">
-          
+
           <div>
+            <h3 className="sr-only">Search</h3>
             <input
               type="text"
               value={localFilters.query}

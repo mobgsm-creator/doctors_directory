@@ -937,22 +937,25 @@ export default function HomePage() {
           </div>
 
 
-          
-        </div>
+
+         </div>
+       </section>
+      <section className="py-10 md:py-15 relative" aria-labelledby="regulatory-heading">
+        <h2 id="regulatory-heading" className="sr-only">Trusted Regulatory Partners</h2>
+        <LogoLoop
+          logos={imageLogos}
+          speed={100}
+          direction="left"
+          logoHeight={48}
+          gap={40}
+          hoverSpeed={0}
+          scaleOnHover
+          fadeOut
+          fadeOutColor="#ffffff"
+          ariaLabel="Regulatory Compliance"
+          className="py-10 md:py-15 relative"
+        />
       </section>
-      <LogoLoop
-        logos={imageLogos}
-        speed={100}
-        direction="left"
-        logoHeight={48}
-        gap={40}
-        hoverSpeed={0}
-        scaleOnHover
-        fadeOut
-        fadeOutColor="#ffffff"
-        ariaLabel="Regulatory Compliance"
-        className="py-10 md:py-15 relative"
-      />
       {/* Trust Section */}
       <section className="py-15 md:py-20">
         <div className="max-w-7xl mx-auto px-6">

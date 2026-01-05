@@ -72,13 +72,13 @@ export function ServicesSection({ clinic }: ServicesSectionProps) {
       { clusters.length !== 0 && (
       <Card>
         <CardHeader>
-          <h3 className="text-lg">Sections</h3>
+          <h3 className="text-lg">Service Categories</h3>
         </CardHeader>
         <CardContent>
           <Accordion type="multiple" className="space-y-3">
             {clusters.map((c) => (
               <AccordionItem key={c.header} value={c.header}>
-                <AccordionTrigger className="text-left">{c.header}</AccordionTrigger>
+                <AccordionTrigger className="text-left text-base font-semibold">{c.header}</AccordionTrigger>
                 <AccordionContent>
                   <ul className="flex flex-wrap gap-2" aria-label={`${c.header} services`}>
                     {c.keywords.slice(0, 60).map((k) => (

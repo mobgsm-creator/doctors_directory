@@ -165,10 +165,11 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                           {practitioner.category.trim()}
                         </p>
                       )}
-                  </div>
-                </div>
+                   </div>
+                 </div>
 
-                <div className="flex flex-row gap-2 pt-3 items-center justify-start md:justify-center w-full text-sm" aria-label={`Rating: ${practitioner.rating} out of 5 stars, ${practitioner.reviewCount} reviews`}>
+                 <h4 className="sr-only">Rating</h4>
+                 <div className="flex flex-row gap-2 pt-3 items-center justify-start md:justify-center w-full text-sm" aria-label={`Rating: ${practitioner.rating} out of 5 stars, ${practitioner.reviewCount} reviews`}>
                   <div className="inline-flex items-center gap-1">
                     <div className="flex items-center">
                       {Array.from({ length: 5 }, (_, i) => (
@@ -190,10 +191,11 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                 </div>
               </div>
             </div>
-          </header>
+           </header>
 
-          <div className="pt-0 px-0 md:px-4 space-y-4">
-            <div className="flex items-start gap-2 text-sm">
+           <div className="pt-0 px-0 md:px-4 space-y-4">
+             <h4 className="sr-only">Location</h4>
+             <div className="flex items-start gap-2 text-sm">
               <MapPin className="h-4 w-4 mt-0 flex-shrink-0" aria-hidden="true" />
               <span className="text-pretty">
                 {practitioner.gmapsAddress.split(",")[
@@ -220,11 +222,12 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
               className="mt-4 mb-0 flex border rounded-lg font-weight px-4 py-2 bg-black align-items-center justify-center text-white hover:bg-white hover:text-black"
             >
               Contact
-            </Link>
+             </Link>
 
-            {practitioner.Treatments?.length! > 0 && null}
+             {practitioner.Treatments?.length! > 0 && null}
 
-            <div>
+             <div>
+               <h4 className="sr-only">Treatments offered</h4>
               <ul className="flex flex-wrap gap-1 pt-4" aria-label="Treatments offered">
                 {true &&
                   practitioner.Treatments?.slice(0, 2)

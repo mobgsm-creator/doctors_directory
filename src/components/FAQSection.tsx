@@ -61,9 +61,9 @@ function renderValue(
     <div className="space-y-4">
       {Object.entries(value).map(([subKey, subValue]) => (
         <div key={subKey} className="">
-          <h4 className="font-semibold text-slate-800 dark:text-slate-200 mb-2">
+          <h3 className="font-semibold text-slate-800 dark:text-slate-200 mb-2">
             {formatQuestion(subKey)}
-          </h4>
+          </h3>
           {renderValue(subValue, stripCitations)}
         </div>
       ))}

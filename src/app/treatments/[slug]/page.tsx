@@ -92,8 +92,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
   const fileContents = fs.readFileSync(filePath, "utf-8");
   const clinics: Clinic[] = JSON.parse(fileContents);
   const { slug } = params;
-  console.log(slug.replaceAll("%20",""))
-  console.log(JSON.parse(treatment_content[slug.replaceAll("%20"," ")]))
+
   const filteredClinics = clinics.filter((clinic) => {
 
 

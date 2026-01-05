@@ -748,7 +748,7 @@ const cityList = ["Aberaeron",
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center flex-col md:flex-row justify-between">
             <div className="w-full md:w-auto">
-              <h2 className="text-lg md:text-4xl font-bold mb-2">Ready To Get Started?</h2>
+              <h3 className="text-lg md:text-4xl font-bold mb-2">Ready To Get Started?</h3>
               <p className="">Join over 200+ clinics already growing with Consentz.</p>
             </div>
             <div className="flex justify-start w-full md:w-auto pt-10 md:pt-0">
@@ -765,6 +765,7 @@ const cityList = ["Aberaeron",
               <div className="font-bold text-lg mb-6">
                 <img src="/directory/images/Consentz Logo light.svg" alt="Logo" width={180} />
               </div>
+              <h3 className="sr-only">Contact Information</h3>
               <div className="text-sm  space-y-2">
                 <p className="flex items-center gap-2">
                   <Phone className="w-5 h-5 text-white mr-2 flex-shrink-0 mt-0.5" />
@@ -835,13 +836,14 @@ const cityList = ["Aberaeron",
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 text-sm">
             {/* Column 1: Description */}
             <div>
+              <h3 className="sr-only">About the Directory</h3>
               <p className="font-bold text-white mb-3">Find qualified healthcare and aesthetic practitioners in your area. Verified profiles, authentic reviews, and regulatory compliance.</p>
             </div>
 
              {/* Column 2: Clinics */}
              {/* Quick Links */}
              <div className="space-y-4">
-             <h3 className="font-semibold">Clinics</h3>
+             <h4 className="font-semibold">Clinics</h4>
              <ul className="space-y-2 max-h-[100px] overflow-auto">
               {cityList.map((city, index) => (
                 <li key={index}>
@@ -849,10 +851,10 @@ const cityList = ["Aberaeron",
                     Top Clinics in {city}
                   </Link>
                 </li>
-              ))}
-            </ul>
-             <h3 className="font-semibold">Treatments</h3>
-             <ul className="space-y-2 max-h-[100px] overflow-auto">
+               ))}
+             </ul>
+              <h4 className="font-semibold">Treatments</h4>
+              <ul className="space-y-2 max-h-[100px] overflow-auto">
               {modalities.map((t, index_t) => (
                 <li key={index_t}>
                   <Link href={`/clinics/London/services/${t}`} className="block text-sm">

@@ -4,6 +4,7 @@
 import { Practitioner } from "@/lib/types";
 import { Badge } from "@/components/ui/badge";
 import PractitionerTabs from "./PractitionerTabs";
+import Link from "next/link";
 export default function PractitionerDetailsSections({
   clinic,
 }: {
@@ -70,12 +71,14 @@ export default function PractitionerDetailsSections({
           {true &&
             clinic.Treatments?.map(
               (modality, index) => (
-                <Badge key={index} variant="outline" className="text-md bg-gray-100 border-0">
-                  {modality
-                    .split(" ") // split into words
-                    .map((word) => word.charAt(0).toUpperCase() + word.slice(1)) // capitalize each
-                    .join(" ")}
-                </Badge>
+                <Link key={modality} href={`/treatments/${modality}`}>
+                  <Badge variant="outline" className="text-md bg-gray-100 border-0">
+                    {modality
+                      .split(" ") // split into words
+                      .map((word) => word.charAt(0).toUpperCase() + word.slice(1)) // capitalize each
+                      .join(" ")}
+                  </Badge>
+                </Link>
               )
             )}
         </div>
