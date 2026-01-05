@@ -39,16 +39,18 @@ export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
         <div className="flex flex-wrap gap-1">
           {true &&
             clinic.Treatments?.map(
-              (modality, index) => (
-                <Link key={modality} href={`/treatments/${modality}`}>
+              (modality, index) => 
+                { 
+                  const treatments = modality.split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
+                  
+                  return (
+                  
+                <Link key={modality} href={`/treatments/${treatments}`}>
                   <Badge variant="outline" className="text-md bg-gray-100 border-0">
-                    {modality
-                      .split(" ") // split into words
-                      .map((word) => word.charAt(0).toUpperCase() + word.slice(1)) // capitalize each
-                      .join(" ")}
+                    {treatments}
                   </Badge>
-                </Link>
-              )
+                </Link> )}
+              
             )}
         </div>
       </Section>

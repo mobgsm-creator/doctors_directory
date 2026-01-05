@@ -21,13 +21,13 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
   const fileContents = fs.readFileSync(filePath, "utf-8");
   const clinics: Clinic[] = JSON.parse(fileContents);
   const { cityslug, serviceslug } = params;
-  console.log(cityslug, serviceslug);
   const filteredClinics = clinics.filter((clinic) => {
     // Filter by city
     const cityMatch = clinic.City?.toLowerCase() === cityslug.toLowerCase();
     // Filter by offered service category
     const categories =
       clinic.Treatments ?? [];
+    
   
 
 
