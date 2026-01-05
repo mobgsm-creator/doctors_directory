@@ -741,10 +741,10 @@ const cityList = ["Aberaeron",
 "York",
 ]
 
-export function Footer() {
-  return (     
-    <>
-    <section className="bg-[var(--dune)] py-16 text-white">
+ export function Footer() {
+   return (
+     <>
+    <footer className="bg-[var(--dune)] py-16 text-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center flex-col md:flex-row justify-between">
             <div className="w-full md:w-auto">
@@ -838,25 +838,29 @@ export function Footer() {
               <p className="font-bold text-white mb-3">Find qualified healthcare and aesthetic practitioners in your area. Verified profiles, authentic reviews, and regulatory compliance.</p>
             </div>
 
-            {/* Column 2: Clinics */}
-            {/* Quick Links */}
-            <div className="space-y-4">
-            <h3 className="font-semibold">Clinics</h3>
-            <div className="space-y-2 max-h-[100px] overflow-auto">
+             {/* Column 2: Clinics */}
+             {/* Quick Links */}
+             <div className="space-y-4">
+             <h3 className="font-semibold">Clinics</h3>
+             <ul className="space-y-2 max-h-[100px] overflow-auto">
               {cityList.map((city, index) => (
-                <Link href={`/clinics/${city}`} key={index} className="block text-sm">
-                  Top Clinics in {city}
-                </Link>
-              ))} 
-            </div>
-            <h3 className="font-semibold">Treatments</h3>
-            <div className="space-y-2 max-h-[100px] overflow-auto">
-              {modalities.map((t, index_t) => (
-                <Link href={`/clinics/London/services/${t}`} key={index_t} className="block text-sm">
-                  {t}
-                </Link>
+                <li key={index}>
+                  <Link href={`/clinics/${city}`} className="block text-sm">
+                    Top Clinics in {city}
+                  </Link>
+                </li>
               ))}
-            </div>
+            </ul>
+             <h3 className="font-semibold">Treatments</h3>
+             <ul className="space-y-2 max-h-[100px] overflow-auto">
+              {modalities.map((t, index_t) => (
+                <li key={index_t}>
+                  <Link href={`/clinics/London/services/${t}`} className="block text-sm">
+                    {t}
+                  </Link>
+                </li>
+              ))}
+            </ul>
             </div>
 
             {/* Column 3: For Practitioners */}
@@ -879,9 +883,9 @@ export function Footer() {
                 <li><a href="#" className="hover:text-white transition">Contact@consentz.com</a></li>
               </ul>
             </div>
-          </div>
-        </div>
-      </section> 
+           </div>
+         </div>
+    </footer>
       </>
 
 

@@ -50,12 +50,13 @@ export function ServicesSection({ clinic }: ServicesSectionProps) {
 
 
   return (
-    <div className="space-y-6">
+    <section aria-labelledby="services-heading" className="space-y-6">
+      <h2 id="services-heading" className="sr-only">Services</h2>
       {/* Tag Galaxy */}
       {/* <Card>
         <CardHeader>
           <CardTitle className="text-lg">Tag Galaxy</CardTitle>
-      
+
         </CardHeader>
         <CardContent>
           <TagGalaxy
@@ -66,12 +67,12 @@ export function ServicesSection({ clinic }: ServicesSectionProps) {
           />
         </CardContent>
       </Card> */}
-     
+
       {/* Expandable sections for scanning */}
       { clusters.length !== 0 && (
       <Card>
         <CardHeader>
-          <CardTitle className="text-lg">Sections</CardTitle>
+          <h3 className="text-lg">Sections</h3>
         </CardHeader>
         <CardContent>
           <Accordion type="multiple" className="space-y-3">
@@ -79,19 +80,21 @@ export function ServicesSection({ clinic }: ServicesSectionProps) {
               <AccordionItem key={c.header} value={c.header}>
                 <AccordionTrigger className="text-left">{c.header}</AccordionTrigger>
                 <AccordionContent>
-                  <div className="flex flex-wrap gap-2">
+                  <ul className="flex flex-wrap gap-2" aria-label={`${c.header} services`}>
                     {c.keywords.slice(0, 60).map((k) => (
-                      <Badge key={k} variant="secondary">
-                        {k}
-                      </Badge>
+                      <li key={k}>
+                        <Badge variant="secondary">
+                          {k}
+                        </Badge>
+                      </li>
                     ))}
-                  </div>
+                  </ul>
                 </AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>
         </CardContent>
       </Card>)}
-      </div>
+      </section>
   )
 }

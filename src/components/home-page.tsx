@@ -853,14 +853,15 @@ export default function HomePage() {
   return (
     <main>
       <HeroSection />
-      <section className="bg-white-50 py-15 md:py-20">
+      <section className="bg-white-50 py-15 md:py-20" aria-labelledby="specialists-heading">
+        <h2 id="specialists-heading" className="sr-only">Contact a Specialist</h2>
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-xl md:text-4xl font-bold text-center mb-16">
             Contact a Specialist
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-5 gap-8 align-items-center">
             {specialists.map((specialist, index) => (
-              <div key={index} className="flex flex-col items-center gap-4">
+              <article key={index} className="flex flex-col items-center gap-4">
                 <div className="flex items-center justify-center transition">
                   <img
                     src={specialist.image || "/placeholder.svg"}
@@ -871,7 +872,7 @@ export default function HomePage() {
                 <p className="text-base font-medium text-center">
                   {specialist.name}
                 </p>
-              </div>
+              </article>
             ))}
           </div>
         </div>
@@ -893,25 +894,26 @@ export default function HomePage() {
         </div>
       </section>
       {/* Most Popular Treatments */}
-      <section className="py-15 md:py-20 relative">
+      <section className="py-15 md:py-20 relative" aria-labelledby="treatments-heading">
+        <h2 id="treatments-heading" className="sr-only">Most Popular Treatments</h2>
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center flex-col justify-between mb-12">
             <h2 className="text-xl md:text-4xl font-bold text-center mb-10">
               Most Popular Treatments
             </h2>
-            
+
           </div>
           <div className="relative flex flex-col items-center justify-center">
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 justify-items-center items-center gap-4 pb-4 w-full">
               {treatments.map((treatment, index) => (
-                <div key={index} className="flex-shrink-0">
+                <article key={index} className="flex-shrink-0">
                   <div
     className="mx-auto
                w-32 aspect-square
                rounded-full overflow-hidden"
   >               <Link href={treatment.url}>
                   <img
-                  
+                   
                     src={treatment.image || "/placeholder.svg"}
                     alt={treatment.name}
                     className="w-32 h-32 md:w-38 md:h-38 lg:w-45 lg:h-45 ml-auto mr-auto object-cover object-center rounded-lg"
@@ -919,7 +921,7 @@ export default function HomePage() {
                   <p className="mt-4 text-base font-medium text-center">
                     {treatment.name}
                   </p>
-                </div>
+                </article>
               ))}
             </div>
             <Button
@@ -1064,8 +1066,9 @@ export default function HomePage() {
       </section>
 
       {/* Latest blogs */}
-      <section className="max-w-7xl mx-auto px-4 md:px-6 py-12">
+      <section className="max-w-7xl mx-auto px-4 md:px-6 py-12" aria-labelledby="blog-heading">
         {/* Header */}
+        <h2 id="blog-heading" className="sr-only">Our Latest Blogs</h2>
         <div className="max-w-3xl mb-10">
           <h2 className="text-lg md:text-3xl text-center md:text-left md:text-4xl font-bold mb-6">
             Our Latest Blogs
@@ -1118,8 +1121,8 @@ export default function HomePage() {
         </div>
       </section>
       {/* FAQ */}
-      <section className="max-w-4xl mx-auto pt-4 pb-20 px-6">
-        <h2 className="text-lg md:text-3xl text-center md:text-4xl font-bold mb-6">
+      <section className="max-w-4xl mx-auto pt-4 pb-20 px-6" aria-labelledby="faq-heading">
+        <h2 id="faq-heading" className="text-lg md:text-3xl text-center md:text-4xl font-bold mb-6">
           Frequently Asked Questions
         </h2>
         <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
@@ -1131,28 +1134,23 @@ export default function HomePage() {
           {faqData.map((item, index) => {
             const isOpen = openIndex === index;
             return (
-              <div
+              <details
                 key={index}
+                open={isOpen}
+                onToggle={() => toggleFAQ(index)}
                 className="border border-gray-300 rounded-3xl p-4 transition-all duration-300"
               >
-                <div
-                  className="w-full flex items-center gap-4 text-left text-lg font-semibold cursor-pointer flex flex-row flex-wrap pl-10 relative"
-                  onClick={() => toggleFAQ(index)}
-                >
+                <summary className="w-full flex items-center gap-4 text-left text-lg font-semibold cursor-pointer flex flex-row flex-wrap pl-10 relative list-none">
                   <span className="text-2xl font-normal text-center w-7 h-7 rounded-full leading-6 text-black transition-all select-none bg-black text-white absolute left-0">
                     {isOpen ? "−" : "+"}
                   </span>
                   <span className="font-medium underline">{item.q}</span>
-                </div>
+                </summary>
 
-                <div
-                  className={`overflow-hidden transition-[max-height] duration-300 ease-in-out ${
-                    isOpen ? "max-h-40 mt-4" : "max-h-0"
-                  }`}
-                >
+                <div className="mt-4">
                   <p className="text-gray-700 leading-relaxed">{item.a}</p>
                 </div>
-              </div>
+              </details>
             );
           })}
         </div>

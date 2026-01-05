@@ -84,36 +84,37 @@ export function FAQ({ data, stripCitations = true }: FAQProps) {
     setExpandedItems(newExpanded);
   };
 
+  const handleToggle = (key: string) => (e: React.MouseEvent<HTMLDetailsElement>) => {
+    const details = e.currentTarget;
+    const isOpen = details.open;
+    toggleExpanded(key);
+  };
+
   return (
-    <section className="max-w-7xl mx-auto px-4 py-8">
+    <section className="max-w-7xl mx-auto px-4 py-8" aria-labelledby="faq-heading">
+      <h2 id="faq-heading" className="sr-only">Frequently Asked Questions</h2>
       <div className="space-y-6 bg-white rounded-lg px-8 py-8">
         {Object.entries(data).map(([rawKey, value]) => {
           const question = formatQuestion(rawKey);
           const isExpanded = expandedItems.has(rawKey);
 
           return (
-            <div 
+            <details
               key={rawKey}
+              open={isExpanded}
+              onToggle={handleToggle(rawKey)}
               className="border rounded-lg dark:bg-slate-900 transition-all duration-200 overflow-hidden"
             >
-             
-                <h3 className="px-4 py-4 bg-[var(--alabaster)] border-b border-b-1 font-semibold text-slate-800 dark:text-slate-200 text-left text-lg pr-4">
-                  {question}
-                </h3>
-             
-           
-              
-              <div 
-                className={`transition-all duration-300 ease-in-out 
-                  'max-h-96 opacity-100' `}
-              >
-                <div className="px-4 py-4">
-                  <div className="text-slate-600 dark:text-slate-300">
-                    {renderValue(value, stripCitations)}
-                  </div>
+              <summary className="px-4 py-4 bg-[var(--alabaster)] border-b border-b-1 font-semibold text-slate-800 dark:text-slate-200 text-left text-lg pr-4 cursor-pointer list-none">
+                {question}
+              </summary>
+
+              <div className="px-4 py-4">
+                <div className="text-slate-600 dark:text-slate-300">
+                  {renderValue(value, stripCitations)}
                 </div>
               </div>
-            </div>
+            </details>
           );
         })}
       </div>

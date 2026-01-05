@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { Card, CardHeader, CardContent } from "@/components/ui/card"
 import Image from "next/image"
+import SearchPage from "@/components/searchClient"
 const TreatmentMap: Record<string, string> = {
   "Acne": "/directory/treatments/acne.webp",
   "Alopecia": "/directory/treatments/alopecia.webp",
@@ -77,32 +78,8 @@ const TreatmentMap: Record<string, string> = {
 export default function HomePage() {
   
     return (
-        <main>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 animate-fade-in">
-            {Object.keys(TreatmentMap).map((city, index) => (
-            <div key={index} style={{ animationDelay: `${index * 50}ms` }}>
-                <Link href={`/treatments/${city}`}>
-                        <Card className="group hover:shadow-lg transition-all duration-300 hover:scale-[1.02] cursor-pointer border-border/50 hover:border-accent/50">
-                            <CardHeader >
-                            <h2 className='flex justify-center font-semibold text-sm text-foreground group-hover:text-primary/70 transition-colors text-balance'>{city}</h2>
-                            </CardHeader>
-                            <CardContent className='flex items-center justify-center pt-0'>
-                            <img
-                        src={TreatmentMap[city].split("?w")[0] || "/placeholder.svg"}
-                        alt="Profile photo"
-                        width={240}
-                        height={240}
-                        className="flex items-center justify-center object-cover rounded-bl rounded-ee rounded-tr rounded-tl w-60 h-60"
-                    />
-                            </CardContent>
-
-                        
-                        </Card>
-                        </Link>
-            </div>
-            ))}
-        </div>
-        
-        </main>
+       <SearchPage 
+             
+           />
     )
 }
