@@ -44,7 +44,7 @@ function renderValue(
       <ul className="space-y-2">
         {value.map((item, i) => (
           <li key={i} className="text-slate-600 dark:text-slate-300 flex items-start gap-2">
-            <span className="text-blue-500 dark:text-blue-400 mt-1">•</span>
+            <span className="text-black mt-0">•</span>
             <span className="flex-1">
               {stripCitations && typeof item === "string"
                 ? cleanText(item)
@@ -60,7 +60,7 @@ function renderValue(
   return (
     <div className="space-y-4">
       {Object.entries(value).map(([subKey, subValue]) => (
-        <div key={subKey} className="bg-slate-50 dark:bg-slate-800/50 rounded-lg p-4">
+        <div key={subKey} className="">
           <h4 className="font-semibold text-slate-800 dark:text-slate-200 mb-2">
             {formatQuestion(subKey)}
           </h4>
@@ -85,8 +85,8 @@ export function FAQ({ data, stripCitations = true }: FAQProps) {
   };
 
   return (
-    <section className="max-w-4xl mx-auto px-4 py-8">
-      <div className="space-y-3">
+    <section className="max-w-7xl mx-auto px-4 py-8">
+      <div className="space-y-6 bg-white rounded-lg px-8 py-8">
         {Object.entries(data).map(([rawKey, value]) => {
           const question = formatQuestion(rawKey);
           const isExpanded = expandedItems.has(rawKey);
@@ -94,10 +94,10 @@ export function FAQ({ data, stripCitations = true }: FAQProps) {
           return (
             <div 
               key={rawKey}
-              className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl shadow-sm hover:shadow-md transition-all duration-200 overflow-hidden"
+              className="border rounded-lg dark:bg-slate-900 transition-all duration-200 overflow-hidden"
             >
              
-                <h3 className="font-semibold text-slate-800 dark:text-slate-200 text-center text-lg pr-4">
+                <h3 className="px-4 py-4 bg-[var(--alabaster)] border-b border-b-1 font-semibold text-slate-800 dark:text-slate-200 text-left text-lg pr-4">
                   {question}
                 </h3>
              
@@ -107,7 +107,7 @@ export function FAQ({ data, stripCitations = true }: FAQProps) {
                 className={`transition-all duration-300 ease-in-out 
                   'max-h-96 opacity-100' `}
               >
-                <div className="px-6 pb-4">
+                <div className="px-4 py-4">
                   <div className="text-slate-600 dark:text-slate-300">
                     {renderValue(value, stripCitations)}
                   </div>
