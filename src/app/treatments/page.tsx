@@ -1,6 +1,11 @@
 import Link from "next/link"
 import { Card, CardHeader, CardContent } from "@/components/ui/card"
 import Image from "next/image"
+import { Input } from "@/components/ui/input";
+import { Icon, Search } from "lucide-react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { ClientSideSearch } from "@/components/client-side-search";
+
 const TreatmentMap: Record<string, string> = {
   "Acne": "/directory/treatments/acne.webp",
   "Alopecia": "/directory/treatments/alopecia.webp",
@@ -77,32 +82,148 @@ const TreatmentMap: Record<string, string> = {
 export default function HomePage() {
   
     return (
-        <main>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 animate-fade-in">
-            {Object.keys(TreatmentMap).map((city, index) => (
-            <div key={index} style={{ animationDelay: `${index * 50}ms` }}>
-                <Link href={`/treatments/${city}`}>
-                        <Card className="group hover:shadow-lg transition-all duration-300 hover:scale-[1.02] cursor-pointer border-border/50 hover:border-accent/50">
-                            <CardHeader >
-                            <h2 className='flex justify-center font-semibold text-sm text-foreground group-hover:text-primary/70 transition-colors text-balance'>{city}</h2>
-                            </CardHeader>
-                            <CardContent className='flex items-center justify-center pt-0'>
-                            <img
-                        src={TreatmentMap[city].split("?w")[0] || "/placeholder.svg"}
-                        alt="Profile photo"
-                        width={240}
-                        height={240}
-                        className="flex items-center justify-center object-cover rounded-bl rounded-ee rounded-tr rounded-tl w-60 h-60"
-                    />
-                            </CardContent>
+      <main className="bg-[var(--primary-bg-color)] ">
+        <ClientSideSearch />
+        <div className="mx-auto max-w-7xl md:px-4 py-4 md:py-12 flex flex-col justify-center w-full gap-10">
+          <div className="flex py-5 items-center flex-col align-center justify-center gap-5">
+            <form className="flex flex-row max-w-3xl w-full">
+              <div className="bg-white rounded-xl grow">
+                <Input
+                  className="p-7"
+                  placeholder="I'm searching for..."
+                />
+              </div>
+              <button 
+                type="submit"
+                className="bg-black flex items-center justify-center rounded-xl px-4 m-1 hover:cursor-pointer hover:bg-gray-800 transition-colors"
+              >
+                <Search className="text-white" />
+              </button>
+            </form>
+          </div>
+          <div className="flex flex-row items-start justify-center gap-6">
+            <div className="w-64">
+              <h3 className="font-semibold text-xl text-black mb-6">Filters</h3>
 
-                        
-                        </Card>
-                        </Link>
+              {/* Concern Filter */}
+              <div className="mb-6">
+                <label className="block text-base font-medium text-black mb-2">
+                  Concern:
+                </label>
+                <Select>
+                  <SelectTrigger className="w-full h-12 px-4 py-3 bg-white border border-gray-300 rounded-md">
+                    <SelectValue className="text-black" placeholder="All"/>
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All</SelectItem>
+                    <SelectItem value="acne">Acne</SelectItem>
+                    <SelectItem value="wrinkles">Anti-Aging</SelectItem>
+                    <SelectItem value="pigmentation">Pigmentation</SelectItem>
+                    <SelectItem value="hair-loss">Hair Loss</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Treatment Type Filter */}
+              <div className="mb-6">
+                <label className="block text-base font-medium text-black mb-2">
+                  Treatment Type:
+                </label>
+                <Select>
+                  <SelectTrigger className="w-full h-12 px-4 py-3 bg-white border border-gray-300 rounded-md">
+                    <SelectValue placeholder="All" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All</SelectItem>
+                    <SelectItem value="surgical">Surgical</SelectItem>
+                    <SelectItem value="non-surgical">Non-Surgical</SelectItem>
+                    <SelectItem value="laser">Laser</SelectItem>
+                    <SelectItem value="injectable">Injectable</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Treatment Area Filter */}
+              <div className="mb-6">
+                <label className="block text-base font-medium text-black mb-2">
+                  Treatment Area:
+                </label>
+                <Select>
+                  <SelectTrigger className="w-full h-12 px-4 py-3 bg-white border border-gray-300 rounded-md">
+                    <SelectValue placeholder="All" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All</SelectItem>
+                    <SelectItem value="face">Face</SelectItem>
+                    <SelectItem value="body">Body</SelectItem>
+                    <SelectItem value="hair">Hair</SelectItem>
+                    <SelectItem value="skin">Skin</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Practitioner Type Filter */}
+              <div className="mb-6">
+                <label className="block text-base font-medium text-black mb-2">
+                  Practitioner Type:
+                </label>
+                <Select>
+                  <SelectTrigger className="w-full h-12 px-4 py-3 bg-white border border-gray-300 rounded-md">
+                    <SelectValue placeholder="All" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All</SelectItem>
+                    <SelectItem value="dermatologist">Dermatologist</SelectItem>
+                    <SelectItem value="plastic-surgeon">
+                      Plastic Surgeon
+                    </SelectItem>
+                    <SelectItem value="aesthetic-practitioner">
+                      Aesthetic Practitioner
+                    </SelectItem>
+                    <SelectItem value="nurse">Nurse Practitioner</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
             </div>
-            ))}
+
+            <div className="grid grow  grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 animate-fade-in">
+              {Object.keys(TreatmentMap).map((treatment, index) => (
+                <div 
+                  key={index} 
+                  style={{ animationDelay: `${index * 50}ms` }}
+                  data-treatment-card="true"
+                  data-treatment-name={treatment}
+                >
+                  <Link
+                    href={`/treatments/${treatment}`}
+                    title={`Learn about ${treatment} treatments and find qualified specialists`}
+                  >
+                    <Card className="group flex flex-col gap-5 bg-transparent hover:shadow-lg transition-all duration-300 hover:scale-[1.02] cursor-pointer md:border-0 hover:border-accent/50">
+                      <CardContent className="flex p-0 items-center justify-center pt-0">
+                        <img
+                          src={
+                            TreatmentMap[treatment].split("?w")[0] ||
+                            "/placeholder.svg"
+                          }
+                          alt={`${treatment} treatment procedure`}
+                          width={240}
+                          height={240}
+                          className="flex items-center justify-center object-cover rounded-full w-60 h-60"
+                        />
+                      </CardContent>
+
+                      <CardHeader>
+                        <h2 className="flex justify-center font-semibold text-sm text-foreground group-hover:text-primary/70 transition-colors text-balance">
+                          {treatment}
+                        </h2>
+                      </CardHeader>
+                    </Card>
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
-        
-        </main>
-    )
+      </main>
+    );
 }
