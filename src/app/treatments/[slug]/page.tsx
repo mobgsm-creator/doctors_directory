@@ -4,7 +4,6 @@ import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 import type { Clinic, Practitioner } from "@/lib/types";
 import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
 import { Star, MapPin } from "lucide-react";
 import fs from "fs";
 import { safeParse } from "@/lib/utils";
