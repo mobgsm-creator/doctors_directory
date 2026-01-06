@@ -116,8 +116,17 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
   return (
     <>
       {(isPractitioner(practitioner) || isClinic(practitioner)) && (
-        <Card className="gap-0 relative px-4 md:px-0 shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border-t-[1px] rounded-27 md:border md:border-[var(--alto)] cursor-pointer">
-          <CardHeader className="pb-4 px-2">
+        
+        <article aria-labelledby={`practitioner-name-${practitioner.slug}`}>
+          <Card className="gap-0 relative px-4 md:px-0 shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border-t-[1px] rounded-27 md:border md:border-[var(--alto)] cursor-pointer">
+          
+          <header>
+             <CardHeader className="pb-4 px-2">
+            
+            <h2 id={`practitioner-name-${practitioner.slug}`} className="sr-only">
+              {practitionerName}
+            </h2>
+            
             <div className="flex items-start gap-4">
               <div className="text-center flex-1 min-w-0 items-center flex flex-col">
                 <div className="flex w-full flex-row items-start border-b border-[#C4C4C4] md:border-0 md:flex-col md:items-center">
@@ -152,7 +161,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                         <p className="text-muted-foreground mb-2 text-pretty">
                           {(
                             practitioner as Practitioner
-                          ).practitioner_title.trim()}
+                          ).practitioner_title.split("/")[0].split("(")[0].trim()}
                         </p>
                       )}
 
@@ -162,15 +171,17 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                           {practitioner.category.trim()}
                         </p>
                       )}
-                  </div>
-                </div>
+                   </div>
+                 </div>
 
-                <div className="flex flex-row gap-2 pt-3 items-center justify-start md:justify-center w-full text-sm">
+                 <h4 className="sr-only">Rating</h4>
+                 <div className="flex flex-row gap-2 pt-3 items-center justify-start md:justify-center w-full text-sm" aria-label={`Rating: ${practitioner.rating} out of 5 stars, ${practitioner.reviewCount} reviews`}>
                   <div className="inline-flex items-center gap-1">
                     <div className="flex items-center">
                       {Array.from({ length: 5 }, (_, i) => (
                         <Star
                           key={i}
+                          aria-hidden="true"
                           className={`h-4 w-4 ${
                             i < practitioner.rating
                               ? "fill-black text-black"
@@ -186,11 +197,13 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                 </div>
               </div>
             </div>
-          </CardHeader>
+            </CardHeader>
+           </header>
 
-          <CardContent className="pt-0 px-0 md:px-4 space-y-4">
-            <div className="flex items-start gap-2 text-sm">
-              <MapPin className="h-4 w-4 mt-0 flex-shrink-0" />
+           <CardContent className="pt-0 px-0 md:px-4 space-y-4">
+             <h4 className="sr-only">Location</h4>
+             <div className="flex items-start gap-2 text-sm">
+              <MapPin className="h-4 w-4 mt-0 flex-shrink-0" aria-hidden="true" />
               <span className="text-pretty">
                 {practitioner.gmapsAddress.split(",")[
                   practitioner.gmapsAddress.split(",").length - 2
@@ -216,42 +229,53 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
               className="mt-4 mb-0 flex border rounded-lg font-weight px-4 py-2 bg-black align-items-center justify-center text-white hover:bg-white hover:text-black"
             >
               Contact
-            </Link>
+             </Link>
 
-            {practitioner.Treatments?.length! > 0 && null}
+             {practitioner.Treatments?.length! > 0 && null}
 
-            <div>
-              <div className="flex flex-wrap gap-1 pt-4">
+             <div>
+               <h4 className="sr-only">Treatments offered</h4>
+              <ul className="flex flex-wrap gap-1 pt-4" aria-label="Treatments offered">
                 {true &&
                   practitioner.Treatments?.slice(0, 2)
                     .map((modality, index) => (
-                      <Badge key={index} variant="outline" className="text-xs">
-                        {modality
-                          .split(" ") // split into words
-                          .map(
-                            (word) =>
-                              word.charAt(0).toUpperCase() + word.slice(1)
-                          ) // capitalize each
-                          .join(" ")}
-                      </Badge>
+                      <li key={index}>
+                        <Badge variant="outline" className="text-xs">
+                          {modality
+                            .split(" ") // split into words
+                            .map(
+                              (word) =>
+                                word.charAt(0).toUpperCase() + word.slice(1)
+                            ) // capitalize each
+                            .join(" ")}
+                        </Badge>
+                      </li>
                     ))}
                 {true &&
                   practitioner.Treatments?.length! > 2 && (
-                    <Badge variant="outline" className="text-xs">
-                      +
-                      {practitioner.Treatments?.length! - 2}{" "}
-                      more
-                    </Badge>
+                    <li>
+                      <Badge variant="outline" className="text-xs">
+                        +
+                        {practitioner.Treatments?.length! - 2}{" "}
+                        more
+                      </Badge>
+                    </li>
                   )}
-              </div>
+              </ul>
             </div>
-          </CardContent>
+            </CardContent>
+
+
         </Card>
+        </article>
       )}
       {isProduct(practitioner) && (
         <Link href={`/products/${practitioner.slug}`} className="block">
-          <Card className="gap-0 h-full relative px-4 md:px-0 shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border-t-[1px] rounded-27 md:border md:border-[var(--alto)] cursor-pointer">
+          <Card className="gap-0 h-full relative px-4 md:px-0 shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border-t-[1px] rounded-27 md:border md:border-[var(--alto)] cursor-pointer" aria-labelledby={`product-name-${practitioner.slug}`}>
             <CardHeader className="pb-2 px-2">
+              <h2 id={`product-name-${practitioner.slug}`} className="sr-only">
+                {practitioner.product_name}
+              </h2>
               <div className="flex items-start gap-4">
                 <div className="text-center flex-1 min-w-0 items-center flex flex-col">
                   <div className="flex w-full flex-row items-start border-b border-[#C4C4C4] md:border-0 md:flex-col md:items-center">
@@ -261,7 +285,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                           practitioner.image_url?.replaceAll('"', "") ||
                           "/placeholder.svg"
                         }
-                        alt="Profile photo"
+                        alt="Product photo"
                         className="object-cover rounded-lg min-w-full min-h-full"
                       />
                     </div>
@@ -289,12 +313,14 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                 </span>
               </div>
               <div>
-                <div className="flex flex-wrap md:items-center md:justify-center gap-1 text-center">
+                <ul className="flex flex-wrap md:items-center md:justify-center gap-1 text-center" aria-label="Product prices">
                   {true &&
                     practitioner.all_prices.map((value: any, index: number) => (
-                      <Badge key={index} variant="outline" className="text-xs">
-                        {value.price}
-                      </Badge>
+                      <li key={index}>
+                        <Badge variant="outline" className="text-xs">
+                          {value.price}
+                        </Badge>
+                      </li>
                     ))}
                   {/* {true &&
               practitioner.reviewAnalysis?.procedures_offered?.categories
@@ -306,7 +332,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                   more
                 </Badge>
               )} */}
-                </div>
+                </ul>
               </div>
             </CardContent>
           </Card>
@@ -314,8 +340,11 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
       )}
       {isTreatment(practitioner) && (
         <Link href={`/treatments/${practitioner}`} className="block">
-          <Card className="gap-0 h-full relative px-4 md:px-0 shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border-t-[1px] rounded-27 md:border md:border-[var(--alto)] cursor-pointer">
+          <Card className="gap-0 h-full relative px-4 md:px-0 shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border-t-[1px] rounded-27 md:border md:border-[var(--alto)] cursor-pointer" aria-labelledby={`treatment-name-${practitioner}`}>
             <CardHeader className="pb-2 px-2">
+              <h2 id={`treatment-name-${practitioner}`} className="sr-only">
+                {practitioner}
+              </h2>
               <div className="flex items-start gap-4">
                 <div className="text-center flex-1 min-w-0 items-center flex flex-col">
                   <div className="flex w-full flex-row items-start border-b border-[#C4C4C4] md:border-0 md:flex-col md:items-center">
@@ -325,23 +354,18 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                           TreatmentMap[practitioner] ||
                           "/placeholder.svg"
                         }
-                        alt="Profile photo"
+                        alt="Treatment photo"
                         className="object-cover rounded-lg min-w-full min-h-full"
                       />
                     </div>
 
-             
-
-                      <h3 className="mb-3 md:mb-0 flex text-left md:text-center md:align-items-center md:justify-center font-semibold text-md md:text-lg transition-colors text-balance">
-                        {practitioner}
-                      </h3>
-                    </div>
+                    <h3 className="mb-3 md:mb-0 flex text-left md:text-center md:align-items-center md:justify-center font-semibold text-md md:text-lg transition-colors text-balance">
+                      {practitioner}
+                    </h3>
                   </div>
                 </div>
-    
+              </div>
             </CardHeader>
-
-            
           </Card>
         </Link>
       )}

@@ -28,6 +28,7 @@ export function ProfileHeader({ clinic }: ProfileHeaderProps) {
 
   return (
     <Card className="md:mt-2 flex flex-col gap-6 md:rounded-xl px-0 md:px-6 py-6 relative shadow-none group transition-all duration-300 md:rounded-27 border-t border-b border-[#C4C4C4] md:border-t-[1px] md:border md:border-[var(--alto)] bg-white md:bg-[var(--primary-bg-color)]">
+
       <div className="px-4 md:px-0 grid grid-cols-1 lg:grid-cols-[4fr_1fr] gap-4 items-center">
         <div className="flex flex-row flex-wrap pb-4 md:pb-0 md:mb-4 md:px-4 md:px-0 lg:mb-0 items-center border-b border-[#C4C4C4] md:border-0">
           {/* Profile Image Section */}
@@ -82,12 +83,12 @@ export function ProfileHeader({ clinic }: ProfileHeaderProps) {
 
             <div className="flex flex-row gap-2 mb-3 items-center">
               <p className="text-pretty md:font-bold text-sm md:text-md">{roleTitle}</p>
-            </div>
+             </div>
 
-            <div className="hidden md:block">
-                {/* Contact Information */}
+             <div className="hidden md:block">
+                 <h2 className="sr-only">Contact Information</h2>
 
-                <div className="flex items-start gap-3 my-2">
+                 <div className="flex items-start gap-3 my-2">
                   <MapPin className="h-4 w-4 mt-1 shrink-0 " />
                   <span className="text-sm">{clinic.gmapsAddress}</span>
                 </div>
@@ -101,43 +102,44 @@ export function ProfileHeader({ clinic }: ProfileHeaderProps) {
                     <span>{clinic.gmapsPhone}</span>
                   </a>
 
-                  <a
-                    href="mailto:consultation@example.com"
-                    className="flex items-center gap-2 text-sm transition-colors"
-                  >
-                    <Mail className="h-3.5 w-3.5 mr-1.5" />
-                    <span>Email</span>
-                  </a>
-                </div>
+                   <a
+                     href="mailto:consultation@example.com"
+                     className="flex items-center gap-2 text-sm transition-colors"
+                   >
+                     <Mail className="h-3.5 w-3.5 mr-1.5" />
+                     <span>Email</span>
+                   </a>
+                 </div>
 
-                {/* Specializations preview */}
-                <div className="flex flex-wrap gap-2 pt-2">
-                  {clinic.reviewAnalysis?.procedures_offered.categories.map(
-                    (spec) => (
-                      <Badge
-                        key={spec}
-                        variant="outline"
-                        className="border-black  hover:text-black transition-colors bg-[var(--primary-bg-color)]"
-                      >
-                        {spec
-                          .split("-")
-                          .map(
-                            (word) => word.charAt(0).toUpperCase() + word.slice(1)
-                          )
-                          .join(" ")}
-                      </Badge>
-                    )
-                  )}
-                </div>
-            </div>
+                 <h2 className="sr-only">Specializations</h2>
+                 <ul className="flex flex-wrap gap-2 pt-2" aria-label="Specializations">
+                   {clinic.reviewAnalysis?.procedures_offered.categories.map(
+                     (spec) => (
+                       <li key={spec}>
+                         <Badge
+                           variant="outline"
+                           className="border-black  hover:text-black transition-colors bg-[var(--primary-bg-color)]"
+                         >
+                           {spec
+                             .split("-")
+                             .map(
+                               (word) => word.charAt(0).toUpperCase() + word.slice(1)
+                             )
+                             .join(" ")}
+                         </Badge>
+                       </li>
+                     )
+                   )}
+                 </ul>
+             </div>
 
           </div>
         </div>
 
         <div className="block md:hidden">
-                {/* Contact Information */}
+                 <h2 className="sr-only">Contact Information</h2>
 
-                <div className="flex items-start gap-3 my-2">
+                 <div className="flex items-start gap-3 my-2">
                   <MapPin className="h-4 w-4 mt-1 shrink-0 " />
                   <span className="text-sm">{clinic.gmapsAddress}</span>
                 </div>
@@ -157,28 +159,29 @@ export function ProfileHeader({ clinic }: ProfileHeaderProps) {
                   >
                     <Mail className="h-3.5 w-3.5 mr-1.5" />
                     <span>Email</span>
-                  </a>
-                </div>
+                   </a>
+                 </div>
 
-                {/* Specializations preview */}
-                <div className="flex flex-wrap gap-2 pt-2">
-                  {clinic.reviewAnalysis?.procedures_offered.categories.map(
-                    (spec) => (
-                      <Badge
-                        key={spec}
-                        variant="outline"
-                        className="border-black hover:text-black transition-colors bg-transparent"
-                      >
-                        {spec
-                          .split("-")
-                          .map(
-                            (word) => word.charAt(0).toUpperCase() + word.slice(1)
-                          )
-                          .join(" ")}
-                      </Badge>
-                    )
-                  )}
-                </div>
+                 <h2 className="sr-only">Specializations</h2>
+                 <ul className="flex flex-wrap gap-2 pt-2" aria-label="Specializations">
+                   {clinic.reviewAnalysis?.procedures_offered.categories.map(
+                     (spec) => (
+                       <li key={spec}>
+                         <Badge
+                           variant="outline"
+                           className="border-black hover:text-black transition-colors bg-transparent"
+                         >
+                           {spec
+                             .split("-")
+                             .map(
+                               (word) => word.charAt(0).toUpperCase() + word.slice(1)
+                             )
+                             .join(" ")}
+                         </Badge>
+                       </li>
+                     )
+                   )}
+                 </ul>
             </div>
 
         {/* Action Buttons Section */}

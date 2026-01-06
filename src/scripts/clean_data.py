@@ -542,7 +542,9 @@ REVERSE_LOOKUP = {
     for canonical, variants in CANONICAL_MAP.items()
     for variant in variants
 }
-# df_p = pd.read_json(r'C:\Users\agney\Documents\Files\Projects\doctor-directory\public\clinics_processed.json')
+df_p = pd.read_json(r'C:\Users\agney\Documents\Files\Projects\doctor-directory\public\clinics_processed_new.json')
+df_p.to_csv("test.csv")
+time.sleep(1000)
 # df=pd.read_csv(r"C:\Users\agney\Documents\Files\Projects\doctor-directory\test_cleaned.csv")
 
 # df2 = pd.read_excel(r"C:\Users\agney\Downloads\5600_UK_slug_search_results_2k_.xlsx",sheet_name='exists')
@@ -1024,7 +1026,7 @@ def enrich_data(df):
 
                 except Exception as e:
                     print(f"[WARN] Failed removing duplicate index {i}: {e}")
-            print("After:",len(roles), len(qualifications), len(awards), len(news), len(exp))
+           # print("After:",len(roles), len(qualifications), len(awards), len(news), len(exp))
             try:
                 df.at[index, 'Roles_And_Positions'] = json.dumps(roles)
                 df.at[index, 'Qualifications_And_Professional_Affiliations'] = json.dumps(qualifications)

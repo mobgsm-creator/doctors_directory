@@ -12,60 +12,90 @@ type Clinic = {
 };
 
 export default function SocialMediaIcons({ clinic }: { clinic: Clinic }) {
-  const handleOpen = (url: string) => {
-    if (!url) return;
-    // For email, prepend mailto: if missing
-    if (url.includes("@") && !url.startsWith("mailto:")) {
-      window.open(`mailto:${url}`, "_blank", "noopener,noreferrer");
-    } else {
-      window.open(url, "_blank", "noopener,noreferrer");
-    }
-  };
-
   return (
-    <div className="flex flex-row flex-wrap gap-3 items-center justify-center mt-2">
+    <nav aria-label="Social media links" className="flex flex-row flex-wrap gap-3 items-center justify-center mt-2">
       {clinic.facebook && (
-        <Facebook
+        <a
+          href={clinic.facebook}
+          target="_blank"
+          rel="noopener noreferrer"
           aria-label="Facebook"
-          className="h-5 w-5 text-black hover:text-black cursor-pointer transition-colors"
-          onClick={() => handleOpen(clinic.facebook!)}
-        />
+          className="inline-flex"
+        >
+          <Facebook
+            aria-hidden="true"
+            className="h-5 w-5 text-black hover:text-black transition-colors"
+          />
+        </a>
       )}
       {clinic.instagram && (
-        <Instagram
+        <a
+          href={clinic.instagram}
+          target="_blank"
+          rel="noopener noreferrer"
           aria-label="Instagram"
-          className="h-5 w-5 text-black hover:text-black cursor-pointer transition-colors"
-          onClick={() => handleOpen(clinic.instagram!)}
-        />
+          className="inline-flex"
+        >
+          <Instagram
+            aria-hidden="true"
+            className="h-5 w-5 text-black hover:text-black transition-colors"
+          />
+        </a>
       )}
       {clinic.twitter && (
-        <Twitter
+        <a
+          href={clinic.twitter}
+          target="_blank"
+          rel="noopener noreferrer"
           aria-label="Twitter"
-          className="h-5 w-5 text-black hover:text-black cursor-pointer transition-colors"
-          onClick={() => handleOpen(clinic.twitter!)}
-        />
+          className="inline-flex"
+        >
+          <Twitter
+            aria-hidden="true"
+            className="h-5 w-5 text-black hover:text-black transition-colors"
+          />
+        </a>
       )}
       {clinic.youtube && (
-        <Youtube
+        <a
+          href={clinic.youtube}
+          target="_blank"
+          rel="noopener noreferrer"
           aria-label="YouTube"
-          className="h-5 w-5 text-black hover:text-black cursor-pointer transition-colors"
-          onClick={() => handleOpen(clinic.youtube!)}
-        />
+          className="inline-flex"
+        >
+          <Youtube
+            aria-hidden="true"
+            className="h-5 w-5 text-black hover:text-black transition-colors"
+          />
+        </a>
       )}
       {clinic.email && (
-        <Mail
+        <a
+          href={clinic.email.includes("@") && !clinic.email.startsWith("mailto:") ? `mailto:${clinic.email}` : clinic.email}
           aria-label="Email"
-          className="h-5 w-5 text-black hover:text-amber-500 cursor-pointer transition-colors"
-          onClick={() => handleOpen(clinic.email!)}
-        />
+          className="inline-flex"
+        >
+          <Mail
+            aria-hidden="true"
+            className="h-5 w-5 text-black hover:text-amber-500 transition-colors"
+          />
+        </a>
       )}
       {clinic.website && (
-        <ExternalLink
+        <a
+          href={clinic.website}
+          target="_blank"
+          rel="noopener noreferrer"
           aria-label="Website"
-          className="h-5 w-5 text-black hover:text-gray-800 cursor-pointer transition-colors"
-          onClick={() => handleOpen(clinic.website!)}
-        />
+          className="inline-flex"
+        >
+          <ExternalLink
+            aria-hidden="true"
+            className="h-5 w-5 text-black hover:text-gray-800 transition-colors"
+          />
+        </a>
       )}
-    </div>
+    </nav>
   );
 }

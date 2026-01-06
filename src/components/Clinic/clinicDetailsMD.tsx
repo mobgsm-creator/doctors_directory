@@ -3,7 +3,7 @@
 
 import { Clinic } from "@/lib/types";
 import { Badge } from "@/components/ui/badge";
-
+import Link from "next/link";
 export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
   const parseList = (val: any) => {
     if (!val) return [];
@@ -39,14 +39,18 @@ export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
         <div className="flex flex-wrap gap-1">
           {true &&
             clinic.Treatments?.map(
-              (modality, index) => (
-                <Badge key={index} variant="outline" className="text-md bg-gray-100 border-0">
-                  {modality
-                    .split(" ") // split into words
-                    .map((word) => word.charAt(0).toUpperCase() + word.slice(1)) // capitalize each
-                    .join(" ")}
-                </Badge>
-              )
+              (modality, index) => 
+                { 
+                  const treatments = modality.split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
+                  
+                  return (
+                  
+                <Link key={modality} href={`/treatments/${treatments}`}>
+                  <Badge variant="outline" className="text-md bg-gray-100 border-0">
+                    {treatments}
+                  </Badge>
+                </Link> )}
+              
             )}
         </div>
       </Section>

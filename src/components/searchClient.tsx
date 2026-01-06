@@ -19,9 +19,21 @@ import {
   Sliders, ArrowLeft
 } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+
 const ITEMS_PER_PAGE = 9;
 
 export default function SearchPage() {
+  const treatmentFilters = {
+  type: "Treatments",
+  query: "",
+  category: "",
+  location: "",
+  rating: 0,
+  services: [],
+};
+  const pathname = usePathname();
+  console.log(pathname)
   const { filters, setFilters } = useSearchStore();
   const [currentPage, setCurrentPage] = useState(1);
   const [sortBy, setSortBy] = useState("default");
@@ -36,15 +48,18 @@ export default function SearchPage() {
   // Fetch data when filters, page, or sort changes
   useEffect(() => {
     startTransition(async () => {
+      const search_filters = pathname.includes("treatments")  ? treatmentFilters : filters
       const result: {
   data: (Clinic | Practitioner | Product| string)[];
   totalCount: number;
   totalPages: number;
-} = await searchPractitioners(filters, currentPage, sortBy);
+} = 
+    await searchPractitioners(search_filters, currentPage, sortBy);
       setData(result.data);
       setTotalCount(result.totalCount);
       setTotalPages(result.totalPages);
     });
+    
   }, [filters, currentPage, sortBy]);
 
   const handleSearch = (newFilters: SearchFilters) => {

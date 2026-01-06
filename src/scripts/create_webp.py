@@ -1,8 +1,8 @@
 from PIL import Image
 import os
 
-INPUT_DIR = r"C:\Users\agney\Downloads\treatments"
-OUTPUT_DIR = r"C:\Users\agney\Downloads\treatments\webp"
+INPUT_DIR = r"C:\Users\agney\Downloads\drive-download-20260105T065034Z-3-001"
+OUTPUT_DIR = r"C:\Users\agney\Downloads\drive-download-20260105T065034Z-3-001\webp"
 QUALITY = 85
 
 os.makedirs(OUTPUT_DIR, exist_ok=True)

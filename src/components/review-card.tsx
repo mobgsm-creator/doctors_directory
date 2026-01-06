@@ -24,13 +24,18 @@ export function ReviewCard({ review }: ReviewCardProps) {
 
   const starCount = getStarCount(review.rating);
 
+  const reviewId = `${review.reviewer_name}-${review.date}-${review.rating}`.replace(/\s+/g, '-');
+
   return (
-    <Card className="border shadow-none rounded-lg mb-4">
+    <Card className="border shadow-none rounded-lg mb-4" aria-labelledby={`review-title-${reviewId}`}>
       <CardHeader className="pb-4">
+        <h2 id={`review-title-${reviewId}`} className="sr-only">
+          Review by {review.reviewer_name ?? "Anonymous"}
+        </h2>
         <div className="flex items-start gap-4">
           <img
             src={review.reviewer_name ? "/directory/googlemaps.png" : "/directory/doctify.jpg"}
-            alt="Label"
+            alt={review.reviewer_name ? "Google Maps" : "Doctify"}
             width={40}
             height={40}
             className="object-cover rounded-full "
@@ -43,14 +48,15 @@ export function ReviewCard({ review }: ReviewCardProps) {
 
           <div className="flex-1 min-w-0">
             <div className="flex items-center justify-between mb-2">
-              <h4 className="font-medium text-foreground">
+              <p className="font-medium text-foreground">
                 {review.reviewer_name ?? "Anonymous"}
-              </h4>
-              <div className="flex items-center gap-2">
+              </p>
+              <div className="flex items-center gap-2" aria-label={`Rating: ${starCount} out of 5 stars`}>
                 <div className="flex items-center">
                   {Array.from({ length: 5 }, (_, i) => (
                     <Star
                       key={i}
+                      aria-hidden="true"
                       className={`h-4 w-4 ${
                         i < starCount
                           ? "fill-black text-black"
@@ -63,8 +69,8 @@ export function ReviewCard({ review }: ReviewCardProps) {
             </div>
 
             <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
-              <Calendar className="h-3 w-3" />
-              <span>{review.date}</span>
+              <Calendar className="h-3 w-3" aria-hidden="true" />
+              <time dateTime={review.date}>{review.date}</time>
             </div>
           </div>
         </div>
@@ -76,7 +82,7 @@ export function ReviewCard({ review }: ReviewCardProps) {
         </p>
 
         {review.owner_response && (
-          <div className="mt-4 p-4 bg-muted/50 rounded-lg border-l-4 border-accent">
+          <aside className="mt-4 p-4 bg-muted/50 rounded-lg border-l-4 border-accent" aria-label="Owner response">
             <div className="flex items-center gap-2 mb-2">
               <Badge variant="secondary" className="text-xs">
                 Owner Response
@@ -85,7 +91,7 @@ export function ReviewCard({ review }: ReviewCardProps) {
             <p className="text-sm text-muted-foreground text-pretty">
               {review.owner_response}
             </p>
-          </div>
+          </aside>
         )}
       </CardContent>
     </Card>
