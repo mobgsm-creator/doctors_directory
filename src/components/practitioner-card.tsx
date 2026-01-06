@@ -280,7 +280,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
               <div className="flex items-start gap-4">
                 <div className="text-center flex-1 min-w-0 items-center flex flex-col">
                   <div className="flex w-full flex-row items-start border-b border-[#C4C4C4] md:border-0 md:flex-col md:items-center">
-                    <div className="w-[80px] h-[80px] md:w-[150px] md:h-[150px] flex items-center justify-center overflow-hidden rounded-lg bg-gray-300 md:mb-3 mr-0">
+                    <div className="w-[80px] h-[80px] md:w-[150px] md:h-[150px] flex items-center justify-center overflow-hidden rounded-lg bg-gray-300 md:mb-4 mr-0">
                       <img
                         src={
                           practitioner.image_url?.replaceAll('"', "") ||
@@ -293,12 +293,12 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
 
                     <div className="flex items-start md:items-center flex-col pl-4 md:pl-0 w-[calc(100%-80px)] md:w-full">
                       {practitioner.product_name && (
-                        <p className="flex items-center gap-1 rounded-full bg-green-100 text-green-800 border border-green-300 text-xs px-3 py-1 mb-4">
+                        <p className="flex items-center gap-1 rounded-full bg-green-100 text-green-800 border border-gray-200 text-[10px] px-3 py-1 mb-2">
                           {decodeUnicodeEscapes(practitioner?.distributor_cleaned!.trim())}
                         </p>
                       )}
 
-                      <h3 className="mb-3 md:mb-0 flex text-left md:text-center md:align-items-center md:justify-center font-semibold text-md md:text-lg transition-colors text-balance">
+                      <h3 className="mb-2 md:mb-0 flex text-left md:text-center md:align-items-center md:justify-center font-semibold text-xs md:text-md leading-relaxed text-balance line-clamp-2">
                         {decodeUnicodeEscapes(practitioner.product_name)}
                       </h3>
                     </div>
@@ -308,9 +308,9 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
             </CardHeader>
 
             <CardContent className="pt-0 px-0 md:px-4 space-y-4">
-              <div className="flex md:items-center md:justify-center gap-2 text-sm">
+              <div className="flex md:items-center md:justify-center gap-2 text-[11px] text-gray-600">
                 <span className="text-pretty text-center">
-                  {decodeUnicodeEscapes(practitioner.product_category!.trim())}
+                  {decodeUnicodeEscapes(practitioner.category!.trim())}
                 </span>
               </div>
               <div>
@@ -318,7 +318,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                   {true &&
                     practitioner.all_prices.map((value: any, index: number) => (
                       <li key={index}>
-                        <Badge variant="outline" className="text-xs">
+                        <Badge variant="outline" className="text-[11px] font-normal text-gray-500">
                           {value.price}
                         </Badge>
                       </li>

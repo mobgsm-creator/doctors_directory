@@ -75,6 +75,7 @@ function transformProduct(raw: any): Product {
     // Pricing (JSON)
     all_prices: parseCorruptedJson(raw.all_prices),
     distributor_cleaned: raw.distributor_cleaned,
+    category: raw.Category,
   };
 }
 function transformClinic_2(raw: any): Clinic {
