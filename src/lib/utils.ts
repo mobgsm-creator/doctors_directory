@@ -53,6 +53,11 @@ export function parse_addresses(input: string): string {
 
   return result
 }
+export function decodeUnicodeEscapes(str: string) {
+  return str.replace(/\\u([0-9a-fA-F]{4})/g, (_, code) =>
+    String.fromCharCode(parseInt(code, 16))
+  );
+}
 
 export function cleanRouteSlug(slug: string) {
   try {

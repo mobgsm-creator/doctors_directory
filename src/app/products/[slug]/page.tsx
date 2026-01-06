@@ -43,7 +43,7 @@ interface ProfilePageProps {
 }
 
 export default async function ProfilePage({ params }: ProfilePageProps) {
-  const filePath = path.join(process.cwd(), "public", "products_processed.json");
+  const filePath = path.join(process.cwd(), "public", "products_processed_new.json");
   const fileContents = fs.readFileSync(filePath, "utf-8");
   const clinics: Product[] = JSON.parse(fileContents);
   const { slug } = params;
@@ -104,7 +104,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
 // }
 
 export async function generateMetadata({ params }: ProfilePageProps) {
-  const filePath = path.join(process.cwd(), "public", "products_processed.json");
+  const filePath = path.join(process.cwd(), "public", "products_processed_new.json");
   const fileContents = fs.readFileSync(filePath, "utf-8");
   const clinics: Product[] = JSON.parse(fileContents);
   const clinic = clinics.find((p) => p.slug === params.slug);

@@ -4,13 +4,14 @@
 import { Product } from "@/lib/types";
 import { Badge } from "@/components/ui/badge";
 import PractitionerTabs from "./ProductTabs";
-
+import { decodeUnicodeEscapes } from "@/lib/utils";
 
 export default function PractitionerDetailsSections({
   clinic,
 }: {
   clinic: Product;
 }) {
+  
   const parseList = (val: any) => {
     if (!val) return [];
     try {
@@ -69,7 +70,7 @@ export default function PractitionerDetailsSections({
       {/* Desc */}
 
       <Section title="Description" id="description">
-        {clinic.description}
+        {decodeUnicodeEscapes(clinic.description)}
       </Section>
       <div className="border-t border-gray-300 my-6"></div>
       {/* key_benefits*/}

@@ -11,7 +11,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import type { Product } from "@/lib/types";
-
+import { decodeUnicodeEscapes } from "@/lib/utils";
 import { cn } from "@/lib/utils";
 
 type BadgeRule = {
@@ -24,11 +24,11 @@ interface ProfileHeaderProps {
 }
 
 export function ProfileHeader({ clinic }: ProfileHeaderProps) {
-  const practitionerName = clinic.product_name
+  const practitionerName = decodeUnicodeEscapes(clinic.product_name
     .split("-")
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
-  const roleTitle = clinic.brand;
+    .join(" "));
+  const roleTitle = decodeUnicodeEscapes(clinic.brand!);
 
   const BADGE_RULES: BadgeRule[] = [
     {
@@ -95,7 +95,7 @@ export function ProfileHeader({ clinic }: ProfileHeaderProps) {
                 {roleTitle}
               </p>
               <span className="relative pl-3 text-sm before:absolute before:left-0 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full before:bg-black">
-                {clinic.product_category}
+                {decodeUnicodeEscapes(clinic.product_category)}
               </span>
             </div>
 

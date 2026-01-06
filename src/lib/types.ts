@@ -217,5 +217,6 @@ export interface Product {
   source_verified_on?: string | null;                 // ISO date string
   data_confidence_score?: number | null;              // 0–1 or 0–100 depending on your system
   verification_sources?: string[] | null;             // e.g. ["MHRA", "Manufacturer"]
-  sources?: any;                                      // optional JSON blob of raw refs
+  sources?: any;   
+  distributor_cleaned: string                                   // optional JSON blob of raw refs
 }

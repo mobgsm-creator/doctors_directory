@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import type { Practitioner, Clinic, Product } from "@/lib/types";
+import { decodeUnicodeEscapes } from "@/lib/utils";
 import Image from "next/image";
 import ClinicLabels from "./Clinic/clinicLabels";
 import { modalities } from "@/lib/data";
@@ -274,7 +275,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
           <Card className="gap-0 h-full relative px-4 md:px-0 shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border-t-[1px] rounded-27 md:border md:border-[var(--alto)] cursor-pointer" aria-labelledby={`product-name-${practitioner.slug}`}>
             <CardHeader className="pb-2 px-2">
               <h2 id={`product-name-${practitioner.slug}`} className="sr-only">
-                {practitioner.product_name}
+                {decodeUnicodeEscapes(practitioner.product_name)}
               </h2>
               <div className="flex items-start gap-4">
                 <div className="text-center flex-1 min-w-0 items-center flex flex-col">
@@ -293,12 +294,12 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                     <div className="flex items-start md:items-center flex-col pl-4 md:pl-0 w-[calc(100%-80px)] md:w-full">
                       {practitioner.product_name && (
                         <p className="flex items-center gap-1 rounded-full bg-green-100 text-green-800 border border-green-300 text-xs px-3 py-1 mb-4">
-                          {practitioner?.brand?.trim()}
+                          {decodeUnicodeEscapes(practitioner?.distributor_cleaned!.trim())}
                         </p>
                       )}
 
                       <h3 className="mb-3 md:mb-0 flex text-left md:text-center md:align-items-center md:justify-center font-semibold text-md md:text-lg transition-colors text-balance">
-                        {practitioner.product_name}
+                        {decodeUnicodeEscapes(practitioner.product_name)}
                       </h3>
                     </div>
                   </div>
@@ -309,7 +310,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
             <CardContent className="pt-0 px-0 md:px-4 space-y-4">
               <div className="flex md:items-center md:justify-center gap-2 text-sm">
                 <span className="text-pretty text-center">
-                  {practitioner.manufacturer?.trim()}
+                  {decodeUnicodeEscapes(practitioner.product_category!.trim())}
                 </span>
               </div>
               <div>
