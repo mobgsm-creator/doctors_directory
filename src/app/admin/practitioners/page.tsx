@@ -1,12 +1,11 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { DataTable } from '@/components/admin/DataTable'
 import type { Practitioner } from '@/lib/types'
-import { loadData } from '@/app/actions/search'
-
-
+import practitionersJson from "@/../public/derms_processed_new.json";
+const practitionersJsonData = practitionersJson as unknown as Practitioner[];
 
 const columns = [
   {
@@ -23,22 +22,11 @@ const columns = [
 ]
 
 export default function PractitionersList() {
-  const [practitioners, setPractitioners] = useState<Practitioner[]>([])
-  const [loading, setLoading] = useState(true)
+  const [practitioners, setPractitioners] = useState<Practitioner[]>(practitionersJsonData)
   
   const router = useRouter()
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const { practitioners } = await loadData();
-      setPractitioners(practitioners)
-      setLoading(false)
-    }
-    fetchData()
   
-  }, [])
-
-  if (loading) return <div className="text-center py-8">Loading...</div>
 
   return (
     <DataTable

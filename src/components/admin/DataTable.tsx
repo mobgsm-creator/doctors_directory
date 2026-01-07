@@ -21,6 +21,7 @@ interface DataTableProps<T> {
 }
 
 export function DataTable<T>({ data, columns, onEdit, onDelete, onAdd }: DataTableProps<T>) {
+  console.log("here")
   const [searchTerm, setSearchTerm] = useState('')
 
   const filteredData = data.filter((item: any) =>
@@ -28,6 +29,11 @@ export function DataTable<T>({ data, columns, onEdit, onDelete, onAdd }: DataTab
       String(value).toLowerCase().includes(searchTerm.toLowerCase())
     )
   )
+  const [visibleCount, setVisibleCount] = useState(50);
+  console.log("visable count",visibleCount);
+
+  const visibleData = filteredData.slice(0, visibleCount);
+
 
   return (
     <div className="space-y-4">
@@ -68,7 +74,7 @@ export function DataTable<T>({ data, columns, onEdit, onDelete, onAdd }: DataTab
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
-              {filteredData.map((item: any, index) => (
+              {visibleData.map((item: any, index) => (
                 <tr key={index} className="hover:bg-gray-50">
                   {columns.map((column) => (
                     <td key={String(column.key)} className="px-4 py-3 text-sm">
@@ -99,8 +105,16 @@ export function DataTable<T>({ data, columns, onEdit, onDelete, onAdd }: DataTab
                   </td>
                 </tr>
               ))}
+              
             </tbody>
           </table>
+          <button
+  onClick={() => setVisibleCount(v => v + 50)}
+  disabled={visibleCount >= filteredData.length}
+>
+  Load more
+</button>
+
         </div>
       </div>
     </div>

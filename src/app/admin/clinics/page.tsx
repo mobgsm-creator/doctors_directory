@@ -1,11 +1,11 @@
 'use client'
 
-import { use, useEffect, useState } from 'react'
+import {  useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { DataTable } from '@/components/admin/DataTable'
 import type { Clinic } from '@/lib/types'
-import { loadData } from '@/app/actions/search'
-
+import clinicsJson from "@/../public/clinics_processed_new.json";
+const clinicsJsonData = clinicsJson as unknown as Clinic[];
 const columns = [
   {
     key: 'image' as any,
@@ -21,20 +21,9 @@ const columns = [
 ]
 
 export default function ClinicsList() {
-  const [clinics, setClinics] = useState<Clinic[]>([])
-  const [loading, setLoading] = useState(true)
+  const [clinics, setClinics] = useState<Clinic[]>(clinicsJsonData)
   const router = useRouter()
-  useEffect(() => {
-    
-  const fetchData = async () => {
-    const { clinics } = await loadData();
-    setClinics(clinics)
-    setLoading(false)
-  }
-  fetchData()
-  }, [])
-
-  if (loading) return <div className="text-center py-8">Loading...</div>
+ 
 
   return (
     <DataTable

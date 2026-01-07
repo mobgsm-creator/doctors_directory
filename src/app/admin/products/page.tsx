@@ -1,10 +1,12 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { DataTable } from '@/components/admin/DataTable'
 import type { Product } from '@/lib/types'
-import { loadData } from '@/app/actions/search'
+import productsJson from '@/../public/products_processed_new.json';
+const productsJsonData = productsJson as unknown as Product[];
+
 const columns = [
   { key: 'image_url' as any, label: 'Image',
     render: (value: string) => (
@@ -17,22 +19,20 @@ const columns = [
 ]
 
 export default function ProductsList() {
-  const [products, setProducts] = useState<Product[]>([])
-  const [loading, setLoading] = useState(true)
+  const [products, setProducts] = useState<Product[]>(productsJsonData)
+
+
   const router = useRouter()
+  
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const { products } = await loadData();
-      setProducts(products)
-      setLoading(false)
-    }
-    fetchData()
+  
+    
+ 
     
     
-  }, [])
 
-  if (loading) return <div className="text-center py-8">Loading...</div>
+
+
 
   return (
     <DataTable
