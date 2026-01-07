@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { DataTable } from '@/components/admin/DataTable'
 import type { Product } from '@/lib/types'
-
+import { loadData } from '@/app/actions/search'
 const columns = [
   { key: 'image_url' as any, label: 'Image',
     render: (value: string) => (
@@ -22,13 +22,14 @@ export default function ProductsList() {
   const router = useRouter()
 
   useEffect(() => {
-    fetch('/directory/api/admin/products')
-      .then(res => res.json())
-      .then(setProducts)
-      .catch(error => {
-        console.error('Failed to load products:', error)
-      })
-      .finally(() => setLoading(false))
+    const fetchData = async () => {
+      const { products } = await loadData();
+      setProducts(products)
+      setLoading(false)
+    }
+    fetchData()
+    
+    
   }, [])
 
   if (loading) return <div className="text-center py-8">Loading...</div>

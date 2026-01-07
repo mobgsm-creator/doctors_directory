@@ -1,10 +1,10 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { use, useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { DataTable } from '@/components/admin/DataTable'
 import type { Clinic } from '@/lib/types'
-
+import { loadData } from '@/app/actions/search'
 
 const columns = [
   {
@@ -24,15 +24,14 @@ export default function ClinicsList() {
   const [clinics, setClinics] = useState<Clinic[]>([])
   const [loading, setLoading] = useState(true)
   const router = useRouter()
-
   useEffect(() => {
-    fetch('/directory/api/admin/clinics')
-      .then(res => res.json())
-      .then(setClinics)
-      .catch(error => {
-        console.error('Failed to load clinics:', error)
-      })
-      .finally(() => setLoading(false))
+    
+  const fetchData = async () => {
+    const { clinics } = await loadData();
+    setClinics(clinics)
+    setLoading(false)
+  }
+  fetchData()
   }, [])
 
   if (loading) return <div className="text-center py-8">Loading...</div>

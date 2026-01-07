@@ -4,6 +4,9 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { DataTable } from '@/components/admin/DataTable'
 import type { Practitioner } from '@/lib/types'
+import { loadData } from '@/app/actions/search'
+
+
 
 const columns = [
   {
@@ -22,16 +25,17 @@ const columns = [
 export default function PractitionersList() {
   const [practitioners, setPractitioners] = useState<Practitioner[]>([])
   const [loading, setLoading] = useState(true)
+  
   const router = useRouter()
 
   useEffect(() => {
-    fetch('/directory/api/admin/practitioners')
-      .then(res => res.json())
-      .then(setPractitioners)
-      .catch(error => {
-        console.error('Failed to load practitioners:', error)
-      })
-      .finally(() => setLoading(false))
+    const fetchData = async () => {
+      const { practitioners } = await loadData();
+      setPractitioners(practitioners)
+      setLoading(false)
+    }
+    fetchData()
+  
   }, [])
 
   if (loading) return <div className="text-center py-8">Loading...</div>
