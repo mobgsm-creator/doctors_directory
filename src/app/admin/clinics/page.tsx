@@ -40,14 +40,14 @@ export default function ClinicsList() {
     <DataTable
       data={clinics}
       columns={columns}
-      onEdit={(clinic) => router.push(`/directory/admin/clinics/${clinic.slug}`)}
+      onEdit={(clinic) => router.push(`/admin/clinics/${clinic.slug}`)}
       onDelete={async (clinic) => {
         if (confirm(`Delete clinic "${clinic.slug}"?`)) {
           await fetch(`/directory/api/admin/clinics/${clinic.slug}`, { method: 'DELETE' })
           setClinics(clinics.filter(c => c.slug !== clinic.slug))
         }
       }}
-      onAdd={() => router.push('/directory/admin/clinics/new')}
+      onAdd={() => router.push('/admin/clinics/new')}
     />
   )
 }
