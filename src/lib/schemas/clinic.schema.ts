@@ -1,0 +1,49 @@
+import { z } from "zod"
+
+export const clinicSchema = z.object({
+  slug: z.string().regex(/^[a-z0-9-]+$/, 'Slug must be kebab-case (lowercase letters, numbers, hyphens only)'),
+  image: z.string().url('Image must be a valid URL'),
+  url: z.string().url('URL must be a valid URL'),
+  rating: z.number().min(0).max(5, 'Rating must be between 0 and 5'),
+  reviewCount: z.number().int().min(0, 'Review count must be a non-negative integer'),
+  category: z.string().min(1, 'Category is required'),
+  gmapsAddress: z.string().min(1, 'Address is required'),
+  gmapsPhone: z.string().optional(),
+  gmapsReviews: z.array(z.object({
+    reviewer_name: z.string().min(1),
+    rating: z.string().min(1),
+    date: z.string().min(1),
+    review_text: z.string().optional(),
+    owner_response: z.string().nullable()
+  })).optional(),
+  reviewAnalysis: z.any().optional(),
+  weighted_analysis: z.any().optional(),
+  City: z.string().min(1, 'City is required'),
+  facebook: z.string().optional(),
+  twitter: z.string().optional(),
+  Linkedin: z.string().optional(),
+  instagram: z.string().optional(),
+  youtube: z.string().optional(),
+  website: z.string().url().optional(),
+  email: z.string().email().optional().or(z.literal('')),
+  isSaveFace: z.boolean(),
+  isDoctor: z.boolean(),
+  isJCCP: z.tuple([z.boolean(), z.string()]).nullable().optional(),
+  isCQC: z.tuple([z.boolean(), z.string()]).nullable().optional(),
+  isHIW: z.tuple([z.boolean(), z.string()]).nullable().optional(),
+  isHIS: z.tuple([z.boolean(), z.string()]).nullable().optional(),
+  isRQIA: z.tuple([z.boolean(), z.string()]).nullable().optional(),
+  about_section: z.string().optional(),
+  accreditations: z.string().optional(),
+  awards: z.string().optional(),
+  affiliations: z.string().optional(),
+  hours: z.string().optional(),
+  Practitioners: z.string().optional(),
+  Insurace: z.string().optional(),
+  Payments: z.string().optional(),
+  Fees: z.string().optional(),
+  x_twitter: z.string().optional(),
+  Treatments: z.array(z.string()).optional()
+})
+
+export type ClinicInput = z.infer<typeof clinicSchema>

@@ -22,7 +22,7 @@ These elements are concretely present and machine-readable, regardless of qualit
 
 ### C. Medical Taxonomy Coverage
 
-* Specializations (oncology, orthopaedics, dermatology, fertility, etc.) infered from **Treatments**
+* Specializations (microneedling, dermatology, PRP, etc.) infered from **Treatments**
 
 **SEO role:** topical breadth, long-tail medical query coverage
 

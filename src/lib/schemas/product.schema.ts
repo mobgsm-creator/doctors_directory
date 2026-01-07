@@ -1,0 +1,43 @@
+import { z } from "zod"
+
+export const productSchema = z.object({
+  slug: z.string().min(1, 'Slug is required'),
+  key: z.string().optional(),
+  product_name: z.string().min(1, 'Product name is required'),
+  product_category: z.string().min(1, 'Category is required'),
+  product_subcategory: z.string().optional(),
+  is_aesthetics_dermatology_related: z.boolean().nullable(),
+  all_prices: z.any().optional(),
+  brand: z.string().nullable(),
+  manufacturer: z.string().nullable(),
+  distributor: z.string().nullable(),
+  sku: z.string().nullable(),
+  image_url: z.string().url().nullable(),
+  product_document_pdf_from_manufacturer: z.string().url().nullable(),
+  description: z.string().min(1, 'Description is required'),
+  key_benefits: z.array(z.string()).nullable(),
+  indications: z.array(z.string()).nullable(),
+  composition: z.array(z.string()).nullable(),
+  formulation: z.array(z.string()).nullable(),
+  packaging: z.array(z.string()).nullable(),
+  usage_instructions: z.array(z.string()).nullable(),
+  treatment_duration: z.string().nullable(),
+  onset_of_effect: z.string().nullable(),
+  contraindications: z.array(z.string()).nullable(),
+  adverse_effects: z.array(z.string()).nullable(),
+  storage_conditions: z.array(z.string()).nullable(),
+  mhra_approved: z.boolean().nullable(),
+  ce_marked: z.boolean().nullable(),
+  mhra_link: z.string().url().nullable(),
+  certifications_and_compliance: z.array(z.string()).nullable(),
+  brand_about: z.string().nullable(),
+  seller_about: z.string().nullable(),
+  source_verified_on: z.string().nullable(),
+  data_confidence_score: z.number().min(0).max(100).nullable(),
+  verification_sources: z.array(z.string()).nullable(),
+  sources: z.any().nullable(),
+  distributor_cleaned: z.string().optional(),
+  category: z.string().optional()
+})
+
+export type ProductInput = z.infer<typeof productSchema>
