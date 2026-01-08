@@ -89,7 +89,7 @@ export default function HomePage({
     sort?: string;
   } 
 }) {
-  const ITEMS_PER_PAGE = 12;
+  const ITEMS_PER_PAGE = 80;
   const currentPage = parseInt(searchParams.page || '1', 10);
 
   const allTreatments = Object.keys(TreatmentMap).map((name) => ({
