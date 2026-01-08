@@ -2,7 +2,6 @@ import Link from "next/link";
 import { Card, CardHeader, CardContent, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ThumbsUp, DollarSign, Users } from "lucide-react";
-import { MobileFilters } from "./mobile-filters";
 
 interface Treatment {
   name: string;
@@ -19,10 +18,10 @@ interface TreatmentGridProps {
   currentPage: number;
   totalPages: number;
   itemsPerPage: number;
+  getPageUrl: (page: number) => string;
 }
 
-export function TreatmentGrid({ treatments, searchQuery, currentPage, totalPages, itemsPerPage }: TreatmentGridProps) {
-
+export function TreatmentGrid({ treatments, searchQuery, currentPage, totalPages, itemsPerPage, getPageUrl }: TreatmentGridProps) {
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const paginatedTreatments = treatments.slice(startIndex, endIndex);
@@ -43,30 +42,8 @@ export function TreatmentGrid({ treatments, searchQuery, currentPage, totalPages
     return { ...treatment, ...enhancement };
   };
 
-  const getPageUrl = (page: number) => {
-    const params = new URLSearchParams();
-    if (searchQuery) params.set('query', searchQuery);
-    if (page > 1) params.set('page', page.toString());
-    const queryString = params.toString();
-    return `/treatments${queryString ? `?${queryString}` : ''}`;
-  };
-
-  const getPageNumbers = () => {
-    const delta = 2;
-    const pages = [];
-    const start = Math.max(1, currentPage - delta);
-    const end = Math.min(totalPages, currentPage + delta);
-
-    for (let i = start; i <= end; i++) {
-      pages.push(i);
-    }
-    return pages;
-  };
-
   return (
     <div className="flex flex-col gap-8 w-full">
-      <MobileFilters />
-      
       <div className="space-y-4 sm:space-y-0 sm:grid sm:grid-cols-2 lg:grid-cols-3 sm:gap-10 animate-fade-in bg-white py-6 px-4 md:bg-transparent md:py-0 md:px-0 rounded-lg">
         {paginatedTreatments.length > 0 ? (
           paginatedTreatments.map((treatment, index) => {
@@ -149,33 +126,31 @@ export function TreatmentGrid({ treatments, searchQuery, currentPage, totalPages
               </Button>
             )}
 
-            {currentPage > 3 && (
-              <>
-                <Button asChild variant="outline">
-                  <Link href={getPageUrl(1)}>1</Link>
+            {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+              let pageNumber;
+              if (totalPages <= 5) {
+                pageNumber = i + 1;
+              } else {
+                const start = Math.max(1, currentPage - 2);
+                const end = Math.min(totalPages, start + 4);
+                const adjustedStart = Math.max(1, end - 4);
+                pageNumber = adjustedStart + i;
+                if (pageNumber > totalPages) return null;
+              }
+              
+              return (
+                <Button
+                  key={pageNumber}
+                  asChild
+                  variant={pageNumber === currentPage ? "default" : "outline"}
+                  size="sm"
+                >
+                  <Link href={getPageUrl(pageNumber)}>
+                    {pageNumber}
+                  </Link>
                 </Button>
-                {currentPage > 4 && <span className="px-2">...</span>}
-              </>
-            )}
-
-            {getPageNumbers().map((page) => (
-              <Button
-                key={page}
-                asChild
-                variant={page === currentPage ? "default" : "outline"}
-              >
-                <Link href={getPageUrl(page)}>{page}</Link>
-              </Button>
-            ))}
-
-            {currentPage < totalPages - 2 && (
-              <>
-                {currentPage < totalPages - 3 && <span className="px-2">...</span>}
-                <Button asChild variant="outline">
-                  <Link href={getPageUrl(totalPages)}>{totalPages}</Link>
-                </Button>
-              </>
-            )}
+              );
+            })}
 
             {currentPage < totalPages && (
               <Button asChild variant="outline">
