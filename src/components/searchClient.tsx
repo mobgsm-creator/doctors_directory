@@ -47,20 +47,26 @@ export default function SearchPage() {
 
   // Fetch data when filters, page, or sort changes
   useEffect(() => {
-    startTransition(async () => {
-      const search_filters = pathname.includes("treatments")  ? treatmentFilters : filters
-      const result: {
-  data: (Clinic | Practitioner | Product| string)[];
-  totalCount: number;
-  totalPages: number;
-} = 
-    await searchPractitioners(search_filters, currentPage, sortBy);
+  startTransition(() => {
+    (async () => {
+      const start = performance.now();
+
+      const result = await searchPractitioners(
+        pathname.includes("treatments") ? treatmentFilters : filters,
+        currentPage,
+        sortBy
+      );
+
+      const end = performance.now();
+      console.log(`Search took ${end - start} ms`);
+
       setData(result.data);
       setTotalCount(result.totalCount);
       setTotalPages(result.totalPages);
-    });
-    
-  }, [filters, currentPage, sortBy]);
+    })();
+  });
+}, [filters, currentPage, sortBy]);
+
 
   const handleSearch = (newFilters: SearchFilters) => {
     setFilters(newFilters);
