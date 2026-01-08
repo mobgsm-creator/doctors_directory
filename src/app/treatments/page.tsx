@@ -1,6 +1,3 @@
-import Link from "next/link"
-import { Card, CardHeader, CardContent } from "@/components/ui/card"
-import Image from "next/image"
 import { SearchForm } from "@/components/treatment-search-client";
 import { TreatmentFilters } from "@/components/treatment-filters";
 import { TreatmentGrid } from "@/components/treatment-grid";
@@ -79,7 +76,7 @@ const TreatmentMap: Record<string, string> = {
   "Weight Loss": "/directory/treatments/weight-loss.webp"
 };
 
-export default function HomePage({ searchParams }: { searchParams: { query?: string } }) {
+export default function HomePage({ searchParams }: { searchParams: { query?: string; page?: string } }) {
   async function searchTreatments(formData: FormData) {
     'use server'
     const query = formData.get('query') as string;
@@ -90,6 +87,10 @@ export default function HomePage({ searchParams }: { searchParams: { query?: str
     }
   }
 
+  // Pagination settings
+  const ITEMS_PER_PAGE = 12;
+  const currentPage = parseInt(searchParams.page || '1', 10);
+
   const allTreatments = Object.keys(TreatmentMap).map((name) => ({
     name,
     image: TreatmentMap[name].split("?w")[0] || "/placeholder.svg",
@@ -97,11 +98,14 @@ export default function HomePage({ searchParams }: { searchParams: { query?: str
   }));
 
   const searchQuery = searchParams.query;
-  const treatments = searchQuery 
+  const filteredTreatments = searchQuery 
     ? allTreatments.filter(treatment => 
         treatment.name.toLowerCase().includes(searchQuery.toLowerCase())
       )
     : allTreatments;
+
+  // Calculate pagination
+  const totalPages = Math.ceil(filteredTreatments.length / ITEMS_PER_PAGE);
 
   return (
     <main className="bg-[var(--primary-bg-color)]">
@@ -109,8 +113,16 @@ export default function HomePage({ searchParams }: { searchParams: { query?: str
         <SearchForm searchAction={searchTreatments} />
         
         <div className="flex flex-row items-start justify-center gap-6">
-          <TreatmentFilters />
-          <TreatmentGrid treatments={treatments} searchQuery={searchQuery} />
+          <div className="hidden sm:block">
+            <TreatmentFilters />
+          </div>
+          <TreatmentGrid 
+            treatments={filteredTreatments}
+            searchQuery={searchQuery}
+            currentPage={currentPage}
+            totalPages={totalPages}
+            itemsPerPage={ITEMS_PER_PAGE}
+          />
         </div>
       </div>
     </main>
