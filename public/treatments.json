@@ -2529,7 +2529,7 @@
       "MHRA": "In the UK, treatments are regulated by the MHRA, with ongoing safety surveillance."
     }
   },
-  "Ipl Treatment": {
+  "IPL Treatment": {
     "What is IPL Treatment and How Does It Work?": "IPL stands for Intense Pulsed Light. It’s not a laser, even though people lump it in with lasers all the time. IPL uses broad-spectrum light in short bursts. That light targets pigment (melanin) or blood (haemoglobin) in the skin, depending on the settings. The light converts to heat and selectively damages what it’s aimed at, like hair follicles, sun spots, redness, or broken capillaries, while leaving surrounding skin mostly alone. The body then clears the treated pigment or vessels over time. That’s the basic idea. Same machine, different filters and settings, different goals. (NHS, British Association of Dermatologists)",
     "Goals of IPL Treatment": [
       "Reduce unwanted hair growth.",
@@ -6134,7 +6134,7 @@
     ],
     "Are there NICE, FDA, or MHRA guidelines for Melasma Treatment?": "There aren’t NICE guidelines specifically just for melasma like a disease page, but NICE does cover dermatology best practice and MHRA regulates the devices used. Prescription creams and lasers should be used under medically governed practices following those standards. :contentReference[oaicite:18]{index=18}"
   },
-  "Micro-needling": {
+  "Microneedling": {
     "What is Microneedling? How does it work?": "Microneedling (also called collagen induction therapy or skin needling) is a minimally invasive skin treatment where a device with tiny, sterile needles creates controlled micro-injuries in your skin. Your body freaks out just a little and thinks it needs to heal, so it recruits its natural wound-healing response and starts producing more collagen and elastin. Over time, that can help smooth texture, improve scars, fine lines, enlarged pores and generally make skin look healthier and firmer. ([turn0search1][turn0search2][turn0search4])",
     "What are the goals of Microneedling?": [
       "Encourage new collagen and elastin formation to improve skin quality. ([turn0search1][turn0search2])",
@@ -6225,7 +6225,7 @@
     ],
     "Are there NICE, FDA, or MHRA guidelines for Microneedling?": "Microneedling devices fall under medical device oversight in regulators like the FDA, which authorises specific devices for acne scars and wrinkles, and in the UK, MHRA regulates devices, while NICE feeds into broader guidance on cosmetic procedures. There is no detailed UK NICE guideline just for microneedling itself yet, and industry regulation is evolving especially around licensing of non-surgical cosmetic procedures. ([turn0search13][turn0search6])"
   },
-  "Microneedling With Radiofrequency": {
+  "Microneedling with Radiofrequency": {
     "What is Microneedling with Radiofrequency? How does it work?": "Microneedling with radiofrequency (often called RF microneedling) is like traditional microneedling but with a heat twist. Tiny, sterilised needles poke controlled micro-injuries into your skin while at the same time delivering radiofrequency energy to the deeper dermal layers. That combo tells your body to kick its natural wound-healing into high gear, producing more collagen and elastin and tightening up skin over time. The radiofrequency part heats deep tissue without blasting the surface, so you get deeper stimulation without huge surface damage. ([turn0search0][turn0search1][turn0search5])",
     "What are the goals of Microneedling with Radiofrequency?": [
       "Stimulate collagen and elastin production more intensely than traditional needling alone. ([turn0search0][turn0search5])",

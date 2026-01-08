@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 import type { Clinic, Practitioner } from "@/lib/types";
+import type { Metadata } from "next";
 import { Badge } from "@/components/ui/badge";
 import { Star, MapPin } from "lucide-react";
 import fs from "fs";
@@ -10,6 +11,8 @@ import { safeParse } from "@/lib/utils";
 import path from "path";
 import { FAQ } from "@/components/FAQSection";
 import treatment_content from "../../../../public/treatments.json";
+import { TreatmentDetail } from "@/components/treatment-detail";
+import Script from "next/script";
 
 type TreatmentContent = Record<string, any>;
 const treatments = treatment_content as TreatmentContent;
@@ -18,12 +21,111 @@ interface ProfilePageProps {
     slug: string;
   };
 }
+const TreatmentMap: Record<string, string> = {
+  Acne: "/directory/treatments/acne.webp",
+  Alopecia: "/directory/treatments/alopecia.webp",
+  "Anti Wrinkle Treatment": "/directory/treatments/anti wrinkle treatment.webp",
+  Aqualyx: "/directory/treatments/aqualyx.webp",
+  Aviclear: "/directory/treatments/aviclear.webp",
+  "B12 Injection": "/directory/treatments/b12.webp",
+  Birthmarks: "/directory/treatments/birthmarks.webp",
+  Botox: "/directory/treatments/botox.webp",
+  "Breast Augmentation": "/directory/treatments/breast-augmentation.webp",
+  "Cheek Enhancement": "/directory/treatments/cheek-enhancement.webp",
+  "Chemical Peel": "/directory/treatments/chemical-peel.webp",
+  "Chin Enhancement": "/directory/treatments/chin-enhancement.webp",
+  "Aesthetic Skin Consultation": "/directory/treatments/consultation.webp",
+  "Contact Dermatitis": "/directory/treatments/contact-dermatitis.webp",
+  CoolSculpting: "/directory/treatments/coolsculpting.webp",
+  "Cysts Treatment": "/directory/treatments/cyst-treatment.webp",
+  "Dermapen Treatment": "/directory/treatments/dermapen.webp",
+  "Dermatitis Treatment": "/directory/treatments/dermatitis-treatment.webp",
+  "Dermatology Treatments": "/directory/treatments/dermatology-treatments.webp",
+  "Eczema Treatment": "/directory/treatments/exzema-treatment.webp",
+  "Eyebrows and Lashes": "/directory/treatments/eyebrow-lashes.webp",
+  "Facial Treatments": "/directory/treatments/facial-treatments.webp",
+  "Hair Treatments": "/directory/treatments/hair.webp",
+  HIFU: "/directory/treatments/hifu.webp",
+  "Hives Treatment": "/directory/treatments/hives.webp",
+  Hyperhidrosis: "/directory/treatments/Hyperhidrosis.webp",
+  "Inflammatory Skin Conditions":
+    "/directory/treatments/inflammatory skin conditions.webp",
+  "IPL Treatment": "/directory/treatments/ipl-treatments.webp",
+  "Keloid Removal": "/directory/treatments/keloid removal.webp",
+  "Tattoo Removal": "/directory/treatments/laser-tattoo-removal.webp",
+  "Laser Treatments": "/directory/treatments/laser-treatments.webp",
+  Fillers: "/directory/treatments/lip-filler-6485474_640.webp",
+  Liposuction: "/directory/treatments/liposuction illustration.webp",
+  Lips: "/directory/treatments/lips.webp",
+  "Lymphatic Drainage": "/directory/treatments/lymphatic-drainage.webp",
+  Marionettes: "/directory/treatments/marionettes.webp",
+  Massage: "/directory/treatments/massage.webp",
+  "Melanoma Treatment": "/directory/treatments/melanoma-treatments.webp",
+  "Melasma Treatment": "/directory/treatments/melasma.webp",
+  "Microneedling": "/directory/treatments/micro-needling.webp",
+  Microblading: "/directory/treatments/microblading.webp",
+  "Microneedling with Radiofrequency":
+    "/directory/treatments/microneedling with radiofrequency.webp",
+  Moles: "/directory/treatments/moles.webp",
+  Nails: "/directory/treatments/nail-polish-2112358_640.webp",
+  Obagi: "/directory/treatments/obagi.webp",
+  "Patch Testing": "/directory/treatments/patch-testing.webp",
+  "Photodynamic Therapy (PDT)":
+    "/directory/treatments/photodynamic therapy.webp",
+  "Pigmentation Treatment":
+    "/directory/treatments/pigmentation-treatments.webp",
+  "Polynucleotide Treatment":
+    "/directory/treatments/polynucleotide-treatment.webp",
+  Profhilo: "/directory/treatments/profhilo.webp",
+  "Platelet Rich Plasma": "/directory/treatments/prp.webp",
+  Psoriasis: "/directory/treatments/psoriasis.webp",
+  "Rash Treatment": "/directory/treatments/rash-treatment.webp",
+  "Rosacea Treatment": "/directory/treatments/rosacea.webp",
+  Scarring: "/directory/treatments/scarring.webp",
+  "Seborrheic Keratosis Treatment":
+    "/directory/treatments/seborrheic keratosis.webp",
+  "Seborrhoeic Dermatitis": "/directory/treatments/seborrhoeic dermatitis.webp",
+  Rhinoplasty:
+    "/directory/treatments/side-view-doctor-checking-patient-before-rhinoplasty.webp",
+  "Skin Texture and Tightening":
+    "/directory/treatments/skin texture and tightening.webp",
+  "Skin Booster": "/directory/treatments/skin-booster.webp",
+  "Skin Cancer": "/directory/treatments/skin-cancer.webp",
+  "Skin Lesions": "/directory/treatments/skin-lesions.webp",
+  "Skin Tags": "/directory/treatments/skin-tags.webp",
+  "Tear Trough Treatment": "/directory/treatments/tear-through-treatments.webp",
+  Threading: "/directory/treatments/threading.webp",
+  "Varicose Vein Procedure": "/directory/treatments/varicose-vein.webp",
+  "Verruca Treatment": "/directory/treatments/verruca treatment.webp",
+  "Vitamin Therapy": "/directory/treatments/vitamin-therapy.webp",
+  "Vulval Dermatology": "/directory/treatments/vulval-dermatology.webp",
+  "Weight Loss": "/directory/treatments/weight-loss.webp",
+};
 
 export default async function ProfilePage({ params }: ProfilePageProps) {
   const filePath = path.join(process.cwd(), "public", "clinics_processed_new.json");
   const fileContents = fs.readFileSync(filePath, "utf-8");
   const clinics: Clinic[] = JSON.parse(fileContents);
   const { slug } = params;
+
+  // Get treatment data from treatment_content
+  const treatmentSlug = slug.replaceAll("%20", " ");
+  const treatmentData = treatments[treatmentSlug];
+  
+  // Create treatment object for TreatmentDetail component
+  const treatment = {
+    name: treatmentSlug.charAt(0).toUpperCase() + treatmentSlug.slice(1),
+    image: TreatmentMap[treatmentSlug], // You can map this to actual images
+    satisfaction: 82,
+    averageCost: "$200-$800+",
+    reviews: 47,
+    downtime: "Minimal",
+    practitioners: 101,
+    overview: treatmentData?.content || `${treatmentSlug} is a common treatment that helps address various skin and aesthetic concerns. Treatment options vary based on severity and individual needs.`,
+    symptoms: treatmentData?.symptoms || "Symptoms and severity information for this treatment.",
+    treatmentOptions: treatmentData?.options || "Various treatment options are available depending on your specific needs.",
+    results: treatmentData?.results || "Results vary based on individual factors and treatment approach.",
+  };
 
   const filteredClinics = clinics.filter((clinic) => {
 
@@ -45,150 +147,135 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
     notFound();
   }
 
+  // Generate structured data for SEO
+  const whatIsPropertyName = `What_is_${treatmentSlug.replace(/\s+/g, '_')}_How_does_it_work`;
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "MedicalProcedure",
+    name: treatment.name,
+    description:
+      treatmentData?.[whatIsPropertyName] ||
+      `${treatment.name} is a medical treatment that helps address various skin and aesthetic concerns.`,
+    url: `https://staging.consentz.com/directory/treatments/${params.slug}`,
+    image: treatment.image,
+    medicalSpecialty: "Dermatology",
+    bodyLocation: "Skin",
+    expectedPrognosis: treatment.results,
+    preparation: "Consultation with qualified practitioner recommended",
+    followup: treatment.downtime,
+    provider: {
+      "@type": "Organization",
+      name: "Healthcare Directory",
+      url: "https://staging.consentz.com/directory",
+    },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.5",
+      ratingCount: treatment.reviews,
+      bestRating: "5",
+      worstRating: "1",
+    },
+    offers: {
+      "@type": "Offer",
+      price: treatment.averageCost,
+      priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
+    },
+  };
+
   return (
-    <main className="bg-[var(--primary-bg-color)]">
-    <FAQ data = {treatments[slug.replaceAll("%20"," ")]} />
-      <div className="mx-auto max-w-7xl md:px-4 py-4 md:py-7 md:py-12 bg-white md:bg-[var(--primary-bg-color)]">
-      <div className="flex flex-col pt-2 w-full pb-4 px-4 md:px-0 md:pt-0 md:border-0 border-b border-[#C4C4C4]">
-          <h1 className="text-sm md:text-2xl md:font-semibold mb-1 md:mb-2">
-            Top {slug.replaceAll("%20"," ")} Providers in the UK
-          </h1>
-      </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:gap-6 animate-fade-in">
-          {filteredClinics.map((clinic, index) => (
-            <div key={index} style={{ animationDelay: `${index * 50}ms` }}>
-              <Card className="gap-0 relative px-4 md:px-0 shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border-t-[1px] rounded-27 md:border md:border-[var(--alto)] cursor-pointer">
-                <CardHeader className="pb-4 px-2">
-                  <div className="flex items-start gap-4">
-                    <div className="text-center flex-1 min-w-0 items-center flex flex-col">
-                      <div className="flex w-full flex-row items-start border-b border-[#C4C4C4] md:border-0 md:flex-col md:items-center">
-                        <div className="w-[80px] h-[80px] md:w-[150px] md:h-[150px] flex items-center justify-center overflow-hidden rounded-full bg-gray-300 md:mb-3 mr-0">
-                          <img
-                            src={
-                              clinic.image.split("?w")[0] || "/placeholder.svg"
-                            }
-                            alt="Profile photo"
-                            width={240}
-                            height={240}
-                            className="object-cover rounded-full w-60 h-60"
-                          />
-                        </div>
-                        <div className="flex items-start md:items-center flex-col pl-4 md:pl-0 w-[calc(100%-80px)] md:w-full">
-                        <h3 className="mb-2 md:mb-4 flex text-left md:text-center md:align-items-center md:justify-center font-semibold text-md md:text-lg transition-colors text-balance">
-                            {clinic.slug
-                              .split("-")
-                              .map(
-                                (word) =>
-                                  word.charAt(0).toUpperCase() + word.slice(1)
-                              )
-                              .join(" ")}
-                          </h3>
-
-                          <div className="flex justify-center flex-wrap items-center gap-2">
-                            <span className="inline-block px-3 py-1 rounded-full bg-green-100 text-green-800 border border-green-300 text-xs">
-                              {clinic.category}
-                            </span>
-                          </div>
-
-                          <p className="pt-2 mb-2 text-pretty">Specialties</p>
-
-                        </div>
-                      </div>
-                      <div className="flex flex-row gap-2 pt-3 items-center text-sm">
-                            <div className="flex items-center gap-1">
-                              <div className="flex items-center">
-                                {Array.from({ length: 5 }, (_, i) => (
-                                  <Star
-                                    key={i}
-                                    className={`h-4 w-4 ${
-                                      i < clinic.rating
-                                        ? "fill-black text-black"
-                                        : "text-muted-foreground/30"
-                                    }`}
-                                  />
-                                ))}
-                              </div>
-                            </div>
-                            <span className="border-l border-black pl-2 underline">
-                              ({clinic.reviewCount} reviews)
-                            </span>
-                          </div>
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent className="pt-0 px-0 md:px-4 space-y-4">
-                  <div className="flex items-start gap-2 text-sm">
-                    <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0" />
-                    <span className="text-pretty">{clinic.gmapsAddress}</span>
-                  </div>
-
-                  <Link
-                    href={`/clinics/${clinic.City}/clinic/${clinic.slug}`}
-                    className="mt-4 mb-0 flex border rounded-lg font-weight px-4 py-2 bg-black align-items-center justify-center text-white hover:bg-white hover:text-black"
-                  >
-                    Contact
-                  </Link>
-
-                  <div>
-                    <div className="flex flex-wrap gap-1 pt-4">
-                      {clinic.Treatments?.slice(0, 3)
-                        .map((modality:string, index:number) => (
-                          <Badge
-                            key={index}
-                            variant="outline"
-                            className="text-xs text-wrap"
-                          >
-                            {modality
-                              .replaceAll('"', "")
-                              .split("-")
-                              .map(
-                                (word) =>
-                                  word.charAt(0).toUpperCase() + word.slice(1)
-                              )
-                              .join(" ")}
-                          </Badge>
-                        ))}
-                      {clinic.Treatments?.length! > 3 && (
-                        <Badge variant="outline" className="text-xs">
-                          +
-                          {clinic.Treatments?.length! - 3}{" "}
-                          more
-                        </Badge>
-                      )}
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          ))}
+    <>
+      <Script
+        id="structured-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData),
+        }}
+      />
+      <main className="bg-[var(--primary-bg-color)]">
+        {/* Treatment Detail Section */}
+        <div className="bg-white">
+          <TreatmentDetail treatment={treatment} treatmentData={treatmentData} />
         </div>
-      </div>
-    </main>
+      </main>
+    </>
   );
 }
 
-// export async function generateStaticParams() {
-//   const practitioners = await getPractitioners();
-//   return practitioners.map((practitioner) => ({
-//     slug: practitioner.slug,
-//   }))
-// }
+export async function generateStaticParams() {
+  // Generate static params for all treatments
+  const treatmentSlugs = Object.keys(treatment_content);
+  return treatmentSlugs.map((slug) => ({
+    slug: slug.toLowerCase().replaceAll(" ", "%20"),
+  }));
+}
 
-// export async function generateMetadata({ params }: ProfilePageProps) {
-//   const clinics = await getClinics();
-//   const clinic = clinics.find((p) => p.slug === params.slug)
+export async function generateMetadata({ params }: ProfilePageProps): Promise<Metadata> {
+  const { slug } = params;
+  const treatmentSlug = slug.replaceAll("%20", " ");
+  const treatmentData = (treatment_content as TreatmentContent)[treatmentSlug];
+  
+  const treatmentName = treatmentSlug.charAt(0).toUpperCase() + treatmentSlug.slice(1);
+  const whatIsPropertyName = `What_is_${treatmentSlug.replace(/\s+/g, '_')}_How_does_it_work`;
+  const description = treatmentData?.[whatIsPropertyName] 
+    ? `${treatmentData[whatIsPropertyName].substring(0, 155)}...`
+    : `Find qualified practitioners for ${treatmentName} treatment. Compare providers, read reviews, and book consultations for professional ${treatmentName} services.`;
+  
+  const title = `${treatmentName} Treatment - Find Qualified Practitioners | Healthcare Directory`;
+  const image = TreatmentMap[treatmentSlug] || '/directory/treatments/default-treatment.webp';
+  const url = `https://staging.consentz.com/directory/treatments/${slug}`;
 
-//   if (!clinic) {
-//     return {
-//       title: "Practitioner Not Found",
-//     }
-//   }
-
-//   const clinicName = clinic.slug
-
-//   return {
-//     title: `${clinicName} - Healthcare Directory`,
-//     description: `View the profile of ${clinicName}, a qualified ${clinic.category} offering professional healthcare services. Read reviews and book appointments.`,
-//   }
-// }
-//adsdasd
+  return {
+    title,
+    description,
+    keywords: `${treatmentName}, ${treatmentName} treatment, dermatology, skin care, aesthetic treatment, medical procedure, qualified practitioners, healthcare directory`,
+    authors: [{ name: 'Healthcare Directory' }],
+    creator: 'Healthcare Directory',
+    publisher: 'Healthcare Directory',
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
+    openGraph: {
+      type: 'website',
+      locale: 'en_US',
+      url,
+      title,
+      description,
+      siteName: 'Healthcare Directory',
+      images: [
+        {
+          url: image,
+          width: 1200,
+          height: 630,
+          alt: `${treatmentName} treatment image`,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [image],
+      creator: '@healthcaredirectory',
+    },
+    alternates: {
+      canonical: url,
+    },
+    verification: {
+      google: 'your-google-verification-code',
+    },
+    other: {
+      'apple-mobile-web-app-capable': 'yes',
+      'apple-mobile-web-app-status-bar-style': 'default',
+      'format-detection': 'telephone=no',
+    },
+  };
+}
