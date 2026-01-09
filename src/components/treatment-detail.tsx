@@ -733,16 +733,16 @@ export function TreatmentDetail({ treatment, treatmentData }: TreatmentDetailPro
                   <div>
                     <h4 className="font-semibold mb-2">Typical Prices</h4>
                     <div className="text-gray-700 text-sm">
-                      {typeof getCostData().typicalPrices === 'string' ? (
-                        <p>{getCostData().typicalPrices}</p>
-                      ) : Array.isArray(getCostData().typicalPrices) ? (
+                      {typeof getCostData()?.typicalPrices === 'string' ? (
+                        <p>{getCostData()?.typicalPrices}</p>
+                      ) : Array.isArray(getCostData()?.typicalPrices) ? (
                         <ul className="space-y-2">
-                          {getCostData().typicalPrices.map((price: string, index: number) => (
+                          {getCostData()?.typicalPrices.map((price: string, index: number) => (
                             <li key={index}>• {price}</li>
                           ))}
                         </ul>
                       ) : (
-                        <p>{JSON.stringify(getCostData().typicalPrices)}</p>
+                        <p>{JSON.stringify(getCostData()?.typicalPrices)}</p>
                       )}
                     </div>
                   </div>
@@ -752,16 +752,16 @@ export function TreatmentDetail({ treatment, treatmentData }: TreatmentDetailPro
                   <div>
                     <h4 className="font-semibold mb-2">Why Prices Vary</h4>
                     <div className="text-gray-700 text-sm">
-                      {typeof getCostData().whyVary === 'string' ? (
-                        <p>{getCostData().whyVary}</p>
-                      ) : Array.isArray(getCostData().whyVary) ? (
+                      {typeof getCostData()?.whyVary === 'string' ? (
+                        <p>{getCostData()?.whyVary}</p>
+                      ) : Array.isArray(getCostData()?.whyVary) ? (
                         <ul className="space-y-2">
-                          {getCostData().whyVary.map((reason: string, index: number) => (
+                          {getCostData()?.whyVary.map((reason: string, index: number) => (
                             <li key={index}>• {reason}</li>
                           ))}
                         </ul>
                       ) : (
-                        <p>{JSON.stringify(getCostData().whyVary)}</p>
+                        <p>{JSON.stringify(getCostData()?.whyVary)}</p>
                       )}
                     </div>
                   </div>
