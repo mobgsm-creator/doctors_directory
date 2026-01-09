@@ -202,13 +202,13 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
   );
 }
 
-export async function generateStaticParams() {
-  // Generate static params for all treatments
-  const treatmentSlugs = Object.keys(treatment_content);
-  return treatmentSlugs.map((slug) => ({
-    slug: slug.toLowerCase().replaceAll(" ", "%20"),
-  }));
-}
+// export async function generateStaticParams() {
+//   // Generate static params for all treatments
+//   const treatmentSlugs = Object.keys(treatment_content);
+//   return treatmentSlugs.map((slug) => ({
+//     slug: slug.toLowerCase().replaceAll(" ", "%20"),
+//   }));
+// }
 
 export async function generateMetadata({ params }: ProfilePageProps): Promise<Metadata> {
   const { slug } = params;
