@@ -8,6 +8,7 @@ import { Separator } from "@/components/ui/separator";
 import { Star, MapPin } from "lucide-react";
 import fs from "fs";
 import path from "path";
+import { TreatmentMap } from "@/app/treatments/page";
 
 interface ProfilePageProps {
   params: {
@@ -110,9 +111,8 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
 
                   <div>
                     <div className="flex flex-wrap gap-1 pt-4">
-                      {clinic.reviewAnalysis?.procedures_offered.categories
-                        .slice(0, 3)
-                        .map((modality, index) => (
+                     {clinic.Treatments?.slice(0, 3).map((modality, index) => (
+                        
                           <Badge
                             key={index}
                             variant="outline"

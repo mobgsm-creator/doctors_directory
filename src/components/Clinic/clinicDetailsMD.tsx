@@ -4,6 +4,21 @@
 import { Clinic } from "@/lib/types";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Car } from "lucide-react";
+
+interface PractitionerDetails {
+  "Full Name": string;
+  Title?: string;
+  Specialty?: string;
+  Education?: string;
+  "Professional Affiliations"?: string;
+  LinkedInURL?: string;
+  ProfileURL?: string;
+}
+
+
+
 export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
   const parseList = (val: any) => {
     if (!val) return [];
@@ -72,33 +87,82 @@ export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
 
       <div className="border-t border-gray-300 my-6"></div>
 
-      {/* AWARDS */}
-      <Section title="Awards" id="awards">
-        {parseList(clinic.awards).length ? (
-          <ul className="list-disc ml-6 space-y-1">
-            {parseList(clinic.awards).map((a: string, i: number) => (
-              <li key={i}>{a}</li>
-            ))}
-          </ul>
-        ) : (
-          "Not publicly listed"
-        )}
+      {/* Practitioners */}
+      <Section title="Practitioners" id="practitioners">
+        <div className="flex flex-col gap-4">
+          {Object.entries(clinic.Practitioners).map(
+            ([k, v]) =>{
+
+            if (typeof v === "object" && v !== null) {
+              const practitioner = v as PractitionerDetails;
+              return (
+
+ 
+
+              
+              k !== "Source" && (
+                <article
+                  key={k}
+                  className="group relative overflow-hidden rounded-xl border border-border bg-card transition-all duration-300 hover:shadow-md hover:border-primary/50"
+                >
+                  <div className="p-5">
+                    <div className="flex items-start justify-between gap-3 mb-3">
+                      <div className="flex-1 min-w-0">
+                        <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                        <span className="text-sm font-medium text-primary">
+                          {practitioner["Full Name"]?.charAt(0) || "??"}
+                        </span>
+                        </div>
+                   
+                        <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
+                          {v["Full Name"]}
+                        </h3>
+                        <p className="text-sm text-muted-foreground mt-0.5">
+                          {v["Title"]}
+                        </p>
+                      </div>
+                      
+                    </div>
+
+                    <div className="space-y-3">
+                      {!practitioner!["Specialty"]?.toLowerCase().includes("not listed") && (
+                        <div className="flex items-start gap-2">
+                          <span className="text-xs font-medium text-muted-foreground w-16 flex-shrink-0 pt-0.5">
+                            Specialty
+                          </span>
+                          <span className="text-sm text-foreground">{v["Specialty"]}</span>
+                        </div>
+                      )}
+
+                      {!practitioner!["Education"]?.toLowerCase().includes("not listed") && (
+                        <div className="flex items-start gap-2">
+                          <span className="text-xs font-medium text-muted-foreground w-16 flex-shrink-0 pt-0.5">
+                            Education
+                          </span>
+                          <span className="text-sm text-foreground">{v["Education"]}</span>
+                        </div>
+                      )}
+
+                      {!practitioner!["Professional Affiliations"]?.toLowerCase().includes("not listed") && (
+                        <div className="flex items-start gap-2">
+                          <span className="text-xs font-medium text-muted-foreground w-16 flex-shrink-0 pt-0.5">
+                            Affiliations
+                          </span>
+                          <span className="text-sm text-foreground">{v["Professional Affiliations"]}</span>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r from-transparent via-primary/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </article>
+              )
+          )}}          )}
+        </div>
       </Section>
 
       <div className="border-t border-gray-300 my-6"></div>
 
-      {/* AFFILIATIONS */}
-      <Section title="Affiliations" id="affiliations">
-        {parseList(clinic.affiliations).length ? (
-          <ul className="list-disc ml-6 space-y-1">
-            {parseList(clinic.affiliations).map((a: string, i: number) => (
-              <li key={i}>{a}</li>
-            ))}
-          </ul>
-        ) : (
-          "Not publicly listed"
-        )}
-      </Section>
 
       <div className="border-t border-gray-300 my-6"></div>
 
