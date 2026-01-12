@@ -118,7 +118,21 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
     <>
       {(isPractitioner(practitioner) || isClinic(practitioner)) && (
         
+
         <article aria-labelledby={`practitioner-name-${practitioner.slug}`}>
+          <Link
+              href={
+                "practitioner_image_link" in practitioner &&
+                (practitioner as Practitioner).practitioner_name
+                  ? `/profile/${
+                      (practitioner as Practitioner).practitioner_name
+                    }`
+                  : `/clinics/${(practitioner as Clinic).City}/clinic/${
+                      practitioner.slug
+                    }`
+              }
+            
+            >
           <Card className="gap-0 relative px-4 md:px-0 shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border-t-[1px] rounded-27 md:border md:border-[var(--alto)] cursor-pointer">
           
           <header>
@@ -267,7 +281,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
             </CardContent>
 
 
-        </Card>
+        </Card></Link>
         </article>
       )}
       {isProduct(practitioner) && (

@@ -3,7 +3,7 @@ import { TreatmentFiltersClient } from "@/components/treatment-filters-client";
 import { TreatmentGrid } from "@/components/treatment-grid";
 import { searchTreatments } from "./actions";
 
-const TreatmentMap: Record<string, string> = {
+export const TreatmentMap: Record<string, string> = {
   "Acne": "/directory/treatments/acne.webp",
   "Alopecia": "/directory/treatments/alopecia.webp",
   "Anti Wrinkle Treatment": "/directory/treatments/anti wrinkle treatment.webp",

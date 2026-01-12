@@ -64,7 +64,7 @@ export function HeroSection() {
               Browse certified aethetic professionals, compare real patient reviews, and book your next treatment with total confidence.
               </p>
               <SearchBar />
-              <div className="flex pt-4 md:pt-6 justify-center md:justify-start">
+              <div className="flex pt-4 md:pt-6 justify-center">
                 <a href="directory/search" className="font-medium hover:text-black">
                   Explore Aesthetics Directory →
                 </a>

@@ -20,7 +20,7 @@ export function SearchBar() {
   const [localFilters, setLocalFilters] = useState(filters);
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef(null);
-
+  console.log(showResults)
   const options = ["Practitioner", "Clinic", "Product","Treatments"];
   const handleSearch = async () => {
     //console.log("handle search");
@@ -34,35 +34,22 @@ export function SearchBar() {
 
   return (
     <>
-      <div className="w-full max-w-6xl mx-auto space-y-6 sm:block relative">
+      <div className=" w-full max-w-6xl mx-auto space-y-6 sm:block relative">
         {/* Main search bar with 3 sections */}
 
         <div className="flex flex-row items-center mb-2">
-          <div className="block sm:hidden w-full">
-            {/* Mobile Search */}
-            <div
-              className="flex items-center bg-white rounded-full shadow-sm border border-gray-200 px-4 py-3 w-full"
-              onClick={() => {
-                console.log("cicked");
-                setShowResults(true);
-                setShowLocResults(true);
-              }}
-            >
-              <span className="text-gray-500 text-[12px]">
-                Search practitioners, clinics, or locations
-              </span>
-            </div>
-          </div>
+          
           {/* Section 1: Select either Clinic or Practitioner */}
-          <div className="relative hidden sm:block">
+          <div className="relative">
             <div
-              className="flex-1 bg-white shadow-sm border border-r-0 border-gray-300 px-4 py-3 rounded-l-lg cursor-pointer"
-              onClick={() => setOpen((o) => !o)}
+              className="flex-1 bg-white shadow-sm border border-r-0 border-gray-300 px-4 py-3 rounded-l-lg "
+              onClick={() => setShowResults((o) => !o)}
+              onBlur={() => setTimeout(() => setShowResults(false), 200)}
             >
               <Input
                 value={localFilters.type}
                 readOnly
-                className="border-0 shadow-none p-0 h-auto w-30 text-base text-black cursor-pointer focus:outline-none 
+                className="border-0 shadow-none p-0 h-auto w-23 sm:w-30 text-base text-black cursor-pointer focus:outline-none 
                 focus:ring-0 
                 focus:border-0
                 active:outline-none 
@@ -76,14 +63,14 @@ export function SearchBar() {
           </div>
 
           {/* Section 2: Filter by Procedure, Speciality, Specialist */}
-          <div className="hidden sm:block flex-1 bg-white shadow-sm border border-r-0 border-gray-300 px-4 py-3">
+          <div className="flex-1 bg-white shadow-sm border rounded-r-lg sm:rounded-r-none border-gray-300 px-4 py-3">
             <Input
               placeholder="I'm searching for"
               value={localFilters.query}
               onChange={(e) =>
                 setLocalFilters((prev) => ({ ...prev, query: e.target.value }))
               }
-              className="border-0 shadow-none p-0 h-auto w-60 text-base placeholder:text-gray-500 focus:outline-none 
+              className="border-0 shadow-none p-0 h-auto w-20 sm:w-66 text-base placeholder:text-gray-500 focus:outline-none 
                 focus:ring-0 
                 focus:border-0
                 active:outline-none 
@@ -91,6 +78,7 @@ export function SearchBar() {
                 active:ring-0"
               onFocus={() => filters.query && setShowResults(true)}
               onClick={() => setShowResults(true)}
+              onBlur={() => setTimeout(() => setShowResults(false), 200)}
             />
           </div>
 
@@ -122,99 +110,56 @@ export function SearchBar() {
               onClick={() => setShowLocResults(true)}
             />
           </div>
-
-          {/* Search Button */}
-          <Button
-            onClick={handleSearch}
-            size="lg"
-            className="ml-4 h-9 w-9 sm:h-12 sm:w-12 rounded-full sm:rounded-lg p-0 bg-black hover:bg-black text-white flex items-center justify-center flex-shrink-0"
-          >
-            {isLoading ? (
-              <Loader2 className="h-6 w-6 animate-spin" />
-            ) : (
-              <Search className="h-6 w-6" />
-            )}
-          </Button>
-        </div>
-        <div className="flex flex-col md:flex-rows gap-2">
-          {/* Dropdown */}
-          {open && (
-            <div className="absolute left-0 mt-1 w-[150px] bg-white z-20 rounded-lg shadow-lg border border-gray-200">
-              {options.map((opt) => (
+          
+          </div>
+              
+          
+          
+          <div className="flex flex-col md:flex-rows gap-2">
+         
+          {showResults && (
+            <div
+              className={`flex bg-white rounded-lg shadow-lg border border-gray-200 p-6
+            
+              }  `}
+            >
+              <div
+                className={`grid grid-cols-1 sm:grid-cols-3 ${isSearchPage ? "gap-x-60" : "gap-6"} `}
+              >
+                {/*Type */}
+                <div>
+                  <h3 className="font-semibold text-left text-gray-900 mb-4">
+                    Type
+                  </h3>
+                  <div className="space-y-2 overflow-auto max-h-50 md:max-h-100">
+                    {options.map((opt) => (
                 <div
                   key={opt}
-                  className="px-4 py-3 hover:bg-gray-100 cursor-pointer text-sm"
+                  className="hover:bg-gray-100 cursor-pointer text-sm"
                   onClick={() => {
                     setLocalFilters((prev) => ({ ...prev, type: opt }));
                     setOpen(false);
                   }}
                 >
-                  {opt}
-                </div>
-              ))}
-            </div>
-          )}
-          {showResults && (
-            <div
-              className={`bg-white rounded-lg shadow-lg border border-gray-200 p-6 ${
-                isSearchPage ? "lg:ml-37" : ""
-              }  max-w-[660px]`}
-            >
-              <div
-                className={`grid md:grid-cols-2 isSearchPage ? "lg:grid-cols-[300px_300px]" gap-6`}
-              >
-                {/* Popular conditions and procedures */}
-                <div>
-                  <h3 className="font-semibold text-left text-gray-900 mb-4">
-                    Popular conditions and procedures
-                  </h3>
-                  <div className="space-y-2 overflow-auto max-h-50 md:max-h-100">
-                    {(modalities.filter((category: string) =>
-                      category
-                        .toLowerCase()
-                        .includes(localFilters.query.toLowerCase())
-                    ).length > 0
-                      ? modalities.filter((category: string) =>
-                          category
-                            .toLowerCase()
-                            .includes(localFilters.query.toLowerCase())
-                        )
-                      : modalities
-                    ).map((condition: string, index) => (
-                      <div
-                        key={condition}
-                        className="flex flex-col items-start gap-1"
-                      >
-                        {/* Index Badge */}
-
-                        {/* Hover-highlight wrapper */}
-                        <div
+                   <div
                           className="
                       w-full px-3 py-2 rounded-lg transition
                       hover:bg-blue-50 hover:text-blue-700 active:bg-blue-100
                     "
                         >
-                          <button
-                            onClick={() =>
-                              setLocalFilters((prev) => ({
-                                ...prev,
-                                query: condition,
-                              }))
-                            }
-                            className="text-left text-sm font-medium w-full flex items-center gap-3"
-                          >
-                            {condition}
-                          </button>
+                          <div  className="text-left text-sm font-medium w-full flex items-center gap-3">
+                  {opt}
+                  </div>
                         </div>
-                      </div>
-                    ))}
+                </div>
+              ))}
                   </div>
                 </div>
 
                 {/* Popular specialties */}
                 <div>
                   <h3 className="font-semibold text-left text-gray-900 mb-4">
-                    Service Cateogries
+                    Service Categories
                   </h3>
                   <div className="space-y-2 overflow-auto max-h-50 md:max-h-100">
                     {(search_categories.filter((category: string) =>
@@ -257,14 +202,11 @@ export function SearchBar() {
                   </div>
                 </div>
 
-                {/* Popular Locations */}
-              </div>
-            </div>
-          )}
-          {showLocResults && (
-            <div className="bg-white rounded-lg shadow-lg border border-gray-200 p-6 md:max-w-[150px] lg:max-w-[300px]">
-              <h3 className="font-semibold text-left text-gray-900 mb-4">Locations</h3>
-              <div className="space-y-2 overflow-auto max-h-50 md:max-h-100">
+                {(<div>
+                  <h3 className="font-semibold text-left text-gray-900 mb-4">
+                    Location
+                  </h3>
+                  <div className="space-y-2 overflow-auto max-h-50 md:max-h-100">
                 {(locations.filter(
                   (loc) =>
                     typeof loc === "string" &&
@@ -306,9 +248,34 @@ export function SearchBar() {
                   </div>
                 ))}
               </div>
+                </div>)}
+                
+
+                {/* Popular Locations */}
+              </div>
+              
             </div>
           )}
+
+          <div className='flex items-center justify-center gap-2'>
+          {/* Search Button */}
+          <Button
+            onClick={handleSearch}
+            size="lg"
+            className="ml-4 h-9 w-9 sm:h-12 sm:w-12 rounded-full sm:rounded-lg p-0 bg-black hover:bg-black text-white flex items-center justify-center flex-shrink-0"
+          >
+            {isLoading ? (
+              <Loader2 className="h-6 w-6 animate-spin" />
+            ) : (
+              <Search className="h-6 w-6" />
+            )}
+          </Button>
         </div>
+          
+        </div>
+              
+        
+        
       </div>
     </>
   );
