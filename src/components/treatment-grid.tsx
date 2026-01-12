@@ -70,7 +70,7 @@ export function TreatmentGrid({ treatments, searchQuery, currentPage, totalPages
                           />
                         </div>
                         <div className="flex-1 min-w-0 sm:text-center">
-                          <h3 className="font-semibold text-lg text-foreground group-hover:text-primary/70 transition-colors mb-3 sm:mb-0 sm:text-sm">
+                          <h3 className="font-semibold text-base text-foreground group-hover:text-primary/70 transition-colors mb-3 sm:mb-0 sm:text-sm">
                             {treatment.name}
                           </h3>
 

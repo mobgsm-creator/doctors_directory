@@ -1,0 +1,931 @@
+"use client"
+
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { ThumbsUp, DollarSign, Star, Clock, Users, Database, Camera } from "lucide-react";
+
+interface TreatmentDetailProps {
+  treatment: {
+    name: string;
+    image: string;
+    satisfaction: number;
+    averageCost: string;
+    reviews: number;
+    downtime: string;
+    practitioners: number;
+  };
+  treatmentData?: any;
+}
+
+export function TreatmentDetail({ treatment, treatmentData }: TreatmentDetailProps) {
+  const findProperty = (baseProperty: string) => {
+    if (!treatmentData) return null;
+    
+    const treatmentName = treatment.name;
+    const treatmentNameUnderscore = treatmentName.replace(/\s+/g, '_');
+    
+    const possibleKeys = [];
+    
+    switch (baseProperty) {
+      case 'whatIs':
+        possibleKeys.push(
+          `What_is_${treatmentNameUnderscore}_How_does_it_work`,
+          `What is ${treatmentName}? How does it work?`,
+          `What is ${treatmentName} and How Does It Work?`,
+          `What_is_${treatmentName}_How_does_it_work`,
+          `What_is_${treatmentNameUnderscore}_How_does_it_work`
+        );
+        break;
+      case 'goals':
+        possibleKeys.push(
+          `Goals_of_${treatmentNameUnderscore}_treatment`,
+          `What are the goals of ${treatmentName}?`,
+          `Goals_of_${treatmentName}_treatment`,
+          `Goals of ${treatmentName}`,
+          `Goals of ${treatmentName} Treatment`,
+          `Goals_of_${treatmentNameUnderscore}`
+        );
+        break;
+      case 'prosAndCons':
+        possibleKeys.push(
+          `Pros_and_Cons_of_${treatmentNameUnderscore}_Treatments`,
+          `What are the pros and cons of ${treatmentName}?`,
+          `Pros_and_Cons_of_${treatmentName}_Treatments`,
+          `Pros and Cons of ${treatmentName}`,
+          `Pros and Cons of ${treatmentName} Treatment`,
+          `Pros_and_Cons_of_${treatmentNameUnderscore}`
+        );
+        break;
+      case 'cost':
+        possibleKeys.push(
+          `Cost_of_${treatmentNameUnderscore}_in_UK_and_Variations`,
+          `What is the cost of ${treatmentName} in the UK, and why does the price vary between clinics?`,
+          `Cost_of_${treatmentName}_in_UK_and_Variations`,
+          `What_is_the_cost_of_${treatmentNameUnderscore}_in_UK_and_Variations`,
+          `Cost in the UK and Why It Varies`,
+          `Cost in the UK and Why the price varies between clinics`,
+          `Cost_of_${treatmentNameUnderscore}_in_the_UK_and_Why_it_Varies`
+        );
+        break;
+      case 'choosing':
+        possibleKeys.push(
+          `What_to_Look_for_Choosing_Doctor_or_Clinic`,
+          `What should you look for when choosing a doctor or clinic for ${treatmentName}?`,
+          `What_to_Look_for_When_Choosing_Doctor_or_Clinic`,
+          `What_should_you_look_for_when_choosing_a_doctor_or_clinic_for_${treatmentNameUnderscore}?`,
+          `What to Look for When Choosing a Doctor or Clinic`,
+          `Choosing a Doctor or Clinic`,
+          `What_to_Look_for_When_Choosing_a_Doctor_or_Clinic`
+        );
+        break;
+      case 'comparison':
+        possibleKeys.push(
+          `How_${treatmentNameUnderscore}_Compairs_with_Non_surgical_or_Alternative_Options`,
+          `How does ${treatmentName} compare with non-surgical or alternative options?`,
+          `How_${treatmentName}_Compairs_with_Non_surgical_or_Alternative_Options`,
+          `How ${treatmentName} Compares with Non-Surgical or Alternative Options`,
+          `How ${treatmentName} Treatment Compares with Non-Surgical or Alternative Options`,
+          `How_${treatmentNameUnderscore}_Compares_with_Non_surgical_or_Alternative_Options`
+        );
+        break;
+      case 'candidate':
+        possibleKeys.push(
+          `Who_is_a_Good_Candidate_for_${treatmentNameUnderscore}_Treatment`,
+          `Who is a good candidate for ${treatmentName}?`,
+          `Who_is_a_Good_Candidate_for_${treatmentName}_Treatment`,
+          `Who is a Good Candidate?`,
+          `Who_is_a_good_candidate_for_${treatmentNameUnderscore}_treatment?`,
+          `Who is a Good Candidate for ${treatmentName}`,
+          `Who is a Good Candidate for ${treatmentName} Treatment`,
+          `Who_is_a_Good_Candidate_for_${treatmentNameUnderscore}`
+        );
+        break;
+      case 'prepare':
+        possibleKeys.push(
+          `How_to_Prepare_for_${treatmentNameUnderscore}_Appointment`,
+          `How should you prepare for ${treatmentName}?`,
+          `How_to_Prepare_for_${treatmentName}_Appointment`,
+          `How_should_you_prepare_for_${treatmentNameUnderscore}_treatment?`,
+          `How to Prepare for ${treatmentName}`,
+          `How to Prepare for ${treatmentName} Treatment`,
+          `How_Should_You_Prepare_for_${treatmentNameUnderscore}`
+        );
+        break;
+      case 'safety':
+        possibleKeys.push(
+          `Safety_Considerations_and_Pain`,
+          `What are the safety considerations for ${treatmentName}? Is it painful?`,
+          `Safety_Considerations_Is_it_painful`,
+          `Safety considerations for ${treatmentName}: Is it painful?`,
+          `Safety Considerations and Pain`,
+          `Safety and Pain`
+        );
+        break;
+      case 'duration':
+        possibleKeys.push(
+          `What_Happens_During_Appointment_and_Duration`,
+          `What happens during a ${treatmentName} appointment, and how long does it take?`,
+          `What_Happens_During_Appointment_and_How_Long`,
+          `What_happens_during_a_${treatmentNameUnderscore}_appointment_and_how_long_does_it_take?`,
+          `What Happens During an ${treatmentName} Appointment`,
+          `What happens during an ${treatmentName} appointment and how long does it take?`,
+          `What_Happens_During_a_${treatmentNameUnderscore}_and_How_Long_it_Takes`,
+          `What_Happens_During_a_${treatmentNameUnderscore}_Appointment_and_How_Long_it_Takes`
+        );
+        break;
+      case 'recovery':
+        possibleKeys.push(
+          `Recovery_Process_Downtime_Possible_Side_Effects`,
+          `What is the recovery process, downtime, and possible side effects of ${treatmentName}?`,
+          `What_is_the_recovery_process,_downtime,_and_possible_side_effects_of_${treatmentNameUnderscore}_treatment?`,
+          `Recovery, Downtime, and Possible Side Effects`,
+          `Recovery, Downtime, Side Effects`,
+          `Recovery_Downtime_and_Possible_Side_Effects`
+        );
+        break;
+      case 'resultsLast':
+        possibleKeys.push(
+          `How_Long_Results_Last`,
+          `How long do the results of ${treatmentName} last?`,
+          `How_long_do_the_results_of_${treatmentNameUnderscore}_treatment_last?`,
+          `Duration of Results`,
+          `How long do results last?`
+        );
+        break;
+      case 'mildVsSevere':
+        possibleKeys.push(
+          `Mild_vs_Severe_${treatmentNameUnderscore}_and_Limits`,
+          `How does ${treatmentName} differ for mild versus severe cases, and what does it not treat?`,
+          `Mild_vs_Severe_${treatmentName}_and_Limits`,
+          `How_does_${treatmentNameUnderscore}_differ_for_mild_versus_severe_cases_and_what_does_it_not_treat?`,
+          `How ${treatmentName} Differs for Mild Versus Severe Cases`,
+          `Mild vs Severe Cases and What It Does Not Treat`
+        );
+        break;
+      case 'maintenance':
+        possibleKeys.push(
+          `Does_${treatmentNameUnderscore}_Require_Maintenance_and_How_Often`,
+          `Does ${treatmentName} require maintenance sessions? How often should it be repeated?`,
+          `Does_${treatmentName}_Require_Maintenance_and_How_Often`,
+          `Does_${treatmentNameUnderscore}_treatment_require_maintenance_sessions?_How_often?`,
+          `Maintenance Sessions`,
+          `Maintenance and Repeat Sessions`,
+          `Does_${treatmentNameUnderscore}_Require_Maintenance_and_How_Often`
+        );
+        break;
+      case 'qualifications':
+        possibleKeys.push(
+          `Qualifications_Practitioner_Should_Have`,
+          `What qualifications should a practitioner offering ${treatmentName} have?`,
+          `What_qualifications_should_a_practitioner_offering_${treatmentNameUnderscore}_have`,
+          `What_Qualifications_Should_a_Practitioner_Offering_${treatmentNameUnderscore}_Have`,
+          `What_qualifications_should_a_practitioner_offering_${treatmentNameUnderscore}_treatment_have?`,
+          `Practitioner Qualifications`,
+          `Qualifications a practitioner offering ${treatmentName} should have`,
+          `What_Qualifications_Should_a_Practitioner_Offering_${treatmentNameUnderscore}_Have`
+        );
+        break;
+      case 'regulation':
+        possibleKeys.push(
+          `Is_${treatmentNameUnderscore}_Regulated_in_UK_and_What_To_Do_If_Something_Goes_Wrong`,
+          `Is ${treatmentName} regulated in the UK, and what should you do if something goes wrong?`,
+          `Is_${treatmentName}_Regulated_in_UK_and_What_to_Do_If_Something_Goes_Wrong`,
+          `Is_${treatmentNameUnderscore}_Treatment_Regulated_in_the_UK_and_What_to_Do_if_Something_Goes_Wrong?`,
+          `Is_${treatmentNameUnderscore}_regulated_in_the_UK,_and_what_should_you_do_if_something_goes_wrong?`,
+          `Is ${treatmentName} Regulated in the UK and What to Do if Something Goes Wrong?`,
+          `Regulation in the UK`,
+          `Is_${treatmentNameUnderscore}_Regulated_in_the_UK_and_What_if_Something_Goes_Wrong`
+        );
+        break;
+      case 'guidelines':
+        possibleKeys.push(
+          `Are_There_NICE_FDA_MHRA_Guidelines`,
+          `Are there NICE, FDA, or MHRA guidelines for ${treatmentName}?`,
+          `Are_there_NICE_FDA_or_MHRA_guidelines_for_${treatmentNameUnderscore}`,
+          `Are_there_NICE,_FDA,_or_MHRA_guidelines_for_${treatmentNameUnderscore}?`,
+          `Guidelines (NICE, FDA, or MHRA)`,
+          `Guidelines (NICE / MHRA / FDA)`,
+          `Are_There_NICE_FDA_or_MHRA_Guidelines_for_${treatmentNameUnderscore}`
+        );
+        break;
+    }
+    
+    for (const key of possibleKeys) {
+      if (treatmentData.hasOwnProperty(key)) {
+        const value = treatmentData[key];
+        
+        if (typeof value === 'object' && value !== null) {
+          if (baseProperty === 'whatIs') {
+            return value.description || value.answer || value.technical || (typeof value === 'string' ? value : null);
+          }
+          else if (baseProperty === 'goals') {
+            return value.goals || value.answer || value.typical || value.advice || (Array.isArray(value) ? value : null);
+          }
+          else if (baseProperty === 'prosAndCons') {
+            return value;
+          }
+          else if (baseProperty === 'candidate') {
+            return value.typical || value.advice || value.answer || (Array.isArray(value) ? value : null);
+          }
+          else if (baseProperty === 'duration') {
+            if (Array.isArray(value)) return value;
+            if (typeof value === 'string') return value;
+            return value.duration || value.answer || value.process || value.description || null;
+          }
+          else if (baseProperty === 'comparison') {
+            return value.comparison || value.answer || value.advice || (Array.isArray(value) ? value : null);
+          }
+          else if (baseProperty === 'resultsLast') {
+            if (typeof value === 'string') return value;
+            return value.duration || value.answer || value.typical || null;
+          }
+          else if (baseProperty === 'recovery') {
+            if (Array.isArray(value)) return value;
+            if (typeof value === 'string') return value;
+            return value.recovery || value.answer || value.process || null;
+          }
+          else if (baseProperty === 'maintenance') {
+            if (typeof value === 'string') return value;
+            if (Array.isArray(value)) return value;
+            return value.maintenance || value.answer || value.typical || null;
+          }
+          return value.answer || value.description || value.typical || value.advice || value.notes || (typeof value === 'string' ? value : null);
+        }
+        
+        return value;
+      }
+    }
+    return null;
+  };
+
+  const getCostData = () => {
+    const costData = findProperty('cost');
+    if (!costData) return null;
+    
+    if (typeof costData === 'string') {
+      return { typicalPrices: costData, whyVary: null };
+    }
+    
+    return {
+      typicalPrices: costData.Typical_prices || costData['Typical UK costs'] || costData.typicalCosts || costData.typical_costs || costData['Typical_Costs'] || costData.typicalRange || costData['Typical_Range'] || costData.Typical_Range,
+      whyVary: costData.Why_price_varies || costData['Why prices vary'] || costData.whyItVaries || costData.why_prices_vary || costData['Why_prices_vary'] || costData.whyVary || costData['Why_Varies'] || costData.Why_Varies
+    };
+  };
+
+  const sections = [
+    { id: "overview", label: "Overview" },
+    { id: "treatment-options", label: "Treatment Options" },
+    { id: "candidate", label: "Candidate & Preparation" },
+    { id: "appointments", label: "Appointments & Safety" },
+    { id: "cost", label: "Cost & Access" },
+    { id: "results", label: "Results & Maintenance" },
+    { id: "regulation", label: "Regulation & Guidelines" },
+  ];
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  };
+
+  return (
+    <article className="max-w-7xl mx-auto p-6">
+      {/* Header Section - Responsive Design */}
+
+      {/* Mobile Layout */}
+      <header className="lg:hidden bg-white rounded-2xl border border-gray-200 p-2 mb-8">
+        <div className="flex gap-6">
+          {/* Treatment Image */}
+          <div className="flex-shrink-0">
+            <div className="relative">
+              <img
+                src={treatment.image}
+                alt={`${treatment.name} treatment procedure - before and after results`}
+                className="w-28 h-28 object-cover rounded-full"
+              />
+            </div>
+          </div>
+
+          {/* Treatment Info */}
+          <div className="flex-1 space-y-4">
+            <h1 className="text-2xl font-bold text-gray-900">
+              {treatment.name}
+            </h1>
+
+            {/* Stats List - Mobile Vertical Layout */}
+            <div className="space-y-3">
+              <div className="flex items-center gap-3">
+                <Database className="h-5 w-5 text-gray-600" />
+                <span className="text-sm">
+                  {treatment.averageCost}
+                </span>
+                <span className="text-sm">Average Cost</span>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <ThumbsUp className="h-5 w-5 text-gray-600" />
+                <span className="text-sm">
+                  {treatment.satisfaction}%
+                </span>
+                <span className="text-sm">Satisfaction</span>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <Users className="h-5 w-5 text-gray-600" />
+                <span className="text-sm">
+                  {treatment.practitioners}
+                </span>
+                <span className="text-sm">Practitioners</span>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <Camera className="h-5 w-5 text-gray-600" />
+                <span className="text-sm">
+                  {treatment.reviews}
+                </span>
+                <span className="text-sm">Google Reviews</span>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <Clock className="h-5 w-5 text-gray-600" />
+                <span className="text-sm">
+                  {treatment.downtime}
+                </span>
+                <span className="text-sm">Downtime</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Book Consultation Button */}
+        <div className="mt-6">
+          <Button className="w-full bg-black text-white hover:bg-gray-800 rounded-xl py-3 text-lg font-medium">
+            Book Consultation
+          </Button>
+        </div>
+      </header>
+
+      {/* Desktop Layout - Original Design */}
+      <div className="hidden lg:flex flex-col lg:flex-row gap-8 mb-8 p-5 rounded-2xl bg-[#F2EDE6]">
+        {/* Treatment Image */}
+        <div className="">
+          <div className="relative">
+            <img
+              src={treatment.image}
+              alt={treatment.name}
+              className="w-48 h-48 object-cover rounded-full"
+            />
+          </div>
+        </div>
+
+        {/* Treatment Info */}
+        <div className="grow">
+          <h1 className="text-3xl font-bold text-gray-900">
+            {treatment.name} Treatment
+          </h1>
+
+          {/* Stats Grid */}
+          <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
+            <Card className="text-center p-4 border-0 md:border-0 bg-transparent">
+              <CardContent className="p-0">
+                <ThumbsUp className="h-6 w-6 mx-auto mb-2 text-black" />
+                <div className="text-2xl font-bold">
+                  {treatment.satisfaction}%
+                </div>
+                <div className="text-sm text-gray-600">
+                  Patient Satisfaction
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="text-center p-4 border-0 md:border-0 bg-transparent">
+              <CardContent className="p-0">
+                <Database className="h-6 w-6 mx-auto mb-2 text-black" />
+                <div className="text-lg font-bold">{treatment.averageCost}</div>
+                <div className="text-sm text-gray-600">Average Cost</div>
+              </CardContent>
+            </Card>
+
+            <Card className="text-center p-4 border-0 md:border-0 bg-transparent">
+              <CardContent className="p-0">
+                <Camera className="h-6 w-6 mx-auto mb-2 text-black" />
+                <div className="text-2xl font-bold">{treatment.reviews}</div>
+                <div className="text-sm text-gray-600">Reviews on Google</div>
+              </CardContent>
+            </Card>
+
+            <Card className="text-center p-4 border-0 md:border-0 bg-transparent">
+              <CardContent className="p-0">
+                <Clock className="h-6 w-6 mx-auto mb-2 text-black" />
+                <div className="text-lg font-bold">{treatment.downtime}</div>
+                <div className="text-sm text-gray-600">Downtime</div>
+              </CardContent>
+            </Card>
+
+            <Card className="text-center p-4 border-0 md:border-0 bg-transparent">
+              <CardContent className="p-0">
+                <Users className="h-6 w-6 mx-auto mb-2 text-black" />
+                <div className="text-2xl font-bold">
+                  {treatment.practitioners}
+                </div>
+                <div className="text-sm text-gray-600">Practitioners</div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </div>
+
+      {/* Navigation */}
+      <div className="border-b border-[#BDBDBD] pb-5 mb-8">
+        <div className="flex flex-row gap-2 overflow-x-auto scrollbar-hide lg:justify-between">
+          {sections.map((section) => (
+            <Button
+              key={section.id}
+              variant="ghost"
+              onClick={() => scrollToSection(section.id)}
+              className="px-4 py-2 flex-shrink-0 lg:flex-1 text-sm hover:cursor-pointer whitespace-nowrap text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+            >
+              {section.label}
+            </Button>
+          ))}
+        </div>
+      </div>
+
+      {/* All Sections */}
+      <div className="flex flex-col gap-3">
+        {/* Overview Section */}
+        <section id="overview" className="scroll-mt-8">
+          <div className="p-3 space-y-3">
+            <h3 className="text-lg font-semibold border-b border-[#BDBDBD] pb-3">
+              Overview
+            </h3>
+            <div>
+              <p className="text-gray-700 leading-relaxed">
+                {findProperty('whatIs') ||
+                  `${treatment.name} is a treatment that helps address various skin and aesthetic concerns.`}
+              </p>
+            </div>
+
+            {findProperty('goals') && (
+              <div>
+                <h4 className="font-semibold mb-3">
+                  Goals of {treatment.name} treatment
+                </h4>
+                <ul className="space-y-2 text-gray-700">
+                  {(Array.isArray(findProperty('goals')) ? findProperty('goals') : []).map(
+                    (goal: string, index: number) => (
+                      <li key={index}>• {goal}</li>
+                    )
+                  )}
+                </ul>
+              </div>
+            )}
+
+            {findProperty('mildVsSevere') && (
+              <div>
+                <h4 className="font-semibold mb-4">Severity Levels</h4>
+
+                <div className="space-y-4">
+                  {findProperty('mildVsSevere')?.Mild && (
+                    <div>
+                      <h5 className="font-medium">Mild</h5>
+                      <p className="text-gray-700">
+                        {findProperty('mildVsSevere').Mild}
+                      </p>
+                    </div>
+                  )}
+
+                  {findProperty('mildVsSevere')?.Severe && (
+                    <div>
+                      <h5 className="font-medium">Severe</h5>
+                      <p className="text-gray-700">
+                        {findProperty('mildVsSevere').Severe}
+                      </p>
+                    </div>
+                  )}
+
+                  {findProperty('mildVsSevere')
+                    ?.What_it_Does_Not_Treat && (
+                    <div>
+                      <h5 className="font-medium">What it Does Not Treat</h5>
+                      <p className="text-gray-700">
+                        {
+                          findProperty('mildVsSevere')
+                            .What_it_Does_Not_Treat
+                        }
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+        </section>
+
+        {/* Treatment Options Section */}
+        <section id="treatment-options" className="scroll-mt-8">
+          <div className="p-3 space-y-3">
+            <h3 className="text-lg font-semibold border-b border-[#BDBDBD] pb-3">
+              Treatment Options
+            </h3>
+
+            {findProperty('comparison') && (
+              <div className="space-y-4">
+                {(Array.isArray(findProperty('comparison')) ? findProperty('comparison') : []).map(
+                  (option: string, index: number) => (
+                    <div key={index}>
+                      <p className="text-gray-700 text-sm">• {option}</p>
+                    </div>
+                  )
+                )}
+              </div>
+            )}
+
+            {findProperty('prosAndCons') && (
+              <>
+                <div className="mt-6">
+                  <h4 className="font-semibold mb-3">Pros</h4>
+                  <ul className="space-y-2 text-gray-700 text-sm">
+                    {(findProperty('prosAndCons')?.Pros || []).map(
+                      (pro: string, index: number) => (
+                        <li key={index}>• {pro}</li>
+                      )
+                    )}
+                  </ul>
+                </div>
+
+                <div className="mt-6">
+                  <h4 className="font-semibold mb-3">Cons</h4>
+                  <ul className="space-y-2 text-gray-700 text-sm">
+                    {(findProperty('prosAndCons')?.Cons || []).map(
+                      (con: string, index: number) => (
+                        <li key={index}>• {con}</li>
+                      )
+                    )}
+                  </ul>
+                </div>
+              </>
+            )}
+          </div>
+        </section>
+
+        {/* Candidate & Preparation Section */}
+        <section id="candidate" className="scroll-mt-8">
+          <div className="p-3 space-y-3">
+            <h3 className="text-lg font-semibold border-b border-[#BDBDBD] pb-3">
+              Candidate & Preparation
+            </h3>
+
+            {findProperty('candidate') && (
+              <div>
+                <h4 className="font-semibold mb-4">Who is a Good Candidate</h4>
+                <ul className="space-y-2 text-gray-700">
+                  {(Array.isArray(findProperty('candidate')) ? findProperty('candidate') : []).map(
+                    (candidate: string, index: number) => (
+                      <li key={index}>• {candidate}</li>
+                    )
+                  )}
+                </ul>
+              </div>
+            )}
+
+            {findProperty('prepare') && (
+              <div>
+                <h4 className="font-semibold mb-4">
+                  How to Prepare for Appointment
+                </h4>
+                <ul className="space-y-2 text-gray-700">
+                  {(Array.isArray(findProperty('prepare')) ? findProperty('prepare') : []).map(
+                    (prep: string, index: number) => (
+                      <li key={index}>• {prep}</li>
+                    )
+                  )}
+                </ul>
+              </div>
+            )}
+          </div>
+        </section>
+
+        {/* Appointments & Safety Section */}
+        <section id="appointments" className="scroll-mt-8">
+          <div className="p-3 space-y-3">
+            <h3 className="text-lg font-semibold border-b border-[#BDBDBD] pb-3">
+              Appointments & Safety
+            </h3>
+
+            {findProperty('duration') && (
+              <div>
+                <h4 className="font-semibold mb-3">
+                  What Happens During Appointment
+                </h4>
+                <p className="text-gray-700">
+                  {findProperty('duration')}
+                </p>
+              </div>
+            )}
+
+            {findProperty('safety') && (
+              <div className="space-y-4">
+                {findProperty('safety')?.Pain && (
+                  <div>
+                    <h4 className="font-semibold mb-2">Pain Considerations</h4>
+                    <p className="text-gray-700 text-sm">
+                      {findProperty('safety').Pain}
+                    </p>
+                  </div>
+                )}
+
+                {findProperty('safety')?.Safety && (
+                  <div>
+                    <h4 className="font-semibold mb-2">
+                      Safety Considerations
+                    </h4>
+                    <p className="text-gray-700 text-sm">
+                      {findProperty('safety').Safety}
+                    </p>
+                  </div>
+                )}
+
+                {findProperty('safety')?.['Pain level'] && (
+                  <div>
+                    <h4 className="font-semibold mb-2">Pain Level</h4>
+                    <p className="text-gray-700 text-sm">
+                      {findProperty('safety')['Pain level']}
+                    </p>
+                  </div>
+                )}
+
+                {findProperty('safety')?.['Safety considerations'] && (
+                  <div>
+                    <h4 className="font-semibold mb-2">Safety Considerations</h4>
+                    <ul className="space-y-2 text-gray-700 text-sm">
+                      {(findProperty('safety')['Safety considerations'] || []).map(
+                        (consideration: string, index: number) => (
+                          <li key={index}>• {consideration}</li>
+                        )
+                      )}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {findProperty('recovery') && (
+              <div className="space-y-4">
+                {findProperty('recovery')?.Recover && (
+                  <div>
+                    <h4 className="font-semibold mb-2">Recovery Process</h4>
+                    <p className="text-gray-700 text-sm">
+                      {findProperty('recovery').Recover}
+                    </p>
+                  </div>
+                )}
+
+                {findProperty('recovery')?.Side_Effects && (
+                  <div>
+                    <h4 className="font-semibold mb-2">Side Effects</h4>
+                    <p className="text-gray-700 text-sm">
+                      {findProperty('recovery').Side_Effects}
+                    </p>
+                  </div>
+                )}
+
+                {findProperty('recovery')?.['Recovery/downtime'] && (
+                  <div>
+                    <h4 className="font-semibold mb-2">Recovery/Downtime</h4>
+                    <p className="text-gray-700 text-sm">
+                      {findProperty('recovery')['Recovery/downtime']}
+                    </p>
+                  </div>
+                )}
+
+                {findProperty('recovery')?.['Possible side effects'] && (
+                  <div>
+                    <h4 className="font-semibold mb-2">Possible Side Effects</h4>
+                    <ul className="space-y-2 text-gray-700 text-sm">
+                      {(findProperty('recovery')['Possible side effects'] || []).map(
+                        (effect: string, index: number) => (
+                          <li key={index}>• {effect}</li>
+                        )
+                      )}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        </section>
+
+        {/* Cost & Access Section */}
+        <section id="cost">
+          <div className="p-3 space-y-3">
+            <h3 className="text-lg font-semibold border-b border-[#BDBDBD] pb-3">
+              Cost & Access
+            </h3>
+
+            {getCostData() && (
+              <div className="space-y-4">
+                {getCostData()?.typicalPrices && (
+                  <div>
+                    <h4 className="font-semibold mb-2">Typical Prices</h4>
+                    <div className="text-gray-700 text-sm">
+                      {typeof getCostData()?.typicalPrices === 'string' ? (
+                        <p>{getCostData()?.typicalPrices}</p>
+                      ) : Array.isArray(getCostData()?.typicalPrices) ? (
+                        <ul className="space-y-2">
+                          {getCostData()?.typicalPrices.map((price: string, index: number) => (
+                            <li key={index}>• {price}</li>
+                          ))}
+                        </ul>
+                      ) : (
+                        <p>{JSON.stringify(getCostData()?.typicalPrices)}</p>
+                      )}
+                    </div>
+                  </div>
+                )}
+
+                {getCostData()?.whyVary && (
+                  <div>
+                    <h4 className="font-semibold mb-2">Why Prices Vary</h4>
+                    <div className="text-gray-700 text-sm">
+                      {typeof getCostData()?.whyVary === 'string' ? (
+                        <p>{getCostData()?.whyVary}</p>
+                      ) : Array.isArray(getCostData()?.whyVary) ? (
+                        <ul className="space-y-2">
+                          {getCostData()?.whyVary.map((reason: string, index: number) => (
+                            <li key={index}>• {reason}</li>
+                          ))}
+                        </ul>
+                      ) : (
+                        <p>{JSON.stringify(getCostData()?.whyVary)}</p>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {findProperty('choosing') && (
+              <div>
+                <h4 className="font-semibold mb-3">
+                  What to Look for When Choosing a Doctor or Clinic
+                </h4>
+                <ul className="space-y-2 text-gray-700 text-sm">
+                  {(Array.isArray(findProperty('choosing')) ? findProperty('choosing') : []).map(
+                    (tip: string, index: number) => (
+                      <li key={index}>• {tip}</li>
+                    )
+                  )}
+                </ul>
+              </div>
+            )}
+
+            {findProperty('qualifications') && (
+              <div>
+                <h4 className="font-semibold mb-3">
+                  Qualifications Practitioner Should Have
+                </h4>
+                <ul className="space-y-2 text-gray-700 text-sm">
+                  {(Array.isArray(findProperty('qualifications')) ? findProperty('qualifications') : []).map(
+                    (qual: string, index: number) => (
+                      <li key={index}>• {qual}</li>
+                    )
+                  )}
+                </ul>
+              </div>
+            )}
+          </div>
+        </section>
+
+        {/* Results & Maintenance Section */}
+        <section id="results" className="scroll-mt-8">
+          <div className="p-3 space-y-3">
+            <h3 className="text-lg font-semibold border-b border-[#BDBDBD] pb-3">
+              Results & Maintenance
+            </h3>
+
+            {findProperty('resultsLast') && (
+              <div>
+                <h4 className="font-semibold mb-3">How Long Results Last</h4>
+                {Array.isArray(findProperty('resultsLast')) ? (
+                  <ul className="space-y-2 text-gray-700">
+                    {findProperty('resultsLast').map(
+                      (result: string, index: number) => (
+                        <li key={index}>• {result}</li>
+                      )
+                    )}
+                  </ul>
+                ) : (
+                  <p className="text-gray-700">
+                    {findProperty('resultsLast')}
+                  </p>
+                )}
+              </div>
+            )}
+
+            {findProperty('maintenance') && (
+              <div>
+                <h4 className="font-semibold mb-3">Maintenance Requirements</h4>
+                {Array.isArray(findProperty('maintenance')) ? (
+                  <ul className="space-y-2 text-gray-700">
+                    {findProperty('maintenance').map(
+                      (item: string, index: number) => (
+                        <li key={index}>• {item}</li>
+                      )
+                    )}
+                  </ul>
+                ) : (
+                  <p className="text-gray-700">
+                    {findProperty('maintenance')}
+                  </p>
+                )}
+              </div>
+            )}
+          </div>
+        </section>
+
+        {/* Regulation & Guidelines Section */}
+        <section id="regulation" className="scroll-mt-8">
+          <div className="p-3 space-y-3">
+            <h3 className="text-lg font-semibold border-b border-[#BDBDBD] pb-3">
+              Regulation & Guidelines
+            </h3>
+
+            {findProperty('guidelines') && (
+              <div className="space-y-4">
+                {findProperty('guidelines')?.UK && (
+                  <div>
+                    <h4 className="font-semibold mb-2">UK Guidelines</h4>
+                    <p className="text-gray-700 text-sm">
+                      {findProperty('guidelines').UK}
+                    </p>
+                  </div>
+                )}
+
+                {findProperty('guidelines')?.USA && (
+                  <div>
+                    <h4 className="font-semibold mb-2">USA Guidelines</h4>
+                    <p className="text-gray-700 text-sm">
+                      {findProperty('guidelines').USA}
+                    </p>
+                  </div>
+                )}
+
+                {typeof findProperty('guidelines') === 'string' && (
+                  <div>
+                    <h4 className="font-semibold mb-2">Guidelines</h4>
+                    <p className="text-gray-700 text-sm">
+                      {findProperty('guidelines')}
+                    </p>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {findProperty('regulation') && (
+              <div>
+                <h4 className="font-semibold mb-3">
+                  What to Do If Something Goes Wrong
+                </h4>
+                {Array.isArray(findProperty('regulation')) ? (
+                  <ul className="space-y-2 text-gray-700 text-sm">
+                    {findProperty('regulation').map(
+                      (step: string, index: number) => (
+                        <li key={index}>• {step}</li>
+                      )
+                    )}
+                  </ul>
+                ) : findProperty('regulation')?.Regulation ? (
+                  <div className="space-y-4">
+                    <div>
+                      <h5 className="font-medium mb-1">Regulation</h5>
+                      <p className="text-gray-700 text-sm">
+                        {findProperty('regulation').Regulation}
+                      </p>
+                    </div>
+                    {findProperty('regulation').Complaints && (
+                      <div>
+                        <h5 className="font-medium mb-1">Complaints</h5>
+                        <p className="text-gray-700 text-sm">
+                          {findProperty('regulation').Complaints}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <p className="text-gray-700 text-sm">
+                    {findProperty('regulation')}
+                  </p>
+                )}
+              </div>
+            )}
+          </div>
+        </section>
+      </div>
+    </article>
+  );
+}
