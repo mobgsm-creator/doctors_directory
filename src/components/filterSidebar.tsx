@@ -5,6 +5,7 @@ import { ChevronDown, X, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import {
@@ -32,6 +33,7 @@ export function AdvancedFilterSidebar({
 }: AdvancedFiltersProps) {
   const [localFilters, setLocalFilters] = useState<SearchFilters>(filters);
   const [selectedModalities, setSelectedModalities] = useState<string[]>([]);
+  const [selectedDistance, setSelectedDistance] = useState<string>("all");
   const [isFilterActive, setIsFilterActive] = useState(false);
 
   useEffect(() => {
@@ -57,14 +59,6 @@ export function AdvancedFilterSidebar({
     onToggle(); // Close sidebar
   };
 
-  const handleModalityChange = (brand: string, checked: boolean) => {
-    if (checked) {
-      setSelectedModalities([...selectedModalities, brand]);
-    } else {
-      setSelectedModalities(selectedModalities.filter((b) => b !== brand));
-    }
-  };
-
   const handleClearFilters = () => {
     const clearedFilters: SearchFilters = {
       type: filters.type,
@@ -76,6 +70,8 @@ export function AdvancedFilterSidebar({
     };
     setLocalFilters(clearedFilters);
     onFiltersChange(clearedFilters);
+    setSelectedModalities([]);
+    setSelectedDistance("all");
     onToggle(); // Close sidebar
   };
 
@@ -91,88 +87,124 @@ export function AdvancedFilterSidebar({
   return (
     <>
       <aside aria-label="Filter sidebar">
-      <Card
-        className={`
+        <Card
+          className={`
           bg-transparent shadow-none border border-transparent rounded-0 pb-[145px] px-4 md:px-0 md:py-0 relative
           md:relative md:block md:h-auto w-full md:bg-transparent md:translate-x-0
           fixed top-0 left-0 h-screen bg-white z-[9999] md:z-[1] transition-transform duration-300 ease-in-out
           ${isFilterActive ? "translate-x-0" : "-translate-x-full"}
         `}
-      >
-        <CardHeader className="p-0 flex justify-between items-center">
-          <CardTitle className="text-lg mb-0 md:mb-4">Filters</CardTitle>
-          <Button
-            type="button" 
-            variant="ghost"
-            size="sm"
-            className="inline-flex md:hidden p-2"
-            onClick={() => document.body.classList.remove("filter-active")}
-          >
-            <X className="w-4 h-4 text-medium" />
-          </Button>
-        </CardHeader>
+        >
+          <CardHeader className="p-0 flex justify-between items-center">
+            <CardTitle className="font-semibold text-xl text-black mb-6">
+              Filters
+            </CardTitle>
+            <Button
+              type="button"
+              variant="ghost"
+              size="sm"
+              className="inline-flex md:hidden p-2"
+              onClick={() => document.body.classList.remove("filter-active")}
+            >
+              <X className="w-4 h-4 text-medium" />
+            </Button>
+          </CardHeader>
 
-        <CardContent className="p-0 w-full h-full space-y-4 static">
-
-          <div>
-            <h3 className="sr-only">Search</h3>
-            <input
-              type="text"
-              value={localFilters.query}
-              onChange={(e) =>
-                setLocalFilters((prev) => ({ ...prev, query: e.target.value }))
-              }
-              placeholder="Search products..."
-              className="w-full px-3 py-2 text-sm border rounded-md bg-white"
-            />
-          </div>
-
-          <div>
-            <h3 className="font-medium mb-3">Procedure</h3>
-            <div className="space-y-2 overflow-auto max-h-[inherit] h-[calc(100vh-300px)] md:max-h-200">
-              {modalities.length > 0 ? (
-                modalities.map((brand) => (
-                  <div key={brand} className="flex items-center space-x-2">
-                    <Checkbox
-                      id={brand}
-                      className="bg-white"
-                      checked={selectedModalities.includes(brand)}
-                      onCheckedChange={(checked) =>
-                        handleModalityChange(brand, checked as boolean)
-                      }
-                    />
-                    <label
-                      htmlFor={brand}
-                      className="text-sm font-normal leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                    >
-                      {brand}
-                    </label>
-                  </div>
-                ))
-              ) : (
-                <p className="text-sm text-gray-500">No brands found.</p>
-              )}
+          <CardContent className="p-0 w-full h-full space-y-4 static">
+            <div>
+              <h3 className="sr-only">Search</h3>
+              <input
+                type="text"
+                value={localFilters.query}
+                onChange={(e) =>
+                  setLocalFilters((prev) => ({
+                    ...prev,
+                    query: e.target.value,
+                  }))
+                }
+                placeholder="Search products..."
+                className="w-full px-3 py-2 text-base border rounded-md bg-white"
+              />
             </div>
-          </div>
 
-          <div className="bg-white md:bg-transparent space-y-2 px-4 w-full absolute py-2 md:py-0 md:px-0 md:static bottom-0 left-0 righ-0">
-            <Button
-              variant="outline"
-              onClick={handleApplyFilters}
-              className="w-full bg-transparent border-primary text-primary hover:bg-primary hover:text-white"
-            >
-              Apply Filters
-            </Button>
-            <Button
-              variant="link"
-              onClick={handleClearFilters}
-              className="w-full"
-            >
-              Clear All
-            </Button>
-          </div>
-        </CardContent>
-      </Card>
+            <div className="mb-6">
+              <label className="block text-base font-medium text-black mb-2">
+                Procedure:
+              </label>
+              <Select
+                value={
+                  selectedModalities.length > 0 ? selectedModalities[0] : "all"
+                }
+                onValueChange={(value) => {
+                  if (value === "all") {
+                    setSelectedModalities([]);
+                  } else {
+                    setSelectedModalities([value]);
+                  }
+                }}
+              >
+                <SelectTrigger className="w-full h-12 px-4 py-3 bg-white border border-gray-300 rounded-md">
+                  <SelectValue placeholder="All" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All</SelectItem>
+                  {modalities.length > 0 ? (
+                    modalities.map((brand) => (
+                      <SelectItem key={brand} value={brand}>
+                        {brand}
+                      </SelectItem>
+                    ))
+                  ) : (
+                    <SelectItem value="no-options" disabled>
+                      No brands found
+                    </SelectItem>
+                  )}
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="mb-6">
+              <label className="block text-base font-medium text-black mb-2">
+                Distance:
+              </label>
+              <Select
+                value={selectedDistance}
+                onValueChange={(value) => {
+                  setSelectedDistance(value);
+                }}
+              >
+                <SelectTrigger className="w-full h-12 px-4 py-3 bg-white border border-gray-300 rounded-md">
+                  <SelectValue placeholder="All" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All</SelectItem>
+                  <SelectItem value="5km">Within 5km</SelectItem>
+                  <SelectItem value="10km">Within 10km</SelectItem>
+                  <SelectItem value="25km">Within 25km</SelectItem>
+                  <SelectItem value="50km">Within 50km</SelectItem>
+                  <SelectItem value="100km">Within 100km</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="bg-white md:bg-transparent space-y-2 px-4 w-full absolute py-2 md:py-0 md:px-0 md:static bottom-0 left-0 righ-0">
+              <Button
+                variant="outline"
+                onClick={handleApplyFilters}
+                className="w-full bg-transparent border-primary text-primary hover:bg-primary hover:text-white hover:cursor-pointer"
+              >
+                Apply Filters
+              </Button>
+              <Button
+                variant="outline"
+                onClick={handleClearFilters}
+                className="w-full hover:cursor-pointer"
+              >
+                Clear All
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
       </aside>
     </>
   );
