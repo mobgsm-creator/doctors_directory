@@ -112,6 +112,9 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
         .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
         .join(" ");
   }
+  else if(isClinic(practitioner)){
+    practitionerName = practitioner.slug.split("-").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ") 
+  } 
 
 
   return (
@@ -138,7 +141,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
           <header>
              <CardHeader className="pb-4 px-2">
             
-            <h2 id={`practitioner-name-${practitioner.slug}`} className="sr-only">
+            <h2 id={`practitioner-name-${practitioner.slug} `} className="sr-only">
               {practitionerName}
             </h2>
             
