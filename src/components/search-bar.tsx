@@ -278,9 +278,9 @@ export function SearchBar() {
                 focus-visible:outline-none focus-visible:ring-0 focus-visible:border-0
               "
               onKeyDown={(e) => e.key === "Enter"}
-              onFocus={() => filters.location && setShowLocResults(true)}
-              onBlur={() => setTimeout(() => setShowLocResults(false), 200)}
-              onClick={() => setShowLocResults(true)}
+              onFocus={() => filters.location && setShowResults(true)}
+              onBlur={() => setTimeout(() => setShowResults(false), 200)}
+              onClick={() => setShowResults(true)}
             />
           </div>
           

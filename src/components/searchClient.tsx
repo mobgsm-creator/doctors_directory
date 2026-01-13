@@ -99,7 +99,7 @@ export default function SearchPage() {
           </Link>
         </div>
       </div>
-      <div className="py-6 px-4 border-t border-t-[1px]  border-[#C4C4C4] md:border-0">
+      <div className="max-w-6xl mx-auto py-6  border-[#C4C4C4]">
         <SearchBar />
         <div className="block md:hidden">
           <Button
