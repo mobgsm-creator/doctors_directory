@@ -30,92 +30,13 @@ export function SearchBar() {
     await router.push("/search");
     //console.log("pushed");
     setIsLoading(false);
+
+
   };
-
-  return (
-    <>
-      <div className=" w-full max-w-6xl mx-auto space-y-6 sm:block relative">
-        {/* Main search bar with 3 sections */}
-
-        <div className="flex flex-row items-center mb-2">
-          
-          {/* Section 1: Select either Clinic or Practitioner */}
-          <div className="relative">
-            <div
-              className="flex-1 bg-white shadow-sm border border-r-0 border-gray-300 px-4 py-3 rounded-l-lg "
-              onClick={() => setShowResults((o) => !o)}
-              onBlur={() => setTimeout(() => setShowResults(false), 200)}
-            >
-              <Input
-                value={localFilters.type}
-                readOnly
-                className="border-0 shadow-none p-0 h-auto w-23 sm:w-30 text-base text-black cursor-pointer focus:outline-none 
-                focus:ring-0 
-                focus:border-0
-                active:outline-none 
-                active:ring-0
-                focus-visible:outline-none focus-visible:ring-0 focus-visible:border-0
-                "
-              />
-              {/* Small border-only downward arrow */}
-              <div className="pointer-events-none absolute top-1/2 right-3 w-1.5 h-1.5 border-b-[1.5px] border-r-[1.5px] border-black transform rotate-45 -translate-y-1/2"></div>
-            </div>
-          </div>
-
-          {/* Section 2: Filter by Procedure, Speciality, Specialist */}
-          <div className="flex-1 bg-white shadow-sm border rounded-r-lg sm:rounded-r-none border-gray-300 px-4 py-3">
-            <Input
-              placeholder="I'm searching for"
-              value={localFilters.query}
-              onChange={(e) =>
-                setLocalFilters((prev) => ({ ...prev, query: e.target.value }))
-              }
-              className="border-0 shadow-none p-0 h-auto w-20 sm:w-66 text-base placeholder:text-gray-500 focus:outline-none 
-                focus:ring-0 
-                focus:border-0
-                active:outline-none 
-                focus-visible:outline-none focus-visible:ring-0 focus-visible:border-0
-                active:ring-0"
-              onFocus={() => filters.query && setShowResults(true)}
-              onClick={() => setShowResults(true)}
-              onBlur={() => setTimeout(() => setShowResults(false), 200)}
-            />
-          </div>
-
-          {/* Section 3: Location */}
-          <div className="hidden sm:flex bg-white rounded-r-lg shadow-sm border border-gray-300 px-4 py-3 flex items-center gap-2">
-            <Locate className="w-5 h-5 text-gray-600" />
-            <Input
-              placeholder="Location"
-              value={localFilters.location}
-              onChange={(e) =>
-                setLocalFilters((prev) => ({
-                  ...prev,
-                  location: e.target.value,
-                }))
-              }
-              className="
-                border-0 min-w-[80px] shadow-none p-0 h-6 text-base
-                placeholder:text-gray-500
-                focus:outline-none 
-                focus:ring-0 
-                focus:border-0
-                active:outline-none 
-                active:ring-0
-                focus-visible:outline-none focus-visible:ring-0 focus-visible:border-0
-              "
-              onKeyDown={(e) => e.key === "Enter"}
-              onFocus={() => filters.location && setShowLocResults(true)}
-              onBlur={() => setTimeout(() => setShowLocResults(false), 200)}
-              onClick={() => setShowLocResults(true)}
-            />
-          </div>
-          
-          </div>
-              
-          
-          
-          <div className="flex flex-col md:flex-rows gap-2">
+  function SearchDropdown() {
+    return (
+      <>
+      <div className="flex flex-col md:flex-rows gap-2">
          
           {showResults && (
             <div
@@ -257,12 +178,22 @@ export function SearchBar() {
             </div>
           )}
 
-          <div className='flex items-center justify-center gap-2'>
+          
+          
+        </div>
+      </>
+
+    )
+  }
+  function SearchButton() {
+    return (
+         <div className='flex'>
           {/* Search Button */}
+          
           <Button
             onClick={handleSearch}
             size="lg"
-            className="ml-4 h-9 w-9 sm:h-12 sm:w-12 rounded-full sm:rounded-lg p-0 bg-black hover:bg-black text-white flex items-center justify-center flex-shrink-0"
+            className="ml-4 h-12 w-12 sm:h-12.5 sm:w-12 rounded-full sm:rounded-lg p-0 bg-black hover:bg-black text-white flex items-center justify-center flex-shrink-0"
           >
             {isLoading ? (
               <Loader2 className="h-6 w-6 animate-spin" />
@@ -271,12 +202,102 @@ export function SearchBar() {
             )}
           </Button>
         </div>
+    )
+  }
+  return (
+    <>
+    <div className='relative flex'>
+      <div className=" w-full max-w-6xl mx-auto space-y-6 sm:block relative">
+        {/* Main search bar with 3 sections */}
+        
+        <div className="flex flex-row items-center mb-2">
+        
+          {/* Section 1: Select either Clinic or Practitioner */}
+          <div className="relative">
+            <div
+              className="flex-1 bg-white shadow-sm border border-r-0 border-gray-300 px-4 py-3 rounded-l-lg "
+              onClick={() => setShowResults((o) => !o)}
+              onBlur={() => setTimeout(() => setShowResults(false), 200)}
+            >
+              <Input
+                value={localFilters.type}
+                readOnly
+                className="border-0 shadow-none p-0 h-auto w-23 sm:w-30 text-base text-black cursor-pointer focus:outline-none 
+                focus:ring-0 
+                focus:border-0
+                active:outline-none 
+                active:ring-0
+                focus-visible:outline-none focus-visible:ring-0 focus-visible:border-0
+                "
+              />
+              {/* Small border-only downward arrow */}
+              <div className="pointer-events-none absolute top-1/2 right-3 w-1.5 h-1.5 border-b-[1.5px] border-r-[1.5px] border-black transform rotate-45 -translate-y-1/2"></div>
+            </div>
+          </div>
+
+          {/* Section 2: Filter by Procedure, Speciality, Specialist */}
+          <div className="flex-1 bg-white shadow-sm border rounded-r-lg sm:rounded-r-none border-gray-300 px-4 py-3">
+            <Input
+              placeholder="I'm searching for"
+              value={localFilters.query}
+              onChange={(e) =>
+                setLocalFilters((prev) => ({ ...prev, query: e.target.value }))
+              }
+              className="border-0 shadow-none p-0 h-auto sm:w-66 text-base placeholder:text-gray-500 focus:outline-none 
+                focus:ring-0 
+                focus:border-0
+                active:outline-none 
+                focus-visible:outline-none focus-visible:ring-0 focus-visible:border-0
+                active:ring-0"
+              onFocus={() => filters.query && setShowResults(true)}
+              onClick={() => setShowResults(true)}
+              onBlur={() => setTimeout(() => setShowResults(false), 200)}
+            />
+          </div>
+
+          {/* Section 3: Location */}
+          <div className="hidden sm:flex bg-white rounded-r-lg shadow-sm border border-gray-300 px-4 py-3 flex items-center gap-2">
+            <Locate className="w-5 h-5 text-gray-600" />
+            <Input
+              placeholder="Location"
+              value={localFilters.location}
+              onChange={(e) =>
+                setLocalFilters((prev) => ({
+                  ...prev,
+                  location: e.target.value,
+                }))
+              }
+              className="
+                border-0 min-w-[80px] shadow-none p-0 h-6 text-base
+                placeholder:text-gray-500
+                focus:outline-none 
+                focus:ring-0 
+                focus:border-0
+                active:outline-none 
+                active:ring-0
+                focus-visible:outline-none focus-visible:ring-0 focus-visible:border-0
+              "
+              onKeyDown={(e) => e.key === "Enter"}
+              onFocus={() => filters.location && setShowLocResults(true)}
+              onBlur={() => setTimeout(() => setShowLocResults(false), 200)}
+              onClick={() => setShowLocResults(true)}
+            />
+          </div>
           
-        </div>
+          
+          
+         
+          
+          </div>
+          <SearchDropdown />
+              
+          
+          
+          
               
         
         
-      </div>
+      </div><SearchButton /></div>
     </>
   );
 }

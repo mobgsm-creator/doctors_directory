@@ -47,12 +47,12 @@ export function SearchResultsHeader({
               </span>
             ) : (
               <div className="col-span-1 md:col-span-8">
-                              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3
+                              {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3
                             gap-4">
                                 {Array.from({ length: 9 }).map((_, i) => (
                                   <PractitionerCardSkeleton key={i} />
                                 ))}
-                              </div>
+                              </div> */}
                             </div>
             )}
 
