@@ -191,7 +191,7 @@ export interface Product {
   description: string 
   key_benefits: string[] | null;
   indications: string[] | null;
-  composition: string[] | null;
+  composition: string[] | string | null;
   formulation: string[] | null;
   packaging: string[] | null;
   usage_instructions: string[] | null;

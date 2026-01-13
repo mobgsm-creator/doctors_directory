@@ -44,6 +44,7 @@ export default function PractitionerDetailsSections({
 
   function renderList(val: any) {
   if (!val) return "Not publicly listed";
+  
 
   const list = parseList(fixPythonArrayString(val));
   if (!list.length) return "Not publicly listed";
@@ -67,58 +68,71 @@ export default function PractitionerDetailsSections({
 
   return (
     <div>
-      {/* Desc */}
+  
 
       <Section title="Description" id="description">
         {decodeUnicodeEscapes(clinic.description)}
       </Section>
       <div className="border-t border-gray-300 my-6"></div>
-      {/* key_benefits*/}
+ 
       <Section title="Bnefits" id="benefits">
          {renderList(clinic.key_benefits)}
       </Section>
       <div className="border-t border-gray-300 my-6"></div>
-      {/* Qualifications */}
+     
       <Section title="Indications" id="indications">
         {renderList(clinic.indications)}
-      </Section>
+      </Section> 
       <div className="border-t border-gray-300 my-6"></div>
-      {/* Experience */}
+
       <Section title="Composition" id="composition">
-        {renderList(clinic.composition)}
+        {JSON.parse(clinic?.composition as string)[0]['component'] !== undefined ? JSON.parse(clinic?.composition as string).map((item: any, index: number) => (
+          <div key={index}>
+             <ul className="list-disc ml-6 space-y-1">
+          
+             
+                {item['ingredients_INCI']?.map((a: string, i: number) => (
+                  <li key={i}>{a}</li>
+                ))}
+              </ul>
+          
+           
+          </div>
+        )) : renderList(clinic.composition)}
+        
       </Section>
       <div className="border-t border-gray-300 my-6"></div>
-      {/* Experience */}
+  
       <Section title="Formulation" id="formulation">
         {renderList(clinic.formulation)}
       </Section>
       <div className="border-t border-gray-300 my-6"></div>
-      {/* Experience */}
+
       <Section title="Packaging" id="packaging">
         {renderList(clinic.packaging)}
       </Section>
       <div className="border-t border-gray-300 my-6"></div>
-      {/* Experience */}
+ 
       <Section title="Usage" id="usage">
         {renderList(clinic.usage_instructions)}
       </Section>
       <div className="border-t border-gray-300 my-6"></div>
-      <Section title="Usage" id="usage">
+      <Section title="Contraindications" id="contraindications">
         {renderList(clinic.contraindications)}
       </Section>
       <div className="border-t border-gray-300 my-6"></div>
-      <Section title="Usage" id="usage">
+      <Section title="Adverse Effects" id="adverse_effects">
         {renderList(clinic.adverse_effects)}
       </Section>
       <div className="border-t border-gray-300 my-6"></div>
-      <Section title="Usage" id="usage">
+      <Section title="Storage Conditions" id="storage_conditions">
         {renderList(clinic.storage_conditions)}
       </Section>
       <div className="border-t border-gray-300 my-6"></div>
       <Section title="Duration" id="duration">
         {clinic.treatment_duration}
       </Section>
-      <div className="border-t border-gray-300 my-6"></div>
+      <div className="border-t border-gray-300 my-6"></div> 
       <Section title="Onset" id="onset_of_effect">
         {clinic.onset_of_effect}
       </Section>

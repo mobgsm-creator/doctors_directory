@@ -49,11 +49,11 @@ export function ProfileHeader({ clinic }: ProfileHeaderProps) {
   function getBadgeClass(text: string) {
     
     const lower = text.toLowerCase();
-    console.log("GetBadge Class Input", lower)
+    
     const rule = BADGE_RULES.find((r) =>
       r.keywords.some((k) => lower.includes(k))
     );
-    console.log("Rule:",rule)
+  
 
     return rule?.className ?? "bg-gray-100 text-gray-800 border-gray-300";
 

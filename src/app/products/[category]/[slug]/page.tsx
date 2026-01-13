@@ -2,15 +2,26 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, MessageSquare, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { ProfileHeader } from "@/components/Product/profile-header";
-import { ReviewCard } from "@/components/review-card";
+import { ReviewCard } from "@/components/review-card"
+import { decodeUnicodeEscapes } from "@/lib/utils";
 import { GoogleMapsEmbed } from "@/components/gmaps-embed";
 import { boxplotDatas_clinic } from "@/lib/data";
 import { BoxPlotDatum, ItemMeta } from "@/lib/types";
+import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { Stats } from "@/components/visx-donut";
 import ClinicDetailsMarkdown from "@/components/Product/ProductDetailsMD";
 import { Product } from "@/lib/types";
 import fs from "fs";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb"
 import path from "path";
 import PractitionerTabs from "@/components/Product/ProductTabs";
 const flattenObject = (obj: any, parentKey = "", result: any = {}) => {
@@ -47,9 +58,11 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
   const fileContents = fs.readFileSync(filePath, "utf-8");
   const clinics: Product[] = JSON.parse(fileContents);
   const { slug } = params;
-  console.log(slug)
+  
   const clinic = clinics.find((p) => p.slug === slug);
-
+  console.log(JSON.parse(clinic?.composition as string)[0]['component']  , slug)
+  const similarProducts = clinics.filter((p) => p.category === clinic?.category && p.slug !== slug);
+  
 
   if (!clinic) {
     notFound();
@@ -66,7 +79,28 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
               Back to Directory
             </Button>
           </Link>
+          <Breadcrumb>
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink href="/directory">Home</BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbLink href="/directory/products">Products</BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbLink href={`/directory/products/${clinic.category}`} >{`${clinic.category}`}</BreadcrumbLink>
+       
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbPage>{`${clinic.slug}`}</BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
         </div>
+
       </div>
 
       <div className="container mx-auto max-w-6xl pt-0 md:px-4 py-20 space-y-8">
@@ -87,8 +121,9 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
          
         
         </div>
-
+      
       </div>
+      
     </main>
   );
 }
@@ -120,5 +155,17 @@ export async function generateMetadata({ params }: ProfilePageProps) {
   return {
     title: `${clinicName} - Healthcare Directory`,
     description: `View ${clinicName}, a product of ${clinic.brand} in the ${clinic.product_category} segment.}`,
+    openGraph: {
+      title: `${clinicName} - Consentz`,
+      description: `View ${clinicName}, a product of ${clinic.brand} in the ${clinic.product_category} segment.`,
+      images: [
+        {
+          url: clinic.image_url || "/og-image.png",
+          width: 1200,
+          height: 630,
+          alt: `${clinicName} profile picture`,
+        },
+      ],
+    },
   };
 }
