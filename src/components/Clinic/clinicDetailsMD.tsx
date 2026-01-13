@@ -43,7 +43,7 @@ export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
   return (
     <div className="">
       {/* ABOUT */}
-      <Section title="About" id="about">
+      <Section title={`About ${clinic.slug.split("-").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")}`} id="about">
         {clinic.about_section || "Not publicly listed"}
       </Section>
 

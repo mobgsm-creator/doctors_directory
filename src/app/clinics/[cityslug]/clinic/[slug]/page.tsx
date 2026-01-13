@@ -267,10 +267,10 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
       </div>
         </div>
         <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Clinics in ${cityslug}`}</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:gap-6 animate-fade-in">
+        <div className="flex overflow-x-auto gap-4 pb-4 snap-x snap-mandatory animate-fade-in no-scrollbar">
           {cityClinics.map((clinic, index) => (
-            <div key={index} style={{ animationDelay: `${index * 50}ms` }}>
-              <Card className="gap-0 relative px-4 md:px-0 shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border-t-[1px] rounded-27 md:border md:border-[var(--alto)] cursor-pointer">
+            <div key={clinic.slug} style={{ animationDelay: `${index * 50}ms` }}>
+              <Card className="gap-0 relative px-4 md:px-0 shadow-sm transition-all duration-300 border border-[#E5E1DE] hover:shadow-2xl hover:-translate-y-1 rounded-lg cursor-pointer bg-white w-100 ">
                 <CardHeader className="pb-4 px-2">
                   <div className="flex items-start gap-4">
                     <div className="text-center flex-1 min-w-0 items-center flex flex-col">
@@ -371,18 +371,18 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
           ))}
         </div>
         <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Specialities in ${cityslug}`}</h3>
-           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:gap-6 animate-fade-in">
+           <div className="flex overflow-x-auto gap-4 pb-4 snap-x snap-mandatory animate-fade-in no-scrollbar">
           {uniqueTreatments.map((treatment, index) => {
             const enhancedTreatment = getEnhancedTreatment(treatment);
             const treatmentValue = treatment?.split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ").replace("Hifu", "HIFU").replace("Coolsculpting", "CoolSculpting");
             return (
-            <div>
+            <div key={treatment}>
 
                 <Link
                   href={`/treatments/${treatmentValue}`}
                   title={`Learn about ${treatmentValue} treatments and find qualified specialists`}
                 >
-                  <Card className="group bg-white hover:shadow-lg transition-all duration-300 cursor-pointer border border-[#BDBDBD] md:border-0 rounded-lg sm:bg-transparent sm:border-0 sm:hover:border-accent/50 sm:flex sm:flex-col sm:gap-5">
+                  <Card className="group bg-white hover:shadow-lg transition-all duration-300 cursor-pointer border border-[#BDBDBD] md:border-0 rounded-lg sm:bg-transparent sm:border-0 sm:hover:border-accent/50 sm:flex sm:flex-col sm:gap-5 w-100">
                     <CardContent className="p-4 sm:p-0 sm:flex sm:items-center sm:justify-center sm:pt-0">
                       <div className="flex items-center gap-4 sm:flex-col sm:gap-5">
                         <div className="flex-shrink-0">
@@ -465,5 +465,17 @@ export async function generateMetadata({ params }: ProfilePageProps) {
   return {
     title: `${clinicName} - Healthcare Directory`,
     description: `View the profile of ${clinicName}, a qualified ${clinic.category} offering professional healthcare services. Read reviews and book appointments.`,
+    openGraph: {
+      title: `${clinicName} - Consentz`,
+      description: `View the profile of ${clinicName}, a qualified ${clinic.category} offering professional healthcare services. Read reviews and book appointments.`,
+      images: [
+        {
+          url: clinic.image,
+          width: 1200,
+          height: 630,
+          alt: `${clinicName} profile picture`,
+        },
+      ],
+    },
   };
 }

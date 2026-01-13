@@ -29,9 +29,9 @@ export function ReviewCard({ review }: ReviewCardProps) {
   return (
     <Card className="border shadow-none rounded-lg mb-4" aria-labelledby={`review-title-${reviewId}`}>
       <CardHeader className="pb-4">
-        <h2 id={`review-title-${reviewId}`} className="sr-only">
+        <div id={`review-title-${reviewId}`} className="sr-only">
           Review by {review.reviewer_name ?? "Anonymous"}
-        </h2>
+        </div>
         <div className="flex items-start gap-4">
           <img
             src={review.reviewer_name ? "/directory/googlemaps.png" : "/directory/doctify.jpg"}
