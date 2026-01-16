@@ -17,6 +17,10 @@ import { Badge } from "@/components/ui/badge";
 import type { SearchFilters } from "@/lib/types";
 import { search_categories, modalities } from "@/lib/data";
 import { Separator } from "./ui/separator";
+import { FilterForm } from "./FilterForm";
+import { ClinicFilters } from "./filters/ClinicFilters";
+import { PractitionerFilters } from "./filters/PractitionerFilters";
+import { ProductFilters } from "./filters/ProductFilters";
 
 interface AdvancedFiltersProps {
   filters: SearchFilters;
@@ -32,9 +36,38 @@ export function AdvancedFilterSidebar({
   onToggle,
 }: AdvancedFiltersProps) {
   const [localFilters, setLocalFilters] = useState<SearchFilters>(filters);
-  const [selectedModalities, setSelectedModalities] = useState<string[]>([]);
-  const [selectedDistance, setSelectedDistance] = useState<string>("all");
   const [isFilterActive, setIsFilterActive] = useState(false);
+
+  const [treatmentFilters, setTreatmentFilters] = useState({
+    concern: "all",
+    treatmentType: "all",
+    treatmentArea: "all",
+    priceRange: "all"
+  });
+
+  const [clinicFilters, setClinicFilters] = useState({
+    servicesOffered: "all",
+    location: "",
+    rating: "all",
+    distance: "all",
+    query: ""
+  });
+
+  const [practitionerFilters, setPractitionerFilters] = useState({
+    practitioner_specialty: "all",
+    practitioner_qualifications: "all",
+    City: "all",
+    rating: "all",
+    query: ""
+  });
+
+  const [productFilters, setProductFilters] = useState({
+    product_category: "all",
+    brand: "all",
+    distributor_cleaned: "all",
+    category: "all",
+    query: ""
+  });
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -54,33 +87,130 @@ export function AdvancedFilterSidebar({
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    setLocalFilters(filters);
+  }, [filters]);
+
   const handleApplyFilters = () => {
-    onFiltersChange(localFilters);
-    onToggle(); // Close sidebar
+    let updatedFilters: SearchFilters = {
+      type: filters.type,
+      query: "",
+      category: "",
+      location: "",
+      rating: 0,
+      services: [],
+    };
+    
+    if (filters.type === "Treatments") {
+      updatedFilters.category = treatmentFilters.concern !== "all" ? treatmentFilters.concern : "";
+      const activeFilters = [];
+      if (treatmentFilters.treatmentType !== "all") activeFilters.push(treatmentFilters.treatmentType);
+      if (treatmentFilters.treatmentArea !== "all") activeFilters.push(treatmentFilters.treatmentArea);
+      updatedFilters.services = activeFilters;
+    } else if (filters.type === "Clinic") {
+      updatedFilters.query = clinicFilters.query || "";
+      updatedFilters.services = clinicFilters.servicesOffered !== "all" ? [clinicFilters.servicesOffered] : [];
+      updatedFilters.location = clinicFilters.distance !== "all" ? clinicFilters.distance : "";
+      updatedFilters.rating = clinicFilters.rating !== "all" ? parseInt(clinicFilters.rating) : 0;
+    } else if (filters.type === "Practitioner") {
+      updatedFilters.query = practitionerFilters.query || "";
+      updatedFilters.services = practitionerFilters.practitioner_specialty !== "all" ? [practitionerFilters.practitioner_specialty] : [];
+      updatedFilters.location = practitionerFilters.City !== "all" ? practitionerFilters.City : "";
+      updatedFilters.rating = practitionerFilters.rating !== "all" ? parseInt(practitionerFilters.rating) : 0;
+      updatedFilters.category = practitionerFilters.practitioner_qualifications !== "all" ? practitionerFilters.practitioner_qualifications : "";
+    } else if (filters.type === "Product") {
+      updatedFilters.query = productFilters.query || "";
+      updatedFilters.services = productFilters.product_category !== "all" ? [productFilters.product_category] : [];
+      updatedFilters.category = productFilters.brand !== "all" ? productFilters.brand : "";
+      updatedFilters.location = productFilters.distributor_cleaned !== "all" ? productFilters.distributor_cleaned : "";
+    }
+    
+    onFiltersChange(updatedFilters);
+    onToggle();
   };
 
   const handleClearFilters = () => {
     const clearedFilters: SearchFilters = {
       type: filters.type,
-      query: filters.query,
+      query: "",
       category: "",
-      location: filters.location,
+      location: "",
       rating: 0,
       services: [],
     };
     setLocalFilters(clearedFilters);
     onFiltersChange(clearedFilters);
-    setSelectedModalities([]);
-    setSelectedDistance("all");
-    onToggle(); // Close sidebar
+    
+    setTreatmentFilters({
+      concern: "all",
+      treatmentType: "all",
+      treatmentArea: "all",
+      priceRange: "all"
+    });
+    setClinicFilters({
+      servicesOffered: "all",
+      location: "",
+      rating: "all",
+      distance: "all",
+      query: ""
+    });
+    setPractitionerFilters({
+      practitioner_specialty: "all",
+      practitioner_qualifications: "all",
+      City: "all",
+      rating: "all",
+      query: ""
+    });
+    setProductFilters({
+      product_category: "all",
+      brand: "all",
+      distributor_cleaned: "all",
+      category: "all",
+      query: ""
+    });
+    
+    onToggle();
   };
 
-  const handleServiceToggle = (service: string, checked: boolean) => {
-    setLocalFilters((prev) => ({
+  const handleTreatmentFilterChange = (key: string, value: string) => {
+    setTreatmentFilters(prev => ({ ...prev, [key]: value }));
+    setLocalFilters(prev => ({
       ...prev,
-      services: checked
-        ? [...prev.services, service]
-        : prev.services.filter((s) => s !== service),
+      category: key === "concern" ? value : prev.category,
+    }));
+  };
+
+  const handleClinicFilterChange = (key: string, value: string) => {
+    setClinicFilters(prev => ({ ...prev, [key]: value }));
+    setLocalFilters(prev => ({
+      ...prev,
+      query: key === "query" ? value : prev.query,
+      services: key === "servicesOffered" && value !== "all" ? [value] : prev.services,
+      location: key === "distance" ? value : prev.location,
+      rating: key === "rating" && value !== "all" ? parseInt(value) : prev.rating,
+    }));
+  };
+
+  const handlePractitionerFilterChange = (key: string, value: string) => {
+    setPractitionerFilters(prev => ({ ...prev, [key]: value }));
+    setLocalFilters(prev => ({
+      ...prev,
+      query: key === "query" ? value : prev.query,
+      services: key === "practitioner_specialty" && value !== "all" ? [value] : prev.services,
+      location: key === "City" ? value : prev.location,
+      rating: key === "rating" && value !== "all" ? parseInt(value) : prev.rating,
+      category: key === "practitioner_qualifications" ? value : prev.category,
+    }));
+  };
+
+  const handleProductFilterChange = (key: string, value: string) => {
+    setProductFilters(prev => ({ ...prev, [key]: value }));
+    setLocalFilters(prev => ({
+      ...prev,
+      query: key === "query" ? value : prev.query,
+      services: key === "product_category" && value !== "all" ? [value] : prev.services,
+      category: key === "brand" ? value : prev.category,
+      location: key === "distributor_cleaned" ? value : prev.location,
     }));
   };
 
@@ -96,7 +226,7 @@ export function AdvancedFilterSidebar({
         `}
         >
           <CardHeader className="p-0 flex justify-between items-center">
-            <CardTitle className="font-semibold text-xl text-black mb-6">
+            <CardTitle className="font-semibold text-xl md:hidden text-black mb-6">
               Filters
             </CardTitle>
             <Button
@@ -111,81 +241,68 @@ export function AdvancedFilterSidebar({
           </CardHeader>
 
           <CardContent className="p-0 w-full h-full space-y-4 static">
-            <div>
-              <h3 className="sr-only">Search</h3>
-              <input
-                type="text"
-                value={localFilters.query}
-                onChange={(e) =>
-                  setLocalFilters((prev) => ({
-                    ...prev,
-                    query: e.target.value,
-                  }))
-                }
-                placeholder="Search products..."
-                className="w-full px-3 py-2 text-base border rounded-md bg-white"
+            {filters.type === "Treatments" && (
+              <FilterForm
+                filters={treatmentFilters}
+                onChange={handleTreatmentFilterChange}
+                onClear={() => {
+                  setTreatmentFilters({
+                    concern: "all",
+                    treatmentType: "all",
+                    treatmentArea: "all",
+                    priceRange: "all"
+                  });
+                }}
               />
-            </div>
+            )}
 
-            <div className="mb-6">
-              <label className="block text-base font-medium text-black mb-2">
-                Procedure:
-              </label>
-              <Select
-                value={
-                  selectedModalities.length > 0 ? selectedModalities[0] : "all"
-                }
-                onValueChange={(value) => {
-                  if (value === "all") {
-                    setSelectedModalities([]);
-                  } else {
-                    setSelectedModalities([value]);
-                  }
+            {filters.type === "Clinic" && (
+              <ClinicFilters
+                filters={clinicFilters}
+                onChange={handleClinicFilterChange}
+                onClear={() => {
+                  setClinicFilters({
+                    servicesOffered: "all",
+                    location: "",
+                    rating: "all",
+                    distance: "all",
+                    query: ""
+                  });
                 }}
-              >
-                <SelectTrigger className="w-full h-12 px-4 py-3 bg-white border border-gray-300 rounded-md">
-                  <SelectValue placeholder="All" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All</SelectItem>
-                  {modalities.length > 0 ? (
-                    modalities.map((brand) => (
-                      <SelectItem key={brand} value={brand}>
-                        {brand}
-                      </SelectItem>
-                    ))
-                  ) : (
-                    <SelectItem value="no-options" disabled>
-                      No brands found
-                    </SelectItem>
-                  )}
-                </SelectContent>
-              </Select>
-            </div>
+              />
+            )}
 
-            <div className="mb-6">
-              <label className="block text-base font-medium text-black mb-2">
-                Distance:
-              </label>
-              <Select
-                value={selectedDistance}
-                onValueChange={(value) => {
-                  setSelectedDistance(value);
+            {filters.type === "Practitioner" && (
+              <PractitionerFilters
+                filters={practitionerFilters}
+                onChange={handlePractitionerFilterChange}
+                onClear={() => {
+                  setPractitionerFilters({
+                    practitioner_specialty: "all",
+                    practitioner_qualifications: "all",
+                    City: "all",
+                    rating: "all",
+                    query: ""
+                  });
                 }}
-              >
-                <SelectTrigger className="w-full h-12 px-4 py-3 bg-white border border-gray-300 rounded-md">
-                  <SelectValue placeholder="All" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All</SelectItem>
-                  <SelectItem value="5km">Within 5km</SelectItem>
-                  <SelectItem value="10km">Within 10km</SelectItem>
-                  <SelectItem value="25km">Within 25km</SelectItem>
-                  <SelectItem value="50km">Within 50km</SelectItem>
-                  <SelectItem value="100km">Within 100km</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
+              />
+            )}
+
+            {filters.type === "Product" && (
+              <ProductFilters
+                filters={productFilters}
+                onChange={handleProductFilterChange}
+                onClear={() => {
+                  setProductFilters({
+                    product_category: "all",
+                    brand: "all",
+                    distributor_cleaned: "all",
+                    category: "all",
+                    query: ""
+                  });
+                }}
+              />
+            )}
 
             <div className="bg-white md:bg-transparent space-y-2 px-4 w-full absolute py-2 md:py-0 md:px-0 md:static bottom-0 left-0 righ-0">
               <Button
@@ -194,13 +311,6 @@ export function AdvancedFilterSidebar({
                 className="w-full bg-transparent border-primary text-primary hover:bg-primary hover:text-white hover:cursor-pointer"
               >
                 Apply Filters
-              </Button>
-              <Button
-                variant="outline"
-                onClick={handleClearFilters}
-                className="w-full hover:cursor-pointer"
-              >
-                Clear All
               </Button>
             </div>
           </CardContent>

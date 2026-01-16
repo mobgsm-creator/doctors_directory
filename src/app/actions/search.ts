@@ -119,15 +119,65 @@ export async function searchPractitioners(
       if (!searchableText.includes(query)) return false
     }
 
+    if (filters.category && filters.category !== "All Categories") {
+      if (product.brand !== filters.category) return false
+    }
+
+    if (filters.location) {
+      if (product.distributor_cleaned !== filters.location) return false
+    }
+
+    if (filters.services.length > 0) {
+      const hasMatchingService = filters.services.some((service) =>
+        product.product_category.toLowerCase().includes(service.toLowerCase())
+      )
+      if (!hasMatchingService) return false
+    }
+
     return true
   })
 
   const filteredTreatments = treatments.filter((treatment: string) => {
     if (filters.query) {
       const query = filters.query.toLowerCase()
-      const searchableText = [
-        treatments].join(" ").toLowerCase()
-      if (!searchableText.includes(query)) return false
+      if (!treatment.toLowerCase().includes(query)) return false
+    }
+
+    if (filters.category && filters.category !== "All Categories") {
+      const treatmentCategories = {
+        "acne": ["Acne", "Rosacea Treatment", "Eczema Treatment", "Psoriasis", "Dermatitis Treatment"],
+        "anti-aging": ["Anti Wrinkle Treatment", "Botox", "Fillers", "Chemical Peel", "Microneedling", "Profhilo"],
+        "pigmentation": ["Pigmentation Treatment", "Melasma Treatment", "IPL Treatment"],
+        "hair-loss": ["Alopecia", "Hair Treatments"],
+        "body-contouring": ["CoolSculpting", "Liposuction", "Aqualyx", "Lymphatic Drainage"]
+      }
+      
+      const categoryTreatments = treatmentCategories[filters.category as keyof typeof treatmentCategories] || []
+      if (!categoryTreatments.includes(treatment)) return false
+    }
+
+    if (filters.services.length > 0) {
+      const serviceMapping = {
+        "surgical": ["Surgery", "Liposuction", "Breast Augmentation", "Rhinoplasty"],
+        "non-surgical": ["Botox", "Fillers", "Chemical Peel", "Microneedling", "HIFU", "CoolSculpting", "Profhilo"],
+        "laser": ["Laser Treatments", "IPL Treatment", "Tattoo Removal", "Aviclear"],
+        "injectable": ["Botox", "Fillers", "Aqualyx", "B12 Injection", "Profhilo", "Platelet Rich Plasma"],
+        "skincare": ["Chemical Peel", "Microneedling", "Facial Treatments", "Obagi"],
+        "face": ["Anti Wrinkle Treatment", "Botox", "Fillers", "Chemical Peel", "Cheek Enhancement", "Chin Enhancement", "Lips", "Marionettes", "Tear Trough Treatment"],
+        "body": ["CoolSculpting", "Liposuction", "Breast Augmentation", "Aqualyx", "Lymphatic Drainage"],
+        "hair": ["Alopecia", "Hair Treatments"],
+        "skin": ["Acne", "Pigmentation Treatment", "Melasma Treatment", "Rosacea Treatment", "Eczema Treatment"],
+        "lips": ["Lips", "Fillers"]
+      }
+
+      const hasMatchingService = filters.services.some((service) => {
+        const mappedTreatments = serviceMapping[service as keyof typeof serviceMapping] || []
+        return mappedTreatments.some(mappedTreatment => 
+          treatment.toLowerCase().includes(mappedTreatment.toLowerCase()) ||
+          mappedTreatment.toLowerCase().includes(treatment.toLowerCase())
+        ) || treatment.toLowerCase().includes(service.toLowerCase())
+      })
+      if (!hasMatchingService) return false
     }
 
     return true
