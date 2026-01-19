@@ -78,7 +78,7 @@ export function DataTable<T>({ data, columns, onEdit, onDelete, onAdd }: Readonl
                 <tr key={index} className="hover:bg-gray-50">
                   {columns.map((column) => (
                     <td key={String(column.key)} className="px-4 py-3 text-sm">
-                      {column.render ? column.render(item[column.key], item) : String(item[column.key]) ?? ''}
+                      {column.render ? column.render(item[column.key], item) : String(item[column.key])}
                     </td>
                   ))}
                   <td className="px-4 py-3 text-right">

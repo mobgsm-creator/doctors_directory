@@ -54,7 +54,7 @@ export function SearchBar() {
                   </h3>
                   <div className="space-y-2 overflow-auto max-h-50 md:max-h-100">
                     {options.map((opt) => (
-                <div
+                <button
                   key={opt}
                   className="hover:bg-gray-100 cursor-pointer text-sm"
                   onClick={() => {
@@ -72,7 +72,7 @@ export function SearchBar() {
                   {opt}
                   </div>
                         </div>
-                </div>
+                </button>
               ))}
                   </div>
                 </div>
@@ -214,7 +214,7 @@ export function SearchBar() {
         
           {/* Section 1: Select either Clinic or Practitioner */}
           <div className="relative">
-            <div
+            <button
               className="flex-1 bg-white shadow-sm border border-r-0 border-gray-300 px-4 py-3 rounded-l-lg "
               onClick={() => setShowResults((o) => !o)}
               onBlur={() => setTimeout(() => setShowResults(false), 200)}
@@ -232,7 +232,7 @@ export function SearchBar() {
               />
               {/* Small border-only downward arrow */}
               <div className="pointer-events-none absolute top-1/2 right-3 w-1.5 h-1.5 border-b-[1.5px] border-r-[1.5px] border-black transform rotate-45 -translate-y-1/2"></div>
-            </div>
+            </button>
           </div>
 
           {/* Section 2: Filter by Procedure, Speciality, Specialist */}
