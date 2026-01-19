@@ -27,7 +27,7 @@ export function parse_numbers(input: string): number {
   .map(x => x.trim());
 
  
-  return parseFloat(arr[0]);
+  return Number.parseFloat(arr[0]);
 }
 
 export function parse_text(input: string): string {
@@ -59,7 +59,7 @@ export function parse_addresses(input: string): string {
 }
 export function decodeUnicodeEscapes(str: string) {
   return str.replaceAll(/\\u([0-9a-fA-F]{4})/g, (_, code) =>
-    String.fromCodePoint(parseInt(code, 16))
+    String.fromCodePoint(Number.parseInt(code, 16))
   );
 }
 
@@ -106,8 +106,7 @@ export function safeParse(v: any) {
     const msg = String(err) 
   // ✅ convert error to text so includes() works
 
-    if (msg.includes("Unterminated string in JSON") ||
-        msg.includes("Unterminated string in JSON")) {
+    if (msg.includes("Unterminated string in JSON") ) {
     
       // 🔧 handle truncated array case here
       if (typeof v === "string" && v.trim().startsWith("[") ) {
@@ -151,7 +150,7 @@ export const fixPythonArrayString = (str: string) => {
       // 1. remove broken outer quotes
       let fixed = str
         .trim()
-        .replace(/^"\[|\]"$/g, (m) => (m === '"[' ? "[" : "]"));
+        .replaceAll(/^"\[|\]"$/g, (m) => (m === '"[' ? "[" : "]"));
 
       // 2. convert single-quoted Python list → JSON list
       fixed = fixed.replaceAll(/'([^']*)'/g, '"$1"');

@@ -175,7 +175,7 @@ export function AdvancedFilterSidebar({
       query: key === "query" ? value : prev.query,
       services: key === "servicesOffered" && value !== "all" ? [value] : prev.services,
       location: key === "distance" ? value : prev.location,
-      rating: key === "rating" && value !== "all" ? parseInt(value) : prev.rating,
+      rating: key === "rating" && value !== "all" ? Number.parseInt(value) : prev.rating,
     }));
   };
 
@@ -186,7 +186,7 @@ export function AdvancedFilterSidebar({
       query: key === "query" ? value : prev.query,
       services: key === "practitioner_specialty" && value !== "all" ? [value] : prev.services,
       location: key === "City" ? value : prev.location,
-      rating: key === "rating" && value !== "all" ? parseInt(value) : prev.rating,
+      rating: key === "rating" && value !== "all" ? Number.parseInt(value) : prev.rating,
       category: key === "practitioner_qualifications" ? value : prev.category,
     }));
   };

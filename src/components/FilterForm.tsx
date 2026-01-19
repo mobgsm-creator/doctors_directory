@@ -22,8 +22,7 @@ export function FilterForm({ filters, onChange, onClear }: FilterFormProps) {
       <div className="mb-6">
         <label className="block text-base font-medium text-black mb-2">
           Concern:
-        </label>
-        <Select
+          <Select
           value={filters.concern}
           onValueChange={(v) => onChange("concern", v)}
         >
@@ -39,13 +38,14 @@ export function FilterForm({ filters, onChange, onClear }: FilterFormProps) {
             <SelectItem value="body-contouring">Body Contouring</SelectItem>
           </SelectContent>
         </Select>
+        </label>
+        
       </div>
 
       <div className="mb-6">
         <label className="block text-base font-medium text-black mb-2">
           Treatment Type:
-        </label>
-        <Select
+          <Select
           value={filters.treatmentType}
           onValueChange={(v) => onChange("treatmentType", v)}
         >
@@ -61,13 +61,14 @@ export function FilterForm({ filters, onChange, onClear }: FilterFormProps) {
             <SelectItem value="skincare">Skincare</SelectItem>
           </SelectContent>
         </Select>
+        </label>
+        
       </div>
 
       <div className="mb-6">
         <label className="block text-base font-medium text-black mb-2">
           Treatment Area:
-        </label>
-        <Select
+          <Select
           value={filters.treatmentArea}
           onValueChange={(v) => onChange("treatmentArea", v)}
         >
@@ -83,13 +84,14 @@ export function FilterForm({ filters, onChange, onClear }: FilterFormProps) {
             <SelectItem value="lips">Lips</SelectItem>
           </SelectContent>
         </Select>
+        </label>
+        
       </div>
 
       <div className="mb-6">
         <label className="block text-base font-medium text-black mb-2">
           Price Range:
-        </label>
-        <Select
+          <Select
           value={filters.priceRange}
           onValueChange={(v) => onChange("priceRange", v)}
         >
@@ -104,6 +106,8 @@ export function FilterForm({ filters, onChange, onClear }: FilterFormProps) {
             <SelectItem value="over-1000">Over £1,000</SelectItem>
           </SelectContent>
         </Select>
+        </label>
+        
       </div>
 
       <Button

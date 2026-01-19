@@ -106,7 +106,7 @@ export default function PractitionerDetailsSections({
       <Section title="Onset" id="onset_of_effect">
         {clinic.onset_of_effect}
       </Section>
-      {true &&
+      {clinic.all_prices &&
               clinic.all_prices
                 .map((value: any, index:number) => (
                 

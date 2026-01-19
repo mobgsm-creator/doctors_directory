@@ -259,7 +259,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
               </div>
               <div>
                 <ul className="flex flex-wrap md:items-center md:justify-center gap-1 text-center" aria-label="Product prices">
-                  {true &&
+                  {practitioner.all_prices &&
                     practitioner.all_prices.map((value: any, index: number) => (
                       <li key={index}>
                         <Badge variant="outline" className="text-[11px] font-normal text-gray-500">

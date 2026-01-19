@@ -889,9 +889,9 @@ const cityList = ["Aberaeron",
             <div>
               <h4 className="font-bold text-white mb-4">Contact</h4>
               <ul className="space-y-2">
-                <li><a href="#" className="hover:text-white transition">Info@healthdirectory.com</a></li>
-                <li><a href="#" className="hover:text-white transition">+44 208 050 3372</a></li>
-                <li><a href="#" className="hover:text-white transition">Contact@consentz.com</a></li>
+                <li><div className="hover:text-white transition">Info@healthdirectory.com</div></li>
+                <li><div className="hover:text-white transition">+44 208 050 3372</div></li>
+                <li><div className="hover:text-white transition">Contact@consentz.com</div></li>
               </ul>
             </div>
            </div>

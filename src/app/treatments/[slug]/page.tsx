@@ -126,7 +126,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
     // Filter by offerged service category
     const categories =
       clinic.Treatments ?? [];
-    console.log
+
     
 
     const serviceMatch = categories.some(
@@ -141,7 +141,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
   }
 
   // Generate structured data for SEO
-  const whatIsPropertyName = `What_is_${treatmentSlug.replace(/\s+/g, '_')}_How_does_it_work`;
+  const whatIsPropertyName = `What_is_${treatmentSlug.replaceAll(/\s+/g, '_')}_How_does_it_work`;
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "MedicalProcedure",
@@ -209,7 +209,7 @@ export async function generateMetadata({ params }: ProfilePageProps): Promise<Me
   const treatmentData = (treatment_content as TreatmentContent)[treatmentSlug];
   
   const treatmentName = treatmentSlug.charAt(0).toUpperCase() + treatmentSlug.slice(1);
-  const whatIsPropertyName = `What_is_${treatmentSlug.replace(/\s+/g, '_')}_How_does_it_work`;
+  const whatIsPropertyName = `What_is_${treatmentSlug.replaceAll(/\s+/g, '_')}_How_does_it_work`;
   const description = treatmentData?.[whatIsPropertyName] 
     ? `${treatmentData[whatIsPropertyName].substring(0, 155)}...`
     : `Find qualified practitioners for ${treatmentName} treatment. Compare providers, read reviews, and book consultations for professional ${treatmentName} services.`;

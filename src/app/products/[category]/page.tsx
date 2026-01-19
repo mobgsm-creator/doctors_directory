@@ -142,7 +142,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
               </div>
               <div>
                 <ul className="flex flex-wrap md:items-center md:justify-center gap-1 text-center" aria-label="Product prices">
-                  {true &&
+                  {practitioner &&
                     practitioner?.all_prices?.map((value: any, index: number) => (
                       <li key={index}>
                         <Badge variant="outline" className="text-[11px] font-normal text-gray-500">
@@ -150,16 +150,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                         </Badge>
                       </li>
                     ))}
-                  {/* {true &&
-              practitioner.reviewAnalysis?.procedures_offered?.categories
-                ?.length! > 2 && (
-                <Badge variant="outline" className="text-xs">
-                  +
-                  {practitioner.reviewAnalysis?.procedures_offered?.categories!
-                    .length! - 2}{" "}
-                  more
-                </Badge>
-              )} */}
+                  
                 </ul>
               </div>
             </CardContent>

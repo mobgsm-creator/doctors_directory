@@ -186,7 +186,7 @@ function ClinicCard({ clinic }: { clinic: Clinic }) {
                 {clinic.Treatments.slice(0, 2).map((modality, index) => (
                   <li key={index}>
                     <Badge variant="outline" className="text-xs">
-                      {modality}
+                      {modality.charAt(0).toUpperCase() + modality.slice(1)}
                     </Badge>
                   </li>
                 ))}
@@ -364,7 +364,7 @@ function PractitionerCard({ practitioner }: { practitioner: Practitioner }) {
                 {practitioner.Treatments.slice(0, 2).map((modality, index) => (
                   <li key={index}>
                     <Badge variant="outline" className="text-xs">
-                      {modality}
+                      {modality.charAt(0).toUpperCase() + modality.slice(1)}
                     </Badge>
                   </li>
                 ))}
