@@ -123,7 +123,7 @@ export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
                     </div>
 
                     <div className="space-y-3">
-                      {!practitioner!["Specialty"]?.toLowerCase().includes("not listed") && (
+                      {!practitioner["Specialty"]?.toLowerCase().includes("not listed") && (
                         <div className="flex items-start gap-2">
                           <span className="text-xs font-medium text-muted-foreground w-16 flex-shrink-0 pt-0.5">
                             Specialty
@@ -132,7 +132,7 @@ export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
                         </div>
                       )}
 
-                      {!practitioner!["Education"]?.toLowerCase().includes("not listed") && (
+                      {!practitioner["Education"]?.toLowerCase().includes("not listed") && (
                         <div className="flex items-start gap-2">
                           <span className="text-xs font-medium text-muted-foreground w-16 flex-shrink-0 pt-0.5">
                             Education
@@ -141,7 +141,7 @@ export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
                         </div>
                       )}
 
-                      {!practitioner!["Professional Affiliations"]?.toLowerCase().includes("not listed") && (
+                      {!practitioner["Professional Affiliations"]?.toLowerCase().includes("not listed") && (
                         <div className="flex items-start gap-2">
                           <span className="text-xs font-medium text-muted-foreground w-16 flex-shrink-0 pt-0.5">
                             Affiliations

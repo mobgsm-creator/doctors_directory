@@ -7,7 +7,7 @@ interface EditPreviewTabsProps {
   previewTab: React.ReactNode
 }
 
-export function EditPreviewTabs({ editTab, previewTab }: EditPreviewTabsProps) {
+export function EditPreviewTabs({ editTab, previewTab }: Readonly<EditPreviewTabsProps>) {
   return (
     <Tabs defaultValue="edit" className="w-full">
       <TabsList>

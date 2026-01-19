@@ -11,7 +11,7 @@ interface ArrayEditorProps {
   placeholder?: string
 }
 
-export function ArrayEditor({ items, onChange, placeholder }: ArrayEditorProps) {
+export function ArrayEditor({ items, onChange, placeholder }: Readonly<ArrayEditorProps>) {
   const [newItem, setNewItem] = useState('')
 
   const addItem = () => {

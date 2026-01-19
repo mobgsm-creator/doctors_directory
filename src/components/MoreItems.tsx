@@ -68,7 +68,7 @@ function ProductCard({ product }: { product: Product }) {
                 <div className="flex items-start md:items-center flex-col pl-4 md:pl-0 w-[calc(100%-80px)] md:w-full">
                   {product.product_name && (
                     <p className="flex items-center gap-1 rounded-full bg-green-100 text-green-800 border border-gray-200 text-[10px] px-3 py-1 mb-2">
-                      {decodeUnicodeEscapes(product?.distributor_cleaned!.trim())}
+                      {decodeUnicodeEscapes(product?.distributor_cleaned.trim())}
                     </p>
                   )}
 
@@ -84,7 +84,7 @@ function ProductCard({ product }: { product: Product }) {
         <CardContent className="pt-0 px-0 md:px-4 space-y-4">
           <div className="flex md:items-center md:justify-center gap-2 text-[11px] text-gray-600">
             <span className="text-pretty text-center">
-              {decodeUnicodeEscapes(product.category!.trim())}
+              {decodeUnicodeEscapes(product.category.trim())}
             </span>
           </div>
           <div>
@@ -217,7 +217,7 @@ function TreatmentCard({ treatment }: { treatment: string }) {
               <div className="flex items-center gap-4 sm:flex-col sm:gap-5">
                 <div className="flex-shrink-0">
                   <img
-                    src={TreatmentMap[treatmentValue!]}
+                    src={TreatmentMap[treatmentValue]}
                     alt={treatmentValue}
                     width={60}
                     height={60}
@@ -377,7 +377,7 @@ function PractitionerCard({ practitioner }: { practitioner: Practitioner }) {
   )
 }
 
-export function MoreItems({ items, maxItems = 15, scrollAmount = 300 }: MoreItemsProps) {
+export function MoreItems({ items, maxItems = 15, scrollAmount = 300 }: Readonly<MoreItemsProps>) {
   const scrollContainerRef = useRef<HTMLDivElement>(null)
   const [canScrollLeft, setCanScrollLeft] = useState(false)
   const [canScrollRight, setCanScrollRight] = useState(false)

@@ -12,7 +12,7 @@ interface DonutSegment {
   isActive: boolean;
 }
 
-export function Stats({ data }: VisxDonutChartProps) {
+export function Stats({ data }: Readonly<VisxDonutChartProps>) {
   const screenwidth = typeof window !== "undefined" ? window.innerWidth : 0;
   const height = screenwidth > 640 ? 200 : 400;
 

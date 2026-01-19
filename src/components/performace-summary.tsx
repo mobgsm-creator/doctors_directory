@@ -4,7 +4,7 @@ interface PerformanceSummaryProps {
   data: BoxPlotDatum[]
 }
 
-export default function PerformanceSummary({ data }: PerformanceSummaryProps) {
+export default function PerformanceSummary({ data }: Readonly<PerformanceSummaryProps>) {
   const skip =["Clinical Expertise",
         "Treatment Results",
         "Environment",
@@ -33,12 +33,12 @@ export default function PerformanceSummary({ data }: PerformanceSummaryProps) {
       const variability = max - min
 
       // Quartile-based classification
-      if (weighted_score > q3) topPerformers.push(label!)
-      else if (weighted_score < q1) lowPerformers.push(label!)
-      else midPerformers.push(label!)
+      if (weighted_score > q3) topPerformers.push(label)
+      else if (weighted_score < q1) lowPerformers.push(label)
+      else midPerformers.push(label)
 
       // Variability check
-      if (variability > 0.4 * median) inconsistent.push(label!)
+      if (variability > 0.4 * median) inconsistent.push(label)
     })
 
     const line1 = topPerformers.length

@@ -13,7 +13,7 @@ interface ProfileHeaderProps {
   clinic: Product;
 }
 
-export function ProfileHeader({ clinic }: ProfileHeaderProps) {
+export function ProfileHeader({ clinic }: Readonly<ProfileHeaderProps>) {
   const practitionerName = decodeUnicodeEscapes(clinic.product_name
     .split("-")
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))

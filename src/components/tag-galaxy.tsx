@@ -24,7 +24,7 @@ type Props = {
   height?: number
 }
 
-export function TagGalaxy({ data, className, width = 800, height = 600 }: Props) {
+export function TagGalaxy({ data, className, width = 800, height = 600 }: Readonly<Props>) {
   const svgRef = React.useRef<SVGSVGElement | null>(null)
   const [nodes, setNodes] = React.useState<NodeDatum[]>([])
   const [hover, setHover] = React.useState<string | null>(null)

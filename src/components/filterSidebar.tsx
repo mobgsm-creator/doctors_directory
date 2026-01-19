@@ -22,7 +22,7 @@ export function AdvancedFilterSidebar({
   onFiltersChange,
   isOpen,
   onToggle,
-}: AdvancedFiltersProps) {
+}: Readonly<AdvancedFiltersProps>) {
   const [localFilters, setLocalFilters] = useState<SearchFilters>(filters);
   const [isFilterActive, setIsFilterActive] = useState(false);
 

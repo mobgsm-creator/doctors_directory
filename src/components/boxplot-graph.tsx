@@ -217,7 +217,7 @@ type TooltipData = {
   item: ItemMeta
 }
 
-export default function VisxBoxPlot({ data, height = 520, margin }: VisxBoxPlotProps) {
+export default function VisxBoxPlot({ data, height = 520, margin }: Readonly<VisxBoxPlotProps>) {
   const { tooltipData, tooltipLeft, tooltipTop, tooltipOpen, showTooltip, hideTooltip } = useTooltip<TooltipData>()
 
   return (

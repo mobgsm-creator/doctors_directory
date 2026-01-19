@@ -24,7 +24,7 @@ export function SearchResultsHeader({
   onViewModeChange,
   onToggleFilters,
   filters,
-}: SearchResultsHeaderProps) {
+}: Readonly<SearchResultsHeaderProps>) {
   const startIndex = (currentPage - 1) * itemsPerPage + 1;
   const endIndex = Math.min(currentPage * itemsPerPage, totalResults);
 

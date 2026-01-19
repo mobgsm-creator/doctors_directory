@@ -4,10 +4,10 @@ import { TreatmentGrid } from "@/components/treatment-grid";
 import { searchTreatments } from "./actions";
 import { TreatmentMap } from "@/lib/data";
 
-
+ 
 export default function HomePage({ 
   searchParams 
-}: { 
+}: Readonly<{ 
   searchParams: { 
     query?: string;
     page?: string;
@@ -17,7 +17,7 @@ export default function HomePage({
     priceRange?: string;
     sort?: string;
   } 
-}) {
+}>) {
   const ITEMS_PER_PAGE = 80;
   const currentPage = Number.parseInt(searchParams.page || '1', 10);
 

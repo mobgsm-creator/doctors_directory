@@ -24,7 +24,7 @@ function isProduct(obj: unknown): obj is Product {
 }
 
 
-export function PractitionerListItem({ practitioner }: PractitionerListItemProps) {
+export function PractitionerListItem({ practitioner }: Readonly<PractitionerListItemProps>) {
   const getInitials = (name: string) => {
     return name
       .split(" ")

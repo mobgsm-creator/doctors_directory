@@ -46,7 +46,7 @@ interface ProfilePageProps {
   };
 }
 
-export default async function ProfilePage({ params }: ProfilePageProps) {
+export default async function ProfilePage({ params }: Readonly<ProfilePageProps>) {
   const filePath = path.join(process.cwd(), "public", "products_processed_new.json");
   const fileContents = fs.readFileSync(filePath, "utf-8");
   const clinics: Product[] = JSON.parse(fileContents);

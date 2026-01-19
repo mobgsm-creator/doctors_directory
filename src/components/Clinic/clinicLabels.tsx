@@ -1,6 +1,6 @@
 import { Clinic } from "@/lib/types";
 
-export default function ClinicLabels({ clinic }: { clinic: Clinic }) {
+export default function ClinicLabels({ clinic }: Readonly<{ readonly clinic: Clinic }>) {
   const labels = clinic.isCQC?.[0] || clinic.isHIW?.[0] || clinic.isHIS?.[0] || clinic.isJCCP?.[0] || clinic.isRQIA?.[0] || clinic.isSaveFace
       
   return (

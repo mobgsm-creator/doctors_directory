@@ -29,8 +29,8 @@ function isProduct(obj: unknown): obj is Product {
 export function PractitionerCard({ practitioner }: PractitionerCardProps) {
   let practitionerName = ""
   if(isPractitioner(practitioner)){
-  practitionerName = (practitioner as Practitioner).practitioner_name
-    ? (practitioner as Practitioner).practitioner_name
+  practitionerName = practitioner.practitioner_name
+    ? practitioner.practitioner_name
         .split("-")
         .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
         .join(" ")
@@ -53,11 +53,11 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
           <Link
               href={
                 "practitioner_image_link" in practitioner &&
-                (practitioner as Practitioner).practitioner_name
+                practitioner.practitioner_name
                   ? `/profile/${
-                      (practitioner as Practitioner).practitioner_name
+                      practitioner.practitioner_name
                     }`
-                  : `/clinics/${(practitioner as Clinic).City}/clinic/${
+                  : `/clinics/${practitioner.City}/clinic/${
                       practitioner.slug
                     }`
               }
@@ -102,13 +102,12 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                     )}
 
                     {"practitioner_image_link" in practitioner &&
-                      (practitioner as Practitioner).practitioner_name && (
+                      (practitioner.practitioner_name && (
                         <p className="text-muted-foreground mb-2 text-pretty">
-                          {(
-                            practitioner as Practitioner
-                          ).practitioner_title.split("/")[0].split("(")[0].trim()}
+                          {
+                            practitioner.practitioner_title.split("/")[0].split("(")[0].trim()}
                         </p>
-                      )}
+                      ))}
 
                     {!("practitioner_image_link" in practitioner) &&
                       practitioner.category && (
@@ -163,11 +162,11 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
             <Link
               href={
                 "practitioner_image_link" in practitioner &&
-                (practitioner as Practitioner).practitioner_name
+                practitioner.practitioner_name
                   ? `/profile/${
-                      (practitioner as Practitioner).practitioner_name
+                      practitioner.practitioner_name
                     }`
-                  : `/clinics/${(practitioner as Clinic).City}/clinic/${
+                  : `/clinics/${practitioner.City}/clinic/${
                       practitioner.slug
                     }`
               }
@@ -238,7 +237,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                     <div className="flex items-start md:items-center flex-col pl-4 md:pl-0 w-[calc(100%-80px)] md:w-full">
                       {practitioner.product_name && (
                         <p className="flex items-center gap-1 rounded-full bg-green-100 text-green-800 border border-gray-200 text-[10px] px-3 py-1 mb-2">
-                          {decodeUnicodeEscapes(practitioner?.distributor_cleaned!.trim())}
+                          {decodeUnicodeEscapes(practitioner?.distributor_cleaned.trim())}
                         </p>
                       )}
 
@@ -254,7 +253,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
             <CardContent className="pt-0 px-0 md:px-4 space-y-4">
               <div className="flex md:items-center md:justify-center gap-2 text-[11px] text-gray-600">
                 <span className="text-pretty text-center">
-                  {decodeUnicodeEscapes(practitioner.category!.trim())}
+                  {decodeUnicodeEscapes(practitioner.category.trim())}
                 </span>
               </div>
               <div>

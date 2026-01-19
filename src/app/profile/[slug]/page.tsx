@@ -48,7 +48,7 @@ interface ProfilePageProps {
   };
 }
 
-export default async function ProfilePage({ params }: ProfilePageProps) {
+export default async function ProfilePage({ params }: Readonly<ProfilePageProps>) {
   const filePath = path.join(process.cwd(), "public", "derms_processed_new.json");
   const fileContents = fs.readFileSync(filePath, "utf-8");
   const clinics: Practitioner[] = JSON.parse(fileContents);
@@ -180,7 +180,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
               </Section>
               <div className="w-full aspect-video">
                 <GoogleMapsEmbed
-                  url={clinic.url!}
+                  url={clinic.url}
                   className="w-full h-full [&&_iframe]:w-full [&&_iframe]:h-full"
                 />
               </div>

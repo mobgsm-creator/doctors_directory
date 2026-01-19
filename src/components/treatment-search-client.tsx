@@ -7,7 +7,7 @@ interface SearchFormProps {
   searchAction: (formData: FormData) => void;
 }
 
-export function SearchForm({ searchAction }: SearchFormProps) {
+export function SearchForm({ searchAction }: Readonly<SearchFormProps>) {
   return (
     <div className="flex  px-3 md:px-0 py-5 items-center flex-col align-center justify-center gap-5">
       <form action={searchAction} className="flex flex-row max-w-3xl w-full">

@@ -15,7 +15,7 @@ interface ProductFiltersProps {
   onClear: () => void;
 }
 
-export function ProductFilters({ filters, onChange, onClear }: ProductFiltersProps) {
+export function ProductFilters({ filters, onChange, onClear }: Readonly<ProductFiltersProps>) {
   return (
     <>
       <h3 className="font-semibold text-xl text-black mb-6">Filters</h3>

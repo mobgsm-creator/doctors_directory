@@ -7,9 +7,9 @@ import Link from "next/link";
 import { fixPythonArrayString, parseList } from "@/lib/utils";
 export default function PractitionerDetailsSections({
   clinic,
-}: {
+}: Readonly<{
   clinic: Practitioner;
-}) {
+}>) {
   
 
   const Section = ({ id, title, children }: any) => (

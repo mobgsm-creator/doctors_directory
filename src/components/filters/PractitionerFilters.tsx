@@ -15,7 +15,7 @@ interface PractitionerFiltersProps {
   onClear: () => void;
 }
 
-export function PractitionerFilters({ filters, onChange, onClear }: PractitionerFiltersProps) {
+export function PractitionerFilters({ filters, onChange, onClear }: Readonly<PractitionerFiltersProps>) {
   return (
     <>
       <h3 className="font-semibold text-xl text-black mb-6">Filters</h3>

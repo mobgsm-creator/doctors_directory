@@ -11,7 +11,7 @@ interface RichTextEditorProps {
   placeholder?: string
 }
 
-export function RichTextEditor({ value, onChange, placeholder }: RichTextEditorProps) {
+export function RichTextEditor({ value, onChange, placeholder }: Readonly<RichTextEditorProps>) {
   return (
     <div className="grid grid-cols-2 gap-4">
        <div>

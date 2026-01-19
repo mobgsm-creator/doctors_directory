@@ -7,7 +7,7 @@ interface GoogleMapsEmbedProps {
   className?: string
 }
 
-export function GoogleMapsEmbed({ url, width = "100%", height = "450", className = "" }: GoogleMapsEmbedProps) {
+export function GoogleMapsEmbed({ url, width = "100%", height = "450", className = "" }: Readonly<GoogleMapsEmbedProps>) {
 
   const getEmbedUrl = (mapsUrl: string): string => {
     try {

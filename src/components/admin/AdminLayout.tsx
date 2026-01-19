@@ -7,7 +7,7 @@ interface AdminLayoutProps {
   title: string
 }
 
-export function AdminLayout({ children, title }: AdminLayoutProps) {
+export function AdminLayout({ children, title }: Readonly<AdminLayoutProps>) {
   return (
     <div className="min-h-screen bg-gray-50">
       <header className="bg-white border-b border-gray-200">

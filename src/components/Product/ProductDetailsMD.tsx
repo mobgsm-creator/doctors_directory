@@ -6,9 +6,9 @@ import { decodeUnicodeEscapes } from "@/lib/utils";
 import { fixPythonArrayString, parseList } from "@/lib/utils";
 export default function PractitionerDetailsSections({
   clinic,
-}: {
-  clinic: Product;
-}) {
+}: Readonly<{
+  readonly clinic: Product;
+}>) {
   
   
 

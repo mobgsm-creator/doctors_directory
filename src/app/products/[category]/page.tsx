@@ -46,7 +46,7 @@ interface ProfilePageProps {
   };
 }
 
-export default async function ProfilePage({ params }: ProfilePageProps) {
+export default async function ProfilePage({ params }: Readonly<ProfilePageProps>) {
   const filePath = path.join(process.cwd(), "public", "products_processed_new.json");
   const fileContents = fs.readFileSync(filePath, "utf-8");
   const clinics: Product[] = JSON.parse(fileContents);
@@ -121,7 +121,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                     <div className="flex items-start md:items-center flex-col pl-4 md:pl-0 w-[calc(100%-80px)] md:w-full">
                       {practitioner.product_name && (
                         <p className="flex items-center gap-1 rounded-full bg-green-100 text-green-800 border border-gray-200 text-[10px] px-3 py-1 mb-2">
-                          {decodeUnicodeEscapes(practitioner?.distributor_cleaned!.trim())}
+                          {decodeUnicodeEscapes(practitioner?.distributor_cleaned.trim())}
                         </p>
                       )}
 
@@ -137,7 +137,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
             <CardContent className="pt-0 px-0 md:px-4 space-y-4">
               <div className="flex md:items-center md:justify-center gap-2 text-[11px] text-gray-600">
                 <span className="text-pretty text-center">
-                  {decodeUnicodeEscapes(practitioner.category!.trim())}
+                  {decodeUnicodeEscapes(practitioner.category.trim())}
                 </span>
               </div>
               <div>

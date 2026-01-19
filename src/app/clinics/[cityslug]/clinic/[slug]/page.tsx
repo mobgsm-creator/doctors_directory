@@ -59,7 +59,7 @@ const flattenObject = (obj: any, parentKey = "", result: any = {}) => {
   return result;
 };
 
-export default async function ProfilePage({ params }: ProfilePageProps) {
+export default async function ProfilePage({ params }: Readonly<ProfilePageProps>) {
   const filePath = path.join(process.cwd(), "public", "clinics_processed_new.json");
   const fileContents = fs.readFileSync(filePath, "utf-8");
   const clinics: Clinic[] = JSON.parse(fileContents);
@@ -243,7 +243,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
 
               </div> }
               <GoogleMapsEmbed
-          url={clinic.url!}
+          url={clinic.url}
           
           className="w-full h-80"
         /></div>
@@ -253,7 +253,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
         <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Clinics in ${cityslug}`}</h3>
         <MoreItems items={cityClinics} />
         <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Specialities in ${cityslug}`}</h3>
-        <MoreItems items={uniqueTreatments!} />
+        <MoreItems items={uniqueTreatments} />
            
        
 

@@ -43,7 +43,7 @@ export const boxplotData: BoxPlotDatum[] = [
     key: "Clinical",
     label: "Clinical Expertise",
     stats: {
-      min: 0.0,
+      min: 0,
       q1: 10.184247754514217,
       median: 28.635015711188316,
       q3: 59.82399929314852,
@@ -61,7 +61,7 @@ export const boxplotData: BoxPlotDatum[] = [
     key: "Communication",
     label: "Communication",
     stats: {
-      min: 0.0,
+      min: 0,
       q1: 9.218587279319763,
       median: 23.909608349204063,
       q3: 48.75052556395531,
@@ -79,7 +79,7 @@ export const boxplotData: BoxPlotDatum[] = [
     key: "Treatment",
     label: "Treatment Results",
     stats: {
-      min: 0.0,
+      min: 0,
       q1: 17.404928617179394,
       median: 43.37971247732639,
       q3: 75.9858563169837,
@@ -97,7 +97,7 @@ export const boxplotData: BoxPlotDatum[] = [
     key: "Bedside",
     label: "Bedside Manner",
     stats: {
-      min: 0.0,
+      min: 0,
       q1: 15.70406012237072,
       median: 39.926849976181984,
       q3: 74.87227752804756,
@@ -115,7 +115,7 @@ export const boxplotData: BoxPlotDatum[] = [
     key: "Trust",
     label: "Trust & Safety",
     stats: {
-      min: 0.0,
+      min: 0,
       q1: 11.094762831926346,
       median: 31.926841288805008,
       q3: 64.03341848403215,
@@ -133,7 +133,7 @@ export const boxplotData: BoxPlotDatum[] = [
     key: "Environment",
     label: "Environment",
     stats: {
-      min: 0.0,
+      min: 0,
       q1: 12.228099592030048,
       median: 32.84936100244522,
       q3: 50.172665156424046,
@@ -151,7 +151,7 @@ export const boxplotData: BoxPlotDatum[] = [
     key: "Personalization",
     label: "Personalization",
     stats: {
-      min: 0.0,
+      min: 0,
       q1: 13.11387911438942,
       median: 31.981745064258575,
       q3: 61.87361553311348,
@@ -169,7 +169,7 @@ export const boxplotData: BoxPlotDatum[] = [
     key: "PostCare",
     label: "Post-Care",
     stats: {
-      min: 0.0,
+      min: 0,
       q1: 15.826747864484787,
       median: 40.348722860217094,
       q3: 91.1517734080553,
@@ -187,7 +187,7 @@ export const boxplotData: BoxPlotDatum[] = [
     key: "Professionalism",
     label: "Professionalism",
     stats: {
-      min: 0.0,
+      min: 0,
       q1: 8.84803507477045,
       median: 23.283715471625328,
       q3: 44.61786046624184,
@@ -205,7 +205,7 @@ export const boxplotData: BoxPlotDatum[] = [
     key: "Staff",
     label: "Staff Support",
     stats: {
-      min: 0.0,
+      min: 0,
       q1: 9.439108446240425,
       median: 25.60977190732956,
       q3: 46.29322845488787,
@@ -223,16 +223,16 @@ export const boxplotData: BoxPlotDatum[] = [
     key: "Value",
     label: "Value & Transparency",
     stats: {
-      min: 0.0,
-      q1: 0.0,
+      min: 0,
+      q1: 0,
       median: 1.60221166908741,
       q3: 4.535106718540192,
       max: 35.74694335460663,
       mean: 3.00953234185973,
     },
     item: {
-      weighted_score: 0.0,
-      confidence: 0.0,
+      weighted_score: 0,
+      confidence: 0,
       num_mentions: 0,
       top_sentence: [],
     },
@@ -241,7 +241,7 @@ export const boxplotData: BoxPlotDatum[] = [
     key: "Pain",
     label: "Pain Management & Comfort",
     stats: {
-      min: 0.0,
+      min: 0,
       q1: 15.595480725169182,
       median: 41.59490205347538,
       q3: 72.56548549979925,
@@ -259,7 +259,7 @@ export const boxplotData: BoxPlotDatum[] = [
     key: "Anxiety",
     label: "Anxiety & Nervousness Management",
     stats: {
-      min: 0.0,
+      min: 0,
       q1: 13.221703432500362,
       median: 35.63545674085617,
       q3: 63.73773954808712,
@@ -277,7 +277,7 @@ export const boxplotData: BoxPlotDatum[] = [
     key: "Booking",
     label: "Booking & Accessibility",
     stats: {
-      min: 0.0,
+      min: 0,
       q1: 3.325166143476963,
       median: 9.564984440803528,
       q3: 19.93670206516981,
@@ -295,7 +295,7 @@ export const boxplotData: BoxPlotDatum[] = [
     key: "Honesty",
     label: "Honesty & Realistic Expectations",
     stats: {
-      min: 0.0,
+      min: 0,
       q1: 3.8958152011036873,
       median: 13.050354719161987,
       q3: 25.834566242992878,
@@ -313,7 +313,7 @@ export const boxplotData: BoxPlotDatum[] = [
     key: "Longterm",
     label: "Long-term Relationship & Loyalty",
     stats: {
-      min: 0.0,
+      min: 0,
       q1: 15.221665054559708,
       median: 40.93294680118561,
       q3: 77.87621986120939,
@@ -335,7 +335,7 @@ export const boxplotDatas: BoxPlotDatum[] = [
     key: "Clinical",
     label: "Clinical Expertise",
     stats: {
-      min: 0.0,
+      min: 0,
       q1: 10.184247754514217,
       median: 28.635015711188316,
       q3: 59.82399929314852,
@@ -354,7 +354,7 @@ export const boxplotDatas: BoxPlotDatum[] = [
     key: "Communication",
     label: "Communication",
     stats: {
-      min: 0.0,
+      min: 0,
       q1: 9.218587279319763,
       median: 23.909608349204063,
       q3: 48.75052556395531,
@@ -372,7 +372,7 @@ export const boxplotDatas: BoxPlotDatum[] = [
     key: "Treatment",
     label: "Treatment Results",
     stats: {
-      min: 0.0,
+      min: 0,
       q1: 17.404928617179394,
       median: 43.37971247732639,
       q3: 75.9858563169837,
@@ -390,7 +390,7 @@ export const boxplotDatas: BoxPlotDatum[] = [
     key: "Bedside",
     label: "Bedside Manner",
     stats: {
-      min: 0.0,
+      min: 0,
       q1: 15.70406012237072,
       median: 39.926849976181984,
       q3: 74.87227752804756,
@@ -408,7 +408,7 @@ export const boxplotDatas: BoxPlotDatum[] = [
     key: "Trust",
     label: "Trust & Safety",
     stats: {
-      min: 0.0,
+      min: 0,
       q1: 11.094762831926346,
       median: 31.926841288805008,
       q3: 64.03341848403215,
@@ -426,7 +426,7 @@ export const boxplotDatas: BoxPlotDatum[] = [
     key: "Environment",
     label: "Environment",
     stats: {
-      min: 0.0,
+      min: 0,
       q1: 12.228099592030048,
       median: 32.84936100244522,
       q3: 50.172665156424046,
@@ -444,7 +444,7 @@ export const boxplotDatas: BoxPlotDatum[] = [
     key: "Personalization",
     label: "Personalization",
     stats: {
-      min: 0.0,
+      min: 0,
       q1: 13.11387911438942,
       median: 31.981745064258575,
       q3: 61.87361553311348,
@@ -462,7 +462,7 @@ export const boxplotDatas: BoxPlotDatum[] = [
     key: "PostCare",
     label: "Post-Care",
     stats: {
-      min: 0.0,
+      min: 0,
       q1: 15.826747864484787,
       median: 40.348722860217094,
       q3: 91.1517734080553,
@@ -480,7 +480,7 @@ export const boxplotDatas: BoxPlotDatum[] = [
     key: "Professionalism",
     label: "Professionalism",
     stats: {
-      min: 0.0,
+      min: 0,
       q1: 8.84803507477045,
       median: 23.283715471625328,
       q3: 44.61786046624184,
@@ -498,7 +498,7 @@ export const boxplotDatas: BoxPlotDatum[] = [
     key: "Staff",
     label: "Staff Support",
     stats: {
-      min: 0.0,
+      min: 0,
       q1: 9.439108446240425,
       median: 25.60977190732956,
       q3: 46.29322845488787,
@@ -516,8 +516,8 @@ export const boxplotDatas: BoxPlotDatum[] = [
     key: "Value",
     label: "Value & Transparency",
     stats: {
-      min: 0.0,
-      q1: 0.0,
+      min: 0,
+      q1: 0,
       median: 1.60221166908741,
       q3: 4.535106718540192,
       max: 35.74694335460663,
@@ -534,7 +534,7 @@ export const boxplotDatas: BoxPlotDatum[] = [
     key: "Pain",
     label: "Pain Management & Comfort",
     stats: {
-      min: 0.0,
+      min: 0,
       q1: 15.595480725169182,
       median: 41.59490205347538,
       q3: 72.56548549979925,
@@ -552,7 +552,7 @@ export const boxplotDatas: BoxPlotDatum[] = [
     key: "Anxiety",
     label: "Anxiety & Nervousness Management",
     stats: {
-      min: 0.0,
+      min: 0,
       q1: 13.221703432500362,
       median: 35.63545674085617,
       q3: 63.73773954808712,
@@ -570,7 +570,7 @@ export const boxplotDatas: BoxPlotDatum[] = [
     key: "Booking",
     label: "Booking & Accessibility",
     stats: {
-      min: 0.0,
+      min: 0,
       q1: 3.325166143476963,
       median: 9.564984440803528,
       q3: 19.93670206516981,
@@ -588,7 +588,7 @@ export const boxplotDatas: BoxPlotDatum[] = [
     key: "Honesty",
     label: "Honesty & Realistic Expectations",
     stats: {
-      min: 0.0,
+      min: 0,
       q1: 3.8958152011036873,
       median: 13.050354719161987,
       q3: 25.834566242992878,
@@ -606,7 +606,7 @@ export const boxplotDatas: BoxPlotDatum[] = [
     key: "Longterm",
     label: "Long-term Relationship & Loyalty",
     stats: {
-      min: 0.0,
+      min: 0,
       q1: 15.221665054559708,
       median: 40.93294680118561,
       q3: 77.87621986120939,
@@ -634,7 +634,7 @@ export const boxplotDatas_clinic: BoxPlotDatum[] = [
     key: "Clinical",
     label: "Clinical Expertise",
     stats: {
-      min: 0.0,
+      min: 0,
       q1: 4.343109428882599,
       median: 17.93204963207245,
       q3: 44.27363693714142,
@@ -653,7 +653,7 @@ export const boxplotDatas_clinic: BoxPlotDatum[] = [
     key: "Communication",
     label: "Communication",
     stats: {
-      min: 0.0,
+      min: 0,
       q1: 9.218587279319763,
       median: 23.909608349204063,
       q3: 48.75052556395531,
@@ -671,7 +671,7 @@ export const boxplotDatas_clinic: BoxPlotDatum[] = [
     key: "Treatment",
     label: "Treatment Results",
     stats: {
-      min: 0.0,
+      min: 0,
       q1: 7.847011610865593,
       median: 30.68303018808365,
       q3: 83.74123051762581,
@@ -689,7 +689,7 @@ export const boxplotDatas_clinic: BoxPlotDatum[] = [
     key: "Bedside",
     label: "Bedside Manner",
     stats: {
-      min: 0.0,
+      min: 0,
       q1: 15.70406012237072,
       median: 39.926849976181984,
       q3: 74.87227752804756,
@@ -707,7 +707,7 @@ export const boxplotDatas_clinic: BoxPlotDatum[] = [
     key: "Trust",
     label: "Trust & Safety",
     stats: {
-      min: 0.0,
+      min: 0,
       q1: 11.094762831926346,
       median: 31.926841288805008,
       q3: 64.03341848403215,
@@ -725,7 +725,7 @@ export const boxplotDatas_clinic: BoxPlotDatum[] = [
     key: "Environment",
     label: "Environment",
     stats: {
-      min: 0.0,
+      min: 0,
       q1: 7.066807150840759,
       median: 26.941265910863876,
       q3: 70.54585747420788,
@@ -743,7 +743,7 @@ export const boxplotDatas_clinic: BoxPlotDatum[] = [
     key: "Personalization",
     label: "Personalization",
     stats: {
-      min: 0.0,
+      min: 0,
       q1: 13.11387911438942,
       median: 31.981745064258575,
       q3: 61.87361553311348,
@@ -761,7 +761,7 @@ export const boxplotDatas_clinic: BoxPlotDatum[] = [
     key: "PostCare",
     label: "Post-Care",
     stats: {
-      min: 0.0,
+      min: 0,
       q1: 15.826747864484787,
       median: 40.348722860217094,
       q3: 91.1517734080553,
@@ -779,7 +779,7 @@ export const boxplotDatas_clinic: BoxPlotDatum[] = [
     key: "Professionalism",
     label: "Professionalism",
     stats: {
-      min: 0.0,
+      min: 0,
       q1: 8.84803507477045,
       median: 23.283715471625328,
       q3: 44.61786046624184,
@@ -797,7 +797,7 @@ export const boxplotDatas_clinic: BoxPlotDatum[] = [
     key: "Staff",
     label: "Staff Support",
     stats: {
-      min: 0.0,
+      min: 0,
       q1: 5.289367660880089,
       median: 21.78466185927391,
       q3: 58.919208496809006,
@@ -815,8 +815,8 @@ export const boxplotDatas_clinic: BoxPlotDatum[] = [
     key: "Value",
     label: "Value & Transparency",
     stats: {
-      min: 0.0,
-      q1: 0.0,
+      min: 0,
+      q1: 0,
       median: 1.60221166908741,
       q3: 4.535106718540192,
       max: 35.74694335460663,
@@ -833,7 +833,7 @@ export const boxplotDatas_clinic: BoxPlotDatum[] = [
     key: "Pain",
     label: "Pain Management & Comfort",
     stats: {
-      min: 0.0,
+      min: 0,
       q1: 15.595480725169182,
       median: 41.59490205347538,
       q3: 72.56548549979925,
@@ -851,7 +851,7 @@ export const boxplotDatas_clinic: BoxPlotDatum[] = [
     key: "Anxiety",
     label: "Anxiety & Nervousness Management",
     stats: {
-      min: 0.0,
+      min: 0,
       q1: 13.221703432500362,
       median: 35.63545674085617,
       q3: 63.73773954808712,
@@ -869,7 +869,7 @@ export const boxplotDatas_clinic: BoxPlotDatum[] = [
     key: "Booking",
     label: "Booking & Accessibility",
     stats: {
-      min: 0.0,
+      min: 0,
       q1: 3.325166143476963,
       median: 9.564984440803528,
       q3: 19.93670206516981,
@@ -887,7 +887,7 @@ export const boxplotDatas_clinic: BoxPlotDatum[] = [
     key: "Honesty",
     label: "Honesty & Realistic Expectations",
     stats: {
-      min: 0.0,
+      min: 0,
       q1: 3.8958152011036873,
       median: 13.050354719161987,
       q3: 25.834566242992878,
@@ -905,7 +905,7 @@ export const boxplotDatas_clinic: BoxPlotDatum[] = [
     key: "Longterm",
     label: "Long-term Relationship & Loyalty",
     stats: {
-      min: 0.0,
+      min: 0,
       q1: 15.221665054559708,
       median: 40.93294680118561,
       q3: 77.87621986120939,

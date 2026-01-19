@@ -20,7 +20,7 @@ interface DataTableProps<T> {
   onAdd?: () => void
 }
 
-export function DataTable<T>({ data, columns, onEdit, onDelete, onAdd }: DataTableProps<T>) {
+export function DataTable<T>({ data, columns, onEdit, onDelete, onAdd }: Readonly<DataTableProps<T>>) {
   console.log("here")
   const [searchTerm, setSearchTerm] = useState('')
 

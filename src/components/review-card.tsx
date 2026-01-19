@@ -9,7 +9,7 @@ interface ReviewCardProps {
   review: Review;
 }
 
-export function ReviewCard({ review }: ReviewCardProps) {
+export function ReviewCard({ review }: Readonly<ReviewCardProps>) {
   const getInitials = (name: string) => {
     return name
       .split(" ")

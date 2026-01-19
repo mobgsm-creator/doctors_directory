@@ -11,7 +11,7 @@ type Clinic = {
   website?: string;
 };
 
-export default function SocialMediaIcons({ clinic }: { clinic: Clinic }) {
+export default function SocialMediaIcons({ clinic }: Readonly<{ readonly clinic: Clinic }>) {
   return (
     <nav aria-label="Social media links" className="flex flex-row flex-wrap gap-3 items-center justify-center mt-2">
       {clinic.facebook && (

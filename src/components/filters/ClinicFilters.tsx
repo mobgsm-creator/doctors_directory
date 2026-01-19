@@ -15,7 +15,7 @@ interface ClinicFiltersProps {
   onClear: () => void;
 }
 
-export function ClinicFilters({ filters, onChange, onClear }: ClinicFiltersProps) {
+export function ClinicFilters({ filters, onChange, onClear }: Readonly<ClinicFiltersProps>) {
   return (
     <>
       <h3 className="font-semibold text-xl text-black mb-6">Filters</h3>

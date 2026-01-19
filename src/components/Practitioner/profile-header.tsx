@@ -15,7 +15,7 @@ interface ProfileHeaderProps {
   clinic: Practitioner;
 }
 
-export function ProfileHeader({ clinic }: ProfileHeaderProps) {
+export function ProfileHeader({ clinic }: Readonly<ProfileHeaderProps>) {
   const practitionerName = clinic.practitioner_name
     .split("-")
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))

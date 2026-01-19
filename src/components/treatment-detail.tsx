@@ -17,7 +17,7 @@ interface TreatmentDetailProps {
   treatmentData?: any;
 }
 
-export function TreatmentDetail({ treatment, treatmentData }: TreatmentDetailProps) {
+export function TreatmentDetail({ treatment, treatmentData }: Readonly<TreatmentDetailProps>) {
   const findProperty = (baseProperty: string) => {
     if (!treatmentData) return null;
     

@@ -19,7 +19,7 @@ interface AdvancedFiltersProps {
   onToggle: () => void
 }
 
-export function AdvancedFilters({ filters, onFiltersChange, isOpen, onToggle }: AdvancedFiltersProps) {
+export function AdvancedFilters({ filters, onFiltersChange, isOpen, onToggle }: Readonly<AdvancedFiltersProps>) {
   const [localFilters, setLocalFilters] = useState<SearchFilters>(filters)
   
   const handleApplyFilters = () => {

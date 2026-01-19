@@ -8,7 +8,7 @@ interface PractitionerInsightsProps {
   practitioner: Practitioner
 }
 
-export function PractitionerInsights({ practitioner }: PractitionerInsightsProps) {
+export function PractitionerInsights({ practitioner }: Readonly<PractitionerInsightsProps>) {
   const reviewAnalysis: ReviewAnalysis = practitioner.reviewAnalysis!
   
 

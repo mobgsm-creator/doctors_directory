@@ -21,7 +21,7 @@ interface TreatmentGridProps {
   getPageUrl: (page: number) => string;
 }
 
-export function TreatmentGrid({ treatments, searchQuery, currentPage, totalPages, itemsPerPage, getPageUrl }: TreatmentGridProps) {
+export function TreatmentGrid({ treatments, searchQuery, currentPage, totalPages, itemsPerPage, getPageUrl }: Readonly<TreatmentGridProps>) {
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const paginatedTreatments = treatments.slice(startIndex, endIndex);
