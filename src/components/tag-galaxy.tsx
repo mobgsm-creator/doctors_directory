@@ -87,7 +87,7 @@ export function TagGalaxy({ data, className, width = 800, height = 600 }: Props)
 
   // Keep palette within 4 hues + neutrals
   function fillFor(group: string) {
-    const idx = Array.from(group).reduce((a, c) => a + c.charCodeAt(0), 0) % 4
+    const idx = Array.from(group).reduce((a, c) => a + (c.codePointAt(0) ?? 0), 0) % 4
     return ["var(--color-chart-1)", "var(--color-chart-2)", "var(--color-chart-3)", "var(--color-chart-5)"][idx]
   }
 

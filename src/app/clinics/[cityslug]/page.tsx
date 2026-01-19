@@ -45,7 +45,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                             src={
                               clinic.image.split("?w")[0] || "/placeholder.svg"
                             }
-                            alt="Profile photo"
+                            alt="Profile"
                             width={240}
                             height={240}
                             className="object-cover rounded-full w-60 h-60"

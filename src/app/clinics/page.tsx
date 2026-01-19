@@ -35,7 +35,7 @@ export default function HomePage() {
                             <CardContent className='flex items-center justify-center pt-0'>
                             <img
                         src={cityMap[city].split("?w")[0] || "/placeholder.svg"}
-                        alt="Profile photo"
+                        alt="Profile"
                         width={240}
                         height={240}
                         className="flex items-center justify-center object-cover rounded-bl rounded-ee rounded-tr rounded-tl w-60 h-60"

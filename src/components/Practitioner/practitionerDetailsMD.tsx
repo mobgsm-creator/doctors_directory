@@ -13,7 +13,7 @@ export default function PractitionerDetailsSections({
     if (!val) return [];
     try {
       if (typeof val === "string" && val.startsWith("[") && val.endsWith("]")) {
-        return JSON.parse(val.replace(/'/g, '"'));
+        return JSON.parse(val.replaceAll("'", '"'));
       }
       if (Array.isArray(val)) return val;
       return [val];

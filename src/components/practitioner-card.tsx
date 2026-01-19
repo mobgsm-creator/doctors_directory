@@ -81,7 +81,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                         practitioner.image.replace("&w=256&q=75", "") ||
                         "/placeholder.svg"
                       }
-                      alt="Profile photo"
+                      alt="Profile"
                       className="object-cover rounded-full min-w-full min-h-full"
                       onError={(e) => {
                         e.currentTarget.onerror = null; // prevent infinite loop
@@ -230,7 +230,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                           practitioner.image_url?.replaceAll('"', "") ||
                           "/placeholder.svg"
                         }
-                        alt="Product photo"
+                        alt="Product"
                         className="object-cover rounded-lg min-w-full min-h-full"
                       />
                     </div>
@@ -299,7 +299,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                           TreatmentMap[practitioner] ||
                           "/placeholder.svg"
                         }
-                        alt="Treatment photo"
+                        alt="Treatment"
                         className="object-cover rounded-lg min-w-full min-h-full"
                       />
                     </div>

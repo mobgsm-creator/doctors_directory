@@ -113,7 +113,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                           practitioner.image_url?.replaceAll('"', "") ||
                           "/placeholder.svg"
                         }
-                        alt="Product photo"
+                        alt="Product"
                         className="object-cover rounded-lg min-w-full min-h-full"
                       />
                     </div>

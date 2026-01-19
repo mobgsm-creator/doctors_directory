@@ -24,7 +24,7 @@ export function ReviewCard({ review }: ReviewCardProps) {
 
   const starCount = getStarCount(review.rating);
 
-  const reviewId = `${review.reviewer_name}-${review.date}-${review.rating}`.replace(/\s+/g, '-');
+  const reviewId = `${review.reviewer_name}-${review.date}-${review.rating}`.replaceAll(' ', '-');
 
   return (
     <Card className="border shadow-none rounded-lg mb-4" aria-labelledby={`review-title-${reviewId}`}>

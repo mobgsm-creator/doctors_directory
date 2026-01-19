@@ -22,7 +22,7 @@ export function TreatmentDetail({ treatment, treatmentData }: TreatmentDetailPro
     if (!treatmentData) return null;
     
     const treatmentName = treatment.name;
-    const treatmentNameUnderscore = treatmentName.replace(/\s+/g, '_');
+    const treatmentNameUnderscore = treatmentName.replaceAll(/\s+/g, '_');
     
     const possibleKeys = [];
     

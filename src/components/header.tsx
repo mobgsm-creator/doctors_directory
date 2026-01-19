@@ -23,18 +23,18 @@ export default function Header() {
 
         <div className="nav-drop hidden md:flex gap-8 items-center w-full justify-between">
           <nav className="flex gap-8 items-center mx-auto">
-            <a href="#" className="font-medium hover:text-black">
+            <button type="button" className="font-medium hover:text-black">
               HOME
-            </a>
-            <a href="#" className="font-medium hover:text-black">
+            </button>
+            <button type="button" className="font-medium hover:text-black">
               FEATURES
-            </a>
-            <a href="#" className="font-medium hover:text-black">
+            </button>
+            <button type="button" className="font-medium hover:text-black">
               BLOG
-            </a>
-            <a href="#" className="font-medium hover:text-black">
+            </button>
+            <button type="button" className="font-medium hover:text-black">
               FAQS
-            </a>
+            </button>
           </nav>
           <Button className="font-bold border-2 py-2 px-5 w-auto h-auto border-black bg-transparent text-black hover:bg-black hover:text-white">
             BOOK DEMO
@@ -85,18 +85,18 @@ export default function Header() {
       {menuOpen && (
         <div className="md:hidden px-6 py-4">
           <nav className="flex flex-col gap-4">
-            <a href="#" className="font-bold hover:text-black">
+            <button type="button" className="text-left font-bold hover:text-black">
               HOME
-            </a>
-            <a href="#" className="font-bold hover:text-black">
+            </button>
+            <button type="button" className="text-left font-bold hover:text-black">
               FEATURES
-            </a>
-            <a href="#" className="font-bold hover:text-black">
+            </button>
+            <button type="button" className="text-left font-bold hover:text-black">
               BLOG
-            </a>
-            <a href="#" className="font-bold hover:text-black">
+            </button>
+            <button type="button" className="text-left font-bold hover:text-black">
               FAQS
-            </a>
+            </button>
           </nav>
           <Button className="mt-4 font-bold border-2 py-3 px-6 w-auto h-auto border-black bg-transparent text-black hover:bg-black hover:text-white">
             BOOK DEMO

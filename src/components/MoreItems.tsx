@@ -60,7 +60,7 @@ function ProductCard({ product }: { product: Product }) {
                       product.image_url?.replaceAll('"', "") ||
                       "/placeholder.svg"
                     }
-                    alt="Product photo"
+                    alt="Product"
                     className="object-cover rounded-lg min-w-full min-h-full"
                   />
                 </div>
@@ -121,7 +121,7 @@ function ClinicCard({ clinic }: { clinic: Clinic }) {
                 <div className="w-[80px] h-[80px] md:w-[150px] md:h-[150px] flex items-center justify-center overflow-hidden rounded-full bg-gray-300 md:mb-3 mr-0">
                   <img
                     src={clinic.image.split("?w")[0] || "/placeholder.svg"}
-                    alt="Profile photo"
+                    alt="Profile"
                     width={240}
                     height={240}
                     className="object-cover rounded-full w-full h-full"
@@ -218,7 +218,7 @@ function TreatmentCard({ treatment }: { treatment: string }) {
                 <div className="flex-shrink-0">
                   <img
                     src={TreatmentMap[treatmentValue!]}
-                    alt={`${treatmentValue} treatment procedure`}
+                    alt={treatmentValue}
                     width={60}
                     height={60}
                     className="object-cover rounded-full w-30 h-30 sm:w-60 sm:h-60"
@@ -284,7 +284,7 @@ function PractitionerCard({ practitioner }: { practitioner: Practitioner }) {
                 <div className="w-[80px] h-[80px] md:w-[150px] md:h-[150px] flex items-center justify-center overflow-hidden rounded-full bg-gray-300 md:mb-3 mr-0">
                   <img
                     src={practitioner.image || "/placeholder.svg"}
-                    alt="Profile photo"
+                    alt="Profile"
                     className="object-cover rounded-full min-w-full min-h-full"
                   />
                 </div>

@@ -785,12 +785,12 @@ const cityList = ["Aberaeron",
             <div>
               <h3 className="font-bold text-lg text-white mb-6">Consentz vs</h3>
               <ul className="space-y-3 text-sm">
-                <li><a href="#" className="hover:text-white transition">Zenoti</a></li>
-                <li><a href="#" className="hover:text-white transition">AestheticsPro</a></li>
-                <li><a href="#" className="hover:text-white transition">Pabau</a></li>
-                <li><a href="#" className="hover:text-white transition">Aesthetic Record</a></li>
-                <li><a href="#" className="hover:text-white transition">ClinicsEnse</a></li>
-                <li><a href="#" className="hover:text-white transition">Nextech</a></li>
+                <li><button className="text-left w-full hover:text-white transition" type="button">Zenoti</button></li>
+                <li><button className="text-left w-full hover:text-white transition" type="button">AestheticsPro</button></li>
+                <li><button className="text-left w-full hover:text-white transition" type="button">Pabau</button></li>
+                <li><button className="text-left w-full hover:text-white transition" type="button">Aesthetic Record</button></li>
+                <li><button className="text-left w-full hover:text-white transition" type="button">ClinicsEnse</button></li>
+                <li><button className="text-left w-full hover:text-white transition" type="button">Nextech</button></li>
               </ul>
             </div>
 
@@ -798,12 +798,12 @@ const cityList = ["Aberaeron",
             <div>
               <h3 className="font-bold text-lg text-white mb-6">Features</h3>
               <ul className="space-y-3 text-sm">
-                <li><a href="#" className="hover:text-white transition">Clinic Management</a></li>
-                <li><a href="#" className="hover:text-white transition">Patient Engagement</a></li>
-                <li><a href="#" className="hover:text-white transition">Photos and Records</a></li>
-                <li><a href="#" className="hover:text-white transition">Personalise</a></li>
-                <li><a href="#" className="hover:text-white transition">Analytics</a></li>
-                <li><a href="#" className="hover:text-white transition">Stock and Billing</a></li>
+                <li><button className="text-left w-full hover:text-white transition" type="button">Clinic Management</button></li>
+                <li><button className="text-left w-full hover:text-white transition" type="button">Patient Engagement</button></li>
+                <li><button className="text-left w-full hover:text-white transition" type="button">Photos and Records</button></li>
+                <li><button className="text-left w-full hover:text-white transition" type="button">Personalise</button></li>
+                <li><button className="text-left w-full hover:text-white transition" type="button">Analytics</button></li>
+                <li><button className="text-left w-full hover:text-white transition" type="button">Stock and Billing</button></li>
               </ul>
             </div>
 
@@ -811,13 +811,13 @@ const cityList = ["Aberaeron",
             <div>
               <h3 className="font-bold text-lg text-white mb-6">Marketing</h3>
               <ul className="space-y-3 text-sm">
-                <li><a href="#" className="hover:text-white transition">FAQs</a></li>
-                <li><a href="#" className="hover:text-white transition">Blog</a></li>
-                <li><a href="#" className="hover:text-white transition">Articles</a></li>
-                <li><a href="#" className="hover:text-white transition">Support</a></li>
-                <li><a href="#" className="hover:text-white transition">Terms & Conditions</a></li>
-                <li><a href="#" className="hover:text-white transition">Partners</a></li>
-                <li><a href="#" className="hover:text-white transition">Privacy Policy</a></li>
+                <li><button className="text-left w-full hover:text-white transition" type="button">FAQs</button></li>
+                <li><button className="text-left w-full hover:text-white transition" type="button">Blog</button></li>
+                <li><button className="text-left w-full hover:text-white transition" type="button">Articles</button></li>
+                <li><button className="text-left w-full hover:text-white transition" type="button">Support</button></li>
+                <li><button className="text-left w-full hover:text-white transition" type="button">Terms & Conditions</button></li>
+                <li><button className="text-left w-full hover:text-white transition" type="button">Partners</button></li>
+                <li><button className="text-left w-full hover:text-white transition" type="button">Privacy Policy</button></li>
               </ul>
             </div>
 
@@ -868,10 +868,20 @@ const cityList = ["Aberaeron",
             <div>
               <h4 className="font-bold text-white mb-4">For Practitioners</h4>
               <ul className="space-y-2">
-                <li><a href="#" className="hover:text-white transition">Join Directory</a></li>
-                <li><a href="#" className="hover:text-white transition">Update Profile</a></li>
-                <li><a href="#" className="hover:text-white transition">Verification Process</a></li>
-                <li><a href="#" className="hover:text-white transition">Support</a></li>
+                <li><button className="text-left w-full hover:text-white transition" type="button">Join Directory</button></li>
+                <li><button className="text-left w-full hover:text-white transition" type="button">Update Profile</button></li>
+                <li><button className="text-left w-full hover:text-white transition" type="button">Verification Process</button></li>
+                <li><button className="text-left w-full hover:text-white transition" type="button">Support</button></li>
+              </ul>
+            </div>
+
+            {/* Column 4: Contact */}
+            <div>
+              <h4 className="font-bold text-white mb-4">Contact</h4>
+              <ul className="space-y-2">
+                <li><button className="text-left w-full hover:text-white transition" type="button">Info@healthdirectory.com</button></li>
+                <li><button className="text-left w-full hover:text-white transition" type="button">+44 208 050 3372</button></li>
+                <li><button className="text-left w-full hover:text-white transition" type="button">Contact@consentz.com</button></li>
               </ul>
             </div>
 

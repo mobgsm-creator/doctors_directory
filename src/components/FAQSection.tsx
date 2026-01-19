@@ -9,18 +9,18 @@ export type FAQInput = Record<
 
 function formatQuestion(key: string): string {
   return key
-    .replace(/_/g, " ")
-    .replace(/\bvs\b/gi, "vs")
-    .replace(/\bUK\b/g, "UK")
-    .replace(/\bFDA\b/g, "FDA")
-    .replace(/\bNICE\b/g, "NICE")
-    .replace(/\bMHRA\b/g, "MHRA")
-    .replace(/\s+/g, " ")
+    .replaceAll('_', " ")
+    .replaceAll(/\bvs\b/gi, "vs")
+    .replaceAll(/\bUK\b/g, "UK")
+    .replaceAll(/\bFDA\b/g, "FDA")
+    .replaceAll(/\bNICE\b/g, "NICE")
+    .replaceAll(/\bMHRA\b/g, "MHRA")
+    .replaceAll(/\s+/g, " ")
     .trim();
 }
 
 function cleanText(text: string): string {
-  return text.replace(/:contentReference\[.*?\]\{.*?\}/g, "").trim();
+  return text.replaceAll(/:contentReference\[.*?\]\{.*?\}/g, "").trim();
 }
 
 type FAQProps = {

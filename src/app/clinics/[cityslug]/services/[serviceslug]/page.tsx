@@ -60,9 +60,9 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                         <div className="w-[80px] h-[80px] md:w-[150px] md:h-[150px] flex items-center justify-center overflow-hidden rounded-full bg-gray-300 md:mb-3 mr-0">
                           <img
                             src={
-                              clinic.image.split("?w")[0] || "/placeholder.svg"
-                            }
-                            alt="Profile photo"
+                                clinic.image.split("?w")[0] || "/placeholder.svg"
+                              }
+                            alt="Profile"
                             width={240}
                             height={240}
                             className="object-cover rounded-full w-60 h-60"
