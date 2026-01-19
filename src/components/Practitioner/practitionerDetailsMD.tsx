@@ -5,6 +5,7 @@ import { Practitioner } from "@/lib/types";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import { fixPythonArrayString, parseList } from "@/lib/utils";
+import { Section } from "@/components/ui/section";
 export default function PractitionerDetailsSections({
   clinic,
 }: Readonly<{
@@ -12,12 +13,7 @@ export default function PractitionerDetailsSections({
 }>) {
   
 
-  const Section = ({ id, title, children }: any) => (
-    <section id={id} className="mb-10">
-      <h2 className="text-xl font-semibold mb-4">{title}</h2>
-      <div className="text-base leading-7">{children}</div>
-    </section>
-  );
+
 
   return (
     <div>

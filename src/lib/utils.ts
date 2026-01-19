@@ -160,3 +160,16 @@ export const fixPythonArrayString = (str: string) => {
       return null;
     }
   };
+
+export const flattenObject = (obj: any, parentKey = "", result: any = {}) => {
+  for (const [key, value] of Object.entries(obj)) {
+    const newKey = parentKey ? `${key}` : key;
+
+    if (value && typeof value === "object" && !Array.isArray(value)) {
+      flattenObject(value, newKey, result);
+    } else {
+      result[newKey] = value;
+    }
+  }
+  return result;
+};

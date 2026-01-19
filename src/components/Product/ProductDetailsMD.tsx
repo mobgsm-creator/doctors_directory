@@ -2,8 +2,8 @@
 // Matching the design shown in the reference image (clean sections, headings, lists, tables)
 
 import { Product } from "@/lib/types";
-import { decodeUnicodeEscapes } from "@/lib/utils";
-import { fixPythonArrayString, parseList } from "@/lib/utils";
+import { fixPythonArrayString, parseList, decodeUnicodeEscapes} from "@/lib/utils";
+import { Section } from "@/components/ui/section";
 export default function PractitionerDetailsSections({
   clinic,
 }: Readonly<{
@@ -29,12 +29,7 @@ export default function PractitionerDetailsSections({
 }
 
 
-  const Section = ({ id, title, children }: any) => (
-    <section id={id} className="mb-10">
-      <h2 className="text-xl font-semibold mb-4">{title}</h2>
-      <div className="text-base leading-7">{children}</div>
-    </section>
-  );
+
 
   return (
     <div>

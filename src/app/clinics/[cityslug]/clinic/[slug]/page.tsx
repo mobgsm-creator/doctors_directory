@@ -22,12 +22,8 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 import { MoreItems } from "@/components/MoreItems";
-const Section = ({ id, title, children }: any) => (
-  <section id={id} className="mt-4 mb-4">
-    <h2 className="text-xl font-semibold text-foreground mb-2">{title}</h2>
-    <div className="text-base leading-7">{children}</div>
-  </section>
-);
+import { flattenObject } from "@/lib/utils";
+import { Section } from "@/components/ui/section";
 
 function mergeBoxplotDataFromDict(
   base: BoxPlotDatum[],
@@ -46,18 +42,7 @@ interface ProfilePageProps {
     slug: string;
   };
 }
-const flattenObject = (obj: any, parentKey = "", result: any = {}) => {
-  for (const [key, value] of Object.entries(obj)) {
-    const newKey = parentKey ? `${key}` : key;
 
-    if (value && typeof value === "object" && !Array.isArray(value)) {
-      flattenObject(value, newKey, result);
-    } else {
-      result[newKey] = value;
-    }
-  }
-  return result;
-};
 
 export default async function ProfilePage({ params }: Readonly<ProfilePageProps>) {
   const filePath = path.join(process.cwd(), "public", "clinics_processed_new.json");

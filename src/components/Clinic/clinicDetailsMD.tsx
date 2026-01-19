@@ -4,7 +4,7 @@
 import { Clinic } from "@/lib/types";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
-
+import { Section } from "../ui/section";
 interface PractitionerDetails {
   "Full Name": string;
   Title?: string;
@@ -31,12 +31,6 @@ export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
     }
   };
 
-  const Section = ({ id, title, children }: any) => (
-    <section id={id} className="mb-6">
-      <h2 className="text-xl font-semibold text-foreground mb-4">{title}</h2>
-      <div className="text-base leading-7">{children}</div>
-    </section>
-  );
 
   return (
     <div className="">
