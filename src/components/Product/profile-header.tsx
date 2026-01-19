@@ -132,7 +132,7 @@ export function ProfileHeader({ clinic }: ProfileHeaderProps) {
          </div>
 
          <div className="block md:hidden">
-           <h2 className="sr-only">Certifications</h2>
+         
            <ul className="flex flex-wrap gap-2" aria-label="Certifications">
                 {clinic.certifications_and_compliance?.map((spec: string) => (
                   <li key={spec}>

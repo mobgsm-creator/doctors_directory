@@ -24,6 +24,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
+import { MoreItems } from "@/components/MoreItems";
 const Section = ({ id, title, children }: any) => (
   <section id={id} className="mt-4 mb-4">
     <h2 className="text-xl font-semibold text-foreground mb-2">{title}</h2>
@@ -80,21 +81,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
   const hours =
     hoursObj["Typical_hours_listed_in_directories"] ?? clinic?.hours;
   const flatHours = flattenObject(hours);
-  const getEnhancedTreatment = (treatment: any) => {
-    const mockData: Record<string, { satisfaction: number; averageCost: string; practitionerCount: number }> = {
-      "Acne": { satisfaction: 82, averageCost: "$200-$800+", practitionerCount: 101 },
-      "Botox": { satisfaction: 89, averageCost: "$150-$350", practitionerCount: 245 },
-      "Fillers": { satisfaction: 85, averageCost: "$300-$600", practitionerCount: 178 }
-    };
-    
-    const enhancement = mockData[treatment.name] || { 
-      satisfaction: Math.floor(Math.random() * 20) + 75, 
-      averageCost: `$${Math.floor(Math.random() * 500) + 200}-$${Math.floor(Math.random() * 500) + 600}+`,
-      practitionerCount: Math.floor(Math.random() * 100) + 50 
-    };
-    
-    return { ...treatment, ...enhancement };
-  };
+  
 
 
   const boxplotData = mergeBoxplotDataFromDict(
@@ -267,170 +254,12 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
       </div>
         </div>
         <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Clinics in ${cityslug}`}</h3>
-        <div className="flex overflow-x-auto gap-4 pb-4 snap-x snap-mandatory animate-fade-in no-scrollbar">
-          {cityClinics.map((clinic, index) => (
-            <div key={clinic.slug} style={{ animationDelay: `${index * 50}ms` }}>
-              <Card className="gap-0 relative px-4 md:px-0 shadow-sm transition-all duration-300 border border-[#E5E1DE] hover:shadow-2xl hover:-translate-y-1 rounded-lg cursor-pointer bg-white w-100 ">
-                <CardHeader className="pb-4 px-2">
-                  <div className="flex items-start gap-4">
-                    <div className="text-center flex-1 min-w-0 items-center flex flex-col">
-                      <div className="flex w-full flex-row items-start border-b border-[#C4C4C4] md:border-0 md:flex-col md:items-center">
-                        <div className="w-[80px] h-[80px] md:w-[150px] md:h-[150px] flex items-center justify-center overflow-hidden rounded-full bg-gray-300 md:mb-3 mr-0">
-                          <img
-                            src={
-                              clinic.image.split("?w")[0] || "/placeholder.svg"
-                            }
-                            alt="Profile photo"
-                            width={240}
-                            height={240}
-                            className="object-cover rounded-full w-60 h-60"
-                          />
-                        </div>
-                        <div className="flex items-start md:items-center flex-col pl-4 md:pl-0 w-[calc(100%-80px)] md:w-full">
-                        <h3 className="mb-2 md:mb-4 flex text-left md:text-center md:align-items-center md:justify-center font-semibold text-md md:text-lg transition-colors text-balance">
-                            {clinic.slug
-                              .split("-")
-                              .map(
-                                (word) =>
-                                  word.charAt(0).toUpperCase() + word.slice(1)
-                              )
-                              .join(" ")}
-                          </h3>
-
-                          <div className="flex justify-center flex-wrap items-center gap-2">
-                            <span className="inline-block px-3 py-1 rounded-full bg-green-100 text-green-800 border border-green-300 text-xs">
-                              {clinic.category}
-                            </span>
-                          </div>
-
-                          <p className="pt-2 mb-2 text-pretty">Specialties</p>
-  
-                        </div>
-                      </div>
-                      <div className="flex flex-row gap-2 pt-3 items-center text-sm">
-                            <div className="flex items-center gap-1">
-                              <div className="flex items-center">
-                                {Array.from({ length: 5 }, (_, i) => (
-                                  <Star
-                                    key={i}
-                                    className={`h-4 w-4 ${
-                                      i < clinic.rating
-                                        ? "fill-black text-black"
-                                        : "text-muted-foreground/30"
-                                    }`}
-                                  />
-                                ))}
-                              </div>
-                            </div>
-                            <span className="border-l border-black pl-2 underline">
-                              ({clinic.reviewCount} reviews)
-                            </span>
-                          </div>
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent className="pt-0 px-0 md:px-4 space-y-4">
-                  <div className="flex items-start gap-2 text-sm">
-                    <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0" />
-                    <span className="text-pretty">{clinic.gmapsAddress}</span>
-                  </div>
-
-                  <Link
-                    href={`/clinics/${clinic.City}/clinic/${clinic.slug}`}
-                    className="mt-4 mb-0 flex border rounded-lg font-weight px-4 py-2 bg-black align-items-center justify-center text-white hover:bg-white hover:text-black"
-                  >
-                    Contact
-                  </Link>
-
-                  <div>
-                    <div className="flex flex-wrap gap-1 pt-4">
-                      {clinic.Treatments?.slice(0, 3).map((modality, index) => (
-                        
-                          <Badge
-                            key={index}
-                            variant="outline"
-                            className="text-xs text-wrap"
-                          >
-                            {modality.replaceAll('"', "").charAt(0).toUpperCase() + modality.slice(1)}
-                          </Badge>
-                        ))}
-                      {clinic.reviewAnalysis?.procedures_offered.categories
-                        .length! > 3 && (
-                        <Badge variant="outline" className="text-xs">
-                          +
-                          {clinic.reviewAnalysis?.procedures_offered.categories
-                            .length! - 3}{" "}
-                          more
-                        </Badge>
-                      )}
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          ))}
-        </div>
+        <MoreItems items={cityClinics} />
         <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Specialities in ${cityslug}`}</h3>
-           <div className="flex overflow-x-auto gap-4 pb-4 snap-x snap-mandatory animate-fade-in no-scrollbar">
-          {uniqueTreatments.map((treatment, index) => {
-            const enhancedTreatment = getEnhancedTreatment(treatment);
-            const treatmentValue = treatment?.split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ").replace("Hifu", "HIFU").replace("Coolsculpting", "CoolSculpting");
-            return (
-            <div key={treatment}>
+        <MoreItems items={uniqueTreatments!} />
+           
+       
 
-                <Link
-                  href={`/treatments/${treatmentValue}`}
-                  title={`Learn about ${treatmentValue} treatments and find qualified specialists`}
-                >
-                  <Card className="group bg-white hover:shadow-lg transition-all duration-300 cursor-pointer border border-[#BDBDBD] md:border-0 rounded-lg sm:bg-transparent sm:border-0 sm:hover:border-accent/50 sm:flex sm:flex-col sm:gap-5 w-100">
-                    <CardContent className="p-4 sm:p-0 sm:flex sm:items-center sm:justify-center sm:pt-0">
-                      <div className="flex items-center gap-4 sm:flex-col sm:gap-5">
-                        <div className="flex-shrink-0">
-                          <img
-                            src={TreatmentMap[treatmentValue!]}
-                            alt={`${treatmentValue} treatment procedure`}
-                            width={60}
-                            height={60}
-                            className="object-cover rounded-full w-30 h-30 sm:w-60 sm:h-60"
-                          />
-                        </div>
-                        <div className="flex-1 min-w-0 sm:text-center">
-                          <h3 className="font-semibold text-lg text-foreground group-hover:text-primary/70 transition-colors mb-3 sm:mb-0 sm:text-sm">
-                            {treatmentValue}
-                          </h3>
-
-                          <div className="space-y-2 sm:hidden">
-                            <div className="flex items-center gap-2 text-sm text-gray-600">
-                              <ThumbsUp className="h-4 w-4 text-black" />
-                              <span className="font-medium">
-                                {enhancedTreatment.satisfaction}%
-                              </span>
-                              <span>Satisfaction</span>
-                            </div>
-                            <div className="flex items-center gap-2 text-sm text-gray-600">
-                              <DollarSign className="h-4 w-4 text-black" />
-                              <span className="font-medium">
-                                {enhancedTreatment.averageCost}
-                              </span>
-                              <span>Average Cost</span>
-                            </div>
-                            <div className="flex items-center gap-2 text-sm text-gray-600">
-                              <Users className="h-4 w-4 text-black" />
-                              <span className="font-medium">
-                                {enhancedTreatment.practitionerCount}
-                              </span>
-                              <span>Practitioners</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </Link>
-
-            </div>
-          )})}
-        </div>
               
       </div>
     </main>
