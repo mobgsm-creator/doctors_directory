@@ -1,18 +1,8 @@
-import {
-  Star,
-  MapPin,
-  Phone,
-  Mail,
-  Calendar,
-  Award,
-  ChevronRight,
-} from "lucide-react";
+
 import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import type { Product } from "@/lib/types";
 import { decodeUnicodeEscapes } from "@/lib/utils";
-import { cn } from "@/lib/utils";
 
 type BadgeRule = {
   keywords: string[];

@@ -2,8 +2,6 @@
 // Matching the design shown in the reference image (clean sections, headings, lists, tables)
 
 import { Product } from "@/lib/types";
-import { Badge } from "@/components/ui/badge";
-import PractitionerTabs from "./ProductTabs";
 import { decodeUnicodeEscapes } from "@/lib/utils";
 
 export default function PractitionerDetailsSections({

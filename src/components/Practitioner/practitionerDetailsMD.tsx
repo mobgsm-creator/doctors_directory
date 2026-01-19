@@ -3,7 +3,6 @@
 
 import { Practitioner } from "@/lib/types";
 import { Badge } from "@/components/ui/badge";
-import PractitionerTabs from "./PractitionerTabs";
 import Link from "next/link";
 export default function PractitionerDetailsSections({
   clinic,

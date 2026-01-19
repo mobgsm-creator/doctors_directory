@@ -4,7 +4,7 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import type { Review } from "@/lib/types";
 
-import Image from "next/image";
+
 interface ReviewCardProps {
   review: Review;
 }

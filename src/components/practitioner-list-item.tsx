@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Star, MapPin, Phone, Calendar, ExternalLink } from "lucide-react"
+import { Star, MapPin} from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"

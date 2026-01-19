@@ -3,9 +3,6 @@ import {
   MapPin,
   Phone,
   Mail,
-  Calendar,
-  Award,
-  ChevronRight,
 } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -13,7 +10,6 @@ import { Badge } from "@/components/ui/badge";
 import type { Practitioner } from "@/lib/types";
 import SocialMediaIcons from "../Clinic/clinicSocialMedia";
 import ClinicLabels from "./clinicLabels";
-import { cn } from "@/lib/utils";
 
 interface ProfileHeaderProps {
   clinic: Practitioner;

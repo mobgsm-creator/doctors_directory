@@ -1,6 +1,5 @@
 import Link from "next/link"
-import { Search, Mail, Phone, MapPin } from "lucide-react"
-import { Separator } from "@/components/ui/separator"
+import { Mail, Phone } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { modalities } from "@/lib/data";
 const cityList = ["Aberaeron",

@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { Card, CardHeader, CardContent } from "@/components/ui/card"
-import Image from "next/image"
+
 const cityMap: Record<string, string> = {'Aberaeron': 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/17/a3/dc/ef/20190515-115045-largejpg.jpg?w=500&h=500&s=1', 
     'Aberdare': 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/25/cf/fb/1a/capti_r.jpg?w=500&h=500&s=1', 
     'Aberdeen': 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/15/4d/43/c7/aberdeen.jpg?w=1200&h=700&s=1',

@@ -1,15 +1,8 @@
 import { notFound } from "next/navigation";
-import Link from "next/link";
-import { Card, CardHeader, CardContent } from "@/components/ui/card";
-import Image from "next/image";
-import type { Clinic, Practitioner } from "@/lib/types";
+import type { Clinic } from "@/lib/types";
 import type { Metadata } from "next";
-import { Badge } from "@/components/ui/badge";
-import { Star, MapPin } from "lucide-react";
 import fs from "fs";
-import { safeParse } from "@/lib/utils";
 import path from "path";
-import { FAQ } from "@/components/FAQSection";
 import treatment_content from "../../../../public/treatments.json";
 import { TreatmentDetail } from "@/components/treatment-detail";
 import Script from "next/script";

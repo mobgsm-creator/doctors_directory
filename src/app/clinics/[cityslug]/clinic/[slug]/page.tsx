@@ -1,8 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardHeader, CardContent } from "@/components/ui/card";
-import { Star, ArrowLeft, MessageSquare, MapPin, ThumbsUp, DollarSign, Users } from "lucide-react";
+import { Star, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ProfileHeader } from "@/components/Clinic/profile-header";
 import { ReviewCard } from "@/components/review-card";
@@ -15,7 +13,6 @@ import { Clinic } from "@/lib/types";
 import fs from "fs";
 import path from "path";
 import ClinicTabs from "@/components/Clinic/clinicTabs";
-import { TreatmentMap } from "@/lib/data";
 import {
   Breadcrumb,
   BreadcrumbItem,

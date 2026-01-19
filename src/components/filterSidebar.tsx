@@ -1,22 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ChevronDown, X, Star } from "lucide-react";
+import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Label } from "@/components/ui/label";
-import { Slider } from "@/components/ui/slider";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible";
-import { Badge } from "@/components/ui/badge";
 import type { SearchFilters } from "@/lib/types";
-import { search_categories, modalities } from "@/lib/data";
-import { Separator } from "./ui/separator";
 import { FilterForm } from "./FilterForm";
 import { ClinicFilters } from "./filters/ClinicFilters";
 import { PractitionerFilters } from "./filters/PractitionerFilters";

@@ -4,8 +4,6 @@
 import { Clinic } from "@/lib/types";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Car } from "lucide-react";
 
 interface PractitionerDetails {
   "Full Name": string;

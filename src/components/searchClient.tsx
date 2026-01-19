@@ -3,12 +3,10 @@ import { useState, useEffect, useTransition } from "react";
 import { searchPractitioners } from "@/app/actions/search";
 import { SearchBar } from "@/components/search-bar";
 import { PractitionerCard } from "@/components/practitioner-card";
-import { PractitionerListItem } from "@/components/practitioner-list-item";
 import { SearchResultsHeader } from "@/components/search-results-header";
 import { AdvancedFilterSidebar } from "@/components/filterSidebar";
 import {
   PractitionerCardSkeleton,
-  PractitionerListSkeleton,
 } from "@/components/loading-skeleton";
 import type { SearchFilters } from "@/lib/types";
 import { Button } from "@/components/ui/button";

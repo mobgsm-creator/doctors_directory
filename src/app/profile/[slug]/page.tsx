@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, MessageSquare, Star } from "lucide-react";
+import { ArrowLeft, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ProfileHeader } from "@/components/Practitioner/profile-header";
 import { ReviewCard } from "@/components/review-card";
@@ -9,15 +9,7 @@ import { boxplotDatas_clinic } from "@/lib/data";
 import { BoxPlotDatum, ItemMeta } from "@/lib/types";
 import { Stats } from "@/components/visx-donut";
 import ClinicDetailsMarkdown from "@/components/Practitioner/practitionerDetailsMD";
-import { Clinic, Practitioner } from "@/lib/types";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
+import { Practitioner } from "@/lib/types";
 import fs from "fs";
 import path from "path";
 import PractitionerTabs from "@/components/Practitioner/PractitionerTabs";

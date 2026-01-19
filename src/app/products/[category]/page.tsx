@@ -1,17 +1,10 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, MessageSquare, Star } from "lucide-react";
+import { ArrowLeft} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ProfileHeader } from "@/components/Product/profile-header";
-import { ReviewCard } from "@/components/review-card"
 import { decodeUnicodeEscapes } from "@/lib/utils";
-import { GoogleMapsEmbed } from "@/components/gmaps-embed";
-import { boxplotDatas_clinic } from "@/lib/data";
-import { BoxPlotDatum, ItemMeta } from "@/lib/types";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
-import { Stats } from "@/components/visx-donut";
-import ClinicDetailsMarkdown from "@/components/Product/ProductDetailsMD";
 import { Product } from "@/lib/types";
 import fs from "fs";
 import {

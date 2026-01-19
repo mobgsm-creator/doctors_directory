@@ -1,7 +1,4 @@
 "use client";
-import { Group } from "@visx/group";
-import { Pie } from "@visx/shape";
-import { ParentSize } from "@visx/responsive";
 import type { BoxPlotDatum } from "@/lib/data";
 import { useMemo } from "react";
 export interface VisxDonutChartProps {

@@ -2,7 +2,6 @@
 
 import { Badge } from "@/components/ui/badge";
 import type { SearchFilters } from "@/lib/types";
-import { PractitionerCardSkeleton } from "./loading-skeleton";
 interface SearchResultsHeaderProps {
   totalResults: number;
   currentPage: number;

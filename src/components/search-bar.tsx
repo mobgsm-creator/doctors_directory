@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { Search, Locate, Loader2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { search_categories, modalities, locations } from "@/lib/data";
+import { search_categories, locations } from "@/lib/data";
 import { useRouter } from "next/navigation";
 import { useSearchStore } from "@/app/stores/datastore";
 import { usePathname } from "next/navigation";

@@ -1,5 +1,4 @@
 import { Clinic } from "@/lib/types";
-import { Hospital } from "lucide-react";
 export default function ClinicLabels({ clinic }: { clinic: Clinic }) {
   const labels = clinic.isCQC?.[0] || clinic.isHIW?.[0] || clinic.isHIS?.[0] || clinic.isJCCP?.[0] || clinic.isRQIA?.[0] || clinic.isSaveFace
    
