@@ -8,7 +8,7 @@ import { Separator } from "@/components/ui/separator";
 import { Star, MapPin } from "lucide-react";
 import fs from "fs";
 import path from "path";
-import { TreatmentMap } from "@/app/treatments/page";
+import { TreatmentMap } from "@/lib/data";
 
 interface ProfilePageProps {
   params: {

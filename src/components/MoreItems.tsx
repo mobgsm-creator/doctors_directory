@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import type { Product, Clinic, Practitioner } from '@/lib/types'
 import { decodeUnicodeEscapes, cn } from '@/lib/utils'
-import { TreatmentMap } from "@/app/treatments/page"
+import { TreatmentMap } from "@/lib/data"
 import { ThumbsUp, DollarSign, Users } from "lucide-react";
 interface MoreItemsProps {
   items: Array<Product | Clinic | Practitioner|string|undefined>

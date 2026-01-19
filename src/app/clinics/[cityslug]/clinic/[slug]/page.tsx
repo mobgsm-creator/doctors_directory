@@ -15,7 +15,7 @@ import { Clinic } from "@/lib/types";
 import fs from "fs";
 import path from "path";
 import ClinicTabs from "@/components/Clinic/clinicTabs";
-import { TreatmentMap } from "@/app/treatments/page"
+import { TreatmentMap } from "@/lib/data";
 import {
   Breadcrumb,
   BreadcrumbItem,
