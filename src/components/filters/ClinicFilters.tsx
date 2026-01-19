@@ -20,24 +20,26 @@ export function ClinicFilters({ filters, onChange, onClear }: ClinicFiltersProps
     <>
       <h3 className="font-semibold text-xl text-black mb-6">Filters</h3>
 
-      <div className="mb-6">
-        <h3 className="sr-only">Search</h3>
-        <input
-          type="text"
-          value={filters.query || ""}
-          onChange={(e) => onChange("query", e.target.value)}
-          placeholder="Search clinics..."
-          className="w-full px-3 py-2 text-base border rounded-md bg-white"
-        />
-      </div>
+       <div className="mb-6">
+         <label htmlFor="clinics-search" className="sr-only">Search</label>
+         <input
+           id="clinics-search"
+           type="text"
+           value={filters.query || ""}
+           onChange={(e) => onChange("query", e.target.value)}
+           placeholder="Search clinics..."
+           className="w-full px-3 py-2 text-base border rounded-md bg-white"
+         />
+       </div>
 
       <div className="mb-6">
-        <label className="block text-base font-medium text-black mb-2">
+        <label htmlFor="clinics-services" className="block text-base font-medium text-black mb-2">
           Services Offered:
         </label>
-        <Select
-          value={filters.servicesOffered}
-          onValueChange={(v) => onChange("servicesOffered", v)}
+         <Select
+    
+           value={filters.servicesOffered}
+           onValueChange={(v) => onChange("servicesOffered", v)}
         >
           <SelectTrigger className="w-full h-12 px-4 py-3 bg-white border border-gray-300 rounded-md">
             <SelectValue placeholder="All"/>
@@ -53,13 +55,14 @@ export function ClinicFilters({ filters, onChange, onClear }: ClinicFiltersProps
         </Select>
       </div>
 
-      <div className="mb-6">
-        <label className="block text-base font-medium text-black mb-2">
-          Distance:
-        </label>
-        <Select
-          value={filters.distance}
-          onValueChange={(v) => onChange("distance", v)}
+       <div className="mb-6">
+         <label htmlFor="clinics-distance" className="block text-base font-medium text-black mb-2">
+           Distance:
+         </label>
+         <Select
+ 
+           value={filters.distance}
+           onValueChange={(v) => onChange("distance", v)}
         >
           <SelectTrigger className="w-full h-12 px-4 py-3 bg-white border border-gray-300 rounded-md">
             <SelectValue placeholder="All" />
@@ -75,13 +78,14 @@ export function ClinicFilters({ filters, onChange, onClear }: ClinicFiltersProps
         </Select>
       </div>
 
-      <div className="mb-6">
-        <label className="block text-base font-medium text-black mb-2">
-          Minimum Rating:
-        </label>
-        <Select
-          value={filters.rating}
-          onValueChange={(v) => onChange("rating", v)}
+       <div className="mb-6">
+         <label htmlFor="clinics-rating" className="block text-base font-medium text-black mb-2">
+           Minimum Rating:
+         </label>
+         <Select
+          
+           value={filters.rating}
+           onValueChange={(v) => onChange("rating", v)}
         >
           <SelectTrigger className="w-full h-12 px-4 py-3 bg-white border border-gray-300 rounded-md">
             <SelectValue placeholder="All" />

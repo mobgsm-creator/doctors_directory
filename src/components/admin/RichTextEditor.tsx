@@ -14,18 +14,19 @@ interface RichTextEditorProps {
 export function RichTextEditor({ value, onChange, placeholder }: RichTextEditorProps) {
   return (
     <div className="grid grid-cols-2 gap-4">
-      <div>
-        <label className="block text-sm font-medium mb-2">Markdown Editor</label>
-        <Textarea
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          placeholder={placeholder}
-          className="min-h-[400px] font-mono text-sm"
-        />
-      </div>
-      <div>
-        <label className="block text-sm font-medium mb-2">Live Preview</label>
-        <Card className="p-4 min-h-[400px] prose max-w-none overflow-auto">
+       <div>
+         <label htmlFor="markdown-editor" className="block text-sm font-medium mb-2">Markdown Editor</label>
+         <Textarea
+           id="markdown-editor"
+           value={value}
+           onChange={(e) => onChange(e.target.value)}
+           placeholder={placeholder}
+           className="min-h-[400px] font-mono text-sm"
+         />
+       </div>
+       <div>
+         <label htmlFor="live-preview" className="block text-sm font-medium mb-2">Live Preview</label>
+         <Card id="live-preview" className="p-4 min-h-[400px] prose max-w-none overflow-auto">
           <ReactMarkdown remarkPlugins={[remarkGfm]}>
             {value}
           </ReactMarkdown>

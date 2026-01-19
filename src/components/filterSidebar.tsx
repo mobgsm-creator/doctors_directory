@@ -99,12 +99,12 @@ export function AdvancedFilterSidebar({
       updatedFilters.query = clinicFilters.query || "";
       updatedFilters.services = clinicFilters.servicesOffered !== "all" ? [clinicFilters.servicesOffered] : [];
       updatedFilters.location = clinicFilters.distance !== "all" ? clinicFilters.distance : "";
-      updatedFilters.rating = clinicFilters.rating !== "all" ? parseInt(clinicFilters.rating) : 0;
+      updatedFilters.rating = clinicFilters.rating !== "all" ? Number.parseInt(clinicFilters.rating) : 0;
     } else if (filters.type === "Practitioner") {
       updatedFilters.query = practitionerFilters.query || "";
       updatedFilters.services = practitionerFilters.practitioner_specialty !== "all" ? [practitionerFilters.practitioner_specialty] : [];
       updatedFilters.location = practitionerFilters.City !== "all" ? practitionerFilters.City : "";
-      updatedFilters.rating = practitionerFilters.rating !== "all" ? parseInt(practitionerFilters.rating) : 0;
+      updatedFilters.rating = practitionerFilters.rating !== "all" ? Number.parseInt(practitionerFilters.rating) : 0;
       updatedFilters.category = practitionerFilters.practitioner_qualifications !== "all" ? practitionerFilters.practitioner_qualifications : "";
     } else if (filters.type === "Product") {
       updatedFilters.query = productFilters.query || "";

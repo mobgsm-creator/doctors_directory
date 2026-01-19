@@ -179,10 +179,10 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
              {practitioner.Treatments?.length! > 0 && null}
 
              <div>
-               <h4 className="sr-only">Treatments offered</h4>
+                <h4 className="sr-only">Treatments offered</h4>
               <ul className="flex flex-wrap gap-1 pt-4" aria-label="Treatments offered">
-                {true &&
-                  practitioner.Treatments?.slice(0, 2)
+                {practitioner.Treatments &&
+                  practitioner.Treatments.slice(0, 2)
                     .map((modality, index) => (
                       <li key={index}>
                         <Badge variant="outline" className="text-xs">
@@ -196,12 +196,12 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                         </Badge>
                       </li>
                     ))}
-                {true &&
-                  practitioner.Treatments?.length! > 2 && (
+                {practitioner.Treatments &&
+                  practitioner.Treatments.length > 2 && (
                     <li>
                       <Badge variant="outline" className="text-xs">
                         +
-                        {practitioner.Treatments?.length! - 2}{" "}
+                        {practitioner.Treatments.length - 2}{" "}
                         more
                       </Badge>
                     </li>
@@ -267,16 +267,8 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                         </Badge>
                       </li>
                     ))}
-                  {/* {true &&
-              practitioner.reviewAnalysis?.procedures_offered?.categories
-                ?.length! > 2 && (
-                <Badge variant="outline" className="text-xs">
-                  +
-                  {practitioner.reviewAnalysis?.procedures_offered?.categories!
-                    .length! - 2}{" "}
-                  more
-                </Badge>
-              )} */}
+                 
+              
                 </ul>
               </div>
             </CardContent>

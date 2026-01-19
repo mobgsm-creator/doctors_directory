@@ -20,24 +20,26 @@ export function PractitionerFilters({ filters, onChange, onClear }: Practitioner
     <>
       <h3 className="font-semibold text-xl text-black mb-6">Filters</h3>
 
-      <div className="mb-6">
-        <h3 className="sr-only">Search</h3>
-        <input
-          type="text"
-          value={filters.query || ""}
-          onChange={(e) => onChange("query", e.target.value)}
-          placeholder="Search practitioners..."
-          className="w-full px-3 py-2 text-base border rounded-md bg-white"
-        />
-      </div>
+       <div className="mb-6">
+         <label htmlFor="practitioners-search" className="sr-only">Search</label>
+         <input
+           id="practitioners-search"
+           type="text"
+           value={filters.query || ""}
+           onChange={(e) => onChange("query", e.target.value)}
+           placeholder="Search practitioners..."
+           className="w-full px-3 py-2 text-base border rounded-md bg-white"
+         />
+       </div>
 
       <div className="mb-6">
-        <label className="block text-base font-medium text-black mb-2">
-          Practitioner Specialty:
+        <label htmlFor="practitioners-specialty" className="block text-base font-medium text-black mb-2">
+           Practitioner Specialty:
         </label>
-        <Select
-          value={filters.practitioner_specialty}
-          onValueChange={(v) => onChange("practitioner_specialty", v)}
+         <Select
+
+           value={filters.practitioner_specialty}
+           onValueChange={(v) => onChange("practitioner_specialty", v)}
         >
           <SelectTrigger className="w-full h-12 px-4 py-3 bg-white border border-gray-300 rounded-md">
             <SelectValue placeholder="All"/>
@@ -55,13 +57,14 @@ export function PractitionerFilters({ filters, onChange, onClear }: Practitioner
         </Select>
       </div>
 
-      <div className="mb-6">
-        <label className="block text-base font-medium text-black mb-2">
-          Practitioner Qualifications:
+       <div className="mb-6">
+         <label htmlFor="practitioners-qualifications" className="block text-base font-medium text-black mb-2">
+           Practitioner Qualifications:
         </label>
-        <Select
-          value={filters.practitioner_qualifications}
-          onValueChange={(v) => onChange("practitioner_qualifications", v)}
+         <Select
+
+           value={filters.practitioner_qualifications}
+           onValueChange={(v) => onChange("practitioner_qualifications", v)}
         >
           <SelectTrigger className="w-full h-12 px-4 py-3 bg-white border border-gray-300 rounded-md">
             <SelectValue placeholder="All" />
@@ -78,13 +81,14 @@ export function PractitionerFilters({ filters, onChange, onClear }: Practitioner
         </Select>
       </div>
 
-      <div className="mb-6">
-        <label className="block text-base font-medium text-black mb-2">
-          City:
+       <div className="mb-6">
+         <label htmlFor="practitioners-city" className="block text-base font-medium text-black mb-2">
+           City:
         </label>
-        <Select
-          value={filters.City}
-          onValueChange={(v) => onChange("City", v)}
+         <Select
+ 
+           value={filters.City}
+           onValueChange={(v) => onChange("City", v)}
         >
           <SelectTrigger className="w-full h-12 px-4 py-3 bg-white border border-gray-300 rounded-md">
             <SelectValue placeholder="All" />
@@ -103,13 +107,14 @@ export function PractitionerFilters({ filters, onChange, onClear }: Practitioner
         </Select>
       </div>
 
-      <div className="mb-6">
-        <label className="block text-base font-medium text-black mb-2">
-          Minimum Rating:
+       <div className="mb-6">
+         <label htmlFor="practitioners-rating" className="block text-base font-medium text-black mb-2">
+           Minimum Rating:
         </label>
-        <Select
-          value={filters.rating}
-          onValueChange={(v) => onChange("rating", v)}
+         <Select
+
+           value={filters.rating}
+           onValueChange={(v) => onChange("rating", v)}
         >
           <SelectTrigger className="w-full h-12 px-4 py-3 bg-white border border-gray-300 rounded-md">
             <SelectValue placeholder="All" />

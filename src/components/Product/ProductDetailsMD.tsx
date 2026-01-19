@@ -3,42 +3,14 @@
 
 import { Product } from "@/lib/types";
 import { decodeUnicodeEscapes } from "@/lib/utils";
-
+import { fixPythonArrayString, parseList } from "@/lib/utils";
 export default function PractitionerDetailsSections({
   clinic,
 }: {
   clinic: Product;
 }) {
   
-  const parseList = (val: any) => {
-    if (!val) return [];
-    try {
-      if (typeof val === "string" && val.startsWith("[") && val.endsWith("]")) {
-        return JSON.parse(val.replaceAll("'", '"'));
-      }
-      if (Array.isArray(val)) return val;
-      return [val];
-    } catch {
-      return [val];
-    }
-  };
-  const fixPythonArrayString = (str: string) => {
-    if (!str) return null;
-
-    try {
-      // 1. remove broken outer quotes
-      let fixed = str
-        .trim()
-        .replace(/^"\[|\]"$/g, (m) => (m === '"[' ? "[" : "]"));
-
-      // 2. convert single-quoted Python list → JSON list
-      fixed = fixed.replaceAll(/'([^']*)'/g, '"$1"');
-
-      return JSON.parse(fixed);
-    } catch {
-      return null;
-    }
-  };
+  
 
   function renderList(val: any) {
   if (!val) return "Not publicly listed";

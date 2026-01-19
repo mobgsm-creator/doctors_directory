@@ -50,7 +50,7 @@ export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
       {/* Treatments */}
       <Section title="Treatments" id="treatments">
         <div className="flex flex-wrap gap-1">
-          {true &&
+          {clinic.Treatments &&
             clinic.Treatments?.map(
               (modality, index) => 
                 { 

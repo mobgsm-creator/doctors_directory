@@ -132,3 +132,32 @@ export function safeParse(v: any) {
     return null
   }
 }
+export const parseList = (val: any) => {
+    if (!val) return [];
+    try {
+      if (typeof val === "string" && val.startsWith("[") && val.endsWith("]")) {
+        return JSON.parse(val.replaceAll("'", '"'));
+      }
+      if (Array.isArray(val)) return val;
+      return [val];
+    } catch {
+      return [val];
+    }
+  };
+export const fixPythonArrayString = (str: string) => {
+    if (!str) return null;
+
+    try {
+      // 1. remove broken outer quotes
+      let fixed = str
+        .trim()
+        .replace(/^"\[|\]"$/g, (m) => (m === '"[' ? "[" : "]"));
+
+      // 2. convert single-quoted Python list → JSON list
+      fixed = fixed.replaceAll(/'([^']*)'/g, '"$1"');
+
+      return JSON.parse(fixed);
+    } catch {
+      return null;
+    }
+  };

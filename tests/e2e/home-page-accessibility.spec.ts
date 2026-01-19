@@ -13,7 +13,7 @@ test.describe('Home Page Accessibility Tests', () => {
     for (let i = 0; i < headingCount; i++) {
       const heading = headings.nth(i);
       const tagName = await heading.evaluate(el => el.tagName);
-      const currentLevel = parseInt(tagName.charAt(1));
+      const currentLevel = Number.parseInt(tagName.charAt(1));
       
       expect(currentLevel).toBeGreaterThanOrEqual(previousLevel);
       expect(currentLevel).toBeLessThanOrEqual(6);
@@ -167,7 +167,7 @@ test.describe('Home Page Accessibility Tests', () => {
       if (typeof expectedCount === 'number') {
         expect(count).toBe(expectedCount);
       } else {
-        const minCount = parseInt(expectedCount.replace('>=', ''));
+         const minCount = Number.parseInt(expectedCount.replace('>=', ''));
         expect(count).toBeGreaterThanOrEqual(minCount);
       }
     }

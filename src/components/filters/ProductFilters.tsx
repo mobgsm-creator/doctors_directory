@@ -20,24 +20,26 @@ export function ProductFilters({ filters, onChange, onClear }: ProductFiltersPro
     <>
       <h3 className="font-semibold text-xl text-black mb-6">Filters</h3>
 
-      <div className="mb-6">
-        <h3 className="sr-only">Search</h3>
-        <input
-          type="text"
-          value={filters.query || ""}
-          onChange={(e) => onChange("query", e.target.value)}
-          placeholder="Search products..."
-          className="w-full px-3 py-2 text-base border rounded-md bg-white"
-        />
-      </div>
+       <div className="mb-6">
+         <label htmlFor="products-search" className="sr-only">Search</label>
+         <input
+           id="products-search"
+           type="text"
+           value={filters.query || ""}
+           onChange={(e) => onChange("query", e.target.value)}
+           placeholder="Search products..."
+           className="w-full px-3 py-2 text-base border rounded-md bg-white"
+         />
+       </div>
 
       <div className="mb-6">
-        <label className="block text-base font-medium text-black mb-2">
-          Product Category:
+        <label htmlFor="products-category" className="block text-base font-medium text-black mb-2">
+           Product Category:
         </label>
-        <Select
-          value={filters.product_category}
-          onValueChange={(v) => onChange("product_category", v)}
+         <Select
+
+           value={filters.product_category}
+           onValueChange={(v) => onChange("product_category", v)}
         >
           <SelectTrigger className="w-full h-12 px-4 py-3 bg-white border border-gray-300 rounded-md">
             <SelectValue placeholder="All"/>
@@ -55,13 +57,14 @@ export function ProductFilters({ filters, onChange, onClear }: ProductFiltersPro
         </Select>
       </div>
 
-      <div className="mb-6">
-        <label className="block text-base font-medium text-black mb-2">
-          Brand:
+       <div className="mb-6">
+         <label htmlFor="products-brand" className="block text-base font-medium text-black mb-2">
+           Brand:
         </label>
-        <Select
-          value={filters.brand}
-          onValueChange={(v) => onChange("brand", v)}
+         <Select
+
+           value={filters.brand}
+           onValueChange={(v) => onChange("brand", v)}
         >
           <SelectTrigger className="w-full h-12 px-4 py-3 bg-white border border-gray-300 rounded-md">
             <SelectValue placeholder="All" />
@@ -79,13 +82,14 @@ export function ProductFilters({ filters, onChange, onClear }: ProductFiltersPro
         </Select>
       </div>
 
-      <div className="mb-6">
-        <label className="block text-base font-medium text-black mb-2">
-          Distributor:
+       <div className="mb-6">
+         <label htmlFor="products-distributor" className="block text-base font-medium text-black mb-2">
+           Distributor:
         </label>
-        <Select
-          value={filters.distributor_cleaned}
-          onValueChange={(v) => onChange("distributor_cleaned", v)}
+         <Select
+
+           value={filters.distributor_cleaned}
+           onValueChange={(v) => onChange("distributor_cleaned", v)}
         >
           <SelectTrigger className="w-full h-12 px-4 py-3 bg-white border border-gray-300 rounded-md">
             <SelectValue placeholder="All" />
