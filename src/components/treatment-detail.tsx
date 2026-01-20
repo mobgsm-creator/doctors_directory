@@ -320,41 +320,31 @@ export function TreatmentDetail({ treatment, treatmentData }: Readonly<Treatment
             <div className="space-y-3">
               <div className="flex items-center gap-3">
                 <Database className="h-5 w-5 text-gray-600" />
-                <span className="text-sm">
-                  {treatment.averageCost}
-                </span>
+                <span className="text-sm">{treatment.averageCost}</span>
                 <span className="text-sm">Average Cost</span>
               </div>
 
               <div className="flex items-center gap-3">
                 <ThumbsUp className="h-5 w-5 text-gray-600" />
-                <span className="text-sm">
-                  {treatment.satisfaction}%
-                </span>
+                <span className="text-sm">{treatment.satisfaction}%</span>
                 <span className="text-sm">Satisfaction</span>
               </div>
 
               <div className="flex items-center gap-3">
                 <Users className="h-5 w-5 text-gray-600" />
-                <span className="text-sm">
-                  {treatment.practitioners}
-                </span>
+                <span className="text-sm">{treatment.practitioners}</span>
                 <span className="text-sm">Practitioners</span>
               </div>
 
               <div className="flex items-center gap-3">
                 <Camera className="h-5 w-5 text-gray-600" />
-                <span className="text-sm">
-                  {treatment.reviews}
-                </span>
+                <span className="text-sm">{treatment.reviews}</span>
                 <span className="text-sm">Google Reviews</span>
               </div>
 
               <div className="flex items-center gap-3">
                 <Clock className="h-5 w-5 text-gray-600" />
-                <span className="text-sm">
-                  {treatment.downtime}
-                </span>
+                <span className="text-sm">{treatment.downtime}</span>
                 <span className="text-sm">Downtime</span>
               </div>
             </div>
@@ -384,58 +374,113 @@ export function TreatmentDetail({ treatment, treatmentData }: Readonly<Treatment
 
         {/* Treatment Info */}
         <div className="grow">
-          <h1 className="text-3xl font-bold text-gray-900">
-            {treatment.name} Treatment
-          </h1>
+          <header>
+            <h1 className="text-3xl font-bold text-gray-900">
+              {treatment.name} Treatment
+            </h1>
+          </header>
 
-          {/* Stats Grid */}
-          <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
-            <Card className="text-center p-4 border-0 md:border-0 bg-transparent">
-              <CardContent className="p-0">
-                <ThumbsUp className="h-6 w-6 mx-auto mb-2 text-black" />
-                <div className="text-2xl font-bold">
-                  {treatment.satisfaction}%
+          {/* Treatment Statistics */}
+          <section 
+            className="mt-6" 
+            itemScope 
+            itemType="https://schema.org/MedicalProcedure"
+            aria-labelledby="treatment-stats-heading"
+          >
+            <h2 id="treatment-stats-heading" className="sr-only">
+              {treatment.name} Treatment Statistics and Key Information
+            </h2>
+            
+            <dl className="grid grid-cols-2 lg:grid-cols-5 gap-4">
+              <div className="text-center p-4 border-0 md:border-0 bg-transparent">
+                <dt className="sr-only">Patient Satisfaction Rate</dt>
+                <div 
+                  itemProp="satisfactionRating" 
+                  itemScope 
+                  itemType="https://schema.org/Rating"
+                  role="img" 
+                  aria-label={`${treatment.satisfaction} percent patient satisfaction rate`}
+                >
+                  <ThumbsUp className="h-6 w-6 mx-auto mb-2 text-black" aria-hidden="true" />
+                  <dd className="text-2xl font-bold" itemProp="ratingValue">
+                    {treatment.satisfaction}%
+                  </dd>
+                  <div className="text-sm text-gray-600">
+                    Patient Satisfaction
+                  </div>
+                  <meta itemProp="bestRating" content="100" />
+                  <meta itemProp="worstRating" content="0" />
                 </div>
-                <div className="text-sm text-gray-600">
-                  Patient Satisfaction
+              </div>
+
+              <div className="text-center p-4 border-0 md:border-0 bg-transparent">
+                <dt className="sr-only">Average Treatment Cost</dt>
+                <div 
+                  itemProp="cost" 
+                  itemScope 
+                  itemType="https://schema.org/MonetaryAmount"
+                  role="img" 
+                  aria-label={`Average cost ${treatment.averageCost}`}
+                >
+                  <Database className="h-6 w-6 mx-auto mb-2 text-black" aria-hidden="true" />
+                  <dd className="text-lg font-bold" itemProp="value">
+                    {treatment.averageCost}
+                  </dd>
+                  <div className="text-sm text-gray-600">Average Cost</div>
+                  <meta itemProp="currency" content="GBP" />
                 </div>
-              </CardContent>
-            </Card>
+              </div>
 
-            <Card className="text-center p-4 border-0 md:border-0 bg-transparent">
-              <CardContent className="p-0">
-                <Database className="h-6 w-6 mx-auto mb-2 text-black" />
-                <div className="text-lg font-bold">{treatment.averageCost}</div>
-                <div className="text-sm text-gray-600">Average Cost</div>
-              </CardContent>
-            </Card>
-
-            <Card className="text-center p-4 border-0 md:border-0 bg-transparent">
-              <CardContent className="p-0">
-                <Camera className="h-6 w-6 mx-auto mb-2 text-black" />
-                <div className="text-2xl font-bold">{treatment.reviews}</div>
-                <div className="text-sm text-gray-600">Reviews on Google</div>
-              </CardContent>
-            </Card>
-
-            <Card className="text-center p-4 border-0 md:border-0 bg-transparent">
-              <CardContent className="p-0">
-                <Clock className="h-6 w-6 mx-auto mb-2 text-black" />
-                <div className="text-lg font-bold">{treatment.downtime}</div>
-                <div className="text-sm text-gray-600">Downtime</div>
-              </CardContent>
-            </Card>
-
-            <Card className="text-center p-4 border-0 md:border-0 bg-transparent">
-              <CardContent className="p-0">
-                <Users className="h-6 w-6 mx-auto mb-2 text-black" />
-                <div className="text-2xl font-bold">
-                  {treatment.practitioners}
+              <div className="text-center p-4 border-0 md:border-0 bg-transparent">
+                <dt className="sr-only">Number of Google Reviews</dt>
+                <div 
+                  itemProp="aggregateRating" 
+                  itemScope 
+                  itemType="https://schema.org/AggregateRating"
+                  role="img" 
+                  aria-label={`${treatment.reviews} reviews on Google`}
+                >
+                  <Camera className="h-6 w-6 mx-auto mb-2 text-black" aria-hidden="true" />
+                  <dd className="text-2xl font-bold" itemProp="reviewCount">
+                    {treatment.reviews}
+                  </dd>
+                  <div className="text-sm text-gray-600">Reviews on Google</div>
                 </div>
-                <div className="text-sm text-gray-600">Practitioners</div>
-              </CardContent>
-            </Card>
-          </div>
+              </div>
+
+              <div className="text-center p-4 border-0 md:border-0 bg-transparent">
+                <dt className="sr-only">Treatment Downtime Duration</dt>
+                <div 
+                  itemProp="procedureType"
+                  role="img" 
+                  aria-label={`${treatment.downtime} downtime required`}
+                >
+                  <Clock className="h-6 w-6 mx-auto mb-2 text-black" aria-hidden="true" />
+                  <dd className="text-lg font-bold">
+                    {treatment.downtime}
+                  </dd>
+                  <div className="text-sm text-gray-600">Downtime</div>
+                </div>
+              </div>
+
+              <div className="text-center p-4 border-0 md:border-0 bg-transparent">
+                <dt className="sr-only">Number of Available Practitioners</dt>
+                <div 
+                  itemProp="provider" 
+                  itemScope 
+                  itemType="https://schema.org/Organization"
+                  role="img" 
+                  aria-label={`${treatment.practitioners} practitioners available`}
+                >
+                  <Users className="h-6 w-6 mx-auto mb-2 text-black" aria-hidden="true" />
+                  <dd className="text-2xl font-bold" itemProp="numberOfEmployees">
+                    {treatment.practitioners}
+                  </dd>
+                  <div className="text-sm text-gray-600">Practitioners</div>
+                </div>
+              </div>
+            </dl>
+          </section>
         </div>
       </div>
 
@@ -456,67 +501,64 @@ export function TreatmentDetail({ treatment, treatmentData }: Readonly<Treatment
       </div>
 
       {/* All Sections */}
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-3 text-base">
         {/* Overview Section */}
         <section id="overview" className="scroll-mt-8">
           <div className="p-3 space-y-3">
-            <h3 className="text-lg font-semibold border-b border-[#BDBDBD] pb-3">
+            <h2 className="text-lg font-semibold border-b border-[#BDBDBD] pb-3">
               Overview
-            </h3>
+            </h2>
             <div>
               <p className="text-gray-700 leading-relaxed">
-                {findProperty('whatIs') ||
+                {findProperty("whatIs") ||
                   `${treatment.name} is a treatment that helps address various skin and aesthetic concerns.`}
               </p>
             </div>
 
-            {findProperty('goals') && (
+            {findProperty("goals") && (
               <div>
-                <h4 className="font-semibold mb-3">
+                <h3 className="font-semibold mb-3">
                   Goals of {treatment.name} treatment
-                </h4>
-                <ul className="space-y-2 text-gray-700">
-                  {(Array.isArray(findProperty('goals')) ? findProperty('goals') : []).map(
-                    (goal: string, index: number) => (
-                      <li key={index}>• {goal}</li>
-                    )
-                  )}
+                </h3>
+                <ul className="space-y-2 text-gray-700 text-base list-disc ml-6">
+                  {(Array.isArray(findProperty("goals"))
+                    ? findProperty("goals")
+                    : []
+                  ).map((goal: string, index: number) => (
+                    <li key={index}>{goal}</li>
+                  ))}
                 </ul>
               </div>
             )}
 
-            {findProperty('mildVsSevere') && (
+            {findProperty("mildVsSevere") && (
               <div>
-                <h4 className="font-semibold mb-4">Severity Levels</h4>
+                <h3 className="font-semibold mb-4">Severity Levels</h3>
 
                 <div className="space-y-4">
-                  {findProperty('mildVsSevere')?.Mild && (
+                  {findProperty("mildVsSevere")?.Mild && (
                     <div>
-                      <h5 className="font-medium">Mild</h5>
-                      <p className="text-gray-700">
-                        {findProperty('mildVsSevere').Mild}
+                      <h4 className="font-medium">Mild</h4>
+                      <p className="text-gray-700 text-base">
+                        {findProperty("mildVsSevere").Mild}
                       </p>
                     </div>
                   )}
 
-                  {findProperty('mildVsSevere')?.Severe && (
+                  {findProperty("mildVsSevere")?.Severe && (
                     <div>
-                      <h5 className="font-medium">Severe</h5>
+                      <h4 className="font-medium">Severe</h4>
                       <p className="text-gray-700">
-                        {findProperty('mildVsSevere').Severe}
+                        {findProperty("mildVsSevere").Severe}
                       </p>
                     </div>
                   )}
 
-                  {findProperty('mildVsSevere')
-                    ?.What_it_Does_Not_Treat && (
+                  {findProperty("mildVsSevere")?.What_it_Does_Not_Treat && (
                     <div>
-                      <h5 className="font-medium">What it Does Not Treat</h5>
-                      <p className="text-gray-700">
-                        {
-                          findProperty('mildVsSevere')
-                            .What_it_Does_Not_Treat
-                        }
+                      <h4 className="font-medium">What it Does Not Treat</h4>
+                      <p className="text-gray-700 text-base">
+                        {findProperty("mildVsSevere").What_it_Does_Not_Treat}
                       </p>
                     </div>
                   )}
@@ -529,42 +571,41 @@ export function TreatmentDetail({ treatment, treatmentData }: Readonly<Treatment
         {/* Treatment Options Section */}
         <section id="treatment-options" className="scroll-mt-8">
           <div className="p-3 space-y-3">
-            <h3 className="text-lg font-semibold border-b border-[#BDBDBD] pb-3">
+            <h2 className="text-lg font-semibold border-b border-[#BDBDBD] pb-3">
               Treatment Options
-            </h3>
+            </h2>
 
-            {findProperty('comparison') && (
-              <div className="space-y-4">
-                {(Array.isArray(findProperty('comparison')) ? findProperty('comparison') : []).map(
-                  (option: string, index: number) => (
-                    <div key={index}>
-                      <p className="text-gray-700 text-sm">• {option}</p>
-                    </div>
-                  )
-                )}
-              </div>
+            {findProperty("comparison") && (
+              <ul className="space-y-2 text-gray-700 text-base list-disc ml-6">
+                {(Array.isArray(findProperty("comparison"))
+                  ? findProperty("comparison")
+                  : []
+                ).map((option: string, index: number) => (
+                  <li key={index}>{option}</li>
+                ))}
+              </ul>
             )}
 
-            {findProperty('prosAndCons') && (
+            {findProperty("prosAndCons") && (
               <>
                 <div className="mt-6">
                   <h4 className="font-semibold mb-3">Pros</h4>
-                  <ul className="space-y-2 text-gray-700 text-sm">
-                    {(findProperty('prosAndCons')?.Pros || []).map(
+                  <ul className="space-y-2 text-gray-700 text-base list-disc ml-6">
+                    {(findProperty("prosAndCons")?.Pros || []).map(
                       (pro: string, index: number) => (
-                        <li key={index}>• {pro}</li>
-                      )
+                        <li key={index}>{pro}</li>
+                      ),
                     )}
                   </ul>
                 </div>
 
                 <div className="mt-6">
                   <h4 className="font-semibold mb-3">Cons</h4>
-                  <ul className="space-y-2 text-gray-700 text-sm">
-                    {(findProperty('prosAndCons')?.Cons || []).map(
+                  <ul className="space-y-2 text-gray-700 text-base list-disc ml-6">
+                    {(findProperty("prosAndCons")?.Cons || []).map(
                       (con: string, index: number) => (
-                        <li key={index}>• {con}</li>
-                      )
+                        <li key={index}>{con}</li>
+                      ),
                     )}
                   </ul>
                 </div>
@@ -576,34 +617,36 @@ export function TreatmentDetail({ treatment, treatmentData }: Readonly<Treatment
         {/* Candidate & Preparation Section */}
         <section id="candidate" className="scroll-mt-8">
           <div className="p-3 space-y-3">
-            <h3 className="text-lg font-semibold border-b border-[#BDBDBD] pb-3">
+            <h2 className="text-lg font-semibold border-b border-[#BDBDBD] pb-3">
               Candidate & Preparation
-            </h3>
+            </h2>
 
-            {findProperty('candidate') && (
+            {findProperty("candidate") && (
               <div>
-                <h4 className="font-semibold mb-4">Who is a Good Candidate</h4>
-                <ul className="space-y-2 text-gray-700">
-                  {(Array.isArray(findProperty('candidate')) ? findProperty('candidate') : []).map(
-                    (candidate: string, index: number) => (
-                      <li key={index}>• {candidate}</li>
-                    )
-                  )}
+                <h3 className="font-semibold mb-4">Who is a Good Candidate</h3>
+                <ul className="space-y-2 text-gray-700 list-disc ml-6">
+                  {(Array.isArray(findProperty("candidate"))
+                    ? findProperty("candidate")
+                    : []
+                  ).map((candidate: string, index: number) => (
+                    <li key={index}>{candidate}</li>
+                  ))}
                 </ul>
               </div>
             )}
 
-            {findProperty('prepare') && (
+            {findProperty("prepare") && (
               <div>
-                <h4 className="font-semibold mb-4">
+                <h3 className="font-semibold mb-4">
                   How to Prepare for Appointment
-                </h4>
-                <ul className="space-y-2 text-gray-700">
-                  {(Array.isArray(findProperty('prepare')) ? findProperty('prepare') : []).map(
-                    (prep: string, index: number) => (
-                      <li key={index}>• {prep}</li>
-                    )
-                  )}
+                </h3>
+                <ul className="space-y-2 text-gray-700 list-disc ml-6">
+                  {(Array.isArray(findProperty("prepare"))
+                    ? findProperty("prepare")
+                    : []
+                  ).map((prep: string, index: number) => (
+                    <li key={index}>{prep}</li>
+                  ))}
                 </ul>
               </div>
             )}
@@ -613,105 +656,107 @@ export function TreatmentDetail({ treatment, treatmentData }: Readonly<Treatment
         {/* Appointments & Safety Section */}
         <section id="appointments" className="scroll-mt-8">
           <div className="p-3 space-y-3">
-            <h3 className="text-lg font-semibold border-b border-[#BDBDBD] pb-3">
+            <h2 className="text-lg font-semibold border-b border-[#BDBDBD] pb-3">
               Appointments & Safety
-            </h3>
+            </h2>
 
-            {findProperty('duration') && (
+            {findProperty("duration") && (
               <div>
-                <h4 className="font-semibold mb-3">
+                <h3 className="font-semibold mb-3">
                   What Happens During Appointment
-                </h4>
-                <p className="text-gray-700">
-                  {findProperty('duration')}
-                </p>
+                </h3>
+                <p className="text-gray-700">{findProperty("duration")}</p>
               </div>
             )}
 
-            {findProperty('safety') && (
+            {findProperty("safety") && (
               <div className="space-y-4">
-                {findProperty('safety')?.Pain && (
+                {findProperty("safety")?.Pain && (
                   <div>
-                    <h4 className="font-semibold mb-2">Pain Considerations</h4>
-                    <p className="text-gray-700 text-sm">
-                      {findProperty('safety').Pain}
+                    <h3 className="font-semibold mb-2">Pain Considerations</h3>
+                    <p className="text-gray-700 text-base">
+                      {findProperty("safety").Pain}
                     </p>
                   </div>
                 )}
 
-                {findProperty('safety')?.Safety && (
+                {findProperty("safety")?.Safety && (
                   <div>
-                    <h4 className="font-semibold mb-2">
+                    <h3 className="font-semibold mb-2">
                       Safety Considerations
-                    </h4>
+                    </h3>
                     <p className="text-gray-700 text-sm">
-                      {findProperty('safety').Safety}
+                      {findProperty("safety").Safety}
                     </p>
                   </div>
                 )}
 
-                {findProperty('safety')?.['Pain level'] && (
+                {findProperty("safety")?.["Pain level"] && (
                   <div>
-                    <h4 className="font-semibold mb-2">Pain Level</h4>
+                    <h3 className="font-semibold mb-2">Pain Level</h3>
                     <p className="text-gray-700 text-sm">
-                      {findProperty('safety')['Pain level']}
+                      {findProperty("safety")["Pain level"]}
                     </p>
                   </div>
                 )}
 
-                {findProperty('safety')?.['Safety considerations'] && (
+                {findProperty("safety")?.["Safety considerations"] && (
                   <div>
-                    <h4 className="font-semibold mb-2">Safety Considerations</h4>
-                    <ul className="space-y-2 text-gray-700 text-sm">
-                      {(findProperty('safety')['Safety considerations'] || []).map(
-                        (consideration: string, index: number) => (
-                          <li key={index}>• {consideration}</li>
-                        )
-                      )}
+                    <h3 className="font-semibold mb-2">
+                      Safety Considerations
+                    </h3>
+                    <ul className="space-y-2 text-gray-700 text-base list-disc ml-6">
+                      {(
+                        findProperty("safety")["Safety considerations"] || []
+                      ).map((consideration: string, index: number) => (
+                        <li key={index}>{consideration}</li>
+                      ))}
                     </ul>
                   </div>
                 )}
               </div>
             )}
 
-            {findProperty('recovery') && (
+            {findProperty("recovery") && (
               <div className="space-y-4">
-                {findProperty('recovery')?.Recover && (
+                {findProperty("recovery")?.Recover && (
                   <div>
-                    <h4 className="font-semibold mb-2">Recovery Process</h4>
+                    <h3 className="font-semibold mb-2">Recovery Process</h3>
                     <p className="text-gray-700 text-sm">
-                      {findProperty('recovery').Recover}
+                      {findProperty("recovery").Recover}
                     </p>
                   </div>
                 )}
 
-                {findProperty('recovery')?.Side_Effects && (
+                {findProperty("recovery")?.Side_Effects && (
                   <div>
-                    <h4 className="font-semibold mb-2">Side Effects</h4>
-                    <p className="text-gray-700 text-sm">
-                      {findProperty('recovery').Side_Effects}
+                    <h3 className="font-semibold mb-2">Side Effects</h3>
+                    <p className="text-gray-700 text-base">
+                      {findProperty("recovery").Side_Effects}
                     </p>
                   </div>
                 )}
 
-                {findProperty('recovery')?.['Recovery/downtime'] && (
+                {findProperty("recovery")?.["Recovery/downtime"] && (
                   <div>
-                    <h4 className="font-semibold mb-2">Recovery/Downtime</h4>
-                    <p className="text-gray-700 text-sm">
-                      {findProperty('recovery')['Recovery/downtime']}
+                    <h3 className="font-semibold mb-2">Recovery/Downtime</h3>
+                    <p className="text-gray-700 text-base">
+                      {findProperty("recovery")["Recovery/downtime"]}
                     </p>
                   </div>
                 )}
 
-                {findProperty('recovery')?.['Possible side effects'] && (
+                {findProperty("recovery")?.["Possible side effects"] && (
                   <div>
-                    <h4 className="font-semibold mb-2">Possible Side Effects</h4>
-                    <ul className="space-y-2 text-gray-700 text-sm">
-                      {(findProperty('recovery')['Possible side effects'] || []).map(
-                        (effect: string, index: number) => (
-                          <li key={index}>• {effect}</li>
-                        )
-                      )}
+                    <h3 className="font-semibold mb-2">
+                      Possible Side Effects
+                    </h3>
+                    <ul className="space-y-2 text-gray-700 text-base list-disc ml-6">
+                      {(
+                        findProperty("recovery")["Possible side effects"] || []
+                      ).map((effect: string, index: number) => (
+                        <li key={index}>{effect}</li>
+                      ))}
                     </ul>
                   </div>
                 )}
@@ -723,23 +768,25 @@ export function TreatmentDetail({ treatment, treatmentData }: Readonly<Treatment
         {/* Cost & Access Section */}
         <section id="cost">
           <div className="p-3 space-y-3">
-            <h3 className="text-lg font-semibold border-b border-[#BDBDBD] pb-3">
+            <h2 className="text-lg font-semibold border-b border-[#BDBDBD] pb-3">
               Cost & Access
-            </h3>
+            </h2>
 
             {getCostData() && (
               <div className="space-y-4">
                 {getCostData()?.typicalPrices && (
                   <div>
-                    <h4 className="font-semibold mb-2">Typical Prices</h4>
+                    <h3 className="font-semibold mb-2">Typical Prices</h3>
                     <div className="text-gray-700 text-sm">
-                      {typeof getCostData()?.typicalPrices === 'string' ? (
+                      {typeof getCostData()?.typicalPrices === "string" ? (
                         <p>{getCostData()?.typicalPrices}</p>
                       ) : Array.isArray(getCostData()?.typicalPrices) ? (
-                        <ul className="space-y-2">
-                          {getCostData()?.typicalPrices.map((price: string, index: number) => (
-                            <li key={index}>• {price}</li>
-                          ))}
+                        <ul className="space-y-2 text-base list-disc ml-6">
+                          {getCostData()?.typicalPrices.map(
+                            (price: string, index: number) => (
+                              <li key={index}>{price}</li>
+                            ),
+                          )}
                         </ul>
                       ) : (
                         <p>{JSON.stringify(getCostData()?.typicalPrices)}</p>
@@ -750,15 +797,17 @@ export function TreatmentDetail({ treatment, treatmentData }: Readonly<Treatment
 
                 {getCostData()?.whyVary && (
                   <div>
-                    <h4 className="font-semibold mb-2">Why Prices Vary</h4>
+                    <h3 className="font-semibold mb-2">Why Prices Vary</h3>
                     <div className="text-gray-700 text-sm">
-                      {typeof getCostData()?.whyVary === 'string' ? (
+                      {typeof getCostData()?.whyVary === "string" ? (
                         <p>{getCostData()?.whyVary}</p>
                       ) : Array.isArray(getCostData()?.whyVary) ? (
-                        <ul className="space-y-2">
-                          {getCostData()?.whyVary.map((reason: string, index: number) => (
-                            <li key={index}>• {reason}</li>
-                          ))}
+                        <ul className="space-y-2 text-base list-disc ml-6">
+                          {getCostData()?.whyVary.map(
+                            (reason: string, index: number) => (
+                              <li key={index}>{reason}</li>
+                            ),
+                          )}
                         </ul>
                       ) : (
                         <p>{JSON.stringify(getCostData()?.whyVary)}</p>
@@ -769,32 +818,34 @@ export function TreatmentDetail({ treatment, treatmentData }: Readonly<Treatment
               </div>
             )}
 
-            {findProperty('choosing') && (
+            {findProperty("choosing") && (
               <div>
-                <h4 className="font-semibold mb-3">
+                <h3 className="font-semibold mb-3">
                   What to Look for When Choosing a Doctor or Clinic
-                </h4>
-                <ul className="space-y-2 text-gray-700 text-sm">
-                  {(Array.isArray(findProperty('choosing')) ? findProperty('choosing') : []).map(
-                    (tip: string, index: number) => (
-                      <li key={index}>• {tip}</li>
-                    )
-                  )}
+                </h3>
+                <ul className="space-y-2 text-gray-700 text-base list-disc ml-6">
+                  {(Array.isArray(findProperty("choosing"))
+                    ? findProperty("choosing")
+                    : []
+                  ).map((tip: string, index: number) => (
+                    <li key={index}>{tip}</li>
+                  ))}
                 </ul>
               </div>
             )}
 
-            {findProperty('qualifications') && (
+            {findProperty("qualifications") && (
               <div>
-                <h4 className="font-semibold mb-3">
+                <h3 className="font-semibold mb-3">
                   Qualifications Practitioner Should Have
-                </h4>
-                <ul className="space-y-2 text-gray-700 text-sm">
-                  {(Array.isArray(findProperty('qualifications')) ? findProperty('qualifications') : []).map(
-                    (qual: string, index: number) => (
-                      <li key={index}>• {qual}</li>
-                    )
-                  )}
+                </h3>
+                <ul className="space-y-2 text-gray-700 text-base list-disc ml-6">
+                  {(Array.isArray(findProperty("qualifications"))
+                    ? findProperty("qualifications")
+                    : []
+                  ).map((qual: string, index: number) => (
+                    <li key={index}>{qual}</li>
+                  ))}
                 </ul>
               </div>
             )}
@@ -804,44 +855,40 @@ export function TreatmentDetail({ treatment, treatmentData }: Readonly<Treatment
         {/* Results & Maintenance Section */}
         <section id="results" className="scroll-mt-8">
           <div className="p-3 space-y-3">
-            <h3 className="text-lg font-semibold border-b border-[#BDBDBD] pb-3">
+            <h2 className="text-lg font-semibold border-b border-[#BDBDBD] pb-3">
               Results & Maintenance
-            </h3>
+            </h2>
 
-            {findProperty('resultsLast') && (
+            {findProperty("resultsLast") && (
               <div>
-                <h4 className="font-semibold mb-3">How Long Results Last</h4>
-                {Array.isArray(findProperty('resultsLast')) ? (
-                  <ul className="space-y-2 text-gray-700">
-                    {findProperty('resultsLast').map(
+                <h3 className="font-semibold mb-3">How Long Results Last</h3>
+                {Array.isArray(findProperty("resultsLast")) ? (
+                  <ul className="space-y-2 text-gray-700 text-base list-disc ml-6">
+                    {findProperty("resultsLast").map(
                       (result: string, index: number) => (
-                        <li key={index}>• {result}</li>
-                      )
+                        <li key={index}>{result}</li>
+                      ),
                     )}
                   </ul>
                 ) : (
-                  <p className="text-gray-700">
-                    {findProperty('resultsLast')}
-                  </p>
+                  <p className="text-gray-700">{findProperty("resultsLast")}</p>
                 )}
               </div>
             )}
 
-            {findProperty('maintenance') && (
+            {findProperty("maintenance") && (
               <div>
-                <h4 className="font-semibold mb-3">Maintenance Requirements</h4>
-                {Array.isArray(findProperty('maintenance')) ? (
-                  <ul className="space-y-2 text-gray-700">
-                    {findProperty('maintenance').map(
+                <h3 className="font-semibold mb-3">Maintenance Requirements</h3>
+                {Array.isArray(findProperty("maintenance")) ? (
+                  <ul className="space-y-2 text-gray-700 text-base list-disc ml-6">
+                    {findProperty("maintenance").map(
                       (item: string, index: number) => (
-                        <li key={index}>• {item}</li>
-                      )
+                        <li key={index}>{item}</li>
+                      ),
                     )}
                   </ul>
                 ) : (
-                  <p className="text-gray-700">
-                    {findProperty('maintenance')}
-                  </p>
+                  <p className="text-gray-700">{findProperty("maintenance")}</p>
                 )}
               </div>
             )}
@@ -851,74 +898,74 @@ export function TreatmentDetail({ treatment, treatmentData }: Readonly<Treatment
         {/* Regulation & Guidelines Section */}
         <section id="regulation" className="scroll-mt-8">
           <div className="p-3 space-y-3">
-            <h3 className="text-lg font-semibold border-b border-[#BDBDBD] pb-3">
+            <h2 className="text-lg font-semibold border-b border-[#BDBDBD] pb-3">
               Regulation & Guidelines
-            </h3>
+            </h2>
 
-            {findProperty('guidelines') && (
+            {findProperty("guidelines") && (
               <div className="space-y-4">
-                {findProperty('guidelines')?.UK && (
+                {findProperty("guidelines")?.UK && (
                   <div>
-                    <h4 className="font-semibold mb-2">UK Guidelines</h4>
+                    <h3 className="font-semibold mb-2">UK Guidelines</h3>
                     <p className="text-gray-700 text-sm">
-                      {findProperty('guidelines').UK}
+                      {findProperty("guidelines").UK}
                     </p>
                   </div>
                 )}
 
-                {findProperty('guidelines')?.USA && (
+                {findProperty("guidelines")?.USA && (
                   <div>
-                    <h4 className="font-semibold mb-2">USA Guidelines</h4>
+                    <h3 className="font-semibold mb-2">USA Guidelines</h3>
                     <p className="text-gray-700 text-sm">
-                      {findProperty('guidelines').USA}
+                      {findProperty("guidelines").USA}
                     </p>
                   </div>
                 )}
 
-                {typeof findProperty('guidelines') === 'string' && (
+                {typeof findProperty("guidelines") === "string" && (
                   <div>
-                    <h4 className="font-semibold mb-2">Guidelines</h4>
+                    <h3 className="font-semibold mb-2">Guidelines</h3>
                     <p className="text-gray-700 text-sm">
-                      {findProperty('guidelines')}
+                      {findProperty("guidelines")}
                     </p>
                   </div>
                 )}
               </div>
             )}
 
-            {findProperty('regulation') && (
+            {findProperty("regulation") && (
               <div>
-                <h4 className="font-semibold mb-3">
+                <h3 className="font-semibold mb-3">
                   What to Do If Something Goes Wrong
-                </h4>
-                {Array.isArray(findProperty('regulation')) ? (
-                  <ul className="space-y-2 text-gray-700 text-sm">
-                    {findProperty('regulation').map(
+                </h3>
+                {Array.isArray(findProperty("regulation")) ? (
+                  <ul className="space-y-2 text-gray-700 text-sm list-disc ml-6">
+                    {findProperty("regulation").map(
                       (step: string, index: number) => (
-                        <li key={index}>• {step}</li>
-                      )
+                        <li key={index}>{step}</li>
+                      ),
                     )}
                   </ul>
-                ) : findProperty('regulation')?.Regulation ? (
+                ) : findProperty("regulation")?.Regulation ? (
                   <div className="space-y-4">
                     <div>
-                      <h5 className="font-medium mb-1">Regulation</h5>
+                      <h3 className="font-medium mb-1">Regulation</h3>
                       <p className="text-gray-700 text-sm">
-                        {findProperty('regulation').Regulation}
+                        {findProperty("regulation").Regulation}
                       </p>
                     </div>
-                    {findProperty('regulation').Complaints && (
+                    {findProperty("regulation").Complaints && (
                       <div>
-                        <h5 className="font-medium mb-1">Complaints</h5>
+                        <h3 className="font-medium mb-1">Complaints</h3>
                         <p className="text-gray-700 text-sm">
-                          {findProperty('regulation').Complaints}
+                          {findProperty("regulation").Complaints}
                         </p>
                       </div>
                     )}
                   </div>
                 ) : (
                   <p className="text-gray-700 text-sm">
-                    {findProperty('regulation')}
+                    {findProperty("regulation")}
                   </p>
                 )}
               </div>

@@ -6,6 +6,10 @@ import path from "path";
 import treatment_content from "../../../../public/treatments.json";
 import { TreatmentDetail } from "@/components/treatment-detail";
 import Script from "next/script";
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
+import { ArrowLeft } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 type TreatmentContent = Record<string, any>;
 const treatments = treatment_content as TreatmentContent;
@@ -95,6 +99,36 @@ const TreatmentMap: Record<string, string> = {
   "Weight Loss": "/directory/treatments/weight-loss.webp",
 };
 
+const getTreatmentCategory = (treatmentName: string): string => {
+  const hairTreatments = ['Alopecia', 'Hair Treatments'];
+  const skinTreatments = ['Acne', 'Eczema Treatment', 'Psoriasis', 'Rosacea Treatment', 'Melasma Treatment', 'Contact Dermatitis', 'Dermatitis Treatment', 'Seborrhoeic Dermatitis'];
+  const aestheticTreatments = ['Botox', 'Anti Wrinkle Treatment', 'Fillers', 'Lips', 'Cheek Enhancement', 'Chin Enhancement', 'Tear Trough Treatment', 'Marionettes'];
+  const bodyTreatments = ['Liposuction', 'CoolSculpting', 'Aqualyx', 'Weight Loss', 'Breast Augmentation', 'Rhinoplasty'];
+  const laserTreatments = ['Tattoo Removal', 'Laser Treatments', 'IPL Treatment', 'Photodynamic Therapy (PDT)'];
+  const skincareTreatments = ['Chemical Peel', 'Microneedling', 'Dermapen Treatment', 'Profhilo', 'Skin Booster', 'Polynucleotide Treatment'];
+  
+  if (hairTreatments.some(t => treatmentName.toLowerCase().includes(t.toLowerCase()))) {
+    return 'Hair Treatments';
+  }
+  if (skinTreatments.some(t => treatmentName.toLowerCase().includes(t.toLowerCase()))) {
+    return 'Skin Conditions';
+  }
+  if (aestheticTreatments.some(t => treatmentName.toLowerCase().includes(t.toLowerCase()))) {
+    return 'Aesthetic Treatments';
+  }
+  if (bodyTreatments.some(t => treatmentName.toLowerCase().includes(t.toLowerCase()))) {
+    return 'Body Treatments';
+  }
+  if (laserTreatments.some(t => treatmentName.toLowerCase().includes(t.toLowerCase()))) {
+    return 'Laser Treatments';
+  }
+  if (skincareTreatments.some(t => treatmentName.toLowerCase().includes(t.toLowerCase()))) {
+    return 'Skincare Treatments';
+  }
+  
+  return 'Dermatology';
+};
+
 export default async function ProfilePage({ params }: Readonly<ProfilePageProps>) {
   const filePath = path.join(process.cwd(), "public", "clinics_processed_new.json");
   const fileContents = fs.readFileSync(filePath, "utf-8");
@@ -119,6 +153,9 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
     treatmentOptions: treatmentData?.options || "Various treatment options are available depending on your specific needs.",
     results: treatmentData?.results || "Results vary based on individual factors and treatment approach.",
   };
+
+  // Get treatment category
+  const treatmentCategory = getTreatmentCategory(treatment.name);
 
   const filteredClinics = clinics.filter((clinic) => {
 
@@ -188,7 +225,39 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
       <main className="bg-[var(--primary-bg-color)]">
         {/* Treatment Detail Section */}
         <div className="bg-white">
-          <TreatmentDetail treatment={treatment} treatmentData={treatmentData} />
+          <div className="bg-card/50 backdrop-blur-sm sticky top-0 z-10">
+            <div className="container mx-auto max-w-7xl px-4 py-4">
+              <Link href="/">
+                <Button variant="ghost" size="sm" className="gap-2">
+                  <ArrowLeft className="h-4 w-4" />
+                  Back to Directory
+                </Button>
+              </Link>
+              <Breadcrumb>
+                <BreadcrumbList>
+                  <BreadcrumbItem>
+                    <BreadcrumbLink href="/">Home</BreadcrumbLink>
+                  </BreadcrumbItem>
+                  <BreadcrumbSeparator />
+                  <BreadcrumbItem>
+                    <BreadcrumbLink href="/directory/treatments">
+                      Treatments
+                    </BreadcrumbLink>
+                  </BreadcrumbItem>
+                  <BreadcrumbSeparator />
+                  <BreadcrumbItem>{treatmentCategory}</BreadcrumbItem>
+                  <BreadcrumbSeparator />
+                  <BreadcrumbItem>
+                    <BreadcrumbPage>{`${treatment.name}`}</BreadcrumbPage>
+                  </BreadcrumbItem>
+                </BreadcrumbList>
+              </Breadcrumb>
+            </div>
+          </div>
+          <TreatmentDetail
+            treatment={treatment}
+            treatmentData={treatmentData}
+          />
         </div>
       </main>
     </>
