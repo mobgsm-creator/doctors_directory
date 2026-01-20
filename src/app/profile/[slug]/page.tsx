@@ -42,7 +42,9 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
   const hoursObj = clinic?.hours as unknown as Record<string, any>;
   const hours =
     hoursObj["Typical_hours_listed_in_directories"] ?? clinic?.hours;
-  const flatHours = flattenObject(hours);
+  const flatHours = typeof hoursObj === 'object' ? flattenObject(hours) : hours
+
+  
 
   const boxplotData = mergeBoxplotDataFromDict(
     boxplotDatas_clinic,
@@ -115,7 +117,7 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
                   <div className="overflow-x-auto shadow-none">
                     <table className="w-full align-top text-sm bg-white border-collapse">
                       <tbody>
-                        {Object.entries(flatHours).map(([day, time]) => (
+                        {typeof flatHours === 'object' ? Object.entries(flatHours).map(([day, time]) => (
                           <tr key={day}>
                             <td className="align-top border-0 px-1 py-1 font-medium">
                               {day?.toString()}
@@ -124,7 +126,7 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
                               {time?.toString()}
                             </td>
                           </tr>
-                        ))}
+                        )):<tr>Not listed</tr>}
                       </tbody>
                     </table>
                   </div>

@@ -8,12 +8,63 @@ import { modalities } from "@/lib/data";
 
 export const loadData = cache(() => {
 
-  const clinics = clinicsJson as unknown as Clinic[];
-  const practitioners = practitionersJson as unknown as Practitioner[];
-  const products = productsJson as unknown as Product[];
+  const clinicsData = clinicsJson as unknown as Clinic[];
+  const practitionersData = practitionersJson as unknown as Practitioner[];
+  const productsData = productsJson as unknown as Product[];
   const treatments = modalities
+  const clinics = clinicsData.map((clinic):Pick<Clinic, "slug" |"City"|"image"| "category" | "gmapsAddress" | "Treatments" | "rating" | "reviewCount" | "isCQC" | "isHIW" | "isJCCP"| "isDoctor" | "isHIS" | "isRQIA" | "isSaveFace"> => ({
+    slug: clinic.slug,
+    image: clinic.image,
+    category: clinic.category,
+    gmapsAddress: clinic.gmapsAddress,
+    Treatments: clinic.Treatments,
+    rating: clinic.rating,
+    reviewCount: clinic.reviewCount,
+    isCQC: clinic.isCQC,
+    isHIW: clinic.isHIW,
+    isHIS: clinic.isHIS,
+    isJCCP: clinic.isJCCP,
+    isDoctor: clinic.isDoctor,
+    isSaveFace: clinic.isSaveFace,
+    isRQIA: clinic.isRQIA,
+    City: clinic.City,
 
 
+  }));
+  
+  const practitioners = practitionersData.map((clinic):Pick<Practitioner, "slug" |"City"|"image"| "category" | "gmapsAddress" | "Treatments" | "rating" | "reviewCount" | "isCQC" | "isHIW" | "isJCCP"| "isDoctor" | "isHIS" | "isRQIA" | "isSaveFace"| "practitioner_name" | "practitioner_title" | "practitioner_qualifications"> => ({
+    slug: clinic.slug,
+    image: clinic.image,
+    category: clinic.category,
+    gmapsAddress: clinic.gmapsAddress,
+    Treatments: clinic.Treatments,
+    rating: clinic.rating,
+    reviewCount: clinic.reviewCount,
+    isCQC: clinic.isCQC,
+    isHIW: clinic.isHIW,
+    isHIS: clinic.isHIS,
+    isJCCP: clinic.isJCCP,
+    isDoctor: clinic.isDoctor,
+    isSaveFace: clinic.isSaveFace,
+    isRQIA: clinic.isRQIA,
+    City: clinic.City,
+    practitioner_name: clinic.practitioner_name,
+    practitioner_title: clinic.practitioner_title,
+    practitioner_qualifications: clinic.practitioner_qualifications,
+
+
+  }));
+
+  const products = productsData.map((clinic):Pick<Product,  "category" | "product_name" | "brand" | "manufacturer" | "distributor_cleaned"> => ({
+
+    product_name: clinic.product_name,
+    brand: clinic.brand,
+    manufacturer: clinic.manufacturer,
+    distributor_cleaned: clinic.distributor_cleaned,
+    category: clinic.category
+
+  }));
+  
   return { clinics, practitioners, products, treatments };
 });
 
@@ -34,7 +85,7 @@ export async function searchPractitioners(
   
   const start = performance.now();
   // Apply filtering logic
-  const filteredClinics = clinics.filter((clinic: Clinic) => {
+  const filteredClinics = clinics.filter((clinic) => {
     if (filters.query) {
       const query = filters.query.toLowerCase()
       const searchableText = [
@@ -70,7 +121,7 @@ export async function searchPractitioners(
     return true
   })
 
-  const filteredPractitioners = practitioners.filter((practitioner: Practitioner) => {
+  const filteredPractitioners = practitioners.filter((practitioner) => {
     if (filters.query) {
       const query = filters.query.toLowerCase()
       const searchableText = [
@@ -107,12 +158,12 @@ export async function searchPractitioners(
     return true
   })
 
-  const filteredProducts = products.filter((product: Product) => {
+  const filteredProducts = products.filter((product) => {
     if (filters.query) {
       const query = filters.query.toLowerCase()
       const searchableText = [
         product.product_name,
-        product.product_category,
+        product.category,
         product.brand,
         product.manufacturer,
       ].join(" ").toLowerCase()
@@ -129,7 +180,7 @@ export async function searchPractitioners(
 
     if (filters.services.length > 0) {
       const hasMatchingService = filters.services.some((service) =>
-        product.product_category.toLowerCase().includes(service.toLowerCase())
+        product.category.toLowerCase().includes(service.toLowerCase())
       )
       if (!hasMatchingService) return false
     }

@@ -19,7 +19,7 @@ function isPractitioner(obj: unknown): obj is Practitioner {
 }
 
 function isClinic(obj: unknown): obj is Clinic {
-  return typeof obj === "object" && obj !== null && "City" in obj;
+  return typeof obj === "object" && obj !== null && "isJCCP" in obj;
 }
 
 function isProduct(obj: unknown): obj is Product {
@@ -27,6 +27,7 @@ function isProduct(obj: unknown): obj is Product {
 }
 
 export function PractitionerCard({ practitioner }: PractitionerCardProps) {
+
   let practitionerName = ""
   if(isPractitioner(practitioner)){
   practitionerName = practitioner.practitioner_name
@@ -40,9 +41,10 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
         .join(" ");
   }
   else if(isClinic(practitioner)){
+    console.log("here")
     practitionerName = practitioner.slug.split("-").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ") 
   } 
-
+  
 
   return (
     <>

@@ -1,7 +1,4 @@
-"use client"
-
-import { useRef, useState, useEffect } from 'react'
-import { ChevronLeft, ChevronRight, Star, MapPin } from 'lucide-react'
+import { Star, MapPin } from 'lucide-react'
 import { Card, CardHeader, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -10,6 +7,7 @@ import type { Product, Clinic, Practitioner } from '@/lib/types'
 import { decodeUnicodeEscapes, cn } from '@/lib/utils'
 import { TreatmentMap } from "@/lib/data"
 import { ThumbsUp, DollarSign, Users } from "lucide-react";
+import { MoreItemsScroller } from "./MoreItemsScroller";
 interface MoreItemsProps {
   items: Array<Product | Clinic | Practitioner|string|undefined>
   maxItems?: number
@@ -377,86 +375,20 @@ function PractitionerCard({ practitioner }: { practitioner: Practitioner }) {
   )
 }
 
-export function MoreItems({ items, maxItems = 15, scrollAmount = 300 }: Readonly<MoreItemsProps>) {
-  const scrollContainerRef = useRef<HTMLDivElement>(null)
-  const [canScrollLeft, setCanScrollLeft] = useState(false)
-  const [canScrollRight, setCanScrollRight] = useState(false)
-
-  const scrollLeft = () => {
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({
-        left: -scrollAmount,
-        behavior: 'smooth',
-      })
-    }
-  }
-
-  const scrollRight = () => {
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({
-        left: scrollAmount,
-        behavior: 'smooth',
-      })
-    }
-  }
-
-  useEffect(() => {
-    const container = scrollContainerRef.current
-    if (!container) return
-
-    const updateScrollButtons = () => {
-      setCanScrollLeft(container.scrollLeft > 0)
-      setCanScrollRight(
-        container.scrollLeft < container.scrollWidth - container.clientWidth
-      )
-    }
-
-    updateScrollButtons()
-    container.addEventListener('scroll', updateScrollButtons)
-    return () => container.removeEventListener('scroll', updateScrollButtons)
-  }, [items])
-
+export function MoreItems({ items, maxItems = 15 }: MoreItemsProps) {
   return (
-    <div className="relative w-full">
-      <div
-        ref={scrollContainerRef}
-        className="flex overflow-x-auto gap-4 pb-4 snap-x snap-mandatory animate-fade-in no-scrollbar scroll-smooth"
-      >
-        {items.slice(0, maxItems).map((item, index) => (
-          <div
-            key={typeof item === 'string' ? item: item!.slug ?? item}
-            className="flex-shrink-0 w-[280px] md:w-[320px]"
-            style={{ animationDelay: `${index * 50}ms` }}
-          >
-            {isProduct(item) && <ProductCard product={item} />}
-            {isClinic(item) && <ClinicCard clinic={item} />}
-            {isPractitioner(item) && <PractitionerCard practitioner={item} />}
-            {isTreatment(item) && <TreatmentCard treatment={item} />}
-          </div>
-        ))}
-
-        {canScrollLeft && (
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={scrollLeft}
-            className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white/95 shadow-md hover:bg-white rounded-full h-10 w-10 flex-shrink-0"
-          >
-            <ChevronLeft className="h-5 w-5" />
-          </Button>
-        )}
-
-        {canScrollRight && (
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={scrollRight}
-            className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white/95 shadow-md hover:bg-white rounded-full h-10 w-10 flex-shrink-0"
-          >
-            <ChevronRight className="h-5 w-5" />
-          </Button>
-        )}
-      </div>
-    </div>
-  )
+    <MoreItemsScroller>
+      {items.slice(0, maxItems).map((item, index) => (
+        <div
+          key={typeof item === "string" ? item : item!.slug ?? index}
+          className="flex-shrink-0 w-[280px] md:w-[320px]"
+        >
+          {isProduct(item) && <ProductCard product={item} />}
+          {isClinic(item) && <ClinicCard clinic={item} />}
+          {isPractitioner(item) && <PractitionerCard practitioner={item} />}
+          {isTreatment(item) && <TreatmentCard treatment={item} />}
+        </div>
+      ))}
+    </MoreItemsScroller>
+  );
 }

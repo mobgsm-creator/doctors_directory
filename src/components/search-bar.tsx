@@ -20,7 +20,7 @@ export function SearchBar() {
   const [localFilters, setLocalFilters] = useState(filters);
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef(null);
-  console.log(showResults)
+
   const options = ["Practitioner", "Clinic", "Product","Treatments"];
   const handleSearch = async () => {
     //console.log("handle search");

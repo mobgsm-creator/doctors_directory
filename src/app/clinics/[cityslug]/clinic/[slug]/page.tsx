@@ -60,9 +60,11 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
 
   const clinic = clinics.find((p) => p.slug === slug);
   const hoursObj = clinic?.hours as unknown as Record<string, any>;
-  const hours =
+
+  const hours = 
     hoursObj["Typical_hours_listed_in_directories"] ?? clinic?.hours;
-  const flatHours = flattenObject(hours);
+  const flatHours = typeof hoursObj === 'object' ? flattenObject(hours) : hours
+
   
 
 
@@ -158,7 +160,7 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
                   <div className="overflow-x-auto shadow-none">
                     <table className="w-full align-top text-sm bg-white border-collapse">
                       <tbody>
-                        {Object.entries(flatHours).map(([day, time]) => (
+                        {typeof flatHours === 'object' ? Object.entries(flatHours).map(([day, time]) => (
                           <tr key={day}>
                             <td className="align-top border-0 px-1 py-1 font-medium">
                               {day?.toString()}
@@ -167,7 +169,7 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
                               {time?.toString()}
                             </td>
                           </tr>
-                        ))}
+                        )):<tr>Not listed</tr>}
                       </tbody>
                     </table>
                   </div>
@@ -209,7 +211,7 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
             </div>
           </div>
           <h2 className='text-xl font-semibold text-foreground mb-2'>Patient Stories</h2>
-          <div className= 'flex flex-row items-center mb-6 gap-3'>
+          
           <div className='flex flex-col sm:flex-row gap-2'>
             
           {clinic.gmapsReviews &&
@@ -231,7 +233,7 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
           url={clinic.url}
           
           className="w-full h-80"
-        /></div>
+        />  
         
       </div>
         </div>
@@ -250,7 +252,7 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
 
 // export async function generateStaticParams() {
 
-//   const filePath = path.join(process.cwd(), 'public', '  ');
+//   const filePath = path.join(process.cwd(), 'public', 'clinics_processed_new.json');
 //   const fileContents = fs.readFileSync(filePath, 'utf-8');
 //   const clinics: Clinic[] = JSON.parse(fileContents);
 //   return clinics.map((clinic) => ({

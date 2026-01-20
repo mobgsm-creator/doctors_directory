@@ -31,14 +31,13 @@ export default function SearchPage() {
   services: [],
 };
   const pathname = usePathname();
-  console.log(pathname)
   const { filters, setFilters } = useSearchStore();
   const [currentPage, setCurrentPage] = useState(1);
   const [sortBy, setSortBy] = useState("default");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
 
-  const [data, setData] = useState<(Clinic | Practitioner | Product|string)[]>([]);
+  const [data, setData] = useState<(any|string)[]>([]);
   const [totalCount, setTotalCount] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
   const [isPending, startTransition] = useTransition();
@@ -59,6 +58,7 @@ export default function SearchPage() {
       console.log(`Search took ${end - start} ms`);
 
       setData(result.data);
+   
       setTotalCount(result.totalCount);
       setTotalPages(result.totalPages);
     })();

@@ -12,6 +12,7 @@ export default function PractitionerDetailsSections({
   clinic: Practitioner;
 }>) {
   
+  
 
 
 
@@ -192,62 +193,20 @@ export default function PractitionerDetailsSections({
           <div className="overflow-x-auto shadow-none">
             <table className="w-full text-sm bg-white">
               <tbody>
-                {Object.entries(clinic.Fees).map(([k, v]) =>
-                  k !== "Source" ? (
-                    <tr key={k}>
-                      <td className="align-top border-0 px-1 py-1 font-medium">{k}</td>
-                      <td className="align-top border-0 px-1 py-1">
-                        {(() => {
-                          // 1. If value is already an object → convert to bullets
-                          if (typeof v === "object" && v !== null) {
-                            return (
-                              <ul className="list-disc ml-6 space-y-1">
-                                {Object.entries(v).map(([key, value]: any) => (
-                                  <li key={key}>
-                                    <span className="font-medium">{key}</span>:{" "}
-                                    {String(value)}
-                                  </li>
-                                ))}
-                              </ul>
-                            );
-                          }
-
-                          // 2. If value is a JSON string → try parsing it
-                          if (typeof v === "string") {
-                            try {
-                              const parsed = JSON.parse(v);
-
-                              if (
-                                typeof parsed === "object" &&
-                                parsed !== null
-                              ) {
-                                return (
-                                  <ul className="list-disc ml-6 space-y-1">
-                                    {Object.entries(parsed).map(
-                                      ([key, value]: any) => (
-                                        <li key={key}>
-                                          <span className="font-medium">
-                                            {key}
-                                          </span>
-                                          : {String(value)}
-                                        </li>
-                                      )
-                                    )}
-                                  </ul>
-                                );
-                              }
-                            } catch (e) {
-                              // If parse fails → fall back to raw string
-                              return String(v);
-                            }
-                          }
-
-                          // 3. Primitive fallback
-                          return String(v ?? "Not listed");
-                        })()}
-                      </td>
-                    </tr>
-                  ) : null
+                {Object.entries(clinic.Fees).map(
+                  ([k, v]) =>
+                    k !== "Source" && (
+                      <tr key={k}>
+                        <td className="align-top border-0 px-1 py-1 font-medium">{k.replaceAll("ProcedureRange","Pricing")}</td>
+                        <td className="align-top border-0 px-1 py-1">
+                          {typeof v === "object" && v !== null
+                            ?  Object.entries(v).map(([key,val]) =>
+                              (key !== "Source" && key !== "Notes") && (
+                              <li key={key}>{key}: {val}</li>))
+                            : String(v ?? "Not listed")}
+                        </td>
+                      </tr>
+                    )
                 )}
               </tbody>
             </table>

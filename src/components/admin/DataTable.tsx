@@ -21,7 +21,7 @@ interface DataTableProps<T> {
 }
 
 export function DataTable<T>({ data, columns, onEdit, onDelete, onAdd }: Readonly<DataTableProps<T>>) {
-  console.log("here")
+
   const [searchTerm, setSearchTerm] = useState('')
 
   const filteredData = data.filter((item: any) =>
@@ -30,7 +30,7 @@ export function DataTable<T>({ data, columns, onEdit, onDelete, onAdd }: Readonl
     )
   )
   const [visibleCount, setVisibleCount] = useState(50);
-  console.log("visable count",visibleCount);
+
 
   const visibleData = filteredData.slice(0, visibleCount);
 
