@@ -54,25 +54,24 @@ export function SearchBar() {
                   </h3>
                   <div className="space-y-2 overflow-auto max-h-50 md:max-h-100">
                     {options.map((opt) => (
+                      <div
+                        key={opt}
+                        className="flex flex-col items-start gap-1"
+                      >
                 <button
-                  key={opt}
-                  className="hover:bg-gray-100 cursor-pointer text-sm"
+         
+                  className="hover:bg-blue-50 hover:text-blue-700 active:bg-blue-100 text-left text-sm font-medium w-full flex items-center gap-3"
                   onClick={() => {
                     setLocalFilters((prev) => ({ ...prev, type: opt }));
                     setOpen(false);
                   }}
                 >
-                   <div
-                          className="
-                      w-full px-3 py-2 rounded-lg transition
-                      hover:bg-blue-50 hover:text-blue-700 active:bg-blue-100
-                    "
-                        >
-                          <div  className="text-left text-sm font-medium w-full flex items-center gap-3">
+                   
+                          
                   {opt}
-                  </div>
-                        </div>
-                </button>
+                
+                  
+                </button></div>
               ))}
                   </div>
                 </div>
@@ -100,12 +99,7 @@ export function SearchBar() {
                         className="flex flex-col items-start gap-1"
                       >
                         {/* Hover-highlight wrapper */}
-                        <div
-                          className="
-                      w-full px-3 py-2 rounded-lg transition
-                      hover:bg-blue-50 hover:text-blue-700 active:bg-blue-100
-                    "
-                        >
+                        
                           <button
                             onClick={() =>
                               setLocalFilters((prev) => ({
@@ -113,11 +107,11 @@ export function SearchBar() {
                                 query: specialty,
                               }))
                             }
-                            className="text-left text-sm font-medium w-full flex items-center gap-3"
+                            className="hover:bg-blue-50 hover:text-blue-700 active:bg-blue-100 text-left text-sm font-medium w-full flex items-center gap-3"
                           >
                             {specialty}
                           </button>
-                        </div>
+                      
                       </div>
                     ))}
                   </div>
@@ -148,12 +142,7 @@ export function SearchBar() {
                     {/* Index Badge */}
 
                     {/* Hover-highlight wrapper */}
-                    <div
-                      className="
-                      w-full px-3 py-2 rounded-lg transition
-                      hover:bg-blue-50 hover:text-blue-700 active:bg-blue-100
-                    "
-                    >
+                   
                       <button
                         onClick={() =>
                           setLocalFilters((prev) => ({
@@ -161,12 +150,12 @@ export function SearchBar() {
                             location: loc,
                           }))
                         }
-                        className="text-left text-sm font-medium w-full flex items-center gap-3"
+                        className="text-left text-sm font-medium w-full flex items-center gap-3 hover:bg-blue-50 hover:text-blue-700 active:bg-blue-100"
                       >
                         {loc}
                       </button>
                     </div>
-                  </div>
+
                 ))}
               </div>
                 </div>)}
@@ -215,19 +204,15 @@ export function SearchBar() {
           {/* Section 1: Select either Clinic or Practitioner */}
           <div className="relative">
             <button
-              className="flex-1 bg-white shadow-sm border border-r-0 border-gray-300 px-4 py-3 rounded-l-lg "
+              className="flex-1 bg-white border border-r-0 border-gray-300 px-4 py-3 rounded-l-lg "
               onClick={() => setShowResults((o) => !o)}
               onBlur={() => setTimeout(() => setShowResults(false), 200)}
             >
               <Input
                 value={localFilters.type}
                 readOnly
-                className="border-0 shadow-none p-0 h-auto w-23 sm:w-30 text-base text-black cursor-pointer focus:outline-none 
-                focus:ring-0 
-                focus:border-0
-                active:outline-none 
-                active:ring-0
-                focus-visible:outline-none focus-visible:ring-0 focus-visible:border-0
+                className="border-0 p-0 h-auto w-23 sm:w-30 text-base text-black cursor-pointer
+    focus-visible:ring-offset-0
                 "
               />
               {/* Small border-only downward arrow */}
