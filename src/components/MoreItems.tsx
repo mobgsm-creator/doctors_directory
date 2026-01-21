@@ -46,13 +46,13 @@ const getEnhancedTreatment = (treatment: any) => {
   };
 function ProductCard({ product }: { product: Product }) {
   return (
-    <Link href={`/products/${product.category}/${product.slug}`} className="block">
-      <Card className="gap-0 h-full w-full relative px-4 md:px-0 shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border-t-[1px] rounded-27 md:border md:border-[var(--alto)] cursor-pointer" aria-labelledby={`product-name-${product.slug}`}>
+    <Link href={`/products/${product.category}/${product.slug}`} className="flex grow h-full">
+      <Card className="gap-0 h-full w-full relative px-0 shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border-t-[1px] rounded-27 md:border md:border-[var(--alto)] cursor-pointer justify-between" aria-labelledby={`product-name-${product.slug}`}>
         <CardHeader className="pb-2 px-2">
           <div className="flex items-start gap-4">
             <div className="text-center flex-1 min-w-0 items-center flex flex-col">
               <div className="flex w-full flex-row items-start border-b border-[#C4C4C4] md:border-0 md:flex-col md:items-center">
-                <div className="w-[80px] h-[80px] md:w-[150px] md:h-[150px] flex items-center justify-center overflow-hidden rounded-lg bg-gray-300 md:mb-4 mr-0">
+                <div className="w-[80px] h-[80px] md:w-[150px] md:h-[150px] flex items-center justify-center overflow-hidden rounded-lg bg-gray-300 mb-4 mr-0">
                   <img
                     src={
                       product.image_url?.replaceAll('"', "") ||
@@ -80,13 +80,13 @@ function ProductCard({ product }: { product: Product }) {
         </CardHeader>
 
         <CardContent className="pt-0 px-0 md:px-4 space-y-4">
-          <div className="flex md:items-center md:justify-center gap-2 text-[11px] text-gray-600">
+          <div className="flex items-center justify-center gap-2 text-[11px] text-gray-600">
             <span className="text-pretty text-center">
               {decodeUnicodeEscapes(product.category.trim())}
             </span>
           </div>
           <div>
-            <ul className="flex flex-wrap md:items-center md:justify-center gap-1 text-center" aria-label="Product prices">
+            <ul className="flex flex-wrap items-center justify-center gap-1 text-center" aria-label="Product prices">
               {Array.isArray(product.all_prices) &&
                 product.all_prices.map((value: any, index: number) => (
                   <li key={index}>
@@ -110,9 +110,12 @@ function ClinicCard({ clinic }: { clinic: Clinic }) {
     .join(" ")
 
   return (
-    <Link href={`/clinics/${clinic.City}/clinic/${clinic.slug}`} className="block">
-      <Card className="gap-0 relative px-4 md:px-0 shadow-sm transition-all duration-300 border border-[#E5E1DE] hover:shadow-2xl hover:-translate-y-1 rounded-lg cursor-pointer bg-white w-full">
-        <CardHeader className="pb-4 px-2">
+    <Link
+      href={`/clinics/${clinic.City}/clinic/${clinic.slug}`}
+      className="flex grow h-full"
+    >
+      <Card className="gap-0 relative px-4 md:px-0 shadow-sm transition-all duration-300 border border-[#E5E1DE] hover:shadow-2xl hover:-translate-y-1 rounded-lg cursor-pointer bg-white w-full justify-between">
+        <CardHeader className="p-0 md:pb-4 md:px-2">
           <div className="flex items-start gap-4">
             <div className="text-center flex-1 min-w-0 items-center flex flex-col">
               <div className="flex w-full flex-row items-start border-b border-[#C4C4C4] md:border-0 md:flex-col md:items-center">
@@ -180,7 +183,10 @@ function ClinicCard({ clinic }: { clinic: Clinic }) {
           {clinic.Treatments && clinic.Treatments.length > 0 && (
             <div>
               <h4 className="sr-only">Treatments offered</h4>
-              <ul className="flex flex-wrap gap-1 pt-4" aria-label="Treatments offered">
+              <ul
+                className="flex flex-wrap gap-1 pt-4"
+                aria-label="Treatments offered"
+              >
                 {clinic.Treatments.slice(0, 2).map((modality, index) => (
                   <li key={index}>
                     <Badge variant="outline" className="text-xs">
@@ -194,7 +200,7 @@ function ClinicCard({ clinic }: { clinic: Clinic }) {
         </CardContent>
       </Card>
     </Link>
-  )
+  );
 }
 
 function TreatmentCard({ treatment }: { treatment: string }) {
@@ -204,13 +210,13 @@ function TreatmentCard({ treatment }: { treatment: string }) {
 
 
     return (
-    <div key={treatment}>
-
         <Link
+        key={treatment}
           href={`/treatments/${treatmentValue}`}
           title={`Learn about ${treatmentValue} treatments and find qualified specialists`}
+          className="flex grow h-full"
         >
-          <Card className="group bg-white hover:shadow-lg transition-all duration-300 cursor-pointer border border-[#BDBDBD] md:border-0 rounded-lg sm:bg-transparent sm:border-0 sm:hover:border-accent/50 sm:flex sm:flex-col sm:gap-5 w-100">
+          <Card className="group bg-white hover:shadow-lg transition-all duration-300 cursor-pointer border border-[#BDBDBD] md:border-0 rounded-lg sm:bg-transparent sm:border-0 sm:hover:border-accent/50 sm:flex sm:flex-col sm:gap-5  w-100">
             <CardContent className="p-4 sm:p-0 sm:flex sm:items-center sm:justify-center sm:pt-0">
               <div className="flex items-center gap-4 sm:flex-col sm:gap-5">
                 <div className="flex-shrink-0">
@@ -219,7 +225,7 @@ function TreatmentCard({ treatment }: { treatment: string }) {
                     alt={treatmentValue}
                     width={60}
                     height={60}
-                    className="object-cover rounded-full w-30 h-30 sm:w-60 sm:h-60"
+                    className="object-cover rounded-full w-24 h-24 sm:w-60 sm:h-60"
                   />
                 </div>
                 <div className="flex-1 min-w-0 sm:text-center">
@@ -240,7 +246,7 @@ function TreatmentCard({ treatment }: { treatment: string }) {
                       <span className="font-medium">
                         {enhancedTreatment.averageCost}
                       </span>
-                      <span>Average Cost</span>
+                      <span>Avg Cost</span>
                     </div>
                     <div className="flex items-center gap-2 text-sm text-gray-600">
                       <Users className="h-4 w-4 text-black" />
@@ -255,9 +261,7 @@ function TreatmentCard({ treatment }: { treatment: string }) {
             </CardContent>
           </Card>
         </Link>
-
-    </div>
-  )}
+    );}
    
 function PractitionerCard({ practitioner }: { practitioner: Practitioner }) {
   const practitionerName = practitioner.practitioner_name
@@ -381,7 +385,7 @@ export function MoreItems({ items, maxItems = 15 }: MoreItemsProps) {
       {items.slice(0, maxItems).map((item, index) => (
         <div
           key={typeof item === "string" ? item : item!.slug ?? index}
-          className="flex-shrink-0 w-[280px] md:w-[320px]"
+          className="shrink-0 grow w-[320px]"
         >
           {isProduct(item) && <ProductCard product={item} />}
           {isClinic(item) && <ClinicCard clinic={item} />}

@@ -232,19 +232,17 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
               <GoogleMapsEmbed
           url={clinic.url}
           
-          className="w-full h-80"
+          className="w-full h-auto md:h-80"
         />  
         
       </div>
         </div>
-        <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Clinics in ${cityslug}`}</h3>
-        <MoreItems items={cityClinics} />
-        <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Specialities in ${cityslug}`}</h3>
-        <MoreItems items={uniqueTreatments} />
-           
-       
-
-              
+        <div className="px-4 md:px-0 space-y-6">
+          <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Clinics in ${cityslug}`}</h3>
+          <MoreItems items={cityClinics} />
+          <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Specialities in ${cityslug}`}</h3>
+          <MoreItems items={uniqueTreatments} />
+        </div>
       </div>
     </main>
   );

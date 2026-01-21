@@ -10,6 +10,7 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbP
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { MoreItems } from "@/components/MoreItems";
 
 type TreatmentContent = Record<string, any>;
 const treatments = treatment_content as TreatmentContent;
@@ -258,6 +259,15 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
             treatment={treatment}
             treatmentData={treatmentData}
           />
+          {/* Similar Clinics Section */}
+          <div className="container mx-auto max-w-7xl px-4 py-4">
+            <div className="px-4 md:px-0 space-y-6 mt-8">
+              <h3 className="text-lg font-semibold text-foreground mb-2">
+                Top Clinics for {treatment.name}
+              </h3>
+              <MoreItems items={filteredClinics.slice(0, 6)} />
+            </div>
+          </div>
         </div>
       </main>
     </>

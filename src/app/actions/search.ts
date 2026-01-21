@@ -55,13 +55,15 @@ export const loadData = cache(() => {
 
   }));
 
-  const products = productsData.map((clinic):Pick<Product,  "category" | "product_name" | "brand" | "manufacturer" | "distributor_cleaned"> => ({
+  const products = productsData.map((clinic):Pick<Product,  "category" | "product_name" | "brand" | "manufacturer" | "distributor_cleaned" | "image_url" | "slug"> => ({
 
     product_name: clinic.product_name,
     brand: clinic.brand,
     manufacturer: clinic.manufacturer,
     distributor_cleaned: clinic.distributor_cleaned,
-    category: clinic.category
+    category: clinic.category,
+    image_url: clinic.image_url,
+    slug: clinic.slug,
 
   }));
   
@@ -248,7 +250,6 @@ export async function searchPractitioners(
     }
   })
   const end = performance.now();
-  console.log(end-start)
   // Pagination
   const totalCount = filtered.length
   const totalPages = Math.ceil(totalCount / ITEMS_PER_PAGE)
