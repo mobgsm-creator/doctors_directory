@@ -1,21 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
 import ClinicTabs from "@/components/Clinic/clinicTabs";
-import { Skeleton } from "@/components/ui/skeleton";
 import { 
   ProfileHeaderSkeleton, 
   ContentSectionsSkeleton, 
   SidebarSkeleton, 
-  ReviewsSkeleton 
+  ReviewsSkeleton,
+  BreadcrumbSkeleton
 } from "@/components/loading-skeleton";
 
 export default async function Loading({ params }: { params: { cityslug: string; slug: string } }) {
@@ -34,18 +26,12 @@ export default async function Loading({ params }: { params: { cityslug: string; 
               Back to Directory
             </Button>
           </Link>
-          <Breadcrumb>
-            <BreadcrumbList>
-              <BreadcrumbItem>
-                <BreadcrumbLink href="/">Home</BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbLink href="/clinics">Clinics</BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-            </BreadcrumbList>
-          </Breadcrumb>
+          <BreadcrumbSkeleton 
+            items={[
+              { label: "Home", href: "/" },
+              { label: "Clinics", href: "/clinics" }
+            ]}
+          />
         </div>
       </div>
 

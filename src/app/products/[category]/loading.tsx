@@ -1,16 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
-import { Skeleton } from "@/components/ui/skeleton";
-import { ProductGridSkeleton } from "@/components/loading-skeleton";
+import { ProductGridSkeleton, BreadcrumbSkeleton } from "@/components/loading-skeleton";
 
 export default async function Loading({ params }: { params: { category: string } }) {
   return (
@@ -23,21 +14,13 @@ export default async function Loading({ params }: { params: { category: string }
               Back to Directory
             </Button>
           </Link>
-          <Breadcrumb>
-            <BreadcrumbList>
-              <BreadcrumbItem>
-                <BreadcrumbLink href="/">Home</BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbLink href="/products">Products</BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <Skeleton className="h-4 w-24" />
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </Breadcrumb>
+          <BreadcrumbSkeleton 
+            items={[
+              { label: "Home", href: "/" },
+              { label: "Products", href: "/products" },
+              { isLoading: true, skeletonWidth: "w-24" }
+            ]}
+          />
         </div>
       </div>
 

@@ -1,5 +1,44 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Skeleton } from "@/components/ui/skeleton"
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb"
+
+export interface BreadcrumbSkeletonItem {
+  label?: string
+  href?: string
+  isLoading?: boolean
+  skeletonWidth?: string
+}
+
+export interface BreadcrumbSkeletonProps {
+  items: BreadcrumbSkeletonItem[]
+}
+
+export function BreadcrumbSkeleton({ items }: BreadcrumbSkeletonProps) {
+  return (
+    <Breadcrumb>
+      <BreadcrumbList>
+        {items.map((item, index) => (
+          <>
+            <BreadcrumbItem key={index}>
+              {item.isLoading ? (
+                <Skeleton className={`h-4 ${item.skeletonWidth || 'w-20'}`} />
+              ) : (
+                <BreadcrumbLink href={item.href}>{item.label}</BreadcrumbLink>
+              )}
+            </BreadcrumbItem>
+            {index < items.length - 1 && <BreadcrumbSeparator />}
+          </>
+        ))}
+      </BreadcrumbList>
+    </Breadcrumb>
+  )
+}
 
 export function PractitionerCardSkeleton() {
   return (

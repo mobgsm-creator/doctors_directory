@@ -1,20 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
-import { Skeleton } from "@/components/ui/skeleton";
 import { 
   TreatmentHeroSkeleton, 
   TreatmentStatsSkeleton, 
-  TreatmentContentSkeleton 
+  TreatmentContentSkeleton,
+  BreadcrumbSkeleton
 } from "@/components/loading-skeleton";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default async function Loading({ params }: { params: { slug: string } }) {
   return (
@@ -28,27 +21,14 @@ export default async function Loading({ params }: { params: { slug: string } }) 
                 Back to Directory
               </Button>
             </Link>
-            <Breadcrumb>
-              <BreadcrumbList>
-                <BreadcrumbItem>
-                  <BreadcrumbLink href="/">Home</BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator />
-                <BreadcrumbItem>
-                  <BreadcrumbLink href="/directory/treatments">
-                    Treatments
-                  </BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator />
-                <BreadcrumbItem>
-                  <Skeleton className="h-4 w-20" />
-                </BreadcrumbItem>
-                <BreadcrumbSeparator />
-                <BreadcrumbItem>
-                  <Skeleton className="h-4 w-32" />
-                </BreadcrumbItem>
-              </BreadcrumbList>
-            </Breadcrumb>
+            <BreadcrumbSkeleton 
+              items={[
+                { label: "Home", href: "/" },
+                { label: "Treatments", href: "/directory/treatments" },
+                { isLoading: true, skeletonWidth: "w-20" },
+                { isLoading: true, skeletonWidth: "w-32" }
+              ]}
+            />
           </div>
         </div>
 
