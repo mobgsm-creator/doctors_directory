@@ -13,24 +13,7 @@ export const loadData = cache(() => {
   const clinics = clinicsData.map(
     (
       clinic,
-    ): Pick<
-      Clinic,
-      | "slug"
-      | "City"
-      | "image"
-      | "category"
-      | "gmapsAddress"
-      | "Treatments"
-      | "rating"
-      | "reviewCount"
-      | "isCQC"
-      | "isHIW"
-      | "isJCCP"
-      | "isDoctor"
-      | "isHIS"
-      | "isRQIA"
-      | "isSaveFace"
-    > => ({
+    ): Pick<Clinic, "slug" | "City" | "image" | "category" | "gmapsAddress" | "Treatments" | "rating" | "reviewCount" | "isCQC" | "isHIW" | "isJCCP" | "isDoctor" | "isHIS" | "isRQIA" | "isSaveFace"> => ({
       slug: clinic.slug,
       image: clinic.image,
       category: clinic.category,
@@ -52,27 +35,7 @@ export const loadData = cache(() => {
   const practitioners = practitionersData.map(
     (
       clinic,
-    ): Pick<
-      Practitioner,
-      | "slug"
-      | "City"
-      | "image"
-      | "category"
-      | "gmapsAddress"
-      | "Treatments"
-      | "rating"
-      | "reviewCount"
-      | "isCQC"
-      | "isHIW"
-      | "isJCCP"
-      | "isDoctor"
-      | "isHIS"
-      | "isRQIA"
-      | "isSaveFace"
-      | "practitioner_name"
-      | "practitioner_title"
-      | "practitioner_qualifications"
-    > => ({
+    ): Pick<Practitioner, "slug" | "City" | "image" | "category" | "gmapsAddress" | "Treatments" | "rating" | "reviewCount" | "isCQC" | "isHIW" | "isJCCP" | "isDoctor" | "isHIS" | "isRQIA" | "isSaveFace" | "practitioner_name" | "practitioner_title" | "practitioner_qualifications"> => ({
       slug: clinic.slug,
       image: clinic.image,
       category: clinic.category,
@@ -97,16 +60,7 @@ export const loadData = cache(() => {
   const products = productsData.map(
     (
       clinic,
-    ): Pick<
-      Product,
-      | "category"
-      | "product_name"
-      | "brand"
-      | "manufacturer"
-      | "distributor_cleaned"
-      | "image_url"
-      | "slug"
-    > => ({
+    ): Pick<Product, "category" | "product_name" | "brand" | "manufacturer" | "distributor_cleaned" | "image_url" | "slug"> => ({
       product_name: clinic.product_name,
       brand: clinic.brand,
       manufacturer: clinic.manufacturer,
