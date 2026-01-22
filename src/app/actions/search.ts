@@ -5,110 +5,122 @@ import clinicsJson from "../../../public/clinics_processed_new.json";
 import practitionersJson from "../../../public/derms_processed_new.json";
 import productsJson from "../../../public/products_processed_new.json";
 import { modalities } from "@/lib/data";
-
-export const loadClinics = cache(() => {
+export const loadData = cache(() => {
   const clinicsData = clinicsJson as unknown as Clinic[];
-  return clinicsData.map((clinic): Pick<Clinic, "slug" | "City" | "image" | "category" | "gmapsAddress" | "Treatments" | "rating" | "reviewCount" | "isCQC" | "isHIW" | "isJCCP" | "isDoctor" | "isHIS" | "isRQIA" | "isSaveFace"> => ({
-    slug: clinic.slug,
-    image: clinic.image,
-    category: clinic.category,
-    gmapsAddress: clinic.gmapsAddress,
-    Treatments: clinic.Treatments,
-    rating: clinic.rating,
-    reviewCount: clinic.reviewCount,
-    isCQC: clinic.isCQC,
-    isHIW: clinic.isHIW,
-    isHIS: clinic.isHIS,
-    isJCCP: clinic.isJCCP,
-    isDoctor: clinic.isDoctor,
-    isSaveFace: clinic.isSaveFace,
-    isRQIA: clinic.isRQIA,
-    City: clinic.City,
-  }));
-});
-
-export const loadPractitioners = cache(() => {
   const practitionersData = practitionersJson as unknown as Practitioner[];
-  return practitionersData.map((practitioner): Pick<Practitioner, "slug" | "City" | "image" | "category" | "gmapsAddress" | "Treatments" | "rating" | "reviewCount" | "isCQC" | "isHIW" | "isJCCP" | "isDoctor" | "isHIS" | "isRQIA" | "isSaveFace" | "practitioner_name" | "practitioner_title" | "practitioner_qualifications"> => ({
-    slug: practitioner.slug,
-    image: practitioner.image,
-    category: practitioner.category,
-    gmapsAddress: practitioner.gmapsAddress,
-    Treatments: practitioner.Treatments,
-    rating: practitioner.rating,
-    reviewCount: practitioner.reviewCount,
-    isCQC: practitioner.isCQC,
-    isHIW: practitioner.isHIW,
-    isHIS: practitioner.isHIS,
-    isJCCP: practitioner.isJCCP,
-    isDoctor: practitioner.isDoctor,
-    isSaveFace: practitioner.isSaveFace,
-    isRQIA: practitioner.isRQIA,
-    City: practitioner.City,
-    practitioner_name: practitioner.practitioner_name,
-    practitioner_title: practitioner.practitioner_title,
-    practitioner_qualifications: practitioner.practitioner_qualifications,
-  }));
-});
-
-export const loadProducts = cache(() => {
   const productsData = productsJson as unknown as Product[];
-  return productsData.map((product): Pick<Product, "category" | "product_name" | "brand" | "manufacturer" | "distributor_cleaned" | "image_url" | "slug"> => ({
-    product_name: product.product_name,
-    brand: product.brand,
-    manufacturer: product.manufacturer,
-    distributor_cleaned: product.distributor_cleaned,
-    category: product.category,
-    image_url: product.image_url,
-    slug: product.slug,
-  }));
+  const treatments = modalities;
+  const clinics = clinicsData.map(
+    (
+      clinic,
+    ): Pick<
+      Clinic,
+      | "slug"
+      | "City"
+      | "image"
+      | "category"
+      | "gmapsAddress"
+      | "Treatments"
+      | "rating"
+      | "reviewCount"
+      | "isCQC"
+      | "isHIW"
+      | "isJCCP"
+      | "isDoctor"
+      | "isHIS"
+      | "isRQIA"
+      | "isSaveFace"
+    > => ({
+      slug: clinic.slug,
+      image: clinic.image,
+      category: clinic.category,
+      gmapsAddress: clinic.gmapsAddress,
+      Treatments: clinic.Treatments,
+      rating: clinic.rating,
+      reviewCount: clinic.reviewCount,
+      isCQC: clinic.isCQC,
+      isHIW: clinic.isHIW,
+      isHIS: clinic.isHIS,
+      isJCCP: clinic.isJCCP,
+      isDoctor: clinic.isDoctor,
+      isSaveFace: clinic.isSaveFace,
+      isRQIA: clinic.isRQIA,
+      City: clinic.City,
+    }),
+  );
+
+  const practitioners = practitionersData.map(
+    (
+      clinic,
+    ): Pick<
+      Practitioner,
+      | "slug"
+      | "City"
+      | "image"
+      | "category"
+      | "gmapsAddress"
+      | "Treatments"
+      | "rating"
+      | "reviewCount"
+      | "isCQC"
+      | "isHIW"
+      | "isJCCP"
+      | "isDoctor"
+      | "isHIS"
+      | "isRQIA"
+      | "isSaveFace"
+      | "practitioner_name"
+      | "practitioner_title"
+      | "practitioner_qualifications"
+    > => ({
+      slug: clinic.slug,
+      image: clinic.image,
+      category: clinic.category,
+      gmapsAddress: clinic.gmapsAddress,
+      Treatments: clinic.Treatments,
+      rating: clinic.rating,
+      reviewCount: clinic.reviewCount,
+      isCQC: clinic.isCQC,
+      isHIW: clinic.isHIW,
+      isHIS: clinic.isHIS,
+      isJCCP: clinic.isJCCP,
+      isDoctor: clinic.isDoctor,
+      isSaveFace: clinic.isSaveFace,
+      isRQIA: clinic.isRQIA,
+      City: clinic.City,
+      practitioner_name: clinic.practitioner_name,
+      practitioner_title: clinic.practitioner_title,
+      practitioner_qualifications: clinic.practitioner_qualifications,
+    }),
+  );
+
+  const products = productsData.map(
+    (
+      clinic,
+    ): Pick<
+      Product,
+      | "category"
+      | "product_name"
+      | "brand"
+      | "manufacturer"
+      | "distributor_cleaned"
+      | "image_url"
+      | "slug"
+    > => ({
+      product_name: clinic.product_name,
+      brand: clinic.brand,
+      manufacturer: clinic.manufacturer,
+      distributor_cleaned: clinic.distributor_cleaned,
+      category: clinic.category,
+      image_url: clinic.image_url,
+      slug: clinic.slug,
+    }),
+  );
+
+  return { clinics, practitioners, products, treatments };
 });
 
-export const loadTreatments = cache((): string[] => {
-  return Array.isArray(modalities) ? modalities : [];
-});
 
-export const loadData = cache((type?: string) => {
-  if (type) {
-    switch (type) {
-      case "Clinic":
-        return { 
-          clinics: loadClinics(), 
-          practitioners: [] as ReturnType<typeof loadPractitioners>, 
-          products: [] as ReturnType<typeof loadProducts>, 
-          treatments: [] as string[]
-        };
-      case "Product":
-        return { 
-          clinics: [] as ReturnType<typeof loadClinics>, 
-          practitioners: [] as ReturnType<typeof loadPractitioners>, 
-          products: loadProducts(), 
-          treatments: [] as string[]
-        };
-      case "Treatments":
-        return { 
-          clinics: [] as ReturnType<typeof loadClinics>, 
-          practitioners: [] as ReturnType<typeof loadPractitioners>, 
-          products: [] as ReturnType<typeof loadProducts>, 
-          treatments: loadTreatments() 
-        };
-      default:
-        return { 
-          clinics: [] as ReturnType<typeof loadClinics>, 
-          practitioners: loadPractitioners(), 
-          products: [] as ReturnType<typeof loadProducts>, 
-          treatments: [] as string[]
-        };
-    }
-  }
-  
-  return { 
-    clinics: loadClinics(), 
-    practitioners: loadPractitioners(), 
-    products: loadProducts(), 
-    treatments: loadTreatments() 
-  };
-});
 
 
 
@@ -120,14 +132,14 @@ export async function searchPractitioners(
   page: number = 1,
   sortBy: string = "default"
 ) {
-  const { clinics, practitioners, products, treatments } = await loadData(filters.type);
+  const { clinics, practitioners, products, treatments } = await loadData();
 
   const start = performance.now();
   
   let filtered: any[] = []
   
   if (filters.type === "Clinic") {
-    filtered = (await clinics).filter((clinic) => {
+    filtered = ( clinics).filter((clinic) => {
       if (filters.query) {
         const queryWords = filters.query.toLowerCase().split(/\s+/).filter(word => word.length > 0)
         const searchableText = [
@@ -164,7 +176,7 @@ export async function searchPractitioners(
       return true
     })
   } else if (filters.type === "Product") {
-    filtered = (await products).filter((product) => {
+    filtered = ( products).filter((product) => {
       if (filters.query) {
         const queryWords = filters.query.toLowerCase().split(/\s+/).filter(word => word.length > 0)
         const searchableText = [
@@ -195,7 +207,7 @@ export async function searchPractitioners(
       return true
     })
   } else if (filters.type === "Treatments") {
-    filtered = (await treatments).filter((treatment: string) => {
+    filtered = ( treatments).filter((treatment: string) => {
       if (filters.query) {
         const queryWords = filters.query.toLowerCase().split(/\s+/).filter(word => word.length > 0)
         const treatmentText = treatment.toLowerCase()
@@ -243,7 +255,7 @@ export async function searchPractitioners(
       return true
     })
   } else {
-    filtered = (await practitioners).filter((practitioner) => {
+    filtered = ( practitioners).filter((practitioner) => {
       if (filters.query) {
         const queryWords = filters.query.toLowerCase().split(/\s+/).filter(word => word.length > 0)
         const searchableText = [

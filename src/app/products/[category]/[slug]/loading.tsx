@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/breadcrumb";
 import { Skeleton } from "@/components/ui/skeleton";
 import PractitionerTabs from "@/components/Product/ProductTabs";
+import { ProfileHeaderSkeleton } from "@/components/loading-skeleton";
 
 export default async function Loading({ params }: { params: { category: string; slug: string } }) {
   return (
@@ -46,26 +47,7 @@ export default async function Loading({ params }: { params: { category: string; 
       </div>
 
       <div className="container mx-auto max-w-6xl pt-0 md:px-4 py-20 space-y-8">
-        <div className="px-4 md:px-0 space-y-6">
-          <div className="flex flex-col md:flex-row gap-6 items-start">
-            <Skeleton className="h-48 w-48 rounded-lg flex-shrink-0" />
-            <div className="flex-1 space-y-4">
-              <Skeleton className="h-8 w-3/4" />
-              <Skeleton className="h-5 w-1/2" />
-              <div className="flex items-center gap-4">
-                <Skeleton className="h-6 w-20 rounded-full" />
-                <Skeleton className="h-6 w-24 rounded-full" />
-              </div>
-              <Skeleton className="h-4 w-full" />
-              <Skeleton className="h-4 w-2/3" />
-              <div className="flex flex-wrap gap-2">
-                {Array.from({ length: 3 }, (_, i) => (
-                  <Skeleton key={i} className="h-6 w-16 rounded-full" />
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
+        <ProfileHeaderSkeleton />
 
         <div className="px-4 md:px-0">
           <PractitionerTabs />
