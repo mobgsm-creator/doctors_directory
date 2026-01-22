@@ -9,6 +9,7 @@ import {
   ReviewsSkeleton,
   BreadcrumbSkeleton
 } from "@/components/loading-skeleton";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default async function Loading({ params }: { params: { cityslug: string; slug: string } }) {
 

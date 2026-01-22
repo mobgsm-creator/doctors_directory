@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { ProductGridSkeleton, BreadcrumbSkeleton } from "@/components/loading-skeleton";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default async function Loading({ params }: { params: { category: string } }) {
   return (
