@@ -5,7 +5,7 @@ import { Clinic } from "@/lib/types";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import { Section } from "../ui/section";
-import { count } from "console";
+import { decodeUnicodeEscapes,fixMojibake } from "@/lib/utils";
 interface PractitionerDetails {
   "Full Name": string;
   Title?: string;
@@ -50,20 +50,23 @@ export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
       return [val];
     }
   };
+
   let flag = true;
   let edge_case_accreditations: any = [];
   try {
     edge_case_accreditations = JSON.parse(clinic.accreditations.replaceAll("'", '"'))[0]['Details']
     flag = edge_case_accreditations.length === 0 ? true : false;
   } catch (error) {
-    //console.log("edge_case_accreditations error: ",error)
+    flag = false;
   }
+ 
+  
 
   return (
     <div className="">
       {/* ABOUT */}
       <Section title={`About ${clinic.slug.split("-").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")}`} id="about">
-        {clinic.about_section || "Not publicly listed"}
+        {decodeUnicodeEscapes(clinic.about_section) || "Not publicly listed"}
       </Section>
 
       <div className="border-t border-gray-300 my-6"></div>
@@ -96,27 +99,24 @@ export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
 
       {/* ACCREDITATIONS */}
       
-      
-      {Array.isArray(parseList(clinic.accreditations)) && flag ? (
-        <Section title="Accreditations" id="accreditations">
-        {Array.isArray(parseList(clinic.accreditations)) ? (
-          <ul className="list-disc ml-6 space-y-1">
+      <Section title="Accreditations" id="accreditations">
+      {flag === false ? (
+        Array.isArray(parseList(clinic.accreditations)) ? (
+          <ul className="list-disc ml-6 space-y-1" data-testid="accreditations-list">
             {parseList(clinic.accreditations).map((a: string, i: number) => (
-              <li key={i}>{a}</li>
+              <li key={i}>{fixMojibake(decodeUnicodeEscapes(a)).replaceAll("—", '')}</li>
             ))} 
-          </ul>) : "Not listed"}
-         
-        <div className="border-t border-gray-300 my-6"></div>
-         
-      </Section>) : <Section title="Accreditations" id="accreditations">
-        
-          <ul className="list-disc ml-6 space-y-1">
-            {edge_case_accreditations ? edge_case_accreditations : "Not listed"}
+          </ul>) : <ul className="list-disc ml-6 space-y-1" data-testid="accreditations-list">
+            <li> "Not listed"</li></ul>
+      ) : (
+          <ul className="list-disc ml-6 space-y-1" data-testid="accreditations-list">
+            <li> 
+            {edge_case_accreditations ? decodeUnicodeEscapes(edge_case_accreditations) : "Not listed"}</li>
           </ul>
-         
-        <div className="border-t border-gray-300 my-6"></div>
-         
-      </Section>}
+      ) 
+      }
+      </Section>
+      <div className="border-t border-gray-300 my-6"></div>
       
      
 
