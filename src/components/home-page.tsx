@@ -770,10 +770,10 @@ const imageLogos = [
     alt: "HIS",
     href: "https://www.healthcareimprovementscotland.scot/",
   },
-  { src: "directory/HIW.jpg", alt: "HIW", href: "https://www.hiw.org.uk" },
-  { src: "directory/jccp.jpg", alt: "JCCP", href: "https://www.jccp.org.uk/" },
-  { src: "directory/qcc.jpg", alt: "CQC", href: "https://cqc.org.uk" },
-  { src: "directory/rqia.jpg", alt: "RQIA", href: "https://www.rqia.org.uk/" },
+  { src: "/directory/HIW.jpg", alt: "HIW", href: "https://www.hiw.org.uk" },
+  { src: "/directory/jccp.jpg", alt: "JCCP", href: "https://www.jccp.org.uk/" },
+  { src: "/directory/qcc.jpg", alt: "CQC", href: "https://cqc.org.uk" },
+  { src: "/directory/rqia.jpg", alt: "RQIA", href: "https://www.rqia.org.uk/" },
   {
     src: "directory/save-face-partner.jpg",
     alt: "Save Face",
@@ -864,7 +864,7 @@ export default function HomePage() {
               <article key={index} className="flex flex-col items-center gap-4">
                 <div className="flex items-center justify-center transition">
                   <img
-                    src={specialist.image || "/placeholder.svg"}
+                    src={`/${specialist.image || "placeholder.svg"}`}
                     alt={specialist.name || "Placeholder"}
                     className="w-[100px] h-[100px] object-cover rounded-lg"
                   />
@@ -914,7 +914,7 @@ export default function HomePage() {
   >               <Link href={treatment.url}>
                   <img
                    
-                    src={treatment.image || "/placeholder.svg"}
+                    src={`/${treatment.image || "/placeholder.svg"}`}
                     alt={treatment.name}
                     className="w-32 h-32 md:w-38 md:h-38 lg:w-45 lg:h-45 ml-auto mr-auto object-cover object-center rounded-lg"
                   /></Link></div>
