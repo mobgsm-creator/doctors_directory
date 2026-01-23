@@ -1,19 +1,3 @@
-export function stripContentReferencesDeep(obj: any): any {
-  if (typeof obj === 'string') {
-    return obj.replace(/\s*:contentReference\[[^\]]*\](\{[^}]*\})?/g, '').trim();
-  }
-  if (Array.isArray(obj)) {
-    return obj.map(stripContentReferencesDeep);
-  }
-  if (obj && typeof obj === 'object') {
-    const result: any = {};
-    for (const key in obj) {
-      result[key] = stripContentReferencesDeep(obj[key]);
-    }
-    return result;
-  }
-  return obj;
-}
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 import { Clinic, Practitioner } from "./types"
@@ -194,4 +178,23 @@ export function fixMojibake(str: string) {
   return new TextDecoder("utf-8").decode(
     Uint8Array.from(str, c => c.charCodeAt(0))
   );
+}
+
+export function stripContentReferencesDeep(obj: any): any {
+  if (typeof obj === "string") {
+    return obj
+      .replace(/\s*:contentReference\[[^\]]*\](\{[^}]*\})?/g, "")
+      .trim();
+  }
+  if (Array.isArray(obj)) {
+    return obj.map(stripContentReferencesDeep);
+  }
+  if (obj && typeof obj === "object") {
+    const result: any = {};
+    for (const key in obj) {
+      result[key] = stripContentReferencesDeep(obj[key]);
+    }
+    return result;
+  }
+  return obj;
 }
