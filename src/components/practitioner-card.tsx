@@ -170,8 +170,10 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                   : `/clinics/${practitioner.City}/clinic/${
                       practitioner.slug
                     }`
+                
               }
               className="mt-4 mb-0 flex border rounded-lg font-weight px-4 py-2 bg-black align-items-center justify-center text-white hover:bg-white hover:text-black"
+              prefetch={false}
             >
               Contact
              </Link>
@@ -215,7 +217,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
         </article>
       )}
       {isProduct(practitioner) && (
-        <Link href={`/products/${practitioner.category}/${practitioner.slug}`} className="block">
+        <Link href={`/products/${practitioner.category}/${practitioner.slug}`} className="block" prefetch={false}>
           <Card className="gap-0 h-full relative px-4 md:px-0 shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border-t-[1px] rounded-27 md:border md:border-[var(--alto)] cursor-pointer" aria-labelledby={`product-name-${practitioner.slug}`}>
             <CardHeader className="pb-2 px-2">
               <h2 id={`product-name-${practitioner.slug}`} className="sr-only">
@@ -276,7 +278,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
         </Link>
       )}
       {isTreatment(practitioner) && (
-        <Link href={`/treatments/${practitioner}`} className="block">
+        <Link href={`/treatments/${practitioner}`} className="block" prefetch={false}>
           <Card className="gap-0 h-full relative px-4 md:px-0 shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border-t-[1px] rounded-27 md:border md:border-[var(--alto)] cursor-pointer" aria-labelledby={`treatment-name-${practitioner}`}>
             <CardHeader className="pb-2 px-2">
               <h2 id={`treatment-name-${practitioner}`} className="sr-only">
