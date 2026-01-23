@@ -50,7 +50,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
       {(isPractitioner(practitioner) || isClinic(practitioner)) && (
         
 
-        <article aria-labelledby={`practitioner-name-${practitioner.slug}`}>
+        <article aria-labelledby={`${isPractitioner(practitioner) ? "practitioner" : "clinic"}-name-${practitioner.slug}`}>
           <Link
               href={
                 "practitioner_image_link" in practitioner &&

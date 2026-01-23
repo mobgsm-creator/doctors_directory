@@ -1,3 +1,19 @@
+export function stripContentReferencesDeep(obj: any): any {
+  if (typeof obj === 'string') {
+    return obj.replace(/\s*:contentReference\[[^\]]*\](\{[^}]*\})?/g, '').trim();
+  }
+  if (Array.isArray(obj)) {
+    return obj.map(stripContentReferencesDeep);
+  }
+  if (obj && typeof obj === 'object') {
+    const result: any = {};
+    for (const key in obj) {
+      result[key] = stripContentReferencesDeep(obj[key]);
+    }
+    return result;
+  }
+  return obj;
+}
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 import { Clinic, Practitioner } from "./types"
