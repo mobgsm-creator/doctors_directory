@@ -82,8 +82,8 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
       {/* Navigation */}
       <div className="bg-card/50 backdrop-blur-sm sticky top-0 z-10">
         <div className="container mx-auto max-w-6xl px-4 py-4">
-          <Link href="/">
-            <Button variant="ghost" size="sm" className="gap-2">
+          <Link href="/" prefetch={false}>
+            <Button variant="ghost" size="sm" className="gap-2 hover:cursor-pointer">
               <ArrowLeft className="h-4 w-4" />
               Back to Directory
             </Button>
@@ -232,19 +232,17 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
               <GoogleMapsEmbed
           url={clinic.url}
           
-          className="w-full h-80"
+          className="w-full h-auto md:h-80"
         />  
         
       </div>
         </div>
-        <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Clinics in ${cityslug}`}</h3>
-        <MoreItems items={cityClinics} />
-        <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Specialities in ${cityslug}`}</h3>
-        <MoreItems items={uniqueTreatments} />
-           
-       
-
-              
+        <div className="px-4 md:px-0 space-y-6">
+          <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Clinics in ${cityslug}`}</h3>
+          <MoreItems items={cityClinics} />
+          <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Specialities in ${cityslug}`}</h3>
+          <MoreItems items={uniqueTreatments} />
+        </div>
       </div>
     </main>
   );

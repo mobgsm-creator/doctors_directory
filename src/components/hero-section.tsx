@@ -72,7 +72,7 @@ export function HeroSection() {
             </div>
             <figure className="flex justify-center">
               <img
-                src="directory/images/Consentz Aesthetic Clinic Directory.webp"
+                src="/directory/images/Consentz Aesthetic Clinic Directory.webp"
                 alt="Mobile app interface showing search functionality"
                 className="max-w-xs"
               />
