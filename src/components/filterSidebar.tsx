@@ -238,7 +238,7 @@ export function AdvancedFilterSidebar({
                     concern: "all",
                     treatmentType: "all",
                     treatmentArea: "all",
-                    priceRange: "all"
+                    priceRange: "all",
                   });
                 }}
               />
@@ -254,7 +254,7 @@ export function AdvancedFilterSidebar({
                     location: "",
                     rating: "all",
                     distance: "all",
-                    query: ""
+                    query: "",
                   });
                 }}
               />
@@ -270,7 +270,7 @@ export function AdvancedFilterSidebar({
                     practitioner_qualifications: "all",
                     City: "all",
                     rating: "all",
-                    query: ""
+                    query: "",
                   });
                 }}
               />
@@ -286,7 +286,7 @@ export function AdvancedFilterSidebar({
                     brand: "all",
                     distributor_cleaned: "all",
                     category: "all",
-                    query: ""
+                    query: "",
                   });
                 }}
               />
@@ -294,9 +294,9 @@ export function AdvancedFilterSidebar({
 
             <div className="bg-white md:bg-transparent space-y-2 px-4 w-full absolute py-2 md:py-0 md:px-0 md:static bottom-0 left-0 righ-0">
               <Button
-                variant="outline"
+                variant="default"
                 onClick={handleApplyFilters}
-                className="w-full bg-transparent border-primary text-primary hover:bg-primary hover:text-white hover:cursor-pointer"
+                className="w-full bg-black hover:bg-black text-white hover:cursor-pointer"
               >
                 Apply Filters
               </Button>

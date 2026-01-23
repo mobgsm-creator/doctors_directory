@@ -1,13 +1,14 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect, startTransition } from "react";
 import { Search, Locate, Loader2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { search_categories, locations } from "@/lib/data";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { useSearchStore } from "@/app/stores/datastore";
 import { usePathname } from "next/navigation";
+import { PrefetchKind } from "next/dist/client/components/router-reducer/router-reducer-types";
 
 export function SearchBar() {
   const pathname = usePathname();
@@ -27,12 +28,23 @@ export function SearchBar() {
     setIsLoading(true);
     setFilters(localFilters);
     setShowResults(false);
-    await router.push("/search");
+    startTransition(() => {
+      router.push("/search");
+    });
+
     //console.log("pushed");
     setIsLoading(false);
 
 
   };
+
+  useEffect(() => {
+    if (router) {
+      router.prefetch("/search");
+    }
+  }, [router]);
+
+
   function SearchDropdown() {
     return (
       <>
@@ -182,7 +194,7 @@ export function SearchBar() {
           <Button
             onClick={handleSearch}
             size="lg"
-            className="ml-4 h-12 w-12 sm:h-12.5 sm:w-12 rounded-full sm:rounded-lg p-0 bg-black hover:bg-black text-white flex items-center justify-center flex-shrink-0"
+            className="ml-4 h-12 w-12 sm:h-12.5 sm:w-12 rounded-full hover:cursor-pointer sm:rounded-lg p-0 bg-black hover:bg-black text-white flex items-center justify-center flex-shrink-0"
           >
             {isLoading ? (
               <Loader2 className="h-6 w-6 animate-spin" />

@@ -173,3 +173,9 @@ export const flattenObject = (obj: any, parentKey = "", result: any = {}) => {
   }
   return result;
 };
+
+export function fixMojibake(str: string) {
+  return new TextDecoder("utf-8").decode(
+    Uint8Array.from(str, c => c.charCodeAt(0))
+  );
+}

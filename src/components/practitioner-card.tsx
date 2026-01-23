@@ -41,7 +41,6 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
         .join(" ");
   }
   else if(isClinic(practitioner)){
-    console.log("here")
     practitionerName = practitioner.slug.split("-").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ") 
   } 
   
@@ -63,7 +62,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                       practitioner.slug
                     }`
               }
-            
+            prefetch={false}
             >
           <Card className="gap-0 relative px-4 md:px-0 shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border-t-[1px] rounded-27 md:border md:border-[var(--alto)] cursor-pointer">
           

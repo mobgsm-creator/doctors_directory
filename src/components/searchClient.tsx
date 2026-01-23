@@ -89,8 +89,12 @@ export default function SearchPage() {
     <main className="min-h-screen bg-[var(--primary-bg-color)]">
       <div className="bg-[var(--primary-bg-color)] backdrop-blur-sm sticky top-0 z-10">
         <div className="container mx-auto max-w-6xl px-4 py-4">
-          <Link href="/">
-            <Button variant="ghost" size="sm" className="gap-2">
+          <Link href="/" prefetch={false}>
+            <Button
+              variant="ghost"
+              size="sm"
+              className="gap-2 hover:cursor-pointer"
+            >
               <ArrowLeft className="h-4 w-4" />
               Back to Directory
             </Button>
@@ -109,7 +113,7 @@ export default function SearchPage() {
             Filters
             <Sliders className="h-4 w-4 ml-2" />
           </Button>
-      </div>
+        </div>
       </div>
 
       <section className="pt-2 py-10 md:px-4 bg-white md:bg-[var(--primary-bg-color)]">
@@ -130,7 +134,6 @@ export default function SearchPage() {
             />
           </div>
           <div className="grid grid-cols-1 md:gap-8 md:grid-cols-12">
-
             <div className="col-span-1 md:col-span-3">
               <AdvancedFilterSidebar
                 filters={filters}
@@ -142,8 +145,10 @@ export default function SearchPage() {
 
             {isPending ? (
               <div className="col-span-1 md:col-span-8">
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3
-              gap-4">
+                <div
+                  className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3
+              gap-4"
+                >
                   {Array.from({ length: ITEMS_PER_PAGE }).map((_, i) => (
                     <PractitionerCardSkeleton key={i} />
                   ))}
@@ -159,12 +164,17 @@ export default function SearchPage() {
                       : "space-y-4"
                   }
                 >
+                  {data.length === 0 && (
+                    <p className="text-center col-span-1 md:col-span-8">
+                      No results found.
+                    </p>
+                  )}
                   {data.map((item) =>
-                    typeof item==="string" ? (
+                    typeof item === "string" ? (
                       <PractitionerCard key={item} practitioner={item} />
                     ) : (
                       <PractitionerCard key={item.slug} practitioner={item} />
-                    )
+                    ),
                   )}
                 </div>
                 {/* Pagination */}
@@ -172,6 +182,7 @@ export default function SearchPage() {
                   <div className="flex justify-center gap-2 mt-8">
                     <Button
                       variant="outline"
+                      className="hover:cursor-pointer"
                       onClick={() => handlePageChange(currentPage - 1)}
                       disabled={currentPage === 1 || isPending}
                     >
@@ -193,6 +204,7 @@ export default function SearchPage() {
                       return (
                         <Button
                           key={pageNumber}
+                          className="hover:cursor-pointer"
                           variant={
                             pageNumber === currentPage ? "default" : "outline"
                           }
@@ -205,6 +217,7 @@ export default function SearchPage() {
                     })}
                     <Button
                       variant="outline"
+                      className="hover:cursor-pointer"
                       onClick={() => handlePageChange(currentPage + 1)}
                       disabled={currentPage === totalPages || isPending}
                     >
