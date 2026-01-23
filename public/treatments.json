@@ -1,6 +1,6 @@
 {
   "Acne": {
-    "What_is_Acne_How_does_it_work": "Acne (often called acne vulgaris) is a really common skin condition where the pores of your skin get clogged up with too much oil (sebum), dead skin cells, and sometimes bacteria. That clogging makes blackheads, whiteheads, pimples, pustules, nodules or even cysts. It mostly shows up on your face, back, chest and shoulders. Hormones (like androgens) can increase oil production, but there’s also inflammation and bacteria involved, and that’s what leads to spots and often redness and swelling. It’s not just 'dirt' or poor hygiene. Some people get it as teens, others later, and it’s both physical and emotional. :contentReference[oaicite:0]{index=0}",
+    "What_is_Acne_And_How_does_it_work": "Acne (often called acne vulgaris) is a really common skin condition where the pores of your skin get clogged up with too much oil (sebum), dead skin cells, and sometimes bacteria. That clogging makes blackheads, whiteheads, pimples, pustules, nodules or even cysts. It mostly shows up on your face, back, chest and shoulders. Hormones (like androgens) can increase oil production, but there’s also inflammation and bacteria involved, and that’s what leads to spots and often redness and swelling. It’s not just 'dirt' or poor hygiene. Some people get it as teens, others later, and it’s both physical and emotional. :contentReference[oaicite:0]{index=0}",
     "Goals_of_Acne_treatment": [
       "Heal existing lesions and pimples",
       "Stop new breakouts from forming",
@@ -31,7 +31,7 @@
         "Whether treatments are delivered as part of NHS or privately"
       ]
     },
-    "What_to_Look_for_Choosing_Doctor_or_Clinic": [
+    "What_to_Look_for_while_Choosing_Doctor_or_Clinic": [
       "Someone who is a consultant dermatologist or GP with extended dermatology training",
       "Good communication and realistic expectations about timeline and results",
       "Transparent pricing and what’s included (consult, meds, tests, aftercare)",
@@ -91,7 +91,7 @@
     }
   },
   "Alopecia": {
-    "What_is_Alopecia_How_does_it_work": "Alopecia is the broad medical term for hair loss from places where hair normally grows. It’s not one single thing. There are loads of types, from androgenetic or pattern hair loss to autoimmune types like alopecia areata and even scarring alopecias where the follicle is destroyed. In something like alopecia areata, your immune system mistakenly attacks hair follicles, inflammation ramps up and the hair just stops growing or falls out in patches. Pattern loss is more about genetics and hormones like DHT shrinking follicles over time. Some hair loss is reversible and some isn’t, depending on the type. :contentReference[oaicite:0]{index=0}",
+    "What_is_Alopecia_and_How_does_it_work": "Alopecia is the broad medical term for hair loss from places where hair normally grows. It’s not one single thing. There are loads of types, from androgenetic or pattern hair loss to autoimmune types like alopecia areata and even scarring alopecias where the follicle is destroyed. In something like alopecia areata, your immune system mistakenly attacks hair follicles, inflammation ramps up and the hair just stops growing or falls out in patches. Pattern loss is more about genetics and hormones like DHT shrinking follicles over time. Some hair loss is reversible and some isn’t, depending on the type. :contentReference[oaicite:0]{index=0}",
     "Goals_of_Alopecia_Treatment": [
       "Slow or stop hair loss progression",
       "Stimulate regrowth where possible",
@@ -175,7 +175,7 @@
     }
   },
   "Anti Wrinkle Treatment": {
-    "What_is_Anti_Wrinkle_Treatment_How_does_it_work": "Anti wrinkle treatment usually means injections of botulinum toxin (popularly called Botox but there are other brands like Dysport, Xeomin, Bocouture, Azzalure etc). These are purified proteins that, in tiny doses, stop nerve signals from telling your muscles to contract. If the muscle can’t tighten as hard, the skin above it looks smoother because the repetitive creasing that causes lines gets quieter for a while. It’s not magic but it’s pretty clever biology. :contentReference[oaicite:0]{index=0}",
+    "What_is_an_Anti_Wrinkle_Treatment_and_How_does_it_work": "Anti wrinkle treatment usually means injections of botulinum toxin (popularly called Botox but there are other brands like Dysport, Xeomin, Bocouture, Azzalure etc). These are purified proteins that, in tiny doses, stop nerve signals from telling your muscles to contract. If the muscle can’t tighten as hard, the skin above it looks smoother because the repetitive creasing that causes lines gets quieter for a while. It’s not magic but it’s pretty clever biology. :contentReference[oaicite:0]{index=0}",
     "Goals_of_Anti_Wrinkle_Treatment": [
       "Reduce the appearance of dynamic lines (like frown lines, crow’s feet, forehead folds). :contentReference[oaicite:1]{index=1}",
       "Prevent deeper lines from forming by giving muscles a break. :contentReference[oaicite:2]{index=2}",
@@ -255,7 +255,7 @@
     }
   },
   "Aqualyx": {
-    "What_is_Aqualyx_How_does_it_work": "Aqualyx is a non-surgical, fat-dissolving injection used to target stubborn pockets of fat that hang around even when you diet and exercise. It contains a compound based on deoxycholic acid (a bile acid your body already makes to help break down dietary fat) that, when injected directly into a fat pocket, liquefies the fat cell membranes. The fat then gets flushed out naturally through your lymphatic system over the next weeks. :contentReference[oaicite:0]{index=0}",
+    "What_is_Aqualyx_and_How_does_it_work": "Aqualyx is a non-surgical, fat-dissolving injection used to target stubborn pockets of fat that hang around even when you diet and exercise. It contains a compound based on deoxycholic acid (a bile acid your body already makes to help break down dietary fat) that, when injected directly into a fat pocket, liquefies the fat cell membranes. The fat then gets flushed out naturally through your lymphatic system over the next weeks. :contentReference[oaicite:0]{index=0}",
     "Goals_of_Aqualyx": [
       "Reduce stubborn, localised fat deposits that are resistant to diet and exercise (like under the chin, abdomen, thighs, hips, arms). :contentReference[oaicite:1]{index=1}",
       "Contour and sculpt body or face areas without surgery. :contentReference[oaicite:2]{index=2}",
@@ -334,7 +334,7 @@
     }
   },
   "Aviclear": {
-    "What_is_Aviclear_How_does_it_work": "AviClear is a laser treatment for acne. Not light therapy, not skincare, not meds. It uses a 1726 nm laser wavelength that specifically targets sebaceous glands. That wavelength is tuned to fat and water in a way that heats the oil glands and down-regulates how much sebum they produce. Less oil means fewer clogged pores and less fuel for acne. The key thing is it’s doing this without needles, without antibiotics, and without isotretinoin. It’s basically trying to calm the oil factory at the source rather than chasing breakouts after they happen.",
+    "What_is_Aviclear_and_How_does_it_work": "AviClear is a laser treatment for acne. Not light therapy, not skincare, not meds. It uses a 1726 nm laser wavelength that specifically targets sebaceous glands. That wavelength is tuned to fat and water in a way that heats the oil glands and down-regulates how much sebum they produce. Less oil means fewer clogged pores and less fuel for acne. The key thing is it’s doing this without needles, without antibiotics, and without isotretinoin. It’s basically trying to calm the oil factory at the source rather than chasing breakouts after they happen.",
     "Goals_of_Aviclear": [
       "Reduce excess sebum production long-term",
       "Improve inflammatory acne without oral medication",
@@ -426,7 +426,7 @@
     }
   },
   "B12 Injection": {
-    "What_is_B12_Injection_How_does_it_work": "A B12 injection is an intramuscular injection of vitamin B12, usually hydroxocobalamin in the UK or sometimes cyanocobalamin. Vitamin B12 is essential for red blood cell formation, nerve function, and DNA synthesis. When it’s injected into muscle, it bypasses the gut entirely. That matters because a lot of B12 deficiency isn’t about diet, it’s about absorption. Things like pernicious anaemia, gut surgery, Crohn’s, long-term metformin or PPIs can block absorption. The injection goes straight into the bloodstream and tissues, no digestion required. NHS guidance backs this route when deficiency is confirmed.",
+    "What_is_a_B12_Injection_and_How_does_it_work": "A B12 injection is an intramuscular injection of vitamin B12, usually hydroxocobalamin in the UK or sometimes cyanocobalamin. Vitamin B12 is essential for red blood cell formation, nerve function, and DNA synthesis. When it’s injected into muscle, it bypasses the gut entirely. That matters because a lot of B12 deficiency isn’t about diet, it’s about absorption. Things like pernicious anaemia, gut surgery, Crohn’s, long-term metformin or PPIs can block absorption. The injection goes straight into the bloodstream and tissues, no digestion required. NHS guidance backs this route when deficiency is confirmed.",
     "Goals_of_B12_Injection": [
       "Correct vitamin B12 deficiency",
       "Prevent or reverse anaemia",
@@ -520,14 +520,14 @@
     }
   },
   "Birthmarks": {
-    "What_is_Birthmarks_How_does_it_work": "Birthmarks are areas of skin that look different in colour, texture, or thickness compared to surrounding skin. They’re usually present at birth or appear shortly after. Mechanism-wise, it depends on the type. Pigmented birthmarks come from extra melanin or clusters of pigment cells. Vascular birthmarks come from abnormal blood vessels near the skin surface. Nothing ‘activates’ them later, they’re developmental quirks from early life. Some fade on their own. Others just settle in and stay.",
-    "Goals_of_Birthmarks": [
+    "What_are_Birthmarks": "Birthmarks are areas of skin that look different in colour, texture, or thickness compared to surrounding skin. They’re usually present at birth or appear shortly after. Mechanism-wise, it depends on the type. Pigmented birthmarks come from extra melanin or clusters of pigment cells. Vascular birthmarks come from abnormal blood vessels near the skin surface. Nothing ‘activates’ them later, they’re developmental quirks from early life. Some fade on their own. Others just settle in and stay.",
+    "Goals_of_Birthmark_Treatment": [
       "Accurate diagnosis of the birthmark type",
       "Rule out medical risk where relevant",
       "Reduce visibility if it’s cosmetically or psychologically distressing",
       "Prevent complications like bleeding, thickening, or ulceration in certain vascular types"
     ],
-    "Pros_and_Cons_of_Birthmarks": {
+    "Pros_and_Cons_of_Birthmark_Treatments": {
       "Pros": [
         "Many birthmarks are completely harmless",
         "Some fade naturally over time, especially in childhood",
@@ -541,7 +541,7 @@
         "There can be scarring or colour mismatch if treated aggressively"
       ]
     },
-    "Cost_of_Birthmarks_in_the_UK_and_Why_it_Varies": {
+    "Cost_of_Birthmark_Treatments_in_the_UK_and_Why_it_Varies": {
       "Typical_Range": "Private treatment costs usually range from about £150 to £500 per session depending on size, type, and technology used. Large or complex birthmarks can cost significantly more over multiple sessions.",
       "Why_it_Varies": [
         "Type of birthmark (pigmented vs vascular)",
@@ -558,19 +558,19 @@
       "Clear explanation of realistic outcomes and risks",
       "No pressure to treat if it’s medically unnecessary"
     ],
-    "How_Birthmarks_Compare_with_Non_surgical_or_Alternative_Options": [
+    "Comparison_with_Non_surgical_or_Alternative_Options": [
       "Camouflage makeup works well for colour-based concerns",
       "Micropigmentation can help some flat marks but isn’t medical treatment",
       "Laser therapy is usually more effective than topical creams",
       "Surgery is rarely first-line except for raised or problematic lesions"
     ],
-    "Who_is_a_Good_Candidate_for_Birthmarks": [
+    "Who_is_a_Good_Candidate_for_Birthmark_Treatment": [
       "People with birthmarks causing emotional or social distress",
       "Those with vascular birthmarks at risk of thickening or bleeding",
       "Patients with realistic expectations about gradual improvement",
       "Children may be candidates depending on type and timing"
     ],
-    "How_Should_You_Prepare_for_Birthmarks": [
+    "How_Should_You_Prepare_for_Birthmark_Treatment": [
       "Get a formal diagnosis first",
       "Avoid tanning before assessment or treatment",
       "Take photos over time to track change",
@@ -596,12 +596,12 @@
         "Rare scarring"
       ]
     },
-    "Is_Birthmarks_Regulated_in_the_UK_and_What_if_Something_Goes_Wrong": [
+    "Are_Birthmark_Treatments_Regulated_in_the_UK_and_What_if_Something_Goes_Wrong": [
       "Medical assessment and laser devices are regulated in the UK",
       "Dermatologists follow NICE and BAD guidance where applicable",
       "If complications occur, seek medical review and report device issues through the MHRA"
     ],
-    "Does_Birthmarks_Require_Maintenance_and_How_Often": "Some birthmarks need multiple initial sessions. Maintenance varies widely. Some never need retreatment, others may need touch-ups years later.",
+    "Does_Birthmark_Treatment_Devices_Require_Maintenance_and_How_Often": "Some birthmarks need multiple initial sessions. Maintenance varies widely. Some never need retreatment, others may need touch-ups years later.",
     "What_Qualifications_Should_a_Practitioner_Offering_Birthmarks_Have": [
       "Consultant dermatologist or doctor-led clinic",
       "Formal laser training and certification",
@@ -615,7 +615,7 @@
     }
   },
   "Botox": {
-    "What_is_Botox_How_does_it_work": "Botox is the brand name people use for botulinum toxin type A. It’s a purified neurotoxin that’s been used in medicine for decades, way before it was cosmetic. Mechanism-wise, it blocks the release of acetylcholine at the neuromuscular junction. Translation: the nerve can’t tell the muscle to contract as strongly. Less movement means less creasing of the skin on top. That’s why expression lines soften. Same biology is used medically for migraines, muscle spasm, excessive sweating, jaw clenching. Same drug, different goals.",
+    "What_is_Botox_and_How_does_it_work": "Botox is the brand name people use for botulinum toxin type A. It’s a purified neurotoxin that’s been used in medicine for decades, way before it was cosmetic. Mechanism-wise, it blocks the release of acetylcholine at the neuromuscular junction. Translation: the nerve can’t tell the muscle to contract as strongly. Less movement means less creasing of the skin on top. That’s why expression lines soften. Same biology is used medically for migraines, muscle spasm, excessive sweating, jaw clenching. Same drug, different goals.",
     "Goals_of_Botox": [
       "Soften dynamic wrinkles caused by repeated muscle movement",
       "Prevent lines from getting deeper over time",
@@ -711,7 +711,7 @@
     }
   },
   "Breast Augmentation": {
-    "What_is_Breast_Augmentation_How_does_it_work": "Breast augmentation is a surgical procedure where implants are placed to increase breast size, change shape, or restore volume lost after weight changes or pregnancy. Most commonly this means silicone or saline implants inserted either under the breast tissue or under the chest muscle. The surgeon creates a pocket, places the implant, closes things up, and your body heals around it. Simple in theory, very nuanced in execution. Implant choice, placement, incision location, and your anatomy all matter a lot.",
+    "What_is_Breast_Augmentation_and_How_does_it_work": "Breast augmentation is a surgical procedure where implants are placed to increase breast size, change shape, or restore volume lost after weight changes or pregnancy. Most commonly this means silicone or saline implants inserted either under the breast tissue or under the chest muscle. The surgeon creates a pocket, places the implant, closes things up, and your body heals around it. Simple in theory, very nuanced in execution. Implant choice, placement, incision location, and your anatomy all matter a lot.",
     "Goals_of_Breast_Augmentation": [
       "Increase breast size or fullness",
       "Improve symmetry if breasts are uneven",
@@ -807,7 +807,7 @@
     }
   },
   "Cheek Enhancement": {
-    "What_is_Cheek_Enhancement_How_does_it_work": "Cheek enhancement usually means adding volume or structure to the mid-face, most often with dermal fillers made of hyaluronic acid. The filler is injected either deep on bone or in soft tissue planes to support the cheek or lift the area visually. The idea isn’t to just make cheeks bigger. It’s more about restoring or creating shape where volume has shifted with age, weight loss, or genetics. In some cases, surgical cheek implants exist, but in the UK the vast majority of cheek enhancement is non-surgical filler.",
+    "What_is_Cheek_Enhancement_and_How_does_it_work": "Cheek enhancement usually means adding volume or structure to the mid-face, most often with dermal fillers made of hyaluronic acid. The filler is injected either deep on bone or in soft tissue planes to support the cheek or lift the area visually. The idea isn’t to just make cheeks bigger. It’s more about restoring or creating shape where volume has shifted with age, weight loss, or genetics. In some cases, surgical cheek implants exist, but in the UK the vast majority of cheek enhancement is non-surgical filler.",
     "Goals_of_Cheek_Enhancement": [
       "Restore lost mid-face volume",
       "Improve cheek contour and projection",
@@ -903,15 +903,15 @@
     }
   },
   "Chemical Peel": {
-    "What_is_Chemical_Peel_How_does_it_work": "A chemical peel is a skin treatment where an acid solution is applied to the skin to deliberately cause controlled injury. Sounds intense but it’s very intentional. The acid breaks down bonds between old skin cells so they shed, and that kickstarts new skin growth underneath. Different acids do different jobs. Glycolic and lactic are more surface-level. Salicylic goes into pores. TCA goes deeper. The depth of the peel determines how much peeling happens and what problems it can realistically improve.",
-    "Goals_of_Chemical_Peel": [
+    "What_are_Chemical_Peels_and_How_does_it_work": "A chemical peel is a skin treatment where an acid solution is applied to the skin to deliberately cause controlled injury. Sounds intense but it’s very intentional. The acid breaks down bonds between old skin cells so they shed, and that kickstarts new skin growth underneath. Different acids do different jobs. Glycolic and lactic are more surface-level. Salicylic goes into pores. TCA goes deeper. The depth of the peel determines how much peeling happens and what problems it can realistically improve.",
+    "Goals_of_Chemical_Peel_Treatments": [
       "Improve skin texture and brightness",
       "Reduce acne and congestion",
       "Fade pigmentation and sun damage",
       "Soften fine lines",
       "Reset dull or uneven skin"
     ],
-    "Pros_and_Cons_of_Chemical_Peel": {
+    "Pros_and_Cons_of_Chemical_Peel_Treatments": {
       "Pros": [
         "Non-surgical and relatively quick",
         "Customisable by acid type and strength",
@@ -925,7 +925,7 @@
         "Not a one-and-done fix for most people"
       ]
     },
-    "Cost_of_Chemical_Peel_in_the_UK_and_Why_it_Varies": {
+    "Cost_of_Chemical_Peel_Treatments_in_the_UK_and_Why_it_Varies": {
       "Typical_Range": "In the UK, chemical peels usually range from about £80 to £350 per session.",
       "Why_it_Varies": [
         "Type and strength of peel",
@@ -942,19 +942,19 @@
       "No aggressive upselling into deep peels",
       "Good aftercare instructions"
     ],
-    "How_Chemical_Peel_Compares_with_Non_surgical_or_Alternative_Options": [
+    "How_Chemical_Peel_Treatments_Compares_with_Non_surgical_or_Alternative_Options": [
       "Skincare works slowly and subtly compared to peels",
       "Microneedling targets texture but not surface pigment as directly",
       "Lasers can go deeper but cost more",
       "Peels sit in a flexible middle ground"
     ],
-    "Who_is_a_Good_Candidate_for_Chemical_Peel": [
+    "Who_is_a_Good_Candidate_for_Chemical_Peel_Treatments": [
       "People with acne, pigmentation, or dull skin",
       "Those wanting gradual skin improvement",
       "Patients who can commit to sun protection",
       "Most skin types when peel is chosen correctly"
     ],
-    "How_Should_You_Prepare_for_Chemical_Peel": [
+    "How_Should_You_Prepare_for_Chemical_Peel_Treatments": [
       "Avoid retinoids and strong actives beforehand",
       "No tanning or sunburn before treatment",
       "Follow any prep skincare given by the clinic",
@@ -980,26 +980,26 @@
         "Sensitivity"
       ]
     },
-    "Is_Chemical_Peel_Regulated_in_the_UK_and_What_if_Something_Goes_Wrong": [
+    "Is_Chemical_Peel_Treatments_Regulated_in_the_UK_and_What_if_Something_Goes_Wrong": [
       "Medical-grade peels are regulated products",
       "Clinics should follow safety and infection control standards",
       "If complications occur, seek medical advice and report via MHRA if needed"
     ],
-    "Does_Chemical_Peel_Require_Maintenance_and_How_Often": "Yes for most people. Light peels are often done every 4 to 6 weeks. Deeper peels are spaced much further apart.",
-    "What_Qualifications_Should_a_Practitioner_Offering_Chemical_Peel_Have": [
+    "Does_Chemical_Peel_Treatments_Require_Maintenance_and_How_Often": "Yes for most people. Light peels are often done every 4 to 6 weeks. Deeper peels are spaced much further apart.",
+    "What_Qualifications_Should_a_Practitioner_Offering_Chemical_Peel_Treatments_Have": [
       "Formal training in chemical peels",
       "Understanding of skin types and pigmentation risk",
       "Medical oversight for deeper peels",
       "Clear complication management plan"
     ],
-    "Are_There_NICE_FDA_or_MHRA_Guidelines_for_Chemical_Peel": {
+    "Are_There_NICE_FDA_or_MHRA_Guidelines_for_Chemical_Peels": {
       "NICE": "No specific NICE guideline for cosmetic chemical peels.",
       "MHRA": "Chemical peel solutions are regulated depending on formulation and strength.",
       "FDA": "FDA regulates chemical peel products in the US based on intended use."
     }
   },
   "Chin Enhancement": {
-    "What_is_Chin_Enhancement_How_does_it_work": "Chin enhancement is about improving the projection, shape, or balance of the chin relative to the rest of the face. Most commonly in the UK, this is done non-surgically with dermal fillers, usually hyaluronic acid. The filler is placed either directly on the chin bone or into soft tissue to add projection or length. Less commonly, surgical chin implants or bone reshaping are used. Non-surgical works by physically supporting structure. Surgical works by changing anatomy. Same goal, very different commitment levels.",
+    "What_is_Chin_Enhancement_and_How_does_it_work": "Chin enhancement is about improving the projection, shape, or balance of the chin relative to the rest of the face. Most commonly in the UK, this is done non-surgically with dermal fillers, usually hyaluronic acid. The filler is placed either directly on the chin bone or into soft tissue to add projection or length. Less commonly, surgical chin implants or bone reshaping are used. Non-surgical works by physically supporting structure. Surgical works by changing anatomy. Same goal, very different commitment levels.",
     "Goals_of_Chin_Enhancement": [
       "Improve facial balance and profile",
       "Increase chin projection or length",
@@ -1095,15 +1095,15 @@
     }
   },
   "Aesthetic Skin Consultation": {
-    "What_is_Aesthetic_Skin_Consultation_How_does_it_work": "An aesthetic skin consultation is basically a structured deep dive into your skin. Not just vibes, not just selling treatments. A good one looks at your skin health, history, lifestyle, goals, and tolerance for risk or downtime. The practitioner assesses things like acne, pigmentation, redness, texture, ageing patterns, and how your skin behaves over time. Sometimes they use tools like VISIA imaging, Wood’s lamp, or dermoscopy. Sometimes it’s just trained eyes and good questions. The output isn’t a treatment on the spot, it’s a plan.",
-    "Goals_of_Aesthetic_Skin_Consultation": [
+    "What_is_an_Aesthetic_Skin_Consultation_and_How_does_it_work": "An aesthetic skin consultation is basically a structured deep dive into your skin. Not just vibes, not just selling treatments. A good one looks at your skin health, history, lifestyle, goals, and tolerance for risk or downtime. The practitioner assesses things like acne, pigmentation, redness, texture, ageing patterns, and how your skin behaves over time. Sometimes they use tools like VISIA imaging, Wood’s lamp, or dermoscopy. Sometimes it’s just trained eyes and good questions. The output isn’t a treatment on the spot, it’s a plan.",
+    "Goals_of_Aesthetic_Skin_Consultations": [
       "Understand what’s actually going on with your skin",
       "Separate medical skin issues from cosmetic ones",
       "Build a realistic treatment and skincare roadmap",
       "Avoid random treatments that don’t fit your skin or life",
       "Empower you to make informed choices rather than impulse ones"
     ],
-    "Pros_and_Cons_of_Aesthetic_Skin_Consultation": {
+    "Pros_and_Cons_of_Aesthetic_Skin_Consultations": {
       "Pros": [
         "Personalised advice instead of generic recommendations",
         "Can save money long-term by avoiding ineffective treatments",
@@ -1117,7 +1117,7 @@
         "Requires honesty about lifestyle, habits, and budget"
       ]
     },
-    "Cost_of_Aesthetic_Skin_Consultation_in_the_UK_and_Why_it_Varies": {
+    "Cost_of_Aesthetic_Skin_Consultations_in_the_UK_and_Why_it_Varies": {
       "Typical_Range": "In the UK, aesthetic skin consultations typically cost anywhere from £25 to £150. Some clinics deduct the fee if you proceed with treatment.",
       "Why_it_Varies": [
         "Practitioner experience and qualifications",
@@ -1134,19 +1134,19 @@
       "Evidence-based recommendations",
       "No pressure to book treatments immediately"
     ],
-    "How_Aesthetic_Skin_Consultation_Compares_with_Non_surgical_or_Alternative_Options": [
+    "How_Aesthetic_Skin_Consultations_Compares_with_Non_surgical_or_Alternative_Options": [
       "Online skin quizzes are fast but shallow",
       "Retail skincare advice is often product-biased",
       "A consultation integrates skincare, devices, injectables, and lifestyle",
       "It’s more about strategy than a single fix"
     ],
-    "Who_is_a_Good_Candidate_for_Aesthetic_Skin_Consultation": [
+    "Who_is_a_Good_Candidate_for_Aesthetic_Skin_Consultations": [
       "Anyone confused by conflicting skincare advice",
       "People with persistent skin concerns",
       "Those considering injectables or devices for the first time",
       "Patients wanting a long-term plan rather than quick fixes"
     ],
-    "How_Should_You_Prepare_for_Aesthetic_Skin_Consultation": [
+    "How_Should_You_Prepare_for_an_Aesthetic_Skin_Consultation": [
       "Bring a list of current skincare and treatments",
       "Be honest about budget and downtime tolerance",
       "Note what bothers you most when you look in the mirror",
@@ -1170,26 +1170,25 @@
         "Mild emotional reaction if expectations need resetting"
       ]
     },
-    "Is_Aesthetic_Skin_Consultation_Regulated_in_the_UK_and_What_if_Something_Goes_Wrong": [
+    "Are_Aesthetic_Skin_Consultations_Regulated_in_the_UK_and_What_if_Something_Goes_Wrong": [
       "Consultations themselves aren’t tightly regulated",
       "Clinics offering medical treatments must follow UK healthcare regulations",
       "If advice leads to harm, complaints can go through clinic governance or professional bodies"
     ],
-    "Does_Aesthetic_Skin_Consultation_Require_Maintenance_and_How_Often": "Many people revisit every 6 to 12 months or before starting new treatments. Skin changes, life changes, plans should too.",
     "What_Qualifications_Should_a_Practitioner_Offering_Aesthetic_Skin_Consultation_Have": [
       "Medical or advanced skin training",
       "Understanding of dermatology and aesthetics",
       "Ability to recognise medical red flags",
       "Ethical approach to treatment planning"
     ],
-    "Are_There_NICE_FDA_or_MHRA_Guidelines_for_Aesthetic_Skin_Consultation": {
+    "Are_There_NICE_FDA_or_MHRA_Guidelines_for_Aesthetic_Skin_Consultations": {
       "NICE": "No specific NICE guidance for aesthetic consultations.",
       "MHRA": "Applies only if medical devices or prescription products are recommended.",
       "FDA": "Not applicable to consultations themselves."
     }
   },
   "Contact Dermatitis": {
-    "What_is_Contact_Dermatitis_How_does_it_work": "Contact dermatitis is an inflammatory skin reaction that happens when your skin meets something it doesn’t like. There are two main types. Irritant contact dermatitis is more mechanical and chemical. Think soaps, detergents, hand sanitiser, cement, repeated water exposure. The skin barrier gets worn down and inflamed. Allergic contact dermatitis is immune-driven. Your immune system gets sensitised to a specific substance like nickel, fragrance, preservatives, hair dye, rubber accelerators. Then every time you meet it again, your skin overreacts. Redness, itching, scaling, sometimes blisters. Same-looking rash, totally different mechanism under the hood.",
+    "What_is_Contact_Dermatitis_and_How_does_it_work": "Contact dermatitis is an inflammatory skin reaction that happens when your skin meets something it doesn’t like. There are two main types. Irritant contact dermatitis is more mechanical and chemical. Think soaps, detergents, hand sanitiser, cement, repeated water exposure. The skin barrier gets worn down and inflamed. Allergic contact dermatitis is immune-driven. Your immune system gets sensitised to a specific substance like nickel, fragrance, preservatives, hair dye, rubber accelerators. Then every time you meet it again, your skin overreacts. Redness, itching, scaling, sometimes blisters. Same-looking rash, totally different mechanism under the hood.",
     "Goals_of_Contact_Dermatitis": [
       "Identify and remove the trigger",
       "Calm the active inflammation",
@@ -1385,7 +1384,7 @@
     }
   },
   "Cysts Treatment": {
-    "What is Cysts Treatment and How Does It Work?": "Cyst treatment refers to medical approaches to manage or remove fluid-filled sacs that can appear under the skin or inside the body. A lot depends on the type of cyst. For common skin cysts, treatment might be simple drainage or surgical removal of the entire cyst sac so it doesn’t come back. For deeper cysts inside the body like ovarian cysts, treatment ranges from watching and waiting with ultrasounds to more involved surgery (laparoscopy or laparotomy) if needed. Most treatments involve local or general anaesthesia so you don’t feel pain during the procedure. :contentReference[oaicite:0]{index=0}",
+    "What are Cysts Treatments and How Does It Work?": "Cyst treatment refers to medical approaches to manage or remove fluid-filled sacs that can appear under the skin or inside the body. A lot depends on the type of cyst. For common skin cysts, treatment might be simple drainage or surgical removal of the entire cyst sac so it doesn’t come back. For deeper cysts inside the body like ovarian cysts, treatment ranges from watching and waiting with ultrasounds to more involved surgery (laparoscopy or laparotomy) if needed. Most treatments involve local or general anaesthesia so you don’t feel pain during the procedure. :contentReference[oaicite:0]{index=0}",
     "Goals of Cysts Treatment": [
       "Relieve symptoms like pain, discomfort, or restricted movement when a cyst interferes with daily life. :contentReference[oaicite:1]{index=1}",
       "Prevent infection or complications from inflamed or infected cysts. :contentReference[oaicite:2]{index=2}",
@@ -1794,14 +1793,14 @@
     }
   },
   "Eyebrows and Lashes": {
-    "What is Eyebrows and Lashes and How Does It Work?": "Eyebrows and lashes treatments is a catch-all for cosmetic and semi-medical services that enhance, shape, darken, lift, or restore brows and lashes. Think tinting, shaping, lamination, lash lifts, extensions, growth serums, and in more clinical settings, things like prescription lash serums or hair-loss investigations. Mechanism depends on the treatment. Tinting dyes the hair shaft. Lash lifts chemically reshape the lash so it curls upward. Laminations coat and set brow hairs in a fuller direction. Serums work at the follicle level by extending the growth phase. None of this changes your DNA or hair type. It’s about nudging what’s already there. ([nhs.uk](https://www.nhs.uk/conditions/cosmetic-procedures/), [fda.gov](https://www.fda.gov/cosmetics/cosmetic-products/eyelash-growth-products))",
-    "Goals of Eyebrows and Lashes": [
+    "Eyebrows and Lashes Treatments and How they Work?": "Eyebrows and lashes treatments is a catch-all for cosmetic and semi-medical services that enhance, shape, darken, lift, or restore brows and lashes. Think tinting, shaping, lamination, lash lifts, extensions, growth serums, and in more clinical settings, things like prescription lash serums or hair-loss investigations. Mechanism depends on the treatment. Tinting dyes the hair shaft. Lash lifts chemically reshape the lash so it curls upward. Laminations coat and set brow hairs in a fuller direction. Serums work at the follicle level by extending the growth phase. None of this changes your DNA or hair type. It’s about nudging what’s already there. ([nhs.uk](https://www.nhs.uk/conditions/cosmetic-procedures/), [fda.gov](https://www.fda.gov/cosmetics/cosmetic-products/eyelash-growth-products))",
+    "Goals of Eyebrows and Lashes Treatment": [
       "Enhance definition and symmetry of brows and lashes without daily makeup. ([britishbeautycouncil.com](https://britishbeautycouncil.com/))",
       "Create the appearance of fuller, darker, longer lashes or brows. ([aad.org](https://www.aad.org/public/cosmetic))",
       "Save time in daily routines. Honestly this is why most people do it.",
       "Support confidence, especially for people with sparse hair from genetics, stress, or over-plucking. ([nhs.uk](https://www.nhs.uk/conditions/hair-loss/))"
     ],
-    "Pros and Cons of Eyebrows and Lashes": {
+    "Pros and Cons of Eyebrows and Lashes Treatment": {
       "Pros": [
         "Non-surgical and usually low downtime. ([nhs.uk](https://www.nhs.uk/conditions/cosmetic-procedures/))",
         "Immediate visual results for most treatments. ([britishbeautycouncil.com](https://britishbeautycouncil.com/))",
@@ -1830,7 +1829,7 @@
       "Clean, hygienic environment. Single-use tools where possible.",
       "Honest consultations where they’ll say no if something’s not suitable."
     ],
-    "How Eyebrows and Lashes Compare with Non-Surgical or Alternative Options": {
+    "How Eyebrows and Lashes Treatment Compare with Non-Surgical or Alternative Options": {
       "Alternatives": [
         "Makeup like mascara, brow pencils, gels. Low commitment, daily effort.",
         "At-home growth serums (mixed evidence, slower results). ([fda.gov](https://www.fda.gov/cosmetics/cosmetic-products/eyelash-growth-products))",
@@ -1842,13 +1841,13 @@
         "Medical options are stronger but come with more safety considerations."
       ]
     },
-    "Who is a Good Candidate for Eyebrows and Lashes": [
+    "Who is a Good Candidate for Eyebrows and Lashes Treatment": [
       "People wanting low-effort enhancement rather than dramatic change.",
       "Those with naturally fair or sparse brows or lashes. ([nhs.uk](https://www.nhs.uk/conditions/hair-loss/))",
       "Busy folks who hate daily makeup routines.",
       "Not ideal for people with active eye infections, severe allergies, or certain skin conditions without medical advice."
     ],
-    "How to Prepare for Eyebrows and Lashes": [
+    "How to Prepare for Eyebrows and Lashes Treatment": [
       "Avoid eye makeup on the day if possible.",
       "Tell the practitioner about allergies or sensitivities.",
       "Patch test at least 24–48 hours before tinting or lamination. Non-negotiable. ([nhs.uk](https://www.nhs.uk/conditions/cosmetic-procedures/))",
@@ -1868,7 +1867,7 @@
       "Severe hair loss or scarring won’t be fixed by cosmetic treatments alone.",
       "Doesn’t treat underlying medical causes of hair loss like alopecia or thyroid issues. ([nhs.uk](https://www.nhs.uk/conditions/hair-loss/))"
     ],
-    "What Happens During an Eyebrows and Lashes Appointment": [
+    "What Happens During an Eyebrows and Lashes Treatment Appointment": [
       "Consultation and patch test check.",
       "Cleansing of the area.",
       "Application of dyes, solutions, or extensions depending on treatment.",
@@ -1879,7 +1878,7 @@
       "Avoid water, steam, and eye makeup for 24–48 hours for lifts or lamination.",
       "Possible redness, mild swelling, or irritation usually settles quickly. ([aad.org](https://www.aad.org/public/cosmetic))"
     ],
-    "Is Eyebrows and Lashes Regulated in the UK and What to Do if Something Goes Wrong?": [
+    "Are Eyebrows and Lashes Treatments Regulated in the UK and What to Do if Something Goes Wrong?": [
       "These treatments fall under the wider non-surgical cosmetic sector, which is partially regulated.",
       "Products like dyes and serums are regulated by the MHRA. ([mhra.gov.uk](https://www.gov.uk/government/organisations/medicines-and-healthcare-products-regulatory-agency))",
       "If something goes wrong, seek medical help and report adverse reactions via the MHRA Yellow Card Scheme."
@@ -2642,7 +2641,7 @@
     }
   },
   "Platelet Rich Plasma": {
-    "What_is_Platelet_Rich_Plasma_and_How_does_it_work": {
+    "What_is_Platelet_Rich_Plasma_and_and_How_does_it_work": {
       "summary": "Platelet Rich Plasma (PRP) is a treatment where clinicians take a bit of your own blood, spin it in a centrifuge to concentrate the platelets (the bits that carry growth factors), and then inject that concentrated plasma back into a target area like skin or scalp. The idea is that those growth factors signal your body’s natural healing and regeneration pathways to kick in and promote tissue repair or, in the case of hair, strengthen follicles. ([turn0search0][turn0search11][turn0search40])",
       "mechanism": [
         "Blood draw from you, usually a small sample.",
@@ -2787,7 +2786,7 @@
     }
   },
   "Psoriasis": {
-    "What_is_Psoriasis_and_How_does_it_work": {
+    "What_is_Psoriasis_and_and_How_does_it_work": {
       "summary": "Psoriasis is a chronic, immune-mediated inflammatory skin disease that causes the skin to make new cells way faster than normal. Instead of taking about a month to renew, it may happen in only a few days so the old cells pile up as thick, red scaly patches. Immune signalling pathways like TNF, IL-23 and IL-17 play a central role in driving inflammation and the abnormal skin cell growth. It’s not contagious but it does come and go in flares. ([turn0search1][turn0search3][turn0search19])",
       "how_it_works": [
         "Your immune system mistakenly targets your own skin cells, setting off inflammation and speeding up regeneration.",
@@ -2929,7 +2928,7 @@
     }
   },
   "Rash Treatment": {
-    "What_is_Rash_Treatment_and_How_does_it_work": {
+    "What_is_Rash_Treatment_and_and_How_does_it_work": {
       "summary": "Rash treatment is a broad term for the medical and supportive steps taken to soothe, clear or manage patches of irritated, inflamed or abnormal skin colour and texture. A rash isn’t a single disease object, it’s a *symptom* that lots of conditions can cause, from allergic reactions to fungal or bacterial infections or heat rash. Effective treatment depends on what’s causing it: stopping what’s triggering it, calming inflammation, and supporting the skin’s healing. ([turn0search0][turn0search6][turn0search2])",
       "mechanism": [
         "First doctors usually assess what’s behind the rash (allergy, infection, irritant, systemic illness).",
@@ -3069,7 +3068,7 @@
     }
   },
   "Rosacea Treatment": {
-    "What_is_Rosacea_Treatment_and_How_does_it_work": {
+    "What_is_Rosacea_Treatment_and_and_How_does_it_work": {
       "summary": "Rosacea treatment is about calming an over-reactive skin condition, not curing it. Rosacea itself is a chronic inflammatory disorder where blood vessels, immune signalling, and sometimes mites (Demodex) all get a bit chaotic. Treatment works by reducing inflammation, calming redness and flushing, controlling bumps or pustules, and protecting the skin barrier so it stops freaking out at every trigger.",
       "how_it_works": [
         "Topical medications like metronidazole, azelaic acid or ivermectin reduce inflammation and microbial load.",
@@ -3218,7 +3217,7 @@
     }
   },
   "Seborrheic Keratosis Treatment": {
-    "What_is_Seborrheic_Keratosis_Treatment_How_does_it_work": "Seborrheic keratosis treatment is the set of medical procedures used to remove benign skin growths called seborrheic keratoses. These growths are harmless but can be itchy, irritated, or cosmetically bothersome. Treatments basically aim to destroy or remove the lesion by freezing it (cryotherapy), shaving/scraping it off (curettage/shave excision), vaporizing it with laser energy, or using electrosurgery (burning with an electric current) sometimes with curettage. Cryotherapy uses liquid nitrogen to freeze the lesion so it forms a scab and eventually falls off. Curettage involves numbing the skin and using a sharp instrument to scrape the lesion. Laser ablation uses focused light to break down the growth. Electrosurgery heats and destroys the tissue. The chosen method depends on the lesion’s size, depth, and location. None of these fundamentally ‘‘cure’’ a tendency to develop lesions but they remove visible ones and let skin heal relatively smoothly. :contentReference[oaicite:0]{index=0}",
+    "What_is_Seborrheic_Keratosis_Treatment_and_How_does_it_work": "Seborrheic keratosis treatment is the set of medical procedures used to remove benign skin growths called seborrheic keratoses. These growths are harmless but can be itchy, irritated, or cosmetically bothersome. Treatments basically aim to destroy or remove the lesion by freezing it (cryotherapy), shaving/scraping it off (curettage/shave excision), vaporizing it with laser energy, or using electrosurgery (burning with an electric current) sometimes with curettage. Cryotherapy uses liquid nitrogen to freeze the lesion so it forms a scab and eventually falls off. Curettage involves numbing the skin and using a sharp instrument to scrape the lesion. Laser ablation uses focused light to break down the growth. Electrosurgery heats and destroys the tissue. The chosen method depends on the lesion’s size, depth, and location. None of these fundamentally ‘‘cure’’ a tendency to develop lesions but they remove visible ones and let skin heal relatively smoothly. :contentReference[oaicite:0]{index=0}",
     "Goals_of_Seborrheic_Keratosis_Treatment": [
       "Remove or reduce visible lesions that are cosmetically bothersome",
       "Relieve physical irritation (itching, catching on clothing)",
@@ -3303,15 +3302,15 @@
     "Guidelines_NICE_FDA_MHRA": "There aren’t specific NICE guidelines solely for seborrheic keratosis treatment because these are benign lesions. General guidance on skin lesion management and minor surgery safety applies. MHRA oversees devices like lasers used in clinics. Clinics typically follow accepted dermatology practice for SKs rather than formal SK-only guidelines."
   },
   "Skin Booster": {
-    "What_is_Skin_Booster_How_does_it_work": "Skin boosters are injectable treatments that aim to improve the quality of your skin from within by delivering moisture and rejuvenating ingredients (usually hyaluronic acid, sometimes with vitamins or minerals) beneath the surface. They don’t add volume like dermal fillers. Instead, tiny microinjections of HA or similar substances attract and retain water deep in the skin, boosting hydration and kick-starting your own collagen and elastin production. Over time the skin looks smoother, plumper, more elastic and generally healthier because of that increased hydration and collagen signalling. The effects aren’t instant like filler volume changes but develop over a few weeks as your skin responds.:contentReference[oaicite:0]{index=0}",
-    "Goals_of_Skin_Booster": [
+    "What_is_a_Skin_Booster_and_How_does_it_work": "Skin boosters are injectable treatments that aim to improve the quality of your skin from within by delivering moisture and rejuvenating ingredients (usually hyaluronic acid, sometimes with vitamins or minerals) beneath the surface. They don’t add volume like dermal fillers. Instead, tiny microinjections of HA or similar substances attract and retain water deep in the skin, boosting hydration and kick-starting your own collagen and elastin production. Over time the skin looks smoother, plumper, more elastic and generally healthier because of that increased hydration and collagen signalling. The effects aren’t instant like filler volume changes but develop over a few weeks as your skin responds.:contentReference[oaicite:0]{index=0}",
+    "Goals_of_Skin_Booster_Treatment": [
       "Deeply hydrate and moisturise the skin at a layer topical products can’t reach.:contentReference[oaicite:1]{index=1}",
       "Stimulate natural collagen and elastin for improved elasticity and firmness.:contentReference[oaicite:2]{index=2}",
       "Improve skin texture, tone and radiance.:contentReference[oaicite:3]{index=3}",
       "Reduce fine lines and early signs of ageing by improving overall skin quality.:contentReference[oaicite:4]{index=4}",
       "Help your complexion look fresher and more youthful without adding artificial volume.:contentReference[oaicite:5]{index=5}"
     ],
-    "Pros_and_Cons_of_Skin_Booster": {
+    "Pros_and_Cons_of_Skin_Booster_Treatment": {
       "Pros": [
         "Non-surgical and minimally invasive.:contentReference[oaicite:6]{index=6}",
         "Improves hydration and skin quality rather than just masking issues.:contentReference[oaicite:7]{index=7}",
@@ -3355,7 +3354,7 @@
       "Those willing to commit to multiple sessions and maintenance.:contentReference[oaicite:30]{index=30}",
       "People without active skin infections or certain health conditions (discussed at consultation).:contentReference[oaicite:31]{index=31}"
     ],
-    "How_to_Prepare_for_Skin_Booster": [
+    "How_to_Prepare_for_Skin_Booster_Treatment": [
       "Discuss full medical history and skin goals in consultation.:contentReference[oaicite:32]{index=32}",
       "Avoid heavy exfoliation or retinoids a few days before.",
       "Plan for at least 24 hours of gentle skin care after.:contentReference[oaicite:35]{index=35}",
@@ -3378,10 +3377,10 @@
       "Experience with the specific products you’ll receive.",
       "Work in a CQC-registered clinic with appropriate hygiene and safety protocols.:contentReference[oaicite:51]{index=51}"
     ],
-    "Are_there_NICE_FDA_MHRA_Guidelines_for_Skin_Booster": "There aren’t specific NICE guidelines just for skin boosters, but the products (like hyaluronic acid injectables) are regulated by MHRA as medical devices/medicines and general aesthetic practice standards apply. Clinics and practitioners should follow broad safety and consent guidelines even though there isn’t a dedicated formal guideline for skin boosters specifically.:contentReference[oaicite:52]{index=52}"
+    "Are_there_NICE_FDA_MHRA_Guidelines_for_Skin_Booster_Treatments": "There aren’t specific NICE guidelines just for skin boosters, but the products (like hyaluronic acid injectables) are regulated by MHRA as medical devices/medicines and general aesthetic practice standards apply. Clinics and practitioners should follow broad safety and consent guidelines even though there isn’t a dedicated formal guideline for skin boosters specifically.:contentReference[oaicite:52]{index=52}"
   },
   "Skin Cancer": {
-    "What_is_Skin_Cancer_How_does_it_work": "Skin cancer is when cells in your skin grow out of control because their DNA gets damaged, often by ultraviolet (UV) light from the sun or sunbeds. Those damaged cells can multiply unchecked and form a tumour. There are two broad camps: non-melanoma skin cancers like basal cell carcinoma (BCC) and squamous cell carcinoma (SCC) which usually stay local and are easier to treat, and melanoma which arises from pigment cells and is more dangerous because it can spread to other organs. It’s literally an error in the way skin cells divide and repair themselves after damage, and early detection changes everything for outcomes. :contentReference[oaicite:0]{index=0}",
+    "What_is_Skin_Cancer_and_How_does_it_work": "Skin cancer is when cells in your skin grow out of control because their DNA gets damaged, often by ultraviolet (UV) light from the sun or sunbeds. Those damaged cells can multiply unchecked and form a tumour. There are two broad camps: non-melanoma skin cancers like basal cell carcinoma (BCC) and squamous cell carcinoma (SCC) which usually stay local and are easier to treat, and melanoma which arises from pigment cells and is more dangerous because it can spread to other organs. It’s literally an error in the way skin cells divide and repair themselves after damage, and early detection changes everything for outcomes. :contentReference[oaicite:0]{index=0}",
     "Goals_of_Skin_Cancer": [
       "Detect it as early as possible so treatment is more effective and simpler (early melanoma has near-100% cure rates). :contentReference[oaicite:1]{index=1}",
       "Remove or destroy all cancer cells while preserving as much healthy tissue as possible. :contentReference[oaicite:2]{index=2}",
@@ -3453,15 +3452,15 @@
     "Are_there_NICE_FDA_MHRA_guidelines_for_Skin_Cancer": "Yes, NICE has specific guidance on the assessment and management of melanoma (NG14) and quality standards for skin cancer care that cover prevention, diagnosis, referral and treatment. These guidelines help standardise care and improve outcomes. The MHRA regulates drugs and medical devices used in treatment, and broader clinical practice standards apply. :contentReference[oaicite:18]{index=18}"
   },
   "Skin Lesions": {
-    "What_is_Skin_Lesions_How_does_it_work": "Skin lesions is an umbrella term. It basically means any abnormal bump, patch, spot, or growth on the skin. That could be something harmless like a mole, skin tag, seborrhoeic keratosis, cyst, wart, or something more serious like a pre-cancerous lesion or skin cancer. Mechanism depends on the lesion. Some form from blocked pores or glands, some from viral infection (warts), some from pigment cell changes, some from chronic sun damage, and some from uncontrolled cell growth. The key thing is that a ‘skin lesion’ isn’t a diagnosis by itself, it’s a signal that something changed in the skin and needs context. ([nhs.uk](https://www.nhs.uk/conditions/skin-lesions/))",
-    "Goals_of_Skin_Lesions": [
+    "What_are_Skin_Lesions_and_How_are_they_treated": "Skin lesions is an umbrella term. It basically means any abnormal bump, patch, spot, or growth on the skin. That could be something harmless like a mole, skin tag, seborrhoeic keratosis, cyst, wart, or something more serious like a pre-cancerous lesion or skin cancer. Mechanism depends on the lesion. Some form from blocked pores or glands, some from viral infection (warts), some from pigment cell changes, some from chronic sun damage, and some from uncontrolled cell growth. The key thing is that a ‘skin lesion’ isn’t a diagnosis by itself, it’s a signal that something changed in the skin and needs context. ([nhs.uk](https://www.nhs.uk/conditions/skin-lesions/))",
+    "Goals_of_Skin_Lesion_Treatment": [
       "Correctly identify what the lesion actually is",
       "Rule out malignancy early if there’s any doubt",
       "Treat or remove lesions that are symptomatic, growing, bleeding, or cosmetically distressing",
       "Preserve healthy tissue and minimise scarring",
       "Give you clarity so you’re not guessing or spiralling on Google at 1am"
     ],
-    "Pros_and_Cons_of_Skin_Lesions": {
+    "Pros_and_Cons_of_Skin_Lesion_Treatment": {
       "Pros": [
         "Many skin lesions are benign and easily treated once identified",
         "Early assessment can prevent serious outcomes for malignant lesions",
@@ -3496,14 +3495,14 @@
       "Clear consent process and aftercare",
       "Not dismissive of your concerns, even if lesion looks ‘minor’"
     ],
-    "How_does_Skin_Lesions_compare_with_non_surgical_or_alternative_options": "Some lesions can be monitored rather than removed, especially if clearly benign. Others respond to topical treatments like cryotherapy or prescription creams. DIY or cosmetic-only approaches are risky for undiagnosed lesions because they can destroy visual clues needed for cancer detection. In short, assessment first, treatment second. ([cancerresearchuk.org](https://www.cancerresearchuk.org/about-cancer/skin-cancer))",
-    "Who_is_a_Good_Candidate_for_Skin_Lesions": [
+    "How_does_Skin_Lesion_Treatment_compare_with_non_surgical_or_alternative_options": "Some lesions can be monitored rather than removed, especially if clearly benign. Others respond to topical treatments like cryotherapy or prescription creams. DIY or cosmetic-only approaches are risky for undiagnosed lesions because they can destroy visual clues needed for cancer detection. In short, assessment first, treatment second. ([cancerresearchuk.org](https://www.cancerresearchuk.org/about-cancer/skin-cancer))",
+    "Who_is_a_Good_Candidate_for_Skin_Lesion_Treatment": [
       "Anyone with a new, changing, bleeding, or symptomatic skin lesion",
       "People with high sun exposure or family history of skin cancer",
       "Those bothered physically or emotionally by a lesion",
       "Anyone unsure and wanting a professional eye on it"
     ],
-    "How_to_Prepare_for_Skin_Lesions": [
+    "How_to_Prepare_for_Skin_Lesion_Treatment": [
       "Note when the lesion appeared and how it’s changed",
       "Bring photos if you’ve been tracking it",
       "List medications and medical history",
@@ -3511,26 +3510,26 @@
     ],
     "Safety_Considerations_Is_it_Painful": "Assessment isn’t painful. Removal usually involves local anaesthetic which stings briefly, then it’s numb. Aftercare discomfort is usually mild. Risks depend on method and include bleeding, infection, scarring, or pigment change. The bigger safety issue is missing a malignant diagnosis, which is why expertise matters. ([bad.org.uk](https://www.bad.org.uk/pils/skin-cancer/))",
     "How_Long_do_the_Results_last": "If a benign lesion is fully removed, it usually doesn’t return at that site. However some people are prone to forming new lesions over time. Malignant lesions require longer-term follow-up because recurrence risk depends on type and stage. ([cancerresearchuk.org](https://www.cancerresearchuk.org/about-cancer/skin-cancer/treatment))",
-    "How_does_Skin_Lesions_differ_for_Mild_vs_Severe_and_What_it_does_not_treat": "Mild cases might just need reassurance or monitoring. Severe or suspicious lesions need biopsy and definitive treatment. Treating a skin lesion doesn’t address systemic disease or unrelated skin conditions like eczema or acne. Each lesion is its own story. ([nice.org.uk](https://www.nice.org.uk/guidance/ng12))",
-    "What_happens_during_a_Skin_Lesions_appointment_and_How_long": "Usually starts with visual exam and dermoscopy. If removal is needed, local anaesthetic is used and the lesion is excised, shaved, frozen, or cauterised. Appointment length ranges from 10 minutes to 45 minutes depending on complexity. Biopsy results typically return in 1–3 weeks. ([nhs.uk](https://www.nhs.uk/conditions/mole-removal/))",
+    "How_does_Skin_Lesion_Treatment_differ_for_Mild_vs_Severe_and_What_it_does_not_treat": "Mild cases might just need reassurance or monitoring. Severe or suspicious lesions need biopsy and definitive treatment. Treating a skin lesion doesn’t address systemic disease or unrelated skin conditions like eczema or acne. Each lesion is its own story. ([nice.org.uk](https://www.nice.org.uk/guidance/ng12))",
+    "What_happens_during_a_Skin_Lesion_Treatment_appointment_and_How_long": "Usually starts with visual exam and dermoscopy. If removal is needed, local anaesthetic is used and the lesion is excised, shaved, frozen, or cauterised. Appointment length ranges from 10 minutes to 45 minutes depending on complexity. Biopsy results typically return in 1–3 weeks. ([nhs.uk](https://www.nhs.uk/conditions/mole-removal/))",
     "Recovery_Downtime_and_Possible_Side_Effects": [
       "Mild swelling, redness, or scabbing",
       "Stitches may need removal in 5–14 days",
       "Scar maturation takes months",
       "Infection or bleeding is uncommon but possible"
     ],
-    "Is_Skin_Lesions_Regulated_in_the_UK_and_What_to_do_if_Something_Goes_Wrong": "Medical skin lesion care is regulated under NHS and private CQC-registered services. Doctors are regulated by the GMC. If something goes wrong, raise it with the provider first, then escalate to the CQC or GMC if unresolved. ([cqc.org.uk](https://www.cqc.org.uk))",
-    "Does_Skin_Lesions_require_Maintenance_and_How_often": "Not maintenance like aesthetics. Follow-up depends on diagnosis. Benign lesions usually need nothing further. Cancerous or pre-cancerous lesions need scheduled skin checks, sometimes for years. ([bad.org.uk](https://www.bad.org.uk/pils/melanoma/))",
-    "What_Qualifications_should_a_Practitioner_offering_Skin_Lesions_have": [
+    "Is_Skin_Lesion_Treatment_Regulated_in_the_UK_and_What_to_do_if_Something_Goes_Wrong": "Medical skin lesion care is regulated under NHS and private CQC-registered services. Doctors are regulated by the GMC. If something goes wrong, raise it with the provider first, then escalate to the CQC or GMC if unresolved. ([cqc.org.uk](https://www.cqc.org.uk))",
+    "Does_Skin_Lesion_Treatment_require_Maintenance_and_How_often": "Not maintenance like aesthetics. Follow-up depends on diagnosis. Benign lesions usually need nothing further. Cancerous or pre-cancerous lesions need scheduled skin checks, sometimes for years. ([bad.org.uk](https://www.bad.org.uk/pils/melanoma/))",
+    "What_Qualifications_should_a_Practitioner_offering_Skin_Lesion_Treatment_have": [
       "GMC-registered doctor",
       "Training in dermatology, GPwSI dermatology, or skin surgery",
       "Experience with dermoscopy and biopsy",
       "Access to pathology services"
     ],
-    "Are_there_NICE_FDA_or_MHRA_Guidelines_for_Skin_Lesions": "Yes. NICE guidelines cover suspected cancer referrals and management of skin lesions, especially melanoma and non-melanoma skin cancers. MHRA regulates devices and treatments used. There isn’t one single ‘skin lesion’ guideline because it’s a category, not a diagnosis. ([nice.org.uk](https://www.nice.org.uk/guidance/ng12))"
+    "Are_there_NICE_FDA_or_MHRA_Guidelines_for_Skin_Lesion_Treatment": "Yes. NICE guidelines cover suspected cancer referrals and management of skin lesions, especially melanoma and non-melanoma skin cancers. MHRA regulates devices and treatments used. There isn’t one single ‘skin lesion’ guideline because it’s a category, not a diagnosis. ([nice.org.uk](https://www.nice.org.uk/guidance/ng12))"
   },
   "Skin Tags": {
-    "What_is_Skin_Tags_How_does_it_work": "Skin tags are basically small, soft, benign growths of skin that hang off the surface by a little stalk. Medically they’re called acrochordons and they’re made up of a core of blood vessels and collagen with skin over the top. They tend to crop up where skin rubs against skin or clothes, like the neck, underarms, groin or eyelids. They’re not cancerous and they don’t ‘spread’ the way a disease does; they just appear more often with age, friction, genetics, obesity and sometimes hormonal shifts. You can have loads or just one and most folks will get at least one in their life. ([turn0search46](turn0search46))",
+    "What_is_Skin_Tags_and_How_does_it_work": "Skin tags are basically small, soft, benign growths of skin that hang off the surface by a little stalk. Medically they’re called acrochordons and they’re made up of a core of blood vessels and collagen with skin over the top. They tend to crop up where skin rubs against skin or clothes, like the neck, underarms, groin or eyelids. They’re not cancerous and they don’t ‘spread’ the way a disease does; they just appear more often with age, friction, genetics, obesity and sometimes hormonal shifts. You can have loads or just one and most folks will get at least one in their life. ([turn0search46](turn0search46))",
     "Goals_of_Skin_Tags": [
       "Confirm what the bump really is, because looking at skin can be tricky",
       "Remove them if they’re irritating, catching on clothes or jewelry, or just annoying you",
@@ -3604,7 +3603,7 @@
     "Are_there_NICE_FDA_MHRA_guidelines_for_Skin_Tags": "There aren’t specific NICE guidelines just for skin tags because they’re benign and very common, but suspected malignant lesions or uncertain ones get handled under NICE skin cancer guidance. MHRA regulates medical devices used in clinics. General standards for safe practice apply."
   },
   "Tear Trough Treatment": {
-    "What_is_Tear_Trough_Treatment_How_does_it_work": "Tear trough treatment usually means softening the hollow or shadow that runs from the inner corner of the eye down along the under-eye area. Most commonly this is done with hyaluronic acid dermal filler placed very carefully on the bone or deep tissue under the eye. The filler attracts water and restores lost volume so light reflects better and the area looks less tired. In some cases people use alternatives like skin boosters, PRP, polynucleotides, or even surgery if anatomy really isn’t suited to filler. It’s not about puffing the area up, it’s about subtle support in the right plane. ([nhs.uk](https://www.nhs.uk/conditions/cosmetic-procedures/dermal-fillers/))",
+    "What_is_Tear_Trough_Treatment_and_How_does_it_work": "Tear trough treatment usually means softening the hollow or shadow that runs from the inner corner of the eye down along the under-eye area. Most commonly this is done with hyaluronic acid dermal filler placed very carefully on the bone or deep tissue under the eye. The filler attracts water and restores lost volume so light reflects better and the area looks less tired. In some cases people use alternatives like skin boosters, PRP, polynucleotides, or even surgery if anatomy really isn’t suited to filler. It’s not about puffing the area up, it’s about subtle support in the right plane. ([nhs.uk](https://www.nhs.uk/conditions/cosmetic-procedures/dermal-fillers/))",
     "Goals_of_Tear_Trough_Treatment": [
       "Reduce the appearance of under-eye hollows or shadows",
       "Create smoother transition between lower eyelid and cheek",
@@ -3681,7 +3680,7 @@
     "Are_there_NICE_FDA_or_MHRA_guidelines_for_Tear_Trough_Treatment": "There are no NICE guidelines specific to tear trough fillers. MHRA regulates dermal filler products and NICE guidance applies to cosmetic safety and consent broadly. Professional bodies like the British Association of Aesthetic Plastic Surgeons publish safety recommendations that experienced clinicians follow."
   },
   "Threading": {
-    "What_is_Threading_How_does_it_work": "Threading, in the aesthetics sense, usually means thread lift treatment. Not eyebrow threading. A thread lift uses dissolvable medical threads (often PDO, PLLA, or PCL) inserted under the skin to gently lift sagging tissue and stimulate collagen. The threads have tiny barbs or cones that anchor into tissue. When placed correctly, they give an immediate mild lift and then a slower collagen response as the threads dissolve over months. Think of it less like a facelift and more like structural scaffolding that fades while your skin does some rebuilding. ([bupa.co.uk](https://www.bupa.co.uk/health-information/cosmetic-surgery/thread-lift))",
+    "What_is_Threading_and_How_does_it_work": "Threading, in the aesthetics sense, usually means thread lift treatment. Not eyebrow threading. A thread lift uses dissolvable medical threads (often PDO, PLLA, or PCL) inserted under the skin to gently lift sagging tissue and stimulate collagen. The threads have tiny barbs or cones that anchor into tissue. When placed correctly, they give an immediate mild lift and then a slower collagen response as the threads dissolve over months. Think of it less like a facelift and more like structural scaffolding that fades while your skin does some rebuilding. ([bupa.co.uk](https://www.bupa.co.uk/health-information/cosmetic-surgery/thread-lift))",
     "Goals_of_Threading": [
       "Create subtle lifting of sagging areas like jawline, cheeks, brows, or neck",
       "Improve skin firmness through collagen stimulation",
@@ -3758,7 +3757,7 @@
     "Are_there_NICE_FDA_or_MHRA_guidelines_for_Threading": "There are no NICE guidelines specific to thread lifts. MHRA regulates the threads as medical devices. Professional bodies like BAAPS and BAD issue safety statements on cosmetic procedures, and experienced clinicians follow these standards."
   },
   "Varicose Vein Procedure": {
-    "What_is_Varicose_Vein_Procedure_How_does_it_work": "A varicose vein procedure is medical treatment for veins that have stopped working properly. Normally, veins have valves that push blood back up toward the heart. In varicose veins, those valves fail, blood pools, pressure builds, and the vein becomes enlarged, twisted, and visible. Modern procedures don’t usually involve stripping veins out anymore. Instead, they close the faulty vein so blood reroutes through healthier ones. Common methods include endovenous laser ablation (EVLA), radiofrequency ablation (RFA), foam sclerotherapy, and sometimes surgical ligation. Once the vein is closed, the body gradually absorbs it. ([nhs.uk](https://www.nhs.uk/conditions/varicose-veins/))",
+    "What_is_Varicose_Vein_Procedure_and_How_does_it_work": "A varicose vein procedure is medical treatment for veins that have stopped working properly. Normally, veins have valves that push blood back up toward the heart. In varicose veins, those valves fail, blood pools, pressure builds, and the vein becomes enlarged, twisted, and visible. Modern procedures don’t usually involve stripping veins out anymore. Instead, they close the faulty vein so blood reroutes through healthier ones. Common methods include endovenous laser ablation (EVLA), radiofrequency ablation (RFA), foam sclerotherapy, and sometimes surgical ligation. Once the vein is closed, the body gradually absorbs it. ([nhs.uk](https://www.nhs.uk/conditions/varicose-veins/))",
     "Goals_of_Varicose_Vein_Procedure": [
       "Relieve symptoms like aching, heaviness, swelling, itching, or cramps",
       "Prevent complications like skin damage, ulcers, or clotting",
@@ -3835,7 +3834,7 @@
     "Are_there_NICE_FDA_or_MHRA_guidelines_for_Varicose_Vein_Procedure": "Yes. NICE guideline CG168 clearly recommends endothermal ablation as first-line treatment for varicose veins, followed by foam sclerotherapy or surgery if unsuitable. MHRA regulates devices used in treatment. These guidelines shape standard UK care. ([nice.org.uk](https://www.nice.org.uk/guidance/cg168))"
   },
   "Verruca Treatment": {
-    "What_is_Verruca_Treatment_How_does_it_work": "A verruca is basically a wart on the sole of the foot, caused by human papillomavirus (HPV). Verruca treatment focuses on either destroying the infected skin cells or nudging your immune system to finally notice the virus and clear it. Treatments range from topical acids that slowly peel away infected tissue, to freezing (cryotherapy), needling, laser, or cautery. None of these kill the virus directly. They work by damaging the verruca enough that your immune system wakes up and finishes the job. Some verrucas disappear on their own, but others dig in for years. ([nhs.uk](https://www.nhs.uk/conditions/warts-and-verrucas/))",
+    "What_is_Verruca_Treatment_and_How_does_it_work": "A verruca is basically a wart on the sole of the foot, caused by human papillomavirus (HPV). Verruca treatment focuses on either destroying the infected skin cells or nudging your immune system to finally notice the virus and clear it. Treatments range from topical acids that slowly peel away infected tissue, to freezing (cryotherapy), needling, laser, or cautery. None of these kill the virus directly. They work by damaging the verruca enough that your immune system wakes up and finishes the job. Some verrucas disappear on their own, but others dig in for years. ([nhs.uk](https://www.nhs.uk/conditions/warts-and-verrucas/))",
     "Goals_of_Verruca_Treatment": [
       "Eliminate the verruca and underlying viral tissue",
       "Reduce pain when walking or standing",
@@ -3912,7 +3911,7 @@
     "Are_there_NICE_FDA_or_MHRA_guidelines_for_Verruca_Treatment": "There are no NICE guidelines specific to verruca treatment alone. Management falls under general wart guidance and primary care dermatology standards. MHRA regulates devices and chemicals used. Clinical judgement guides treatment choice rather than rigid protocols."
   },
   "Vitamin Therapy": {
-    "What_is_Vitamin_Therapy_How_does_it_work": "Vitamin therapy usually means delivering vitamins and minerals either intravenously (IV vitamin drips) or via injections, rather than swallowing tablets. The logic is pretty simple: IV delivery bypasses digestion, so nutrients go straight into the bloodstream at higher concentrations than oral supplements can usually achieve. Clinics often offer mixes like vitamin C, B-complex, magnesium, zinc, or branded blends like Myers’ Cocktail. Whether that actually translates to meaningful benefits depends heavily on your baseline nutrition, health status, and expectations. For people with genuine deficiencies, it can help. For others, it might just make expensive urine. ([nhs.uk](https://www.nhs.uk/conditions/vitamins-and-minerals/))",
+    "What_is_Vitamin_Therapy_and_How_does_it_work": "Vitamin therapy usually means delivering vitamins and minerals either intravenously (IV vitamin drips) or via injections, rather than swallowing tablets. The logic is pretty simple: IV delivery bypasses digestion, so nutrients go straight into the bloodstream at higher concentrations than oral supplements can usually achieve. Clinics often offer mixes like vitamin C, B-complex, magnesium, zinc, or branded blends like Myers’ Cocktail. Whether that actually translates to meaningful benefits depends heavily on your baseline nutrition, health status, and expectations. For people with genuine deficiencies, it can help. For others, it might just make expensive urine. ([nhs.uk](https://www.nhs.uk/conditions/vitamins-and-minerals/))",
     "Goals_of_Vitamin_Therapy": [
       "Correct confirmed or suspected vitamin or mineral deficiencies",
       "Support energy levels or recovery in specific situations",
@@ -3989,7 +3988,7 @@
     "Are_there_NICE_FDA_or_MHRA_guidelines_for_Vitamin_Therapy": "There are no NICE guidelines supporting routine IV vitamin therapy for wellness. NICE and NHS guidance focus on diagnosing and treating deficiencies appropriately. MHRA regulates injectable products used. Vitamin therapy sits in a grey zone where evidence matters more than marketing. Anyway, still figuring it out. But honestly, eating well most days does more than most drips."
   },
   "Vulval Dermatology": {
-    "What_is_Vulval_Dermatology_How_does_it_work": "Vulval dermatology is a subspecialty focused on skin conditions affecting the vulva. That includes things like lichen sclerosus, lichen planus, vulval eczema, psoriasis, contact dermatitis, chronic itching, pain syndromes, pigment changes, and early vulval cancer or pre-cancer. It works the same way dermatology works elsewhere, but with way more nuance because vulval skin is thinner, more sensitive, hormonally influenced, and easily irritated. Diagnosis often relies on careful history, visual exam, sometimes biopsy, and a lot of pattern recognition. Treatment is usually topical medications, lifestyle changes, and long-term monitoring rather than quick fixes. ([bad.org.uk](https://www.bad.org.uk/pils/vulval-conditions/))",
+    "What_is_Vulval_Dermatology_and_How_does_it_work": "Vulval dermatology is a subspecialty focused on skin conditions affecting the vulva. That includes things like lichen sclerosus, lichen planus, vulval eczema, psoriasis, contact dermatitis, chronic itching, pain syndromes, pigment changes, and early vulval cancer or pre-cancer. It works the same way dermatology works elsewhere, but with way more nuance because vulval skin is thinner, more sensitive, hormonally influenced, and easily irritated. Diagnosis often relies on careful history, visual exam, sometimes biopsy, and a lot of pattern recognition. Treatment is usually topical medications, lifestyle changes, and long-term monitoring rather than quick fixes. ([bad.org.uk](https://www.bad.org.uk/pils/vulval-conditions/))",
     "Goals_of_Vulval_Dermatology": [
       "Get an accurate diagnosis when symptoms have been dismissed or mislabelled",
       "Relieve symptoms like itching, burning, pain, tearing, or soreness",
@@ -4065,7 +4064,7 @@
     "Are_there_NICE_FDA_or_MHRA_guidelines_for_Vulval_Dermatology": "Yes. NICE and NHS guidance exists for specific conditions like lichen sclerosus and vulval cancer pathways. MHRA regulates medications used. Management follows condition-specific guidelines rather than a single vulval dermatology rulebook. Anyway, still figuring it out. But being taken seriously makes a massive difference."
   },
   "Weight Loss": {
-    "What_is_Weight_Loss_How_does_it_work": "Weight loss is about reducing body fat, not just watching the number on the scale wobble. At a basic level it happens when your body uses more energy than it takes in, but the reality is messier. Hormones, sleep, stress, genetics, medications, gut signals, muscle mass, and mental health all play a role. Modern weight loss care can include lifestyle changes, psychological support, prescription medications (like GLP-1 agonists), and in some cases surgery. It’s less about willpower and more about biology plus environment, working together or fighting each other. ([nhs.uk](https://www.nhs.uk/live-well/healthy-weight/))",
+    "What_is_Weight_Loss_and_How_does_it_work": "Weight loss is about reducing body fat, not just watching the number on the scale wobble. At a basic level it happens when your body uses more energy than it takes in, but the reality is messier. Hormones, sleep, stress, genetics, medications, gut signals, muscle mass, and mental health all play a role. Modern weight loss care can include lifestyle changes, psychological support, prescription medications (like GLP-1 agonists), and in some cases surgery. It’s less about willpower and more about biology plus environment, working together or fighting each other. ([nhs.uk](https://www.nhs.uk/live-well/healthy-weight/))",
     "Goals_of_Weight_Loss": [
       "Improve metabolic health like blood sugar, blood pressure, and cholesterol",
       "Reduce risk of long-term conditions such as type 2 diabetes and heart disease",
@@ -4142,14 +4141,13 @@
     "Are_there_NICE_FDA_or_MHRA_guidelines_for_Weight_Loss": "Yes. NICE provides detailed guidance on obesity management, including lifestyle, medication, and surgery pathways. MHRA regulates weight loss medications. The evidence base keeps evolving, especially around newer drugs. Anyway, still figuring it out. But slow, supported change usually beats white-knuckling it."
   },
   "Dermatology Treatments": {
-    "What_is_Dermatology_Treatments_How_does_it_work": {
-      "answer": "Dermatology treatments are a broad set of medical and sometimes cosmetic treatments focused on the skin, hair, and nails. They range from medical therapies for conditions like acne, eczema, psoriasis, fungal infections, to cosmetic procedures like Botox, fillers, chemical peels, lasers, etc. Medical dermatology usually involves diagnosis, prescription meds, topical therapies, light/laser therapies, injections, or minor surgery. Cosmetic dermatology aims at appearance enhancement, using injectables, lasers, peels, and similar tools. In medical dermatology, the goal is to treat disease processes by reducing inflammation, targeting microbes, modulating immune responses, or removing harmful lesions. In cosmetic procedures, interventions might temporarily relax muscles (like botulinum toxin), replace lost volume (fillers), resurface or rejuvenate skin (lasers, peels), or remove unwanted features like hair or lesions. The exact mechanism depends on the method used. For example, Botox blocks nerve signals to muscles, and lasers use focused light to heat or remove tissue. These procedures are often delivered in clinic settings by dermatologists or trained clinicians. :contentReference[oaicite:0]{index=0}"
-    },
-    "Goals_of_Dermatology_Treatments": {
-      "answer": "The goals vary depending on whether the treatment is medical or cosmetic. In medical dermatology, goals might include reducing symptoms like itch or pain, controlling disease activity, preventing infection or complications, and improving quality of life. For chronic conditions like psoriasis or eczema, the aim might be to control flares and maintain remission. Cosmetic dermatology goals lean toward aesthetic improvements such as reducing wrinkles, correcting pigmentation issues, removing unwanted hair or lesions, and improving overall skin texture and appearance. There’s often overlap, especially where cosmetic concerns also impact psychological wellbeing. :contentReference[oaicite:1]{index=1}"
-    },
+    "What_are_Dermatology_Treatments_How_does_it_work": "Dermatology treatments are a broad set of medical and sometimes cosmetic treatments focused on the skin, hair, and nails. They range from medical therapies for conditions like acne, eczema, psoriasis, fungal infections, to cosmetic procedures like Botox, fillers, chemical peels, lasers, etc. Medical dermatology usually involves diagnosis, prescription meds, topical therapies, light/laser therapies, injections, or minor surgery. Cosmetic dermatology aims at appearance enhancement, using injectables, lasers, peels, and similar tools. In medical dermatology, the goal is to treat disease processes by reducing inflammation, targeting microbes, modulating immune responses, or removing harmful lesions. In cosmetic procedures, interventions might temporarily relax muscles (like botulinum toxin), replace lost volume (fillers), resurface or rejuvenate skin (lasers, peels), or remove unwanted features like hair or lesions. The exact mechanism depends on the method used. For example, Botox blocks nerve signals to muscles, and lasers use focused light to heat or remove tissue. These procedures are often delivered in clinic settings by dermatologists or trained clinicians. :contentReference[oaicite:0]{index=0}"
+    ,
+    "Goals_of_Dermatology_Treatments": 
+     "The goals vary depending on whether the treatment is medical or cosmetic. In medical dermatology, goals might include reducing symptoms like itch or pain, controlling disease activity, preventing infection or complications, and improving quality of life. For chronic conditions like psoriasis or eczema, the aim might be to control flares and maintain remission. Cosmetic dermatology goals lean toward aesthetic improvements such as reducing wrinkles, correcting pigmentation issues, removing unwanted hair or lesions, and improving overall skin texture and appearance. There’s often overlap, especially where cosmetic concerns also impact psychological wellbeing. :contentReference[oaicite:1]{index=1}"
+    ,
     "Pros_and_Cons_of_Dermatology_Treatments": {
-      "answer": {
+    
         "pros": [
           "Can significantly improve skin health and appearance.",
           "Medical treatments can control symptoms and prevent complications of skin disease.",
@@ -4162,10 +4160,10 @@
           "Some cosmetic procedures lack strong regulation, so quality varies.",
           "Results may be temporary, requiring repeat sessions."
         ]
-      }
+      
     },
     "Cost_of_Dermatology_Treatments_in_the_UK_and_why_prices_vary": {
-      "answer": {
+      
         "typical_cost_ranges": {
           "consultation": "Around £240-£500 for a private dermatologist appointment depending on clinic and location.",
           "specific treatments": "Prices vary widely: simple lesion removal or blemish treatment might start ~£145-£295, mole checks ~£295-£385, lesion excision often hundreds of pounds more, and complex procedures like MOHS surgery can be thousands.",
@@ -4173,48 +4171,40 @@
         },
         "why_variation_occurs": "Prices vary based on clinic location (London typically higher), the clinician’s experience and qualifications, whether the service includes specialist consultation, diagnostics or just the procedure, and the specific technology or material used (e.g., type of filler). Clinics also charge differently based on overheads and target clientele.",
         "notes": "These are rough figures and can change; always check with a specific provider for up-to-date pricing."
-      }
+      
     },
-    "What_to_look_for_when_choosing_doctor_or_clinic": {
-      "answer": "Look for clinicians who are medically trained (ideally Consultant Dermatologists on the UK GMC specialist register) for medical treatments. For cosmetic procedures, confirm their qualifications, training, and scope of practice. Ask about experience with the specific treatment you want, see before/after photos, and check reviews or ratings. Ensure the clinic has good hygiene standards and clear communication about risks. Avoid places that push high-pressure sales or offer unregulated treatments. Ask about aftercare and what happens if something goes wrong.",
-      "note": "Regulation in the cosmetic field is patchy in the UK and there’s a push for tighter licensing, so being cautious is smart. :contentReference[oaicite:2]{index=2}"
-    },
-    "Comparison_with_non_surgical_or_alternative_options": {
-      "answer": "Within dermatology, many cosmetic treatments already are non-surgical (like injectables, lasers, peels). Compared with purely topical skincare routines or over-the-counter products, clinical procedures tend to be more targeted and may offer stronger results. Alternatives like lifestyle changes or prescription meds handle underlying disease rather than cosmetic change. Surgical options (like removal of deep scars or excision of lesions) might offer more permanent solutions but come with more downtime and risk. Non-medical alternatives often have lighter effects but fewer risks; clinical judgment helps decide the best path."
-    },
-    "Who_is_a_good_candidate_for_Dermatology_Treatments": {
-      "answer": "For medical treatments, anyone with a diagnosed skin, hair, or nail condition that isn’t responding to standard care might be a candidate. For cosmetic procedures, good candidates are people in good general health, with realistic expectations about outcomes and understanding of risks. Age, medical history, medication use, and specific skin type influence candidacy. A professional assessment helps clarify whether a given treatment is appropriate."
-    },
-    "How_to_prepare_for_Dermatology_Treatments": {
-      "answer": "Preparation depends on the treatment. Generally, stop certain medications or skincare products that increase bleeding or irritation, follow fasting or hydration instructions if given, and avoid sun exposure before procedures like lasers or peels. Discuss allergies, past reactions, and goals with the clinician ahead of time. Ask what to expect and how to care for your skin afterward."
-    },
-    "Safety_considerations_and_pain": {
-      "answer": "Safety varies by procedure and practitioner. Medical dermatology is usually done by trained clinicians and includes informed consent and discussion of risks. Cosmetic procedures can have side effects like redness, bruising, swelling, infection, or pigmentation changes. Some technologies and injectables carry specific risks. Pain ranges from mild discomfort to moderate depending on area and method, but local anaesthesia or numbing is often used. Always choose qualified providers and ask about emergency protocols. Lack of formal regulation in some cosmetic areas heightens the need for caution. :contentReference[oaicite:3]{index=3}"
-    },
-    "How_long_results_last": {
-      "answer": "It really depends on the treatment. Some cosmetic results like Botox often last a few months, fillers can last months to over a year, and medical treatments depend on disease control. Many dermatology treatments, like topical regimens, require ongoing use. Longevity varies so ask your clinician what to expect for your specific plan."
-    },
-    "Difference_for_mild_vs_severe_cases_and_limits": {
-      "answer": "Mild conditions might be managed with topical treatments or lifestyle changes. Severe disease often needs stronger systemic meds, light therapies, or combination approaches. Cosmetic options won’t treat underlying disease processes and aren’t a substitute for medically indicated care. Likewise, they don’t fix structural issues surgery would. Knowing what a given treatment *doesn’t* do is as important as what it does."
-    },
-    "What_happens_during_appointment_and_duration": {
-      "answer": "For medical dermatology appointments, expect history taking, skin exam, possible biopsies or tests, and a discussion of a plan. Cosmetic appointments start with consultation and planning, then the procedure in the clinic. Duration ranges from ~15 minutes for simple injectables or blemish removal to an hour or more for complex light therapies. Consultations alone often last 20-60 minutes."
-    },
-    "Recovery_process_downtime_side_effects": {
-      "answer": "Recovery varies. Simple injections or light treatments may have minimal downtime (a day or two). More invasive procedures like excisions or deep laser resurfacing have more recovery and possible side effects like swelling, scabbing, or sensitivity. Your clinician should outline expected healing timelines and aftercare steps."
-    },
-    "Is_it_regulated_in_the_UK_and_what_if_something_goes_wrong": {
-      "answer": "Medical dermatology is regulated; clinicians must be on the GMC register and follow clinical standards. Cosmetic dermatology has less comprehensive regulation, though authorities are working on licensing schemes to improve safety and ensure practitioners are trained and premises meet standards. If something goes wrong with a medical visit, you can report to the GMC and seek compensation via clinical negligence. For cosmetic procedures, local authorities and trading standards are relevant, and you should document everything and consider legal advice if necessary. :contentReference[oaicite:4]{index=4}"
-    },
-    "Does_it_require_maintenance_and_how_often": {
-      "answer": "Many cosmetic dermatology results are temporary and need repeat sessions (often every few months for injectables, periodic laser or light therapy). Medical treatments for chronic disease may require ongoing management and follow-up appointments to adjust therapy."
-    },
-    "Qualifications_practitioner_should_have": {
-      "answer": "For medical dermatology, a clinician should be a qualified doctor on the GMC specialist register in dermatology. For cosmetic treatments, look for medical training, specific procedure training, and professional indemnity insurance. Certificates from reputable bodies (royal colleges, dermatology associations) and transparent training history help separate experienced practitioners from those with minimal training."
-    },
-    "Are_there_NICE_FDA_or_MHRA_guidelines": {
-      "answer": "There are evidence-based clinical guidelines from NICE covering many skin conditions and treatments which help clinicians make decisions, though they aren’t always specific to every cosmetic option. MHRA regulates medicines and medical devices used in dermatology, and devices need appropriate approvals. Formal NICE guidance exists for disease treatments (like acne) but not typically for every cosmetic procedure. Always check current guidance and ask your clinician about safety and evidence for any intervention. :contentReference[oaicite:5]{index=5}"
-    }
+    "What_to_look_for_when_choosing_doctor_or_clinic": [
+      "Look for clinicians who are medically trained (ideally Consultant Dermatologists on the UK GMC specialist register) for medical treatments. For cosmetic procedures, confirm their qualifications, training, and scope of practice. Ask about experience with the specific treatment you want, see before/after photos, and check reviews or ratings. Ensure the clinic has good hygiene standards and clear communication about risks. Avoid places that push high-pressure sales or offer unregulated treatments. Ask about aftercare and what happens if something goes wrong.",
+      "Regulation in the cosmetic field is patchy in the UK and there’s a push for tighter licensing, so being cautious is smart. :contentReference[oaicite:2]{index=2}"
+    ],
+    "Comparison_with_non_surgical_or_alternative_options": [
+      "Within dermatology, many cosmetic treatments already are non-surgical (like injectables, lasers, peels). Compared with purely topical skincare routines or over-the-counter products, clinical procedures tend to be more targeted and may offer stronger results. Alternatives like lifestyle changes or prescription meds handle underlying disease rather than cosmetic change. Surgical options (like removal of deep scars or excision of lesions) might offer more permanent solutions but come with more downtime and risk. Non-medical alternatives often have lighter effects but fewer risks; clinical judgment helps decide the best path."
+    ],
+    "Who_is_a_good_candidate_for_Dermatology_Treatments": [
+      "For medical treatments, anyone with a diagnosed skin, hair, or nail condition that isn’t responding to standard care might be a candidate. For cosmetic procedures, good candidates are people in good general health, with realistic expectations about outcomes and understanding of risks. Age, medical history, medication use, and specific skin type influence candidacy. A professional assessment helps clarify whether a given treatment is appropriate."
+    ],
+    "How_to_prepare_for_Dermatology_Treatments": [
+      "Preparation depends on the treatment. Generally, stop certain medications or skincare products that increase bleeding or irritation, follow fasting or hydration instructions if given, and avoid sun exposure before procedures like lasers or peels. Discuss allergies, past reactions, and goals with the clinician ahead of time. Ask what to expect and how to care for your skin afterward."
+    ],
+    "Safety_considerations_and_pain": [
+    "Safety varies by procedure and practitioner. Medical dermatology is usually done by trained clinicians and includes informed consent and discussion of risks. Cosmetic procedures can have side effects like redness, bruising, swelling, infection, or pigmentation changes. Some technologies and injectables carry specific risks. Pain ranges from mild discomfort to moderate depending on area and method, but local anaesthesia or numbing is often used. Always choose qualified providers and ask about emergency protocols. Lack of formal regulation in some cosmetic areas heightens the need for caution. :contentReference[oaicite:3]{index=3}"
+    ],
+    "How_long_results_last": ["It really depends on the treatment. Some cosmetic results like Botox often last a few months, fillers can last months to over a year, and medical treatments depend on disease control. Many dermatology treatments, like topical regimens, require ongoing use. Longevity varies so ask your clinician what to expect for your specific plan."
+    ],
+    "Difference_for_mild_vs_severe_cases_and_limits": ["Mild conditions might be managed with topical treatments or lifestyle changes. Severe disease often needs stronger systemic meds, light therapies, or combination approaches. Cosmetic options won’t treat underlying disease processes and aren’t a substitute for medically indicated care. Likewise, they don’t fix structural issues surgery would. Knowing what a given treatment *doesn’t* do is as important as what it does."
+  ],
+    "What_happens_during_appointment_and_duration": ["For medical dermatology appointments, expect history taking, skin exam, possible biopsies or tests, and a discussion of a plan. Cosmetic appointments start with consultation and planning, then the procedure in the clinic. Duration ranges from ~15 minutes for simple injectables or blemish removal to an hour or more for complex light therapies. Consultations alone often last 20-60 minutes."
+],
+    "Recovery_process_downtime_side_effects": ["Recovery varies. Simple injections or light treatments may have minimal downtime (a day or two). More invasive procedures like excisions or deep laser resurfacing have more recovery and possible side effects like swelling, scabbing, or sensitivity. Your clinician should outline expected healing timelines and aftercare steps."
+],
+    "Is_it_regulated_in_the_UK_and_what_if_something_goes_wrong": ["Medical dermatology is regulated; clinicians must be on the GMC register and follow clinical standards. Cosmetic dermatology has less comprehensive regulation, though authorities are working on licensing schemes to improve safety and ensure practitioners are trained and premises meet standards. If something goes wrong with a medical visit, you can report to the GMC and seek compensation via clinical negligence. For cosmetic procedures, local authorities and trading standards are relevant, and you should document everything and consider legal advice if necessary. :contentReference[oaicite:4]{index=4}"
+],
+    "Does_it_require_maintenance_and_how_often": "Many cosmetic dermatology results are temporary and need repeat sessions (often every few months for injectables, periodic laser or light therapy). Medical treatments for chronic disease may require ongoing management and follow-up appointments to adjust therapy."
+    ,
+    "Qualifications_practitioner_should_have": "For medical dermatology, a clinician should be a qualified doctor on the GMC specialist register in dermatology. For cosmetic treatments, look for medical training, specific procedure training, and professional indemnity insurance. Certificates from reputable bodies (royal colleges, dermatology associations) and transparent training history help separate experienced practitioners from those with minimal training."
+    ,
+    "Are_there_NICE_FDA_or_MHRA_guidelines": "There are evidence-based clinical guidelines from NICE covering many skin conditions and treatments which help clinicians make decisions, though they aren’t always specific to every cosmetic option. MHRA regulates medicines and medical devices used in dermatology, and devices need appropriate approvals. Formal NICE guidance exists for disease treatments (like acne) but not typically for every cosmetic procedure. Always check current guidance and ask your clinician about safety and evidence for any intervention. :contentReference[oaicite:5]{index=5}"
+    
   },
   "Profhilo": {
     "What is Profhilo and How Does It Work?": {
