@@ -66,24 +66,19 @@ export function SearchBar() {
                   </h3>
                   <div className="space-y-2 overflow-auto max-h-50 md:max-h-100">
                     {options.map((opt) => (
-                      <div
-                        key={opt}
-                        className="flex flex-col items-start gap-1"
-                      >
-                <button
-         
-                  className="hover:bg-blue-50 hover:text-blue-700 active:bg-blue-100 text-left text-sm font-medium w-full flex items-center gap-3"
-                  onClick={() => {
-                    setLocalFilters((prev) => ({ ...prev, type: opt }));
-                    setOpen(false);
-                  }}
-                >
-                   
-                          
-                  {opt}
-                
-                  
-                </button></div>
+                      <button
+  type="button"
+  className="w-full text-left text-sm font-medium flex items-center gap-3
+             hover:bg-blue-50 hover:text-blue-700 active:bg-blue-100"
+  onClick={() => {
+    console.log("Selected type:", opt);
+    setLocalFilters((prev) => ({ ...prev, type: opt }));
+    setOpen(false);
+  }}
+>
+  {opt}
+</button>
+
               ))}
                   </div>
                 </div>
@@ -218,7 +213,7 @@ export function SearchBar() {
             <button
               className="flex-1 bg-white border border-r-0 border-gray-300 px-4 py-3 rounded-l-lg "
               onClick={() => setShowResults((o) => !o)}
-              onBlur={() => setTimeout(() => setShowResults(false), 200)}
+              onBlur={() => setTimeout(() => setShowResults(false), 350)}
             >
               <Input
                 value={localFilters.type}
@@ -248,7 +243,7 @@ export function SearchBar() {
                 active:ring-0"
               onFocus={() => filters.query && setShowResults(true)}
               onClick={() => setShowResults(true)}
-              onBlur={() => setTimeout(() => setShowResults(false), 200)}
+              onBlur={() => setTimeout(() => setShowResults(false), 350)}
             />
           </div>
 
@@ -276,7 +271,7 @@ export function SearchBar() {
               "
               onKeyDown={(e) => e.key === "Enter"}
               onFocus={() => filters.location && setShowResults(true)}
-              onBlur={() => setTimeout(() => setShowResults(false), 200)}
+              onBlur={() => setTimeout(() => setShowResults(false), 350)}
               onClick={() => setShowResults(true)}
             />
           </div>
