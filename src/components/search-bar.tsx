@@ -93,6 +93,24 @@ export function SearchBar() {
     const gridClasses = isMobile 
       ? "w-full"
       : `grid grid-cols-1 sm:grid-cols-3 ${isSearchPage ? "gap-x-60" : "gap-6"}`;
+
+    const filteredCategories = search_categories.filter((category: string) =>
+      category.toLowerCase().includes(localFilters.query.toLowerCase())
+    ).length > 0
+      ? search_categories.filter((category: string) =>
+          category.toLowerCase().includes(localFilters.query.toLowerCase())
+        )
+      : search_categories;
+
+    const filteredLocations = locations.filter((loc) =>
+      typeof loc === "string" &&
+      loc.toLowerCase().includes((localFilters.location || "").toLowerCase())
+    ).length > 0
+      ? locations.filter((loc) =>
+          typeof loc === "string" &&
+          loc.toLowerCase().includes((localFilters.location || "").toLowerCase())
+        )
+      : locations;
     
     return (
       <div className={dropdownClasses}>
@@ -124,14 +142,7 @@ export function SearchBar() {
             <div className="w-full">
               <h3 className="font-semibold text-left text-gray-900 mb-4">Service Categories</h3>
               <div className="space-y-2 overflow-auto max-h-50 md:max-h-100">
-                {(search_categories.filter((category: string) =>
-                  category.toLowerCase().includes(localFilters.query.toLowerCase())
-                ).length > 0
-                  ? search_categories.filter((category: string) =>
-                      category.toLowerCase().includes(localFilters.query.toLowerCase())
-                    )
-                  : search_categories
-                ).map((specialty: string) => (
+                {filteredCategories.map((specialty: string) => (
                   <button
                     key={specialty}
                     onClick={() => {
@@ -153,16 +164,7 @@ export function SearchBar() {
             <div className="w-full">
               <h3 className="font-semibold text-left text-gray-900 mb-4">Location</h3>
               <div className="space-y-2 overflow-auto max-h-50 md:max-h-100">
-                {(locations.filter((loc) =>
-                  typeof loc === "string" &&
-                  loc.toLowerCase().includes((localFilters.location || "").toLowerCase())
-                ).length > 0
-                  ? locations.filter((loc) =>
-                      typeof loc === "string" &&
-                      loc.toLowerCase().includes((localFilters.location || "").toLowerCase())
-                    )
-                  : locations
-                ).map((loc: string) => (
+                {filteredLocations.map((loc: string) => (
                   <button
                     key={loc}
                     onClick={() => {
