@@ -180,39 +180,48 @@ export function fixMojibake(str: string) {
   );
 }
 
+function stripContentReferenceFromString(str: string): string {
+  let result = "";
+  let i = 0;
+
+  while (i < str.length) {
+    if (!str.startsWith(":contentReference[", i)) {
+      result += str[i++];
+      continue;
+    }
+
+    i += 18; // skip ":contentReference["
+
+    while (i < str.length && str[i] !== "]") i++;
+    i++; // skip ]
+
+    if (str[i] === "{") {
+      while (i < str.length && str[i] !== "}") i++;
+      i++; // skip }
+    }
+  }
+
+  return result.trim();
+}
+
 export function stripContentReferencesDeep(obj: any): any {
   if (typeof obj === "string") {
-        let str = obj;
-        let result = "";
-        let i = 0;
-
-        while (i < str.length) {
-          if (str.startsWith(":contentReference[", i)) {
-            i += 18; // skip token
-            while (i < str.length && str[i] !== "]") i++;
-            i++; // skip ]
-
-            if (str[i] === "{") {
-              while (i < str.length && str[i] !== "}") i++;
-              i++; // skip }
-            }
-          } else {
-            result += str[i++];
-          }
-        }
-
-        return result.trim();
-
+    return stripContentReferenceFromString(obj);
   }
+
   if (Array.isArray(obj)) {
     return obj.map(stripContentReferencesDeep);
   }
+
   if (obj && typeof obj === "object") {
-    const result: any = {};
-    for (const key in obj) {
-      result[key] = stripContentReferencesDeep(obj[key]);
-    }
-    return result;
+    return Object.fromEntries(
+      Object.entries(obj).map(([key, value]) => [
+        key,
+        stripContentReferencesDeep(value),
+      ]),
+    );
   }
+
   return obj;
 }
+
