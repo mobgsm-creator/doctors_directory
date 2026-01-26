@@ -111,6 +111,27 @@ export function SearchBar() {
           loc.toLowerCase().includes((localFilters.location || "").toLowerCase())
         )
       : locations;
+
+    const handleTypeClick = (opt: string) => {
+      setLocalFilters((prev) => ({ ...prev, type: opt }));
+      setActiveDropdown(null);
+      if (isMobile) setShowResults(false);
+      else setShowResults(false);
+    };
+
+    const handleCategoryClick = (specialty: string) => {
+      setLocalFilters((prev) => ({ ...prev, query: specialty }));
+      setActiveDropdown(null);
+      if (isMobile) setShowResults(false);
+      else setShowResults(false);
+    };
+
+    const handleLocationClick = (loc: string) => {
+      setLocalFilters((prev) => ({ ...prev, location: loc }));
+      setActiveDropdown(null);
+      if (isMobile) setShowResults(false);
+      else setShowResults(false);
+    };
     
     return (
       <div className={dropdownClasses}>
@@ -124,12 +145,7 @@ export function SearchBar() {
                     key={opt}
                     type="button"
                     className="w-full text-left text-sm font-medium flex items-center gap-3 p-2 rounded hover:bg-blue-50 hover:text-blue-700 active:bg-blue-100"
-                    onClick={() => {
-                      setLocalFilters((prev) => ({ ...prev, type: opt }));
-                      setActiveDropdown(null);
-                      if (isMobile) setShowResults(false);
-                      else setShowResults(false);
-                    }}
+                    onClick={() => handleTypeClick(opt)}
                   >
                     {opt}
                   </button>
@@ -145,12 +161,7 @@ export function SearchBar() {
                 {filteredCategories.map((specialty: string) => (
                   <button
                     key={specialty}
-                    onClick={() => {
-                      setLocalFilters((prev) => ({ ...prev, query: specialty }));
-                      setActiveDropdown(null);
-                      if (isMobile) setShowResults(false);
-                      else setShowResults(false);
-                    }}
+                    onClick={() => handleCategoryClick(specialty)}
                     className="hover:bg-blue-50 hover:text-blue-700 active:bg-blue-100 text-left text-sm font-medium w-full flex items-center gap-3 p-2 rounded"
                   >
                     {specialty}
@@ -167,12 +178,7 @@ export function SearchBar() {
                 {filteredLocations.map((loc: string) => (
                   <button
                     key={loc}
-                    onClick={() => {
-                      setLocalFilters((prev) => ({ ...prev, location: loc }));
-                      setActiveDropdown(null);
-                      if (isMobile) setShowResults(false);
-                      else setShowResults(false);
-                    }}
+                    onClick={() => handleLocationClick(loc)}
                     className="text-left text-sm font-medium w-full flex items-center gap-3 hover:bg-blue-50 hover:text-blue-700 active:bg-blue-100 p-2 rounded"
                   >
                     {loc}
