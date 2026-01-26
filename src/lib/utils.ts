@@ -182,9 +182,9 @@ export function fixMojibake(str: string) {
 
 export function stripContentReferencesDeep(obj: any): any {
   if (typeof obj === "string") {
-    return obj
-      .replace(/\s*:contentReference\[[^\]]*\](\{[^}]*\})?/g, "")
-      .trim();
+      return obj
+        .replace(/\s*:contentReference\[[^\]\r\n]*\](?:\{[^\}\r\n]*\})?/g, "")
+        .trim();
   }
   if (Array.isArray(obj)) {
     return obj.map(stripContentReferencesDeep);
