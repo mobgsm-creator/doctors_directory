@@ -36,9 +36,10 @@ export function SearchDropdown({
     ? "absolute top-full left-0 w-full bg-white rounded-lg shadow-lg border border-gray-200 p-4 z-50 mt-1"
     : "flex bg-white rounded-lg shadow-lg border border-gray-200 p-6";
 
+  const clsgrd = isSearchPage ? "gap-x-60" : "gap-6";
   const gridClasses = isMobile
     ? "w-full"
-    : `grid grid-cols-1 sm:grid-cols-3 ${isSearchPage ? "gap-x-60" : "gap-6"}`;
+    : `grid grid-cols-1 sm:grid-cols-3 ${clsgrd}`;
 
   const filteredCategories = search_categories.filter((category: string) =>
     category.toLowerCase().includes(localFilters.query.toLowerCase())

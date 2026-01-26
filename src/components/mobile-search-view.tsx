@@ -38,14 +38,14 @@ export function MobileSearchView({
   return (
     <div className="block md:hidden">
       {!isExpanded ? (
-        <div
+        <button
           className="flex items-center bg-white border border-gray-300 rounded-lg px-4 py-3 cursor-pointer hover:shadow-md transition-shadow"
           onClick={() => setIsExpanded(true)}
         >
           <Search className="w-5 h-5 text-gray-400 mr-3" />
           <span className="text-gray-500 flex-1">{getDynamicPlaceholderText()}</span>
           <ChevronDown className="w-5 h-5 text-gray-400" />
-        </div>
+        </button>
       ) : (
         <div className="rounded-lg p-4 shadow-lg">
           <div className="space-y-4">
