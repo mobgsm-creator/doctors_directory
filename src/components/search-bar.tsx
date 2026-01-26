@@ -18,13 +18,20 @@ export function SearchBar() {
   const [isLoading, setIsLoading] = useState(false);
   const [showResults, setShowResults] = useState(false);
   const [showLocResults, setShowLocResults] = useState(false);
-  const [localFilters, setLocalFilters] = useState(filters);
+  // If on /treatments, default type to 'Treatments'
+  const [localFilters, setLocalFilters] = useState(() => {
+    if (pathname.includes("/treatments")) {
+      return { ...filters, type: "Treatments" };
+    }
+    return filters;
+  });
   const [open, setOpen] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<'type' | 'category' | 'location' | null>(null);
   const dropdownRef = useRef(null);
 
-  const options = ["Practitioner", "Clinic", "Product","Treatments"];
+  // Only allow 'Treatments' as type on /treatments page
+  const options = pathname.includes("/treatments") ? ["Treatments"] : ["Practitioner", "Clinic", "Product", "Treatments"];
   
   const getDynamicPlaceholderText = () => {
     let parts = [];
@@ -54,9 +61,17 @@ export function SearchBar() {
     setShowResults(false);
     setIsExpanded(false);
     startTransition(() => {
-      router.push("/search");
+      if (pathname.includes("/treatments")) {
+        router.push("/treatments?" + new URLSearchParams({
+          query: localFilters.query || "",
+          type: localFilters.type || "",
+          category: localFilters.category || "",
+          location: localFilters.location || "",
+        }).toString());
+      } else {
+        router.push("/search");
+      }
     });
-
     setIsLoading(false);
   };
 
@@ -300,7 +315,7 @@ export function SearchBar() {
                   onChange={(e) =>
                     setLocalFilters((prev) => ({ ...prev, query: e.target.value }))
                   }
-                  className="border-0 shadow-none p-0 h-auto sm:w-66 text-base placeholder:text-gray-500 focus:outline-none focus:ring-0 focus:border-0 active:outline-none focus-visible:outline-none focus-visible:ring-0 focus-visible:border-0 active:ring-0"
+                  className="border-0 shadow-none p-0 h-auto w-full text-base placeholder:text-gray-500 focus:outline-none focus:ring-0 focus:border-0 active:outline-none focus-visible:outline-none focus-visible:ring-0 focus-visible:border-0 active:ring-0"
                   onFocus={() => filters.query && setShowResults(true)}
                   onClick={() => setShowResults(true)}
                   onBlur={() => setTimeout(() => setShowResults(false), 350)}

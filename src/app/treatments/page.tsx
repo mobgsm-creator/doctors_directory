@@ -1,4 +1,4 @@
-import { SearchForm } from "@/components/treatment-search-client";
+import { SearchBar } from "@/components/search-bar";
 import { TreatmentFiltersClient } from "@/components/treatment-filters-client";
 import { TreatmentGrid } from "@/components/treatment-grid";
 import { searchTreatments } from "./actions";
@@ -100,7 +100,7 @@ export default function HomePage({
   return (
     <main className="bg-[var(--primary-bg-color)]">
       <div className="mx-auto max-w-7xl md:px-4 py-4 md:py-12 flex flex-col justify-center w-full md:gap-10 ">
-        <SearchForm searchAction={searchTreatments} />
+        <SearchBar />
         
         <div className="flex md:flex-row flex-col items-start justify-start gap-6">
           <TreatmentFiltersClient />
