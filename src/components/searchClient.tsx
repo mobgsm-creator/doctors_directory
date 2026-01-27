@@ -44,26 +44,29 @@ export default function SearchPage() {
 
   // Fetch data when filters, page, or sort changes
   useEffect(() => {
-  startTransition(() => {
-    (async () => {
-      const start = performance.now();
+    // Clear previous data when starting new search
+    setData([]);
+    
+    startTransition(() => {
+      (async () => {
+        const start = performance.now();
 
-      const result = await searchPractitioners(
-        pathname.includes("treatments") ? treatmentFilters : filters,
-        currentPage,
-        sortBy
-      );
+        const result = await searchPractitioners(
+          pathname.includes("treatments") ? treatmentFilters : filters,
+          currentPage,
+          sortBy
+        );
 
-      const end = performance.now();
-      console.log(`Search took ${end - start} ms`);
+        const end = performance.now();
+        console.log(`Search took ${end - start} ms`);
 
-      setData(result.data);
-   
-      setTotalCount(result.totalCount);
-      setTotalPages(result.totalPages);
-    })();
-  });
-}, [filters, currentPage, sortBy]);
+        setData(result.data);
+     
+        setTotalCount(result.totalCount);
+        setTotalPages(result.totalPages);
+      })();
+    });
+  }, [filters, currentPage, sortBy]);
 
 
   const handleSearch = (newFilters: SearchFilters) => {
@@ -101,7 +104,7 @@ export default function SearchPage() {
           </Link>
         </div>
       </div>
-      <div className="max-w-6xl mx-auto py-6  border-[#C4C4C4]">
+      <div className="max-w-6xl mx-auto py-6 border-[#C4C4C4] px-2 md:px-0">
         <SearchBar />
         <div className="block md:hidden">
           <Button

@@ -41,7 +41,7 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
   console.log(clinic)
   const hoursObj = clinic?.hours as unknown as Record<string, any>;
   const hours =
-    hoursObj["Typical_hours_listed_in_directories"] ?? clinic?.hours;
+    (hoursObj && typeof hoursObj === 'object' && hoursObj["Typical_hours_listed_in_directories"]) ?? clinic?.hours;
   const flatHours = typeof hoursObj === 'object' ? flattenObject(hours) : hours
 
   
