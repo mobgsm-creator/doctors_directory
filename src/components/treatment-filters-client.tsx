@@ -16,7 +16,6 @@ export function TreatmentFiltersClient() {
     concern: searchParams.get("concern") ?? "all",
     treatmentType: searchParams.get("treatmentType") ?? "all",
     treatmentArea: searchParams.get("treatmentArea") ?? "all",
-    priceRange: searchParams.get("priceRange") ?? "all",
   };
 
   const updateSort = () => {

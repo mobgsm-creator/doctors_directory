@@ -59,7 +59,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
       {(isPractitioner(practitioner) || isClinic(practitioner)) && (
         
 
-        <article aria-labelledby={`practitioner-name-${practitioner.slug}`}>
+        <article aria-labelledby={`${isPractitioner(practitioner) ? "practitioner" : "clinic"}-name-${practitioner.slug}`}>
           <Link
               href={
                 "practitioner_image_link" in practitioner &&
@@ -288,23 +288,23 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
         </Link>
       )}
       {isTreatment(practitioner) && (
-        <Link href={`/treatments/${practitioner}`} className="block" prefetch={false}>
-          <Card className="gap-0 h-full relative px-4 md:px-0 shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border-t-[1px] rounded-27 md:border md:border-[var(--alto)] cursor-pointer" aria-labelledby={`treatment-name-${practitioner}`}>
-            <CardHeader className="pb-2 px-2">
+        <Link href={`/treatments/${practitioner}`} className="block border-0" prefetch={false}>
+          <Card className="gap-0 h-full relative bg-transparent px-4 md:px-0 shadow-none md:border-0 duration-300 cursor-pointer" aria-labelledby={`treatment-name-${practitioner}`}>
+            <CardHeader className="px-2 border-0">
               <h2 id={`treatment-name-${practitioner}`} className="sr-only">
                 {practitioner}
               </h2>
               <div className="flex items-start gap-4">
                 <div className="text-center flex-1 min-w-0 items-center flex flex-col">
-                  <div className="flex w-full flex-row items-start border-b border-[#C4C4C4] md:border-0 md:flex-col md:items-center">
-                    <div className="w-[80px] h-[80px] md:w-[150px] md:h-[150px] flex items-center justify-center overflow-hidden rounded-lg bg-gray-300 md:mb-3 mr-0">
+                  <div className="flex w-full flex-row items-start border-0 md:flex-col md:items-center">
+                    <div className="w-[80px] h-[80px] md:w-[150px] md:h-[150px] flex items-center justify-center overflow-hidden md:mb-3 mr-0">
                       <img
                         src={
                           TreatmentMap[practitioner] ||
                           "/placeholder.svg"
                         }
                         alt="Treatment"
-                        className="object-cover rounded-lg min-w-full min-h-full"
+                        className="object-cover rounded-full w-full h-full"
                       />
                     </div>
 
