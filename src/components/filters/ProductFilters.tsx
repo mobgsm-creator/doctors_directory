@@ -1,6 +1,6 @@
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
-
+import { product_categories, distributors, brands } from "@/lib/data";
 interface ProductFilters {
   product_category: string;
   brand: string;
@@ -13,9 +13,10 @@ interface ProductFiltersProps {
   filters: ProductFilters;
   onChange: (key: string, value: string) => void;
   onClear: () => void;
+  setIsFilterActive: (value: boolean) => void;
 }
 
-export function ProductFilters({ filters, onChange, onClear }: Readonly<ProductFiltersProps>) {
+export function ProductFilters({ filters, onChange, onClear, setIsFilterActive }: Readonly<ProductFiltersProps>) {
   return (
     <>
       <h3 className="font-semibold text-xl text-black mb-6">Filters</h3>
@@ -40,19 +41,19 @@ export function ProductFilters({ filters, onChange, onClear }: Readonly<ProductF
 
            value={filters.product_category}
            onValueChange={(v) => onChange("product_category", v)}
+           onOpenChange={(open) => {            
+              if (open) setIsFilterActive(true);
+            }}
+
         >
           <SelectTrigger className="w-full h-12 px-4 py-3 bg-white border border-gray-300 rounded-md">
             <SelectValue placeholder="All"/>
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">All</SelectItem>
-            <SelectItem value="Aesthetic & Dermatology Equipment">Aesthetic & Dermatology Equipment</SelectItem>
-            <SelectItem value="Aesthetic & Medical Devices">Aesthetic & Medical Devices</SelectItem>
-            <SelectItem value="Aesthetic & Skincare">Aesthetic & Skincare</SelectItem>
-            <SelectItem value="Clothing & Scrubs">Clothing & Scrubs</SelectItem>
-            <SelectItem value="Cosmetics">Cosmetics</SelectItem>
-            <SelectItem value="Medical Supplies">Medical Supplies</SelectItem>
-            <SelectItem value="Pharmaceuticals">Pharmaceuticals</SelectItem>
+            {product_categories.map((item) => (
+              <SelectItem value={item}>{item}</SelectItem>
+            ))}
           </SelectContent>
         </Select>
       </div>
@@ -65,19 +66,19 @@ export function ProductFilters({ filters, onChange, onClear }: Readonly<ProductF
 
            value={filters.brand}
            onValueChange={(v) => onChange("brand", v)}
+           onOpenChange={(open) => {            
+              if (open) setIsFilterActive(true);
+            }}
+
         >
           <SelectTrigger className="w-full h-12 px-4 py-3 bg-white border border-gray-300 rounded-md">
             <SelectValue placeholder="All" />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">All</SelectItem>
-            <SelectItem value="3M">3M</SelectItem>
-            <SelectItem value="3M Littmann">3M Littmann</SelectItem>
-            <SelectItem value="Alexandra">Alexandra</SelectItem>
-            <SelectItem value="AETER">AETER</SelectItem>
-            <SelectItem value="WOMAKE">WOMAKE</SelectItem>
-            <SelectItem value="Xeomin">Xeomin</SelectItem>
-            <SelectItem value="Zidac">Zidac</SelectItem>
+            {brands.map((item) => (
+              <SelectItem value={item}>{item}</SelectItem>
+            ))}
           </SelectContent>
         </Select>
       </div>
@@ -90,20 +91,19 @@ export function ProductFilters({ filters, onChange, onClear }: Readonly<ProductF
 
            value={filters.distributor_cleaned}
            onValueChange={(v) => onChange("distributor_cleaned", v)}
+           onOpenChange={(open) => {            
+              if (open) setIsFilterActive(true);
+            }}
+
         >
           <SelectTrigger className="w-full h-12 px-4 py-3 bg-white border border-gray-300 rounded-md">
             <SelectValue placeholder="All" />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">All</SelectItem>
-            <SelectItem value="Medisave">Medisave</SelectItem>
-            <SelectItem value="Fillersdirect">Fillers Direct</SelectItem>
-            <SelectItem value="Aestheticsrxpharma">Aesthetics RX Pharma</SelectItem>
-            <SelectItem value="Twofaceaesthetics">Two Face Aesthetics</SelectItem>
-            <SelectItem value="DDgroup">DD Group</SelectItem>
-            <SelectItem value="Dermafillerltd">Derma Filler Ltd</SelectItem>
-            <SelectItem value="Laserandaesthetics">Laser and Aesthetics</SelectItem>
-            <SelectItem value="France-health">France Health</SelectItem>
+            {distributors.map((item) => (
+              <SelectItem value={item}>{item}</SelectItem>
+            ))}
           </SelectContent>
         </Select>
       </div>

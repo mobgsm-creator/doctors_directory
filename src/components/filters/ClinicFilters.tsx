@@ -1,6 +1,6 @@
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
-
+import { modalities, locations } from "@/lib/data";
 interface ClinicFilters {
   servicesOffered: string;
   location: string;
@@ -13,9 +13,10 @@ interface ClinicFiltersProps {
   filters: ClinicFilters;
   onChange: (key: string, value: string) => void;
   onClear: () => void;
+  setIsFilterActive: (val: boolean) => void;
 }
 
-export function ClinicFilters({ filters, onChange, onClear }: Readonly<ClinicFiltersProps>) {
+export function ClinicFilters({ filters, onChange, onClear, setIsFilterActive }: Readonly<ClinicFiltersProps>) {
   return (
     <>
       <h3 className="font-semibold text-xl text-black mb-6">Filters</h3>
@@ -40,40 +41,46 @@ export function ClinicFilters({ filters, onChange, onClear }: Readonly<ClinicFil
     
            value={filters.servicesOffered}
            onValueChange={(v) => onChange("servicesOffered", v)}
+           onOpenChange={(open) => {     
+            console.log(open)       
+              if (open) setIsFilterActive(true);
+            }}
+
         >
           <SelectTrigger className="w-full h-12 px-4 py-3 bg-white border border-gray-300 rounded-md">
             <SelectValue placeholder="All"/>
           </SelectTrigger>
-          <SelectContent>
+          
+          <SelectContent >
             <SelectItem value="all">All</SelectItem>
-            <SelectItem value="botox">Botox</SelectItem>
-            <SelectItem value="fillers">Dermal Fillers</SelectItem>
-            <SelectItem value="laser">Laser Treatments</SelectItem>
-            <SelectItem value="skincare">Skincare</SelectItem>
-            <SelectItem value="surgery">Cosmetic Surgery</SelectItem>
+            {modalities.map((item) => (
+              <SelectItem value={item}>{item}</SelectItem>
+            ))}
           </SelectContent>
         </Select>
       </div>
 
        <div className="mb-6">
          <label htmlFor="clinics-distance" className="block text-base font-medium text-black mb-2">
-           Distance:
+           Location
          </label>
          <Select
  
-           value={filters.distance}
-           onValueChange={(v) => onChange("distance", v)}
+           value={filters.location}
+           onValueChange={(v) => onChange("location", v)}
+           onOpenChange={(open) => {            
+              if (open) setIsFilterActive(true);
+            }}
+
         >
           <SelectTrigger className="w-full h-12 px-4 py-3 bg-white border border-gray-300 rounded-md">
             <SelectValue placeholder="All" />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">All</SelectItem>
-            <SelectItem value="5km">Within 5km</SelectItem>
-            <SelectItem value="10km">Within 10km</SelectItem>
-            <SelectItem value="25km">Within 25km</SelectItem>
-            <SelectItem value="50km">Within 50km</SelectItem>
-            <SelectItem value="100km">Within 100km</SelectItem>
+            {locations.map((item) => (
+              <SelectItem value={item}>{item}</SelectItem>
+            ))}
           </SelectContent>
         </Select>
       </div>
@@ -86,6 +93,10 @@ export function ClinicFilters({ filters, onChange, onClear }: Readonly<ClinicFil
           
            value={filters.rating}
            onValueChange={(v) => onChange("rating", v)}
+           onOpenChange={(open) => {            
+              if (open) setIsFilterActive(true);
+            }}
+
         >
           <SelectTrigger className="w-full h-12 px-4 py-3 bg-white border border-gray-300 rounded-md">
             <SelectValue placeholder="All" />
