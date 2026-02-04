@@ -57,6 +57,7 @@ export default function SearchPage() {
       const end = performance.now();
       console.log(`Search took ${end - start} ms`);
 
+
       setData(result.data);
    
       setTotalCount(result.totalCount);
@@ -170,12 +171,31 @@ export default function SearchPage() {
                     </p>
                   )}
                   {data.map((item) =>
-                    typeof item === "string" ? (
-                      <PractitionerCard key={item} practitioner={item} />
-                    ) : (
-                      <PractitionerCard key={item.slug} practitioner={item} />
-                    ),
-                  )}
+                    {
+                      
+                      if(typeof item === "string") {
+                        return (
+                        <PractitionerCard key={item} practitioner={item} />
+                      ) 
+                    }
+                  
+                      if ("product_name" in item){
+                        return (
+                          <PractitionerCard key={item.product_name} practitioner={item} />
+                        )
+                      }
+                      if(!("practitioner_name" in item)){
+                        return (
+                          <PractitionerCard key={item.slug} practitioner={item} />
+                        )
+                      }
+                      if("practitioner_name" in item){
+                        return (
+                        <PractitionerCard key={item.practitioner_name+item.practitioner_title} practitioner={item} />
+                        )
+                      }
+                      
+                    })}
                 </div>
                 {/* Pagination */}
                 {totalPages > 1 && (

@@ -112,9 +112,10 @@ export function safeParse(v: any) {
       if (typeof v === "string" && v.trim().startsWith("[") ) {
 
         const last = v.lastIndexOf("}")
+        console.log(v)
 
         if (last !== -1) {
-          let fixed = v.slice(0, last + 1).replaceAll(/\s*,\s*$/, "") + "]"
+          let fixed = v.slice(0, last + 1).replace(/\s*,\s*$/, "") + "]"
           try {
             return JSON.parse(fixed) // ✅ retry parsing fixed JSON
           } catch {
@@ -143,7 +144,7 @@ export const parseList = (val: any) => {
       return [val];
     }
   };
-export const fixPythonArrayString = (str: string) => {
+export const fixPythonArrayString = (str: string|undefined) => {
     if (!str) return null;
 
     try {

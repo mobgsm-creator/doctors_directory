@@ -13,10 +13,11 @@ import ClinicLabels from "./clinicLabels";
 
 interface ProfileHeaderProps {
   clinic: Practitioner;
+  k_value: any;
 }
 
-export function ProfileHeader({ clinic }: Readonly<ProfileHeaderProps>) {
-  const practitionerName = clinic.practitioner_name
+export function ProfileHeader({ clinic, k_value }: Readonly<ProfileHeaderProps>) {
+  const practitionerName = clinic.practitioner_name!
     .split("-")
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
@@ -35,7 +36,7 @@ export function ProfileHeader({ clinic }: Readonly<ProfileHeaderProps>) {
                 <div className="w-[80px] h-[80px] md:w-[140px] md:h-[140px] flex items-center justify-center overflow-hidden rounded-full bg-grey-300">
                   <img
                     src={
-                      clinic.image.replace("&w=256&q=75", "") ||
+                      clinic.image?.replace("&w=256&q=75", "") ??
                       "/placeholder.svg"
                     }
                     alt={practitionerName}
@@ -52,10 +53,10 @@ export function ProfileHeader({ clinic }: Readonly<ProfileHeaderProps>) {
               <div className="flex items-center gap-1">
                 <Star className="w-4 h-4 fill-black text-black" />
                 <span className="text-sm font-medium text-black">
-                  {clinic.rating}
+                  {k_value.rating}
                 </span>
                 <span className="text-sm text-black">
-                  ({clinic.reviewCount})
+                  ({k_value.reviewCount})
                 </span>
               </div>
               <Badge
@@ -74,7 +75,7 @@ export function ProfileHeader({ clinic }: Readonly<ProfileHeaderProps>) {
               <h1 className="inline text-left mb-0 md:m-0 font-semibold text-md md:text-2xl transition-colors md:text-left">
                 {practitionerName}
               </h1>
-              <ClinicLabels clinic={clinic} />
+              <ClinicLabels clinic={k_value} />
             </div>
 
             <div className="flex flex-row gap-2 mb-3 items-center">
@@ -86,16 +87,16 @@ export function ProfileHeader({ clinic }: Readonly<ProfileHeaderProps>) {
 
                  <div className="flex items-start gap-3 my-2">
                   <MapPin className="h-4 w-4 mt-1 shrink-0 " />
-                  <span className="text-sm">{clinic.gmapsAddress}</span>
+                  <span className="text-sm">{k_value.gmapsAddress}</span>
                 </div>
 
                 <div className="flex flex-wrap gap-4 my-2">
                   <a
-                    href={`tel:${clinic.gmapsPhone}`}
+                    href={`tel:${k_value.gmapsPhone}`}
                     className="flex items-center gap-2 text-sm transition-colors"
                   >
                     <Phone className="h-3.5 w-3.5 mr-1.5" />
-                    <span>{clinic.gmapsPhone}</span>
+                    <span>{k_value.gmapsPhone}</span>
                   </a>
 
                    <a
@@ -109,8 +110,8 @@ export function ProfileHeader({ clinic }: Readonly<ProfileHeaderProps>) {
 
                  <h2 className="sr-only">Specializations</h2>
                  <ul className="flex flex-wrap gap-2 pt-2" aria-label="Specializations">
-                   {clinic.reviewAnalysis?.procedures_offered.categories.map(
-                     (spec) => (
+                   {k_value.Treatments.map(
+                     (spec :string) => (
                        <li key={spec}>
                          <Badge
                            variant="outline"
@@ -137,16 +138,16 @@ export function ProfileHeader({ clinic }: Readonly<ProfileHeaderProps>) {
 
                  <div className="flex items-start gap-3 my-2">
                   <MapPin className="h-4 w-4 mt-1 shrink-0 " />
-                  <span className="text-sm">{clinic.gmapsAddress}</span>
+                  <span className="text-sm">{k_value.gmapsAddress}</span>
                 </div>
 
                 <div className="flex flex-wrap gap-4 my-2">
                   <a
-                    href={`tel:${clinic.gmapsPhone}`}
+                    href={`tel:${k_value.gmapsPhone}`}
                     className="flex items-center gap-2 text-sm transition-colors"
                   >
                     <Phone className="h-3.5 w-3.5 mr-1.5" />
-                    <span>{clinic.gmapsPhone}</span>
+                    <span>{k_value.gmapsPhone}</span>
                   </a>
 
                   <a
@@ -158,26 +159,8 @@ export function ProfileHeader({ clinic }: Readonly<ProfileHeaderProps>) {
                    </a>
                  </div>
 
-                 <h2 className="sr-only">Specializations</h2>
-                 <ul className="flex flex-wrap gap-2 pt-2" aria-label="Specializations">
-                   {clinic.reviewAnalysis?.procedures_offered.categories.map(
-                     (spec) => (
-                       <li key={spec}>
-                         <Badge
-                           variant="outline"
-                           className="border-black hover:text-black transition-colors bg-transparent"
-                         >
-                           {spec
-                             .split("-")
-                             .map(
-                               (word) => word.charAt(0).toUpperCase() + word.slice(1)
-                             )
-                             .join(" ")}
-                         </Badge>
-                       </li>
-                     )
-                   )}
-                 </ul>
+                
+              
             </div>
 
         {/* Action Buttons Section */}

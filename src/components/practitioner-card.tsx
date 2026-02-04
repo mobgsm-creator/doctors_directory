@@ -15,6 +15,7 @@ function isTreatment(obj:unknown): obj is string{
   return typeof obj === "string" && modalities.includes(obj);
 }
 function isPractitioner(obj: unknown): obj is Practitioner {
+
   return typeof obj === "object" && obj !== null && "practitioner_name" in obj;
 }
 
@@ -26,8 +27,16 @@ function isProduct(obj: unknown): obj is Product {
   return typeof obj === "object" && obj !== null && "product_name" in obj;
 }
 
-export function PractitionerCard({ practitioner }: PractitionerCardProps) {
 
+export function PractitionerCard({ practitioner }: PractitionerCardProps) {
+  let practitioner_title_clean = practitioner && "practitioner_title" in (practitioner as Practitioner) ? (practitioner as Practitioner).practitioner_title.split(",").slice(0,2).join(", ").trim() : ""
+  if(practitioner_title_clean.length < 10) {
+    
+    practitioner_title_clean = practitioner_title_clean
+  }
+  else {
+    practitioner_title_clean = practitioner_title_clean.split(",")[0].trim()
+  }
   let practitionerName = ""
   if(isPractitioner(practitioner)){
   practitionerName = practitioner.practitioner_name
@@ -43,7 +52,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
   else if(isClinic(practitioner)){
     practitionerName = practitioner.slug.split("-").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ") 
   } 
-  
+
 
   return (
     <>
@@ -102,15 +111,16 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                       </>
                     )}
 
-                    {"practitioner_image_link" in practitioner &&
-                      (practitioner.practitioner_name && (
+                    {"practitioner_name" in practitioner && (
+                      
                         <p className="text-muted-foreground mb-2 text-pretty">
                           {
-                            practitioner.practitioner_title.split("/")[0].split("(")[0].trim()}
+                            practitioner_title_clean
+                            }
                         </p>
-                      ))}
+                      )}
 
-                    {!("practitioner_image_link" in practitioner) &&
+                    {!("practitioner_name" in practitioner) &&
                       practitioner.category && (
                         <p className="pt-2 mb-2">
                           {practitioner.category.trim()}
@@ -162,7 +172,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
 
             <Link
               href={
-                "practitioner_image_link" in practitioner &&
+                "practitioner_name" in practitioner &&
                 practitioner.practitioner_name
                   ? `/profile/${
                       practitioner.practitioner_name

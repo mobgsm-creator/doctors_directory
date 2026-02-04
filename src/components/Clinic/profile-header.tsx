@@ -12,7 +12,7 @@ interface ProfileHeaderProps {
 }
 
 export function ProfileHeader({ clinic }: Readonly<ProfileHeaderProps>) {
-  const practitionerName = clinic.slug
+  const practitionerName = clinic.slug!
     .split("-")
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");

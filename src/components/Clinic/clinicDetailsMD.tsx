@@ -1,26 +1,36 @@
 // New component rewriting markdown renderer into section-based layout
 // Matching the design shown in the reference image (clean sections, headings, lists, tables)
 
-import { Clinic } from "@/lib/types";
+import { Clinic, Practitioner } from "@/lib/types";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import { Section } from "../ui/section";
 import { decodeUnicodeEscapes,fixMojibake } from "@/lib/utils";
-interface PractitionerDetails {
-  "Full Name": string;
-  Title?: string;
-  Specialty?: string;
-  Education?: string;
-  "Professional Affiliations"?: string;
-  LinkedInURL?: string;
-  ProfileURL?: string;
-  "name"?: string;
-  "role"?: string;
+import practitionersJson from "@/../public/derms_processed_new_5403.json";
+const practitionersData = practitionersJson as unknown as Practitioner[];
+const practitionersIndex = new Map<string, Practitioner[]>();
+
+for (const p of practitionersData) {
+  const clinics = JSON.parse(p.Associated_Clinics as string) as string[];
+
+  for (const clinic of clinics) {
+    const bucket = practitionersIndex.get(clinic) ?? [];
+    bucket.push(p);
+    practitionersIndex.set(clinic, bucket);
+  }
 }
 
 
 
+
+
+
+
 export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
+
+  const practitioners = practitionersIndex.get(clinic.slug as string)
+
+  
   const countOccurrences = (str: string, substr: string) => {
     let count = 0;
     for (let i = 0; i < str.length; i++) {
@@ -65,7 +75,7 @@ export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
   return (
     <div className="">
       {/* ABOUT */}
-      <Section title={`About ${clinic.slug.split("-").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")}`} id="about">
+      <Section title={`About ${clinic.slug!.split("-").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")}`} id="about">
         {decodeUnicodeEscapes(clinic.about_section) || "Not publicly listed"}
       </Section>
 
@@ -124,11 +134,12 @@ export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
       
       <Section title="Practitioners" id="practitioners">
         <div className="flex flex-col gap-4">
-          {Object.entries(clinic.Practitioners).map(
+          {Object.entries(practitioners as Practitioner[]).map(
             ([k, v]) =>{
 
             if (typeof v === "object" && v !== null) {
-              const practitioner = v as PractitionerDetails;
+              const slug = v["practitioner_name"] 
+              const name = v["practitioner_name"]?.replaceAll("-", ' ').split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")
               return (
 
  
@@ -139,54 +150,28 @@ export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
                   key={k}
                   className="group relative overflow-hidden rounded-xl border border-border bg-card transition-all duration-300 hover:shadow-md hover:border-primary/50"
                 >
+                  <Link prefetch={false} href={`/profile/${slug}`}>
                   <div className="p-5">
                     <div className="flex items-start justify-between gap-3 mb-3">
                       <div className="flex-1 min-w-0">
                         <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
                         <span className="text-sm font-medium text-primary">
-                          {practitioner["Full Name"]?.charAt(0) || practitioner["name"]?.charAt(0) || (practitioner as any)["Full Name/Title"]?.charAt(0)}
+                          {name?.charAt(0)}
                         </span>
                         </div>
                    
                         <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
-                          {v["Full Name"] || v["name"] || (v as any)["Full Name/Title"]}
+                          {name }
                         </h3>
                         <p className="text-sm text-muted-foreground mt-0.5">
-                          {v["Title"] || v["role"]}
+                          {v["Title"] }
                         </p>
                       </div>
                       
                     </div>
 
-                    <div className="space-y-3">
-                      {
-                        <div className="flex items-start gap-2">
-                          <span className="text-xs font-medium text-muted-foreground w-16 flex-shrink-0 pt-0.5">
-                            Specialty
-                          </span>
-                          <span className="text-sm text-foreground">{v["Specialty"]}</span>
-                        </div>
-                      }
-
-                      {
-                        <div className="flex items-start gap-2">
-                          <span className="text-xs font-medium text-muted-foreground w-16 flex-shrink-0 pt-0.5">
-                            Education
-                          </span>
-                          <span className="text-sm text-foreground">{v["Education"]}</span>
-                        </div>
-                      }
-
-                      {
-                        <div className="flex items-start gap-2">
-                          <span className="text-xs font-medium text-muted-foreground w-16 flex-shrink-0 pt-0.5">
-                            Affiliations
-                          </span>
-                          <span className="text-sm text-foreground">{v["Professional Affiliations"]}</span>
-                        </div>
-                      }
-                    </div>
-                  </div>
+                   
+                  </div></Link>
 
                   <div className="absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r from-transparent via-primary/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </article>

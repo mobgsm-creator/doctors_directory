@@ -15,7 +15,7 @@ const all_clinics: Clinic[] = JSON.parse(fs.readFileSync(filePath, 'utf8'));
 const clinics = all_clinics.slice(0,10)
 describe('ClinicDetailsMarkdown - Accreditations Section', () => {
   let liTagCounts: Map<string, number> = new Map();
-  let renderErrors: { slug: string; error: string }[] = [];
+  let renderErrors: { slug: string | undefined; error: string }[] = [];
 
   beforeAll(() => {
     expect(clinics.length).toBeGreaterThan(0);
@@ -90,7 +90,7 @@ describe('ClinicDetailsMarkdown - Accreditations Section', () => {
 
   test('should count li tags in Accreditations section', () => {
     const clinicsWithAccreditations: string[] = [];
-    const clinicsWithNoAccreditations: { slug: string; count: number }[] = [];
+    const clinicsWithNoAccreditations: { slug: string|undefined; count: number }[] = [];
 
     clinics.forEach((clinic) => {
       try {
@@ -107,7 +107,7 @@ describe('ClinicDetailsMarkdown - Accreditations Section', () => {
             const count = liTags.length;
             
             if (count > 0) {
-              clinicsWithAccreditations.push(clinic.slug);
+              clinicsWithAccreditations.push(clinic.slug!);
             } else {
               clinicsWithNoAccreditations.push({ slug: clinic.slug, count });
             }
@@ -137,7 +137,7 @@ describe('ClinicDetailsMarkdown - Accreditations Section', () => {
     });
     test('does mojibake exst in string?', () => {
       let mojibakeCount = 0;
-      const clinicsWithMojibake: { slug: string; count: number }[] = [];
+      const clinicsWithMojibake: { slug: string|undefined; count: number }[] = [];
       clinics.forEach((clinic) => {
       try {
         const { unmount } = render(<ClinicDetailsMarkdown clinic={clinic} />);

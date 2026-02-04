@@ -2,7 +2,7 @@
 import { cache } from "react";
 import { Clinic, Practitioner, Product, SearchFilters } from "@/lib/types"
 import clinicsJson from "../../../public/clinics_processed_new.json";
-import practitionersJson from "../../../public/derms_processed_new.json";
+import practitionersJson from "../../../public/derms_processed_new_5403.json";
 import productsJson from "../../../public/products_processed_new.json";
 import { modalities } from "@/lib/data";
 export const loadData = cache(() => {
@@ -31,31 +31,26 @@ export const loadData = cache(() => {
       City: clinic.City,
     }),
   );
+  const clinicIndex = new Map(
+  clinics.map(c => [c.slug, c])
+)
 
-  const practitioners = practitionersData.map(
-    (
-      clinic,
-    ): Pick<Practitioner, "slug" | "City" | "image" | "category" | "gmapsAddress" | "Treatments" | "rating" | "reviewCount" | "isCQC" | "isHIW" | "isJCCP" | "isDoctor" | "isHIS" | "isRQIA" | "isSaveFace" | "practitioner_name" | "practitioner_title" | "practitioner_qualifications"> => ({
-      slug: clinic.slug,
-      image: clinic.image,
-      category: clinic.category,
-      gmapsAddress: clinic.gmapsAddress,
-      Treatments: clinic.Treatments,
-      rating: clinic.rating,
-      reviewCount: clinic.reviewCount,
-      isCQC: clinic.isCQC,
-      isHIW: clinic.isHIW,
-      isHIS: clinic.isHIS,
-      isJCCP: clinic.isJCCP,
-      isDoctor: clinic.isDoctor,
-      isSaveFace: clinic.isSaveFace,
-      isRQIA: clinic.isRQIA,
-      City: clinic.City,
-      practitioner_name: clinic.practitioner_name,
-      practitioner_title: clinic.practitioner_title,
-      practitioner_qualifications: clinic.practitioner_qualifications,
-    }),
-  );
+
+  const practitioners = practitionersData
+  .map(p => {
+    const clinic = clinicIndex.get(JSON.parse(p.Associated_Clinics!)[0])
+    
+    if (!clinic) return null
+    return {
+      ...clinic,
+      practitioner_name: p.practitioner_name,
+      practitioner_title: p.practitioner_title,
+      practitioner_qualifications: p.practitioner_qualifications,
+    }
+  
+  })
+  .filter(Boolean)
+
 
   const products = productsData.map(
     (
@@ -213,27 +208,27 @@ export async function searchPractitioners(
       if (filters.query) {
         const queryWords = filters.query.toLowerCase().split(/\s+/).filter(word => word.length > 0)
         const searchableText = [
-          practitioner.practitioner_name,
-          practitioner.practitioner_qualifications,
-          practitioner.category,
-          practitioner.gmapsAddress,
-          ...(practitioner.Treatments || []),
+          practitioner?.practitioner_name,
+          practitioner?.practitioner_qualifications,
+          practitioner?.category,
+          practitioner?.gmapsAddress,
+          ...(practitioner?.Treatments || []),
         ].join(" ").toLowerCase()
         const hasAllWords = queryWords.every(word => searchableText.includes(word))
         if (!hasAllWords) return false
       }
 
       if (filters.category && filters.category !== "All Categories") {
-        if (practitioner.category !== filters.category) return false
+        if (practitioner?.category !== filters.category) return false
       }
 
       if (filters.location) {
         const location = filters.location.toLowerCase()
-        if (!practitioner.gmapsAddress.toLowerCase().includes(location)) return false
+        if (!practitioner?.gmapsAddress.toLowerCase().includes(location)) return false
       }
 
       if (filters.services.length > 0) {
-        const practitionerServices = practitioner.Treatments || []
+        const practitionerServices = practitioner?.Treatments || []
         const hasMatchingService = filters.services.some((service) =>
           practitionerServices.some((ps) => ps.includes(service.toLowerCase())),
         )
@@ -241,7 +236,7 @@ export async function searchPractitioners(
       }
 
       if (filters.rating > 0) {
-        if (practitioner.rating < filters.rating) return false
+        if (practitioner!.rating < filters.rating) return false
       }
 
       return true
