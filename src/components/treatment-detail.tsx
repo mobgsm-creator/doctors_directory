@@ -118,7 +118,9 @@ export function TreatmentDetail({ treatment, treatmentData }: Readonly<Treatment
           `Safety_Considerations_Is_it_painful`,
           `Safety considerations for ${treatmentName}: Is it painful?`,
           `Safety Considerations and Pain`,
-          `Safety and Pain`
+          `Safety and Pain`,
+          `Safety_Considerations_Is_it_Painful`,
+          `Safety_Considerations_Is_it_Painful`
         );
         break;
       case 'duration':
@@ -130,7 +132,11 @@ export function TreatmentDetail({ treatment, treatmentData }: Readonly<Treatment
           `What Happens During an ${treatmentName} Appointment`,
           `What happens during an ${treatmentName} appointment and how long does it take?`,
           `What_Happens_During_a_${treatmentNameUnderscore}_and_How_Long_it_Takes`,
-          `What_Happens_During_a_${treatmentNameUnderscore}_Appointment_and_How_Long_it_Takes`
+          `What_Happens_During_a_${treatmentNameUnderscore}_Appointment_and_How_Long_it_Takes`,
+          `What_Happens_During_an_${treatmentNameUnderscore}_Appointment_and_How_Long_it_Takes`,
+          `During a ${treatmentName} Treatment Appointment`,
+          `During_a_${treatmentNameUnderscore}_Treatment_Appointment`,
+          `What_Happens_During_an_${treatmentNameUnderscore}_Appointment_and_How_Long_it_Takes`
         );
         break;
       case 'recovery':
@@ -149,7 +155,8 @@ export function TreatmentDetail({ treatment, treatmentData }: Readonly<Treatment
           `How long do the results of ${treatmentName} last?`,
           `How_long_do_the_results_of_${treatmentNameUnderscore}_treatment_last?`,
           `Duration of Results`,
-          `How long do results last?`
+          `How long do results last?`,
+          `How_Long_Do_the_Results_Last`
         );
         break;
       case 'mildVsSevere':
@@ -170,6 +177,7 @@ export function TreatmentDetail({ treatment, treatmentData }: Readonly<Treatment
           `Does_${treatmentNameUnderscore}_treatment_require_maintenance_sessions?_How_often?`,
           `Maintenance Sessions`,
           `Maintenance and Repeat Sessions`,
+          `Does_${treatmentNameUnderscore}_Require_Maintenance_Sessions`,
           `Does_${treatmentNameUnderscore}_Require_Maintenance_and_How_Often`
         );
         break;
@@ -200,6 +208,7 @@ export function TreatmentDetail({ treatment, treatmentData }: Readonly<Treatment
       case 'guidelines':
         possibleKeys.push(
           `Are_There_NICE_FDA_MHRA_Guidelines`,
+          `Are_There_NICE_FDA_or_MHRA_Guidelines_for_${treatmentNameUnderscore}`,
           `Are there NICE, FDA, or MHRA guidelines for ${treatmentName}?`,
           `Are_there_NICE_FDA_or_MHRA_guidelines_for_${treatmentNameUnderscore}`,
           `Are_there_NICE,_FDA,_or_MHRA_guidelines_for_${treatmentNameUnderscore}?`,
@@ -222,6 +231,10 @@ export function TreatmentDetail({ treatment, treatmentData }: Readonly<Treatment
             return value.goals || value.answer || value.typical || value.advice || (Array.isArray(value) ? value : null);
           }
           else if (baseProperty === 'prosAndCons') {
+            return value;
+          }
+          else if (baseProperty === 'cost') {
+            // Return the entire cost object for access to Typical_prices and Why_price_varies
             return value;
           }
           else if (baseProperty === 'candidate') {
@@ -249,6 +262,15 @@ export function TreatmentDetail({ treatment, treatmentData }: Readonly<Treatment
             if (Array.isArray(value)) return value;
             return value.maintenance || value.answer || value.typical || null;
           }
+          else if (baseProperty === 'safety') {
+            return value;
+          }
+          else if (baseProperty === 'guidelines') {
+            return value;
+          }
+          else if (baseProperty === 'regulation') {
+            return value;
+          }
           return value.answer || value.description || value.typical || value.advice || value.notes || (typeof value === 'string' ? value : null);
         }
         
@@ -263,6 +285,10 @@ export function TreatmentDetail({ treatment, treatmentData }: Readonly<Treatment
     if (!costData) return null;
     
     if (typeof costData === 'string') {
+      return { typicalPrices: costData, whyVary: null };
+    }
+    
+    if (Array.isArray(costData)) {
       return { typicalPrices: costData, whyVary: null };
     }
     
@@ -665,7 +691,17 @@ export function TreatmentDetail({ treatment, treatmentData }: Readonly<Treatment
                 <h3 className="font-semibold mb-3">
                   What Happens During Appointment
                 </h3>
-                <p className="text-gray-700">{findProperty("duration")}</p>
+                {Array.isArray(findProperty("duration")) ? (
+                  <ul className="space-y-2 text-gray-700 text-base list-disc ml-6">
+                    {findProperty("duration").map(
+                      (step: string, index: number) => (
+                        <li key={index}>{step}</li>
+                      )
+                    )}
+                  </ul>
+                ) : (
+                  <p className="text-gray-700">{findProperty("duration")}</p>
+                )}
               </div>
             )}
 
@@ -685,9 +721,19 @@ export function TreatmentDetail({ treatment, treatmentData }: Readonly<Treatment
                     <h3 className="font-semibold mb-2">
                       Safety Considerations
                     </h3>
-                    <p className="text-gray-700 text-sm">
-                      {findProperty("safety").Safety}
-                    </p>
+                    {Array.isArray(findProperty("safety").Safety) ? (
+                      <ul className="space-y-2 text-gray-700 text-base list-disc ml-6">
+                        {findProperty("safety").Safety.map(
+                          (safety: string, index: number) => (
+                            <li key={index}>{safety}</li>
+                          )
+                        )}
+                      </ul>
+                    ) : (
+                      <p className="text-gray-700 text-sm">
+                        {findProperty("safety").Safety}
+                      </p>
+                    )}
                   </div>
                 )}
 
@@ -918,6 +964,33 @@ export function TreatmentDetail({ treatment, treatmentData }: Readonly<Treatment
                     <h3 className="font-semibold mb-2">USA Guidelines</h3>
                     <p className="text-gray-700 text-sm">
                       {findProperty("guidelines").USA}
+                    </p>
+                  </div>
+                )}
+
+                {findProperty("guidelines")?.NICE && (
+                  <div>
+                    <h3 className="font-semibold mb-2">NICE Guidelines</h3>
+                    <p className="text-gray-700 text-sm">
+                      {findProperty("guidelines").NICE}
+                    </p>
+                  </div>
+                )}
+
+                {findProperty("guidelines")?.FDA && (
+                  <div>
+                    <h3 className="font-semibold mb-2">FDA Guidelines</h3>
+                    <p className="text-gray-700 text-sm">
+                      {findProperty("guidelines").FDA}
+                    </p>
+                  </div>
+                )}
+
+                {findProperty("guidelines")?.MHRA && (
+                  <div>
+                    <h3 className="font-semibold mb-2">MHRA Guidelines</h3>
+                    <p className="text-gray-700 text-sm">
+                      {findProperty("guidelines").MHRA}
                     </p>
                   </div>
                 )}

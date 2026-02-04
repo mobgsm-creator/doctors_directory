@@ -8,10 +8,10 @@ export function consolidate(input: string): string[] {
 
   const arr = input
     .replaceAll('[', "")
-    .replaceAll(']', "")   // remove [ and ]
+    .replaceAll(']', "")
     .replaceAll("'", "").replaceAll('"', "")    
     .replaceAll("\\n", ",")  
-    .replaceAll(", ", ",")    // remove all single quotes
+    .replaceAll(", ", ",")
     .split(",'")
     .map(x => x.trim())
   let result = arr[0].split(",")
@@ -21,8 +21,8 @@ export function consolidate(input: string): string[] {
 export function parse_numbers(input: string): number {
   const arr = input
   .replaceAll('[', "")
-  .replaceAll(']', "")   // remove [ and ]
-  .replaceAll("'", "")       // remove all single quotes
+  .replaceAll(']', "")
+  .replaceAll("'", "")
   .split(",'")
   .map(x => x.trim());
 
@@ -33,8 +33,8 @@ export function parse_numbers(input: string): number {
 export function parse_text(input: string): string {
   const arr = input
   .replaceAll('[', "")
-  .replaceAll(']', "")   // remove [ and ]
-  .replaceAll("'", "")       // remove all single quotes
+  .replaceAll(']', "")
+  .replaceAll("'", "")
   .split(",")
   .map(x => x.trim());
   return arr[0];
@@ -46,8 +46,8 @@ export function parse_addresses(input: string): string {
 
     const arr = input
   .replaceAll('[', "")
-  .replaceAll(']', "")   // remove [ and ]
-  .replaceAll("'", '"')       // remove all single quotes
+  .replaceAll(']', "")
+  .replaceAll("'", '"')
   .split('", "')
   .map(x => x.trim());
   result = arr[0].replaceAll('"', '');
@@ -66,9 +66,9 @@ export function decodeUnicodeEscapes(str: string) {
 export function cleanRouteSlug(slug: string) {
   try {
   return slug.toLowerCase()
-  .replaceAll(/&|\+/g, 'and')          // & + → 'and'
-  .replaceAll(/[\/\\]+/g, '-')         // / \ → -
-    .replaceAll(' ', "-")                // á í ü ñ → a i u n etc           // spaces → -
+  .replaceAll(/&|\+/g, 'and')
+  .replaceAll(/[\/\\]+/g, '-')
+    .replaceAll(' ', "-")
   }
   catch (e) {
 
@@ -79,15 +79,9 @@ export function parseLabels(label: string): [boolean, string] | null {
   try {
     const jsonReady = label
       .trim()
-      // normalize Python-style booleans
       .replaceAll(/\bTrue\b/g, "true")
       .replaceAll(/\bFalse\b/g, "false")
       .replaceAll(/\b,']/g, "]")
-      // normalize single quotes to double quotes
-   
-
-    // handle empty string edge case: [False, ""] or [False, ]
- 
 
     const parsed = JSON.parse(jsonReady);
     return parsed;
@@ -103,22 +97,21 @@ export function safeParse(v: any) {
   try {
     return JSON.parse(v.replaceAll(/[\u0000-\u001F]/g, ""));
   } catch (err) {
-    const msg = String(err) 
-  // ✅ convert error to text so includes() works
+    const msg = String(err)
 
     if (msg.includes("Unterminated string in JSON") ) {
     
-      // 🔧 handle truncated array case here
       if (typeof v === "string" && v.trim().startsWith("[") ) {
 
         const last = v.lastIndexOf("}")
+        console.log(v)
 
         if (last !== -1) {
-          let fixed = v.slice(0, last + 1).replaceAll(/\s*,\s*$/, "") + "]"
+          let fixed = v.slice(0, last + 1).replace(/\s*,\s*$/, "") + "]"
           try {
-            return JSON.parse(fixed) // ✅ retry parsing fixed JSON
+            return JSON.parse(fixed)
           } catch {
-            return null // still broken? give up safely
+            return null
           }
         }
       }
@@ -143,16 +136,14 @@ export const parseList = (val: any) => {
       return [val];
     }
   };
-export const fixPythonArrayString = (str: string) => {
+export const fixPythonArrayString = (str: string|undefined) => {
     if (!str) return null;
 
     try {
-      // 1. remove broken outer quotes
       let fixed = str
         .trim()
         .replaceAll(/^"\[|\]"$/g, (m) => (m === '"[' ? "[" : "]"));
 
-      // 2. convert single-quoted Python list → JSON list
       fixed = fixed.replaceAll(/'([^']*)'/g, '"$1"');
 
       return JSON.parse(fixed);
@@ -179,3 +170,49 @@ export function fixMojibake(str: string) {
     Uint8Array.from(str, c => c.charCodeAt(0))
   );
 }
+
+function stripContentReferenceFromString(str: string): string {
+  let result = "";
+  let i = 0;
+
+  while (i < str.length) {
+    if (!str.startsWith(":contentReference[", i)) {
+      result += str[i++];
+      continue;
+    }
+
+    i += 18;
+
+    while (i < str.length && str[i] !== "]") i++;
+    i++;
+
+    if (str[i] === "{") {
+      while (i < str.length && str[i] !== "}") i++;
+      i++;
+    }
+  }
+
+  return result.trim();
+}
+
+export function stripContentReferencesDeep(obj: any): any {
+  if (typeof obj === "string") {
+    return stripContentReferenceFromString(obj);
+  }
+
+  if (Array.isArray(obj)) {
+    return obj.map(stripContentReferencesDeep);
+  }
+
+  if (obj && typeof obj === "object") {
+    return Object.fromEntries(
+      Object.entries(obj).map(([key, value]) => [
+        key,
+        stripContentReferencesDeep(value),
+      ]),
+    );
+  }
+
+  return obj;
+}
+

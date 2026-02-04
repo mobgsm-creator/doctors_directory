@@ -1,7 +1,7 @@
 export interface Clinic {
-  slug: string
+  slug: string | undefined
   image: string
-  url: string
+  url: string | undefined
   rating: number
   reviewCount: number
   category: string
@@ -43,18 +43,20 @@ export interface Clinic {
 interface WeightedAnalysis {
   [category: string]: ItemMeta
 }
-export interface Practitioner extends Clinic {
-  practitioner_image_link: string
-  practitioner_roles: string
-  practitioner_qualifications: string
-  practitioner_awards: string
-  practitioner_media: string
-  practitioner_experience: string
-  practitioner_name:string
-  practitioner_title: string	,
-  practitioner_specialty:string,	
-  practitioner_education:string,	
+export interface Practitioner extends Partial<Clinic> {
+  practitioner_image_link?: string | undefined
+  practitioner_roles?: string
+  practitioner_qualifications?: string
+  practitioner_awards?: string
+  practitioner_media?: string
+  practitioner_experience?: string
+  practitioner_name?:string
+  practitioner_title?: string	,
+  practitioner_specialty?:string,	
+  practitioner_education?:string,	
   Treatments?: string[]
+  Title?:string
+  Associated_Clinics?: string
 
 
 }

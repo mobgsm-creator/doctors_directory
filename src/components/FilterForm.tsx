@@ -5,7 +5,6 @@ interface TreatmentFilters {
   concern: string;
   treatmentType: string;
   treatmentArea: string;
-  priceRange: string;
 }
 
 interface FilterFormProps {
@@ -82,28 +81,6 @@ export function FilterForm({ filters, onChange, onClear }: FilterFormProps) {
             <SelectItem value="hair">Hair</SelectItem>
             <SelectItem value="skin">Skin</SelectItem>
             <SelectItem value="lips">Lips</SelectItem>
-          </SelectContent>
-        </Select>
-        </label>
-        
-      </div>
-
-      <div className="mb-6">
-        <label className="block text-base font-medium text-black mb-2">
-          Price Range:
-          <Select
-          value={filters.priceRange}
-          onValueChange={(v) => onChange("priceRange", v)}
-        >
-          <SelectTrigger className="w-full h-12 px-4 py-3 bg-white border border-gray-300 rounded-md">
-            <SelectValue placeholder="All" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="all">All</SelectItem>
-            <SelectItem value="under-200">Under £200</SelectItem>
-            <SelectItem value="200-500">£200 - £500</SelectItem>
-            <SelectItem value="500-1000">£500 - £1,000</SelectItem>
-            <SelectItem value="over-1000">Over £1,000</SelectItem>
           </SelectContent>
         </Select>
         </label>

@@ -62,7 +62,7 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
   const hoursObj = clinic?.hours as unknown as Record<string, any>;
 
   const hours = 
-    hoursObj["Typical_hours_listed_in_directories"] ?? clinic?.hours;
+    (hoursObj && typeof hoursObj === 'object' && hoursObj["Typical_hours_listed_in_directories"]) ?? clinic?.hours;
   const flatHours = typeof hoursObj === 'object' ? flattenObject(hours) : hours
 
   
@@ -213,22 +213,6 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
           <h2 className='text-xl font-semibold text-foreground mb-2'>Patient Stories</h2>
           
           <div className='flex flex-col sm:flex-row gap-2'>
-            
-          {clinic.gmapsReviews &&
-           <div className="grid gap-6 h-113 overflow-auto">
-
-
-
-                {clinic.gmapsReviews.map((review, index) => (
-
-
-                  <ReviewCard key={index} review={review} />
-
-
-                ))}
-
-
-              </div> }
               <GoogleMapsEmbed
           url={clinic.url}
           

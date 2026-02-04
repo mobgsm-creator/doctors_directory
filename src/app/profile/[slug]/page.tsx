@@ -3,7 +3,6 @@ import Link from "next/link";
 import { ArrowLeft, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ProfileHeader } from "@/components/Practitioner/profile-header";
-import { ReviewCard } from "@/components/review-card";
 import { GoogleMapsEmbed } from "@/components/gmaps-embed";
 import { boxplotDatas_clinic } from "@/lib/data";
 import { BoxPlotDatum, ItemMeta } from "@/lib/types";
@@ -15,6 +14,16 @@ import path from "path";
 import PractitionerTabs from "@/components/Practitioner/PractitionerTabs";
 import { flattenObject } from "@/lib/utils";
 import { Section } from "@/components/ui/section";
+import clinicsJson from "@/../public/clinics_processed_new.json";
+import { Clinic } from "@/lib/types";
+import ClinicTabsHeader from "@/components/Practitioner/clinicTabsHeader";
+import { PractitionerPageClient } from "@/components/Practitioner/practitionerPageClient";
+const clinicsData = clinicsJson as unknown as Clinic[];
+const clinics = clinicsData
+  const clinicIndex = new Map(
+  clinics.filter(c=>c.slug !== undefined).map(c => [c.slug!, c])
+)
+
 function mergeBoxplotDataFromDict(
   base: BoxPlotDatum[],
   incoming: Record<string, ItemMeta>
@@ -33,17 +42,18 @@ interface ProfilePageProps {
 }
 
 export default async function ProfilePage({ params }: Readonly<ProfilePageProps>) {
-  const filePath = path.join(process.cwd(), "public", "derms_processed_new.json");
+  const filePath = path.join(process.cwd(), "public", "derms_processed_new_5403.json");
   const fileContents = fs.readFileSync(filePath, "utf-8");
   const clinics: Practitioner[] = JSON.parse(fileContents);
   const { slug } = params;
   const clinic = clinics.find((p) => p.practitioner_name === slug);
-  console.log(clinic)
-  const hoursObj = clinic?.hours as unknown as Record<string, any>;
+  const k = clinicIndex.get(JSON.parse(clinic!.Associated_Clinics!)[0])
+  const hoursObj = k?.hours as unknown as Record<string, any>;
   const hours =
-    hoursObj["Typical_hours_listed_in_directories"] ?? clinic?.hours;
+    hoursObj["Typical_hours_listed_in_directories"] ?? k?.hours;
   const flatHours = typeof hoursObj === 'object' ? flattenObject(hours) : hours
-
+  const practitioner = {...k,...clinic}
+  
   
 
   const boxplotData = mergeBoxplotDataFromDict(
@@ -68,122 +78,10 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
           </Link>
         </div>
       </div>
+      
+       <PractitionerPageClient clinic={clinic} associatedClinics={JSON.parse(clinic!.Associated_Clinics!)} clinicIndex={clinicIndex} boxplotData={boxplotData} />
 
-      <div className="container mx-auto max-w-6xl pt-0 md:px-4 py-20 space-y-8">
-        {/* Profile Header */}
-        <ProfileHeader clinic={clinic} />
-
-        <div className="px-4 md:px-0">
-          <PractitionerTabs />
-
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-10 mb-4">
-            <div className="order-2 lg:order-1 col-span-1 lg:col-span-6">
-              <ClinicDetailsMarkdown clinic={clinic} />
-            </div>
-            <div className="order-1 lg:order-2 col-span-1 lg:col-span-4">
-              <div className="border border-gray-300 rounded-xl p-6">
-                <div className="flex flex-row gap-2 pt-2 mb-4 items-center justify-center text-sm">
-                  <div className="inline-flex items-center gap-1">
-                    <div className="flex items-center">
-                      {Array.from({ length: 5 }, (_, i) => (
-                        <Star
-                          key={i}
-                          className={`h-4 w-4 ${
-                            i < clinic.rating
-                              ? "fill-black text-black"
-                              : "/30"
-                          }`}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                  <span
-                    className="border-l border-black pl-2 underline"
-                    aria-label={`${clinic.reviewCount} reviews`}
-                  >
-                    {clinic.gmapsReviews
-                      ? clinic.gmapsReviews.filter(
-                          (review) => review.rating === "5 stars"
-                        ).length
-                      : 0}
-                    {"+ "} 5 Star Reviews
-                  </span>
-                </div>
-                <div className="border-t border-gray-300 my-6"></div>
-                <Stats data={boxplotData} />
-              </div>
-              {flatHours && (
-                <Section title="Hours" id="hours">
-                  <div className="overflow-x-auto shadow-none">
-                    <table className="w-full align-top text-sm bg-white border-collapse">
-                      <tbody>
-                        {typeof flatHours === 'object' ? Object.entries(flatHours).map(([day, time]) => (
-                          <tr key={day}>
-                            <td className="align-top border-0 px-1 py-1 font-medium">
-                              {day?.toString()}
-                            </td>
-                            <td className="align-top border-0 px-1 py-1">
-                              {time?.toString()}
-                            </td>
-                          </tr>
-                        )):<tr>Not listed</tr>}
-                      </tbody>
-                    </table>
-                  </div>
-                </Section>
-              )}
-              {/* PAYMENTS */}
-              <Section title="Payment Options" id="payments">
-                {Array.isArray(clinic.Payments) ? (
-                  <ul className="list-disc ml-6 space-y-1">
-                    {clinic.Payments.map((p: any, idx: number) => (
-                      <li key={idx}>{p}</li>
-                    ))}
-                  </ul>
-                ) : clinic.Payments && typeof clinic.Payments === "object" ? (
-                  <div className="overflow-x-auto shadow-none">
-                    <table className="w-full text-sm bg-white">
-                      <tbody>
-                        {Object.entries(clinic.Payments).map(
-                          ([k, v]) =>
-                            k !== "Source" && (
-                              <tr key={k}>
-                                <td className="border-0 px-4 py-2 font-medium">
-                                  {k?.toString()}
-                                </td>
-                                <td className="border-0 px-4 py-2">
-                                  {v?.toString()}
-                                </td>
-                              </tr>
-                            )
-                        )}
-                      </tbody>
-                    </table>
-                  </div>
-                ) : (
-                  clinic.Payments || "Not listed"
-                )}
-              </Section>
-              <div className="w-full aspect-video">
-                <GoogleMapsEmbed
-                  url={clinic.url}
-                  className="w-full h-full [&&_iframe]:w-full [&&_iframe]:h-full"
-                />
-              </div>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-10 mb-4">
-            {clinic.gmapsReviews && (
-              <div className="col-span-1 lg:col-span-6 h-full md:h-113 overflow-auto">
-                {clinic.gmapsReviews.map((review, index) => (
-                  <ReviewCard key={index} review={review} />
-                ))}
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
+     
     </main>
   );
 }
@@ -199,7 +97,7 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
 // }
 
 export async function generateMetadata({ params }: ProfilePageProps) {
-  const filePath = path.join(process.cwd(), "public", "derms_processed_new.json");
+  const filePath = path.join(process.cwd(), "public", "derms_processed_new_5403.json");
   const fileContents = fs.readFileSync(filePath, "utf-8");
   const clinics: Practitioner[] = JSON.parse(fileContents);
   const clinic = clinics.find((p) => p.practitioner_name === params.slug);

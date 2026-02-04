@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import fs from "fs";
 import path from "path";
 import treatment_content from "../../../../public/treatments.json";
+import { stripContentReferencesDeep } from "@/lib/utils";
 import { TreatmentDetail } from "@/components/treatment-detail";
 import Script from "next/script";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
@@ -138,7 +139,7 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
 
   // Get treatment data from treatment_content
   const treatmentSlug = slug.replaceAll("%20", " ");
-  const treatmentData = treatments[treatmentSlug];
+  const treatmentData = stripContentReferencesDeep(treatments[treatmentSlug]);
   
   // Create treatment object for TreatmentDetail component
   const treatment = {

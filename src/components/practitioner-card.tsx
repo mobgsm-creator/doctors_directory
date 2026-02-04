@@ -15,6 +15,7 @@ function isTreatment(obj:unknown): obj is string{
   return typeof obj === "string" && modalities.includes(obj);
 }
 function isPractitioner(obj: unknown): obj is Practitioner {
+
   return typeof obj === "object" && obj !== null && "practitioner_name" in obj;
 }
 
@@ -26,8 +27,16 @@ function isProduct(obj: unknown): obj is Product {
   return typeof obj === "object" && obj !== null && "product_name" in obj;
 }
 
-export function PractitionerCard({ practitioner }: PractitionerCardProps) {
 
+export function PractitionerCard({ practitioner }: PractitionerCardProps) {
+  let practitioner_title_clean = practitioner && "practitioner_title" in (practitioner as Practitioner) ? (practitioner as Practitioner).practitioner_title.split(",").slice(0,2).join(", ").trim() : ""
+  if(practitioner_title_clean.length < 10) {
+    
+    practitioner_title_clean = practitioner_title_clean
+  }
+  else {
+    practitioner_title_clean = practitioner_title_clean.split(",")[0].trim()
+  }
   let practitionerName = ""
   if(isPractitioner(practitioner)){
   practitionerName = practitioner.practitioner_name
@@ -43,14 +52,14 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
   else if(isClinic(practitioner)){
     practitionerName = practitioner.slug.split("-").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ") 
   } 
-  
+
 
   return (
     <>
       {(isPractitioner(practitioner) || isClinic(practitioner)) && (
         
 
-        <article aria-labelledby={`practitioner-name-${practitioner.slug}`}>
+        <article aria-labelledby={`${isPractitioner(practitioner) ? "practitioner" : "clinic"}-name-${practitioner.slug}`}>
           <Link
               href={
                 "practitioner_image_link" in practitioner &&
@@ -102,15 +111,16 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                       </>
                     )}
 
-                    {"practitioner_image_link" in practitioner &&
-                      (practitioner.practitioner_name && (
+                    {"practitioner_name" in practitioner && (
+                      
                         <p className="text-muted-foreground mb-2 text-pretty">
                           {
-                            practitioner.practitioner_title.split("/")[0].split("(")[0].trim()}
+                            practitioner_title_clean
+                            }
                         </p>
-                      ))}
+                      )}
 
-                    {!("practitioner_image_link" in practitioner) &&
+                    {!("practitioner_name" in practitioner) &&
                       practitioner.category && (
                         <p className="pt-2 mb-2">
                           {practitioner.category.trim()}
@@ -162,7 +172,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
 
             <Link
               href={
-                "practitioner_image_link" in practitioner &&
+                "practitioner_name" in practitioner &&
                 practitioner.practitioner_name
                   ? `/profile/${
                       practitioner.practitioner_name
@@ -278,23 +288,23 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
         </Link>
       )}
       {isTreatment(practitioner) && (
-        <Link href={`/treatments/${practitioner}`} className="block" prefetch={false}>
-          <Card className="gap-0 h-full relative px-4 md:px-0 shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border-t-[1px] rounded-27 md:border md:border-[var(--alto)] cursor-pointer" aria-labelledby={`treatment-name-${practitioner}`}>
-            <CardHeader className="pb-2 px-2">
+        <Link href={`/treatments/${practitioner}`} className="block border-0" prefetch={false}>
+          <Card className="gap-0 h-full relative bg-transparent px-4 md:px-0 shadow-none md:border-0 duration-300 cursor-pointer" aria-labelledby={`treatment-name-${practitioner}`}>
+            <CardHeader className="px-2 border-0">
               <h2 id={`treatment-name-${practitioner}`} className="sr-only">
                 {practitioner}
               </h2>
               <div className="flex items-start gap-4">
                 <div className="text-center flex-1 min-w-0 items-center flex flex-col">
-                  <div className="flex w-full flex-row items-start border-b border-[#C4C4C4] md:border-0 md:flex-col md:items-center">
-                    <div className="w-[80px] h-[80px] md:w-[150px] md:h-[150px] flex items-center justify-center overflow-hidden rounded-lg bg-gray-300 md:mb-3 mr-0">
+                  <div className="flex w-full flex-row items-start border-0 md:flex-col md:items-center">
+                    <div className="w-[80px] h-[80px] md:w-[150px] md:h-[150px] flex items-center justify-center overflow-hidden md:mb-3 mr-0">
                       <img
                         src={
                           TreatmentMap[practitioner] ||
                           "/placeholder.svg"
                         }
                         alt="Treatment"
-                        className="object-cover rounded-lg min-w-full min-h-full"
+                        className="object-cover rounded-full w-full h-full"
                       />
                     </div>
 
