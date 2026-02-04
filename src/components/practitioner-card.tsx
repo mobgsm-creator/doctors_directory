@@ -29,7 +29,7 @@ function isProduct(obj: unknown): obj is Product {
 
 
 export function PractitionerCard({ practitioner }: PractitionerCardProps) {
-  let practitioner_title_clean = practitioner && "practitioner_title" in (practitioner as Practitioner) ? (practitioner as Practitioner).practitioner_title.split(",").slice(0,2).join(", ").trim() : ""
+  let practitioner_title_clean = practitioner && "practitioner_title" in (practitioner as Practitioner) ? (practitioner as Practitioner).practitioner_title!.split(",").slice(0,2).join(", ").trim() : ""
   if(practitioner_title_clean.length < 10) {
     
     practitioner_title_clean = practitioner_title_clean
@@ -44,13 +44,13 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
         .split("-")
         .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
         .join(" ")
-    : practitioner.slug
+    : practitioner.slug!
         .split("-")
         .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
         .join(" ");
   }
   else if(isClinic(practitioner)){
-    practitionerName = practitioner.slug.split("-").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ") 
+    practitionerName = practitioner.slug!.split("-").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ") 
   } 
 
 
@@ -88,7 +88,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                   <div className="w-[80px] h-[80px] md:w-[150px] md:h-[150px] flex items-center justify-center overflow-hidden rounded-full bg-gray-300 md:mb-3 mr-0">
                     <img
                       src={
-                        practitioner.image.replace("&w=256&q=75", "") ||
+                        practitioner.image!.replace("&w=256&q=75", "") ||
                         "/placeholder.svg"
                       }
                       alt="Profile"
@@ -107,7 +107,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
 
                     {!("profession" in practitioner) && (
                       <>
-                        <ClinicLabels clinic={practitioner} />
+                        <ClinicLabels clinic={practitioner as Clinic} />
                       </>
                     )}
 
@@ -138,7 +138,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                           key={i}
                           aria-hidden="true"
                           className={`h-4 w-4 ${
-                            i < practitioner.rating
+                            i < practitioner.rating!
                               ? "fill-black text-black"
                               : "text-muted-foreground/30"
                           }`}
@@ -160,12 +160,12 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
              <div className="flex items-start gap-2 text-sm">
               <MapPin className="h-4 w-4 mt-0 flex-shrink-0" aria-hidden="true" />
               <span className="text-pretty">
-                {practitioner.gmapsAddress.split(",")[
-                  practitioner.gmapsAddress.split(",").length - 2
+                {practitioner.gmapsAddress!.split(",")[
+                  practitioner.gmapsAddress!.split(",").length - 2
                 ] +
                   ", " +
-                  practitioner.gmapsAddress.split(",")[
-                    practitioner.gmapsAddress.split(",").length - 1
+                  practitioner.gmapsAddress!.split(",")[
+                    practitioner.gmapsAddress!.split(",").length - 1
                   ]}
               </span>
             </div>

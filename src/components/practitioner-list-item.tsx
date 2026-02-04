@@ -33,7 +33,7 @@ export function PractitionerListItem({ practitioner }: Readonly<PractitionerList
       .toUpperCase()
   }
 
-  const practitionerName = practitioner.slug
+  const practitionerName = practitioner.slug!
   .split("-")
   .map(word => word.charAt(0).toUpperCase() + word.slice(1))
   .join(" ") || "Practitioner"
@@ -65,7 +65,7 @@ export function PractitionerListItem({ practitioner }: Readonly<PractitionerList
                 </Link>
                 {'practitioner_image_link' in practitioner && (practitioner as Practitioner).practitioner_name && (
                   <p className="text-muted-foreground mb-2 text-pretty">
-                    {(practitioner as Practitioner).practitioner_title.trim()}
+                    {(practitioner as Practitioner).practitioner_title!.trim()}
                   </p>
                 )}
 

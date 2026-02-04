@@ -70,7 +70,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                         </div>
                         <div className="flex items-start md:items-center flex-col pl-4 md:pl-0 w-[calc(100%-80px)] md:w-full">
                         <h3 className="mb-2 md:mb-4 flex text-left md:text-center md:align-items-center md:justify-center font-semibold text-md md:text-lg transition-colors text-balance">
-                            {clinic.slug
+                            {clinic.slug!
                               .split("-")
                               .map(
                                 (word) =>

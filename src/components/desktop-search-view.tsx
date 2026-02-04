@@ -34,7 +34,7 @@ export function DesktopSearchView({
         <div className="relative">
           <button
             className="flex-1 bg-white border border-r-0 border-gray-300 px-4 py-3 rounded-l-lg"
-            onClick={() => setShowResults((o) => !o)}
+            onClick={() => setShowResults(!showResults)}
             onBlur={() => setTimeout(() => setShowResults(false), 350)}
           >
             <Input

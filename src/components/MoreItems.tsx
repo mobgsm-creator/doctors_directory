@@ -104,7 +104,7 @@ function ProductCard({ product }: { product: Product }) {
 }
 
 function ClinicCard({ clinic }: { clinic: Clinic }) {
-  const clinicName = clinic.slug
+  const clinicName = clinic.slug!
     .split("-")
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ")
@@ -269,7 +269,7 @@ function PractitionerCard({ practitioner }: { practitioner: Practitioner }) {
         .split("-")
         .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
         .join(" ")
-    : practitioner.slug
+    : practitioner.slug!
         .split("-")
         .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
         .join(" ")
@@ -321,7 +321,7 @@ function PractitionerCard({ practitioner }: { practitioner: Practitioner }) {
                         key={i}
                         aria-hidden="true"
                         className={`h-4 w-4 ${
-                          i < practitioner.rating
+                          i < practitioner.rating!
                             ? "fill-black text-black"
                             : "text-muted-foreground/30"
                         }`}
@@ -342,12 +342,12 @@ function PractitionerCard({ practitioner }: { practitioner: Practitioner }) {
           <div className="flex items-start gap-2 text-sm">
             <MapPin className="h-4 w-4 mt-0 flex-shrink-0" aria-hidden="true" />
             <span className="text-pretty">
-              {practitioner.gmapsAddress.split(",")[
-                practitioner.gmapsAddress.split(",").length - 2
+              {practitioner.gmapsAddress!.split(",")[
+                practitioner.gmapsAddress!.split(",").length - 2
               ] +
                 ", " +
-                practitioner.gmapsAddress.split(",")[
-                  practitioner.gmapsAddress.split(",").length - 1
+                practitioner.gmapsAddress!.split(",")[
+                  practitioner.gmapsAddress!.split(",").length - 1
                 ]}
             </span>
           </div>
