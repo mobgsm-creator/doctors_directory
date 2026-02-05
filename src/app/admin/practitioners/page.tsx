@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { DataTable } from '@/components/admin/DataTable'
 import type { Practitioner } from '@/lib/types'
-import practitionersJson from "@/../public/derms_processed_new.json";
+import practitionersJson from "@/../public/derms_processed_new_5403.json";
 const practitionersJsonData = practitionersJson as unknown as Practitioner[];
 
 const columns = [
