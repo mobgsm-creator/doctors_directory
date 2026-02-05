@@ -46,6 +46,7 @@ export const loadData = cache(() => {
       practitioner_name: p.practitioner_name,
       practitioner_title: p.practitioner_title,
       practitioner_qualifications: p.practitioner_qualifications,
+      practitioner_awards: p.practitioner_awards,
     }
   
   })
@@ -206,7 +207,6 @@ export async function searchPractitioners(
     })
   } else {
     filtered = ( practitioners).filter((practitioner) => {
-      console.log(filters)
       if (filters.query) {
         
         const queryWords = filters.query.toLowerCase().split(/\s+/).filter(word => word.length > 0)
@@ -215,6 +215,7 @@ export async function searchPractitioners(
           practitioner?.practitioner_qualifications?.toLowerCase(),
           practitioner?.category,
           practitioner?.gmapsAddress,
+          practitioner?.practitioner_awards?.toLowerCase(),
           ...(practitioner?.Treatments || []),
         ].join(" ").toLowerCase()
         const hasAllWords = queryWords.every(word => searchableText.includes(word))
