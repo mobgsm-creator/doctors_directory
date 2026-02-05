@@ -1,6 +1,6 @@
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
-import {edu, spec, locations} from "@/lib/data";
+import {edu, spec, locations, accreditations} from "@/lib/data";
 
 interface PractitionerFilters {
   practitioner_specialty: string;
@@ -112,12 +112,12 @@ export function PractitionerFilters({ filters, onChange, onClear, setIsFilterAct
 
        <div className="mb-6">
          <label htmlFor="practitioners-rating" className="block text-base font-medium text-black mb-2">
-           Minimum Rating:
+           Accreditations:
         </label>
          <Select
 
-           value={filters.rating}
-           onValueChange={(v) => onChange("rating", v)}
+           value={filters.query}
+           onValueChange={(v) => onChange("query", v)}
            onOpenChange={(open) => {            
               if (open) setIsFilterActive(true);
             }}
@@ -128,10 +128,10 @@ export function PractitionerFilters({ filters, onChange, onClear, setIsFilterAct
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">All</SelectItem>
-            <SelectItem value="4">4+ Stars</SelectItem>
-            <SelectItem value="4.5">4.5+ Stars</SelectItem>
-            <SelectItem value="5">5 Stars</SelectItem>
-          </SelectContent>
+            {accreditations.map((item) => (
+              <SelectItem value={item}>{item}</SelectItem>
+            ))}
+            </SelectContent>
         </Select>
       </div>
 
