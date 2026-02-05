@@ -86,7 +86,7 @@ export default function SearchPage() {
   };
 
   const handleToggleFilters = () => {
-    document.body.classList.toggle("filter-active");
+    setShowAdvancedFilters(!showAdvancedFilters);
   };
 
   return (

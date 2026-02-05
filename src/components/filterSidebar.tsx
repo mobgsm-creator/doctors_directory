@@ -26,6 +26,7 @@ export function AdvancedFilterSidebar({
   const [localFilters, setLocalFilters] = useState<SearchFilters>(filters);
   const [isFilterActive, setIsFilterActive] = useState(false);
 
+
   const [treatmentFilters, setTreatmentFilters] = useState({
     concern: "all",
     treatmentType: "all",
@@ -58,24 +59,6 @@ export function AdvancedFilterSidebar({
   });
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    const check = () => {
-      setIsFilterActive(document.body.classList.contains("filter-active"));
-    };
-
-    check();
-
-    const observer = new MutationObserver(check);
-    observer.observe(document.body, {
-      attributes: true,
-      attributeFilter: ["class"],
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
     setLocalFilters(filters);
   }, [filters]);
 
@@ -98,7 +81,7 @@ export function AdvancedFilterSidebar({
     } else if (filters.type === "Clinic") {
       updatedFilters.query = clinicFilters.query || "";
       updatedFilters.services = clinicFilters.servicesOffered !== "all" ? [clinicFilters.servicesOffered] : [];
-      updatedFilters.location = clinicFilters.distance !== "all" ? clinicFilters.distance : "";
+      updatedFilters.location = clinicFilters.location !== "all" ? clinicFilters.location : "";
       updatedFilters.rating = clinicFilters.rating !== "all" ? Number.parseInt(clinicFilters.rating) : 0;
     } else if (filters.type === "Practitioner") {
       updatedFilters.query = practitionerFilters.query || "";
@@ -209,20 +192,18 @@ export function AdvancedFilterSidebar({
           className={`
           bg-transparent shadow-none border border-transparent rounded-0 pb-[145px] px-4 md:px-0 md:py-0 relative
           md:relative md:block md:h-auto w-full md:bg-transparent md:translate-x-0
-          fixed top-0 left-0 h-screen bg-white z-[9999] md:z-[1] transition-transform duration-300 ease-in-out
-          ${isFilterActive ? "translate-x-0" : "-translate-x-full"}
+          fixed top-0 left-0 h-screen bg-white z-[1] transition-transform duration-300 ease-in-out
+          ${isFilterActive ? "translate-x-0" : "-translate-x-full"} ${isOpen ? "md: block" : "md: hidden"}
         `}
         >
           <CardHeader className="p-0 flex justify-between items-center">
-            <CardTitle className="font-semibold text-xl md:hidden text-black mb-6">
-              Filters
-            </CardTitle>
+            
             <Button
               type="button"
               variant="ghost"
               size="sm"
               className="inline-flex md:hidden p-2"
-              onClick={() => document.body.classList.remove("filter-active")}
+              onClick={() => onToggle()}
             >
               <X className="w-4 h-4 text-medium" />
             </Button>
@@ -257,6 +238,7 @@ export function AdvancedFilterSidebar({
                     query: "",
                   });
                 }}
+                setIsFilterActive={setIsFilterActive}
               />
             )}
 
@@ -273,6 +255,7 @@ export function AdvancedFilterSidebar({
                     query: "",
                   });
                 }}
+                setIsFilterActive={setIsFilterActive}
               />
             )}
 
@@ -289,6 +272,7 @@ export function AdvancedFilterSidebar({
                     query: "",
                   });
                 }}
+                setIsFilterActive={setIsFilterActive}
               />
             )}
 

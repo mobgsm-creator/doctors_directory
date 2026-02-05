@@ -89,6 +89,7 @@ export async function searchPractitioners(
   
   if (filters.type === "Clinic") {
     filtered = ( clinics).filter((clinic) => {
+      console.log(filters)
       if (filters.query) {
         const queryWords = filters.query.toLowerCase().split(/\s+/).filter(word => word.length > 0)
         const searchableText = [
@@ -205,11 +206,13 @@ export async function searchPractitioners(
     })
   } else {
     filtered = ( practitioners).filter((practitioner) => {
+      console.log(filters)
       if (filters.query) {
+        
         const queryWords = filters.query.toLowerCase().split(/\s+/).filter(word => word.length > 0)
         const searchableText = [
           practitioner?.practitioner_name,
-          practitioner?.practitioner_qualifications,
+          practitioner?.practitioner_qualifications?.toLowerCase(),
           practitioner?.category,
           practitioner?.gmapsAddress,
           ...(practitioner?.Treatments || []),
@@ -219,7 +222,7 @@ export async function searchPractitioners(
       }
 
       if (filters.category && filters.category !== "All Categories") {
-        if (practitioner?.category !== filters.category) return false
+        if (!practitioner?.practitioner_qualifications?.toLowerCase().includes(filters.category.toLowerCase())) return false  
       }
 
       if (filters.location) {
@@ -228,11 +231,9 @@ export async function searchPractitioners(
       }
 
       if (filters.services.length > 0) {
-        const practitionerServices = practitioner?.Treatments || []
-        const hasMatchingService = filters.services.some((service) =>
-          practitionerServices.some((ps) => ps.includes(service.toLowerCase())),
-        )
-        if (!hasMatchingService) return false
+        const service = filters.services[0]
+        if(!practitioner?.practitioner_title?.toLowerCase().includes(service.toLowerCase())) return false
+        
       }
 
       if (filters.rating > 0) {
