@@ -61,16 +61,29 @@ export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
     }
   };
 
-  let flag = true;
+  let flag = false;
   let edge_case_accreditations: any = [];
+  let accreditations_array = []
   try {
-    edge_case_accreditations = JSON.parse(clinic.accreditations.replaceAll("'", '"'))[0]['Details']
-    flag = edge_case_accreditations.length === 0 ? true : false;
-  } catch (error) {
+    if(clinic.accreditations.includes("}")) {
+      edge_case_accreditations = JSON.parse(clinic.accreditations.replaceAll("'", '"'))
+      for (let i = 0; i < edge_case_accreditations.length; i++) {
+        try {
+          if (edge_case_accreditations[i]['Details'] !== undefined) {
+          accreditations_array.push(edge_case_accreditations[i]['Details'])
+          }
+        } catch (error) {}
+        try {
+          if(edge_case_accreditations[i]['name'] !== undefined) {
+          accreditations_array.push(edge_case_accreditations[i]['name'])
+          }
+        } catch (error) {}
+    }
+      flag =  true
+  } 
+} catch (error) {
     flag = false;
   }
- 
-  
 
   return (
     <div className="">
@@ -108,7 +121,7 @@ export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
       
 
       {/* ACCREDITATIONS */}
-      
+      {clinic.accreditations && (
       <Section title="Accreditations" id="accreditations">
       {flag === false ? (
         Array.isArray(parseList(clinic.accreditations)) ? (
@@ -120,18 +133,22 @@ export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
             <li> "Not listed"</li></ul>
       ) : (
           <ul className="list-disc ml-6 space-y-1" data-testid="accreditations-list">
-            <li> 
-            {edge_case_accreditations ? decodeUnicodeEscapes(edge_case_accreditations) : "Not listed"}</li>
+            {accreditations_array.map((a: string, i: number) => (
+              <li>{fixMojibake(decodeUnicodeEscapes(a)).replaceAll("—", '')}
+            </li>))}
           </ul>
       ) 
       }
-      </Section>
       <div className="border-t border-gray-300 my-6"></div>
+      </Section>
+      )
+    }
+      
       
      
 
       {/* Practitioners */}
-      
+      {practitioners && (
       <Section title="Practitioners" id="practitioners">
         <div className="flex flex-col gap-4">
           {Object.entries(practitioners as Practitioner[]).map(
@@ -178,13 +195,17 @@ export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
               )
           )}}          )}
         </div>
-      </Section>
-
       <div className="border-t border-gray-300 my-6"></div>
+      </Section>
+      )
+    }
+
+      
 
 
      
       {/* INSURANCE */}
+      {clinic.Insurace && (
       <Section title="Insurance Accepted" id="insurance">
         {Array.isArray(clinic.Insurace) ? (
           <ul className="list-disc ml-6 space-y-1">
@@ -214,11 +235,16 @@ export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
         ) : (
           clinic.Insurace || "Not listed"
         )}
+        <div className="border-t border-gray-300 my-6"></div>
       </Section>
+      
+      )
+    }
 
-      <div className="border-t border-gray-300 my-6"></div>
+      
 
       {/* FEES */}
+      {clinic.Fees && (
       <Section title="Estimated Fees" id="fees">
         {clinic.Fees && typeof clinic.Fees === "object" ? (
           <div className="overflow-x-auto shadow-none">
@@ -228,11 +254,11 @@ export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
                   ([k, v]) =>
                     k !== "Source" && (
                       <tr key={k}>
-                        <td className="align-top border-0 px-1 py-1 font-medium">{k.replaceAll("ProcedureRange","Pricing")}</td>
+                        <td className="align-top border-0 px-1 py-1 font-medium">{k.replaceAll("ProcedureRange","Pricing").replaceAll("Representative_Procedure_Ranges","Pricing")}</td>
                         <td className="align-top border-0 px-1 py-1">
                           {typeof v === "object" && v !== null
                             ?  Object.entries(v).map(([key,val]) =>
-                              (key !== "Source" && key !== "Notes") && (
+                              (key !== "Source" && key !== "Notes" && typeof val !== 'object' ) && (
                               <li key={key}>{key}: {val}</li>))
                             : String(v ?? "Not listed")}
                         </td>
@@ -246,6 +272,8 @@ export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
           clinic.Fees || "Not listed"
         )}
       </Section>
+      )
+    }
     </div>
   );
 }

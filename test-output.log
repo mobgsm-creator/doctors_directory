@@ -1,18 +1,7 @@
 
 ========== RENDER SUMMARY ==========
-Successfully rendered: 10/10 clinics
+Successfully rendered: 4203/4203 clinics
 Failed to render: 0 clinics
 
-========== ACCREDITATIONS SECTION SUMMARY ==========
-Clinics with Accreditations section: 10
-Clinics without Accreditations section: 0
-
-========== ACCREDITATIONS LI TAG SUMMARY ==========
-Clinics with accreditations data: 10
-Clinics without accreditations (li = 0): 0
-
-========== MOJIBAKE SUMMARY ==========
-Total mojibake occurrences in Accreditations: 0
-
 ========== FINAL SUMMARY ==========
-Tested 10 clinics for Accreditations section rendering
+Tested 4203 clinics for Accreditations section rendering

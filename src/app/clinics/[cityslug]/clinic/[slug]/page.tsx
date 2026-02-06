@@ -63,7 +63,7 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
 
   const hours = 
     (hoursObj && typeof hoursObj === 'object' && hoursObj["Typical_hours_listed_in_directories"]) ?? clinic?.hours;
-  const flatHours = typeof hoursObj === 'object' ? flattenObject(hours) : hours
+  const flatHours = typeof hoursObj === 'object' && hoursObj !== null ? flattenObject(hours) : hours
 
   
 
@@ -176,6 +176,7 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
                 </Section>
               )}
               {/* PAYMENTS */}
+              {clinic.Payments && (
               <Section title="Payment Options" id="payments">
                 {Array.isArray(clinic.Payments) ? (
                   <ul className="list-disc ml-6 space-y-1">
@@ -206,7 +207,7 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
                 ) : (
                   clinic.Payments || "Not listed"
                 )}
-              </Section>
+              </Section>)}
               
             </div>
           </div>
