@@ -15,11 +15,12 @@ const clinics = clinicsData
 interface ProfilePageProps {
   params: {
     cityslug: string;
-    serviceslug: string;
+   treatmentslug: string;
   };
 }
 
 export default async function ProfilePage({ params }: ProfilePageProps) {
+  console.log(params)
   const filePath = path.join(process.cwd(), "public", "derms_processed_new_5403.json");
    const fileContents = fs.readFileSync(filePath, "utf-8");
    const clinics: Practitioner[] = JSON.parse(fileContents);
@@ -39,7 +40,8 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
   })
   .filter((item) => item !==null).filter(Boolean)
    const practitioner = practitioners.find((p) => p!.practitioner_name);
-  const { cityslug, serviceslug } = params;
+  const { cityslug, treatmentslug } = params;
+  console.log(cityslug, treatmentslug)
   const filteredClinics = practitioners.filter((clinic) => {
     // Filter by city
     const cityMatch = clinic.City?.toLowerCase() === cityslug.toLowerCase();
@@ -51,7 +53,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
 
 
     const serviceMatch = categories.some(
-      (cat: string) => cat.replaceAll(" ","").toLowerCase() === serviceslug.replaceAll("%20","").toLowerCase()
+      (cat: string) => cat.replaceAll(" ","").toLowerCase() === treatmentslug.replaceAll("%20","").toLowerCase()
     );
 
 
@@ -67,7 +69,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
       <div className="mx-auto max-w-7xl md:px-4 py-4 md:py-7 md:py-12 bg-white md:bg-[var(--primary-bg-color)]">
       <div className="flex flex-col pt-2 w-full pb-4 px-4 md:px-0 md:pt-0 md:border-0 border-b border-[#C4C4C4]">
           <h1 className="text-sm md:text-2xl md:font-semibold mb-1 md:mb-2">
-            Top {serviceslug} Providers in {cityslug}
+            Top {treatmentslug} Providers in {cityslug}
           </h1>
       </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:gap-6 animate-fade-in">
