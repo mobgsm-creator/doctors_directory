@@ -90,7 +90,7 @@ export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
     <div className="">
       {/* ABOUT */}
       <Section title={`About ${clinic.slug!.split("-").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")}`} id="about" data-testid='about'>
-        {decodeUnicodeEscapes(clinic.about_section) || "Not publicly listed"}
+        {decodeUnicodeEscapes(fixMojibake(clinic.about_section)) || "Not publicly listed"}
       </Section>
 
       <div className="border-t border-gray-300 my-6"></div>
