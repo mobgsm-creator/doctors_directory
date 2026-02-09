@@ -2,7 +2,7 @@ import fs from "fs";
 import path from 'path';
 import {cleanRouteSlug, parseLabels, safeParse, consolidate, parse_text, parse_addresses, parse_numbers} from "../utils"
 import { Clinic, Practitioner,Product } from "../types";
-
+import { decodeUnicodeEscapes, fixMojibake } from "../utils";
 function parseCorruptedJson(raw:string) {
   if (!raw) return null;
 
@@ -125,7 +125,7 @@ function transformClinic_2(raw: any): Clinic {
 function transformClinic(raw: any): Clinic {
  
   return {
-    slug: cleanRouteSlug(raw.slug),
+    slug: decodeUnicodeEscapes(fixMojibake(cleanRouteSlug(raw.slug))),
     image: raw.image,
     url: raw.url,
     rating: parseFloat(raw.rating),
@@ -153,8 +153,8 @@ function transformClinic(raw: any): Clinic {
     isHIW: parseLabels(raw.isHIW),
     isHIS: parseLabels(raw.isHIS),
     isRQIA: parseLabels(raw.isRQIA),
-    about_section: raw.about_section,
-    accreditations: raw.accreditations,
+    about_section: decodeUnicodeEscapes(fixMojibake(raw.about_section)),
+    accreditations: decodeUnicodeEscapes(fixMojibake(raw.accreditations)),
     awards: raw.awards,
     affiliations: raw.affiliations,
     hours: safeParse(raw.hours),
