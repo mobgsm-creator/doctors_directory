@@ -85,10 +85,11 @@ export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
     flag = false;
   }
 
+
   return (
     <div className="">
       {/* ABOUT */}
-      <Section title={`About ${clinic.slug!.split("-").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")}`} id="about">
+      <Section title={`About ${clinic.slug!.split("-").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")}`} id="about" data-testid='about'>
         {decodeUnicodeEscapes(clinic.about_section) || "Not publicly listed"}
       </Section>
 
@@ -96,7 +97,7 @@ export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
 
       {/* Treatments */}
       {clinic?.Treatments!.length > 0 && (
-      <Section title="Treatments" id="treatments">
+      <Section title="Treatments" id="treatments" data-testid='treatments'>
         <div className="flex flex-wrap gap-1">
           {clinic.Treatments &&
             clinic.Treatments?.map(
@@ -149,7 +150,7 @@ export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
 
       {/* Practitioners */}
       {practitioners && (
-      <Section title="Practitioners" id="practitioners">
+      <Section title="Practitioners" id="practitioners" data-testid='practitioners'>
         <div className="flex flex-col gap-4">
           {Object.entries(practitioners as Practitioner[]).map(
             ([k, v]) =>{
@@ -206,7 +207,7 @@ export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
      
       {/* INSURANCE */}
       {clinic.Insurace && (
-      <Section title="Insurance Accepted" id="insurance">
+      <Section title="Insurance Accepted" id="insurance" data-testid='insurance'>
         {Array.isArray(clinic.Insurace) ? (
           <ul className="list-disc ml-6 space-y-1">
             {clinic.Insurace.map((i: any, idx: number) => (
@@ -245,7 +246,7 @@ export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
 
       {/* FEES */}
       {clinic.Fees && (
-      <Section title="Estimated Fees" id="fees">
+      <Section title="Estimated Fees" id="fees" data-testid='fees'>
         {clinic.Fees && typeof clinic.Fees === "object" ? (
           <div className="overflow-x-auto shadow-none">
             <table className="w-full text-sm bg-white">
