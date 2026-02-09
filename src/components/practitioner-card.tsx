@@ -29,7 +29,13 @@ function isProduct(obj: unknown): obj is Product {
 
 
 export function PractitionerCard({ practitioner }: PractitionerCardProps) {
-  let practitioner_title_clean = practitioner && "practitioner_title" in (practitioner as Practitioner) ? (practitioner as Practitioner).practitioner_title!.split(",").slice(0,2).join(", ").trim() : ""
+  let practitioner_title_clean = ""
+  try {
+   practitioner && "practitioner_title" in (practitioner as Practitioner) ? (practitioner as Practitioner).practitioner_title!.split(",").slice(0,2).join(", ").trim() : ""
+  }
+  catch (error) {
+    console.log("error in practitioner_title", error)
+  }
   if(practitioner_title_clean.length < 10) {
     
     practitioner_title_clean = practitioner_title_clean
