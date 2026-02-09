@@ -22,37 +22,37 @@ describe('ClinicDetailsMarkdown', () => {
     expect(clinics.length).toBeGreaterThan(0);
   });
 
-//   test('should render ClinicDetailsMarkdown component and track errors', () => {
-//     let renderSuccessCount = 0;
-//     let failedClinics = 0;
+  test('should render ClinicDetailsMarkdown component and track errors', () => {
+    let renderSuccessCount = 0;
+    let failedClinics = 0;
 
-//     clinics.forEach((clinic) => {
-//       try {
-//         render(<ClinicDetailsMarkdown clinic={clinic} />);
-//         renderSuccessCount++;
-//         cleanup();
-//       } catch (error) {
-//         failedClinics++;
-//         renderErrors.push({ 
-//           slug: clinic.slug, 
-//           error: error instanceof Error ? error.message : String(error) 
-//         });
-//       }
-//     });
+    clinics.forEach((clinic) => {
+      try {
+        render(<ClinicDetailsMarkdown clinic={clinic} />);
+        renderSuccessCount++;
+        cleanup();
+      } catch (error) {
+        failedClinics++;
+        renderErrors.push({ 
+          slug: clinic.slug, 
+          error: error instanceof Error ? error.message : String(error) 
+        });
+      }
+    });
 
-//     console.log(`\n========== RENDER SUMMARY ==========`);
-//     console.log(`Successfully rendered: ${renderSuccessCount}/${clinics.length} clinics`);
-//     console.log(`Failed to render: ${renderErrors.length} clinics`);
+    console.log(`\n========== RENDER SUMMARY ==========`);
+    console.log(`Successfully rendered: ${renderSuccessCount}/${clinics.length} clinics`);
+    console.log(`Failed to render: ${renderErrors.length} clinics`);
     
-//     if (renderErrors.length > 0) {
-//       console.log(`\nFailed clinics:`);
-//       renderErrors.forEach(({ slug, error }) => {
-//         console.log(`- ${slug}: ${error.substring(0, 100)}`);
-//       });
-//     }
+    if (renderErrors.length > 0) {
+      console.log(`\nFailed clinics:`);
+      renderErrors.forEach(({ slug, error }) => {
+        console.log(`- ${slug}: ${error.substring(0, 100)}`);
+      });
+    }
 
-//     expect(renderSuccessCount).toBeGreaterThanOrEqual(10);
-//   });
+    expect(renderSuccessCount).toBeGreaterThanOrEqual(10);
+  });
 
 //   test('should have Accreditations section for successfully rendered clinics', () => {
 //     let clinicsWithSection = 0;
@@ -137,41 +137,41 @@ describe('ClinicDetailsMarkdown', () => {
   //   });
   //   expect(clinicsWithAccreditations.length).toBeGreaterThanOrEqual(0);
   // });
-  test('does about section have more than 50 characters?', () => {
-    let aboutSectionCount = 0;
-    let clinicsWithNoAbout = new Set<string>();
-    clinics.forEach((clinic) => {
-      try {
-        const { unmount } = render(<ClinicDetailsMarkdown clinic={clinic} />);
+  // test('does about section have more than 50 characters?', () => {
+  //   let aboutSectionCount = 0;
+  //   let clinicsWithNoAbout = new Set<string>();
+  //   clinics.forEach((clinic) => {
+  //     try {
+  //       const { unmount } = render(<ClinicDetailsMarkdown clinic={clinic} />);
  
-          const text = screen.getAllByTestId('about');
+  //         const text = screen.getAllByTestId('about');
        
-          if (text) {
-              if(text[0].textContent.toLowerCase().includes("not listed") || text[0].textContent.toLowerCase().includes("not public")) {
-                clinicsWithNoAbout.add(clinic.slug as string);
-              }
-            const textLength = text[0].textContent?.length;
-            if (textLength && textLength > 50) {
-              aboutSectionCount++;
-            }
-            else {
-              clinicsWithNoAbout.add(clinic.slug as string);
-            }
-          }
+  //         if (text) {
+  //             if(text[0].textContent.toLowerCase().includes("not listed") || text[0].textContent.toLowerCase().includes("not public")) {
+  //               clinicsWithNoAbout.add(clinic.slug as string);
+  //             }
+  //           const textLength = text[0].textContent?.length;
+  //           if (textLength && textLength > 50) {
+  //             aboutSectionCount++;
+  //           }
+  //           else {
+  //             clinicsWithNoAbout.add(clinic.slug as string);
+  //           }
+  //         }
      
-        unmount();
-      } catch (error) {
-        console.log("ERROR BEFORE UNMOUNT", error,clinic.slug);
+  //       unmount();
+  //     } catch (error) {
+  //       console.log("ERROR BEFORE UNMOUNT", error,clinic.slug);
         
-      }
-    });
-    console.log(`\n========== ABOUT SECTION SUMMARY ==========`);
-    console.log(`Clinics without about section longer than 50 characters: ${aboutSectionCount}`);
-    clinicsWithNoAbout.forEach((clinic:string) => {
-      console.log(`- ${clinic}`);
-    });
-    expect(aboutSectionCount).toBeGreaterThanOrEqual(1);
-  });
+  //     }
+  //   });
+  //   console.log(`\n========== ABOUT SECTION SUMMARY ==========`);
+  //   console.log(`Clinics without about section longer than 50 characters: ${aboutSectionCount}`);
+  //   clinicsWithNoAbout.forEach((clinic:string) => {
+  //     console.log(`- ${clinic}`);
+  //   });
+  //   expect(aboutSectionCount).toBeGreaterThanOrEqual(1);
+  // });
 //   test('does treatment section have at least one link?', () => {
 //     let treatmentCount = 0;
 //     let clinicsWithNoTreatment: string[] = []

@@ -24,7 +24,7 @@ import {
 import { MoreItems } from "@/components/MoreItems";
 import { flattenObject } from "@/lib/utils";
 import { Section } from "@/components/ui/section";
-
+import { decodeUnicodeEscapes, fixMojibake } from "@/lib/utils";
 function mergeBoxplotDataFromDict(
   base: BoxPlotDatum[],
   incoming: Record<string, ItemMeta>
@@ -59,6 +59,7 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
 ];
 
   const clinic = clinics.find((p) => p.slug === slug);
+
   const hoursObj = clinic?.hours as unknown as Record<string, any>;
 
   const hours = 
