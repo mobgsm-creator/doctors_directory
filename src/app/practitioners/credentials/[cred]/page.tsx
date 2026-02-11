@@ -29,7 +29,6 @@ interface ProfilePageProps {
 }
 
 export default async function ProfilePage({ params }: ProfilePageProps) {
-  console.log(params)
   const filePath = path.join(process.cwd(), "public", "derms_processed_new_5403.json");
    const fileContents = fs.readFileSync(filePath, "utf-8");
    const clinics: Practitioner[] = JSON.parse(fileContents);
@@ -51,19 +50,13 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
 
   const { cred } = params;
   const credslug = decodeURIComponent(cred).toLowerCase().replace(/\s+/g, "");
-  console.log(credslug)
   const filteredClinics = practitioners.filter((clinic) => {
     // Filter by city
     const qualifications = clinic.practitioner_qualifications
     const awards = clinic.practitioner_awards
     const qMatch = qualifications?.toLowerCase().replace(/\s+/g, "").includes(credslug)
     const aMatch = awards?.toLowerCase().replace(/\s+/g, "").includes(credslug)
-    if(qMatch !== false) {
-      console.log(qMatch)
-    }
-    if(aMatch !== false) {
-      console.log(aMatch)
-    }
+   
 
 
     return qMatch || aMatch

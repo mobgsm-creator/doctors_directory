@@ -59,7 +59,6 @@ export default async function ProfilePage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {product_categories.map((brand, index) => {
             const itemDetail = clinics.find((clinic) => clinic.category === brand)
-            console.log(brand, itemDetail?.image_url)
             return (
             <div key={brand} style={{ animationDelay: `${index * 50}ms` }}>
               <Link href={`/products/category/${brand}`} className="block">

@@ -32,8 +32,6 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
   brand = decodeURIComponent(brand).replaceAll('%20', " ");
   const similarProducts = clinics.filter((p) => p.brand === brand );
 
-  console.log(similarProducts)
-
   if (!similarProducts) {
     notFound();
   }
