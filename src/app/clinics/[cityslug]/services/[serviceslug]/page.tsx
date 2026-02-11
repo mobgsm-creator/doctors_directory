@@ -6,22 +6,39 @@ import { Badge } from "@/components/ui/badge";
 import { Star, MapPin } from "lucide-react";
 import fs from "fs";
 import path from "path";
-
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb"
+import { Button } from "@/components/ui/button"
+import { ArrowLeft } from "lucide-react"
 interface ProfilePageProps {
   params: {
     cityslug: string;
     serviceslug: string;
   };
 }
+import { PractitionerCard } from "@/components/practitioner-card";
 
-export default async function ProfilePage({ params }: ProfilePageProps) {
+export default function ProfilePage({ params }: ProfilePageProps) {
   const filePath = path.join(process.cwd(), "public", "clinics_processed_new.json");
   const fileContents = fs.readFileSync(filePath, "utf-8");
   const clinics: Clinic[] = JSON.parse(fileContents);
   const { cityslug, serviceslug } = params;
+  const decodedCitySlug = decodeURIComponent(cityslug)
+  .toLowerCase()
+  .replace(/\s+/g, "");
+  const decodedServiceSlug = decodeURIComponent(serviceslug)
+  .toLowerCase()
+  .replace(/\s+/g, "");
   const filteredClinics = clinics.filter((clinic) => {
     // Filter by city
-    const cityMatch = clinic.City?.toLowerCase() === cityslug.toLowerCase();
+    
+    const cityMatch = clinic.City?.toLowerCase() === decodedCitySlug.toLowerCase();
     // Filter by offered service category
     const categories =
       clinic.Treatments ?? [];
@@ -29,9 +46,12 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
   
 
 
-    const serviceMatch = categories.some(
-      (cat: string) => cat.replaceAll(" ","").toLowerCase() === serviceslug.replaceAll("%20","").toLowerCase()
-    );
+    
+
+const serviceMatch = categories.some((cat: string) =>
+  cat.toLowerCase().replace(/\s+/g, "") === decodedServiceSlug
+);
+
 
 
     return cityMatch && serviceMatch
@@ -42,17 +62,48 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
   }
 
   return (
-    <main className="bg-[var(--primary-bg-color)]">
-      <div className="mx-auto max-w-7xl md:px-4 py-4 md:py-7 md:py-12 bg-white md:bg-[var(--primary-bg-color)]">
+    <main className="bg-(--primary-bg-color)">
+      <div className="mx-auto max-w-7xl md:px-4 py-4 md:py-12">
       <div className="flex flex-col pt-2 w-full pb-4 px-4 md:px-0 md:pt-0 md:border-0 border-b border-[#C4C4C4]">
+        <div className="sticky top-0 z-10">
+            <Link href="/" prefetch={false}>
+              <Button variant="ghost" size="sm" className="gap-2 hover:cursor-pointer">
+                <ArrowLeft className="h-4 w-4" />
+                Back to Directory
+              </Button>
+            </Link>
+            <Breadcrumb>
+              <BreadcrumbList>
+                <BreadcrumbItem>
+                  <BreadcrumbLink href="/directory">Home</BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbLink href="/directory/clinics">All Clinics</BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                 <BreadcrumbItem>
+                  <BreadcrumbLink href={`/directory/clinics/${cityslug}`}>{cityslug.charAt(0).toUpperCase() + cityslug.slice(1)}</BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbPage>{serviceslug.charAt(0).toUpperCase() + serviceslug.replace("%20", " ").slice(1)}</BreadcrumbPage>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+              </BreadcrumbList>
+            </Breadcrumb>
+          </div>
+        
+        </div>
+        <div className="flex flex-col pt-2 w-full pb-4 px-4 md:px-0">
           <h1 className="text-sm md:text-2xl md:font-semibold mb-1 md:mb-2">
-            Top {serviceslug} Providers in {cityslug}
-          </h1>
-      </div>
+            Top {serviceslug.replace("%20", " ")} Providers in {cityslug}
+          </h1></div>
+      
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:gap-6 animate-fade-in">
           {filteredClinics.map((clinic, index) => (
             <div key={index} style={{ animationDelay: `${index * 50}ms` }}>
-              <Card className="gap-0 relative px-4 md:px-0 shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border-t-[1px] rounded-27 md:border md:border-[var(--alto)] cursor-pointer">
+              <Card className="gap-0 relative px-4 md:px-0 shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border-t-[1px] rounded-27 md:border md:border-[var(--alto)] cursor-pointer" data-testid="clinic-card">
                 <CardHeader className="pb-4 px-2">
                   <div className="flex items-start gap-4">
                     <div className="text-center flex-1 min-w-0 items-center flex flex-col">
@@ -158,6 +209,8 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                 </CardContent>
               </Card>
             </div>
+                                      // <PractitionerCard key={clinic.slug} practitioner={clinic} />
+                                 
           ))}
         </div>
       </div>

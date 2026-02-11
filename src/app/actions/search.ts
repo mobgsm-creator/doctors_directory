@@ -90,7 +90,7 @@ export async function searchPractitioners(
   
   if (filters.type === "Clinic") {
     filtered = ( clinics).filter((clinic) => {
-      console.log(filters)
+
       if (filters.query) {
         const queryWords = filters.query.toLowerCase().split(/\s+/).filter(word => word.length > 0)
         const searchableText = [

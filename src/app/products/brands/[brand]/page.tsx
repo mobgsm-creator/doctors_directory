@@ -1,0 +1,144 @@
+import { notFound } from "next/navigation";
+import Link from "next/link";
+import { ArrowLeft} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { decodeUnicodeEscapes } from "@/lib/utils";
+import { Card, CardHeader, CardContent } from "@/components/ui/card";
+import { Product } from "@/lib/types";
+import fs from "fs";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb"
+import path from "path";
+
+
+interface ProfilePageProps {
+  params: {
+    brand: string;
+  };
+}
+
+export default async function ProfilePage({ params }: Readonly<ProfilePageProps>) {
+  const filePath = path.join(process.cwd(), "public", "products_processed_new.json");
+  const fileContents = fs.readFileSync(filePath, "utf-8");
+  const clinics: Product[] = JSON.parse(fileContents);
+  let { brand } = params;
+  brand = decodeURIComponent(brand).replaceAll('%20', " ");
+  const similarProducts = clinics.filter((p) => p.brand === brand );
+
+  console.log(similarProducts)
+
+  if (!similarProducts) {
+    notFound();
+  }
+
+  return (
+    <main className="min-h-screen bg-var(--primary-bg-color)">
+      {/* Navigation */}
+      <div className="sticky top-0 z-10">
+        <div className="container mx-auto max-w-6xl px-4 py-4">
+          <Link href="/" prefetch={false}>
+            <Button variant="ghost" size="sm" className="gap-2 hover:cursor-pointer">
+              <ArrowLeft className="h-4 w-4" />
+              Back to Directory
+            </Button>
+          </Link>
+          <Breadcrumb>
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink href="/directory">Home</BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbLink href="/directory/products">Products</BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbLink href={`/directory/products/brand/${brand}`}>{`${brand}`}</BreadcrumbLink>
+            </BreadcrumbItem>
+            
+          </BreadcrumbList>
+        </Breadcrumb>
+        </div>
+
+      </div>
+
+      <div className="container mx-auto max-w-6xl pt-0 md:px-4 py-20 space-y-8">
+        {/* Profile Header */}
+        
+      <h3 className="text-lg font-semibold text-foreground mb-2">{`${brand}`}</h3>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {similarProducts.map((practitioner, index) => (
+            <div key={practitioner.slug} style={{ animationDelay: `${index * 50}ms` }}>
+              <Link href={`/products/brands/${brand}/${practitioner.slug}`} className="block">
+          <Card className="group bg-white hover:shadow-lg transition-all duration-300 cursor-pointer border border-[#BDBDBD] md:border-0 rounded-lg sm:bg-transparent sm:border-0 sm:hover:border-accent/50 sm:flex sm:flex-col sm:gap-5">
+            <CardHeader className="pb-2 px-2">
+              <h2 id={`product-name-${practitioner.slug}`} className="sr-only">
+                {decodeUnicodeEscapes(practitioner.product_name)}
+              </h2>
+              <div className="flex items-start gap-4">
+                <div className="text-center flex-1 min-w-0 items-center flex flex-col">
+                  <div className="flex w-full flex-row items-start border-b border-[#C4C4C4] md:border-0 md:flex-col md:items-center">
+                    <div className="w-[80px] h-[80px] md:w-[150px] md:h-[150px] flex items-center justify-center overflow-hidden md:mb-4 mr-0">
+                      <img
+                        src={
+                          practitioner.image_url?.replaceAll('"', "") ||
+                          "/placeholder.svg"
+                        }
+                        alt="Product"
+                        className="object-cover rounded-full min-w-full min-h-full"
+                      />
+                    </div>
+
+                    <div className="flex items-start md:items-center flex-col pl-4 md:pl-0 w-[calc(100%-80px)] md:w-full">
+                      {practitioner.product_name && (
+                        <p className="flex items-center gap-1 rounded-full bg-green-100 text-green-800 border border-gray-200 text-[10px] px-3 py-1 mb-2">
+                          {decodeUnicodeEscapes(practitioner?.distributor_cleaned.trim())}
+                        </p>
+                      )}
+
+                      <h3 className="mb-2 md:mb-0 flex text-left md:text-center md:align-items-center md:justify-center font-semibold text-xs md:text-md leading-relaxed text-balance line-clamp-2">
+                        {decodeUnicodeEscapes(practitioner.product_name)}
+                      </h3>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </CardHeader>
+
+            <CardContent className="pt-0 px-0 md:px-4 space-y-4">
+              <div className="flex md:items-center md:justify-center gap-2 text-[11px] text-gray-600">
+                <span className="text-pretty text-center">
+                  {decodeUnicodeEscapes(practitioner.category.trim())}
+                </span>
+              </div>
+              <div>
+                <ul className="flex flex-wrap md:items-center md:justify-center gap-1 text-center" aria-label="Product prices">
+                  {practitioner &&
+                    practitioner?.all_prices?.map((value: any, index: number) => (
+                      <li key={index}>
+                        <Badge variant="outline" className="text-[11px] font-normal text-gray-500">
+                          {value.price}
+                        </Badge>
+                      </li>
+                    ))}
+                  
+                </ul>
+              </div>
+            </CardContent>
+          </Card>
+        </Link>
+            </div>
+          ))}
+        </div>
+      </div>
+      
+    </main>
+  );
+}

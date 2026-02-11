@@ -95,10 +95,13 @@ export default async function AccreditedPractitionersPage({ params }: Readonly<A
 
   const cities = [...new Set(filteredPractitioners.map(p => p!.City))].sort()
   const accreditationName = getAccreditationName(accreditation)
+  const accreditationSlug =
+  accreditationName.split("(")[1]?.replace(")", "") ?? accreditationName;
+
 
   return (
-    <main className="bg-[var(--primary-bg-color)]">
-      <div className="mx-auto max-w-7xl md:px-4 py-4 md:py-7 md:py-12 bg-white md:bg-[var(--primary-bg-color)]">
+    <main className="bg-(--primary-bg-color)">
+      <div className="mx-auto max-w-7xl md:px-4 py-4 md:py-7 ">
         <div className="flex flex-col pt-2 w-full pb-4 px-4 md:px-0 md:pt-0 md:border-0 border-b border-[#C4C4C4]">
           <div className="sticky top-0 z-10">
             <Link href="/" prefetch={false}>
@@ -110,19 +113,15 @@ export default async function AccreditedPractitionersPage({ params }: Readonly<A
             <Breadcrumb>
               <BreadcrumbList>
                 <BreadcrumbItem>
-                  <BreadcrumbLink href="/">Home</BreadcrumbLink>
+                  <BreadcrumbLink href="/directory">Home</BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
-                  <BreadcrumbLink href="/practitioners">Practitioners</BreadcrumbLink>
+                  <BreadcrumbLink href="/directory/accredited">Accredited Clinics & Practitioners</BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
-                  <BreadcrumbLink href="/accredited">Accredited Clinics & Practitioners</BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator />
-                <BreadcrumbItem>
-                  <BreadcrumbPage>{accreditationName}</BreadcrumbPage>
+                  <BreadcrumbLink href={`/directory/accredited/${accreditationSlug}/practitioners`}>{accreditationSlug}</BreadcrumbLink>
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>

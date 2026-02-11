@@ -45,8 +45,8 @@ export default async function ProfilePage() {
       })
       .filter((item) => item !==null).filter(Boolean)
   return (
-    <main className="bg-[var(--primary-bg-color)]">
-      <div className="mx-auto max-w-7xl md:px-4 py-4 md:py-7 md:py-12 bg-white md:bg-[var(--primary-bg-color)]">
+    <main className="bg-(--primary-bg-color)">
+      <div className="mx-auto max-w-7xl md:px-4 py-4 md:py-12">
         <div className="flex flex-col pt-2 w-full pb-4 px-4 md:px-0 md:pt-0 md:border-0 border-b border-[#C4C4C4]">
           <div className="sticky top-0 z-10">
             <Link href="/" prefetch={false}>
@@ -68,8 +68,6 @@ export default async function ProfilePage() {
                 <BreadcrumbItem>
                   <BreadcrumbLink href="/credentials">Credentialed Providers</BreadcrumbLink>
                 </BreadcrumbItem>
-          
-            
               </BreadcrumbList>
             </Breadcrumb>
           </div>

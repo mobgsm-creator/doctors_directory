@@ -21,7 +21,7 @@ export default async function ProfilePage() {
 
 
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen bg-(--primary-bg-color)">
       {/* Navigation */}
       <div className="sticky top-0 z-10">
         <div className="container mx-auto max-w-6xl px-4 py-4">
@@ -34,15 +34,15 @@ export default async function ProfilePage() {
           <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem>
-              <BreadcrumbLink href="/">Home</BreadcrumbLink>
+              <BreadcrumbLink href="/directory">Home</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbLink href="/products">Products</BreadcrumbLink>
+              <BreadcrumbLink href="/directory/products">Products</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbLink href={`/products/brands`}>Brands</BreadcrumbLink>
+              <BreadcrumbLink href={`/directory/products/brands`}>Brands</BreadcrumbLink>
             </BreadcrumbItem>
       
             
@@ -62,7 +62,7 @@ export default async function ProfilePage() {
             return (
             <div key={brand} style={{ animationDelay: `${index * 50}ms` }}>
               <Link href={`/products/brands/${brand}`} className="block">
-          <Card className="gap-0 w-100 h-full relative px-4 md:px-0 shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border-t-[1px] rounded-27 md:border md:border-[var(--alto)] cursor-pointer" aria-labelledby={`brand-${brand}`}>
+          <Card className="group bg-white hover:shadow-lg transition-all duration-300 cursor-pointer border border-[#BDBDBD] md:border-0 rounded-lg sm:bg-transparent sm:border-0 sm:hover:border-accent/50 sm:flex sm:flex-col sm:gap-5">
             <CardHeader className="pb-2 px-2">
               <h2 id={`brand-${brand}`} className='text-center'>
                 {brand}
@@ -70,14 +70,14 @@ export default async function ProfilePage() {
               <div className="flex items-start gap-4">
                 <div className="text-center flex-1 min-w-0 items-center flex flex-col">
                   <div className="flex w-full flex-row items-start border-b border-[#C4C4C4] md:border-0 md:flex-col md:items-center">
-                    <div className="w-[80px] h-[80px] md:w-[150px] md:h-[150px] flex items-center justify-center overflow-hidden rounded-lg bg-gray-300 md:mb-4 mr-0">
+                    <div className="w-20 h-20 md:w-[150px] md:h-[150px] flex items-center justify-center overflow-hidden md:mb-4 mr-0">
                       <img
                         src={
                           itemDetail?.image_url?.replaceAll('"', "") ||
                           "/placeholder.svg"
                         }
                         alt="Product"
-                        className="object-cover rounded-lg min-w-full min-h-full"
+                        className="object-cover rounded-full min-w-full min-h-full"
                       />
                     </div>
 

@@ -13,46 +13,31 @@ export default function ClinicLabels({ clinic }: Readonly<{ readonly clinic: Cli
       { labels && (
       <div className="flex gap-2 items-center justify-center">
         {clinic.isCQC?.[0] && (
-          <a
-            className="text-center"
-            href={clinic.isCQC?.[1]}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          
             <img
               src="/directory/qcc.jpg"
               alt="CQC"
               className="w-14 h-auto rounded-full inline"
             />
-          </a>
+ 
         )}
         {clinic.isHIW?.[0] && (
-          <a
-            className="text-center"
-            href={clinic.isHIW?.[1]}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+       
             <img
               src="/directory/HIW.jpg"
               alt="HIW"
               className="w-20 h-auto inline"
             />
-          </a>
+
         )}
         {clinic.isHIS?.[0] && (
-          <a
-            className="text-center"
-            href={clinic.isHIS?.[1]}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+        
             <img
               src="/directory/HIS.jpg"
               alt="HIS"
               className="w-12 h-auto inline"
             />
-          </a>
+
         )}
         {clinic.isJCCP?.[0] && (
           <img
