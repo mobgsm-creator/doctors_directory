@@ -1,6 +1,15 @@
 import Link from "next/link"
 import { Card, CardHeader, CardContent } from "@/components/ui/card"
-
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb"
+import { Button } from "@/components/ui/button"
+import { ArrowLeft } from "lucide-react"
 const cityMap: Record<string, string> = {'Aberaeron': 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/17/a3/dc/ef/20190515-115045-largejpg.jpg?w=500&h=500&s=1', 
     'Aberdare': 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/25/cf/fb/1a/capti_r.jpg?w=500&h=500&s=1', 
     'Aberdeen': 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/15/4d/43/c7/aberdeen.jpg?w=1200&h=700&s=1',
@@ -23,9 +32,34 @@ const cityMap: Record<string, string> = {'Aberaeron': 'https://dynamic-media-cdn
 export default function HomePage() {
   
     return (
-        <main>
+        <main className="bg-(--primary-bg-color)">
+      <div className="mx-auto max-w-7xl md:px-4 py-4 md:py-12 ">
+        <div className="flex flex-col pt-2 w-full pb-4 px-4 md:px-0 md:pt-0 md:border-0 border-b border-[#C4C4C4]">
+          <div className="sticky top-0 z-10">
+            <Link href="/" prefetch={false}>
+              <Button variant="ghost" size="sm" className="gap-2 hover:cursor-pointer">
+                <ArrowLeft className="h-4 w-4" />
+                Back to Directory
+              </Button>
+            </Link>
+            <Breadcrumb>
+              <BreadcrumbList>
+                <BreadcrumbItem>
+                  <BreadcrumbLink href="/directory">Home</BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbLink href="/directory/clinics">All Clinics</BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+              </BreadcrumbList>
+            </Breadcrumb>
+          </div>
+        </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 animate-fade-in">
-            {Object.keys(cityMap).map((city, index) => (
+            {Object.keys(cityMap).map((city, index) => {
+                
+                return (
             <div key={index} style={{ animationDelay: `${index * 50}ms` }}>
                 <Link href={`/clinics/${city}`}>
                         <Card className="group hover:shadow-lg transition-all duration-300 hover:scale-[1.02] cursor-pointer border-border/50 hover:border-accent/50">
@@ -46,9 +80,9 @@ export default function HomePage() {
                         </Card>
                         </Link>
             </div>
-            ))}
+            )})}
         </div>
-        
+        </div>
         </main>
     )
 }

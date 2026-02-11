@@ -98,7 +98,7 @@ export default function HomePage({
   };
 
   return (
-    <main className="bg-[var(--primary-bg-color)]">
+    <main className="bg-(--primary-bg-color)">
       <div className="mx-auto max-w-7xl md:px-4 py-4 md:py-12 flex flex-col justify-center w-full md:gap-10 ">
         <SearchBar />
         

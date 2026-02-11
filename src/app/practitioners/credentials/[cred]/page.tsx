@@ -7,7 +7,16 @@ import { Star, MapPin } from "lucide-react";
 import clinicsJson from "@/../public/clinics_processed_new.json";
 import fs from "fs";
 import path from "path";
-
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb"
+import { Button } from "@/components/ui/button"
+import { ArrowLeft } from "lucide-react"
 const clinicsData = clinicsJson as unknown as Clinic[];
 const clinics = clinicsData
   const clinicIndex = new Map(
@@ -15,7 +24,7 @@ const clinics = clinicsData
 )
 interface ProfilePageProps {
   params: {
-    credslug: string;
+    cred: string;
   };
 }
 
@@ -39,13 +48,18 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
   })
   .filter((item) => item !==null).filter(Boolean)
 
-  const { credslug } = params;
+  const { cred } = params;
+  const credslug = decodeURIComponent(cred).toLowerCase().replace(/\s+/g, "");
   const filteredClinics = practitioners.filter((clinic) => {
     // Filter by city
-    const credMatch = clinic.practitioner_qualifications?.toLowerCase().includes(credslug.toLowerCase()) || clinic.practitioner_awards?.toLowerCase().includes(credslug.toLowerCase())
-    
+    const qualifications = clinic.practitioner_qualifications
+    const awards = clinic.practitioner_awards
+    const qMatch = qualifications?.toLowerCase().replace(/\s+/g, "").includes(credslug)
+    const aMatch = awards?.toLowerCase().replace(/\s+/g, "").includes(credslug)
+   
 
-    return credMatch
+
+    return qMatch || aMatch
   });
 
   if (!filteredClinics) {
@@ -53,22 +67,50 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
   }
 
   return (
-    <main className="bg-[var(--primary-bg-color)]">
-      <div className="mx-auto max-w-7xl md:px-4 py-4 md:py-7 md:py-12 bg-white md:bg-[var(--primary-bg-color)]">
+    <main className="bg-(--primary-bg-color)">
+      <div className="mx-auto max-w-7xl md:px-4 py-4 md:py-12">
       <div className="flex flex-col pt-2 w-full pb-4 px-4 md:px-0 md:pt-0 md:border-0 border-b border-[#C4C4C4]">
-          <h1 className="text-sm md:text-2xl md:font-semibold mb-1 md:mb-2">
-            {credslug} recognized Providers 
-          </h1>
+          <div className="sticky top-0 z-10">
+            <Link href="/" prefetch={false}>
+              <Button variant="ghost" size="sm" className="gap-2 hover:cursor-pointer">
+                <ArrowLeft className="h-4 w-4" />
+                Back to Directory
+              </Button>
+            </Link>
+            <Breadcrumb>
+              <BreadcrumbList>
+                <BreadcrumbItem>
+                  <BreadcrumbLink href="/directory">Home</BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbLink href="/directory/practitioners">Practitioners</BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbLink href="/directory/practitioners/credentials">Credentials</BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbLink href={`/directory/practitioners/credentials/${cred.replaceAll("%20", " ").split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")}`}>{cred.replaceAll("%20", " ").split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")}</BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+\              </BreadcrumbList>
+            </Breadcrumb>
+          </div>
+          <div className="flex flex-col pt-2 w-full pb-4 px-4 md:px-0"><h1 className="text-sm md:text-2xl md:font-semibold mb-1 md:mb-2">
+            {cred.replaceAll("%20", " ").split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")} Recognized Providers
+          </h1></div>
       </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:gap-6 animate-fade-in">
           {filteredClinics.map((clinic, index) => (
             <div key={index} style={{ animationDelay: `${index * 50}ms` }}>
-              <Card className="gap-0 relative px-4 md:px-0 shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border-t-[1px] rounded-27 md:border md:border-[var(--alto)] cursor-pointer">
+              <Card className="gap-0 relative px-4 md:px-0 shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border-t rounded-27 md:border md:border-(--alto) cursor-pointer">
                 <CardHeader className="pb-4 px-2">
                   <div className="flex items-start gap-4">
                     <div className="text-center flex-1 min-w-0 items-center flex flex-col">
                       <div className="flex w-full flex-row items-start border-b border-[#C4C4C4] md:border-0 md:flex-col md:items-center">
-                        <div className="w-[80px] h-[80px] md:w-[150px] md:h-[150px] flex items-center justify-center overflow-hidden rounded-full bg-gray-300 md:mb-3 mr-0">
+                        <div className="w-20 h-20 md:w-[150px] md:h-[150px] flex items-center justify-center overflow-hidden rounded-full bg-gray-300 md:mb-3 mr-0">
                           <img
                             src={
                                 clinic.image.split("?w")[0] || "/placeholder.svg"
@@ -96,7 +138,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                             </span>
                           </div>
 
-                          <p className="pt-2 mb-2 text-pretty">{clinic.practitioner_title}</p>
+                          <p className="pt-2 mb-2 text-pretty">{clinic.practitioner_title?.split(",")[0]}</p>
 
                         </div>
                       </div>
@@ -124,7 +166,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                 </CardHeader>
                 <CardContent className="pt-0 px-0 md:px-4 space-y-4">
                   <div className="flex items-start gap-2 text-sm">
-                    <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0" />
+                    <MapPin className="h-4 w-4 mt-0.5 shrink-0" />
                     <span className="text-pretty">{clinic.gmapsAddress}</span>
                   </div>
 

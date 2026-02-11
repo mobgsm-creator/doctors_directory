@@ -1,3 +1,4 @@
+"use client"
 import Link from "next/link";
 import { Star, MapPin,  } from "lucide-react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
@@ -7,7 +8,7 @@ import { decodeUnicodeEscapes } from "@/lib/utils";
 import ClinicLabels from "./Clinic/clinicLabels";
 import { modalities } from "@/lib/data";
 import { TreatmentMap } from "@/lib/data";
-
+import { Button } from "./ui/button";
 interface PractitionerCardProps {
   practitioner: Practitioner | Clinic | Product | string;
 }
@@ -31,7 +32,7 @@ function isProduct(obj: unknown): obj is Product {
 export function PractitionerCard({ practitioner }: PractitionerCardProps) {
   let practitioner_title_clean = ""
   try {
-   practitioner && "practitioner_title" in (practitioner as Practitioner) ? (practitioner as Practitioner).practitioner_title!.split(",").slice(0,2).join(", ").trim() : ""
+   practitioner && "practitioner_title" in (practitioner as Practitioner) ? (practitioner as Practitioner).practitioner_title!.split(",")[0].trim() : ""
   }
   catch (error) {
     console.log("error in practitioner_title", error)
@@ -176,23 +177,13 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
               </span>
             </div>
 
-            <Link
-              href={
-                "practitioner_name" in practitioner &&
-                practitioner.practitioner_name
-                  ? `/profile/${
-                      practitioner.practitioner_name
-                    }`
-                  : `/clinics/${practitioner.City}/clinic/${
-                      practitioner.slug
-                    }`
-                
-              }
-              className="mt-4 mb-0 flex border rounded-lg font-weight px-4 py-2 bg-black align-items-center justify-center text-white hover:bg-white hover:text-black"
-              prefetch={false}
+            <Button
+              
+              className="mt-4 mb-0 w-full flex border rounded-lg font-weight px-4 py-2 bg-black align-items-center cursor-pointer justify-center text-white hover:bg-white hover:text-black"
+        
             >
               Contact
-             </Link>
+             </Button>
 
              {practitioner.Treatments?.length! > 0 && null}
 

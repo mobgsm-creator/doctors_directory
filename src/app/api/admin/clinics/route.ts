@@ -5,7 +5,7 @@ import { validateClinic } from '@/lib/admin/validators'
 export async function GET() {
   try {
     const clinics = await readJsonFile('clinics_processed_new.json')
-    console.log(clinics)
+
     return NextResponse.json(clinics)
   } catch (error) {
     console.error('Failed to read clinics:', error)

@@ -67,8 +67,8 @@ export default async function AccreditedPage() {
     .filter(Boolean)
 
   return (
-    <main className="bg-[var(--primary-bg-color)]">
-      <div className="mx-auto max-w-7xl md:px-4 py-4 md:py-7 md:py-12 bg-white md:bg-[var(--primary-bg-color)]">
+    <main className="bg-(--primary-bg-color)">
+      <div className="mx-auto max-w-7xl md:px-4 py-4 md:py-12">
         <div className="flex flex-col pt-2 w-full pb-4 px-4 md:px-0 md:pt-0 md:border-0 border-b border-[#C4C4C4]">
           <div className="sticky top-0 z-10">
             <Link href="/" prefetch={false}>
@@ -80,13 +80,14 @@ export default async function AccreditedPage() {
             <Breadcrumb>
               <BreadcrumbList>
                 <BreadcrumbItem>
-                  <BreadcrumbLink href="/">Home</BreadcrumbLink>
+                  <BreadcrumbLink href="/directory">Home</BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
-                  <BreadcrumbPage>Accredited Clinics & Practitioners</BreadcrumbPage>
+                  <BreadcrumbLink href="/directory/accredited" >Accredited Clinics & Practitioners</BreadcrumbLink>
                 </BreadcrumbItem>
               </BreadcrumbList>
+      
             </Breadcrumb>
           </div>
         </div>
@@ -148,12 +149,8 @@ export default async function AccreditedPage() {
             }).length
 
             return (
-              <Link
-                key={accreditation}
-                href={`/accredited/${accreditation}`}
-                className="block"
-              >
-                <Card className="gap-0 relative shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border md:border-[var(--alto)] cursor-pointer hover:shadow-lg">
+          
+                <Card className="gap-0 relative shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border0 md:border-(--alto) cursor-pointer hover:shadow-lg">
                   <CardHeader className="pb-4">
                     <h3 className="mb-2 flex font-semibold text-md md:text-lg transition-colors text-balance group-hover:text-blue-600">
                       {accreditation}
@@ -170,7 +167,7 @@ export default async function AccreditedPage() {
                           {clinicCount} Clinic{clinicCount !== 1 ? 's' : ''}
                         </span>
                         <Link href={`/accredited/${accreditation}/clinics`}>
-                          <Button variant="outline" size="sm">
+                          <Button variant="outline" size="sm" className='cursor-pointer'>
                             View Clinics
                           </Button>
                         </Link>
@@ -181,7 +178,7 @@ export default async function AccreditedPage() {
                           {practitionerCount} Practitioner{practitionerCount !== 1 ? 's' : ''}
                         </span>
                         <Link href={`/accredited/${accreditation}/practitioners`}>
-                          <Button variant="outline" size="sm">
+                          <Button variant="outline" size="sm" className='cursor-pointer'>
                             View Practitioners
                           </Button>
                         </Link>
@@ -189,7 +186,7 @@ export default async function AccreditedPage() {
                     </div>
                   </CardContent>
                 </Card>
-              </Link>
+        
             )
           })}
         </div>
