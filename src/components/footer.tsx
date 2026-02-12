@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { Mail, Phone } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { modalities } from "@/lib/data";
+import { modalities,edu,accreditations } from "@/lib/data";
 const cityList = ["Aberaeron",
 "Aberdare",
 "Aberdeen",
@@ -741,6 +741,7 @@ const cityList = ["Aberaeron",
 ]
 
  export function Footer() {
+  const recognitions = [...accreditations, ...edu]
    return (
      <>
     <footer className="bg-[var(--dune)] py-16 text-white">
@@ -843,7 +844,7 @@ const cityList = ["Aberaeron",
              {/* Quick Links */}
              <div className="space-y-4">
              <h4 className="font-semibold">Clinics</h4>
-             <ul className="space-y-2 max-h-[100px] overflow-auto">
+             <ul className="gap-4 max-h-[100px] overflow-auto">
               {cityList.map((city, index) => (
                 <li key={index}>
                   <Link href={`/clinics/${city}`} className="block text-sm">
@@ -853,10 +854,20 @@ const cityList = ["Aberaeron",
                ))}
              </ul>
               <h4 className="font-semibold">Treatments</h4>
-              <ul className="space-y-2 max-h-[100px] overflow-auto">
+              <ul className="gap-4 max-h-[100px] overflow-auto">
               {modalities.map((t, index_t) => (
                 <li key={index_t}>
                   <Link href={`/clinics/London/services/${t}`} className="block text-sm">
+                    {t}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <h4 className="font-semibold">Accredited Practitioners</h4>
+              <ul className="gap-4 max-h-[100px] overflow-auto">
+              {recognitions.map((t, index_t) => (
+                <li key={index_t}>
+                  <Link href={`/practitioners/credentials/${t}`} className="block text-sm">
                     {t}
                   </Link>
                 </li>
