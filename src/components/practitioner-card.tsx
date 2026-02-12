@@ -9,7 +9,7 @@ import { modalities } from "@/lib/data";
 import { TreatmentMap } from "@/lib/data";
 import { Button } from "./ui/button";
 import practitionersJson from "@/../public/derms_processed_new_5403.json";
-import { useRouter } from "next/navigation";
+
 const practitionersData = practitionersJson as unknown as Practitioner[];
 const practitionersIndex = new Map<string, Practitioner[]>();
 
@@ -44,7 +44,7 @@ function isProduct(obj: unknown): obj is Product {
 
 
 export function PractitionerCard({ practitioner }: PractitionerCardProps) {
-  const router = useRouter();
+
 
   let practitionerName = ""
   let practitioners : Practitioner[] = []
@@ -237,10 +237,11 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
             <div className="w-full overflow-x-auto">
             <div className="flex flex-row gap-4">
               {practitioners.map((p: any, idx: number) => (
-                <article
+                <Card 
+                  asChild
                   key={p.practitioner_name+p.practitioner_title}
                   className="min-w-full max-h-30 group relative overflow-hidden rounded-xl border border-border/80 bg-card/50 backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:border-primary/60 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 active:scale-[0.98] cursor-pointer">
-                    <div className="p-6">
+                      <div className="p-6">
                       <div className="flex items-start gap-4 mb-6">
                         <div className="h-12 w-12 rounded-full bg-linear-to-br from-primary/10 to-primary/5 ring-2 ring-primary/10 flex items-center justify-center shrink-0">
                           <span className="text-base font-semibold text-primary">
@@ -249,15 +250,20 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                         </div>
                         <div className="flex-1 min-w-0 pt-1">
                           <h3 className="text-xl font-semibold text-balance leading-tight group-hover:text-primary transition-colors truncate">
+                             <a
+                            href={`/directory/practitioners/${practitioner.City}/profile/${p.practitioner_name}`}
+                            onClick={(e) => e.stopPropagation()}
+                          >
                             {p.practitioner_name.split('-').map((word:string) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
-                          </h3>
+                          </a></h3>
                           <p className="text-sm font-medium text-secondary-foreground mt-1 truncate">
                             {decodeUnicodeEscapes(fixMojibake(p.Title.split(",")[0]))}
                           </p>
                         </div>
-                      </div>
-                      </div>
-                  </article>))}</div></div>
+                      </div></div>
+                    
+    
+                  </Card>))}</div></div>
             </CardContent>
 
 
