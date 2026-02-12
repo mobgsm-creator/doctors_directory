@@ -358,6 +358,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                   </div>
                 </div>
               </div>
+              
             </CardHeader>
           </Card>
         </Link>

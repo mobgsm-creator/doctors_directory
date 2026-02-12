@@ -11,7 +11,6 @@ import {
 import type { SearchFilters } from "@/lib/types";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Clinic, Practitioner, Product } from "@/lib/types";
 import { useSearchStore } from "@/app/stores/datastore";
 import {
   Sliders, ArrowLeft

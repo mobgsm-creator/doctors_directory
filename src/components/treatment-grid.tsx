@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Card, CardContent} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ThumbsUp, DollarSign, Users } from "lucide-react";
-
+import { PractitionerCard } from "./practitioner-card";
 interface Treatment {
   name: string;
   image: string;
@@ -49,60 +49,7 @@ export function TreatmentGrid({ treatments, searchQuery, currentPage, totalPages
           paginatedTreatments.map((treatment, index) => {
             const enhancedTreatment = getEnhancedTreatment(treatment);
             return (
-              <div
-                key={treatment.name}
-                style={{ animationDelay: `${index * 50}ms` }}
-              >
-                <Link
-                  href={`${treatment.slug}`}
-                  title={`Learn about ${treatment.name} treatments and find qualified specialists`}
-                >
-                  <Card className="group bg-white hover:shadow-lg transition-all duration-300 cursor-pointer border border-[#BDBDBD] md:border-0 rounded-lg sm:bg-transparent sm:border-0 sm:hover:border-accent/50 sm:flex sm:flex-col sm:gap-5">
-                    <CardContent className="p-4 sm:p-0 sm:flex sm:items-center sm:justify-center sm:pt-0">
-                      <div className="flex items-center gap-4 sm:flex-col sm:gap-5">
-                        <div className="shrink-0">
-                          <img
-                            src={treatment.image}
-                            alt={`${treatment.name} treatment procedure`}
-                            width={60}
-                            height={60}
-                            className="object-cover rounded-full w-30 h-30 sm:w-60 sm:h-60"
-                          />
-                        </div>
-                        <div className="flex-1 min-w-0 sm:text-center">
-                          <h3 className="font-semibold text-base text-foreground group-hover:text-primary/70 transition-colors mb-3 sm:mb-0 sm:text-sm">
-                            {treatment.name}
-                          </h3>
-
-                          <div className="space-y-2 sm:hidden">
-                            <div className="flex items-center gap-2 text-sm text-gray-600">
-                              <ThumbsUp className="h-4 w-4 text-black" />
-                              <span className="font-medium">
-                                {enhancedTreatment.satisfaction}%
-                              </span>
-                              <span>Satisfaction</span>
-                            </div>
-                            <div className="flex items-center gap-2 text-sm text-gray-600">
-                              <DollarSign className="h-4 w-4 text-black" />
-                              <span className="font-medium">
-                                {enhancedTreatment.averageCost}
-                              </span>
-                              <span>Average Cost</span>
-                            </div>
-                            <div className="flex items-center gap-2 text-sm text-gray-600">
-                              <Users className="h-4 w-4 text-black" />
-                              <span className="font-medium">
-                                {enhancedTreatment.practitionerCount}
-                              </span>
-                              <span>Practitioners</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </Link>
-              </div>
+              <PractitionerCard key={treatment.name} practitioner={treatment} />
             );
           })
         ) : (
