@@ -172,7 +172,7 @@ export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
                   <div className="p-5">
                     <div className="flex items-start justify-between gap-3 mb-3">
                       <div className="flex-1 min-w-0">
-                        <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                        <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
                         <span className="text-sm font-medium text-primary">
                           {name?.charAt(0)}
                         </span>
@@ -191,7 +191,7 @@ export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
                    
                   </div></Link>
 
-                  <div className="absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r from-transparent via-primary/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute inset-x-0 bottom-0 h-0.5 bg-linear-to-r from-transparent via-primary/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </article>
               )
           )}}          )}

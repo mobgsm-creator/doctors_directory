@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/breadcrumb"
 import { Button } from "@/components/ui/button"
 import { ArrowLeft } from "lucide-react"
+import { PractitionerCard } from "@/components/practitioner-card";
 const clinicsData = clinicsJson as unknown as Clinic[];
 const clinics = clinicsData
   const clinicIndex = new Map(
@@ -91,95 +92,7 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:gap-6 animate-fade-in">
           {cityClinics.map((clinic, index) => (
             <div key={index} style={{ animationDelay: `${index * 50}ms` }}>
-              <Card className="gap-0 relative px-4 md:px-0 shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border-t rounded-27 md:border md:border-(--alto) cursor-pointer">
-                <CardHeader className="pb-4 px-2">
-                  <div className="flex items-start gap-4">
-                    <div className="text-center flex-1 min-w-0 items-center flex flex-col">
-                      <div className="flex w-full flex-row items-start border-b border-[#C4C4C4] md:border-0 md:flex-col md:items-center">
-                        <div className="w-20 h-20 md:w-[150px] md:h-[150px] flex items-center justify-center overflow-hidden rounded-full bg-gray-300 md:mb-3 mr-0">
-                          <img
-                            src={
-                              clinic.image!.split("?w")[0] || "/placeholder.svg"
-                            }
-                            alt="Profile"
-                            width={240}
-                            height={240}
-                            className="object-cover rounded-full w-60 h-60"
-                          />
-                        </div>
-                        <div className="flex items-start md:items-center flex-col pl-4 md:pl-0 w-[calc(100%-80px)] md:w-full">
-                        <h3 className="mb-2 md:mb-4 flex text-left md:text-center md:align-items-center md:justify-center font-semibold text-md md:text-lg transition-colors text-balance">
-                            {clinic.practitioner_name!
-                              .split("-")
-                              .map(
-                                (word) =>
-                                  word.charAt(0).toUpperCase() + word.slice(1)
-                              )
-                              .join(" ")}
-                          </h3>
-
-                          <div className="flex justify-center flex-wrap items-center gap-2">
-                            <span className="inline-block px-3 py-1 rounded-full bg-green-100 text-green-800 border border-green-300 text-xs">
-                              {clinic.category}
-                            </span>
-                          </div>
-
-                          <p className="pt-2 mb-2 text-pretty">{clinic.practitioner_title}</p>
-  
-                        </div>
-                      </div>
-                      <div className="flex flex-row gap-2 pt-3 items-center text-sm">
-                            <div className="flex items-center gap-1">
-                              <div className="flex items-center">
-                                {Array.from({ length: 5 }, (_, i) => (
-                                  <Star
-                                    key={i}
-                                    className={`h-4 w-4 ${
-                                      i < clinic.rating!
-                                        ? "fill-black text-black"
-                                        : "text-muted-foreground/30"
-                                    }`}
-                                  />
-                                ))}
-                              </div>
-                            </div>
-                            <span className="border-l border-black pl-2 underline">
-                              ({clinic.reviewCount} reviews)
-                            </span>
-                          </div>
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent className="pt-0 px-0 md:px-4 space-y-4">
-                  <div className="flex items-start gap-2 text-sm">
-                    <MapPin className="h-4 w-4 mt-0.5 shrink-0" />
-                    <span className="text-pretty">{clinic.gmapsAddress}</span>
-                  </div>
-
-                  <Link
-                    href={`/practitioners/${clinic.City}/profile/${clinic.practitioner_name}`}
-                    className="mt-4 mb-0 flex border rounded-lg font-weight px-4 py-2 bg-black align-items-center justify-center text-white hover:bg-white hover:text-black"
-                  >
-                    Contact
-                  </Link>
-
-                  <div>
-                    <div className="flex flex-wrap gap-1 pt-4">
-                     {clinic.Treatments?.slice(0, 3).map((modality, index) => (
-                        
-                          <Badge
-                            key={index}
-                            variant="outline"
-                            className="text-xs text-wrap"
-                          >
-                            {modality.replaceAll('"', "").split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")}
-                          </Badge>
-                        ))}
-                      
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+              <PractitionerCard key={clinic.practitioner_name!+clinic.practitioner_title} practitioner={clinic} />
             </div>
           ))}
         </div>
