@@ -28,7 +28,7 @@ interface PractitionerCardProps {
   practitioner: Practitioner | Clinic | Product | string;
 }
 function isTreatment(obj:unknown): obj is string{
-  return typeof obj === "string" && modalities.includes(obj);
+    return typeof obj === "string" && modalities.includes(obj.split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ").replace("Hifu", "HIFU").replace("Coolsculpting", "CoolSculpting"));
 }
 function isPractitioner(obj: unknown): obj is Practitioner {
 
@@ -333,11 +333,12 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
         </Link>
       )}
       {isTreatment(practitioner) && (
-        <Link href={`/treatments/${practitioner}`} className="block border-0" prefetch={false}>
+      
+        <Link href={`/treatments/${practitioner?.split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ").replace("Hifu", "HIFU").replace("Coolsculpting", "CoolSculpting")}`} className="block border-0" prefetch={false}>
           <Card className="gap-0 h-full relative bg-transparent px-4 md:px-0 shadow-none md:border-0 duration-300 cursor-pointer" aria-labelledby={`treatment-name-${practitioner}`}>
             <CardHeader className="px-2 border-0">
-              <h2 id={`treatment-name-${practitioner}`} className="sr-only">
-                {practitioner}
+              <h2 id={`treatment-name-${practitioner?.split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ").replace("Hifu", "HIFU").replace("Coolsculpting", "CoolSculpting")}`} className="sr-only">
+                {practitioner?.split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ").replace("Hifu", "HIFU").replace("Coolsculpting", "CoolSculpting")}
               </h2>
               <div className="flex items-start gap-4">
                 <div className="text-center flex-1 min-w-0 items-center flex flex-col">
@@ -345,7 +346,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                     <div className="w-20 h-20 md:w-[150px] md:h-[150px] flex items-center justify-center overflow-hidden md:mb-3 mr-0">
                       <img
                         src={
-                          TreatmentMap[practitioner] ||
+                          TreatmentMap[practitioner?.split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ").replace("Hifu", "HIFU").replace("Coolsculpting", "CoolSculpting")] ||
                           "/placeholder.svg"
                         }
                         alt="Treatment"
@@ -354,7 +355,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                     </div>
 
                     <h3 className="mb-3 md:mb-0 flex text-left md:text-center md:align-items-center md:justify-center font-semibold text-md md:text-lg transition-colors text-balance">
-                      {practitioner}
+                      {practitioner?.split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ").replace("Hifu", "HIFU").replace("Coolsculpting", "CoolSculpting")}
                     </h3>
                   </div>
                 </div>

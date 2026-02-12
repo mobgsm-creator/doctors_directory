@@ -35,7 +35,7 @@ export default function PractitionerDetailsSections({
       </Section>
       <div className="border-t border-gray-300 my-6"></div>
       {/* Treatments */}
-      <Section title="Treatmetnts" id="treatmetnts">
+      <Section title="Treatments" id="treatmetnts">
         <div className="flex flex-wrap gap-1">
           {clinic.Treatments &&
             clinic.Treatments?.map(

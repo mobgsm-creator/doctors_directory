@@ -21,6 +21,7 @@ function isPractitioner(obj: unknown): obj is Practitioner {
 }
 
 function isTreatment(obj: unknown): obj is string {
+
   return typeof obj === 'string' && obj !== null 
 }
 const getEnhancedTreatment = (treatment: any) => {

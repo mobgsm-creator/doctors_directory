@@ -1,3 +1,5 @@
+"use client"
+import { useState } from "react"
 import {
   Star,
   MapPin,
@@ -10,207 +12,147 @@ import { Badge } from "@/components/ui/badge";
 import type { Practitioner } from "@/lib/types";
 import SocialMediaIcons from "../Clinic/clinicSocialMedia";
 import ClinicLabels from "./clinicLabels";
-
+import ClinicTabsHeader from "./clinicTabsHeader";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import  Link  from "next/link"
+import { Link as LinkIcon} from "lucide-react"
 interface ProfileHeaderProps {
   clinic: Practitioner;
   k_value: any;
+  clinic_list: string[]
 }
 
-export function ProfileHeader({ clinic, k_value }: Readonly<ProfileHeaderProps>) {
+export function ProfileHeader({ clinic, k_value, clinic_list}: Readonly<ProfileHeaderProps>) {
+  const [selectedClinic, setSelectedClinic] = useState(clinic_list[0])
   const practitionerName = clinic.practitioner_name!
     .split("-")
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
   const roleTitle = clinic.category;
+  let sections: {id: string,label: string}[] = []
+  clinic_list.map((clinic: string) => {
+    sections.push({ id: clinic, label: clinic })
+  })
 
   return (
     <Card className="md:mt-2 flex flex-col gap-6 md:rounded-xl px-0 md:px-6 py-6 relative shadow-none group transition-all duration-300 md:rounded-27 border-t border-b border-[#C4C4C4] md:border-t-[1px] md:border md:border-[var(--alto)] bg-white md:bg-[var(--primary-bg-color)]">
+      
+    <div className="px-4 md:px-0 grid grid-cols-1 lg:grid-cols-[4fr_1fr] gap-4 items-center">
 
-      <div className="px-4 md:px-0 grid grid-cols-1 lg:grid-cols-[4fr_1fr] gap-4 items-center">
-        <div className="flex flex-row flex-wrap pb-4 md:pb-0 md:mb-4 md:px-4 md:px-0 lg:mb-0 items-center border-b border-[#C4C4C4] md:border-0">
-          {/* Profile Image Section */}
-          <div className="flex flex-col items-center w-[115px] md:w-[140px] mr-2 md:mr-4">
-            <div className="relative group">
-              {/* Elegant frame with shadow */}
-              <div className="absolute -inset-1 rounded-full blur opacity-25 transition duration-300" />
-                <div className="w-[80px] h-[80px] md:w-[140px] md:h-[140px] flex items-center justify-center overflow-hidden rounded-full bg-grey-300">
-                  <img
-                    src={
-                      clinic.image?.replace("&w=256&q=75", "") ??
-                      "/placeholder.svg"
-                    }
-                    alt={practitionerName}
-                    className="object-cover rounded-full min-w-full min-h-full"
-                  />
-                </div>
-
-                {/* Status indicator */}
-                <div className="absolute top-0 right-2 md:top-4 md:right-6 w-4 h-4 bg-emerald-500 rounded-full border-2 border-white shadow-lg" />
-            </div>
-
-            {/* Quick stats */}
-            <div className="mt-1 md:mt-4 flex flex-col items-center xl:items-center gap-1">
-              <div className="flex items-center gap-1">
-                <Star className="w-4 h-4 fill-black text-black" />
-                <span className="text-sm font-medium text-black">
-                  {k_value.rating}
-                </span>
-                <span className="text-sm text-black">
-                  ({k_value.reviewCount})
-                </span>
-              </div>
-              <Badge
-                variant="secondary"
-                className="bg-emerald-50 text-emerald-700 border-emerald-200"
-              >
-                Available Today
-              </Badge>
-            </div>
+        <div className="flex flex-col md:flex-col md:mb-4 md:px-4 md:px-0 lg:mb-0 items-start gap-4 border-b border-[#C4C4C4] md:border-0">
+          <Tabs
+      defaultValue="roles"
+      className="w-full sticky top-0 bg-(--primary-bg-color) z-20 pb-4 mb-6 border-b overflow-x-auto flex items-center"
+    >
+      <TabsList className="flex flex-nowrap gap-2 overflow-x-auto bg-(--primary-bg-color)">
+        {sections.map((s) => (
+          <div key={s.id} className="flex flex-colmin-w-max bg-(--primary-bg-color)">
+            <TabsTrigger
+              value={s.id}
+              onClick={() => {
+                document.getElementById(s.id)?.scrollIntoView({
+                  behavior: "smooth",
+                  block: "start",
+                });
+                setSelectedClinic(s.id)
+              }}
+              className="capitalize data-[state=active]:font-bold data-[state=active]:shadow-none "
+            >
+              {s.label}
+            </TabsTrigger>
+            <Link href={`/clinics/${k_value.City}/clinic/${s.id}`} className="text-xs text-gray-500 hover:text-gray-700 transition-colors">
+            <LinkIcon className="h-3 w-3" />
+            </Link>
           </div>
-
-          {/* Main Information Section */}
-          <div className="gap-0 flex items-start flex-col w-[calc(100%-123px)] md:w-[calc(100%-180px)]">
-            {/* Name and credentials */}
-            <div className="flex w-full md:w-auto flex-col md:flex-row gap-2 mb-2 items-start md:items-center">
-              <h1 className="inline text-left mb-0 md:m-0 font-semibold text-md md:text-2xl transition-colors md:text-left">
-                {practitionerName}
-              </h1>
-              <ClinicLabels clinic={k_value} />
+        ))}
+      </TabsList>
+    </Tabs>
+    <div className="flex flex-row flex-wrap items-start md:items-center">
+            <div className="w-[80px] h-[80px] md:w-[180px] md:h-[180px] flex items-center justify-center overflow-hidden rounded-full bg-grey-300 mr-4">
+              <img
+                src={
+                  clinic.image?.replace("&w=256&q=75", "") || "/placeholder.svg"
+                }
+                alt={"/placeholder.svg"}
+                className="object-cover rounded-full min-w-full min-h-full"
+              />
             </div>
+
+            <div className="flex flex-col w-[calc(100%-96px)] md:w-[calc(100%-196px)]">
+              
+              
+              <div className="flex w-full md:w-auto flex-col md:flex-row gap-2 mb-2 items-start md:items-center">
+                              <h1 className="inline text-left mb-0 md:m-0 font-semibold text-md md:text-2xl transition-colors md:text-left">
+                                {practitionerName}
+                              </h1>
+                              <ClinicLabels clinic={k_value} />
+                            </div>
 
             <div className="flex flex-row gap-2 mb-3 items-center">
-              <p className="text-pretty md:font-bold text-sm md:text-md">{roleTitle}</p>
-             </div>
-
-             <div className="hidden md:block">
-                 <h2 className="sr-only">Contact Information</h2>
-
-                 <div className="flex items-start gap-3 my-2">
-                  <MapPin className="h-4 w-4 mt-1 shrink-0 " />
-                  <span className="text-sm">{k_value.gmapsAddress}</span>
-                </div>
-
-                <div className="flex flex-wrap gap-4 my-2">
-                  <a
-                    href={`tel:${k_value.gmapsPhone}`}
-                    className="flex items-center gap-2 text-sm transition-colors"
-                  >
-                    <Phone className="h-3.5 w-3.5 mr-1.5" />
-                    <span>{k_value.gmapsPhone}</span>
-                  </a>
-
-                   <a
-                     href="mailto:consultation@example.com"
-                     className="flex items-center gap-2 text-sm transition-colors"
-                   >
-                     <Mail className="h-3.5 w-3.5 mr-1.5" />
-                     <span>Email</span>
-                   </a>
-                 </div>
-
-                 <h2 className="sr-only">Specializations</h2>
-                 <ul className="flex flex-wrap gap-2 pt-2" aria-label="Specializations">
-                   {k_value.Treatments.map(
-                     (spec :string) => (
-                       <li key={spec}>
-                         <Badge
-                           variant="outline"
-                           className="border-black  hover:text-black transition-colors bg-[var(--primary-bg-color)]"
-                         >
-                           {spec
-                             .split("-")
-                             .map(
-                               (word) => word.charAt(0).toUpperCase() + word.slice(1)
-                             )
-                             .join(" ")}
-                         </Badge>
-                       </li>
-                     )
-                   )}
-                 </ul>
-             </div>
-
-          </div>
-        </div>
-
-        <div className="block md:hidden">
-                 <h2 className="sr-only">Contact Information</h2>
-
-                 <div className="flex items-start gap-3 my-2">
-                  <MapPin className="h-4 w-4 mt-1 shrink-0 " />
-                  <span className="text-sm">{k_value.gmapsAddress}</span>
-                </div>
-
-                <div className="flex flex-wrap gap-4 my-2">
-                  <a
-                    href={`tel:${k_value.gmapsPhone}`}
-                    className="flex items-center gap-2 text-sm transition-colors"
-                  >
-                    <Phone className="h-3.5 w-3.5 mr-1.5" />
-                    <span>{k_value.gmapsPhone}</span>
-                  </a>
-
-                  <a
-                    href="mailto:consultation@example.com"
-                    className="flex items-center gap-2 text-sm transition-colors"
-                  >
-                    <Mail className="h-3.5 w-3.5 mr-1.5" />
-                    <span>Email</span>
-                   </a>
-                 </div>
-
-                
-              
-            </div>
-
-        {/* Action Buttons Section */}
-        <div className="flex flex-col gap-4">
-    
-
-          <Button
-            asChild
-            variant="outline"
-            className="shadow-none border-black h-auto rounded-lg text-md px-7 py-3 hover:cursor-pointer"
-          >
-            <a
-              href={clinic.email || clinic.website ||
-  clinic.instagram ||
-  clinic.facebook ||
-  clinic.twitter ||
-  clinic.Linkedin || // <- use lowercase to match JS naming conventions
-  "#" }
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Book Consultation
-            </a>
-          </Button>
-
-
-
-          <Button
-          asChild
-          variant="outline"
-          className="shadow-none border-black h-auto rounded-lg text-md px-7 py-3 hover:cursor-pointer"
-          >
-          <a
-            href={clinic.website ||
-  clinic.instagram ||
-  clinic.facebook ||
-  clinic.twitter ||
-  clinic.Linkedin || // <- use lowercase to match JS naming conventions
-  "#" }
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Request Pricing
-          </a>
-          </Button>
-
-
-          <SocialMediaIcons clinic={clinic} />
-        </div>
-      </div>
-    </Card>
+                            <p className="text-pretty md:font-bold text-sm md:text-md">{roleTitle}</p>
+                          </div>
+            
+                          <div className="hidden md:block gap-0 flex items-center md:items-start flex-col ">
+                       
+                            <address className="mb-2 not-italic text-sm leading-relaxed flex items-start justify-start sm:items-start gap-2">
+                              <MapPin
+                                className="h-4 w-4 mt-1 shrink-0 "
+                                aria-hidden="true"
+                              />
+                              <span className="block max-w-[300px] break-words sm:whitespace-normal">
+                                {k_value.gmapsAddress}
+                              </span>
+                            </address>
+            
+                            <div className="flex flex-wrap items-center gap-2">
+                              <span className="inline-flex items-center text-sm">
+                                <Phone className="h-3.5 w-3.5 mr-1.5" aria-hidden="true" />
+                                {k_value.gmapsPhone}
+                              </span>
+                            </div>
+                          </div>
+            
+                        </div>
+                      </div>
+                    </div>
+            
+                    <div className="block md:hidden gap-0 flex items-start md:mb-4 md:items-start flex-col ">
+                   
+                      <address className="mb-2 not-italic text-sm leading-relaxed flex items-start justify-start sm:items-start gap-2">
+                        <MapPin
+                          className="h-4 w-4 mt-1 shrink-0 "
+                          aria-hidden="true"
+                        />
+                        <span className="block max-w-[300px] break-words sm:whitespace-normal">
+                          {k_value.gmapsAddress}
+                        </span>
+                      </address>
+            
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className="inline-flex items-center text-sm">
+                          <Phone className="h-3.5 w-3.5 mr-1.5" aria-hidden="true" />
+                          {k_value.gmapsPhone}
+                        </span>
+                      </div>
+                    </div>
+            
+                    <div className="flex flex-col gap-3 justify-center">
+                      <Button
+                        variant="default"
+                        className="shadow-none h-auto rounded-lg text-md px-7 py-3 text-white hover:cursor-pointer"
+                      >
+                        Request Consultation
+                      </Button>
+                      <Button
+                        variant="outline"
+                        className="shadow-none border-black h-auto rounded-lg text-md px-7 py-3 hover:cursor-pointer"
+                      >
+                        Request Pricing
+                      </Button>
+                      <SocialMediaIcons clinic={k_value} />
+                    </div>
+            
+                  </div>
+                </Card>
   );
 }
