@@ -1,3 +1,4 @@
+"use client"
 import Link from "next/link";
 import { Star, MapPin,  } from "lucide-react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
@@ -75,9 +76,9 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
         <article aria-labelledby={`${isPractitioner(practitioner) ? "practitioner" : "clinic"}-name-${practitioner.slug}`}>
           <Link
               href={
-                "practitioner_image_link" in practitioner &&
+                "practitioner_awards" in practitioner &&
                 practitioner.practitioner_name
-                  ? `/profile/${
+                  ? `/practitioners/${practitioner.City}/profile/${
                       practitioner.practitioner_name
                     }`
                   : `/clinics/${practitioner.City}/clinic/${
@@ -136,7 +137,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
 
                     {!("practitioner_name" in practitioner) &&
                       practitioner.category && (
-                        <p className="text-sm pt-2 mb-2">
+                        <p className="text-muted-foreground mb-2 font-semibold text-balance leading-tight truncate">
                           {practitioner.category.trim()}
                         </p>
                       )}
