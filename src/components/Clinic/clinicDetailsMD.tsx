@@ -168,7 +168,7 @@ export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
                   key={k}
                   className="group relative overflow-hidden rounded-xl border border-border bg-card transition-all duration-300 hover:shadow-md hover:border-primary/50"
                 >
-                  <Link prefetch={false} href={`/profile/${slug}`}>
+                  <Link prefetch={false} href={`/practitioners/${clinic.City}/profile/${v.practitioner_name}`}>
                   <div className="p-5">
                     <div className="flex items-start justify-between gap-3 mb-3">
                       <div className="flex-1 min-w-0">

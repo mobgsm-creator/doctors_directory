@@ -58,7 +58,7 @@ export function PractitionerListItem({ practitioner }: Readonly<PractitionerList
             {/* Header */}
             <div className="flex items-start justify-between">
               <div className="flex-1 min-w-0">
-                <Link href={`/profile/${practitioner.slug}`}>
+                <Link href={`/practitioners/${practitioner.City}/profile/${practitioner.slug}`}>
                   <h3 className="font-semibold text-xl text-foreground group-hover:text-accent transition-colors text-balance cursor-pointer">
                     {practitionerName}
                   </h3>
@@ -84,7 +84,7 @@ export function PractitionerListItem({ practitioner }: Readonly<PractitionerList
               </div>
 
               <div className="flex gap-2 ml-4">
-                <Link href={`/profile/${practitioner.slug}`}>
+                <Link href={`/practitioners/${practitioner.City}/profile/${practitioner.slug}`}>
                   <Button size="sm">View Profile</Button>
                 </Link>
               </div>
