@@ -1,14 +1,28 @@
-"use client"
 import Link from "next/link";
 import { Star, MapPin,  } from "lucide-react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import type { Practitioner, Clinic, Product } from "@/lib/types";
-import { decodeUnicodeEscapes } from "@/lib/utils";
+import { decodeUnicodeEscapes, fixMojibake } from "@/lib/utils";
 import ClinicLabels from "./Clinic/clinicLabels";
 import { modalities } from "@/lib/data";
 import { TreatmentMap } from "@/lib/data";
 import { Button } from "./ui/button";
+import practitionersJson from "@/../public/derms_processed_new_5403.json";
+import { useRouter } from "next/navigation";
+const practitionersData = practitionersJson as unknown as Practitioner[];
+const practitionersIndex = new Map<string, Practitioner[]>();
+
+for (const p of practitionersData) {
+  const clinics = JSON.parse(p.Associated_Clinics as string) as string[];
+
+  for (const clinic of clinics) {
+    const bucket = practitionersIndex.get(clinic) ?? [];
+    bucket.push(p);
+    practitionersIndex.set(clinic, bucket);
+  }
+}
+
 interface PractitionerCardProps {
   practitioner: Practitioner | Clinic | Product | string;
 }
@@ -30,21 +44,10 @@ function isProduct(obj: unknown): obj is Product {
 
 
 export function PractitionerCard({ practitioner }: PractitionerCardProps) {
-  let practitioner_title_clean = ""
-  try {
-   practitioner && "practitioner_title" in (practitioner as Practitioner) ? (practitioner as Practitioner).practitioner_title!.split(",")[0].trim() : ""
-  }
-  catch (error) {
-    console.log("error in practitioner_title", error)
-  }
-  if(practitioner_title_clean.length < 10) {
-    
-    practitioner_title_clean = practitioner_title_clean
-  }
-  else {
-    practitioner_title_clean = practitioner_title_clean.split(",")[0].trim()
-  }
+  const router = useRouter();
+
   let practitionerName = ""
+  let practitioners : Practitioner[] = []
   if(isPractitioner(practitioner)){
   practitionerName = practitioner.practitioner_name
     ? practitioner.practitioner_name
@@ -56,9 +59,12 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
         .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
         .join(" ");
   }
+  
   else if(isClinic(practitioner)){
-    practitionerName = practitioner.slug!.split("-").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ") 
+    practitionerName = practitioner.slug!.split("-").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")
+    practitioners = practitionersIndex.get(practitioner.slug as string) ?? []
   } 
+  
 
 
   return (
@@ -79,8 +85,9 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                     }`
               }
             prefetch={false}
+            className='z-10'
             >
-          <Card className="gap-0 relative px-4 md:px-0 shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border-t-[1px] rounded-27 md:border md:border-[var(--alto)] cursor-pointer">
+          <Card className="gap-0 relative px-4 md:px-0 shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border-t rounded-27 md:border md:border-(--alto) cursor-pointer">
           
           <header>
              <CardHeader className="pb-4 px-2">
@@ -92,7 +99,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
             <div className="flex items-start gap-4">
               <div className="text-center flex-1 min-w-0 items-center flex flex-col">
                 <div className="flex w-full flex-row items-start border-b border-[#C4C4C4] md:border-0 md:flex-col md:items-center">
-                  <div className="w-[80px] h-[80px] md:w-[150px] md:h-[150px] flex items-center justify-center overflow-hidden rounded-full bg-gray-300 md:mb-3 mr-0">
+                  <div className="w-20 h-20 md:w-[150px] md:h-[150px] flex items-center justify-center overflow-hidden rounded-full bg-gray-300 md:mb-3 mr-0">
                     <img
                       src={
                         practitioner.image!.replace("&w=256&q=75", "") ||
@@ -108,7 +115,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                   </div>
 
                   <div className="flex items-start md:items-center flex-col pl-4 md:pl-0 w-[calc(100%-80px)] md:w-full">
-                    <h3 className="mb-2 md:mb-4 flex text-left md:text-center md:align-items-center md:justify-center font-semibold text-md md:text-lg transition-colors text-balance">
+                    <h3 className="text-base font-semibold text-primary flex text-left md:text-center md:align-items-center md:justify-center text-md md:text-xl transition-colors">
                       {practitionerName}
                     </h3>
 
@@ -120,16 +127,16 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
 
                     {"practitioner_name" in practitioner && (
                       
-                        <p className="text-muted-foreground mb-2 text-pretty">
+                        <p className="text-muted-foreground mb-2 font-semibold text-balance leading-tight truncate">
                           {
-                            practitioner_title_clean
+                            practitioner.practitioner_title?.split(",")[0].trim()
                             }
                         </p>
                       )}
 
                     {!("practitioner_name" in practitioner) &&
                       practitioner.category && (
-                        <p className="pt-2 mb-2">
+                        <p className="text-sm pt-2 mb-2">
                           {practitioner.category.trim()}
                         </p>
                       )}
@@ -164,9 +171,9 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
 
            <CardContent className="pt-0 px-0 md:px-4 space-y-4">
              <h4 className="sr-only">Location</h4>
-             <div className="flex items-start gap-2 text-sm">
-              <MapPin className="h-4 w-4 mt-0 flex-shrink-0" aria-hidden="true" />
-              <span className="text-pretty">
+             <div className="flex items-start gap-2 text-sm text-muted-foreground/80">
+              <MapPin className="h-4 w-4 mt-0 shrink-0" aria-hidden="true" />
+              <span className="leading-snug truncate">
                 {practitioner.gmapsAddress!.split(",")[
                   practitioner.gmapsAddress!.split(",").length - 2
                 ] +
@@ -194,29 +201,63 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                   practitioner.Treatments.slice(0, 2)
                     .map((modality, index) => (
                       <li key={index}>
-                        <Badge variant="outline" className="text-xs">
-                          {modality
+                        <Badge asChild variant="outline" className="text-xs">
+                          <a
+                            href={`/directory/treatments/${modality}`}
+                            onClick={(e) => e.stopPropagation()}
+                          >{modality
                             .split(" ") // split into words
                             .map(
                               (word) =>
                                 word.charAt(0).toUpperCase() + word.slice(1)
                             ) // capitalize each
-                            .join(" ")}
+                            .join(" ")}</a>
+                          
                         </Badge>
                       </li>
                     ))}
                 {practitioner.Treatments &&
                   practitioner.Treatments.length > 2 && (
                     <li>
-                      <Badge variant="outline" className="text-xs">
+                      <Badge asChild variant="outline" className="text-xs">
+                        <a
+                            href={`/directory/treatments`}
+                            onClick={(e) => e.stopPropagation()}
+                          >
                         +
                         {practitioner.Treatments.length - 2}{" "}
-                        more
+                        more</a>
                       </Badge>
                     </li>
                   )}
               </ul>
             </div>
+
+            <div className="border-t border-gray-300 my-6"></div>
+            <div className="w-full overflow-x-auto">
+            <div className="flex flex-row gap-4">
+              {practitioners.map((p: any, idx: number) => (
+                <article
+                  key={p.practitioner_name+p.practitioner_title}
+                  className="min-w-full max-h-30 group relative overflow-hidden rounded-xl border border-border/80 bg-card/50 backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:border-primary/60 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 active:scale-[0.98] cursor-pointer">
+                    <div className="p-6">
+                      <div className="flex items-start gap-4 mb-6">
+                        <div className="h-12 w-12 rounded-full bg-linear-to-br from-primary/10 to-primary/5 ring-2 ring-primary/10 flex items-center justify-center shrink-0">
+                          <span className="text-base font-semibold text-primary">
+                            {p.practitioner_name?.charAt(0).toUpperCase()}
+                          </span>
+                        </div>
+                        <div className="flex-1 min-w-0 pt-1">
+                          <h3 className="text-xl font-semibold text-balance leading-tight group-hover:text-primary transition-colors truncate">
+                            {p.practitioner_name.split('-').map((word:string) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
+                          </h3>
+                          <p className="text-sm font-medium text-secondary-foreground mt-1 truncate">
+                            {decodeUnicodeEscapes(fixMojibake(p.Title.split(",")[0]))}
+                          </p>
+                        </div>
+                      </div>
+                      </div>
+                  </article>))}</div></div>
             </CardContent>
 
 
@@ -225,7 +266,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
       )}
       {isProduct(practitioner) && (
         <Link href={`/products/${practitioner.category}/${practitioner.slug}`} className="block" prefetch={false}>
-          <Card className="gap-0 h-full relative px-4 md:px-0 shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border-t-[1px] rounded-27 md:border md:border-[var(--alto)] cursor-pointer" aria-labelledby={`product-name-${practitioner.slug}`}>
+          <Card className="gap-0 h-full relative px-4 md:px-0 shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border-t rounded-27 md:border md:border-(--alto) cursor-pointer" aria-labelledby={`product-name-${practitioner.slug}`}>
             <CardHeader className="pb-2 px-2">
               <h2 id={`product-name-${practitioner.slug}`} className="sr-only">
                 {decodeUnicodeEscapes(practitioner.product_name)}
@@ -233,7 +274,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
               <div className="flex items-start gap-4">
                 <div className="text-center flex-1 min-w-0 items-center flex flex-col">
                   <div className="flex w-full flex-row items-start border-b border-[#C4C4C4] md:border-0 md:flex-col md:items-center">
-                    <div className="w-[80px] h-[80px] md:w-[150px] md:h-[150px] flex items-center justify-center overflow-hidden rounded-lg bg-gray-300 md:mb-4 mr-0">
+                    <div className="w-20 h-20 md:w-[150px] md:h-[150px] flex items-center justify-center overflow-hidden rounded-lg bg-gray-300 md:mb-4 mr-0">
                       <img
                         src={
                           practitioner.image_url?.replaceAll('"', "") ||
@@ -294,7 +335,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
               <div className="flex items-start gap-4">
                 <div className="text-center flex-1 min-w-0 items-center flex flex-col">
                   <div className="flex w-full flex-row items-start border-0 md:flex-col md:items-center">
-                    <div className="w-[80px] h-[80px] md:w-[150px] md:h-[150px] flex items-center justify-center overflow-hidden md:mb-3 mr-0">
+                    <div className="w-20 h-20 md:w-[150px] md:h-[150px] flex items-center justify-center overflow-hidden md:mb-3 mr-0">
                       <img
                         src={
                           TreatmentMap[practitioner] ||

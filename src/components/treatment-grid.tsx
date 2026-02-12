@@ -60,7 +60,7 @@ export function TreatmentGrid({ treatments, searchQuery, currentPage, totalPages
                   <Card className="group bg-white hover:shadow-lg transition-all duration-300 cursor-pointer border border-[#BDBDBD] md:border-0 rounded-lg sm:bg-transparent sm:border-0 sm:hover:border-accent/50 sm:flex sm:flex-col sm:gap-5">
                     <CardContent className="p-4 sm:p-0 sm:flex sm:items-center sm:justify-center sm:pt-0">
                       <div className="flex items-center gap-4 sm:flex-col sm:gap-5">
-                        <div className="flex-shrink-0">
+                        <div className="shrink-0">
                           <img
                             src={treatment.image}
                             alt={`${treatment.name} treatment procedure`}

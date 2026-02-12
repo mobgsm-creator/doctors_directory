@@ -5,11 +5,11 @@ export default function ClinicLabels({ clinic }: Readonly<{ readonly clinic: Cli
       
   return (
     <div className="flex justify-center align-items-center gap-2 flex-col">
-      {clinic.isDoctor && (
+      {/* {clinic.isDoctor && (
         <div className="flex items-center gap-1 rounded-full bg-green-100 text-green-800 border border-green-300 text-xs px-3 py-1">
           <span>Licensed Medical Practitioner</span>
         </div>
-      )}
+      )} */}
       { labels && (
       <div className="flex gap-2 items-center justify-center">
         {clinic.isCQC?.[0] && (
