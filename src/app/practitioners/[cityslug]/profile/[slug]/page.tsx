@@ -17,7 +17,7 @@ import { Section } from "@/components/ui/section";
 import clinicsJson from "@/../public/clinics_processed_new.json";
 import { Clinic } from "@/lib/types";
 import { MoreItems } from "@/components/MoreItems";
-
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb"
 const clinicsData = clinicsJson as unknown as Clinic[];
 const clinics = clinicsData
   const clinicIndex = new Map(
@@ -85,6 +85,25 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
               Back to Directory
             </Button>
           </Link>
+          <Breadcrumb>
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink href="/directory">Home</BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbLink href="/directory/practitioners">Practitioners</BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbLink href={`/clinics/practitioners/${practitioner.City}`}>{`${practitioner.City}`}</BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbPage>{`${practitioner.practitioner_name}`}</BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
         </div>
       </div>
       

@@ -101,7 +101,7 @@ const serviceMatch = categories.some((cat: string) =>
           </h1></div>
       
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:gap-6 animate-fade-in">
-          {filteredClinics.map((clinic, index) => (
+          {filteredClinics.slice(0,3).map((clinic, index) => (
             <div key={index} style={{ animationDelay: `${index * 50}ms` }}>
               <PractitionerCard key={clinic.slug} practitioner={clinic} />
             </div>

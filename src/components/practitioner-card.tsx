@@ -88,7 +88,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
             prefetch={false}
             className='z-10'
             >
-          <Card className="gap-0 relative px-4 md:px-0 shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border-t rounded-27 md:border md:border-(--alto) cursor-pointer">
+          <Card className="gap-0 relative px-4 md:px-0 shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border-t rounded-27 md:border md:border-(--alto) cursor-pointer" data-testid="practitioner-card">
           
           <header>
              <CardHeader className="pb-4 px-2">
@@ -98,7 +98,8 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
             </h2>
             
             <div className="flex items-start gap-4">
-              <div className="text-center flex-1 min-w-0 items-center flex flex-col">
+              <div className="flex flex-col flex-1 min-w-0 text-left items-stretch">
+
                 <div className="flex w-full flex-row items-start border-b border-[#C4C4C4] md:border-0 md:flex-col md:items-center">
                   <div className="w-20 h-20 md:w-[150px] md:h-[150px] flex items-center justify-center overflow-hidden rounded-full bg-gray-300 md:mb-3 mr-0">
                     <img
@@ -115,9 +116,11 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                     />
                   </div>
 
-                  <div className="flex items-start md:items-center flex-col pl-4 md:pl-0 w-[calc(100%-80px)] md:w-full">
-                    <h3 className="text-base font-semibold text-primary flex text-left md:text-center md:align-items-center md:justify-center text-md md:text-xl transition-colors">
-                      {practitionerName}
+                  <div className="text-center flex-1 min-w-0 items-start sm:items-center flex flex-col">
+
+
+                    <h3 className="text-base font-semibold text-primary truncate ml-4 sm:ml-0">
+                      {practitionerName.split(" ").slice(0,4).map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")}
                     </h3>
 
                     {!("profession" in practitioner) && (
@@ -128,7 +131,8 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
 
                     {"practitioner_name" in practitioner && (
                       
-                        <p className="text-muted-foreground mb-2 font-semibold text-balance leading-tight truncate">
+                        <p className="text-muted-foreground mb-2 font-semibold leading-tight truncate ml-4 sm:ml-0">
+
                           {
                             practitioner.practitioner_title?.split(",")[0].trim()
                             }
@@ -137,7 +141,8 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
 
                     {!("practitioner_name" in practitioner) &&
                       practitioner.category && (
-                        <p className="text-muted-foreground mb-2 font-semibold text-balance leading-tight truncate">
+                        <p className="text-muted-foreground mb-2 font-semibold leading-tight truncate ml-4 sm:ml-0">
+
                           {practitioner.category.trim()}
                         </p>
                       )}
@@ -258,7 +263,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                             {p.practitioner_name.split('-').map((word:string) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
                           </a></h3>
                           <p className="text-sm font-medium text-secondary-foreground mt-1 truncate">
-                            {decodeUnicodeEscapes(fixMojibake(p.Title.split(",")[0]))}
+                            {fixMojibake(fixMojibake(fixMojibake(p.Title.split(",")[0])))}
                           </p>
                         </div>
                       </div></div>
@@ -273,7 +278,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
       )}
       {isProduct(practitioner) && (
         <Link href={`/products/${practitioner.category}/${practitioner.slug}`} className="block" prefetch={false}>
-          <Card className="gap-0 h-full relative px-4 md:px-0 shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border-t rounded-27 md:border md:border-(--alto) cursor-pointer" aria-labelledby={`product-name-${practitioner.slug}`}>
+          <Card className="gap-0 h-full relative px-4 md:px-0 shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border-t rounded-27 md:border md:border-(--alto) cursor-pointer" aria-labelledby={`product-name-${practitioner.slug}`} data-testid="practitioner-card">
             <CardHeader className="pb-2 px-2">
               <h2 id={`product-name-${practitioner.slug}`} className="sr-only">
                 {decodeUnicodeEscapes(practitioner.product_name)}
@@ -335,7 +340,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
       {isTreatment(practitioner) && (
       
         <Link href={`/treatments/${practitioner?.split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ").replace("Hifu", "HIFU").replace("Coolsculpting", "CoolSculpting")}`} className="block border-0" prefetch={false}>
-          <Card className="gap-0 h-full relative bg-transparent px-4 md:px-0 shadow-none md:border-0 duration-300 cursor-pointer" aria-labelledby={`treatment-name-${practitioner}`}>
+          <Card className="gap-0 h-full relative bg-transparent px-4 md:px-0 shadow-none md:border-0 duration-300 cursor-pointer" aria-labelledby={`treatment-name-${practitioner}`} data-testid="practitioner-card">
             <CardHeader className="px-2 border-0">
               <h2 id={`treatment-name-${practitioner?.split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ").replace("Hifu", "HIFU").replace("Coolsculpting", "CoolSculpting")}`} className="sr-only">
                 {practitioner?.split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ").replace("Hifu", "HIFU").replace("Coolsculpting", "CoolSculpting")}

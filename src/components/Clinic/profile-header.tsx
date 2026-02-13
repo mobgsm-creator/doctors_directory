@@ -1,3 +1,4 @@
+"use client"
 import {
   MapPin,
   Phone,
@@ -31,6 +32,10 @@ export function ProfileHeader({ clinic }: Readonly<ProfileHeaderProps>) {
                 }
                 alt={"/placeholder.svg"}
                 className="object-cover rounded-full min-w-full min-h-full"
+                onError={(e) => {
+                        e.currentTarget.onerror = null; // prevent infinite loop
+                        e.currentTarget.src = "/directory/images/doc.png";
+                      }}
               />
             </div>
 
@@ -44,7 +49,7 @@ export function ProfileHeader({ clinic }: Readonly<ProfileHeaderProps>) {
               </div>
 
               <div className="flex flex-row gap-2 mb-3 items-center">
-                <p className="text-pretty md:font-bold text-sm md:text-md">{roleTitle}</p>
+                <p className="text-muted-foreground mb-2 font-semibold text-balance leading-tight">{roleTitle}</p>
               </div>
 
               <div className="hidden md:block gap-0 flex items-center md:items-start flex-col ">

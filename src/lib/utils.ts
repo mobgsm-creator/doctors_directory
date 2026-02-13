@@ -166,10 +166,12 @@ export const flattenObject = (obj: any, parentKey = "", result: any = {}) => {
 };
 
 export function fixMojibake(str: string) {
-  return new TextDecoder("utf-8").decode(
-    Uint8Array.from(str, c => c.charCodeAt(0))
+  return decodeURIComponent(
+    escape(str)
   );
 }
+
+
 
 function stripContentReferenceFromString(str: string): string {
   let result = "";

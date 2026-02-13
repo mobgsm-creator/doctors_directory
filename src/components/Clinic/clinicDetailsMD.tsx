@@ -90,7 +90,7 @@ export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
     <div className="">
       {/* ABOUT */}
       <Section title={`About ${clinic.slug!.split("-").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")}`} id="about" data-testid='about'>
-        {decodeUnicodeEscapes(fixMojibake(clinic.about_section)) || "Not publicly listed"}
+        {fixMojibake(fixMojibake(fixMojibake(clinic.about_section))) || "Not publicly listed"}
       </Section>
 
       <div className="border-t border-gray-300 my-6"></div>
@@ -128,14 +128,14 @@ export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
         Array.isArray(parseList(clinic.accreditations)) ? (
           <ul className="list-disc ml-6 space-y-1" data-testid="accreditations-list">
             {parseList(clinic.accreditations).map((a: string, i: number) => (
-              <li key={i}>{fixMojibake(decodeUnicodeEscapes(a)).replaceAll("—", '')}</li>
+              <li key={i}>{fixMojibake(fixMojibake(fixMojibake(a))).replaceAll("—", '')}</li>
             ))} 
           </ul>) : <ul className="list-disc ml-6 space-y-1" data-testid="accreditations-list">
             <li> "Not listed"</li></ul>
       ) : (
           <ul className="list-disc ml-6 space-y-1" data-testid="accreditations-list">
             {accreditations_array.map((a: string, i: number) => (
-              <li>{fixMojibake(decodeUnicodeEscapes(a)).replaceAll("—", '')}
+              <li>{fixMojibake(fixMojibake(fixMojibake(a))).replaceAll("—", '')}
             </li>))}
           </ul>
       ) 
