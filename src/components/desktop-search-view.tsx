@@ -15,7 +15,7 @@ interface DesktopSearchViewProps {
   isSearchPage: boolean;
   handleSearch: () => void;
   isLoading: boolean;
-  handlePageChange: (page: number) => void;
+  handlePageChange?: (page: number) => void;
 }
 
 export function DesktopSearchView({
@@ -81,7 +81,7 @@ export function DesktopSearchView({
           />
         </div>
 
-        <SearchButton isLoading={isLoading} onClick={() =>{handleSearch(); handlePageChange(1)}} />
+        <SearchButton isLoading={isLoading} onClick={() =>{handleSearch(); handlePageChange?.(1)}} />
       </div>
 
       {showResults && (

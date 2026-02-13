@@ -173,37 +173,38 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
                        </Section>
                      )}
                      {/* PAYMENTS */}
-                     <Section title="Payment Options" id="payments">
-                       {Array.isArray(practitioner.Payments) ? (
-                         <ul className="list-disc ml-6 space-y-1">
-                           {practitioner.Payments.map((p: any, idx: number) => (
-                             <li key={idx}>{p}</li>
-                           ))}
-                         </ul>
-                       ) : practitioner.Payments && typeof practitioner.Payments === "object" ? (
-                         <div className="overflow-x-auto shadow-none">
-                           <table className="w-full text-sm bg-white">
-                             <tbody>
-                               {Object.entries(practitioner.Payments).map(
-                                 ([k, v]) =>
-                                   k !== "Source" && (
-                                     <tr key={k}>
-                                       <td className="border-0 px-4 py-2 font-medium">
-                                         {k?.toString()}
-                                       </td>
-                                       <td className="border-0 px-4 py-2">
-                                         {v?.toString()}
-                                       </td>
-                                     </tr>
-                                   )
-                               )}
-                             </tbody>
-                           </table>
-                         </div>
-                       ) : (
-                         practitioner.Payments || "Not listed"
-                       )}
-                     </Section>
+              {clinic.Payments && (
+              <Section title="Payment Options" id="payments">
+                {Array.isArray(clinic.Payments) ? (
+                  <ul className="list-disc ml-6 space-y-1">
+                    {clinic.Payments.map((p: any, idx: number) => (
+                      <li key={idx}>{p}</li>
+                    ))}
+                  </ul>
+                ) : clinic.Payments && typeof clinic.Payments === "object" ? (
+                  <div className="overflow-x-auto shadow-none">
+                    <table className="w-full text-sm bg-white">
+                      <tbody>
+                        {Object.entries(clinic.Payments).map(
+                          ([k, v]) =>
+                            k !== "Source" && (
+                              <tr key={k}>
+                                <td className="border-0 px-4 py-2 font-medium">
+                                  {k?.toString()}
+                                </td>
+                                <td className="border-0 px-4 py-2">
+                                  {v?.toString()}
+                                </td>
+                              </tr>
+                            )
+                        )}
+                      </tbody>
+                    </table>
+                  </div>
+                ) : (
+                  clinic.Payments || "Not listed"
+                )}
+              </Section>)}
                    
                    </div>
                  </div>

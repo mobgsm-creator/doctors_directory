@@ -377,17 +377,26 @@ const getEnhancedTreatment = (treatment: any) => {
 export function MoreItems({ items, maxItems = 15 }: MoreItemsProps) {
   return (
     <MoreItemsScroller>
-      {items.slice(0, maxItems).map((item, index) => (
-        <div
-          key={typeof item === "string" ? item : item!.slug ?? index}
-          className="shrink-0 grow w-[320px]"
-        >
-          {isProduct(item) && <PractitionerCard key = {item.product_name} practitioner={item} />}
-          {isClinic(item) && <PractitionerCard key = {item.slug} practitioner={item} />}
-          {isPractitioner(item) && <PractitionerCard key = {item.practitioner_name!+item.practitioner_title} practitioner={item} />}
-          {isTreatment(item) && <PractitionerCard key={item} practitioner={item} />}
-        </div>
-      ))}
+      {items.slice(0, maxItems).map((item, index) => {
+  if (
+    isProduct(item) ||
+    isClinic(item) ||
+    isPractitioner(item) ||
+    isTreatment(item)
+  ) {
+    return (
+      <div
+        key={typeof item === "string" ? item : item!.slug ?? index}
+        className="shrink-0 grow w-[320px]"
+      >
+        <PractitionerCard practitioner={item} />
+      </div>
+    );
+  }
+
+  return null;
+})}
+
     </MoreItemsScroller>
   );
 }

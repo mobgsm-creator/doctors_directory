@@ -20,7 +20,7 @@ interface MobileSearchViewProps {
   setShowResults: (show: boolean) => void;
   handleSearch: () => void;
   isLoading: boolean;
-  handlePageChange: (page: number) => void;
+  handlePageChange?: (page: number) => void;
 }
 
 export function MobileSearchView({
@@ -138,7 +138,7 @@ export function MobileSearchView({
               )}
             </div>
 
-            <SearchButton isLoading={isLoading} onClick={() =>{handleSearch(); handlePageChange(1)}} />
+            <SearchButton isLoading={isLoading} onClick={() =>{handleSearch(); handlePageChange?.(1)}} />
             <button
               onClick={() => setIsExpanded(false)}
               className="text-sm text-gray-500 hover:text-gray-700 mx-auto block"

@@ -135,7 +135,8 @@ export default function PractitionerDetailsSections({
         </Section>
       )} */}
       {/* INSURANCE */}
-      <Section title="Insurance Accepted" id="insurance">
+      {clinic.Insurace && (
+      <Section title="Insurance Accepted" id="insurance" data-testid='insurance'>
         {Array.isArray(clinic.Insurace) ? (
           <ul className="list-disc ml-6 space-y-1">
             {clinic.Insurace.map((i: any, idx: number) => (
@@ -143,52 +144,38 @@ export default function PractitionerDetailsSections({
             ))}
           </ul>
         ) : clinic.Insurace && typeof clinic.Insurace === "object" ? (
-          <div className="overflow-x-auto rounded-xl border border-gray-200 shadow-sm">
+          <div className="overflow-x-auto shadow-none">
             <table className="w-full text-sm bg-white">
               <tbody>
-                {Object.entries(clinic.Insurace).map(([k, v]) => (
-                  <tr key={k}>
-                    <td className="align-top border-0 px-1 py-1 font-medium">
-                      {k?.toString()}
-                    </td>
-                    <td className="align-top border-0 px-1 py-1">{v?.toString()}</td>
-                  </tr>
-                ))}
+                {Object.entries(clinic.Insurace).map(
+                  ([k, v]) =>
+                    k !== "Source" && (
+                      <tr key={k}>
+                        <td className="align-top border-0 px-1 py-1 font-medium">
+                          {k?.toString()}
+                        </td>
+                        <td className="align-top border-0 px-1 py-1">{
+                        v?.toString()}</td>
+                      </tr>
+                    )
+                )}
               </tbody>
             </table>
           </div>
         ) : (
           clinic.Insurace || "Not listed"
         )}
+        <div className="border-t border-gray-300 my-6"></div>
       </Section>
-      {/* PAYMENTS */}
-      {/* <Section title="Payment Options" id='payments'>
-        {Array.isArray(clinic.Payments) ? (
-          <ul className="list-disc ml-6 space-y-1">
-            {clinic.Payments.map((p: any, idx: number) => (
-              <li key={idx}>{p}</li>
-            ))}
-          </ul>
-        ) : clinic.Payments && typeof clinic.Payments === "object" ? (
-          <div className="overflow-x-auto rounded-xl border border-gray-200 shadow-sm">
-            <table className="w-full text-sm bg-white">
-              <tbody>
-                {Object.entries(clinic.Payments).map(([k, v]) => (
-                  <tr key={k}>
-                    <td className="border px-4 py-2 font-medium">{k?.toString()}</td>
-                    <td className="border px-4 py-2">{v?.toString()}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        ) : (
-          clinic.Payments || "Not listed"
-        )}
-      </Section> */}
-      <div className="border-t border-gray-300 my-6"></div>
+      
+      )
+    }
+
+      
+
       {/* FEES */}
-      <Section title="Estimated Fees" id="fees">
+      {clinic.Fees && (
+      <Section title="Estimated Fees" id="fees" data-testid='fees'>
         {clinic.Fees && typeof clinic.Fees === "object" ? (
           <div className="overflow-x-auto shadow-none">
             <table className="w-full text-sm bg-white">
@@ -197,11 +184,11 @@ export default function PractitionerDetailsSections({
                   ([k, v]) =>
                     k !== "Source" && (
                       <tr key={k}>
-                        <td className="align-top border-0 px-1 py-1 font-medium">{k.replaceAll("ProcedureRange","Pricing")}</td>
+                        <td className="align-top border-0 px-1 py-1 font-medium">{k.replaceAll("ProcedureRange","Pricing").replaceAll("Representative_Procedure_Ranges","Pricing")}</td>
                         <td className="align-top border-0 px-1 py-1">
                           {typeof v === "object" && v !== null
                             ?  Object.entries(v).map(([key,val]) =>
-                              (key !== "Source" && key !== "Notes") && (
+                              (key !== "Source" && key !== "Notes" && typeof val !== 'object' ) && (
                               <li key={key}>{key}: {val}</li>))
                             : String(v ?? "Not listed")}
                         </td>
@@ -215,6 +202,8 @@ export default function PractitionerDetailsSections({
           clinic.Fees || "Not listed"
         )}
       </Section>
+      )
+    }
     </div>
   );
 }
