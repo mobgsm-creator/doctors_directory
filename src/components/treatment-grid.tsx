@@ -25,6 +25,7 @@ export function TreatmentGrid({ treatments, searchQuery, currentPage, totalPages
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const paginatedTreatments = treatments.slice(startIndex, endIndex);
+  
 
   const getEnhancedTreatment = (treatment: Treatment): Treatment => {
     const mockData: Record<string, { satisfaction: number; averageCost: string; practitionerCount: number }> = {
@@ -49,7 +50,7 @@ export function TreatmentGrid({ treatments, searchQuery, currentPage, totalPages
           paginatedTreatments.map((treatment, index) => {
             const enhancedTreatment = getEnhancedTreatment(treatment);
             return (
-              <PractitionerCard key={treatment.name} practitioner={treatment} />
+              <PractitionerCard key={treatment.name} practitioner={treatment.name} />
             );
           })
         ) : (

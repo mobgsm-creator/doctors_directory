@@ -337,7 +337,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
           </Card>
         </Link>
       )}
-      {isTreatment(practitioner) && (
+      {isTreatment(practitioner) === true && (
       
         <Link href={`/treatments/${practitioner?.split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ").replace("Hifu", "HIFU").replace("Coolsculpting", "CoolSculpting")}`} className="block border-0" prefetch={false}>
           <Card className="gap-0 h-full relative bg-transparent px-4 md:px-0 shadow-none md:border-0 duration-300 cursor-pointer" aria-labelledby={`treatment-name-${practitioner}`} data-testid="practitioner-card">

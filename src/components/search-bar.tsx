@@ -4,7 +4,7 @@ import { useSearchLogic } from "@/hooks/use-search-logic";
 import { MobileSearchView } from "./mobile-search-view";
 import { DesktopSearchView } from "./desktop-search-view";
 type SearchBarProps = {
-  handlePageChange: (page: number) => void;
+  handlePageChange?: (page: number) => void;
 };
 export function SearchBar({handlePageChange}: Readonly<SearchBarProps>) {
   const {

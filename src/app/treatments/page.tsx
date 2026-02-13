@@ -95,7 +95,9 @@ export default function HomePage({
     }
     const queryString = params.toString();
     return queryString ? `/treatments?${queryString}` : '/treatments';
+  
   };
+
 
   return (
     <main className="bg-(--primary-bg-color)">

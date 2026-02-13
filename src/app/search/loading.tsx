@@ -23,7 +23,7 @@ export default function Loading() {
         </div>
       </div>
       <div className="max-w-6xl mx-auto py-6  border-[#C4C4C4]">
-        <SearchBar />
+        <SearchBar  />
       </div>
 
       <section className="pt-2 py-10 md:px-4 bg-white md:bg-[var(--primary-bg-color)]">

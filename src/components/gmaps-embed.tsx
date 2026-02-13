@@ -45,7 +45,7 @@ export function GoogleMapsEmbed({ url, width = "100%", height = "450", className
   }
 
   return (
-    <div className={className}>
+    <div className={`mt-8 mb-32 ${className}`}>
       <iframe
         src={embedUrl}
         width={width}
