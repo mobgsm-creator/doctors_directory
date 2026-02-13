@@ -167,10 +167,15 @@ export const flattenObject = (obj: any, parentKey = "", result: any = {}) => {
 };
 
 export function fixMojibake(str: string) {
-  return decodeURIComponent(
-    escape(str)
-  );
+  try {
+    return new TextDecoder("utf-8").decode(
+      Uint8Array.from(str, c => c.charCodeAt(0))
+    );
+  } catch {
+    return str;
+  }
 }
+
 
 export function isTreatment(obj:unknown): obj is string{
     return typeof obj === "string" && modalities.includes(obj.split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ").replace("Hifu", "HIFU").replace("Coolsculpting", "CoolSculpting"));
