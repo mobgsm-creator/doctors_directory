@@ -10,7 +10,7 @@ import { modalities } from "@/lib/data";
 import { TreatmentMap } from "@/lib/data";
 import { Button } from "./ui/button";
 import practitionersJson from "@/../public/derms_processed_new_5403.json";
-
+import { isClinic, isPractitioner, isProduct, isTreatment } from "@/lib/utils";
 const practitionersData = practitionersJson as unknown as Practitioner[];
 const practitionersIndex = new Map<string, Practitioner[]>();
 
@@ -26,21 +26,6 @@ for (const p of practitionersData) {
 
 interface PractitionerCardProps {
   practitioner: Practitioner | Clinic | Product | string;
-}
-function isTreatment(obj:unknown): obj is string{
-    return typeof obj === "string" && modalities.includes(obj.split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ").replace("Hifu", "HIFU").replace("Coolsculpting", "CoolSculpting"));
-}
-function isPractitioner(obj: unknown): obj is Practitioner {
-
-  return typeof obj === "object" && obj !== null && "practitioner_name" in obj;
-}
-
-function isClinic(obj: unknown): obj is Clinic {
-  return typeof obj === "object" && obj !== null && "isJCCP" in obj;
-}
-
-function isProduct(obj: unknown): obj is Product {
-  return typeof obj === "object" && obj !== null && "product_name" in obj;
 }
 
 

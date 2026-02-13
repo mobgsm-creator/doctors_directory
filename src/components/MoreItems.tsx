@@ -1,6 +1,7 @@
 "use client"
 import type { Product, Clinic, Practitioner } from '@/lib/types'
 import { MoreItemsScroller } from "./MoreItemsScroller";
+import { isClinic, isPractitioner, isProduct, isTreatment } from "@/lib/utils";
 import { PractitionerCard } from "./practitioner-card";
 interface MoreItemsProps {
   items: Array<Product | Clinic | Practitioner|string|undefined>
@@ -8,22 +9,7 @@ interface MoreItemsProps {
   scrollAmount?: number
 }
 
-function isProduct(obj: unknown): obj is Product {
-  return typeof obj === 'object' && obj !== null && 'product_name' in obj
-}
 
-function isClinic(obj: unknown): obj is Clinic {
-  return typeof obj === 'object' && obj !== null && 'City' in obj
-}
-
-function isPractitioner(obj: unknown): obj is Practitioner {
-  return typeof obj === 'object' && obj !== null && 'practitioner_name' in obj
-}
-
-function isTreatment(obj: unknown): obj is string {
-
-  return typeof obj === 'string' && obj !== null 
-}
 const getEnhancedTreatment = (treatment: any) => {
     const mockData: Record<string, { satisfaction: number; averageCost: string; practitionerCount: number }> = {
       "Acne": { satisfaction: 82, averageCost: "$200-$800+", practitionerCount: 101 },
