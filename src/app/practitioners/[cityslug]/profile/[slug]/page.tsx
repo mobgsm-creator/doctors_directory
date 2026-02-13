@@ -41,7 +41,7 @@ interface ProfilePageProps {
   };
 }
 
-export default async function ProfilePage({ params }: Readonly<ProfilePageProps>) {
+export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
   const filePath = path.join(process.cwd(), "public", "derms_processed_new_5403.json");
   const fileContents = fs.readFileSync(filePath, "utf-8");
   const clinics: Practitioner[] = JSON.parse(fileContents);
@@ -141,12 +141,7 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
                            className="border-l border-black pl-2 underline"
                            aria-label={`${practitioner.reviewCount} reviews`}
                          >
-                           {practitioner.gmapsReviews
-                             ? practitioner.gmapsReviews.filter(
-                                 (review : any) => review.rating === "5 stars"
-                               ).length
-                             : 0}
-                           {"+ "} 5 Star Reviews
+                           {practitioner.reviewCount ? practitioner.reviewCount+"+ Reviews Analysed" : "0"}
                          </span>
                        </div>
                        <div className="border-t border-gray-300 my-6"></div>

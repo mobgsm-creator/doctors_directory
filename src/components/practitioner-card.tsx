@@ -119,7 +119,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                         <p className="text-muted-foreground mb-2 font-semibold leading-tight truncate ml-4 sm:ml-0">
 
                           {
-                            practitioner.practitioner_title?.split(",")[0].trim()
+                            practitioner.practitioner_title?.split(",")[0].split(" ").slice(0,4).map((word:string) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")
                             }
                         </p>
                       )}
@@ -248,7 +248,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                             {p.practitioner_name.split('-').map((word:string) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
                           </a></h3>
                           <p className="text-sm font-medium text-secondary-foreground mt-1 truncate">
-                            {fixMojibake(fixMojibake(fixMojibake(p.Title.split(",")[0])))}
+                            {p.Title.split(",")[0].split(" ").slice(0,4).map((word:string) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")}
                           </p>
                         </div>
                       </div></div>

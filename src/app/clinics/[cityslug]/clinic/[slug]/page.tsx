@@ -44,7 +44,7 @@ interface ProfilePageProps {
 }
 
 
-export default async function ProfilePage({ params }: Readonly<ProfilePageProps>) {
+export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
   const filePath = path.join(process.cwd(), "public", "clinics_processed_new.json");
   const fileContents = fs.readFileSync(filePath, "utf-8");
   const clinics: Clinic[] = JSON.parse(fileContents);
@@ -144,12 +144,10 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
                     className="border-l border-black pl-2 underline"
                     aria-label={`${clinic.reviewCount} reviews`}
                   >
-                    {clinic.gmapsReviews
-                      ? clinic.gmapsReviews.filter(
-                          (review) => review.rating === "5 stars"
-                        ).length
-                      : 0}
-                    {"+ "} 5 Star Reviews
+                    {clinic.reviewCount ? clinic.reviewCount+"+ Reviews Analysed" : "0"}
+                     
+              
+
                   </span>
                 </div>
                 <div className="border-t border-gray-300 my-6"></div>
