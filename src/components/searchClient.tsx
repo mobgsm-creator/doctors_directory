@@ -105,7 +105,7 @@ export default function SearchPage() {
         </div>
       </div>
       <div className="max-w-6xl mx-auto py-6 border-[#C4C4C4] px-2 md:px-0">
-        <SearchBar />
+        <SearchBar handlePageChange={handlePageChange} />
         <div className="block md:hidden">
           <Button
             onClick={handleToggleFilters}

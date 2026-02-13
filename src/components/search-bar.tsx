@@ -3,8 +3,10 @@
 import { useSearchLogic } from "@/hooks/use-search-logic";
 import { MobileSearchView } from "./mobile-search-view";
 import { DesktopSearchView } from "./desktop-search-view";
-
-export function SearchBar() {
+type SearchBarProps = {
+  handlePageChange: (page: number) => void;
+};
+export function SearchBar({handlePageChange}: Readonly<SearchBarProps>) {
   const {
     isSearchPage,
     filters,
@@ -38,6 +40,7 @@ export function SearchBar() {
           setShowResults={setShowResults}
           handleSearch={handleSearch}
           isLoading={isLoading}
+          handlePageChange={handlePageChange}
         />
 
         <DesktopSearchView
@@ -50,6 +53,7 @@ export function SearchBar() {
           isSearchPage={isSearchPage}
           handleSearch={handleSearch}
           isLoading={isLoading}
+          handlePageChange={handlePageChange}
         />
       </div>
     </div>

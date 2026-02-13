@@ -153,8 +153,8 @@ function transformClinic(raw: any): Clinic {
     isHIW: parseLabels(raw.isHIW),
     isHIS: parseLabels(raw.isHIS),
     isRQIA: parseLabels(raw.isRQIA),
-    about_section: decodeUnicodeEscapes(fixMojibake(raw.about_section)),
-    accreditations: decodeUnicodeEscapes(fixMojibake(raw.accreditations)),
+    about_section: raw.about_section,
+    accreditations: raw.accreditations,
     awards: raw.awards,
     affiliations: raw.affiliations,
     hours: safeParse(raw.hours),
@@ -248,14 +248,14 @@ async function loadFromFileSystem() {
 
   // console.log("Transformed Products", productsData.length)
 
-  return {  clinicsData}
+  return { practitionersData, clinicsData}
 }
-const { clinicsData} = await loadFromFileSystem();
+const {practitionersData, clinicsData} = await loadFromFileSystem();
 
-// fs.writeFileSync(
-//   "derms_processed_new_5403.json",
-//   JSON.stringify( practitionersData )
-// );
+fs.writeFileSync(
+  "derms_processed_new_5403.json",
+  JSON.stringify( practitionersData )
+);
 fs.writeFileSync(
   "clinics_processed_new.json",
   JSON.stringify(clinicsData)

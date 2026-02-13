@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Loader2, Search } from "lucide-react";
 import { SearchDropdown } from "./search-dropdown";
+import { SearchButton } from "./search-button";
 
 interface MobileSearchViewProps {
   isExpanded: boolean;
@@ -19,6 +20,7 @@ interface MobileSearchViewProps {
   setShowResults: (show: boolean) => void;
   handleSearch: () => void;
   isLoading: boolean;
+  handlePageChange: (page: number) => void;
 }
 
 export function MobileSearchView({
@@ -34,6 +36,7 @@ export function MobileSearchView({
   setShowResults,
   handleSearch,
   isLoading,
+  handlePageChange,
 }: MobileSearchViewProps) {
   return (
     <div className="block md:hidden">
@@ -135,18 +138,7 @@ export function MobileSearchView({
               )}
             </div>
 
-            <Button
-              onClick={handleSearch}
-              className="w-full h-12 bg-black hover:bg-black text-white rounded-lg flex items-center justify-center"
-              disabled={isLoading}
-            >
-              {isLoading ? (
-                <Loader2 className="h-5 w-5 animate-spin" />
-              ) : (
-                <Search className="h-5 w-5" />
-              )}
-            </Button>
-
+            <SearchButton isLoading={isLoading} onClick={() =>{handleSearch(); handlePageChange(1)}} />
             <button
               onClick={() => setIsExpanded(false)}
               className="text-sm text-gray-500 hover:text-gray-700 mx-auto block"

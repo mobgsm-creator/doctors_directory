@@ -24,7 +24,7 @@ import {
 import { MoreItems } from "@/components/MoreItems";
 import { flattenObject } from "@/lib/utils";
 import { Section } from "@/components/ui/section";
-import { decodeUnicodeEscapes, fixMojibake } from "@/lib/utils";
+
 function mergeBoxplotDataFromDict(
   base: BoxPlotDatum[],
   incoming: Record<string, ItemMeta>
@@ -92,15 +92,15 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
           <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem>
-              <BreadcrumbLink href="/">Home</BreadcrumbLink>
+              <BreadcrumbLink href="/directory">Home</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbLink href="/clinics">Clinics</BreadcrumbLink>
+              <BreadcrumbLink href="/directory/clinics">Clinics</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbLink href={`/clinics/${cityslug}`}>{`${cityslug}`}</BreadcrumbLink>
+              <BreadcrumbLink href={`/directory/clinics/${cityslug}`}>{`${cityslug}`}</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>

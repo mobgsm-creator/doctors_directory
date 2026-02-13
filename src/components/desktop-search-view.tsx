@@ -15,6 +15,7 @@ interface DesktopSearchViewProps {
   isSearchPage: boolean;
   handleSearch: () => void;
   isLoading: boolean;
+  handlePageChange: (page: number) => void;
 }
 
 export function DesktopSearchView({
@@ -27,10 +28,11 @@ export function DesktopSearchView({
   isSearchPage,
   handleSearch,
   isLoading,
+  handlePageChange
 }: DesktopSearchViewProps) {
   return (
     <div className="hidden md:block">
-      <div className="flex flex-row items-center mb-2">
+      <div className="flex flex-row items-center mb-2 shadow-sm">
         <div className="relative">
           <button
             className="flex-1 bg-white border border-r-0 border-gray-300 px-4 py-3 rounded-l-lg"
@@ -79,7 +81,7 @@ export function DesktopSearchView({
           />
         </div>
 
-        <SearchButton isLoading={isLoading} onClick={handleSearch} />
+        <SearchButton isLoading={isLoading} onClick={() =>{handleSearch(); handlePageChange(1)}} />
       </div>
 
       {showResults && (

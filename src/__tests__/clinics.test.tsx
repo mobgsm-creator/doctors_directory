@@ -8,7 +8,8 @@ import { set } from 'zod';
 import { locations, modalities } from '@/lib/data';
 import TestServicesCount from '@/components/test/testServicesCount';
 import TestTreatmentCount from '@/components/test/testTreatmentsCount';
-const logFile = fs.createWriteStream('test-output-2.log', { flags: 'w' });
+import TestClinicsCount from '@/components/test/testClinicsCount';
+const logFile = fs.createWriteStream('Clinics-City-Services-Collections.log', { flags: 'w' });
 const originalLog = console.log;
 console.log = (...args) => {
   originalLog(...args);
@@ -19,96 +20,87 @@ const all_clinics: Clinic[] = JSON.parse(fs.readFileSync(filePath, 'utf8'));
 const clinics = all_clinics
 describe('PractTreatmentPage rendering', () => {
   const validRoutes: Array<{ city: string; service: string }> = [];
-  let count=0
   locations.forEach((cityslug) => {
   test('all city/service combinations render without crashing', () => {
-    
-    
-      const start = performance.now()
-      count+=1
-   
       modalities.forEach((treatmentslug) => {
+
         try {
           const { unmount } = render(
             <TestTreatmentCount
               params={{ cityslug, treatmentslug }}
             />
           );
-          const ClinicsList = screen.getAllByTestId('clinic-card');  
+          const ClinicsList = screen.getAllByTestId('practitioner-card');  
           validRoutes.push({ city: cityslug, service: treatmentslug });
           unmount();
 
-        } catch (e) {
-          
-          
-        }
-
-  
-
-        
-      });
-      const end = performance.now()
-      console.log(count, cityslug, end - start)
-
-      
-      
+        } catch (e) {  
+        } 
+      }); 
     });
-    
-   
   });
   afterAll(() => {
-    console.log(`\n========== VALID ROUTES ==========`);
+    console.log(`\n========== VALID ROUTES FOR PRACTITIONERS/CITY/SERVICES ==========`);
+    validRoutes.forEach((route) => {
+      console.log(`/directory/practitioners/${route.city}/services/${route.service}`);
+    });
+  });
+});
+describe('ClinicTreatmentPage rendering', () => {
+  const validRoutes: Array<{ city: string; service: string }> = [];
+  locations.forEach((cityslug) => {
+  test('all city/service combinations render without crashing', () => {
+      modalities.forEach((serviceslug) => {
+        try {
+          const { unmount } = render(
+            <TestServicesCount
+              params={{ cityslug, serviceslug }}
+            />
+          );
+          const ClinicsList = screen.getAllByTestId('practitioner-card');  
+          validRoutes.push({ city: cityslug, service: serviceslug });
+          unmount();
+
+        } catch (e) { 
+        } 
+      });
+    });   
+  });
+  afterAll(() => {
+    console.log(`\n========== VALID ROUTES FOR CLINICS/CITY/SERVICES ==========`);
     validRoutes.forEach((route) => {
       console.log(`/directory/clinics/${route.city}/services/${route.service}`);
     });
   });
 });
-// describe('ClinicTreatmentPage rendering', () => {
-//   const validRoutes: Array<{ city: string; service: string }> = [];
-//   let count=0
-//   locations.forEach((cityslug) => {
-//   test('all city/service combinations render without crashing', () => {
-    
-    
-//       const start = performance.now()
-//       count+=1
-   
-//       modalities.forEach((serviceslug) => {
-//         try {
-//           const { unmount } = render(
-//             <TestServicesCount
-//               params={{ cityslug, serviceslug }}
-//             />
-//           );
-//           const ClinicsList = screen.getAllByTestId('clinic-card');  
-//           validRoutes.push({ city: cityslug, service: serviceslug });
-//           unmount();
+describe('ClinicPage rendering', () => {
+  const validRoutes: Array<{ city: string; slug: string }> = [];
+  locations.forEach((cityslug) => {
+  test('all city/clinic combinations render without crashing', () => {
+      clinics.forEach((clinic) => {
+        const slug=clinic.slug!
+        try {
+          const { unmount } = render(
+            <TestClinicsCount
+              params={{ cityslug, slug }}
+            />
+          );
+          const ClinicsList = screen.getAllByTestId('practitioner-card');  
+          validRoutes.push({ city: cityslug, slug: slug });
+          unmount();
 
-//         } catch (e) {
-          
-          
-//         }
-
-  
-
-        
-//       });
-//       const end = performance.now()
-//       console.log(count, cityslug, end - start)
-
-      
-      
-//     });
-    
-   
-//   });
-//   afterAll(() => {
-//     console.log(`\n========== VALID ROUTES ==========`);
-//     validRoutes.forEach((route) => {
-//       console.log(`/directory/clinics/${route.city}/services/${route.service}`);
-//     });
-//   });
-// });
+        } catch (e) { 
+        } 
+      });
+    });   
+  });
+  afterAll(() => {
+    console.log(`\n========== VALID ROUTES FOR CLINICS/CITY ==========`);
+    validRoutes.forEach((route) => {
+      console.log(`/directory/clinics/${route.city}/clinic/${route.slug}`);
+    });
+  });
+});
 // describe('ClinicDetailsMarkdown', () => {
 //   let liTagCounts: Map<string, number> = new Map();
 //   let renderErrors: { slug: string | undefined; error: string }[] = [];
@@ -116,37 +108,34 @@ describe('PractTreatmentPage rendering', () => {
 //   beforeAll(() => {
 //     expect(clinics.length).toBeGreaterThan(0);
 //   });
-//   // test('should render ClinicDetailsMarkdown component and track errors', () => {
-//   //   let renderSuccessCount = 0;
-//   //   let failedClinics = 0;
+  // test('should render ClinicDetailsMarkdown component and track errors', () => {
 
-//   //   clinics.forEach((clinic) => {
-//   //     try {
-//   //       render(<ClinicDetailsMarkdown clinic={clinic} />);
-//   //       renderSuccessCount++;
-//   //       cleanup();
-//   //     } catch (error) {
-//   //       failedClinics++;
-//   //       renderErrors.push({ 
-//   //         slug: clinic.slug, 
-//   //         error: error instanceof Error ? error.message : String(error) 
-//   //       });
-//   //     }
-//   //   });
+  //   clinics.forEach((clinic) => {
+  //     try {
+  //       render(<ClinicDetailsMarkdown clinic={clinic} />);
+  //       console.log(`/directory/clinics/${clinic.slug}`);
+  //       cleanup();
+  //     } catch (error) {
+  //       renderErrors.push({ 
+  //         slug: clinic.slug, 
+  //         error: error instanceof Error ? error.message : String(error) 
+  //       });
+  //     }
+  //   });
 
-//   //   console.log(`\n========== RENDER SUMMARY ==========`);
-//   //   console.log(`Successfully rendered: ${renderSuccessCount}/${clinics.length} clinics`);
-//   //   console.log(`Failed to render: ${renderErrors.length} clinics`);
+  //   console.log(`\n========== RENDER SUMMARY ==========`);
+  //   console.log(`Successfully rendered: ${renderSuccessCount}/${clinics.length} clinics`);
+  //   console.log(`Failed to render: ${renderErrors.length} clinics`);
     
-//   //   if (renderErrors.length > 0) {
-//   //     console.log(`\nFailed clinics:`);
-//   //     renderErrors.forEach(({ slug, error }) => {
-//   //       console.log(`- ${slug}: ${error.substring(0, 100)}`);
-//   //     });
-//   //   }
+  //   if (renderErrors.length > 0) {
+  //     console.log(`\nFailed clinics:`);
+  //     renderErrors.forEach(({ slug, error }) => {
+  //       console.log(`- ${slug}: ${error.substring(0, 100)}`);
+  //     });
+  //   }
 
-//   //   expect(renderSuccessCount).toBeGreaterThanOrEqual(10);
-//   // });
+  //   expect(renderSuccessCount).toBeGreaterThanOrEqual(10);
+  // });
 
 // //   test('should have Accreditations section for successfully rendered clinics', () => {
 // //     let clinicsWithSection = 0;
@@ -465,13 +454,7 @@ describe('PractTreatmentPage rendering', () => {
 //   //   }
 //   //   expect(mojibakeCount).toBe(0);
     
-//    });
+  //  });
  
 
-
-//   afterAll(() => {
-//     console.log(`\n========== FINAL SUMMARY ==========`);
-//     console.log(`Tested ${clinics.length} clinic`);
-
-//   });
 
