@@ -1,6 +1,7 @@
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
-import { Clinic, Practitioner } from "./types"
+import { Clinic, Practitioner, Product } from "./types"
+import { modalities } from "./data"
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
@@ -171,6 +172,21 @@ export function fixMojibake(str: string) {
   );
 }
 
+export function isTreatment(obj:unknown): obj is string{
+    return typeof obj === "string" && modalities.includes(obj.split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ").replace("Hifu", "HIFU").replace("Coolsculpting", "CoolSculpting"));
+}
+export function isPractitioner(obj: unknown): obj is Practitioner {
+
+  return typeof obj === "object" && obj !== null && "practitioner_name" in obj;
+}
+
+export function isClinic(obj: unknown): obj is Clinic {
+  return typeof obj === "object" && obj !== null && "isJCCP" in obj;
+}
+
+export function isProduct(obj: unknown): obj is Product {
+  return typeof obj === "object" && obj !== null && "product_name" in obj;
+}
 
 
 function stripContentReferenceFromString(str: string): string {
