@@ -45,7 +45,7 @@ interface ProfilePageProps {
 
 
 export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
-  const filePath = path.join(process.cwd(), "public", "clinics_processed_new.json");
+  const filePath = path.join(process.cwd(), "public", "clinics_processed_new_data.json");
   const fileContents = fs.readFileSync(filePath, "utf-8");
   const clinics: Clinic[] = JSON.parse(fileContents);
   const { cityslug,slug } = params;
@@ -66,7 +66,7 @@ export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
     (hoursObj && typeof hoursObj === 'object' && hoursObj["Typical_hours_listed_in_directories"]) ?? clinic?.hours;
   const flatHours = typeof hoursObj === 'object' && hoursObj !== null ? flattenObject(hours) : hours
 
-  
+ 
 
 
   const boxplotData = mergeBoxplotDataFromDict(
@@ -234,7 +234,7 @@ export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
 
 // export async function generateStaticParams() {
 
-//   const filePath = path.join(process.cwd(), 'public', 'clinics_processed_new.json');
+//   const filePath = path.join(process.cwd(), 'public', 'clinics_processed_new_data.json');
 //   const fileContents = fs.readFileSync(filePath, 'utf-8');
 //   const clinics: Clinic[] = JSON.parse(fileContents);
 //   return clinics.map((clinic) => ({
@@ -244,7 +244,7 @@ export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
 // }
 
 export async function generateMetadata({ params }: ProfilePageProps) {
-  const filePath = path.join(process.cwd(), "public", "clinics_processed_new.json");
+  const filePath = path.join(process.cwd(), "public", "clinics_processed_new_data.json");
   const fileContents = fs.readFileSync(filePath, "utf-8");
   const clinics: Clinic[] = JSON.parse(fileContents);
   const clinic = clinics.find((p) => p.slug === params.slug);

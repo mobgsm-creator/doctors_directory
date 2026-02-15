@@ -39,7 +39,7 @@ interface AccreditedClinicsPageProps {
 }
 
 export default async function AccreditedClinicsPage({ params }: Readonly<AccreditedClinicsPageProps>) {
-  const filePath = path.join(process.cwd(), "public", "clinics_processed_new.json")
+  const filePath = path.join(process.cwd(), "public", "clinics_processed_new_data.json")
   const fileContents = fs.readFileSync(filePath, "utf-8")
   const clinics: Clinic[] = JSON.parse(fileContents)
   const { accreditation, cityslug } = params
@@ -112,7 +112,7 @@ export default async function AccreditedClinicsPage({ params }: Readonly<Accredi
 }
 
 // export async function generateStaticParams() {
-//   const filePath = path.join(process.cwd(), "public", "clinics_processed_new.json")
+//   const filePath = path.join(process.cwd(), "public", "clinics_processed_new_data.json")
 //   const fileContents = fs.readFileSync(filePath, "utf-8")
 //   const clinics: Clinic[] = JSON.parse(fileContents)
 //

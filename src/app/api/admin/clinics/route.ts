@@ -4,7 +4,7 @@ import { validateClinic } from '@/lib/admin/validators'
 
 export async function GET() {
   try {
-    const clinics = await readJsonFile('clinics_processed_new.json')
+    const clinics = await readJsonFile('clinics_processed_new_data.json')
 
     return NextResponse.json(clinics)
   } catch (error) {
@@ -23,9 +23,9 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Invalid clinic data', details: validation.error.errors }, { status: 400 })
     }
 
-    const clinics = await readJsonFile('clinics_processed_new.json')
+    const clinics = await readJsonFile('clinics_processed_new_data.json')
     const updated = [...clinics, validation.data]
-    await writeJsonFile('clinics_processed_new.json', updated)
+    await writeJsonFile('clinics_processed_new_data.json', updated)
 
     return NextResponse.json(validation.data, { status: 201 })
   } catch (error) {

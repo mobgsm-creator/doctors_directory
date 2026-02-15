@@ -14,7 +14,7 @@ import path from "path";
 import PractitionerTabs from "@/components/Practitioner/PractitionerTabs";
 import { flattenObject } from "@/lib/utils";
 import { Section } from "@/components/ui/section";
-import clinicsJson from "@/../public/clinics_processed_new.json";
+import clinicsJson from "@/../public/clinics_processed_new_data.json";
 import { Clinic } from "@/lib/types";
 import { MoreItems } from "@/components/MoreItems";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb"

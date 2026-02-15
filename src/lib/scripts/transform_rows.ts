@@ -160,8 +160,8 @@ function transformClinic(raw: any): Clinic {
     hours: safeParse(raw.hours),
     Practitioners: safeParse(raw.Practitioners),
     Insurace: safeParse(raw.Insurace),
-    Payments: safeParse(raw.Payments), 
-    Fees: safeParse(raw.Fees),
+    Payments: safeParse(raw.Payments),
+    Fees: raw.Fees,
     Treatments: safeParse(raw.Treatments_normalized),
   };
 }
@@ -252,12 +252,12 @@ async function loadFromFileSystem() {
 }
 const {practitionersData, clinicsData} = await loadFromFileSystem();
 
+// fs.writeFileSync(
+//   "derms_processed_new_5403.json",
+//   JSON.stringify( practitionersData )
+// );
 fs.writeFileSync(
-  "derms_processed_new_5403.json",
-  JSON.stringify( practitionersData )
-);
-fs.writeFileSync(
-  "clinics_processed_new.json",
+  "clinics_processed_new_data.json",
   JSON.stringify(clinicsData)
 );
 // fs.writeFileSync(

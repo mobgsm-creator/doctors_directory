@@ -4,7 +4,7 @@ import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import type { Product } from "@/lib/types";
 import { Badge } from "@/components/ui/badge";
 import { Star, MapPin } from "lucide-react";
-import clinicsJson from "@/../public/clinics_processed_new.json";
+import clinicsJson from "@/../public/clinics_processed_new_data.json";
 import fs from "fs";
 import path from "path";
 import { brands } from "@/lib/data";

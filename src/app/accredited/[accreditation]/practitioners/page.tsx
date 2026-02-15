@@ -14,7 +14,7 @@ import {
 import { Clinic, Practitioner } from "@/lib/types"
 import fs from "fs"
 import path from "path"
-import clinicsJson from "@/../public/clinics_processed_new.json";
+import clinicsJson from "@/../public/clinics_processed_new_data.json";
 
 function mapAccreditationToFieldPractitioner(accreditation: string): keyof Practitioner {
   const mapping: Record<string, keyof Practitioner> = {

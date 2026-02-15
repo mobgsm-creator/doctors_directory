@@ -1,7 +1,7 @@
 'use server'
 import { cache } from "react";
 import { Clinic, Practitioner, Product, SearchFilters } from "@/lib/types"
-import clinicsJson from "../../../public/clinics_processed_new.json";
+import clinicsJson from "../../../public/clinics_processed_new_data.json";
 import practitionersJson from "../../../public/derms_processed_new_5403.json";
 import productsJson from "../../../public/products_processed_new.json";
 import { modalities } from "@/lib/data";

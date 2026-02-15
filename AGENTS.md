@@ -137,7 +137,7 @@ import type { Clinic, Practitioner } from '@/lib/types'
 - Use `readJsonFile` and `writeJsonFile` from `@/lib/admin/file-utils`
 - Handle Unicode escapes with `decodeUnicodeEscapes()`
 - Parse data safely with `safeParse()` utility
-- Data files: `clinics_processed_new.json`, etc. in data directory
+- Data files: `clinics_processed_new_data.json`, etc. in data directory
 
 ### Project Configuration
 - Base path: `/directory` (configured in next.config.js)
