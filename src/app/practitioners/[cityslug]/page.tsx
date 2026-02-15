@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Star, MapPin } from "lucide-react";
 import fs from "fs";
 import path from "path";
-import clinicsJson from "@/../public/clinics_processed_new.json";
+import clinicsJson from "@/../public/clinics_processed_new_data.json";
 import {
   Breadcrumb,
   BreadcrumbItem,

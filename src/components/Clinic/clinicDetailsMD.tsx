@@ -246,26 +246,22 @@ export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
 
       {/* FEES */}
       {clinic.Fees && (
-      <Section title="Estimated Fees" id="fees" data-testid='fees'>
-        {clinic.Fees && typeof clinic.Fees === "object" ? (
+      <Section title={`Estimated Fees in ${clinic.City}`} id="fees" data-testid='fees'>
+        {clinic.Fees && typeof JSON.parse(clinic.Fees) === "object" ? (
           <div className="overflow-x-auto shadow-none">
             <table className="w-full text-sm bg-white">
               <tbody>
-                {Object.entries(clinic.Fees).map(
+                {Object.entries(JSON.parse(clinic.Fees)).map(
                   ([k, v]) =>
-                    k !== "Source" && (
+                    
+                  
                       <tr key={k}>
-                        <td className="align-top border-0 px-1 py-1 font-medium">{k.replaceAll("ProcedureRange","Pricing").replaceAll("Representative_Procedure_Ranges","Pricing")}</td>
+                        <td className="align-top border-0 px-1 py-1 font-medium">{(v as any)?.['treatment']}</td>
                         <td className="align-top border-0 px-1 py-1">
-                          {typeof v === "object" && v !== null
-                            ?  Object.entries(v).map(([key,val]) =>
-                              (key !== "Source" && key !== "Notes" && typeof val !== 'object' ) && (
-                              <li key={key}>{key}: {val}</li>))
-                            : String(v ?? "Not listed")}
-                        </td>
+                          {(v as any)?.['price'].split("(")[0]}</td>
                       </tr>
                     )
-                )}
+                }
               </tbody>
             </table>
           </div>

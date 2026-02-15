@@ -7,7 +7,7 @@ import { Star, MapPin } from "lucide-react";
 import {edu, accreditations} from "@/lib/data";
 import { ArrowLeft } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import clinicsJson from "@/../public/clinics_processed_new.json";
+import clinicsJson from "@/../public/clinics_processed_new_data.json";
 import {
   Breadcrumb,
   BreadcrumbItem,

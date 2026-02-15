@@ -15,7 +15,7 @@ import {
 import { Clinic, Practitioner } from "@/lib/types"
 import fs from "fs"
 import path from "path"
-import clinicsJson from "@/../public/clinics_processed_new.json";
+import clinicsJson from "@/../public/clinics_processed_new_data.json";
 import { accreditations } from "@/lib/data"
 import { PractitionerCard } from "@/components/practitioner-card"
 

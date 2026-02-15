@@ -7,7 +7,7 @@ export async function GET(
   { params }: { params: { slug: string } }
 ) {
   try {
-    const clinics = await readJsonFile('clinics_processed_new.json')
+    const clinics = await readJsonFile('clinics_processed_new_data.json')
     const clinic = clinics.find((c: any) => c.slug === params.slug)
 
     if (!clinic) {
@@ -34,7 +34,7 @@ export async function PUT(
       return NextResponse.json({ error: 'Invalid clinic data', details: validation.error.errors }, { status: 400 })
     }
 
-    const clinics = await readJsonFile('clinics_processed_new.json')
+    const clinics = await readJsonFile('clinics_processed_new_data.json')
     const index = clinics.findIndex((c: any) => c.slug === params.slug)
 
     if (index === -1) {
@@ -43,7 +43,7 @@ export async function PUT(
 
     const updated = [...clinics]
     updated[index] = validation.data
-    await writeJsonFile('clinics_processed_new.json', updated)
+    await writeJsonFile('clinics_processed_new_data.json', updated)
 
     return NextResponse.json(validation.data)
   } catch (error) {
@@ -57,14 +57,14 @@ export async function DELETE(
   { params }: { params: { slug: string } }
 ) {
   try {
-    const clinics = await readJsonFile('clinics_processed_new.json')
+    const clinics = await readJsonFile('clinics_processed_new_data.json')
     const filtered = clinics.filter((c: any) => c.slug !== params.slug)
 
     if (clinics.length === filtered.length) {
       return NextResponse.json({ error: 'Clinic not found' }, { status: 404 })
     }
 
-    await writeJsonFile('clinics_processed_new.json', filtered)
+    await writeJsonFile('clinics_processed_new_data.json', filtered)
     return NextResponse.json({ success: true })
   } catch (error) {
     console.error('Failed to delete clinic:', error)
