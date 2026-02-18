@@ -1,0 +1,586 @@
+{
+  "numFailedTestSuites": 2,
+  "numFailedTests": 3,
+  "numPassedTestSuites": 1,
+  "numPassedTests": 27,
+  "numPendingTestSuites": 0,
+  "numPendingTests": 0,
+  "numRuntimeErrorTestSuites": 0,
+  "numTodoTests": 0,
+  "numTotalTestSuites": 3,
+  "numTotalTests": 30,
+  "openHandles": [],
+  "snapshot": {
+    "added": 0,
+    "didUpdate": false,
+    "failure": false,
+    "filesAdded": 0,
+    "filesRemoved": 0,
+    "filesRemovedList": [],
+    "filesUnmatched": 0,
+    "filesUpdated": 0,
+    "matched": 0,
+    "total": 0,
+    "unchecked": 0,
+    "uncheckedKeysByFile": [],
+    "unmatched": 0,
+    "updated": 0
+  },
+  "startTime": 1771392552745,
+  "success": false,
+  "testResults": [
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "ClinicPage rendering"
+          ],
+          "duration": 625,
+          "failing": false,
+          "failureDetails": [
+            {}
+          ],
+          "failureMessages": [
+            "Error: \nClinic hampton-aesthetic-clinic (Peterborough) failed:\n - Accreditations section failed\n    at C:\\Users\\agney\\Documents\\Files\\Projects\\doctor-directory\\src\\__tests__\\tests-batch-1.test.tsx:354:15\n    at Object.<anonymous> (C:\\Users\\agney\\Documents\\Files\\Projects\\doctor-directory\\node_modules\\jest-each\\build\\index.js:80:140)\n    at Promise.finally.completed (C:\\Users\\agney\\Documents\\Files\\Projects\\doctor-directory\\node_modules\\jest-circus\\build\\jestAdapterInit.js:1557:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (C:\\Users\\agney\\Documents\\Files\\Projects\\doctor-directory\\node_modules\\jest-circus\\build\\jestAdapterInit.js:1497:10)\n    at _callCircusTest (C:\\Users\\agney\\Documents\\Files\\Projects\\doctor-directory\\node_modules\\jest-circus\\build\\jestAdapterInit.js:1007:40)\n    at _runTest (C:\\Users\\agney\\Documents\\Files\\Projects\\doctor-directory\\node_modules\\jest-circus\\build\\jestAdapterInit.js:947:3)\n    at C:\\Users\\agney\\Documents\\Files\\Projects\\doctor-directory\\node_modules\\jest-circus\\build\\jestAdapterInit.js:849:7\n    at _runTestsForDescribeBlock (C:\\Users\\agney\\Documents\\Files\\Projects\\doctor-directory\\node_modules\\jest-circus\\build\\jestAdapterInit.js:862:11)\n    at _runTestsForDescribeBlock (C:\\Users\\agney\\Documents\\Files\\Projects\\doctor-directory\\node_modules\\jest-circus\\build\\jestAdapterInit.js:857:11)"
+          ],
+          "fullName": "ClinicPage rendering Page test: hampton-aesthetic-clinic",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 0,
+          "retryReasons": [],
+          "startAt": 1771392535385,
+          "status": "failed",
+          "title": "Page test: hampton-aesthetic-clinic"
+        },
+        {
+          "ancestorTitles": [
+            "ClinicPage rendering"
+          ],
+          "duration": 500,
+          "failing": false,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "ClinicPage rendering Page test: and-so-beautiful-skin-clinic",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 0,
+          "retryReasons": [],
+          "startAt": 1771392536020,
+          "status": "passed",
+          "title": "Page test: and-so-beautiful-skin-clinic"
+        },
+        {
+          "ancestorTitles": [
+            "ClinicPage rendering"
+          ],
+          "duration": 453,
+          "failing": false,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "ClinicPage rendering Page test: bravo-medical-aesthetics",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 0,
+          "retryReasons": [],
+          "startAt": 1771392536521,
+          "status": "passed",
+          "title": "Page test: bravo-medical-aesthetics"
+        },
+        {
+          "ancestorTitles": [
+            "ClinicPage rendering"
+          ],
+          "duration": 454,
+          "failing": false,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "ClinicPage rendering Page test: dermal-plus-clinic",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 0,
+          "retryReasons": [],
+          "startAt": 1771392536976,
+          "status": "passed",
+          "title": "Page test: dermal-plus-clinic"
+        },
+        {
+          "ancestorTitles": [
+            "ClinicPage rendering"
+          ],
+          "duration": 444,
+          "failing": false,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "ClinicPage rendering Page test: dermalogica",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 0,
+          "retryReasons": [],
+          "startAt": 1771392537436,
+          "status": "passed",
+          "title": "Page test: dermalogica"
+        },
+        {
+          "ancestorTitles": [
+            "ClinicPage rendering"
+          ],
+          "duration": 468,
+          "failing": false,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "ClinicPage rendering Page test: dr-cedric-banfield",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 0,
+          "retryReasons": [],
+          "startAt": 1771392537882,
+          "status": "passed",
+          "title": "Page test: dr-cedric-banfield"
+        },
+        {
+          "ancestorTitles": [
+            "ClinicPage rendering"
+          ],
+          "duration": 454,
+          "failing": false,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "ClinicPage rendering Page test: dr-majid-akram",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 0,
+          "retryReasons": [],
+          "startAt": 1771392538351,
+          "status": "passed",
+          "title": "Page test: dr-majid-akram"
+        },
+        {
+          "ancestorTitles": [
+            "ClinicPage rendering"
+          ],
+          "duration": 449,
+          "failing": false,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "ClinicPage rendering Page test: dr-pj-van-den-bent",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 0,
+          "retryReasons": [],
+          "startAt": 1771392538807,
+          "status": "passed",
+          "title": "Page test: dr-pj-van-den-bent"
+        },
+        {
+          "ancestorTitles": [
+            "ClinicPage rendering"
+          ],
+          "duration": 444,
+          "failing": false,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "ClinicPage rendering Page test: dr-abhijit-banerjee",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 0,
+          "retryReasons": [],
+          "startAt": 1771392539259,
+          "status": "passed",
+          "title": "Page test: dr-abhijit-banerjee"
+        },
+        {
+          "ancestorTitles": [
+            "ClinicPage rendering"
+          ],
+          "duration": 448,
+          "failing": false,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "ClinicPage rendering Page test: drnaaesthetics",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 0,
+          "retryReasons": [],
+          "startAt": 1771392539705,
+          "status": "passed",
+          "title": "Page test: drnaaesthetics"
+        }
+      ],
+      "endTime": 1771392540178,
+      "message": "\u001b[1m\u001b[31m  \u001b[1m● \u001b[22m\u001b[1mClinicPage rendering › Page test: hampton-aesthetic-clinic\u001b[39m\u001b[22m\n\n\n    Clinic hampton-aesthetic-clinic (Peterborough) failed:\n     - Accreditations section failed\n\u001b[2m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 352 |\u001b[39m\u001b[22m\n\u001b[2m     \u001b[90m 353 |\u001b[39m       \u001b[36mif\u001b[39m (failures\u001b[33m.\u001b[39mlength \u001b[33m>\u001b[39m \u001b[35m0\u001b[39m) {\u001b[22m\n\u001b[2m    \u001b[31m\u001b[1m>\u001b[22m\u001b[2m\u001b[39m\u001b[90m 354 |\u001b[39m         \u001b[36mthrow\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mError\u001b[39m(\u001b[22m\n\u001b[2m     \u001b[90m     |\u001b[39m               \u001b[31m\u001b[1m^\u001b[22m\u001b[2m\u001b[39m\u001b[22m\n\u001b[2m     \u001b[90m 355 |\u001b[39m           \u001b[32m`\\nClinic ${slug} (${cityslug}) failed:\\n`\u001b[39m \u001b[33m+\u001b[39m\u001b[22m\n\u001b[2m     \u001b[90m 356 |\u001b[39m           failures\u001b[33m.\u001b[39mmap(f \u001b[33m=>\u001b[39m \u001b[32m` - ${f}`\u001b[39m)\u001b[33m.\u001b[39mjoin(\u001b[32m\"\\n\"\u001b[39m)\u001b[22m\n\u001b[2m     \u001b[90m 357 |\u001b[39m         )\u001b[33m;\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat \u001b[22m\u001b[2m\u001b[0m\u001b[36msrc/__tests__/tests-batch-1.test.tsx\u001b[39m\u001b[0m\u001b[2m:354:15\u001b[22m\u001b[2m\u001b[22m\n",
+      "name": "C:\\Users\\agney\\Documents\\Files\\Projects\\doctor-directory\\src\\__tests__\\tests-batch-1.test.tsx",
+      "startTime": 1771392534058,
+      "status": "failed",
+      "summary": ""
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "ClinicPage rendering"
+          ],
+          "duration": 1001,
+          "failing": false,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "ClinicPage rendering Page test: emaderm-aesthetics-ltd",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 0,
+          "retryReasons": [],
+          "startAt": 1771392543956,
+          "status": "passed",
+          "title": "Page test: emaderm-aesthetics-ltd"
+        },
+        {
+          "ancestorTitles": [
+            "ClinicPage rendering"
+          ],
+          "duration": 682,
+          "failing": false,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "ClinicPage rendering Page test: enchanted-medical-aesthetics",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 0,
+          "retryReasons": [],
+          "startAt": 1771392544961,
+          "status": "passed",
+          "title": "Page test: enchanted-medical-aesthetics"
+        },
+        {
+          "ancestorTitles": [
+            "ClinicPage rendering"
+          ],
+          "duration": 716,
+          "failing": false,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "ClinicPage rendering Page test: healthy-truth",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 0,
+          "retryReasons": [],
+          "startAt": 1771392545645,
+          "status": "passed",
+          "title": "Page test: healthy-truth"
+        },
+        {
+          "ancestorTitles": [
+            "ClinicPage rendering"
+          ],
+          "duration": 652,
+          "failing": false,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "ClinicPage rendering Page test: house-of-skin",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 0,
+          "retryReasons": [],
+          "startAt": 1771392546362,
+          "status": "passed",
+          "title": "Page test: house-of-skin"
+        },
+        {
+          "ancestorTitles": [
+            "ClinicPage rendering"
+          ],
+          "duration": 664,
+          "failing": false,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "ClinicPage rendering Page test: kh-skinology-and-aesthetic-clinic",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 0,
+          "retryReasons": [],
+          "startAt": 1771392547016,
+          "status": "passed",
+          "title": "Page test: kh-skinology-and-aesthetic-clinic"
+        },
+        {
+          "ancestorTitles": [
+            "ClinicPage rendering"
+          ],
+          "duration": 644,
+          "failing": false,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "ClinicPage rendering Page test: laser-clinics-uk-peterborough",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 0,
+          "retryReasons": [],
+          "startAt": 1771392547681,
+          "status": "passed",
+          "title": "Page test: laser-clinics-uk-peterborough"
+        },
+        {
+          "ancestorTitles": [
+            "ClinicPage rendering"
+          ],
+          "duration": 706,
+          "failing": false,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "ClinicPage rendering Page test: luxe-skin-lab-oundle",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 0,
+          "retryReasons": [],
+          "startAt": 1771392548328,
+          "status": "passed",
+          "title": "Page test: luxe-skin-lab-oundle"
+        },
+        {
+          "ancestorTitles": [
+            "ClinicPage rendering"
+          ],
+          "duration": 730,
+          "failing": false,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "ClinicPage rendering Page test: melior-clinics",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 0,
+          "retryReasons": [],
+          "startAt": 1771392549037,
+          "status": "passed",
+          "title": "Page test: melior-clinics"
+        },
+        {
+          "ancestorTitles": [
+            "ClinicPage rendering"
+          ],
+          "duration": 712,
+          "failing": false,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "ClinicPage rendering Page test: my-body-essentials",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 0,
+          "retryReasons": [],
+          "startAt": 1771392549770,
+          "status": "passed",
+          "title": "Page test: my-body-essentials"
+        },
+        {
+          "ancestorTitles": [
+            "ClinicPage rendering"
+          ],
+          "duration": 726,
+          "failing": false,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "ClinicPage rendering Page test: ni-aesthetics",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 0,
+          "retryReasons": [],
+          "startAt": 1771392550484,
+          "status": "passed",
+          "title": "Page test: ni-aesthetics"
+        }
+      ],
+      "endTime": 1771392551214,
+      "message": "",
+      "name": "C:\\Users\\agney\\Documents\\Files\\Projects\\doctor-directory\\src\\__tests__\\tests-batch-2.test.tsx",
+      "startTime": 1771392542454,
+      "status": "passed",
+      "summary": ""
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "ClinicPage rendering"
+          ],
+          "duration": 1055,
+          "failing": false,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "ClinicPage rendering Page test: radiant-skin-clinic",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 0,
+          "retryReasons": [],
+          "startAt": 1771392555431,
+          "status": "passed",
+          "title": "Page test: radiant-skin-clinic"
+        },
+        {
+          "ancestorTitles": [
+            "ClinicPage rendering"
+          ],
+          "duration": 717,
+          "failing": false,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "ClinicPage rendering Page test: rose-aesthetic-clinic",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 0,
+          "retryReasons": [],
+          "startAt": 1771392556490,
+          "status": "passed",
+          "title": "Page test: rose-aesthetic-clinic"
+        },
+        {
+          "ancestorTitles": [
+            "ClinicPage rendering"
+          ],
+          "duration": 748,
+          "failing": false,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "ClinicPage rendering Page test: skiin-laser-clinic",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 0,
+          "retryReasons": [],
+          "startAt": 1771392557208,
+          "status": "passed",
+          "title": "Page test: skiin-laser-clinic"
+        },
+        {
+          "ancestorTitles": [
+            "ClinicPage rendering"
+          ],
+          "duration": 657,
+          "failing": false,
+          "failureDetails": [
+            {}
+          ],
+          "failureMessages": [
+            "Error: \nClinic skin-sistas (Peterborough) failed:\n - Accreditations section failed\n    at C:\\Users\\agney\\Documents\\Files\\Projects\\doctor-directory\\src\\__tests__\\tests-batch-3.test.tsx:353:15\n    at Object.<anonymous> (C:\\Users\\agney\\Documents\\Files\\Projects\\doctor-directory\\node_modules\\jest-each\\build\\index.js:80:140)\n    at Promise.finally.completed (C:\\Users\\agney\\Documents\\Files\\Projects\\doctor-directory\\node_modules\\jest-circus\\build\\jestAdapterInit.js:1557:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (C:\\Users\\agney\\Documents\\Files\\Projects\\doctor-directory\\node_modules\\jest-circus\\build\\jestAdapterInit.js:1497:10)\n    at _callCircusTest (C:\\Users\\agney\\Documents\\Files\\Projects\\doctor-directory\\node_modules\\jest-circus\\build\\jestAdapterInit.js:1007:40)\n    at _runTest (C:\\Users\\agney\\Documents\\Files\\Projects\\doctor-directory\\node_modules\\jest-circus\\build\\jestAdapterInit.js:947:3)\n    at C:\\Users\\agney\\Documents\\Files\\Projects\\doctor-directory\\node_modules\\jest-circus\\build\\jestAdapterInit.js:849:7\n    at _runTestsForDescribeBlock (C:\\Users\\agney\\Documents\\Files\\Projects\\doctor-directory\\node_modules\\jest-circus\\build\\jestAdapterInit.js:862:11)\n    at _runTestsForDescribeBlock (C:\\Users\\agney\\Documents\\Files\\Projects\\doctor-directory\\node_modules\\jest-circus\\build\\jestAdapterInit.js:857:11)"
+          ],
+          "fullName": "ClinicPage rendering Page test: skin-sistas",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 0,
+          "retryReasons": [],
+          "startAt": 1771392557958,
+          "status": "failed",
+          "title": "Page test: skin-sistas"
+        },
+        {
+          "ancestorTitles": [
+            "ClinicPage rendering"
+          ],
+          "duration": 672,
+          "failing": false,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "ClinicPage rendering Page test: the-cosmetic-clinic",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 0,
+          "retryReasons": [],
+          "startAt": 1771392558631,
+          "status": "passed",
+          "title": "Page test: the-cosmetic-clinic"
+        },
+        {
+          "ancestorTitles": [
+            "ClinicPage rendering"
+          ],
+          "duration": 706,
+          "failing": false,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "ClinicPage rendering Page test: the-cove-aesthetics",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 0,
+          "retryReasons": [],
+          "startAt": 1771392559305,
+          "status": "passed",
+          "title": "Page test: the-cove-aesthetics"
+        },
+        {
+          "ancestorTitles": [
+            "ClinicPage rendering"
+          ],
+          "duration": 745,
+          "failing": false,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "ClinicPage rendering Page test: the-good-skin-clinic",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 0,
+          "retryReasons": [],
+          "startAt": 1771392560013,
+          "status": "passed",
+          "title": "Page test: the-good-skin-clinic"
+        },
+        {
+          "ancestorTitles": [
+            "ClinicPage rendering"
+          ],
+          "duration": 699,
+          "failing": false,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "ClinicPage rendering Page test: the-proskin-clinic",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 0,
+          "retryReasons": [],
+          "startAt": 1771392560759,
+          "status": "passed",
+          "title": "Page test: the-proskin-clinic"
+        },
+        {
+          "ancestorTitles": [
+            "ClinicPage rendering"
+          ],
+          "duration": 652,
+          "failing": false,
+          "failureDetails": [],
+          "failureMessages": [],
+          "fullName": "ClinicPage rendering Page test: true-skin-and-laser",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 0,
+          "retryReasons": [],
+          "startAt": 1771392561461,
+          "status": "passed",
+          "title": "Page test: true-skin-and-laser"
+        },
+        {
+          "ancestorTitles": [
+            "ClinicPage rendering"
+          ],
+          "duration": 710,
+          "failing": false,
+          "failureDetails": [
+            {}
+          ],
+          "failureMessages": [
+            "Error: \nClinic wansford-cosmetic (Peterborough) failed:\n - Accreditations section failed\n    at C:\\Users\\agney\\Documents\\Files\\Projects\\doctor-directory\\src\\__tests__\\tests-batch-3.test.tsx:353:15\n    at Object.<anonymous> (C:\\Users\\agney\\Documents\\Files\\Projects\\doctor-directory\\node_modules\\jest-each\\build\\index.js:80:140)\n    at Promise.finally.completed (C:\\Users\\agney\\Documents\\Files\\Projects\\doctor-directory\\node_modules\\jest-circus\\build\\jestAdapterInit.js:1557:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (C:\\Users\\agney\\Documents\\Files\\Projects\\doctor-directory\\node_modules\\jest-circus\\build\\jestAdapterInit.js:1497:10)\n    at _callCircusTest (C:\\Users\\agney\\Documents\\Files\\Projects\\doctor-directory\\node_modules\\jest-circus\\build\\jestAdapterInit.js:1007:40)\n    at _runTest (C:\\Users\\agney\\Documents\\Files\\Projects\\doctor-directory\\node_modules\\jest-circus\\build\\jestAdapterInit.js:947:3)\n    at C:\\Users\\agney\\Documents\\Files\\Projects\\doctor-directory\\node_modules\\jest-circus\\build\\jestAdapterInit.js:849:7\n    at _runTestsForDescribeBlock (C:\\Users\\agney\\Documents\\Files\\Projects\\doctor-directory\\node_modules\\jest-circus\\build\\jestAdapterInit.js:862:11)\n    at _runTestsForDescribeBlock (C:\\Users\\agney\\Documents\\Files\\Projects\\doctor-directory\\node_modules\\jest-circus\\build\\jestAdapterInit.js:857:11)"
+          ],
+          "fullName": "ClinicPage rendering Page test: wansford-cosmetic",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 0,
+          "retryReasons": [],
+          "startAt": 1771392562116,
+          "status": "failed",
+          "title": "Page test: wansford-cosmetic"
+        }
+      ],
+      "endTime": 1771392562861,
+      "message": "\u001b[1m\u001b[31m  \u001b[1m● \u001b[22m\u001b[1mClinicPage rendering › Page test: skin-sistas\u001b[39m\u001b[22m\n\n\n    Clinic skin-sistas (Peterborough) failed:\n     - Accreditations section failed\n\u001b[2m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 351 |\u001b[39m\u001b[22m\n\u001b[2m     \u001b[90m 352 |\u001b[39m       \u001b[36mif\u001b[39m (failures\u001b[33m.\u001b[39mlength \u001b[33m>\u001b[39m \u001b[35m0\u001b[39m) {\u001b[22m\n\u001b[2m    \u001b[31m\u001b[1m>\u001b[22m\u001b[2m\u001b[39m\u001b[90m 353 |\u001b[39m         \u001b[36mthrow\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mError\u001b[39m(\u001b[22m\n\u001b[2m     \u001b[90m     |\u001b[39m               \u001b[31m\u001b[1m^\u001b[22m\u001b[2m\u001b[39m\u001b[22m\n\u001b[2m     \u001b[90m 354 |\u001b[39m           \u001b[32m`\\nClinic ${slug} (${cityslug}) failed:\\n`\u001b[39m \u001b[33m+\u001b[39m\u001b[22m\n\u001b[2m     \u001b[90m 355 |\u001b[39m           failures\u001b[33m.\u001b[39mmap(f \u001b[33m=>\u001b[39m \u001b[32m` - ${f}`\u001b[39m)\u001b[33m.\u001b[39mjoin(\u001b[32m\"\\n\"\u001b[39m)\u001b[22m\n\u001b[2m     \u001b[90m 356 |\u001b[39m         )\u001b[33m;\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat \u001b[22m\u001b[2m\u001b[0m\u001b[36msrc/__tests__/tests-batch-3.test.tsx\u001b[39m\u001b[0m\u001b[2m:353:15\u001b[22m\u001b[2m\u001b[22m\n\n\u001b[1m\u001b[31m  \u001b[1m● \u001b[22m\u001b[1mClinicPage rendering › Page test: wansford-cosmetic\u001b[39m\u001b[22m\n\n\n    Clinic wansford-cosmetic (Peterborough) failed:\n     - Accreditations section failed\n\u001b[2m\u001b[22m\n\u001b[2m    \u001b[0m \u001b[90m 351 |\u001b[39m\u001b[22m\n\u001b[2m     \u001b[90m 352 |\u001b[39m       \u001b[36mif\u001b[39m (failures\u001b[33m.\u001b[39mlength \u001b[33m>\u001b[39m \u001b[35m0\u001b[39m) {\u001b[22m\n\u001b[2m    \u001b[31m\u001b[1m>\u001b[22m\u001b[2m\u001b[39m\u001b[90m 353 |\u001b[39m         \u001b[36mthrow\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mError\u001b[39m(\u001b[22m\n\u001b[2m     \u001b[90m     |\u001b[39m               \u001b[31m\u001b[1m^\u001b[22m\u001b[2m\u001b[39m\u001b[22m\n\u001b[2m     \u001b[90m 354 |\u001b[39m           \u001b[32m`\\nClinic ${slug} (${cityslug}) failed:\\n`\u001b[39m \u001b[33m+\u001b[39m\u001b[22m\n\u001b[2m     \u001b[90m 355 |\u001b[39m           failures\u001b[33m.\u001b[39mmap(f \u001b[33m=>\u001b[39m \u001b[32m` - ${f}`\u001b[39m)\u001b[33m.\u001b[39mjoin(\u001b[32m\"\\n\"\u001b[39m)\u001b[22m\n\u001b[2m     \u001b[90m 356 |\u001b[39m         )\u001b[33m;\u001b[39m\u001b[0m\u001b[22m\n\u001b[2m\u001b[22m\n\u001b[2m      \u001b[2mat \u001b[22m\u001b[2m\u001b[0m\u001b[36msrc/__tests__/tests-batch-3.test.tsx\u001b[39m\u001b[0m\u001b[2m:353:15\u001b[22m\u001b[2m\u001b[22m\n",
+      "name": "C:\\Users\\agney\\Documents\\Files\\Projects\\doctor-directory\\src\\__tests__\\tests-batch-3.test.tsx",
+      "startTime": 1771392553634,
+      "status": "failed",
+      "summary": ""
+    }
+  ],
+  "wasInterrupted": false
+}

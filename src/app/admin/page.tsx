@@ -32,6 +32,12 @@ export default function AdminDashboard() {
           >
             Treatments
           </Link>
+          <Link
+            href="/admin/qa"
+            className="px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors"
+          >
+            QA Test Report
+          </Link>
         </nav>
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">

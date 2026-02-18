@@ -209,7 +209,7 @@ export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
       {clinic.Insurace && (
       <Section title="Insurance Accepted" id="insurance" data-testid='insurance'>
         {Array.isArray(clinic.Insurace) ? (
-          <ul className="list-disc ml-6 space-y-1">
+          <ul className="list-disc ml-6 space-y-1" data-testid = "insurance-list">
             {clinic.Insurace.map((i: any, idx: number) => (
               <li key={idx}>{i}</li>
             ))}
@@ -246,10 +246,10 @@ export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
 
       {/* FEES */}
       {clinic.Fees && (
-      <Section title={`Estimated Fees in ${clinic.City}`} id="fees" data-testid='fees'>
+      <Section title={`Estimated Fees in ${clinic.City}`} id="fees">
         {clinic.Fees && typeof JSON.parse(clinic.Fees) === "object" ? (
           <div className="overflow-x-auto shadow-none">
-            <table className="w-full text-sm bg-white">
+            <table className="w-full text-sm bg-white" data-testid='fees'>
               <tbody>
                 {Object.entries(JSON.parse(clinic.Fees)).map(
                   ([k, v]) =>
