@@ -157,7 +157,7 @@ export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
               {flatHours && (
                 <Section title="Hours" id="hours">
                   <div className="overflow-x-auto shadow-none">
-                    <table className="w-full align-top text-sm bg-white border-collapse">
+                    <table className="w-full align-top text-sm bg-white border-collapse" data-testid='hours'>
                       <tbody>
                         {typeof flatHours === 'object' ? Object.entries(flatHours).map(([day, time]) => (
                           <tr key={day}>
@@ -178,7 +178,7 @@ export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
               {clinic.Payments && (
               <Section title="Payment Options" id="payments">
                 {Array.isArray(clinic.Payments) ? (
-                  <ul className="list-disc ml-6 space-y-1">
+                  <ul className="list-disc ml-6 space-y-1" data-testid="payments">
                     {clinic.Payments.map((p: any, idx: number) => (
                       <li key={idx}>{p}</li>
                     ))}

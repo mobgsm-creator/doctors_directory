@@ -2,15 +2,13 @@
   "name": "my-v0-project",
   "version": "0.1.0",
   "private": true,
-
-
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest",
-    "test:parallel": "jest --maxWorkers=3",
+    "test": "node --enable-source-maps=false --max-old-space-size=16384 --expose-gc node_modules/jest/bin/jest.js --no-bail --silent --coverage=false --no-cache",
+    "test:batches": "node --expose-gc --enable-source-maps=false --max-old-space-size=16384 node_modules/jest/bin/jest.js src/__tests__/tests-batch-1.test.tsx --runInBand --no-bail --silent --coverage=false --no-cache --json --outputFile=./test-reports/batch-1.json & node --expose-gc --enable-source-maps=false --max-old-space-size=16384 node_modules/jest/bin/jest.js src/__tests__/tests-batch-2.test.tsx --runInBand --no-bail --silent --coverage=false --no-cache --json --outputFile=./test-reports/batch-2.json & node --expose-gc --enable-source-maps=false --max-old-space-size=16384 node_modules/jest/bin/jest.js src/__tests__/tests-batch-3.test.tsx --runInBand --no-bail --silent --coverage=false --no-cache --json --outputFile=./test-reports/batch-3.json",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:debug": "playwright test --debug",
@@ -95,6 +93,7 @@
     "jest": "^30.2.0",
     "jest-environment-jsdom": "^30.2.0",
     "jest-html-reporters": "^3.1.7",
+    "jest-stare": "^2.5.3",
     "jsdom": "^23.2.0",
     "postcss": "^8.5",
     "tailwindcss": "^4.1.9",
