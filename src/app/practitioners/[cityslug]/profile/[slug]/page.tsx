@@ -55,7 +55,6 @@ export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
   const practitioner = {...k,...clinic}
   const cityClinics = Array.from(clinicIndex.values())
   .filter(clinic => clinic.City === practitioner.City)
-
   const uniqueTreatments = [
   ...new Set(
     cityClinics

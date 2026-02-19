@@ -32,7 +32,144 @@ Hours section has 7 tr tags
 payments section has 8 li tags
 /directory/clinics/Congleton/clinic/sn-skincare-and-aesthetics-ltd rendered successfully
 about section is longer than 50 characters
-no li tags in accreditations
+Accreditations Section Error at /directory/clinics/Congleton/clinic/sn-skincare-and-aesthetics-ltd TestingLibraryElementError: Unable to find an element by: [data-testid="accreditations-list"]
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div>[39m
+      [36m<main[39m
+        [33mclass[39m=[32m"min-h-screen bg-background"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"bg-card/50 backdrop-blur-sm sticky top-0 z-10"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"container mx-auto max-w-6xl px-4 py-4"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33mhref[39m=[32m"/"[39m
+            [36m>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50 h-8 rounded-md px-3 has-[>svg]:px-2.5 gap-2 hover:cursor-pointer"[39m
+                [33mdata-slot[39m=[32m"button"[39m
+              [36m>[39m
+                [36m<svg[39m
+                  [33mclass[39m=[32m"lucide lucide-arrow-left h-4 w-4"[39m
+                  [33mfill[39m=[32m"none"[39m
+                  [33mheight[39m=[32m"24"[39m
+                  [33mstroke[39m=[32m"currentColor"[39m
+                  [33mstroke-linecap[39m=[32m"round"[39m
+                  [33mstroke-linejoin[39m=[32m"round"[39m
+                  [33mstroke-width[39m=[32m"2"[39m
+                  [33mviewBox[39m=[32m"0 0 24 24"[39m
+                  [33mwidth[39m=[32m"24"[39m
+                  [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                [36m>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"m12 19-7-7 7-7"[39m
+                  [36m/>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"M19 12H5"[39m
+                  [36m/>[39m
+                [36m</svg>[39m
+                [0mBack to Directory[0m
+              [36m</button>[39m
+            [36m</a>[39m
+            [36m<nav[39m
+              [33maria-label[39m=[32m"breadcrumb"[39m
+              [33mdata-slot[39m=[32m"breadcrumb"[39m
+            [36m>[39m
+              [36m<ol[39m
+                [33mclass[39m=[32m"text-muted-foreground flex flex-wrap items-center gap-1.5 text-sm break-words sm:gap-2.5"[39m
+                [33mdata-slot[39m=[32m"breadcrumb-list"[39m
+              [36m>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory"[39m
+                  [36m>[39m
+                    [0mHome[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"[39m
+                  [33mrole[39m=[32m"presentation"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33mclass[39m=[32m"lucide lucide-chevron-right"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"24"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"24"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory/clinics"[39m
+                  [36m>[39m
+                    [0mClinics[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"[39m
+                  [33mrole[39m=[32m"presentation"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33mclass[39m=[32m"lucide lucide-chevron-right"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"24"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"24"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory/clinics/Congleton"[39m
+                  [36m>[39m
+                    [0mCongleton[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separa...
 insurance section has 7 li tags
 Fees section has 10 tr tags
 Hours section has 7 tr tags
@@ -533,14 +670,288 @@ Hours section has 7 tr tags
 payments section has 8 li tags
 /directory/clinics/Welling/clinic/my-skin-clinic-1 rendered successfully
 about section is longer than 50 characters
-no li tags in accreditations
+Accreditations Section Error at /directory/clinics/Welling/clinic/my-skin-clinic-1 TestingLibraryElementError: Unable to find an element by: [data-testid="accreditations-list"]
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div>[39m
+      [36m<main[39m
+        [33mclass[39m=[32m"min-h-screen bg-background"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"bg-card/50 backdrop-blur-sm sticky top-0 z-10"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"container mx-auto max-w-6xl px-4 py-4"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33mhref[39m=[32m"/"[39m
+            [36m>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50 h-8 rounded-md px-3 has-[>svg]:px-2.5 gap-2 hover:cursor-pointer"[39m
+                [33mdata-slot[39m=[32m"button"[39m
+              [36m>[39m
+                [36m<svg[39m
+                  [33mclass[39m=[32m"lucide lucide-arrow-left h-4 w-4"[39m
+                  [33mfill[39m=[32m"none"[39m
+                  [33mheight[39m=[32m"24"[39m
+                  [33mstroke[39m=[32m"currentColor"[39m
+                  [33mstroke-linecap[39m=[32m"round"[39m
+                  [33mstroke-linejoin[39m=[32m"round"[39m
+                  [33mstroke-width[39m=[32m"2"[39m
+                  [33mviewBox[39m=[32m"0 0 24 24"[39m
+                  [33mwidth[39m=[32m"24"[39m
+                  [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                [36m>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"m12 19-7-7 7-7"[39m
+                  [36m/>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"M19 12H5"[39m
+                  [36m/>[39m
+                [36m</svg>[39m
+                [0mBack to Directory[0m
+              [36m</button>[39m
+            [36m</a>[39m
+            [36m<nav[39m
+              [33maria-label[39m=[32m"breadcrumb"[39m
+              [33mdata-slot[39m=[32m"breadcrumb"[39m
+            [36m>[39m
+              [36m<ol[39m
+                [33mclass[39m=[32m"text-muted-foreground flex flex-wrap items-center gap-1.5 text-sm break-words sm:gap-2.5"[39m
+                [33mdata-slot[39m=[32m"breadcrumb-list"[39m
+              [36m>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory"[39m
+                  [36m>[39m
+                    [0mHome[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"[39m
+                  [33mrole[39m=[32m"presentation"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33mclass[39m=[32m"lucide lucide-chevron-right"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"24"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"24"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory/clinics"[39m
+                  [36m>[39m
+                    [0mClinics[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"[39m
+                  [33mrole[39m=[32m"presentation"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33mclass[39m=[32m"lucide lucide-chevron-right"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"24"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"24"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory/clinics/Welling"[39m
+                  [36m>[39m
+                    [0mWelling[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"...
 insurance section has 7 li tags
 Fees section has 3 tr tags
 Hours section has 7 tr tags
 payments section has 8 li tags
 /directory/clinics/Welling/clinic/skindustry-ltd rendered successfully
 about section is longer than 50 characters
-no li tags in accreditations
+Accreditations Section Error at /directory/clinics/Welling/clinic/skindustry-ltd TestingLibraryElementError: Unable to find an element by: [data-testid="accreditations-list"]
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div>[39m
+      [36m<main[39m
+        [33mclass[39m=[32m"min-h-screen bg-background"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"bg-card/50 backdrop-blur-sm sticky top-0 z-10"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"container mx-auto max-w-6xl px-4 py-4"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33mhref[39m=[32m"/"[39m
+            [36m>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50 h-8 rounded-md px-3 has-[>svg]:px-2.5 gap-2 hover:cursor-pointer"[39m
+                [33mdata-slot[39m=[32m"button"[39m
+              [36m>[39m
+                [36m<svg[39m
+                  [33mclass[39m=[32m"lucide lucide-arrow-left h-4 w-4"[39m
+                  [33mfill[39m=[32m"none"[39m
+                  [33mheight[39m=[32m"24"[39m
+                  [33mstroke[39m=[32m"currentColor"[39m
+                  [33mstroke-linecap[39m=[32m"round"[39m
+                  [33mstroke-linejoin[39m=[32m"round"[39m
+                  [33mstroke-width[39m=[32m"2"[39m
+                  [33mviewBox[39m=[32m"0 0 24 24"[39m
+                  [33mwidth[39m=[32m"24"[39m
+                  [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                [36m>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"m12 19-7-7 7-7"[39m
+                  [36m/>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"M19 12H5"[39m
+                  [36m/>[39m
+                [36m</svg>[39m
+                [0mBack to Directory[0m
+              [36m</button>[39m
+            [36m</a>[39m
+            [36m<nav[39m
+              [33maria-label[39m=[32m"breadcrumb"[39m
+              [33mdata-slot[39m=[32m"breadcrumb"[39m
+            [36m>[39m
+              [36m<ol[39m
+                [33mclass[39m=[32m"text-muted-foreground flex flex-wrap items-center gap-1.5 text-sm break-words sm:gap-2.5"[39m
+                [33mdata-slot[39m=[32m"breadcrumb-list"[39m
+              [36m>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory"[39m
+                  [36m>[39m
+                    [0mHome[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"[39m
+                  [33mrole[39m=[32m"presentation"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33mclass[39m=[32m"lucide lucide-chevron-right"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"24"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"24"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory/clinics"[39m
+                  [36m>[39m
+                    [0mClinics[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"[39m
+                  [33mrole[39m=[32m"presentation"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33mclass[39m=[32m"lucide lucide-chevron-right"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"24"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"24"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory/clinics/Welling"[39m
+                  [36m>[39m
+                    [0mWelling[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"...
 insurance section has 7 li tags
 Fees section has 1 tr tags
 Hours section has 7 tr tags
@@ -704,14 +1115,288 @@ Hours section has 7 tr tags
 payments section has 8 li tags
 /directory/clinics/Todmorden/clinic/original-skin-by-kelsie rendered successfully
 about section is longer than 50 characters
-no li tags in accreditations
+Accreditations Section Error at /directory/clinics/Todmorden/clinic/original-skin-by-kelsie TestingLibraryElementError: Unable to find an element by: [data-testid="accreditations-list"]
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div>[39m
+      [36m<main[39m
+        [33mclass[39m=[32m"min-h-screen bg-background"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"bg-card/50 backdrop-blur-sm sticky top-0 z-10"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"container mx-auto max-w-6xl px-4 py-4"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33mhref[39m=[32m"/"[39m
+            [36m>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50 h-8 rounded-md px-3 has-[>svg]:px-2.5 gap-2 hover:cursor-pointer"[39m
+                [33mdata-slot[39m=[32m"button"[39m
+              [36m>[39m
+                [36m<svg[39m
+                  [33mclass[39m=[32m"lucide lucide-arrow-left h-4 w-4"[39m
+                  [33mfill[39m=[32m"none"[39m
+                  [33mheight[39m=[32m"24"[39m
+                  [33mstroke[39m=[32m"currentColor"[39m
+                  [33mstroke-linecap[39m=[32m"round"[39m
+                  [33mstroke-linejoin[39m=[32m"round"[39m
+                  [33mstroke-width[39m=[32m"2"[39m
+                  [33mviewBox[39m=[32m"0 0 24 24"[39m
+                  [33mwidth[39m=[32m"24"[39m
+                  [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                [36m>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"m12 19-7-7 7-7"[39m
+                  [36m/>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"M19 12H5"[39m
+                  [36m/>[39m
+                [36m</svg>[39m
+                [0mBack to Directory[0m
+              [36m</button>[39m
+            [36m</a>[39m
+            [36m<nav[39m
+              [33maria-label[39m=[32m"breadcrumb"[39m
+              [33mdata-slot[39m=[32m"breadcrumb"[39m
+            [36m>[39m
+              [36m<ol[39m
+                [33mclass[39m=[32m"text-muted-foreground flex flex-wrap items-center gap-1.5 text-sm break-words sm:gap-2.5"[39m
+                [33mdata-slot[39m=[32m"breadcrumb-list"[39m
+              [36m>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory"[39m
+                  [36m>[39m
+                    [0mHome[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"[39m
+                  [33mrole[39m=[32m"presentation"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33mclass[39m=[32m"lucide lucide-chevron-right"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"24"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"24"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory/clinics"[39m
+                  [36m>[39m
+                    [0mClinics[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"[39m
+                  [33mrole[39m=[32m"presentation"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33mclass[39m=[32m"lucide lucide-chevron-right"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"24"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"24"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory/clinics/Todmorden"[39m
+                  [36m>[39m
+                    [0mTodmorden[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separa...
 insurance section has 1 li tags
 Fees section has 4 tr tags
 Hours section has 7 tr tags
 payments section has 8 li tags
 /directory/clinics/Corby/clinic/oanna-derma-aesthetics rendered successfully
 about section is longer than 50 characters
-no li tags in accreditations
+Accreditations Section Error at /directory/clinics/Corby/clinic/oanna-derma-aesthetics TestingLibraryElementError: Unable to find an element by: [data-testid="accreditations-list"]
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div>[39m
+      [36m<main[39m
+        [33mclass[39m=[32m"min-h-screen bg-background"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"bg-card/50 backdrop-blur-sm sticky top-0 z-10"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"container mx-auto max-w-6xl px-4 py-4"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33mhref[39m=[32m"/"[39m
+            [36m>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50 h-8 rounded-md px-3 has-[>svg]:px-2.5 gap-2 hover:cursor-pointer"[39m
+                [33mdata-slot[39m=[32m"button"[39m
+              [36m>[39m
+                [36m<svg[39m
+                  [33mclass[39m=[32m"lucide lucide-arrow-left h-4 w-4"[39m
+                  [33mfill[39m=[32m"none"[39m
+                  [33mheight[39m=[32m"24"[39m
+                  [33mstroke[39m=[32m"currentColor"[39m
+                  [33mstroke-linecap[39m=[32m"round"[39m
+                  [33mstroke-linejoin[39m=[32m"round"[39m
+                  [33mstroke-width[39m=[32m"2"[39m
+                  [33mviewBox[39m=[32m"0 0 24 24"[39m
+                  [33mwidth[39m=[32m"24"[39m
+                  [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                [36m>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"m12 19-7-7 7-7"[39m
+                  [36m/>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"M19 12H5"[39m
+                  [36m/>[39m
+                [36m</svg>[39m
+                [0mBack to Directory[0m
+              [36m</button>[39m
+            [36m</a>[39m
+            [36m<nav[39m
+              [33maria-label[39m=[32m"breadcrumb"[39m
+              [33mdata-slot[39m=[32m"breadcrumb"[39m
+            [36m>[39m
+              [36m<ol[39m
+                [33mclass[39m=[32m"text-muted-foreground flex flex-wrap items-center gap-1.5 text-sm break-words sm:gap-2.5"[39m
+                [33mdata-slot[39m=[32m"breadcrumb-list"[39m
+              [36m>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory"[39m
+                  [36m>[39m
+                    [0mHome[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"[39m
+                  [33mrole[39m=[32m"presentation"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33mclass[39m=[32m"lucide lucide-chevron-right"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"24"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"24"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory/clinics"[39m
+                  [36m>[39m
+                    [0mClinics[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"[39m
+                  [33mrole[39m=[32m"presentation"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33mclass[39m=[32m"lucide lucide-chevron-right"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"24"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"24"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory/clinics/Corby"[39m
+                  [36m>[39m
+                    [0mCorby[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"[39...
 insurance section has 7 li tags
 Fees section has 2 tr tags
 Hours section has 7 tr tags
@@ -736,7 +1421,144 @@ Hours section has 7 tr tags
 payments section has 8 li tags
 /directory/clinics/Warwick/clinic/warwick-hospital-dermatology rendered successfully
 about section is longer than 50 characters
-no li tags in accreditations
+Accreditations Section Error at /directory/clinics/Warwick/clinic/warwick-hospital-dermatology TestingLibraryElementError: Unable to find an element by: [data-testid="accreditations-list"]
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div>[39m
+      [36m<main[39m
+        [33mclass[39m=[32m"min-h-screen bg-background"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"bg-card/50 backdrop-blur-sm sticky top-0 z-10"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"container mx-auto max-w-6xl px-4 py-4"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33mhref[39m=[32m"/"[39m
+            [36m>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50 h-8 rounded-md px-3 has-[>svg]:px-2.5 gap-2 hover:cursor-pointer"[39m
+                [33mdata-slot[39m=[32m"button"[39m
+              [36m>[39m
+                [36m<svg[39m
+                  [33mclass[39m=[32m"lucide lucide-arrow-left h-4 w-4"[39m
+                  [33mfill[39m=[32m"none"[39m
+                  [33mheight[39m=[32m"24"[39m
+                  [33mstroke[39m=[32m"currentColor"[39m
+                  [33mstroke-linecap[39m=[32m"round"[39m
+                  [33mstroke-linejoin[39m=[32m"round"[39m
+                  [33mstroke-width[39m=[32m"2"[39m
+                  [33mviewBox[39m=[32m"0 0 24 24"[39m
+                  [33mwidth[39m=[32m"24"[39m
+                  [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                [36m>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"m12 19-7-7 7-7"[39m
+                  [36m/>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"M19 12H5"[39m
+                  [36m/>[39m
+                [36m</svg>[39m
+                [0mBack to Directory[0m
+              [36m</button>[39m
+            [36m</a>[39m
+            [36m<nav[39m
+              [33maria-label[39m=[32m"breadcrumb"[39m
+              [33mdata-slot[39m=[32m"breadcrumb"[39m
+            [36m>[39m
+              [36m<ol[39m
+                [33mclass[39m=[32m"text-muted-foreground flex flex-wrap items-center gap-1.5 text-sm break-words sm:gap-2.5"[39m
+                [33mdata-slot[39m=[32m"breadcrumb-list"[39m
+              [36m>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory"[39m
+                  [36m>[39m
+                    [0mHome[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"[39m
+                  [33mrole[39m=[32m"presentation"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33mclass[39m=[32m"lucide lucide-chevron-right"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"24"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"24"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory/clinics"[39m
+                  [36m>[39m
+                    [0mClinics[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"[39m
+                  [33mrole[39m=[32m"presentation"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33mclass[39m=[32m"lucide lucide-chevron-right"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"24"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"24"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory/clinics/Warwick"[39m
+                  [36m>[39m
+                    [0mWarwick[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"...
 insurance section has 7 li tags
 Fees section has 3 tr tags
 Hours section has 7 tr tags
@@ -760,7 +1582,144 @@ Hours section has 7 tr tags
 payments section has 8 li tags
 /directory/clinics/Gravesend/clinic/rejuvenation-clinic-1 rendered successfully
 about section is longer than 50 characters
-no li tags in accreditations
+Accreditations Section Error at /directory/clinics/Gravesend/clinic/rejuvenation-clinic-1 TestingLibraryElementError: Unable to find an element by: [data-testid="accreditations-list"]
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div>[39m
+      [36m<main[39m
+        [33mclass[39m=[32m"min-h-screen bg-background"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"bg-card/50 backdrop-blur-sm sticky top-0 z-10"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"container mx-auto max-w-6xl px-4 py-4"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33mhref[39m=[32m"/"[39m
+            [36m>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50 h-8 rounded-md px-3 has-[>svg]:px-2.5 gap-2 hover:cursor-pointer"[39m
+                [33mdata-slot[39m=[32m"button"[39m
+              [36m>[39m
+                [36m<svg[39m
+                  [33mclass[39m=[32m"lucide lucide-arrow-left h-4 w-4"[39m
+                  [33mfill[39m=[32m"none"[39m
+                  [33mheight[39m=[32m"24"[39m
+                  [33mstroke[39m=[32m"currentColor"[39m
+                  [33mstroke-linecap[39m=[32m"round"[39m
+                  [33mstroke-linejoin[39m=[32m"round"[39m
+                  [33mstroke-width[39m=[32m"2"[39m
+                  [33mviewBox[39m=[32m"0 0 24 24"[39m
+                  [33mwidth[39m=[32m"24"[39m
+                  [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                [36m>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"m12 19-7-7 7-7"[39m
+                  [36m/>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"M19 12H5"[39m
+                  [36m/>[39m
+                [36m</svg>[39m
+                [0mBack to Directory[0m
+              [36m</button>[39m
+            [36m</a>[39m
+            [36m<nav[39m
+              [33maria-label[39m=[32m"breadcrumb"[39m
+              [33mdata-slot[39m=[32m"breadcrumb"[39m
+            [36m>[39m
+              [36m<ol[39m
+                [33mclass[39m=[32m"text-muted-foreground flex flex-wrap items-center gap-1.5 text-sm break-words sm:gap-2.5"[39m
+                [33mdata-slot[39m=[32m"breadcrumb-list"[39m
+              [36m>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory"[39m
+                  [36m>[39m
+                    [0mHome[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"[39m
+                  [33mrole[39m=[32m"presentation"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33mclass[39m=[32m"lucide lucide-chevron-right"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"24"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"24"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory/clinics"[39m
+                  [36m>[39m
+                    [0mClinics[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"[39m
+                  [33mrole[39m=[32m"presentation"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33mclass[39m=[32m"lucide lucide-chevron-right"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"24"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"24"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory/clinics/Gravesend"[39m
+                  [36m>[39m
+                    [0mGravesend[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separa...
 insurance section has 7 li tags
 Fees section has 3 tr tags
 Hours section has 7 tr tags
@@ -849,7 +1808,144 @@ Hours section has 7 tr tags
 payments section has 8 li tags
 /directory/clinics/Holywell/clinic/the-skin-specialist-louise rendered successfully
 about section is longer than 50 characters
-no li tags in accreditations
+Accreditations Section Error at /directory/clinics/Holywell/clinic/the-skin-specialist-louise TestingLibraryElementError: Unable to find an element by: [data-testid="accreditations-list"]
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div>[39m
+      [36m<main[39m
+        [33mclass[39m=[32m"min-h-screen bg-background"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"bg-card/50 backdrop-blur-sm sticky top-0 z-10"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"container mx-auto max-w-6xl px-4 py-4"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33mhref[39m=[32m"/"[39m
+            [36m>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50 h-8 rounded-md px-3 has-[>svg]:px-2.5 gap-2 hover:cursor-pointer"[39m
+                [33mdata-slot[39m=[32m"button"[39m
+              [36m>[39m
+                [36m<svg[39m
+                  [33mclass[39m=[32m"lucide lucide-arrow-left h-4 w-4"[39m
+                  [33mfill[39m=[32m"none"[39m
+                  [33mheight[39m=[32m"24"[39m
+                  [33mstroke[39m=[32m"currentColor"[39m
+                  [33mstroke-linecap[39m=[32m"round"[39m
+                  [33mstroke-linejoin[39m=[32m"round"[39m
+                  [33mstroke-width[39m=[32m"2"[39m
+                  [33mviewBox[39m=[32m"0 0 24 24"[39m
+                  [33mwidth[39m=[32m"24"[39m
+                  [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                [36m>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"m12 19-7-7 7-7"[39m
+                  [36m/>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"M19 12H5"[39m
+                  [36m/>[39m
+                [36m</svg>[39m
+                [0mBack to Directory[0m
+              [36m</button>[39m
+            [36m</a>[39m
+            [36m<nav[39m
+              [33maria-label[39m=[32m"breadcrumb"[39m
+              [33mdata-slot[39m=[32m"breadcrumb"[39m
+            [36m>[39m
+              [36m<ol[39m
+                [33mclass[39m=[32m"text-muted-foreground flex flex-wrap items-center gap-1.5 text-sm break-words sm:gap-2.5"[39m
+                [33mdata-slot[39m=[32m"breadcrumb-list"[39m
+              [36m>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory"[39m
+                  [36m>[39m
+                    [0mHome[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"[39m
+                  [33mrole[39m=[32m"presentation"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33mclass[39m=[32m"lucide lucide-chevron-right"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"24"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"24"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory/clinics"[39m
+                  [36m>[39m
+                    [0mClinics[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"[39m
+                  [33mrole[39m=[32m"presentation"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33mclass[39m=[32m"lucide lucide-chevron-right"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"24"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"24"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory/clinics/Holywell"[39m
+                  [36m>[39m
+                    [0mHolywell[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separato...
 insurance section has 7 li tags
 Fees section has 6 tr tags
 Hours section has 7 tr tags
@@ -960,7 +2056,144 @@ Hours section has 7 tr tags
 payments section has 8 li tags
 /directory/clinics/Hessle/clinic/pure-skin-clinic rendered successfully
 about section is longer than 50 characters
-no li tags in accreditations
+Accreditations Section Error at /directory/clinics/Hessle/clinic/pure-skin-clinic TestingLibraryElementError: Unable to find an element by: [data-testid="accreditations-list"]
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div>[39m
+      [36m<main[39m
+        [33mclass[39m=[32m"min-h-screen bg-background"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"bg-card/50 backdrop-blur-sm sticky top-0 z-10"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"container mx-auto max-w-6xl px-4 py-4"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33mhref[39m=[32m"/"[39m
+            [36m>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50 h-8 rounded-md px-3 has-[>svg]:px-2.5 gap-2 hover:cursor-pointer"[39m
+                [33mdata-slot[39m=[32m"button"[39m
+              [36m>[39m
+                [36m<svg[39m
+                  [33mclass[39m=[32m"lucide lucide-arrow-left h-4 w-4"[39m
+                  [33mfill[39m=[32m"none"[39m
+                  [33mheight[39m=[32m"24"[39m
+                  [33mstroke[39m=[32m"currentColor"[39m
+                  [33mstroke-linecap[39m=[32m"round"[39m
+                  [33mstroke-linejoin[39m=[32m"round"[39m
+                  [33mstroke-width[39m=[32m"2"[39m
+                  [33mviewBox[39m=[32m"0 0 24 24"[39m
+                  [33mwidth[39m=[32m"24"[39m
+                  [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                [36m>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"m12 19-7-7 7-7"[39m
+                  [36m/>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"M19 12H5"[39m
+                  [36m/>[39m
+                [36m</svg>[39m
+                [0mBack to Directory[0m
+              [36m</button>[39m
+            [36m</a>[39m
+            [36m<nav[39m
+              [33maria-label[39m=[32m"breadcrumb"[39m
+              [33mdata-slot[39m=[32m"breadcrumb"[39m
+            [36m>[39m
+              [36m<ol[39m
+                [33mclass[39m=[32m"text-muted-foreground flex flex-wrap items-center gap-1.5 text-sm break-words sm:gap-2.5"[39m
+                [33mdata-slot[39m=[32m"breadcrumb-list"[39m
+              [36m>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory"[39m
+                  [36m>[39m
+                    [0mHome[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"[39m
+                  [33mrole[39m=[32m"presentation"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33mclass[39m=[32m"lucide lucide-chevron-right"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"24"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"24"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory/clinics"[39m
+                  [36m>[39m
+                    [0mClinics[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"[39m
+                  [33mrole[39m=[32m"presentation"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33mclass[39m=[32m"lucide lucide-chevron-right"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"24"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"24"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory/clinics/Hessle"[39m
+                  [36m>[39m
+                    [0mHessle[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"[...
 insurance section has 7 li tags
 Fees section has 6 tr tags
 Hours section has 7 tr tags
@@ -1160,14 +2393,288 @@ Hours section has 7 tr tags
 payments section has 8 li tags
 /directory/clinics/Ballymoney/clinic/revolutionary-skin-care-solution rendered successfully
 about section is longer than 50 characters
-no li tags in accreditations
+Accreditations Section Error at /directory/clinics/Ballymoney/clinic/revolutionary-skin-care-solution TestingLibraryElementError: Unable to find an element by: [data-testid="accreditations-list"]
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div>[39m
+      [36m<main[39m
+        [33mclass[39m=[32m"min-h-screen bg-background"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"bg-card/50 backdrop-blur-sm sticky top-0 z-10"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"container mx-auto max-w-6xl px-4 py-4"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33mhref[39m=[32m"/"[39m
+            [36m>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50 h-8 rounded-md px-3 has-[>svg]:px-2.5 gap-2 hover:cursor-pointer"[39m
+                [33mdata-slot[39m=[32m"button"[39m
+              [36m>[39m
+                [36m<svg[39m
+                  [33mclass[39m=[32m"lucide lucide-arrow-left h-4 w-4"[39m
+                  [33mfill[39m=[32m"none"[39m
+                  [33mheight[39m=[32m"24"[39m
+                  [33mstroke[39m=[32m"currentColor"[39m
+                  [33mstroke-linecap[39m=[32m"round"[39m
+                  [33mstroke-linejoin[39m=[32m"round"[39m
+                  [33mstroke-width[39m=[32m"2"[39m
+                  [33mviewBox[39m=[32m"0 0 24 24"[39m
+                  [33mwidth[39m=[32m"24"[39m
+                  [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                [36m>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"m12 19-7-7 7-7"[39m
+                  [36m/>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"M19 12H5"[39m
+                  [36m/>[39m
+                [36m</svg>[39m
+                [0mBack to Directory[0m
+              [36m</button>[39m
+            [36m</a>[39m
+            [36m<nav[39m
+              [33maria-label[39m=[32m"breadcrumb"[39m
+              [33mdata-slot[39m=[32m"breadcrumb"[39m
+            [36m>[39m
+              [36m<ol[39m
+                [33mclass[39m=[32m"text-muted-foreground flex flex-wrap items-center gap-1.5 text-sm break-words sm:gap-2.5"[39m
+                [33mdata-slot[39m=[32m"breadcrumb-list"[39m
+              [36m>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory"[39m
+                  [36m>[39m
+                    [0mHome[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"[39m
+                  [33mrole[39m=[32m"presentation"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33mclass[39m=[32m"lucide lucide-chevron-right"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"24"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"24"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory/clinics"[39m
+                  [36m>[39m
+                    [0mClinics[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"[39m
+                  [33mrole[39m=[32m"presentation"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33mclass[39m=[32m"lucide lucide-chevron-right"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"24"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"24"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory/clinics/Ballymoney"[39m
+                  [36m>[39m
+                    [0mBallymoney[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-sepa...
 insurance section has 7 li tags
 Fees section has 6 tr tags
 Hours section has 7 tr tags
 payments section has 8 li tags
 /directory/clinics/Ballymoney/clinic/smc-aesthetics rendered successfully
 about section is longer than 50 characters
-no li tags in accreditations
+Accreditations Section Error at /directory/clinics/Ballymoney/clinic/smc-aesthetics TestingLibraryElementError: Unable to find an element by: [data-testid="accreditations-list"]
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div>[39m
+      [36m<main[39m
+        [33mclass[39m=[32m"min-h-screen bg-background"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"bg-card/50 backdrop-blur-sm sticky top-0 z-10"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"container mx-auto max-w-6xl px-4 py-4"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33mhref[39m=[32m"/"[39m
+            [36m>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50 h-8 rounded-md px-3 has-[>svg]:px-2.5 gap-2 hover:cursor-pointer"[39m
+                [33mdata-slot[39m=[32m"button"[39m
+              [36m>[39m
+                [36m<svg[39m
+                  [33mclass[39m=[32m"lucide lucide-arrow-left h-4 w-4"[39m
+                  [33mfill[39m=[32m"none"[39m
+                  [33mheight[39m=[32m"24"[39m
+                  [33mstroke[39m=[32m"currentColor"[39m
+                  [33mstroke-linecap[39m=[32m"round"[39m
+                  [33mstroke-linejoin[39m=[32m"round"[39m
+                  [33mstroke-width[39m=[32m"2"[39m
+                  [33mviewBox[39m=[32m"0 0 24 24"[39m
+                  [33mwidth[39m=[32m"24"[39m
+                  [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                [36m>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"m12 19-7-7 7-7"[39m
+                  [36m/>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"M19 12H5"[39m
+                  [36m/>[39m
+                [36m</svg>[39m
+                [0mBack to Directory[0m
+              [36m</button>[39m
+            [36m</a>[39m
+            [36m<nav[39m
+              [33maria-label[39m=[32m"breadcrumb"[39m
+              [33mdata-slot[39m=[32m"breadcrumb"[39m
+            [36m>[39m
+              [36m<ol[39m
+                [33mclass[39m=[32m"text-muted-foreground flex flex-wrap items-center gap-1.5 text-sm break-words sm:gap-2.5"[39m
+                [33mdata-slot[39m=[32m"breadcrumb-list"[39m
+              [36m>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory"[39m
+                  [36m>[39m
+                    [0mHome[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"[39m
+                  [33mrole[39m=[32m"presentation"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33mclass[39m=[32m"lucide lucide-chevron-right"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"24"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"24"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory/clinics"[39m
+                  [36m>[39m
+                    [0mClinics[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"[39m
+                  [33mrole[39m=[32m"presentation"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33mclass[39m=[32m"lucide lucide-chevron-right"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"24"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"24"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory/clinics/Ballymoney"[39m
+                  [36m>[39m
+                    [0mBallymoney[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-sepa...
 insurance section has 7 li tags
 Fees section has 6 tr tags
 no tr tags in Hours
@@ -1206,7 +2713,144 @@ Hours section has 7 tr tags
 payments section has 8 li tags
 /directory/clinics/Brighouse/clinic/rejuvenessence rendered successfully
 about section is longer than 50 characters
-no li tags in accreditations
+Accreditations Section Error at /directory/clinics/Brighouse/clinic/rejuvenessence TestingLibraryElementError: Unable to find an element by: [data-testid="accreditations-list"]
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div>[39m
+      [36m<main[39m
+        [33mclass[39m=[32m"min-h-screen bg-background"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"bg-card/50 backdrop-blur-sm sticky top-0 z-10"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"container mx-auto max-w-6xl px-4 py-4"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33mhref[39m=[32m"/"[39m
+            [36m>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50 h-8 rounded-md px-3 has-[>svg]:px-2.5 gap-2 hover:cursor-pointer"[39m
+                [33mdata-slot[39m=[32m"button"[39m
+              [36m>[39m
+                [36m<svg[39m
+                  [33mclass[39m=[32m"lucide lucide-arrow-left h-4 w-4"[39m
+                  [33mfill[39m=[32m"none"[39m
+                  [33mheight[39m=[32m"24"[39m
+                  [33mstroke[39m=[32m"currentColor"[39m
+                  [33mstroke-linecap[39m=[32m"round"[39m
+                  [33mstroke-linejoin[39m=[32m"round"[39m
+                  [33mstroke-width[39m=[32m"2"[39m
+                  [33mviewBox[39m=[32m"0 0 24 24"[39m
+                  [33mwidth[39m=[32m"24"[39m
+                  [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                [36m>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"m12 19-7-7 7-7"[39m
+                  [36m/>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"M19 12H5"[39m
+                  [36m/>[39m
+                [36m</svg>[39m
+                [0mBack to Directory[0m
+              [36m</button>[39m
+            [36m</a>[39m
+            [36m<nav[39m
+              [33maria-label[39m=[32m"breadcrumb"[39m
+              [33mdata-slot[39m=[32m"breadcrumb"[39m
+            [36m>[39m
+              [36m<ol[39m
+                [33mclass[39m=[32m"text-muted-foreground flex flex-wrap items-center gap-1.5 text-sm break-words sm:gap-2.5"[39m
+                [33mdata-slot[39m=[32m"breadcrumb-list"[39m
+              [36m>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory"[39m
+                  [36m>[39m
+                    [0mHome[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"[39m
+                  [33mrole[39m=[32m"presentation"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33mclass[39m=[32m"lucide lucide-chevron-right"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"24"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"24"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory/clinics"[39m
+                  [36m>[39m
+                    [0mClinics[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"[39m
+                  [33mrole[39m=[32m"presentation"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33mclass[39m=[32m"lucide lucide-chevron-right"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"24"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"24"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory/clinics/Brighouse"[39m
+                  [36m>[39m
+                    [0mBrighouse[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separa...
 insurance section has 7 li tags
 Fees section has 6 tr tags
 Hours section has 7 tr tags
@@ -1221,7 +2865,144 @@ Hours section has 7 tr tags
 payments section has 8 li tags
 /directory/clinics/Bushey/clinic/rejuvia-aesthetic-clinic rendered successfully
 about section is longer than 50 characters
-no li tags in accreditations
+Accreditations Section Error at /directory/clinics/Bushey/clinic/rejuvia-aesthetic-clinic TestingLibraryElementError: Unable to find an element by: [data-testid="accreditations-list"]
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div>[39m
+      [36m<main[39m
+        [33mclass[39m=[32m"min-h-screen bg-background"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"bg-card/50 backdrop-blur-sm sticky top-0 z-10"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"container mx-auto max-w-6xl px-4 py-4"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33mhref[39m=[32m"/"[39m
+            [36m>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50 h-8 rounded-md px-3 has-[>svg]:px-2.5 gap-2 hover:cursor-pointer"[39m
+                [33mdata-slot[39m=[32m"button"[39m
+              [36m>[39m
+                [36m<svg[39m
+                  [33mclass[39m=[32m"lucide lucide-arrow-left h-4 w-4"[39m
+                  [33mfill[39m=[32m"none"[39m
+                  [33mheight[39m=[32m"24"[39m
+                  [33mstroke[39m=[32m"currentColor"[39m
+                  [33mstroke-linecap[39m=[32m"round"[39m
+                  [33mstroke-linejoin[39m=[32m"round"[39m
+                  [33mstroke-width[39m=[32m"2"[39m
+                  [33mviewBox[39m=[32m"0 0 24 24"[39m
+                  [33mwidth[39m=[32m"24"[39m
+                  [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                [36m>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"m12 19-7-7 7-7"[39m
+                  [36m/>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"M19 12H5"[39m
+                  [36m/>[39m
+                [36m</svg>[39m
+                [0mBack to Directory[0m
+              [36m</button>[39m
+            [36m</a>[39m
+            [36m<nav[39m
+              [33maria-label[39m=[32m"breadcrumb"[39m
+              [33mdata-slot[39m=[32m"breadcrumb"[39m
+            [36m>[39m
+              [36m<ol[39m
+                [33mclass[39m=[32m"text-muted-foreground flex flex-wrap items-center gap-1.5 text-sm break-words sm:gap-2.5"[39m
+                [33mdata-slot[39m=[32m"breadcrumb-list"[39m
+              [36m>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory"[39m
+                  [36m>[39m
+                    [0mHome[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"[39m
+                  [33mrole[39m=[32m"presentation"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33mclass[39m=[32m"lucide lucide-chevron-right"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"24"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"24"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory/clinics"[39m
+                  [36m>[39m
+                    [0mClinics[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"[39m
+                  [33mrole[39m=[32m"presentation"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33mclass[39m=[32m"lucide lucide-chevron-right"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"24"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"24"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory/clinics/Bushey"[39m
+                  [36m>[39m
+                    [0mBushey[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"[...
 insurance section has 7 li tags
 Fees section has 2 tr tags
 Hours section has 7 tr tags
@@ -1236,7 +3017,144 @@ Hours section has 7 tr tags
 payments section has 8 li tags
 /directory/clinics/Winsford/clinic/renskin rendered successfully
 about section is longer than 50 characters
-no li tags in accreditations
+Accreditations Section Error at /directory/clinics/Winsford/clinic/renskin TestingLibraryElementError: Unable to find an element by: [data-testid="accreditations-list"]
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div>[39m
+      [36m<main[39m
+        [33mclass[39m=[32m"min-h-screen bg-background"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"bg-card/50 backdrop-blur-sm sticky top-0 z-10"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"container mx-auto max-w-6xl px-4 py-4"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33mhref[39m=[32m"/"[39m
+            [36m>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50 h-8 rounded-md px-3 has-[>svg]:px-2.5 gap-2 hover:cursor-pointer"[39m
+                [33mdata-slot[39m=[32m"button"[39m
+              [36m>[39m
+                [36m<svg[39m
+                  [33mclass[39m=[32m"lucide lucide-arrow-left h-4 w-4"[39m
+                  [33mfill[39m=[32m"none"[39m
+                  [33mheight[39m=[32m"24"[39m
+                  [33mstroke[39m=[32m"currentColor"[39m
+                  [33mstroke-linecap[39m=[32m"round"[39m
+                  [33mstroke-linejoin[39m=[32m"round"[39m
+                  [33mstroke-width[39m=[32m"2"[39m
+                  [33mviewBox[39m=[32m"0 0 24 24"[39m
+                  [33mwidth[39m=[32m"24"[39m
+                  [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                [36m>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"m12 19-7-7 7-7"[39m
+                  [36m/>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"M19 12H5"[39m
+                  [36m/>[39m
+                [36m</svg>[39m
+                [0mBack to Directory[0m
+              [36m</button>[39m
+            [36m</a>[39m
+            [36m<nav[39m
+              [33maria-label[39m=[32m"breadcrumb"[39m
+              [33mdata-slot[39m=[32m"breadcrumb"[39m
+            [36m>[39m
+              [36m<ol[39m
+                [33mclass[39m=[32m"text-muted-foreground flex flex-wrap items-center gap-1.5 text-sm break-words sm:gap-2.5"[39m
+                [33mdata-slot[39m=[32m"breadcrumb-list"[39m
+              [36m>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory"[39m
+                  [36m>[39m
+                    [0mHome[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"[39m
+                  [33mrole[39m=[32m"presentation"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33mclass[39m=[32m"lucide lucide-chevron-right"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"24"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"24"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory/clinics"[39m
+                  [36m>[39m
+                    [0mClinics[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"[39m
+                  [33mrole[39m=[32m"presentation"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33mclass[39m=[32m"lucide lucide-chevron-right"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"24"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"24"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory/clinics/Winsford"[39m
+                  [36m>[39m
+                    [0mWinsford[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separato...
 insurance section has 7 li tags
 Fees section has 6 tr tags
 Hours section has 7 tr tags
@@ -1284,7 +3202,144 @@ Hours section has 7 tr tags
 payments section has 8 li tags
 /directory/clinics/Smethwick/clinic/satinskin-aesthetic-clinic rendered successfully
 about section is longer than 50 characters
-no li tags in accreditations
+Accreditations Section Error at /directory/clinics/Smethwick/clinic/satinskin-aesthetic-clinic TestingLibraryElementError: Unable to find an element by: [data-testid="accreditations-list"]
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div>[39m
+      [36m<main[39m
+        [33mclass[39m=[32m"min-h-screen bg-background"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"bg-card/50 backdrop-blur-sm sticky top-0 z-10"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"container mx-auto max-w-6xl px-4 py-4"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33mhref[39m=[32m"/"[39m
+            [36m>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50 h-8 rounded-md px-3 has-[>svg]:px-2.5 gap-2 hover:cursor-pointer"[39m
+                [33mdata-slot[39m=[32m"button"[39m
+              [36m>[39m
+                [36m<svg[39m
+                  [33mclass[39m=[32m"lucide lucide-arrow-left h-4 w-4"[39m
+                  [33mfill[39m=[32m"none"[39m
+                  [33mheight[39m=[32m"24"[39m
+                  [33mstroke[39m=[32m"currentColor"[39m
+                  [33mstroke-linecap[39m=[32m"round"[39m
+                  [33mstroke-linejoin[39m=[32m"round"[39m
+                  [33mstroke-width[39m=[32m"2"[39m
+                  [33mviewBox[39m=[32m"0 0 24 24"[39m
+                  [33mwidth[39m=[32m"24"[39m
+                  [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                [36m>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"m12 19-7-7 7-7"[39m
+                  [36m/>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"M19 12H5"[39m
+                  [36m/>[39m
+                [36m</svg>[39m
+                [0mBack to Directory[0m
+              [36m</button>[39m
+            [36m</a>[39m
+            [36m<nav[39m
+              [33maria-label[39m=[32m"breadcrumb"[39m
+              [33mdata-slot[39m=[32m"breadcrumb"[39m
+            [36m>[39m
+              [36m<ol[39m
+                [33mclass[39m=[32m"text-muted-foreground flex flex-wrap items-center gap-1.5 text-sm break-words sm:gap-2.5"[39m
+                [33mdata-slot[39m=[32m"breadcrumb-list"[39m
+              [36m>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory"[39m
+                  [36m>[39m
+                    [0mHome[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"[39m
+                  [33mrole[39m=[32m"presentation"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33mclass[39m=[32m"lucide lucide-chevron-right"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"24"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"24"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory/clinics"[39m
+                  [36m>[39m
+                    [0mClinics[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"[39m
+                  [33mrole[39m=[32m"presentation"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33mclass[39m=[32m"lucide lucide-chevron-right"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"24"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"24"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory/clinics/Smethwick"[39m
+                  [36m>[39m
+                    [0mSmethwick[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separa...
 insurance section has 7 li tags
 Fees section has 4 tr tags
 Hours section has 7 tr tags
@@ -1382,7 +3437,144 @@ Hours section has 7 tr tags
 payments section has 8 li tags
 /directory/clinics/Uxbridge/clinic/tudor-center rendered successfully
 about section is longer than 50 characters
-no li tags in accreditations
+Accreditations Section Error at /directory/clinics/Uxbridge/clinic/tudor-center TestingLibraryElementError: Unable to find an element by: [data-testid="accreditations-list"]
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div>[39m
+      [36m<main[39m
+        [33mclass[39m=[32m"min-h-screen bg-background"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"bg-card/50 backdrop-blur-sm sticky top-0 z-10"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"container mx-auto max-w-6xl px-4 py-4"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33mhref[39m=[32m"/"[39m
+            [36m>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50 h-8 rounded-md px-3 has-[>svg]:px-2.5 gap-2 hover:cursor-pointer"[39m
+                [33mdata-slot[39m=[32m"button"[39m
+              [36m>[39m
+                [36m<svg[39m
+                  [33mclass[39m=[32m"lucide lucide-arrow-left h-4 w-4"[39m
+                  [33mfill[39m=[32m"none"[39m
+                  [33mheight[39m=[32m"24"[39m
+                  [33mstroke[39m=[32m"currentColor"[39m
+                  [33mstroke-linecap[39m=[32m"round"[39m
+                  [33mstroke-linejoin[39m=[32m"round"[39m
+                  [33mstroke-width[39m=[32m"2"[39m
+                  [33mviewBox[39m=[32m"0 0 24 24"[39m
+                  [33mwidth[39m=[32m"24"[39m
+                  [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                [36m>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"m12 19-7-7 7-7"[39m
+                  [36m/>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"M19 12H5"[39m
+                  [36m/>[39m
+                [36m</svg>[39m
+                [0mBack to Directory[0m
+              [36m</button>[39m
+            [36m</a>[39m
+            [36m<nav[39m
+              [33maria-label[39m=[32m"breadcrumb"[39m
+              [33mdata-slot[39m=[32m"breadcrumb"[39m
+            [36m>[39m
+              [36m<ol[39m
+                [33mclass[39m=[32m"text-muted-foreground flex flex-wrap items-center gap-1.5 text-sm break-words sm:gap-2.5"[39m
+                [33mdata-slot[39m=[32m"breadcrumb-list"[39m
+              [36m>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory"[39m
+                  [36m>[39m
+                    [0mHome[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"[39m
+                  [33mrole[39m=[32m"presentation"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33mclass[39m=[32m"lucide lucide-chevron-right"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"24"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"24"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory/clinics"[39m
+                  [36m>[39m
+                    [0mClinics[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"[39m
+                  [33mrole[39m=[32m"presentation"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33mclass[39m=[32m"lucide lucide-chevron-right"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"24"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"24"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory/clinics/Uxbridge"[39m
+                  [36m>[39m
+                    [0mUxbridge[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separato...
 insurance section has 7 li tags
 Fees section has 3 tr tags
 Hours section has 7 tr tags
@@ -1509,7 +3701,144 @@ Hours section has 7 tr tags
 payments section has 8 li tags
 /directory/clinics/Thurrock/clinic/skin-serenity rendered successfully
 about section is longer than 50 characters
-no li tags in accreditations
+Accreditations Section Error at /directory/clinics/Thurrock/clinic/skin-serenity TestingLibraryElementError: Unable to find an element by: [data-testid="accreditations-list"]
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div>[39m
+      [36m<main[39m
+        [33mclass[39m=[32m"min-h-screen bg-background"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"bg-card/50 backdrop-blur-sm sticky top-0 z-10"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"container mx-auto max-w-6xl px-4 py-4"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33mhref[39m=[32m"/"[39m
+            [36m>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50 h-8 rounded-md px-3 has-[>svg]:px-2.5 gap-2 hover:cursor-pointer"[39m
+                [33mdata-slot[39m=[32m"button"[39m
+              [36m>[39m
+                [36m<svg[39m
+                  [33mclass[39m=[32m"lucide lucide-arrow-left h-4 w-4"[39m
+                  [33mfill[39m=[32m"none"[39m
+                  [33mheight[39m=[32m"24"[39m
+                  [33mstroke[39m=[32m"currentColor"[39m
+                  [33mstroke-linecap[39m=[32m"round"[39m
+                  [33mstroke-linejoin[39m=[32m"round"[39m
+                  [33mstroke-width[39m=[32m"2"[39m
+                  [33mviewBox[39m=[32m"0 0 24 24"[39m
+                  [33mwidth[39m=[32m"24"[39m
+                  [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                [36m>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"m12 19-7-7 7-7"[39m
+                  [36m/>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"M19 12H5"[39m
+                  [36m/>[39m
+                [36m</svg>[39m
+                [0mBack to Directory[0m
+              [36m</button>[39m
+            [36m</a>[39m
+            [36m<nav[39m
+              [33maria-label[39m=[32m"breadcrumb"[39m
+              [33mdata-slot[39m=[32m"breadcrumb"[39m
+            [36m>[39m
+              [36m<ol[39m
+                [33mclass[39m=[32m"text-muted-foreground flex flex-wrap items-center gap-1.5 text-sm break-words sm:gap-2.5"[39m
+                [33mdata-slot[39m=[32m"breadcrumb-list"[39m
+              [36m>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory"[39m
+                  [36m>[39m
+                    [0mHome[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"[39m
+                  [33mrole[39m=[32m"presentation"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33mclass[39m=[32m"lucide lucide-chevron-right"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"24"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"24"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory/clinics"[39m
+                  [36m>[39m
+                    [0mClinics[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"[39m
+                  [33mrole[39m=[32m"presentation"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33mclass[39m=[32m"lucide lucide-chevron-right"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"24"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"24"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory/clinics/Thurrock"[39m
+                  [36m>[39m
+                    [0mThurrock[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separato...
 insurance section has 7 li tags
 Fees section has 2 tr tags
 Hours section has 7 tr tags
@@ -1557,7 +3886,144 @@ Hours section has 7 tr tags
 payments section has 8 li tags
 /directory/clinics/Bedworth/clinic/skinfinity-aesthetics-cosmetic-clinic-bedworth rendered successfully
 about section is longer than 50 characters
-no li tags in accreditations
+Accreditations Section Error at /directory/clinics/Bedworth/clinic/skinfinity-aesthetics-cosmetic-clinic-bedworth TestingLibraryElementError: Unable to find an element by: [data-testid="accreditations-list"]
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div>[39m
+      [36m<main[39m
+        [33mclass[39m=[32m"min-h-screen bg-background"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"bg-card/50 backdrop-blur-sm sticky top-0 z-10"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"container mx-auto max-w-6xl px-4 py-4"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33mhref[39m=[32m"/"[39m
+            [36m>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50 h-8 rounded-md px-3 has-[>svg]:px-2.5 gap-2 hover:cursor-pointer"[39m
+                [33mdata-slot[39m=[32m"button"[39m
+              [36m>[39m
+                [36m<svg[39m
+                  [33mclass[39m=[32m"lucide lucide-arrow-left h-4 w-4"[39m
+                  [33mfill[39m=[32m"none"[39m
+                  [33mheight[39m=[32m"24"[39m
+                  [33mstroke[39m=[32m"currentColor"[39m
+                  [33mstroke-linecap[39m=[32m"round"[39m
+                  [33mstroke-linejoin[39m=[32m"round"[39m
+                  [33mstroke-width[39m=[32m"2"[39m
+                  [33mviewBox[39m=[32m"0 0 24 24"[39m
+                  [33mwidth[39m=[32m"24"[39m
+                  [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                [36m>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"m12 19-7-7 7-7"[39m
+                  [36m/>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"M19 12H5"[39m
+                  [36m/>[39m
+                [36m</svg>[39m
+                [0mBack to Directory[0m
+              [36m</button>[39m
+            [36m</a>[39m
+            [36m<nav[39m
+              [33maria-label[39m=[32m"breadcrumb"[39m
+              [33mdata-slot[39m=[32m"breadcrumb"[39m
+            [36m>[39m
+              [36m<ol[39m
+                [33mclass[39m=[32m"text-muted-foreground flex flex-wrap items-center gap-1.5 text-sm break-words sm:gap-2.5"[39m
+                [33mdata-slot[39m=[32m"breadcrumb-list"[39m
+              [36m>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory"[39m
+                  [36m>[39m
+                    [0mHome[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"[39m
+                  [33mrole[39m=[32m"presentation"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33mclass[39m=[32m"lucide lucide-chevron-right"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"24"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"24"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory/clinics"[39m
+                  [36m>[39m
+                    [0mClinics[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"[39m
+                  [33mrole[39m=[32m"presentation"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33mclass[39m=[32m"lucide lucide-chevron-right"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"24"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"24"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory/clinics/Bedworth"[39m
+                  [36m>[39m
+                    [0mBedworth[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separato...
 insurance section has 7 li tags
 Fees section has 3 tr tags
 Hours section has 7 tr tags
@@ -1573,7 +4039,144 @@ Hours section has 7 tr tags
 payments section has 8 li tags
 /directory/clinics/Leigh-on-Sea/clinic/skinluxe-aesthetics rendered successfully
 about section is longer than 50 characters
-no li tags in accreditations
+Accreditations Section Error at /directory/clinics/Leigh-on-Sea/clinic/skinluxe-aesthetics TestingLibraryElementError: Unable to find an element by: [data-testid="accreditations-list"]
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div>[39m
+      [36m<main[39m
+        [33mclass[39m=[32m"min-h-screen bg-background"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"bg-card/50 backdrop-blur-sm sticky top-0 z-10"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"container mx-auto max-w-6xl px-4 py-4"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33mhref[39m=[32m"/"[39m
+            [36m>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50 h-8 rounded-md px-3 has-[>svg]:px-2.5 gap-2 hover:cursor-pointer"[39m
+                [33mdata-slot[39m=[32m"button"[39m
+              [36m>[39m
+                [36m<svg[39m
+                  [33mclass[39m=[32m"lucide lucide-arrow-left h-4 w-4"[39m
+                  [33mfill[39m=[32m"none"[39m
+                  [33mheight[39m=[32m"24"[39m
+                  [33mstroke[39m=[32m"currentColor"[39m
+                  [33mstroke-linecap[39m=[32m"round"[39m
+                  [33mstroke-linejoin[39m=[32m"round"[39m
+                  [33mstroke-width[39m=[32m"2"[39m
+                  [33mviewBox[39m=[32m"0 0 24 24"[39m
+                  [33mwidth[39m=[32m"24"[39m
+                  [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                [36m>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"m12 19-7-7 7-7"[39m
+                  [36m/>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"M19 12H5"[39m
+                  [36m/>[39m
+                [36m</svg>[39m
+                [0mBack to Directory[0m
+              [36m</button>[39m
+            [36m</a>[39m
+            [36m<nav[39m
+              [33maria-label[39m=[32m"breadcrumb"[39m
+              [33mdata-slot[39m=[32m"breadcrumb"[39m
+            [36m>[39m
+              [36m<ol[39m
+                [33mclass[39m=[32m"text-muted-foreground flex flex-wrap items-center gap-1.5 text-sm break-words sm:gap-2.5"[39m
+                [33mdata-slot[39m=[32m"breadcrumb-list"[39m
+              [36m>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory"[39m
+                  [36m>[39m
+                    [0mHome[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"[39m
+                  [33mrole[39m=[32m"presentation"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33mclass[39m=[32m"lucide lucide-chevron-right"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"24"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"24"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory/clinics"[39m
+                  [36m>[39m
+                    [0mClinics[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"[39m
+                  [33mrole[39m=[32m"presentation"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33mclass[39m=[32m"lucide lucide-chevron-right"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"24"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"24"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory/clinics/Leigh-on-Sea"[39m
+                  [36m>[39m
+                    [0mLeigh-on-Sea[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-...
 insurance section has 7 li tags
 Fees section has 3 tr tags
 Hours section has 7 tr tags
@@ -2048,7 +4651,145 @@ Hours section has 7 tr tags
 payments section has 8 li tags
 /directory/clinics/Ware/clinic/the-skin-specialist rendered successfully
 about section is longer than 50 characters
-no li tags in accreditations
+Accreditations Section Error at /directory/clinics/Ware/clinic/the-skin-specialist TestingLibraryElementError: Unable to find an element by: [data-testid="accreditations-list"]
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div>[39m
+      [36m<main[39m
+        [33mclass[39m=[32m"min-h-screen bg-background"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"bg-card/50 backdrop-blur-sm sticky top-0 z-10"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"container mx-auto max-w-6xl px-4 py-4"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33mhref[39m=[32m"/"[39m
+            [36m>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50 h-8 rounded-md px-3 has-[>svg]:px-2.5 gap-2 hover:cursor-pointer"[39m
+                [33mdata-slot[39m=[32m"button"[39m
+              [36m>[39m
+                [36m<svg[39m
+                  [33mclass[39m=[32m"lucide lucide-arrow-left h-4 w-4"[39m
+                  [33mfill[39m=[32m"none"[39m
+                  [33mheight[39m=[32m"24"[39m
+                  [33mstroke[39m=[32m"currentColor"[39m
+                  [33mstroke-linecap[39m=[32m"round"[39m
+                  [33mstroke-linejoin[39m=[32m"round"[39m
+                  [33mstroke-width[39m=[32m"2"[39m
+                  [33mviewBox[39m=[32m"0 0 24 24"[39m
+                  [33mwidth[39m=[32m"24"[39m
+                  [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                [36m>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"m12 19-7-7 7-7"[39m
+                  [36m/>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"M19 12H5"[39m
+                  [36m/>[39m
+                [36m</svg>[39m
+                [0mBack to Directory[0m
+              [36m</button>[39m
+            [36m</a>[39m
+            [36m<nav[39m
+              [33maria-label[39m=[32m"breadcrumb"[39m
+              [33mdata-slot[39m=[32m"breadcrumb"[39m
+            [36m>[39m
+              [36m<ol[39m
+                [33mclass[39m=[32m"text-muted-foreground flex flex-wrap items-center gap-1.5 text-sm break-words sm:gap-2.5"[39m
+                [33mdata-slot[39m=[32m"breadcrumb-list"[39m
+              [36m>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory"[39m
+                  [36m>[39m
+                    [0mHome[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"[39m
+                  [33mrole[39m=[32m"presentation"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33mclass[39m=[32m"lucide lucide-chevron-right"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"24"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"24"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory/clinics"[39m
+                  [36m>[39m
+                    [0mClinics[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"[39m
+                  [33mrole[39m=[32m"presentation"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33mclass[39m=[32m"lucide lucide-chevron-right"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"24"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"24"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory/clinics/Ware"[39m
+                  [36m>[39m
+                    [0mWare[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"[39m
+...
 insurance section has 7 li tags
 Fees section has 5 tr tags
 Hours section has 7 tr tags
@@ -2088,7 +4829,144 @@ Hours section has 7 tr tags
 payments section has 8 li tags
 /directory/clinics/Hemel/clinic/the-transformation-clinic rendered successfully
 about section is longer than 50 characters
-no li tags in accreditations
+Accreditations Section Error at /directory/clinics/Hemel/clinic/the-transformation-clinic TestingLibraryElementError: Unable to find an element by: [data-testid="accreditations-list"]
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div>[39m
+      [36m<main[39m
+        [33mclass[39m=[32m"min-h-screen bg-background"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"bg-card/50 backdrop-blur-sm sticky top-0 z-10"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"container mx-auto max-w-6xl px-4 py-4"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33mhref[39m=[32m"/"[39m
+            [36m>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50 h-8 rounded-md px-3 has-[>svg]:px-2.5 gap-2 hover:cursor-pointer"[39m
+                [33mdata-slot[39m=[32m"button"[39m
+              [36m>[39m
+                [36m<svg[39m
+                  [33mclass[39m=[32m"lucide lucide-arrow-left h-4 w-4"[39m
+                  [33mfill[39m=[32m"none"[39m
+                  [33mheight[39m=[32m"24"[39m
+                  [33mstroke[39m=[32m"currentColor"[39m
+                  [33mstroke-linecap[39m=[32m"round"[39m
+                  [33mstroke-linejoin[39m=[32m"round"[39m
+                  [33mstroke-width[39m=[32m"2"[39m
+                  [33mviewBox[39m=[32m"0 0 24 24"[39m
+                  [33mwidth[39m=[32m"24"[39m
+                  [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                [36m>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"m12 19-7-7 7-7"[39m
+                  [36m/>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"M19 12H5"[39m
+                  [36m/>[39m
+                [36m</svg>[39m
+                [0mBack to Directory[0m
+              [36m</button>[39m
+            [36m</a>[39m
+            [36m<nav[39m
+              [33maria-label[39m=[32m"breadcrumb"[39m
+              [33mdata-slot[39m=[32m"breadcrumb"[39m
+            [36m>[39m
+              [36m<ol[39m
+                [33mclass[39m=[32m"text-muted-foreground flex flex-wrap items-center gap-1.5 text-sm break-words sm:gap-2.5"[39m
+                [33mdata-slot[39m=[32m"breadcrumb-list"[39m
+              [36m>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory"[39m
+                  [36m>[39m
+                    [0mHome[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"[39m
+                  [33mrole[39m=[32m"presentation"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33mclass[39m=[32m"lucide lucide-chevron-right"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"24"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"24"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory/clinics"[39m
+                  [36m>[39m
+                    [0mClinics[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"[39m
+                  [33mrole[39m=[32m"presentation"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33mclass[39m=[32m"lucide lucide-chevron-right"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"24"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"24"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory/clinics/Hemel"[39m
+                  [36m>[39m
+                    [0mHemel[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"[39...
 insurance section has 7 li tags
 Fees section has 1 tr tags
 no tr tags in Hours
@@ -2135,21 +5013,432 @@ Hours section has 7 tr tags
 payments section has 8 li tags
 /directory/clinics/Silsoe/clinic/ultimate-skin rendered successfully
 about section is longer than 50 characters
-no li tags in accreditations
+Accreditations Section Error at /directory/clinics/Silsoe/clinic/ultimate-skin TestingLibraryElementError: Unable to find an element by: [data-testid="accreditations-list"]
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div>[39m
+      [36m<main[39m
+        [33mclass[39m=[32m"min-h-screen bg-background"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"bg-card/50 backdrop-blur-sm sticky top-0 z-10"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"container mx-auto max-w-6xl px-4 py-4"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33mhref[39m=[32m"/"[39m
+            [36m>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50 h-8 rounded-md px-3 has-[>svg]:px-2.5 gap-2 hover:cursor-pointer"[39m
+                [33mdata-slot[39m=[32m"button"[39m
+              [36m>[39m
+                [36m<svg[39m
+                  [33mclass[39m=[32m"lucide lucide-arrow-left h-4 w-4"[39m
+                  [33mfill[39m=[32m"none"[39m
+                  [33mheight[39m=[32m"24"[39m
+                  [33mstroke[39m=[32m"currentColor"[39m
+                  [33mstroke-linecap[39m=[32m"round"[39m
+                  [33mstroke-linejoin[39m=[32m"round"[39m
+                  [33mstroke-width[39m=[32m"2"[39m
+                  [33mviewBox[39m=[32m"0 0 24 24"[39m
+                  [33mwidth[39m=[32m"24"[39m
+                  [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                [36m>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"m12 19-7-7 7-7"[39m
+                  [36m/>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"M19 12H5"[39m
+                  [36m/>[39m
+                [36m</svg>[39m
+                [0mBack to Directory[0m
+              [36m</button>[39m
+            [36m</a>[39m
+            [36m<nav[39m
+              [33maria-label[39m=[32m"breadcrumb"[39m
+              [33mdata-slot[39m=[32m"breadcrumb"[39m
+            [36m>[39m
+              [36m<ol[39m
+                [33mclass[39m=[32m"text-muted-foreground flex flex-wrap items-center gap-1.5 text-sm break-words sm:gap-2.5"[39m
+                [33mdata-slot[39m=[32m"breadcrumb-list"[39m
+              [36m>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory"[39m
+                  [36m>[39m
+                    [0mHome[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"[39m
+                  [33mrole[39m=[32m"presentation"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33mclass[39m=[32m"lucide lucide-chevron-right"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"24"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"24"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory/clinics"[39m
+                  [36m>[39m
+                    [0mClinics[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"[39m
+                  [33mrole[39m=[32m"presentation"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33mclass[39m=[32m"lucide lucide-chevron-right"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"24"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"24"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory/clinics/Silsoe"[39m
+                  [36m>[39m
+                    [0mSilsoe[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"[...
 insurance section has 7 li tags
 Fees section has 1 tr tags
 Hours section has 7 tr tags
 payments section has 8 li tags
 /directory/clinics/Purley/clinic/uma-skin-clinic rendered successfully
 about section is longer than 50 characters
-no li tags in accreditations
+Accreditations Section Error at /directory/clinics/Purley/clinic/uma-skin-clinic TestingLibraryElementError: Unable to find an element by: [data-testid="accreditations-list"]
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div>[39m
+      [36m<main[39m
+        [33mclass[39m=[32m"min-h-screen bg-background"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"bg-card/50 backdrop-blur-sm sticky top-0 z-10"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"container mx-auto max-w-6xl px-4 py-4"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33mhref[39m=[32m"/"[39m
+            [36m>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50 h-8 rounded-md px-3 has-[>svg]:px-2.5 gap-2 hover:cursor-pointer"[39m
+                [33mdata-slot[39m=[32m"button"[39m
+              [36m>[39m
+                [36m<svg[39m
+                  [33mclass[39m=[32m"lucide lucide-arrow-left h-4 w-4"[39m
+                  [33mfill[39m=[32m"none"[39m
+                  [33mheight[39m=[32m"24"[39m
+                  [33mstroke[39m=[32m"currentColor"[39m
+                  [33mstroke-linecap[39m=[32m"round"[39m
+                  [33mstroke-linejoin[39m=[32m"round"[39m
+                  [33mstroke-width[39m=[32m"2"[39m
+                  [33mviewBox[39m=[32m"0 0 24 24"[39m
+                  [33mwidth[39m=[32m"24"[39m
+                  [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                [36m>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"m12 19-7-7 7-7"[39m
+                  [36m/>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"M19 12H5"[39m
+                  [36m/>[39m
+                [36m</svg>[39m
+                [0mBack to Directory[0m
+              [36m</button>[39m
+            [36m</a>[39m
+            [36m<nav[39m
+              [33maria-label[39m=[32m"breadcrumb"[39m
+              [33mdata-slot[39m=[32m"breadcrumb"[39m
+            [36m>[39m
+              [36m<ol[39m
+                [33mclass[39m=[32m"text-muted-foreground flex flex-wrap items-center gap-1.5 text-sm break-words sm:gap-2.5"[39m
+                [33mdata-slot[39m=[32m"breadcrumb-list"[39m
+              [36m>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory"[39m
+                  [36m>[39m
+                    [0mHome[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"[39m
+                  [33mrole[39m=[32m"presentation"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33mclass[39m=[32m"lucide lucide-chevron-right"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"24"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"24"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory/clinics"[39m
+                  [36m>[39m
+                    [0mClinics[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"[39m
+                  [33mrole[39m=[32m"presentation"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33mclass[39m=[32m"lucide lucide-chevron-right"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"24"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"24"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory/clinics/Purley"[39m
+                  [36m>[39m
+                    [0mPurley[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"[...
 insurance section has 7 li tags
 Fees section has 5 tr tags
 Hours section has 2 tr tags
 payments section has 8 li tags
 /directory/clinics/Belper/clinic/uniskin-aesthetic rendered successfully
 about section is longer than 50 characters
-no li tags in accreditations
+Accreditations Section Error at /directory/clinics/Belper/clinic/uniskin-aesthetic TestingLibraryElementError: Unable to find an element by: [data-testid="accreditations-list"]
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div>[39m
+      [36m<main[39m
+        [33mclass[39m=[32m"min-h-screen bg-background"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"bg-card/50 backdrop-blur-sm sticky top-0 z-10"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"container mx-auto max-w-6xl px-4 py-4"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33mhref[39m=[32m"/"[39m
+            [36m>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50 h-8 rounded-md px-3 has-[>svg]:px-2.5 gap-2 hover:cursor-pointer"[39m
+                [33mdata-slot[39m=[32m"button"[39m
+              [36m>[39m
+                [36m<svg[39m
+                  [33mclass[39m=[32m"lucide lucide-arrow-left h-4 w-4"[39m
+                  [33mfill[39m=[32m"none"[39m
+                  [33mheight[39m=[32m"24"[39m
+                  [33mstroke[39m=[32m"currentColor"[39m
+                  [33mstroke-linecap[39m=[32m"round"[39m
+                  [33mstroke-linejoin[39m=[32m"round"[39m
+                  [33mstroke-width[39m=[32m"2"[39m
+                  [33mviewBox[39m=[32m"0 0 24 24"[39m
+                  [33mwidth[39m=[32m"24"[39m
+                  [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                [36m>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"m12 19-7-7 7-7"[39m
+                  [36m/>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"M19 12H5"[39m
+                  [36m/>[39m
+                [36m</svg>[39m
+                [0mBack to Directory[0m
+              [36m</button>[39m
+            [36m</a>[39m
+            [36m<nav[39m
+              [33maria-label[39m=[32m"breadcrumb"[39m
+              [33mdata-slot[39m=[32m"breadcrumb"[39m
+            [36m>[39m
+              [36m<ol[39m
+                [33mclass[39m=[32m"text-muted-foreground flex flex-wrap items-center gap-1.5 text-sm break-words sm:gap-2.5"[39m
+                [33mdata-slot[39m=[32m"breadcrumb-list"[39m
+              [36m>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory"[39m
+                  [36m>[39m
+                    [0mHome[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"[39m
+                  [33mrole[39m=[32m"presentation"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33mclass[39m=[32m"lucide lucide-chevron-right"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"24"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"24"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory/clinics"[39m
+                  [36m>[39m
+                    [0mClinics[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"[39m
+                  [33mrole[39m=[32m"presentation"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33mclass[39m=[32m"lucide lucide-chevron-right"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"24"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"24"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory/clinics/Belper"[39m
+                  [36m>[39m
+                    [0mBelper[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"[...
 insurance section has 7 li tags
 Fees section has 1 tr tags
 Hours section has 7 tr tags
@@ -2172,7 +5461,144 @@ Hours section has 7 tr tags
 payments section has 8 li tags
 /directory/clinics/Rhosneigr/clinic/waves-hair-salon-rhosneigr rendered successfully
 about section is longer than 50 characters
-no li tags in accreditations
+Accreditations Section Error at /directory/clinics/Rhosneigr/clinic/waves-hair-salon-rhosneigr TestingLibraryElementError: Unable to find an element by: [data-testid="accreditations-list"]
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div>[39m
+      [36m<main[39m
+        [33mclass[39m=[32m"min-h-screen bg-background"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"bg-card/50 backdrop-blur-sm sticky top-0 z-10"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"container mx-auto max-w-6xl px-4 py-4"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33mhref[39m=[32m"/"[39m
+            [36m>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50 h-8 rounded-md px-3 has-[>svg]:px-2.5 gap-2 hover:cursor-pointer"[39m
+                [33mdata-slot[39m=[32m"button"[39m
+              [36m>[39m
+                [36m<svg[39m
+                  [33mclass[39m=[32m"lucide lucide-arrow-left h-4 w-4"[39m
+                  [33mfill[39m=[32m"none"[39m
+                  [33mheight[39m=[32m"24"[39m
+                  [33mstroke[39m=[32m"currentColor"[39m
+                  [33mstroke-linecap[39m=[32m"round"[39m
+                  [33mstroke-linejoin[39m=[32m"round"[39m
+                  [33mstroke-width[39m=[32m"2"[39m
+                  [33mviewBox[39m=[32m"0 0 24 24"[39m
+                  [33mwidth[39m=[32m"24"[39m
+                  [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                [36m>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"m12 19-7-7 7-7"[39m
+                  [36m/>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"M19 12H5"[39m
+                  [36m/>[39m
+                [36m</svg>[39m
+                [0mBack to Directory[0m
+              [36m</button>[39m
+            [36m</a>[39m
+            [36m<nav[39m
+              [33maria-label[39m=[32m"breadcrumb"[39m
+              [33mdata-slot[39m=[32m"breadcrumb"[39m
+            [36m>[39m
+              [36m<ol[39m
+                [33mclass[39m=[32m"text-muted-foreground flex flex-wrap items-center gap-1.5 text-sm break-words sm:gap-2.5"[39m
+                [33mdata-slot[39m=[32m"breadcrumb-list"[39m
+              [36m>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory"[39m
+                  [36m>[39m
+                    [0mHome[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"[39m
+                  [33mrole[39m=[32m"presentation"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33mclass[39m=[32m"lucide lucide-chevron-right"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"24"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"24"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory/clinics"[39m
+                  [36m>[39m
+                    [0mClinics[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separator"[39m
+                  [33mrole[39m=[32m"presentation"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33mclass[39m=[32m"lucide lucide-chevron-right"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"24"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"24"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"inline-flex items-center gap-1.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-item"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground transition-colors"[39m
+                    [33mdata-slot[39m=[32m"breadcrumb-link"[39m
+                    [33mhref[39m=[32m"/directory/clinics/Rhosneigr"[39m
+                  [36m>[39m
+                    [0mRhosneigr[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"[&>svg]:size-3.5"[39m
+                  [33mdata-slot[39m=[32m"breadcrumb-separa...
 insurance section has 7 li tags
 Fees section has 1 tr tags
 Hours section has 7 tr tags

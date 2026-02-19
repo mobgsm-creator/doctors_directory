@@ -161,7 +161,7 @@ function transformClinic(raw: any): Clinic {
     Practitioners: safeParse(raw.Practitioners),
     Insurace: safeParse(raw.Insurace),
     Payments: safeParse(raw.Payments),
-    Fees: raw.Fees,
+    Fees: safeParse(raw.Fees),
     Treatments: safeParse(raw.Treatments_normalized),
   };
 }

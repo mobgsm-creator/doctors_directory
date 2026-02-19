@@ -100,7 +100,7 @@ export function safeParse(v: any) {
   } catch (err) {
     const msg = String(err)
 
-    if (msg.includes("Unterminated string in JSON") ) {
+    if (msg.includes("Unterminated string in JSON") || msg.includes("Unexpected end of JSON input")) {
     
       if (typeof v === "string" && v.trim().startsWith("[") ) {
 

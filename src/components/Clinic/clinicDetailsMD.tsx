@@ -247,11 +247,11 @@ export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
       {/* FEES */}
       {clinic.Fees && (
       <Section title={`Estimated Fees in ${clinic.City}`} id="fees">
-        {clinic.Fees && typeof JSON.parse(clinic.Fees) === "object" ? (
+        {clinic.Fees && typeof clinic.Fees === "object" ? (
           <div className="overflow-x-auto shadow-none">
             <table className="w-full text-sm bg-white" data-testid='fees'>
               <tbody>
-                {Object.entries(JSON.parse(clinic.Fees)).map(
+                {Object.entries(clinic.Fees).map(
                   ([k, v]) =>
                     
                   
