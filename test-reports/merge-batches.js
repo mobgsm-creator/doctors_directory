@@ -5,7 +5,7 @@ const directory = process.cwd();
 const outputFile = path.join(directory, 'output.json');
 
 function isBatchFile(file) {
-  return /^batch.*\.json$/i.test(file);
+  return /.*batch.*\.json$/i.test(file);
 }
 
 function safeReadJSON(filePath) {
@@ -38,6 +38,7 @@ function merge() {
   const files = fs.readdirSync(directory)
     .filter(isBatchFile)
     .sort();
+  console.log(files)
 
   if (files.length === 0) {
     console.log('No batch JSON files found.');

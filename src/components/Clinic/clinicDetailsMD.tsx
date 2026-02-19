@@ -84,7 +84,7 @@ export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
 } catch (error) {
     flag = false;
   }
-
+  
 
   return (
     <div className="">
@@ -122,7 +122,7 @@ export default function ClinicDetailsSections({ clinic }: { clinic: Clinic }) {
       
 
       {/* ACCREDITATIONS */}
-      {clinic.accreditations && (
+      {clinic.accreditations.length > 2 && (
       <Section title="Accreditations" id="accreditations">
       {flag === false ? (
         Array.isArray(parseList(clinic.accreditations)) ? (

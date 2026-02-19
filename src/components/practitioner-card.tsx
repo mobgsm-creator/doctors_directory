@@ -86,9 +86,10 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
               <div className="flex flex-col flex-1 min-w-0 text-left items-stretch">
 
                 <div className="flex w-full flex-row items-start border-b border-[#C4C4C4] md:border-0 md:flex-col md:items-center">
-                  <div className="w-20 h-20 md:w-[150px] md:h-[150px] flex items-center justify-center overflow-hidden rounded-full bg-gray-300 md:mb-3 mr-0">
+                  <div className="relative w-20 h-20 md:w-[150px] md:h-[150px] flex items-center justify-center overflow-hidden rounded-full bg-gray-300 md:mb-3 mr-0">
+                    
                     <img
-                      src={
+                      src={("practitioner_awards" in practitioner) ? "/directory/images/doc.png" :
                         practitioner.image!.replace("&w=256&q=75", "") ||
                         "/placeholder.svg"
                       }
@@ -108,11 +109,12 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                       {practitionerName.split(" ").slice(0,4).map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")}
                     </h3>
 
-                    {!("profession" in practitioner) && (
-                      <>
-                        <ClinicLabels clinic={practitioner as Clinic} />
-                      </>
-                    )}
+                  
+                  <div className="absolute top-2 -right-4 text-white text-xs font-semibold px-6 py-1">
+                    <ClinicLabels clinic={practitioner as Clinic} />
+                  </div>
+             
+
 
                     {"practitioner_name" in practitioner && (
                       
@@ -225,7 +227,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
             </div>
 
             <div className="border-t border-gray-300 my-6"></div>
-            <div className="w-full overflow-x-auto">
+            {/* <div className="w-full overflow-x-auto">
             <div className="flex flex-row gap-4">
               {practitioners.map((p: any, idx: number) => (
                 <Card 
@@ -254,7 +256,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                       </div></div>
                     
     
-                  </Card>))}</div></div>
+                  </Card>))}</div></div> */}
             </CardContent>
 
 
