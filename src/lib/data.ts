@@ -1657,7 +1657,6 @@ export const brands = [" /  (Mortara accessory)",
 ]
 export const accreditations = 
   [
-    "Indian Association of Dermatologists Conference",
     "The Aesthetic Awards",
     "Save Face register of accredited practitioners",
     "UberSkin",

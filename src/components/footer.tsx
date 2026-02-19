@@ -873,6 +873,16 @@ const cityList = ["Aberaeron",
                 </li>
               ))}
             </ul>
+            <h4 className="font-semibold">Practitioners</h4>
+             <ul className="gap-4 max-h-[100px] overflow-auto">
+              {cityList.map((city, index) => (
+                <li key={index}>
+                  <Link href={`/practitioners/${city}`} className="block text-sm">
+                    Top Practitioners in {city}
+                  </Link>
+                </li>
+               ))}
+             </ul>
             </div>
 
             {/* Column 3: For Practitioners */}

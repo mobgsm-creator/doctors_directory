@@ -96,7 +96,7 @@ export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbLink href={`/clinics/practitioners/${practitioner.City}`}>{`${practitioner.City}`}</BreadcrumbLink>
+              <BreadcrumbLink href={`/directory/practitioners/${practitioner.City}`}>{`${practitioner.City}`}</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
@@ -147,40 +147,41 @@ export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
                        <div className="border-t border-gray-300 my-6"></div>
                        <Stats data={boxplotData} />
                      </div>
-                     {flatHours && (
-                       <Section title="Hours" id="hours">
-                         <div className="overflow-x-auto shadow-none">
-                           <table className="w-full align-top text-sm bg-white border-collapse">
-                             <tbody>
-                               {typeof flatHours === 'object' ? Object.entries(flatHours).map(([day, time]) => (
-                                 <tr key={day}>
-                                   <td className="align-top border-0 px-1 py-1 font-medium">
-                                     {day?.toString()}
-                                   </td>
-                                   <td className="align-top border-0 px-1 py-1">
-                                     {time?.toString()}
-                                   </td>
-                                 </tr>
-                               )):<tr>Not listed</tr>}
-                             </tbody>
-                           </table>
-                         </div>
-                       </Section>
-                     )}
-                     {/* PAYMENTS */}
-              {clinic.Payments && (
+                     {/* HOURS */}
+              {flatHours && (
+                <Section title="Hours" id="hours">
+                  <div className="overflow-x-auto shadow-none">
+                    <table className="w-full align-top text-sm bg-white border-collapse" data-testid='hours'>
+                      <tbody>
+                        {typeof flatHours === 'object' ? Object.entries(flatHours).map(([day, time]) => (
+                          <tr key={day}>
+                            <td className="align-top border-0 px-1 py-1 font-medium">
+                              {day?.toString()}
+                            </td>
+                            <td className="align-top border-0 px-1 py-1">
+                              {time?.toString()}
+                            </td>
+                          </tr>
+                        )):<tr>Not listed</tr>}
+                      </tbody>
+                    </table>
+                  </div>
+                </Section>
+              )}
+              {/* PAYMENTS */}
+              {k?.Payments && (
               <Section title="Payment Options" id="payments">
-                {Array.isArray(clinic.Payments) ? (
-                  <ul className="list-disc ml-6 space-y-1">
-                    {clinic.Payments.map((p: any, idx: number) => (
+                {Array.isArray(k?.Payments) ? (
+                  <ul className="list-disc ml-6 space-y-1" data-testid="payments">
+                    {k?.Payments.map((p: any, idx: number) => (
                       <li key={idx}>{p}</li>
                     ))}
                   </ul>
-                ) : clinic.Payments && typeof clinic.Payments === "object" ? (
+                ) : k?.Payments && typeof k?.Payments === "object" ? (
                   <div className="overflow-x-auto shadow-none">
                     <table className="w-full text-sm bg-white">
                       <tbody>
-                        {Object.entries(clinic.Payments).map(
+                        {Object.entries(k?.Payments).map(
                           ([k, v]) =>
                             k !== "Source" && (
                               <tr key={k}>
@@ -197,7 +198,7 @@ export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
                     </table>
                   </div>
                 ) : (
-                  clinic.Payments || "Not listed"
+                  k?.Payments || "Not listed"
                 )}
               </Section>)}
                    

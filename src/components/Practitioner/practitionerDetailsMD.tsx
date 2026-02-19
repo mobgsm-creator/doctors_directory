@@ -20,7 +20,7 @@ export default function PractitionerDetailsSections({
     <div>
       {/* Roles */}
 
-      <Section title="Roles" id="roles">
+      <Section title="Roles" id="roles" data-testid='roles'>
         {parseList(fixPythonArrayString(clinic.practitioner_roles)).length ? (
           <ul className="list-disc ml-6 space-y-1">
             {parseList(fixPythonArrayString(clinic.practitioner_roles)).map(
@@ -56,7 +56,7 @@ export default function PractitionerDetailsSections({
       </Section>
       <div className="border-t border-gray-300 my-6"></div>
       {/* Qualifications */}
-      <Section title="Qualifications" id="qualifications">
+      <Section title="Qualifications" id="qualifications" data-testid='qualifications'>
         {parseList(fixPythonArrayString(clinic.practitioner_qualifications))
           .length ? (
           <ul className="list-disc ml-6 space-y-1">
@@ -72,7 +72,7 @@ export default function PractitionerDetailsSections({
       </Section>
       <div className="border-t border-gray-300 my-6"></div>
       {/* Experience */}
-      <Section title="Experience" id="experience">
+      <Section title="Experience" id="experience" data-testid='experience'>
         {parseList(fixPythonArrayString(clinic.practitioner_experience))
           .length ? (
           <ul className="list-disc ml-6 space-y-1">
@@ -138,7 +138,7 @@ export default function PractitionerDetailsSections({
       {clinic.Insurace && (
       <Section title="Insurance Accepted" id="insurance" data-testid='insurance'>
         {Array.isArray(clinic.Insurace) ? (
-          <ul className="list-disc ml-6 space-y-1">
+          <ul className="list-disc ml-6 space-y-1" data-testid = "insurance-list">
             {clinic.Insurace.map((i: any, idx: number) => (
               <li key={idx}>{i}</li>
             ))}
@@ -175,26 +175,22 @@ export default function PractitionerDetailsSections({
 
       {/* FEES */}
       {clinic.Fees && (
-      <Section title="Estimated Fees" id="fees" data-testid='fees'>
-        {clinic.Fees && typeof clinic.Fees === "object" ? (
+      <Section title={`Estimated Fees in ${clinic.City}`} id="fees">
+        {clinic.Fees && typeof JSON.parse(clinic.Fees) === "object" ? (
           <div className="overflow-x-auto shadow-none">
-            <table className="w-full text-sm bg-white">
+            <table className="w-full text-sm bg-white" data-testid='fees'>
               <tbody>
-                {Object.entries(clinic.Fees).map(
+                {Object.entries(JSON.parse(clinic.Fees)).map(
                   ([k, v]) =>
-                    k !== "Source" && (
+                    
+                  
                       <tr key={k}>
-                        <td className="align-top border-0 px-1 py-1 font-medium">{k.replaceAll("ProcedureRange","Pricing").replaceAll("Representative_Procedure_Ranges","Pricing")}</td>
+                        <td className="align-top border-0 px-1 py-1 font-medium">{(v as any)?.['treatment']}</td>
                         <td className="align-top border-0 px-1 py-1">
-                          {typeof v === "object" && v !== null
-                            ?  Object.entries(v).map(([key,val]) =>
-                              (key !== "Source" && key !== "Notes" && typeof val !== 'object' ) && (
-                              <li key={key}>{key}: {val}</li>))
-                            : String(v ?? "Not listed")}
-                        </td>
+                          {(v as any)?.['price'].split("(")[0]}</td>
                       </tr>
                     )
-                )}
+                }
               </tbody>
             </table>
           </div>

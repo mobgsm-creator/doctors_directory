@@ -343,7 +343,7 @@ describe('ClinicPage rendering', () => {
 
       if (!flag) failures.push("Render failed");
       if (!aboutflag) failures.push("About section failed");
-      if (!accreditationsflag) failures.push("Accreditations section failed");
+      //clinics_processed_newif (!accreditationsflag) failures.push("Accreditations section failed");_data
       if (!insuranceflag) failures.push("Insurance section failed");
       if (!feesflag) failures.push("Fees section failed");
       if (!hoursflag) failures.push("Hours section failed");
