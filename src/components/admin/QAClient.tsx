@@ -66,6 +66,129 @@ const testDetails = {
         "No corrupted characters (mojibake)"
       ]
     }
+  },
+  "AccreditedClinicsPage rendering": {
+    "Page Rendering": {
+      description: "Validates that accredited clinics pages render successfully for different accreditation types and cities.",
+      checks: [
+        "Page renders without errors",
+        "Practitioner cards are present in DOM",
+        "At least one practitioner card is found"
+      ]
+    }
+  },
+  "AccreditedPractitionersPage rendering": {
+    "Page Rendering": {
+      description: "Validates that accredited practitioners pages render successfully for different accreditation types and cities.",
+      checks: [
+        "Page renders without errors",
+        "Practitioner cards are present in DOM",
+        "At least one practitioner card is found"
+      ]
+    }
+  },
+  "PractitionerCredentialsPage rendering": {
+    "Page Rendering": {
+      description: "Validates that practitioners filtered by credentials/qualifications render successfully.",
+      checks: [
+        "Page renders without errors",
+        "Practitioner cards are present in DOM",
+        "At least one practitioner card is found"
+      ]
+    }
+  },
+  "PractitionersByCityPage rendering": {
+    "Page Rendering": {
+      description: "Validates that practitioners list pages by city render successfully.",
+      checks: [
+        "Page renders without errors",
+        "Practitioner cards are present in DOM",
+        "At least one practitioner card is found"
+      ]
+    }
+  },
+  "CityClinicsPage rendering": {
+    "Page Rendering": {
+      description: "Validates that clinics list pages by city render successfully.",
+      checks: [
+        "Page renders without errors",
+        "Practitioner cards are present in DOM",
+        "At least one practitioner card is found"
+      ]
+    }
+  },
+  "TreatmentsPage rendering": {
+    "Page Rendering": {
+      description: "Validates that treatment detail pages render successfully.",
+      checks: [
+        "Page renders without errors",
+        "Practitioner cards are present in DOM",
+        "At least one practitioner card is found"
+      ]
+    }
+  },
+  "PractitionerPage rendering": {
+    "Roles": {
+      description: "Validates roles section structure and content integrity.",
+      checks: [
+        "Section exists in DOM",
+        "Contains <li> items",
+        "No item contains 'not listed' or 'not public'",
+        "No corrupted characters (mojibake)"
+      ]
+    },
+    "Qualifications": {
+      description: "Validates qualifications section structure and content integrity.",
+      checks: [
+        "Section exists in DOM",
+        "Contains <li> items",
+        "No item contains 'not listed' or 'not public'",
+        "No corrupted characters (mojibake)"
+      ]
+    },
+    "Experience": {
+      description: "Validates experience section structure and content integrity.",
+      checks: [
+        "Section exists in DOM",
+        "Contains <li> items",
+        "No item contains 'not listed' or 'not public'",
+        "No corrupted characters (mojibake)"
+      ]
+    },
+    "Insurance": {
+      description: "Validates insurance section structure and content integrity.",
+      checks: [
+        "Section exists in DOM",
+        "Contains <li> items",
+        "Entries are not empty",
+        "No corrupted characters (mojibake)"
+      ]
+    },
+    "Fees": {
+      description: "Validates fees table structure and content integrity.",
+      checks: [
+        "Fees table exists",
+        "Contains <tr> rows",
+        "Table cells do not contain corrupted characters (mojibake)"
+      ]
+    },
+    "Hours": {
+      description: "Validates hours table structure and content integrity.",
+      checks: [
+        "Hours table exists",
+        "Contains <tr> rows",
+        "Table cells do not contain corrupted characters (mojibake)"
+      ]
+    },
+    "Payments": {
+      description: "Validates payments section structure and content integrity.",
+      checks: [
+        "Section exists in DOM",
+        "Contains <li> items",
+        "Entries are not empty",
+        "No corrupted characters (mojibake)"
+      ]
+    }
   }
 };
 
@@ -152,6 +275,20 @@ export default function QATestReport({report}: {report: TestReport}) {
   const failedTests = report.testResults.flatMap(suite =>
     suite.assertionResults.filter(test => test.status === 'failed')
   )
+  const failedTestMessages = new Set();
+  report.testResults.forEach((suite) => {
+  const failedTests = suite.assertionResults.filter(
+    (test) => test.status === 'failed'
+  );
+
+  failedTests.forEach((test) => {
+    const cleanedMessage = test.failureMessages
+      .join('\n')
+      .split('at ')[0]; // remove stack trace
+
+    failedTestMessages.add(cleanedMessage.split("-")[cleanedMessage.split("-").length - 1].trim()); // keep only the unique error code at the end of the message
+  });
+});
 
   return (
     <AdminLayout title="QA Test Report">
@@ -261,31 +398,218 @@ export default function QATestReport({report}: {report: TestReport}) {
               </Card>
             </div>
 
-            {report.numFailedTests > 0 && (
-              <Card className="border-red-200 bg-red-50/50">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2 text-red-900">
-                    <AlertTriangle className="w-5 h-5" />
-                    Failed Tests Summary
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-2">
-                    {failedTests.map((test, index) => (
-                      <div key={index} className="p-3 bg-white rounded border border-red-200">
-                        <div className="flex items-start gap-2">
-                          <XCircle className="w-5 h-5 text-red-600 shrink-0 mt-0.5" />
-                          <div className="flex-1 min-w-0">
-                            <div className="font-medium text-red-900">{test.fullName}</div>
-                      
-                          </div>
-                        </div>
+            <Card className="flex flex-col space-y-4 p-4">
+              <CardHeader>
+                <header className="space-y-4">
+                      <h1 className="text-4xl font-bold text-slate-800 tracking-tight">
+                        The Workflow 
+                      </h1>
+                      <p className="text-lg text-slate-600 leading-relaxed">
+                        This page explains how we test pages, what a failed test actually means,
+                        and how this fits into our broader quality workflow. It is written for both technical
+                        and non-technical team members. For illustration purposes, we will use clinic data as an example, 
+                        but the same principles apply to all types of pages and data we manage.
+                      </p>
+                    </header>
+              </CardHeader>
+              <CardContent>
+                <div className="min-h-screen bg-slate-50 py-12 px-6">
+                  <div className="max-w-5xl mx-auto space-y-12">
+
+                    
+
+
+                    <section className="bg-white shadow-lg rounded-2xl p-8 space-y-6">
+                      <h2 className="text-2xl font-semibold text-slate-800">
+                        1. One Test = One Page Render
+                      </h2>
+              
+
+                      <ul className="list-disc pl-6 space-y-2 text-slate-700">
+                        <li>We loop through every clinic in our dataset.</li>
+                        <li>For each clinic, we render its page.</li>
+                        <li>Each clinic page becomes its own independent test case.</li>
+                      </ul>
+
+                      <div className="bg-blue-50 border-l-4 border-blue-400 p-4 rounded">
+                        <p className="text-blue-900 font-medium">
+                          If we have 500 clinics, we automatically run 500 page render tests.
+                        </p>
                       </div>
-                    ))}
+
+                      <p className="text-slate-700 leading-relaxed">
+                        The goal at this stage is simple:
+                      </p>
+
+                      <p className="font-semibold text-slate-800">
+                        Does the page render without crashing?
+                      </p>
+                    </section>
+
+
+                    <section className="bg-white shadow-lg rounded-2xl p-8 space-y-6">
+                      <h2 className="text-2xl font-semibold text-slate-800">
+                        2. A Failed Test Does Not Always Mean the Page Is Broken
+                      </h2>
+
+                      <p className="text-slate-700 leading-relaxed">
+                        This is critical for everyone to understand.
+                      </p>
+
+                      <p className="text-slate-700 leading-relaxed">
+                        A test can fail for multiple reasons:
+                      </p>
+
+                      <ul className="list-disc pl-6 space-y-2 text-slate-700">
+                        <li>The page didn’t render at all.</li>
+                        <li>The “About” section is too short.</li>
+                        <li>The Insurance section has no entries.</li>
+                        <li>The Fees table is empty.</li>
+                        <li>The Hours section is missing rows.</li>
+                        <li>The Payments list has no items.</li>
+                        <li>There are encoding issues (“mojibake”).</li>
+                      </ul>
+
+                      <div className="bg-amber-50 border-l-4 border-amber-400 p-4 rounded">
+                        <p className="text-amber-900 font-medium">
+                          A failure message tells us which section failed.
+                        </p>
+                      </div>
+
+                    
+                    </section>
+
+
+                    <section className="bg-white shadow-lg rounded-2xl p-8 space-y-6">
+                      <h2 className="text-2xl font-semibold text-slate-800">
+                        3. The Testing Mindset & Workflow
+                      </h2>
+
+                      <div className="space-y-6">
+
+                        <div>
+                          <h3 className="text-xl font-semibold text-slate-800">
+                            Step A – Manual Exploration
+                          </h3>
+                          <ul className="list-disc pl-6 space-y-2 text-slate-700 mt-2">
+                            <li>Team members manually browse clinic pages.</li>
+                            <li>They identify patterns of bugs (missing sections, broken tables, short descriptions).</li>
+                            <li>They document repeatable issues.</li>
+                          </ul>
+                        </div>
+
+                        <div>
+                          <h3 className="text-xl font-semibold text-slate-800">
+                            Step B – Convert Bugs into Automated Tests
+                          </h3>
+                          <ul className="list-disc pl-6 space-y-2 text-slate-700 mt-2">
+                            <li>If one page has a broken accreditation section, others may too.</li>
+                            <li>We write a test that checks accreditation lists across all clinics.</li>
+                            <li>The test detects the issue everywhere instantly.</li>
+                          </ul>
+                        </div>
+
+                        <div>
+                          <h3 className="text-xl font-semibold text-slate-800">
+                            Step C – Use Tests to Verify Fixes
+                          </h3>
+                          <ul className="list-disc pl-6 space-y-2 text-slate-700 mt-2">
+                            <li>Developers fix the issue.</li>
+                            <li>Tests are re-run across all clinics.</li>
+                            <li>If tests pass, we know the issue is resolved at scale.</li>
+                          </ul>
+                        </div>
+
+                      </div>
+
+                      <div className="bg-emerald-50 border-l-4 border-emerald-400 p-4 rounded">
+                        <p className="text-emerald-900 font-medium">
+                          This approach ensures that the implemented change doesn't just fix one page, it fixes all of them without breaking other pages...
+                        </p>
+                      </div>
+                    </section>
+
+
+                    <section className="bg-white shadow-lg rounded-2xl p-8 space-y-6">
+                      <h2 className="text-2xl font-semibold text-slate-800">
+                        4. Expanding the Horizon
+                      </h2>
+
+                      <p className="text-slate-700 leading-relaxed">
+                        This approach scales beyond basic rendering tests.
+                      </p>
+
+                      <div className="grid md:grid-cols-2 gap-6">
+
+                        <div className="bg-slate-100 rounded-xl p-6">
+                          <h3 className="font-semibold text-slate-800 mb-3">Data Quality Testing</h3>
+                          <ul className="list-disc pl-6 space-y-1 text-slate-700">
+                            <li>Minimum content length checks</li>
+                            <li>Structured data validation</li>
+                            <li>Broken character detection</li>
+                          </ul>
+                        </div>
+
+                        <div className="bg-slate-100 rounded-xl p-6">
+                          <h3 className="font-semibold text-slate-800 mb-3">UX & Structural Testing</h3>
+                          <ul className="list-disc pl-6 space-y-1 text-slate-700">
+                            <li>Required section presence</li>
+                            <li>Table row validation</li>
+                            <li>List population checks</li>
+                          </ul>
+                        </div>
+
+                        <div className="bg-slate-100 rounded-xl p-6">
+                          <h3 className="font-semibold text-slate-800 mb-3">Regression Prevention</h3>
+                          <ul className="list-disc pl-6 space-y-1 text-slate-700">
+                            <li>Ensure future updates don’t break existing pages</li>
+                            <li>Detect data pipeline issues early</li>
+                            <li>Provide confidence before deployment</li>
+                          </ul>
+                        </div>
+
+                        <div className="bg-slate-100 rounded-xl p-6">
+                          <h3 className="font-semibold text-slate-800 mb-3">Team Alignment</h3>
+                          <ul className="list-disc pl-6 space-y-1 text-slate-700">
+                            <li>Clear, readable failure messages</li>
+                            <li>Shared understanding of quality standards</li>
+                            <li>Faster debugging cycles</li>
+                          </ul>
+                        </div>
+
+                      </div>
+
+                      <div className="bg-indigo-50 border-l-4 border-indigo-400 p-4 rounded">
+                        <p className="text-indigo-900 font-medium">
+                          The bigger vision: treat every bug as a signal to strengthen the system.
+                        </p>
+                      </div>
+                      
+                    </section>
+                    <section className="bg-white shadow-lg rounded-2xl p-8 space-y-6">
+                      <h2 className="text-2xl font-semibold text-slate-800">CMS</h2>
+                      <div className="bg-indigo-50 border-l-4 border-indigo-400 p-4 rounded">
+                      <li className="text-indigo-900 font-medium">/directory/admin/clinics</li>
+                        <li className="text-indigo-900 font-medium">/directory/admin/practitioners</li>
+                       <li className="text-indigo-900 font-medium"> /directory/admin/treatments</li>
+                      <li className="text-indigo-900 font-medium">  /directory/admin/products</li></div>
+                        <p className="text-slate-700 leading-relaxed">
+ 
+                        These links can be used to access the CMS and edit page data manually. 
+                        
+                        This is useful for quick fixes, but for systemic issues, the testing workflow described above is more effective.
+                      </p>
+                    </section>
+
+
+                
+
                   </div>
-                </CardContent>
-              </Card>
-            )}
+                </div>
+              </CardContent>
+
+                  
+            </Card>
           </TabsContent>
           <TabsContent value="specs" className="space-y-4">
             {Object.entries(testDetails).map((suite:any, section:any ) => (
@@ -319,6 +643,10 @@ export default function QATestReport({report}: {report: TestReport}) {
           </TabsContent>
 
           <TabsContent value="failed" className="space-y-4">
+            <h3 className="text-xl font-semibold text-gray-900">
+              Unique Error Codes:
+              <pre className="bg-slate-900 text-slate-100 text-sm p-4 rounded-xl overflow-x-auto"><code>{Array.from(failedTestMessages).join('\n')}</code></pre>
+            </h3>
             {failedTests.length === 0 ? (
               <Card>
                 <CardContent className="py-12 text-center">
@@ -349,7 +677,7 @@ export default function QATestReport({report}: {report: TestReport}) {
                       <div className="mt-4">
                         <h4 className="font-medium text-sm text-gray-700 mb-2">Error Message:</h4>
                         <pre className="bg-red-50 p-3 rounded text-sm text-red-900 overflow-x-auto">
-                          {stripAnsiCodes(test.failureMessages.join('\n'))}
+                          {stripAnsiCodes(test.failureMessages.join('\n').split('at ')[0])}
                         </pre>
                       </div>
                     </div>
@@ -388,6 +716,9 @@ export default function QATestReport({report}: {report: TestReport}) {
                       </div>
                     </AccordionTrigger>
                     <AccordionContent>
+                      <div>
+                        {}
+                      </div>
                       <div className="pl-8 pt-2 space-y-2">
                         {suite.assertionResults.map((test, testIndex) => (
                           <div
@@ -415,7 +746,7 @@ export default function QATestReport({report}: {report: TestReport}) {
                                       View error details
                                     </summary>
                                     <pre className="mt-2 p-3 bg-white rounded text-sm text-red-900 overflow-x-auto whitespace-pre-wrap">
-                                      {stripAnsiCodes(test.failureMessages.join('\n'))}
+                                      {stripAnsiCodes(test.failureMessages.join('\n').split('at ')[0])}
                                     </pre>
                                   </details>
                                 )}
