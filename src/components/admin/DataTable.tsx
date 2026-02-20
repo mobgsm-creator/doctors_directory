@@ -18,9 +18,10 @@ interface DataTableProps<T> {
   onEdit?: (item: T) => void
   onDelete?: (item: T) => void
   onAdd?: () => void
+  onApprove?: (item: T) => void
 }
 
-export function DataTable<T>({ data, columns, onEdit, onDelete, onAdd }: Readonly<DataTableProps<T>>) {
+export function DataTable<T>({ data, columns, onEdit, onDelete, onAdd, onApprove }: Readonly<DataTableProps<T>>) {
 
   const [searchTerm, setSearchTerm] = useState('')
 
@@ -90,6 +91,15 @@ export function DataTable<T>({ data, columns, onEdit, onDelete, onAdd }: Readonl
                           onClick={() => onEdit(item)}
                         >
                           Edit
+                        </Button>
+                      )}
+                      {onApprove && (
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => onApprove(item)}
+                        >
+                          Approve
                         </Button>
                       )}
                       {/* {onDelete && (

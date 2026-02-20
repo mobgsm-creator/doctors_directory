@@ -15,7 +15,7 @@ export default function PractitionerDetailsSections({
   
 
 
-  console.log(clinic?.Fees)
+
   return (
     <div>
       {/* Roles */}

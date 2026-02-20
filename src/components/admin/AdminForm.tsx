@@ -56,7 +56,7 @@ export default function AdminForm({ entityType, apiBasePath, redirectPath }: Adm
       })
 
       if (res.ok) {
-        router.push(`/admin/${entityType}`)
+        router.push(`/`)
       } else {
         const error = await res.json()
         alert(error.error || 'Failed to save')
@@ -69,13 +69,13 @@ export default function AdminForm({ entityType, apiBasePath, redirectPath }: Adm
 
   const entityName = entityType 
 
-  if (!isNew && !entity.slug) return <div className="text-center py-8">Loading...</div>
+  if (!isNew && !(entity.slug || entity.practitioner_name)) return <div className="text-center py-8">Loading...</div>
 
   return (
     <div className="max-w-4xl mx-auto space-y-6 px-4">
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold">
-          {isNew ? `New ${entityName}` : `Edit: ${entity.slug}`}
+          {isNew ? `New ${entityName}` : `Edit: ${entity.slug ?? entity.practitioner_name}`}
         </h1>
         <Button onClick={handleSubmit}>Save</Button>
       </div>
