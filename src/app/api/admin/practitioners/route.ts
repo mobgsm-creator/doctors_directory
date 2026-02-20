@@ -24,7 +24,7 @@ export async function POST(request: Request) {
 
     const practitioners = await readJsonFile('derms_processed_new_5403.json')
     const updated = [...practitioners, validation.data]
-    await writeJsonFile('derms_processed_new._5403json', updated)
+    await writeJsonFile('derms_processed_new_5403.json', updated)
 
     return NextResponse.json(validation.data, { status: 201 })
   } catch (error) {

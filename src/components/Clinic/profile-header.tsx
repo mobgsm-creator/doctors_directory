@@ -8,6 +8,8 @@ import { Button } from "@/components/ui/button";
 import type { Clinic } from "@/lib/types";
 import SocialMediaIcons from "../Clinic/clinicSocialMedia";
 import ClinicLabels from "./clinicLabels";
+import { Badge } from "@/components/ui/badge";
+import Link from "next/link";
 interface ProfileHeaderProps {
   clinic: Clinic;
 }
@@ -25,7 +27,7 @@ export function ProfileHeader({ clinic }: Readonly<ProfileHeaderProps>) {
 
         <div className="flex flex-col md:flex-col md:mb-4 md:px-4 md:px-0 lg:mb-0 items-start gap-4 border-b border-[#C4C4C4] md:border-0">
           <div className="flex flex-row flex-wrap items-start md:items-center">
-            <div className="w-[80px] h-[80px] md:w-[180px] md:h-[180px] flex items-center justify-center overflow-hidden rounded-full bg-grey-300 mr-4">
+            <div className="relative w-[80px] h-[80px] md:w-[160px] md:h-[186px] flex items-center justify-center overflow-hidden rounded-full bg-grey-300 mr-4">
               <img
                 src={
                   clinic.image.replace("&w=256&q=75", "") || "/placeholder.svg"
@@ -37,6 +39,10 @@ export function ProfileHeader({ clinic }: Readonly<ProfileHeaderProps>) {
                         e.currentTarget.src = "/directory/images/doc.png";
                       }}
               />
+              <Link prefetch={false} href={`/admin/clinics/${clinic.slug}`}>
+      <Badge variant="outline" className="absolute top-30 left-9 text-muted-foreground mb-2 font-semibold text-balance leading-tight bg-white md:bg-[var(--primary-bg-color)]">
+                Claim Profile
+              </Badge></Link>
             </div>
 
             <div className="flex flex-col w-[calc(100%-96px)] md:w-[calc(100%-196px)]">
