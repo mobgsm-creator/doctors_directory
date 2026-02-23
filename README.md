@@ -296,6 +296,9 @@ Used for test reporting and validation:
 | `practitioners-by-city-batch-1.test.tsx` | Practitioners by city batch 1 |
 | `treatments-batch-1.test.tsx` | Treatments batch 1 |
 
+<img width="1525" height="956" alt="image" src="https://github.com/user-attachments/assets/83268111-060f-4afb-b270-751dbb97b228" />
+
+
 ### Legacy Batch Tests (`run_tests/`)
 
 Batch test files for clinics and practitioners (batches 1-11):
