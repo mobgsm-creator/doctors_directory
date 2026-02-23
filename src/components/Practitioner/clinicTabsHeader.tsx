@@ -13,7 +13,7 @@ interface ClinicTabsHeaderProps {
 
 export default function ClinicTabsHeader({k_value, clinic_list, selected, onSelect} : ClinicTabsHeaderProps) {
   let sections: {id: string,label: string}[] = []
-  clinic_list.map((clinic: string) => {
+  clinic_list.forEach((clinic: string) => {
     sections.push({ id: clinic, label: clinic })
   })
   
