@@ -29,7 +29,7 @@ export function ProfileHeader({ clinic, k_value, clinic_list}: Readonly<ProfileH
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
   let sections: {id: string,label: string}[] = []
-  clinic_list.map((clinic: string) => {
+  clinic_list.forEach((clinic: string) => {
     sections.push({ id: clinic, label: clinic })
   })
 
