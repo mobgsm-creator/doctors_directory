@@ -2,6 +2,9 @@
 
 A comprehensive Next.js 14.2 application for an aesthetic medical directory platform. The platform allows users to search for clinics, practitioners, products, and treatments with advanced filtering capabilities, and includes an admin dashboard for content management.
 
+Sonarcloud Static Code Analysis + Quality Gate: [https://sonarcloud.io/project/overview?id=mobgsm-creator_doctors_directory](https://sonarcloud.io/project/overview?id=mobgsm-creator_doctors_directory)
+<img width="1575" height="816" alt="image" src="https://github.com/user-attachments/assets/89ee4a77-e09c-4b27-a5a4-478e2c1d1c80" />
+
 ## Features
 
 - **Search & Discovery**: Advanced search with filters for clinics, practitioners, products, and treatments
