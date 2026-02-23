@@ -22,8 +22,12 @@ export function ProfileHeader({ clinic }: Readonly<ProfileHeaderProps>) {
   const roleTitle = clinic.category;
 
   return (
-    <Card className="md:mt-2 flex flex-col gap-6 md:rounded-xl px-0 md:px-6 py-6 relative shadow-none group transition-all duration-300 md:rounded-27 border-t border-b border-[#C4C4C4] md:border-t-[1px] md:border md:border-[var(--alto)] bg-white md:bg-[var(--primary-bg-color)]">
-      <div className="px-4 md:px-0 grid grid-cols-1 lg:grid-cols-[4fr_1fr] gap-4 items-center">
+    <Card className="relative md:mt-2 flex flex-col gap-6 md:rounded-xl px-0 md:px-6 py-6 relative shadow-none group transition-all duration-300 md:rounded-27 border-t border-b border-[#C4C4C4] md:border-t-[1px] md:border md:border-[var(--alto)] bg-white md:bg-[var(--primary-bg-color)]">
+              <Link prefetch={false} href={`/admin/clinics/${clinic.slug}`}>
+      <Badge variant="outline" className="absolute top-2 right-2 z-50 text-muted-foreground mb-2 font-semibold text-balance leading-tight bg-white md:bg-[var(--primary-bg-color)]">
+                Claim Profile
+              </Badge></Link>
+              <div className="px-4 md:px-0 grid grid-cols-1 lg:grid-cols-[4fr_1fr] gap-4 items-center">
 
         <div className="flex flex-col md:flex-col md:mb-4 md:px-4 md:px-0 lg:mb-0 items-start gap-4 border-b border-[#C4C4C4] md:border-0">
           <div className="flex flex-row flex-wrap items-start md:items-center">
@@ -36,13 +40,10 @@ export function ProfileHeader({ clinic }: Readonly<ProfileHeaderProps>) {
                 className="object-cover rounded-full min-w-full min-h-full"
                 onError={(e) => {
                         e.currentTarget.onerror = null; // prevent infinite loop
-                        e.currentTarget.src = "/directory/images/doc.png";
+                        e.currentTarget.src = "/directory/images/default-dr-profile-1.webp"
                       }}
               />
-              <Link prefetch={false} href={`/admin/clinics/${clinic.slug}`}>
-      <Badge variant="outline" className="absolute top-30 left-9 text-muted-foreground mb-2 font-semibold text-balance leading-tight bg-white md:bg-[var(--primary-bg-color)]">
-                Claim Profile
-              </Badge></Link>
+      
             </div>
 
             <div className="flex flex-col w-[calc(100%-96px)] md:w-[calc(100%-196px)]">

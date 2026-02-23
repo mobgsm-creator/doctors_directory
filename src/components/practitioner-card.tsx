@@ -13,7 +13,6 @@ import practitionersJson from "@/../public/derms_processed_new_5403.json";
 import { isClinic, isPractitioner, isProduct, isTreatment } from "@/lib/utils";
 const practitionersData = practitionersJson as unknown as Practitioner[];
 const practitionersIndex = new Map<string, Practitioner[]>();
-
 for (const p of practitionersData) {
   const clinics = JSON.parse(p.Associated_Clinics as string) as string[];
 
@@ -89,7 +88,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                   <div className="relative w-20 h-20 md:w-[150px] md:h-[150px] flex items-center justify-center overflow-hidden rounded-full bg-gray-300 md:mb-3 mr-0">
                     
                     <img
-                      src={("practitioner_awards" in practitioner) ? "/directory/images/doc.png" :
+                      src={("practitioner_awards" in practitioner) ? "/directory/images/default-dr-profile-1.webp" : 
                         practitioner.image!.replace("&w=256&q=75", "") ||
                         "/placeholder.svg"
                       }
@@ -97,7 +96,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                       className="object-cover rounded-full min-w-full min-h-full"
                       onError={(e) => {
                         e.currentTarget.onerror = null; // prevent infinite loop
-                        e.currentTarget.src = "/directory/images/doc.png";
+                        e.currentTarget.src = "/directory/images/default-dr-profile-1.webp"
                       }}
                     />
                   </div>
@@ -226,7 +225,6 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
               </ul>
             </div>
 
-            <div className="border-t border-gray-300 my-6"></div>
             {/* <div className="w-full overflow-x-auto">
             <div className="flex flex-row gap-4">
               {practitioners.map((p: any, idx: number) => (

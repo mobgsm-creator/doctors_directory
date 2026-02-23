@@ -93,7 +93,7 @@ export default async function AccreditedPractitionersPage({ params }: Readonly<A
     notFound()
   }
 
-  const cities = [...new Set(filteredPractitioners.map(p => p!.City))].sort()
+  const cities = [...new Set(filteredPractitioners.map(p => p!.City))].sort((a, b) => a.localeCompare(b))
   const accreditationName = getAccreditationName(accreditation)
   const accreditationSlug =
   accreditationName.split("(")[1]?.replace(")", "") ?? accreditationName;
