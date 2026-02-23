@@ -172,7 +172,7 @@ describe('PractitionerPage rendering', () => {
 
             liTags.forEach(li => {
               const text =
-                li.textContent?.replace(/[\s\u00A0\u200B\u200C\u200D\uFEFF]/g, '').trim() ?? '';
+                li.textContent?.replace(/(?:\u00A0|[\s]|\u200B|\u200C|\u200D|\uFEFF)/g, '').trim() ?? '';
 
               if (
                 text.toLowerCase().includes("not listed") ||
@@ -210,7 +210,7 @@ describe('PractitionerPage rendering', () => {
 
             liTags.forEach(li => {
               const text =
-                li.textContent?.replace(/[\s\u00A0\u200B\u200C\u200D\uFEFF]/g, '').trim() ?? '';
+                li.textContent?.replace(/(?:\u00A0|[\s]|\u200B|\u200C|\u200D|\uFEFF)/g, '').trim() ?? '';
 
               if (
                 text.toLowerCase().includes("not listed") ||
@@ -248,7 +248,7 @@ describe('PractitionerPage rendering', () => {
 
             liTags.forEach(li => {
               const text =
-                li.textContent?.replace(/[\s\u00A0\u200B\u200C\u200D\uFEFF]/g, '').trim() ?? '';
+                li.textContent?.replace(/(?:\u00A0|[\s]|\u200B|\u200C|\u200D|\uFEFF)/g, '').trim() ?? '';
 
               if (
                 text.toLowerCase().includes("not listed") ||
@@ -287,7 +287,7 @@ describe('PractitionerPage rendering', () => {
 
             liTags.forEach(li => {
               const text =
-                li.textContent?.replace(/[\s\u00A0\u200B\u200C\u200D\uFEFF]/g, '').trim() ?? '';
+                li.textContent?.replace(/(?:\u00A0|[\s]|\u200B|\u200C|\u200D|\uFEFF)/g, '').trim() ?? '';
 
               if (text.toLowerCase().match(/[Ãâ][\x80-\xBF]/)) {
                 console.log("mojibake found");
@@ -317,7 +317,7 @@ describe('PractitionerPage rendering', () => {
 
               tds.forEach(td => {
                 const text =
-                  td.textContent?.replace(/[\s\u00A0\u200B\u200C\u200D\uFEFF]/g, '').trim() ?? '';
+                  td.textContent?.replace(/(?:\u00A0|[\s]|\u200B|\u200C|\u200D|\uFEFF)/g, '').trim() ?? '';
 
                 if (text.toLowerCase().match(/[Ãâ][\x80-\xBF]/)) {
                   console.log("mojibake found");
@@ -349,7 +349,7 @@ describe('PractitionerPage rendering', () => {
 
               tds.forEach(td => {
                 const text =
-                  td.textContent?.replace(/[\s\u00A0\u200B\u200C\u200D\uFEFF]/g, '').trim() ?? '';
+                  td.textContent?.replace(/(?:\u00A0|[\s]|\u200B|\u200C|\u200D|\uFEFF)/g, '').trim() ?? '';
 
                 if (text.toLowerCase().match(/[Ãâ][\x80-\xBF]/)) {
                   console.log("mojibake");
@@ -379,7 +379,7 @@ describe('PractitionerPage rendering', () => {
 
             liTags.forEach(li => {
               const text =
-                li.textContent?.replace(/[\s\u00A0\u200B\u200C\u200D\uFEFF]/g, '').trim() ?? '';
+                li.textContent?.replace(/(?:\u00A0|[\s]|\u200B|\u200C|\u200D|\uFEFF)/g, '').trim() ?? '';
 
               if (text.toLowerCase().match(/[Ãâ][\x80-\xBF]/)) {
                 console.log("mojibake");

@@ -207,17 +207,19 @@ export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
                   clinic.Payments || "Not listed"
                 )}
               </Section>)}
-              
-            </div>
-          </div>
-          <h2 className='text-xl font-semibold text-foreground mb-2'>Patient Stories</h2>
-          
-          <div className='flex flex-col sm:flex-row gap-2'>
+              <div className='flex flex-col sm:flex-row gap-2'>
               <GoogleMapsEmbed
           url={clinic.url}
           
           className="w-full h-auto md:h-80"
-        />  
+        />
+          </div>
+              
+            </div>
+            
+          
+          
+            
         
       </div>
         </div>

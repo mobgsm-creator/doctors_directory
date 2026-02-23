@@ -200,10 +200,7 @@ export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
                   k?.Payments || "Not listed"
                 )}
               </Section>)}
-                   
-                   </div>
-                 </div>
-                 <div className='flex flex-col sm:flex-row gap-2'>
+              <div className='flex flex-col sm:flex-row gap-2'>
                    
                 
                      <GoogleMapsEmbed
@@ -213,6 +210,10 @@ export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
                />  
                
              </div>
+                   
+                   </div>
+                 </div>
+                 
        
                 
                </div>
