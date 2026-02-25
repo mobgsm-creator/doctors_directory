@@ -59,7 +59,7 @@ export function parse_addresses(input: string): string {
   return result
 }
 export function decodeUnicodeEscapes(str: string) {
-  console.log(str)
+
   return str.replace(/\\u([0-9a-fA-F]{4})/g, (_, code) =>
     String.fromCodePoint(Number.parseInt(code, 16))
   );
@@ -77,6 +77,7 @@ export function cleanRouteSlug(slug: string) {
     return slug
   }
 }
+
 export function parseLabels(label: string): [boolean, string] | null {
   try {
     const jsonReady = label
