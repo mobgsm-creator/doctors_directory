@@ -1,13 +1,15 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
-import type { Clinic, Practitioner } from "@/lib/types";
+import type { Clinic, Practitioner, City } from "@/lib/types";
 import { Badge } from "@/components/ui/badge";
 import { Star, MapPin } from "lucide-react";
 import { MoreItems } from "@/components/MoreItems";
 import fs from "fs";
 import path from "path";
 import clinicsJson from "@/../public/clinics_processed_new_data.json";
+import cityJson from "@/../public/city_data_processed.json";
+import { CityPageData } from "@/components/cityPageData";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -19,24 +21,16 @@ import {
 import { Button } from "@/components/ui/button"
 import { ArrowLeft } from "lucide-react"
 import { PractitionerCard } from "@/components/practitioner-card";
+import { decodeUnicodeEscapes, fixMojibake } from "@/lib/utils";
 const clinicsData = clinicsJson as unknown as Clinic[];
 const clinics = clinicsData
   const clinicIndex = new Map(
   clinics.filter(c=>c.slug !== undefined).map(c => [c.slug!, c])
 )
-
-interface ProfilePageProps {
-  params: {
-    cityslug: string;
-    slug: string;
-  };
-}
-
-export default async function ProfilePage({ params }: Readonly<ProfilePageProps>) {
-  const filePath = path.join(process.cwd(), "public", "derms_processed_new_5403.json");
+const filePath = path.join(process.cwd(), "public", "derms_processed_new_5403.json");
      const fileContents = fs.readFileSync(filePath, "utf-8");
-     const clinics: Practitioner[] = JSON.parse(fileContents);
-       const practitioners = clinics
+     const all_practitioners: Practitioner[] = JSON.parse(fileContents);
+       const practitioners = all_practitioners
     .map(p => {
       const clinic = clinicIndex.get(JSON.parse(p.Associated_Clinics!)[0])
       
@@ -51,9 +45,19 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
     
     })
     .filter((item) => item !==null).filter(Boolean)
+interface ProfilePageProps {
+  params: {
+    cityslug: string;
+    slug: string;
+  };
+}
+
+export default async function ProfilePage({ params }: Readonly<ProfilePageProps>) {
+  
   
   
   const citySlug = params.cityslug;
+  const cityData: City = (cityJson as unknown as City[]).find((p) => p.City === citySlug)!;
   const cityClinics: Practitioner[] = practitioners.filter((p) => p.City === citySlug);
     const uniqueTreatments = [
   ...new Set(
@@ -103,7 +107,11 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
 \              </BreadcrumbList>
             </Breadcrumb>
           </div></div>
-          <div className="flex flex-col pt-2 w-full pb-4 px-4 md:px-0"><h1 className="text-sm md:text-2xl md:font-semibold mb-1 md:mb-2">Top Practitioners in {citySlug}</h1></div>
+          
+          <CityPageData cityData={cityData} uniqueTreatments={(uniqueTreatments as string[])} citySlug={citySlug} cityClinics={cityClinics} />
+
+          <div className="flex flex-col pt-2 w-full pb-4 px-4 md:px-0">
+            <h1 className="text-sm md:text-2xl md:font-semibold mb-1 md:mb-2">Top Practitioners in {citySlug}</h1></div>
        
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:gap-6 animate-fade-in">
           {cityClinics.map((clinic, index) => (
@@ -113,12 +121,9 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
           ))}
         </div>
              <div className="px-4 md:px-0 space-y-6">
-                          <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Clinics in ${citySlug}`}</h3>
-                          <MoreItems items={cityClinics.length === 0 ? defaultClinics : cityClinics} />
                           <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Specialities in ${citySlug}`}</h3>
-                          <MoreItems items={uniqueTreatments} />
-                          <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Brands`}</h3>
-                          <MoreItems items={uniqueTreatments} />
+                          <MoreItems items={uniqueTreatments.length === 0 ? defaultTreatments : uniqueTreatments} />
+
                           
                         </div>
       </div>
