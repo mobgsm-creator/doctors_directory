@@ -190,7 +190,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                 <h4 className="sr-only">Treatments offered</h4>
               <ul className="flex flex-wrap gap-1 pt-4" aria-label="Treatments offered">
                 {practitioner.Treatments &&
-                  practitioner.Treatments.slice(0, 2)
+                  practitioner.Treatments.sort((a,b) => a.length - b.length).slice(0, 2)
                     .map((modality, index) => (
                       <li key={index}>
                         <Badge asChild variant="outline" className="text-xs">
