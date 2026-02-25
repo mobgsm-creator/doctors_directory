@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from 'path';
 import {cleanRouteSlug, parseLabels, safeParse, consolidate, parse_text, parse_addresses, parse_numbers} from "../utils"
-import { Clinic, Practitioner,Product } from "../types";
+import { Clinic, Practitioner,Product, City } from "../types";
 import { decodeUnicodeEscapes, fixMojibake } from "../utils";
 function parseCorruptedJson(raw:string) {
   if (!raw) return null;
@@ -121,7 +121,48 @@ function transformClinic_2(raw: any): Clinic {
     Treatments: safeParse(raw.Treatments),
   };
 }
+function transformCity(raw: any): City {
+  return {
+    City: raw.City,
+    Unique_Specializations: safeParse(raw.Unique_Specializations),
 
+    city_overview_population_estimate: raw.city_overview_population_estimate,
+    city_overview_lifestyle_characteristics: raw.city_overview_lifestyle_characteristics,
+    city_overview_medical_infrastructure_presence: raw.city_overview_medical_infrastructure_presence,
+
+    market_size_indicators_number_of_clinics: raw.market_size_indicators_number_of_clinics,
+    market_size_indicators_review_volume_total: raw.market_size_indicators_review_volume_total,
+    market_size_indicators_average_rating_citywide: raw.market_size_indicators_average_rating_citywide,
+    market_size_indicators_estimated_private_aesthetic_market_strength: raw.market_size_indicators_estimated_private_aesthetic_market_strength,
+
+    competitor_landscape_nhs_presence: raw.competitor_landscape_nhs_presence,
+
+    regulatory_environment_primary_regulator: raw.regulatory_environment_primary_regulator,
+    regulatory_environment_prescribing_requirements: raw.regulatory_environment_prescribing_requirements,
+    regulatory_environment_inspection_framework: raw.regulatory_environment_inspection_framework,
+
+    insurance_and_financing_private_insurance_usage: raw.insurance_and_financing_private_insurance_usage,
+    insurance_and_financing_cosmetic_finance_availability: raw.insurance_and_financing_cosmetic_finance_availability,
+
+    seasonality_and_local_trends_peak_booking_periods: safeParse(raw.seasonality_and_local_trends_peak_booking_periods),
+
+    social_media_trends_content_trends: safeParse(raw.social_media_trends_content_trends),
+
+    referral_networks_teaching_hospital_links: raw.referral_networks_teaching_hospital_links,
+
+    accessibility_factors_public_transport_proximity: raw.accessibility_factors_public_transport_proximity,
+    accessibility_factors_parking_availability: raw.accessibility_factors_parking_availability,
+    accessibility_factors_city_centre_vs_suburban_distribution: raw.accessibility_factors_city_centre_vs_suburban_distribution,
+
+    medical_tourism_potential_tourism_volume_indicator: raw.medical_tourism_potential_tourism_volume_indicator,
+    medical_tourism_potential_hotel_density_near_clinics: raw.medical_tourism_potential_hotel_density_near_clinics,
+    medical_tourism_potential_airport_proximity: raw.medical_tourism_potential_airport_proximity,
+    medical_tourism_potential_medical_tourism_viability: raw.medical_tourism_potential_medical_tourism_viability,
+
+    beauty_spend_indicators_market_maturity_level: raw.beauty_spend_indicators_market_maturity_level,
+  };  
+
+}
 function transformClinic(raw: any): Clinic {
  
   return {
@@ -225,21 +266,30 @@ function transformPractitioner(raw: any): Practitioner {
 async function loadFromFileSystem() {
   console.log("📂 API: Reading from file system...");
   
-  const filePath = "C:\\Users\\agney\\Desktop\\Aesthetic Products\\scripts\\scripts\\derms.json";
-  console.log(filePath)
-  const fileContents = fs.readFileSync(filePath, 'utf-8');
-  const practitioners = JSON.parse(fileContents);
-  console.log(practitioners.length)
+  // const filePath = "C:\\Users\\agney\\Desktop\\Aesthetic Products\\scripts\\scripts\\derms.json";
+  // console.log(filePath)
+  // const fileContents = fs.readFileSync(filePath, 'utf-8');
+  // const practitioners = JSON.parse(fileContents);
+  // console.log(practitioners.length)
 
-  const filePath_1 = "C:\\Users\\agney\\Desktop\\Aesthetic Products\\scripts\\scripts\\clinics.json"
-  const fileContents_1 = fs.readFileSync(filePath_1, 'utf-8');
-  const clinics = JSON.parse(fileContents_1);
+  // const filePath_1 = "C:\\Users\\agney\\Desktop\\Aesthetic Products\\scripts\\scripts\\clinics.json"
+  // const fileContents_1 = fs.readFileSync(filePath_1, 'utf-8');
+  // const clinics = JSON.parse(fileContents_1);
+  // console.log("Loaded")
+  // const clinicsData = clinics.map(transformClinic);
+  // console.log("Transformed Clinics")
+  // const practitionersData = practitioners.map(transformPractitioner);
+  // console.log("Transformed Practitioners")
+  // console.log(practitioners.length)
+
+  const filePath_city = "C:\\Users\\agney\\Documents\\Files\\Projects\\doctor-directory\\public\\city_data.json"
+
+  const fileContents_city = fs.readFileSync(filePath_city, 'utf-8');
+  const cityData = JSON.parse(fileContents_city);
   console.log("Loaded")
-  const clinicsData = clinics.map(transformClinic);
-  console.log("Transformed Clinics")
-  const practitionersData = practitioners.map(transformPractitioner);
-  console.log("Transformed Practitioners")
-  console.log(practitioners.length)
+  const cityDataData = cityData.map(transformCity);
+  console.log("Transformed City Data")
+
   // const filePath_p = path.join(process.cwd(), 'public', 'products.json');
   // const fileContents_p = fs.readFileSync(filePath_p, 'utf-8');
   // const practitioners_p = JSON.parse(fileContents_p);
@@ -248,21 +298,24 @@ async function loadFromFileSystem() {
 
   // console.log("Transformed Products", productsData.length)
 
-  return { practitionersData, clinicsData}
+  return { cityDataData}
 }
-const {practitionersData, clinicsData} = await loadFromFileSystem();
+const {cityDataData} = await loadFromFileSystem();
 
 // fs.writeFileSync(
 //   "derms_processed_new_5403.json",
 //   JSON.stringify( practitionersData )
 // );
-fs.writeFileSync(
-  "clinics_processed_new_data.json",
-  JSON.stringify(clinicsData)
-);
+// fs.writeFileSync(
+//   "clinics_processed_new_data.json",
+//   JSON.stringify(clinicsData)
+// );
 // fs.writeFileSync(
 //   "derms_processed_new.json",
 //   JSON.stringify(practitionerData)
 // );
-
+fs.writeFileSync(
+  "city_data_processed.json",
+  JSON.stringify(cityDataData)
+);
 console.log("Generated derms_processed.json");

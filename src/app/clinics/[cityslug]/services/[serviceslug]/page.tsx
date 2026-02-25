@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Star, MapPin } from "lucide-react";
 import fs from "fs";
 import path from "path";
+import { MoreItems } from "@/components/MoreItems";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -45,7 +46,7 @@ export default function ProfilePage({ params }: ProfilePageProps) {
     
   
 
-
+    
     
 
 const serviceMatch = categories.some((cat: string) =>
@@ -56,6 +57,22 @@ const serviceMatch = categories.some((cat: string) =>
 
     return cityMatch && serviceMatch
   });
+  const uniqueTreatments = [
+  ...new Set(
+    filteredClinics
+      .filter(c => Array.isArray(c.Treatments))
+      .flatMap(c => c.Treatments)
+  )
+];
+
+  const defaultClinics: Clinic[] = clinics.filter((p) => p.City === "London");
+  const defaultTreatments = [
+  ...new Set(
+      defaultClinics
+      .filter(c => Array.isArray(c.Treatments))
+      .flatMap(c => c.Treatments)
+  )
+];
 
   if (!filteredClinics) {
     notFound();
@@ -109,6 +126,15 @@ const serviceMatch = categories.some((cat: string) =>
                                  
           ))}
         </div>
+        <div className="px-4 md:px-0 space-y-6">
+                  <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Clinics in ${cityslug}`}</h3>
+                  <MoreItems items={filteredClinics.length === 0 ? defaultClinics : filteredClinics} />
+                  <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Specialities in ${cityslug}`}</h3>
+                  <MoreItems items={uniqueTreatments} />
+                  <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Brands`}</h3>
+                  <MoreItems items={uniqueTreatments} />
+                  
+                </div>
       </div>
     </main>
   );

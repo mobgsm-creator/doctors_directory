@@ -4,6 +4,7 @@ import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import type { Clinic, Practitioner } from "@/lib/types";
 import { Badge } from "@/components/ui/badge";
 import { Star, MapPin } from "lucide-react";
+import { MoreItems } from "@/components/MoreItems";
 import fs from "fs";
 import path from "path";
 import clinicsJson from "@/../public/clinics_processed_new_data.json";
@@ -54,7 +55,22 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
   
   const citySlug = params.cityslug;
   const cityClinics: Practitioner[] = practitioners.filter((p) => p.City === citySlug);
+    const uniqueTreatments = [
+  ...new Set(
+    cityClinics
+      .filter(c => Array.isArray(c.Treatments))
+      .flatMap(c => c.Treatments)
+  )
+];
 
+  const defaultClinics: Practitioner[] = practitioners.filter((p) => p.City === "London");
+  const defaultTreatments = [
+  ...new Set(
+      defaultClinics
+      .filter(c => Array.isArray(c.Treatments))
+      .flatMap(c => c.Treatments)
+  )
+];
   if (!cityClinics) {
     notFound();
   }
@@ -96,6 +112,15 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
             </div>
           ))}
         </div>
+             <div className="px-4 md:px-0 space-y-6">
+                          <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Clinics in ${citySlug}`}</h3>
+                          <MoreItems items={cityClinics.length === 0 ? defaultClinics : cityClinics} />
+                          <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Specialities in ${citySlug}`}</h3>
+                          <MoreItems items={uniqueTreatments} />
+                          <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Brands`}</h3>
+                          <MoreItems items={uniqueTreatments} />
+                          
+                        </div>
       </div>
     </main>
   );

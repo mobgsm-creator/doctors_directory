@@ -1,3 +1,42 @@
+export interface City {
+  City: string;
+  Unique_Specializations: string[];
+
+  city_overview_population_estimate: string;
+  city_overview_lifestyle_characteristics: string;
+  city_overview_medical_infrastructure_presence: string;
+
+  market_size_indicators_number_of_clinics: number;
+  market_size_indicators_review_volume_total: number;
+  market_size_indicators_average_rating_citywide: number;
+  market_size_indicators_estimated_private_aesthetic_market_strength: string;
+
+  competitor_landscape_nhs_presence: string;
+
+  regulatory_environment_primary_regulator: string;
+  regulatory_environment_prescribing_requirements: string;
+  regulatory_environment_inspection_framework: string;
+
+  insurance_and_financing_private_insurance_usage: string;
+  insurance_and_financing_cosmetic_finance_availability: string;
+
+  seasonality_and_local_trends_peak_booking_periods: string[];
+
+  social_media_trends_content_trends: string[];
+
+  referral_networks_teaching_hospital_links: string;
+
+  accessibility_factors_public_transport_proximity: string;
+  accessibility_factors_parking_availability: string;
+  accessibility_factors_city_centre_vs_suburban_distribution: string;
+
+  medical_tourism_potential_tourism_volume_indicator: string;
+  medical_tourism_potential_hotel_density_near_clinics: string;
+  medical_tourism_potential_airport_proximity: string;
+  medical_tourism_potential_medical_tourism_viability: string;
+
+  beauty_spend_indicators_market_maturity_level: string;
+}
 export interface Clinic {
   slug: string | undefined
   image: string
