@@ -12,5 +12,19 @@
     "Title": "Accredited GP Trainer, MBBS",
     "Associated_Clinics": "[\"doctor-rejuvenate\"]",
     "status": "pending"
+  },
+  {
+    "practitioner_image_link": "https://images.search.yahoo.com/search/images?p=Dr+Rose+Keating+GP+Treeton+Medical+Practice",
+    "practitioner_qualifications": "[\"Primary medical qualification (MBBS or equivalent)\", \"General Medical Council (GMC) registered General Practitioner\", \"Accredited GP Partner within UK primary care\"]",
+    "practitioner_roles": "[\"General Practitioner at Treeton Medical Practice\", \"GP Partner with responsibility for clinical leadership and practice governance\"]",
+    "practitioner_awards": "[]",
+    "practitioner_media": "[]",
+    "practitioner_experience": "[\"Provides comprehensive general practice services to the local community\", \"Experienced in long-term condition management and preventative healthcare\", \"Works within an NHS primary care setting delivering continuity of care\"]",
+    "practitioner_name": "dr-rose-keating",
+    "practitioner_title": "Accredited GP Partner, MBBS",
+    "Treatments": null,
+    "Title": "Accredited GP Partner, MBBS",
+    "Associated_Clinics": "[\"treeton-medical-centre\"]",
+    "status": "pending"
   }
 ]

@@ -25,6 +25,7 @@ type CityPageDataProps = {
 export function CityPageData({citySlug, cityData, uniqueTreatments}: CityPageDataProps) {
     return (
         <>
+        <div className='bg-white rounded p-4'>
         <section className="mb-8">
         <h1 className="text-sm md:text-2xl md:font-semibold mb-1 md:mb-2">About {citySlug}</h1>
         <section className="space-y-6 text-muted-foreground">
@@ -233,7 +234,7 @@ export function CityPageData({citySlug, cityData, uniqueTreatments}: CityPageDat
             {createBullets(cityData.medical_tourism_potential_medical_tourism_viability)}
           </p>
         </div>
-      </section>
+      </section></div>
         </>
     )
 }
