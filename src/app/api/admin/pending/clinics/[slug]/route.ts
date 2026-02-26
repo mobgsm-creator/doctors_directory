@@ -8,7 +8,7 @@ export async function PUT(
   { params }: { params: { slug: string } }
 ) {
   try {
-
+    console.log('Received update request for clinic:', params.slug)
     const data = await request.json()
     const newData = { ...data, status: "pending" }
 

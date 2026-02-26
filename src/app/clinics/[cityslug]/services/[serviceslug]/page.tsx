@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
-import type { Clinic } from "@/lib/types";
+import type { Clinic, City } from "@/lib/types";
 import { Badge } from "@/components/ui/badge";
 import { Star, MapPin } from "lucide-react";
 import fs from "fs";
@@ -17,19 +17,28 @@ import {
 } from "@/components/ui/breadcrumb"
 import { Button } from "@/components/ui/button"
 import { ArrowLeft } from "lucide-react"
+import { CityTreatmentPage } from "@/components/cityxTreatmentPage";
+import { PractitionerCard } from "@/components/practitioner-card";
+import treatment_content from "@//../public/treatments.json";
+import cityJson from "@/../public/city_data_processed.json"
 interface ProfilePageProps {
   params: {
     cityslug: string;
     serviceslug: string;
   };
 }
-import { PractitionerCard } from "@/components/practitioner-card";
-
+type TreatmentSlug = keyof typeof treatment_content
+// Object.keys(treatment_content).forEach(key => {
+//   console.log(Object.entries(treatment_content[key as TreatmentSlug])[10])
+// })
 export default function ProfilePage({ params }: ProfilePageProps) {
   const filePath = path.join(process.cwd(), "public", "clinics_processed_new_data.json");
   const fileContents = fs.readFileSync(filePath, "utf-8");
   const clinics: Clinic[] = JSON.parse(fileContents);
   const { cityslug, serviceslug } = params;
+  const cityData: City = (cityJson as unknown as City[]).find((p) => p.City === cityslug)!;
+  const treatmentslug = serviceslug.replaceAll("%20", " ").charAt(0).toUpperCase() + serviceslug.replaceAll("%20", " ").slice(1)
+  const treatment = treatment_content[treatmentslug as TreatmentSlug] as Record<string, any>;
   const decodedCitySlug = decodeURIComponent(cityslug)
   .toLowerCase()
   .replace(/\s+/g, "");
@@ -104,7 +113,7 @@ const serviceMatch = categories.some((cat: string) =>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
-                  <BreadcrumbPage>{serviceslug.charAt(0).toUpperCase() + serviceslug.replace("%20", " ").slice(1)}</BreadcrumbPage>
+                  <BreadcrumbPage>{serviceslug.charAt(0).toUpperCase() + serviceslug.replaceAll("%20", " ").slice(1)}</BreadcrumbPage>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
               </BreadcrumbList>
@@ -112,9 +121,10 @@ const serviceMatch = categories.some((cat: string) =>
           </div>
         
         </div>
+        <CityTreatmentPage cityData={cityData} treatment={treatment} slug={serviceslug.replaceAll("%20", " ")} />
         <div className="flex flex-col pt-2 w-full pb-4 px-4 md:px-0">
           <h1 className="text-sm md:text-2xl md:font-semibold mb-1 md:mb-2">
-            Top {serviceslug.replace("%20", " ")} Providers in {cityslug}
+            Top {serviceslug.replaceAll("%20", " ")} Providers in {cityslug}
           </h1></div>
       
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:gap-6 animate-fade-in">
