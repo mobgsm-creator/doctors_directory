@@ -1,11 +1,11 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
-import type { Clinic, Practitioner } from "@/lib/types";
+import type { Clinic, Practitioner, City } from "@/lib/types";
 import { Badge } from "@/components/ui/badge";
 import { Star, MapPin } from "lucide-react";
 import clinicsJson from "@/../public/clinics_processed_new_data.json";
-import fs from "fs";
+import fs, { cp } from "fs";
 import path from "path";
 import {
   Breadcrumb,
@@ -18,6 +18,11 @@ import {
 import { Button } from "@/components/ui/button"
 import { ArrowLeft } from "lucide-react"
 import { PractitionerCard } from "@/components/practitioner-card";
+import { CityTreatmentPage } from "@/components/cityxTreatmentPage";
+import cityJson from "@/../public/city_data_processed.json"
+import treatment_content from "@//../public/treatments.json";
+type TreatmentSlug = keyof typeof treatment_content
+
 const clinicsData = clinicsJson as unknown as Clinic[];
 const clinics = clinicsData
   const clinicIndex = new Map(
@@ -31,7 +36,7 @@ interface ProfilePageProps {
 }
 
 export default function ProfilePage({ params }: ProfilePageProps) {
-
+  
   const filePath = path.join(process.cwd(), "public", "derms_processed_new_5403.json");
    const fileContents = fs.readFileSync(filePath, "utf-8");
    const clinics: Practitioner[] = JSON.parse(fileContents);
@@ -52,6 +57,7 @@ export default function ProfilePage({ params }: ProfilePageProps) {
   .filter((item) => item !==null).filter(Boolean)
 
   const { cityslug, treatmentslug } = params;
+  const cityData: City = (cityJson as unknown as City[]).find((p) => p.City === cityslug)!;
    const decodedCitySlug = decodeURIComponent(cityslug)
   .toLowerCase()
   .replace(/\s+/g, "");
@@ -80,7 +86,10 @@ export default function ProfilePage({ params }: ProfilePageProps) {
   if (!filteredClinics) {
     notFound();
   }
-
+  const treatmentSlug = treatmentslug.replaceAll("%20", " ").charAt(0).toUpperCase() + treatmentslug.replaceAll("%20", " ").slice(1)
+  const treatment = treatment_content[treatmentSlug as TreatmentSlug] as Record<string, any>;
+  
+  
   return (
     <main className="bg-(--primary-bg-color)">
       <div className="mx-auto max-w-7xl md:px-4 py-4 md:py-12">
@@ -112,6 +121,8 @@ export default function ProfilePage({ params }: ProfilePageProps) {
               </BreadcrumbList>
             </Breadcrumb>
           </div>
+          <CityTreatmentPage cityData={cityData} treatment={treatment} slug={treatmentslug.replaceAll("%20", " ")} />
+        
           <div className="flex flex-col pt-2 w-full pb-4 px-4 md:px-0">
           <h1 className="text-sm md:text-2xl md:font-semibold mb-1 md:mb-2">
             Top {treatmentslug.replace("%20", " ").split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")} Providers in {cityslug}

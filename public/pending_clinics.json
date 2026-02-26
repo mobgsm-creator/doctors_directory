@@ -1,1 +1,421 @@
-[]
+[
+  {
+    "slug": "diamond-skin-laser-clinic",
+    "image": "https://lh3.googleusercontent.com/p/AF1QipMt7FaRM8p8zdwbksOjjps8p4fXVcWPeHv3edV-=w408-h408-k-no",
+    "url": "https://www.google.com/maps/place/Diamond+Skin+Laser+Clinic/data=!4m7!3m6!1s0x487613dc0e682e31:0x72bf47c04f17b6c!8m2!3d51.5536788!4d-0.2881673!16s%2Fg%2F11ngkhpxvf!19sChIJMS5oDtwTdkgRbHvxBHz0Kwc?authuser=0&hl=en&rclk=1",
+    "rating": 4.6,
+    "reviewCount": 173,
+    "category": "Dermatologist",
+    "gmapsAddress": "348 High Rd, Wembley HA9 6AZ, United Kingdom",
+    "gmapsPhone": "+44 20 8004 0277",
+    "reviewAnalysis": {
+      "practitioners": [
+        {
+          "name": "Redhika",
+          "role_title": "aesthetician",
+          "text": "I had a great experience with Malaysian Aesthetician Ms. Redhika , who recommended laser hair removal to me. She took the time to explain everything clearly and thoroughly, which really helped me feel confident and safe about going ahead with the treatment."
+        },
+        {
+          "name": "Khurram",
+          "role_title": "doctor",
+          "text": "Came in to see Dr Khurram at Knightsbridge for sofwave full face, neck and submental. It was very effective and the doctor was great. The clinic manager Farah made me feel welcome and Dr khurram spent so much time making me feel welcome and comfortable in my treatment."
+        },
+        {
+          "name": "Farah",
+          "role_title": "doctor",
+          "text": "Came in to see Dr Khurram at Knightsbridge for sofwave full face, neck and submental. It was very effective and the doctor was great. The clinic manager Farah made me feel welcome and Dr khurram spent so much time making me feel welcome and comfortable in my treatment."
+        },
+        {
+          "name": "khurram",
+          "role_title": "doctor",
+          "text": "Came in to see Dr Khurram at Knightsbridge for sofwave full face, neck and submental. It was very effective and the doctor was great. The clinic manager Farah made me feel welcome and Dr khurram spent so much time making me feel welcome and comfortable in my treatment."
+        },
+        {
+          "name": "Diamod Skin - North Kensington",
+          "role_title": "staff",
+          "text": "Diamod Skin - North Kensington just horrible experience.  After 6 sessions of tattoo removal asking me to pay double of  the initial price .. and the procedures are done incorrectly in order to pay for more sessions.Lady ,honestly,  just avoid this place."
+        },
+        {
+          "name": "Ifra",
+          "role_title": "dr",
+          "text": "Had a great consultation with Dr. Ifra – she’s knowledgeable, kind, and made me feel completely at ease. Looking forward to the next steps!"
+        },
+        {
+          "name": "rolla",
+          "role_title": "dr",
+          "text": "Dr rolla has been very helpful throughout the last few sessions and she has always been very good with the skin tone products.I couldn't be more happier"
+        },
+        {
+          "name": "Nassar",
+          "role_title": "dr",
+          "text": "This is what they did to my mum's eyebrows. We complained but nothing was ever done about it despite assurances from Dr Nassar and Shantelle. They refused to take any responsibility whatsoever and the communication was very bad. On …"
+        },
+        {
+          "name": "Sally",
+          "role_title": "staff",
+          "text": "I’m so happy with my experiences at Diamond Clinic and that’s all because of Sally. She’s so amazing and the way she delivers the treatment is so beautifully done and explained to perfection. Any worries you have she explains and reassures …"
+        },
+        {
+          "name": "Daniela Iacoban",
+          "role_title": "staff",
+          "text": "I’ve been doing my laser treatments with Daniela Iacoban and I must say after being in several skin clinics in London and Leeds this has to be the best one I’ve been so far. My experience has been amazing and I’ve had great results from day …"
+        },
+        {
+          "name": "Musa",
+          "role_title": "dr",
+          "text": "Musa and Dr rollaBeautiful service, kind helpful. Explained my procedure clearly, helped me understand the process and the recovery process, if needed be. Over all happy with …"
+        },
+        {
+          "name": "Rolla",
+          "role_title": "dr",
+          "text": "Had an amazing experience at Diamond Skin Clinic! Thank you Dr Rolla and Daniela. I’m happy with my Fraxel laser treatment. All my pigmentation is gone. It took three sessions I have skin of colour so I was worried about where to go. I’m so glad I found this clinic. Daniela she is sooo helpful and friendly. 100% recommend. ������❤️ …"
+        },
+        {
+          "name": "Daniela",
+          "role_title": "dr",
+          "text": "Had an amazing experience at Diamond Skin Clinic! Thank you Dr Rolla and Daniela. I’m happy with my Fraxel laser treatment. All my pigmentation is gone. It took three sessions I have skin of colour so I was worried about where to go. I’m so glad I found this clinic. Daniela she is sooo helpful and friendly. 100% recommend. ������❤️ …"
+        },
+        {
+          "name": "Daniella Iacoban",
+          "role_title": "staff",
+          "text": "I want to express my sincere appreciation Daniella Iacoban for the exceptional customer service provided in the realm of aesthetics. Your attention to detail, personalized care, and commitment to ensuring a positive experience truly set you …"
+        }
+      ],
+      "procedures_offered": {
+        "categories": [
+          "laser treatment",
+          "acne treatment",
+          "facial"
+        ]
+      },
+      "clinic_environment": [
+        "welcoming",
+        "comfortable",
+        "relaxing",
+        "clean",
+        "beautiful"
+      ],
+      "professionalism_safety": [
+        "thorough",
+        "explained everything clearly",
+        "professional",
+        "honest",
+        "respectful",
+        "informative",
+        "expert",
+        "skilled",
+        "safe",
+        "confident",
+        "knowledgeable"
+      ],
+      "treatment_outcomes": [
+        "improvement",
+        "great results",
+        "refreshed"
+      ],
+      "referrals_recommendations": [
+        "highly recommend"
+      ],
+      "negative_keywords": [
+        "moving to another surgery",
+        "avoid"
+      ]
+    },
+    "weighted_analysis": {
+      "Clinical Expertise": {
+        "weighted_score": 51.908650398254395,
+        "confidence": 10.511662632226944,
+        "num_mentions": 30,
+        "top_sentence": []
+      },
+      "Communication": {
+        "weighted_score": 35.00408038496971,
+        "confidence": 7.1826901733875275,
+        "num_mentions": 24,
+        "top_sentence": []
+      },
+      "Treatment Results": {
+        "weighted_score": 119.72426280379295,
+        "confidence": 25.44971740245819,
+        "num_mentions": 98,
+        "top_sentence": []
+      },
+      "Bedside Manner": {
+        "weighted_score": 78.26609820127487,
+        "confidence": 16.428722620010376,
+        "num_mentions": 59,
+        "top_sentence": []
+      },
+      "Trust & Safety": {
+        "weighted_score": 71.39789789915085,
+        "confidence": 14.53597605228424,
+        "num_mentions": 53,
+        "top_sentence": []
+      },
+      "Environment": {
+        "weighted_score": 73.6895602941513,
+        "confidence": 15.975330024957657,
+        "num_mentions": 58,
+        "top_sentence": []
+      },
+      "Personalization": {
+        "weighted_score": 74.38895896077156,
+        "confidence": 15.191102296113968,
+        "num_mentions": 58,
+        "top_sentence": []
+      },
+      "Post-Care": {
+        "weighted_score": 100.38171589374542,
+        "confidence": 20.819323658943176,
+        "num_mentions": 80,
+        "top_sentence": []
+      },
+      "Professionalism": {
+        "weighted_score": 48.12626749277115,
+        "confidence": 10.089502543210983,
+        "num_mentions": 35,
+        "top_sentence": []
+      },
+      "Staff Support": {
+        "weighted_score": 71.59419819712639,
+        "confidence": 14.89737293124199,
+        "num_mentions": 45,
+        "top_sentence": []
+      },
+      "Value & Transparency": {
+        "weighted_score": 9.704460948705673,
+        "confidence": 1.9408921897411346,
+        "num_mentions": 5,
+        "top_sentence": []
+      },
+      "Pain Management & Comfort": {
+        "weighted_score": 100.29025956988335,
+        "confidence": 20.836101591587067,
+        "num_mentions": 87,
+        "top_sentence": []
+      },
+      "Anxiety & Nervousness Management": {
+        "weighted_score": 63.30118536949158,
+        "confidence": 13.026777118444443,
+        "num_mentions": 50,
+        "top_sentence": []
+      },
+      "Booking & Accessibility": {
+        "weighted_score": 24.725098609924316,
+        "confidence": 5.0602907836437225,
+        "num_mentions": 18,
+        "top_sentence": []
+      },
+      "Honesty & Realistic Expectations": {
+        "weighted_score": 13.396534025669098,
+        "confidence": 2.6793068051338196,
+        "num_mentions": 8,
+        "top_sentence": []
+      },
+      "Long-term Relationship & Loyalty": {
+        "weighted_score": 103.67107167840004,
+        "confidence": 21.389199793338776,
+        "num_mentions": 88,
+        "top_sentence": []
+      }
+    },
+    "City": "Wembley",
+    "x_twitter": "",
+    "facebook": "https://www.facebook.com/diamondskinuk/",
+    "instagram": "https://www.instagram.com/diamondskin.uk/",
+    "twitter": "",
+    "youtube": "",
+    "Linkedin": "",
+    "website": "https://dslclinic.com/",
+    "email": "hello@dslclinic.com",
+    "isSaveFace": false,
+    "isDoctor": true,
+    "isJCCP": [
+      false,
+      ""
+    ],
+    "isCQC": [
+      false,
+      ""
+    ],
+    "isHIW": [
+      false,
+      ""
+    ],
+    "isHIS": [
+      false,
+      ""
+    ],
+    "isRQIA": [
+      false,
+      ""
+    ],
+    "about_section": "Doctor- and nurse-led aesthetic and laser clinic in Wembley offering laser hair removal, tattoo removal (PicoSure / PicoWay / Q-Switch), skin resurfacing, fractional & pico lasers, injectables (anti-wrinkle & dermal fillers), body contouring (CoolSculpting / EMSculpt Neo / fat-dissolving), skin-revitalisation and dermatology-led consultations. Operates multiple London locations (Wembley, North Kensington / Ladbroke Grove, Knightsbridge). The clinic states it was established in 2010 and promotes >15 years of laser experience and multiple advanced laser platforms.",
+    "accreditations": "[\"Clinic states 'Doctor and Nurse-Led' and highlights use of advanced medical lasers and in-house training (claimed on official website).\", 'Financial Conduct Authority (FCA) authorisation claim for acting as a credit broker (Klarna / finance options referenced on website).', 'Claims of staff with NVQ Level 4 and use of accredited CPD/in-house training (stated on website).']",
+    "hours": {
+      "Friday": "10 am–7 pm",
+      "Saturday": "10 am–6 pm",
+      "Sunday": "10 am–6 pm",
+      "Monday": "10 am–7 pm",
+      "Tuesday": "10 am–7 pm",
+      "Wednesday": "10 am–7 pm",
+      "Thursday": "10 am–7 pm"
+    },
+    "Practitioners": [
+      {
+        "Full Name": "Dr Ifrah",
+        "Title": "Laser Specialist",
+        "Specialty": "Dermatology & Aesthetic Medicine — laser specialist (tattoo removal, laser skin resurfacing, pigmentation).",
+        "Education": "Diploma in Dermatology, Middlesex University (listed on clinic team page)",
+        "Professional Affiliations": "Clinic lists as part of DSL Clinic team; claims clinical qualifications on site.",
+        "LinkedInURL": "Not publicly listed",
+        "ProfileURL": "https://dslclinic.com/dr-ifrah"
+      },
+      {
+        "Full Name": "Mina Khadka Bantha Magar",
+        "Title": "Aesthetic Nurse",
+        "Specialty": "Invasive & non-invasive cosmetic procedures (aesthetic nurse).",
+        "Education": "Not publicly listed (profile states 'Aesthetic Nurse, NMC Registered').",
+        "Professional Affiliations": [
+          "NMC registered (claimed on clinic About/Team page — verification recommended via NMC register)."
+        ],
+        "LinkedInURL": "Not publicly listed",
+        "ProfileURL": "https://dslclinic.com/mina-khadka-bantha-magar"
+      },
+      {
+        "Full Name": "Dr Zainab Basma",
+        "Title": "Doctor (GMC-registered GP) / Aesthetics",
+        "Specialty": "GMC-registered GP with a specialist background in dermatology; non-surgical face rejuvenation and laser procedures.",
+        "Education": "Not publicly listed on clinic page (GMC registration claimed)",
+        "Professional Affiliations": [
+          "GMC registered (clinic states GMC registration — verify on the GMC register)."
+        ],
+        "LinkedInURL": "Not publicly listed",
+        "ProfileURL": "https://dslclinic.com/dr-zainab-basma"
+      },
+      {
+        "Full Name": "Dr Darina Kizkenova",
+        "Title": "Doctor / Aesthetic Physician",
+        "Specialty": "Dermatology, acne care, hair restoration, advanced injectable treatments.",
+        "Education": "Not publicly listed",
+        "Professional Affiliations": "Listed as part of the DSL Clinic medical team on the website.",
+        "LinkedInURL": "Not publicly listed",
+        "ProfileURL": "https://dslclinic.com/dr-darina-kizkenova"
+      },
+      {
+        "Full Name": "Dr Kurrum Shakar",
+        "Title": "Doctor / Aesthetic Physician",
+        "Specialty": "Advanced aesthetics and regenerative medicine — Sofwave facial lifting, body contouring, advanced tightening treatments (P-Shot / O-Shot mentioned).",
+        "Education": "Not publicly listed",
+        "Professional Affiliations": "Listed on clinic team page.",
+        "LinkedInURL": "Not publicly listed",
+        "ProfileURL": "https://dslclinic.com/dr-kurrum-shakar"
+      }
+    ],
+    "Insurace": [
+      "Self-funded services are provided. ",
+      "No insurer panels are publicly listed. ",
+      "Clinicians hold professional indemnity insurance through providers such as Cosmetic Insure and Medical Protection Society (MPS). ",
+      "Where clinically indicated, treatment may be recognised by insurers such as Aviva Health and Aetna. ",
+      "Insurance billing may be available when treatment is provided at recognised private hospitals. ",
+      "Cosmetic and elective aesthetic procedures are typically excluded from insurance cover. ",
+      "Insurance coverage is subject to individual policy terms and insurer approval."
+    ],
+    "Payments": [
+      "Card payments (implied on site shop/booking)",
+      "0% finance / payment plans via Klarna and other 0% APR options (clinic states DSL Clinic (UK) Ltd acts as a credit broker — Terms & Conditions).",
+      "Cash / other methods: Not explicitly listed (verify directly with clinic)."
+    ],
+    "Fees": [
+      {
+        "treatment": "Microneedling",
+        "price": "£80 (single session)"
+      },
+      {
+        "treatment": "Microneedling",
+        "price": "10-session package £450 (package example)"
+      },
+      {
+        "treatment": "Laser hair removal",
+        "price": "Promotional discounts (e.g., 50% OFF); full price ranges depend on treatment area and package"
+      },
+      {
+        "treatment": "Consultation",
+        "price": "From £50"
+      },
+      {
+        "treatment": "Fraxel / Full face laser resurfacing",
+        "price": "From ~£500"
+      },
+      {
+        "treatment": "Laser hair removal (Lip)",
+        "price": "From £29"
+      },
+      {
+        "treatment": "Laser hair removal (Underarms)",
+        "price": "From £49"
+      },
+      {
+        "treatment": "Laser hair removal (Bikini)",
+        "price": "From £69"
+      },
+      {
+        "treatment": "Laser hair removal (Full Legs)",
+        "price": "From £99+"
+      },
+      {
+        "treatment": "Dermal fillers / anti-wrinkle injections",
+        "price": "Not consistently published; typical entry-level filler / anti-wrinkle prices shown across booking platforms (varies widely) — user should request a written quote from clinic"
+      },
+      {
+        "treatment": "Tattoo removal (PicoSure/PicoWay/Q-Switch)",
+        "price": "Price depends on tattoo size and laser type; clinic advertises use of multiple advanced tattoo lasers but does not publish fixed single-price across platforms"
+      },
+      {
+        "treatment": "Facial treatments",
+        "price": "Starting from approx £35"
+      },
+      {
+        "treatment": "Dermaplaning 45–60 mins",
+        "price": "From £35"
+      }
+    ],
+    "Treatments": [
+      "liposuction",
+      "weight loss",
+      "fillers",
+      "inflammatory skin conditions",
+      "tattoo removal",
+      "laser treatments",
+      "rash treatment",
+      "facial treatments",
+      "acne",
+      "dermatology treatments",
+      "skin lesions",
+      "skin booster",
+      "platelet rich plasma",
+      "botox",
+      "alopecia",
+      "chemical peel",
+      "birthmarks",
+      "aqualyx",
+      "anti wrinkle treatment",
+      "coolsculpting",
+      "profhilo",
+      "dermatitis treatment",
+      "aesthetic skin consultation",
+      "rosacea treatment",
+      "scarring",
+      "marionettes",
+      "vitamin therapy",
+      "skin cancer",
+      "ipl treatment",
+      "hair treatments",
+      "micro-needling",
+      "pigmentation treatment",
+      "cheek enhancement",
+      "lips"
+    ],
+    "status": "pending"
+  }
+]
