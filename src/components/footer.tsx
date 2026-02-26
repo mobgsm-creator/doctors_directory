@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { Mail, Phone } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { modalities,edu,accreditations } from "@/lib/data";
+import { modalities,edu,accreditations, brands, product_categories } from "@/lib/data";
 const cityList = ["Aberaeron",
 "Aberdare",
 "Aberdeen",
@@ -853,6 +853,16 @@ const cityList = ["Aberaeron",
                 </li>
                ))}
              </ul>
+             <h4 className="font-semibold">Practitioners</h4>
+             <ul className="gap-4 max-h-[100px] overflow-auto">
+              {cityList.map((city, index) => (
+                <li key={index}>
+                  <Link href={`/practitioners/${city}`} className="block text-sm">
+                    Top Practitioners in {city}
+                  </Link>
+                </li>
+               ))}
+             </ul>
               <h4 className="font-semibold">Treatments</h4>
               <ul className="gap-4 max-h-[100px] overflow-auto">
               {modalities.map((t, index_t) => (
@@ -863,7 +873,29 @@ const cityList = ["Aberaeron",
                 </li>
               ))}
             </ul>
-            <h4 className="font-semibold">Accredited Practitioners</h4>
+            <h4 className="font-semibold">Treatments by City (Clinics)</h4>
+             <ul className="gap-4 max-h-[100px] overflow-auto">
+              {cityList.map((city, index) => {
+                return modalities.map((treatment, index_t) => (
+                <li key={index_t}>
+                  <Link href={`/clinics/${city}/services/${treatment}`} className="block text-sm">
+                    {treatment} in {city}
+                  </Link>
+                </li>
+               ))})}
+             </ul>
+             <h4 className="font-semibold">Treatments by City (Practitioner)</h4>
+             <ul className="gap-4 max-h-[100px] overflow-auto">
+              {cityList.map((city, index) => {
+                return modalities.map((treatment, index_t) => (
+                <li key={index_t}>
+                  <Link href={`/practitioners/${city}/treatments/${treatment}`} className="block text-sm">
+                    {treatment} in {city}
+                  </Link>
+                </li>
+               ))})}
+             </ul>
+            <h4 className="font-semibold">Qualified Practitioners</h4>
               <ul className="gap-4 max-h-[100px] overflow-auto">
               {recognitions.map((t, index_t) => (
                 <li key={index_t}>
@@ -873,16 +905,37 @@ const cityList = ["Aberaeron",
                 </li>
               ))}
             </ul>
-            <h4 className="font-semibold">Practitioners</h4>
-             <ul className="gap-4 max-h-[100px] overflow-auto">
-              {cityList.map((city, index) => (
-                <li key={index}>
-                  <Link href={`/practitioners/${city}`} className="block text-sm">
-                    Top Practitioners in {city}
+         
+              <ul className="gap-4 max-h-[100px] overflow-auto">
+              
+                <li key={1}>
+                  <Link href={`/accredited`} className="block text-sm">
+                    Accredited Clinics & Practitioners
                   </Link>
                 </li>
-               ))}
-             </ul>
+    
+            </ul>
+            <h4 className="font-semibold">Product Brands</h4>
+              <ul className="gap-4 max-h-[100px] overflow-auto">
+              {brands.map((t, index_t) => (
+                <li key={index_t}>
+                  <Link href={`/products/brands/${t}`} className="block text-sm">
+                    {t}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+
+            <h4 className="font-semibold">Product Categories</h4>
+              <ul className="gap-4 max-h-[100px] overflow-auto">
+              {product_categories.map((t, index_t) => (
+                <li key={index_t}>
+                  <Link href={`/products/category/${t}`} className="block text-sm">
+                    {t}
+                  </Link>
+                </li>
+              ))}
+            </ul>
             </div>
 
             {/* Column 3: For Practitioners */}

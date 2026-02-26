@@ -377,7 +377,7 @@ export const search_categories: string[] = [
 ]
 
 
-export const brands = [" /  (Mortara accessory)",
+export const brands = [
 "3B Scientific",
 "3Dose",
 "3M",
