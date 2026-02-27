@@ -4,10 +4,9 @@ import { Star, MapPin,  } from "lucide-react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import type { Practitioner, Clinic, Product } from "@/lib/types";
-import { decodeUnicodeEscapes, fixMojibake } from "@/lib/utils";
+import { decodeUnicodeEscapes, fixMojibake, isCity } from "@/lib/utils";
 import ClinicLabels from "./Clinic/clinicLabels";
-import { modalities } from "@/lib/data";
-import { TreatmentMap } from "@/lib/data";
+import { cityMap, TreatmentMap } from "@/lib/data";
 import { Button } from "./ui/button";
 import practitionersJson from "@/../public/derms_processed_new_5403.json";
 import { isClinic, isPractitioner, isProduct, isTreatment } from "@/lib/utils";
@@ -104,9 +103,9 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                   <div className="text-center flex-1 min-w-0 items-start sm:items-center flex flex-col">
 
 
-                    <h3 className="text-base font-semibold text-primary truncate ml-4 sm:ml-0">
+                    <div className="text-base font-semibold text-primary truncate ml-4 sm:ml-0">
                       {practitionerName.split(" ").slice(0,4).map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")}
-                    </h3>
+                    </div>
 
                   
                   <div className="absolute top-2 -right-4 text-white text-xs font-semibold px-6 py-1">
@@ -135,7 +134,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                    </div>
                  </div>
 
-                 <h4 className="sr-only">Rating</h4>
+                 <div className="sr-only">Rating</div>
                  <div className="flex flex-row gap-2 pt-3 items-center justify-start md:justify-center w-full text-sm" aria-label={`Rating: ${practitioner.rating} out of 5 stars, ${practitioner.reviewCount} reviews`}>
                   <div className="inline-flex items-center gap-1">
                     <div className="flex items-center">
@@ -162,7 +161,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
            </header>
 
            <CardContent className="pt-0 px-0 md:px-4 space-y-4">
-             <h4 className="sr-only">Location</h4>
+             <div className="sr-only">Location</div>
              <div className="flex items-start gap-2 text-sm text-muted-foreground/80">
               <MapPin className="h-4 w-4 mt-0 shrink-0" aria-hidden="true" />
               <span className="leading-snug truncate">
@@ -187,7 +186,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
              {practitioner.Treatments?.length! > 0 && null}
 
              <div>
-                <h4 className="sr-only">Treatments offered</h4>
+                <div className="sr-only">Treatments offered</div>
               <ul className="flex flex-wrap gap-1 pt-4" aria-label="Treatments offered">
                 {practitioner.Treatments &&
                   practitioner.Treatments.sort((a,b) => a.length - b.length).slice(0, 2)
@@ -225,7 +224,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
               </ul>
             </div>
 
-            {/* <div className="w-full overflow-x-auto">
+            <div className="w-full overflow-x-auto hidden">
             <div className="flex flex-row gap-4">
               {practitioners.map((p: any, idx: number) => (
                 <Card 
@@ -235,9 +234,9 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                       <div className="p-6">
                       <div className="flex items-start gap-4 mb-6">
                         <div className="h-12 w-12 rounded-full bg-linear-to-br from-primary/10 to-primary/5 ring-2 ring-primary/10 flex items-center justify-center shrink-0">
-                          <span className="text-base font-semibold text-primary">
+                          <h3 className="text-base font-semibold text-primary">
                             {p.practitioner_name?.charAt(0).toUpperCase()}
-                          </span>
+                          </h3>
                         </div>
                         <div className="flex-1 min-w-0 pt-1">
                           <h3 className="text-xl font-semibold text-balance leading-tight group-hover:text-primary transition-colors truncate">
@@ -254,7 +253,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                       </div></div>
                     
     
-                  </Card>))}</div></div> */}
+                  </Card>))}</div></div>
             </CardContent>
 
 
@@ -344,9 +343,9 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                       />
                     </div>
 
-                    <h3 className="mb-3 md:mb-0 flex text-left md:text-center md:align-items-center md:justify-center font-semibold text-md md:text-lg transition-colors text-balance">
+                    <div className="mb-3 md:mb-0 flex text-left md:text-center md:align-items-center md:justify-center font-semibold text-md md:text-lg transition-colors text-balance">
                       {practitioner?.split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ").replace("Hifu", "HIFU").replace("Coolsculpting", "CoolSculpting")}
-                    </h3>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -355,6 +354,30 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
           </Card>
         </Link>
       )}
+      {isCity(practitioner) === true && (
+
+  
+                <Link href={`/clinics/${practitioner}`}>
+                        <Card className="group hover:shadow-lg transition-all duration-300 hover:scale-[1.02] cursor-pointer border-border/50 hover:border-accent/50">
+                            <CardHeader >
+                            <h2 className='flex justify-center font-semibold text-sm text-foreground group-hover:text-primary/70 transition-colors text-balance'>{practitioner}</h2>
+                            </CardHeader>
+                            <CardContent className='flex items-center justify-center pt-0'>
+                            <img
+                        src={cityMap[practitioner].split("?w")[0] || "/placeholder.svg"}
+                        alt="Profile"
+                        width={240}
+                        height={240}
+                        className="flex items-center justify-center object-cover rounded-bl rounded-ee rounded-tr rounded-tl w-60 h-60"
+                    />
+                            </CardContent>
+
+                        
+                        </Card>
+                        </Link>
+   
+      )
+        }
     </>
   );
 }

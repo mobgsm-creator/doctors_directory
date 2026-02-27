@@ -18,6 +18,8 @@ import {
 import { Button } from "@/components/ui/button"
 import { ArrowLeft } from "lucide-react"
 import { PractitionerCard } from "@/components/practitioner-card";
+import { Item } from "@radix-ui/react-accordion";
+import ItemsGrid from "@/components/collectionGrid";
 const clinicsData = clinicsJson as unknown as Clinic[];
 const clinics = clinicsData
   const clinicIndex = new Map(
@@ -103,13 +105,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
             {cred.replaceAll("%20", " ").split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")} Recognized Providers
           </h1></div>
       </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:gap-6 animate-fade-in">
-          {filteredClinics.map((clinic, index) => (
-            <div key={index} style={{ animationDelay: `${index * 50}ms` }}>
-              <PractitionerCard key={clinic.practitioner_name!+clinic.practitioner_title} practitioner={clinic} />
-            </div>
-          ))}
-        </div>
+        <ItemsGrid items={filteredClinics} />
       </div>
     </main>
   );
