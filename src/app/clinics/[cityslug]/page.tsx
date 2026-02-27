@@ -15,11 +15,12 @@ import {
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft } from "lucide-react"
-import  { PractitionerCard } from "@/components/practitioner-card"
+import  ItemsGrid  from "@/components/collectionGrid";
 import cityJson from "../../../../public/city_data_processed.json"
 import practitionerJson from "../../../../public/derms_processed_new_5403.json"
 import { fixMojibake, decodeUnicodeEscapes } from "@/lib/utils"
 import { CityPageData } from "@/components/cityPageData";
+import { cityMap } from "@/lib/data";
 interface ProfilePageProps {
   params: {
     cityslug: string;
@@ -66,8 +67,8 @@ export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
   const uniqueTreatments = [
   ...new Set(
     cityClinics
-      .filter(c => Array.isArray(c.Treatments))
-      .flatMap(c => c.Treatments)
+      .filter(c => Array.isArray(c.Treatments)).filter(c => c.Treatments !== undefined)
+      .flatMap(c => c.Treatments).filter((t): t is string => typeof t === "string")
   )
 ];
   if (!cityClinics) {
@@ -78,7 +79,7 @@ export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
   ...new Set(
       defaultClinics
       .filter(c => Array.isArray(c.Treatments))
-      .flatMap(c => c.Treatments)
+      .flatMap(c => c.Treatments).filter((t): t is string => typeof t === "string")
   )
 ];
 
@@ -122,15 +123,14 @@ export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
           <h1 className="text-sm md:text-2xl md:font-semibold mb-1 md:mb-2">Top Clinics in {citySlug}</h1>
           </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:gap-6 animate-fade-in">
-          {cityClinics.map((clinic, index) => (
-            <PractitionerCard key={clinic.slug} practitioner={clinic} />
-          ))}
-        </div>
+        <ItemsGrid items={cityClinics} />
         <div className="px-4 md:px-0 space-y-6">
 
           <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Specialities in ${citySlug}`}</h3>
-          <MoreItems items={uniqueTreatments.length === 0 ? defaultTreatments : uniqueTreatments} />
+          <ItemsGrid items={uniqueTreatments.length === 0 ? defaultTreatments : uniqueTreatments} />
+          <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Cities in the UK`}</h3>
+          <ItemsGrid items={Object.keys(cityMap)}/>
+
 
           {/* <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Brands`}</h3>
           <MoreItems items={uniqueTreatments} /> */}

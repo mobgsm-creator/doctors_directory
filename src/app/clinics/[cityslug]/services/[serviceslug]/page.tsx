@@ -18,7 +18,7 @@ import {
 import { Button } from "@/components/ui/button"
 import { ArrowLeft } from "lucide-react"
 import { CityTreatmentPage } from "@/components/cityxTreatmentPage";
-import { PractitionerCard } from "@/components/practitioner-card";
+import  ItemsGrid  from "@/components/collectionGrid";
 import treatment_content from "@//../public/treatments.json";
 import cityJson from "@/../public/city_data_processed.json"
 interface ProfilePageProps {
@@ -127,15 +127,11 @@ const serviceMatch = categories.some((cat: string) =>
             Top {serviceslug.replaceAll("%20", " ")} Providers in {cityslug}
           </h1></div>
       
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:gap-6 animate-fade-in">
-          {filteredClinics.slice(0,3).map((clinic, index) => (
-            <div key={index} style={{ animationDelay: `${index * 50}ms` }}>
-              <PractitionerCard key={clinic.slug} practitioner={clinic} />
-            </div>
-                                      // <PractitionerCard key={clinic.slug} practitioner={clinic} />
+        <ItemsGrid items={filteredClinics} />
+                   
                                  
-          ))}
-        </div>
+  
+
         <div className="px-4 md:px-0 space-y-6">
                   <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Clinics in ${cityslug}`}</h3>
                   <MoreItems items={filteredClinics.length === 0 ? defaultClinics : filteredClinics} />

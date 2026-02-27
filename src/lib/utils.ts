@@ -1,7 +1,7 @@
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 import { Clinic, Practitioner, Product } from "./types"
-import { modalities } from "./data"
+import { modalities, locations } from "./data"
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
@@ -178,7 +178,9 @@ export function fixMojibake(str: string) {
   }
 }
 
-
+export function isCity(obj: unknown): obj is string {
+  return typeof obj === "string" && locations.includes(obj.split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" "));
+}
 export function isTreatment(obj:unknown): obj is string{
     return typeof obj === "string" && modalities.includes(obj.split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ").replace("Hifu", "HIFU").replace("Coolsculpting", "CoolSculpting"));
 }

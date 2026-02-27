@@ -21,6 +21,7 @@ import { PractitionerCard } from "@/components/practitioner-card";
 import { CityTreatmentPage } from "@/components/cityxTreatmentPage";
 import cityJson from "@/../public/city_data_processed.json"
 import treatment_content from "@//../public/treatments.json";
+import ItemsGrid from "@/components/collectionGrid";
 type TreatmentSlug = keyof typeof treatment_content
 
 const clinicsData = clinicsJson as unknown as Clinic[];
@@ -128,13 +129,7 @@ export default function ProfilePage({ params }: ProfilePageProps) {
             Top {treatmentslug.replace("%20", " ").split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")} Providers in {cityslug}
           </h1></div>
       </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:gap-6 animate-fade-in">
-          {filteredClinics.map((clinic, index) => (
-            <div key={index} style={{ animationDelay: `${index * 50}ms` }}>
-              <PractitionerCard key={clinic.practitioner_name!+clinic.practitioner_title} practitioner={clinic} />
-            </div>
-          ))}
-        </div>
+        <ItemsGrid items={filteredClinics} />
       </div>
     </main>
   );
