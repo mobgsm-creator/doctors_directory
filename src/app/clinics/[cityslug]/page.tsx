@@ -58,7 +58,7 @@ const filePath = path.join(process.cwd(), "public", "clinics_processed_new_data.
     }
   }
 
-export default async function ProfilePage({ params }: Readonly<ProfilePageProps>) {
+export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
   const citySlug = params.cityslug;
   // const city_practitioners: Practitioner[] = all_practitioners.filter(p=>p.City === citySlug) 
   const cityClinics: Clinic[] = clinics.filter((p) => p.City === citySlug);
@@ -81,6 +81,7 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
       .flatMap(c => c.Treatments)
   )
 ];
+
 
 
   return (

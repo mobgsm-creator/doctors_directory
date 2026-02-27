@@ -111,10 +111,32 @@ const testDetails = {
     "Page Rendering": {
       description: "Validates that clinics list pages by city render successfully.",
       checks: [
-        "Page renders without errors",
-        "Practitioner cards are present in DOM",
-        "At least one practitioner card is found"
-      ]
+      "Page renders without runtime errors",
+      "At least one practitioner card is present in the DOM",
+      "Population overview bullet list exists and is non-empty",
+      "Lifestyle characteristics bullet list exists and is non-empty",
+      "Medical infrastructure bullet list exists and is non-empty",
+      "Market maturity level bullet list exists and is non-empty",
+      "Primary regulator bullet list exists and is non-empty",
+      "Prescribing requirements bullet list exists and is non-empty",
+      "Inspection framework bullet list exists and is non-empty",
+      "Insurance coverage bullet list exists and is non-empty",
+      "Cosmetic finance availability bullet list exists and is non-empty",
+      "Referral networks and teaching hospital links bullet list exists and is non-empty",
+      "Public transport proximity bullet list exists and is non-empty",
+      "Parking availability bullet list exists and is non-empty",
+      "City centre vs suburban distribution bullet list exists and is non-empty",
+      "Tourism volume indicator bullet list exists and is non-empty",
+      "Hotel density near clinics bullet list exists and is non-empty",
+      "Airport proximity bullet list exists and is non-empty",
+      "Medical tourism viability bullet list exists and is non-empty",
+      "Number of clinics metric is present",
+      "Total reviews metric is present",
+      "Average rating metric is present",
+      "Treatments list contains at least one treatment link",
+      "Peak booking periods list exists and is non-empty",
+      "Social media trends list exists and is non-empty"
+    ]
     }
   },
   "TreatmentsPage rendering": {
@@ -282,13 +304,21 @@ export default function QATestReport({report}: {report: TestReport}) {
   );
 
   failedTests.forEach((test) => {
+    console.log(test.failureMessages.length)
     const cleanedMessage = test.failureMessages
+    
       .join('\n')
       .split('at ')[0]; // remove stack trace
-
-    failedTestMessages.add(cleanedMessage.split("-")[cleanedMessage.split("-").length - 1].trim()); // keep only the unique error code at the end of the message
+    console.log(cleanedMessage)
+    try {
+    cleanedMessage.split("failed:")[1].split("-").forEach((part) => {
+      failedTestMessages.add(part.trim());
+    });} catch (e) {
+      failedTestMessages.add(cleanedMessage)}
   });
+  
 });
+console.log(failedTestMessages)
 
   return (
     <AdminLayout title="QA Test Report">
