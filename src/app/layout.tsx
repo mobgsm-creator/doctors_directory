@@ -41,7 +41,7 @@ export default async function RootLayout({
         <div className="overflow-hidden">
           <Header />
           <Suspense fallback={null}>{children}</Suspense>
-          {/* <Footer /> */}
+          <Footer />
           <ScrollToTop />
           <Analytics />
         </div>
