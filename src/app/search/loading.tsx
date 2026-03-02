@@ -1,6 +1,6 @@
 import { PractitionerCardSkeleton } from "@/components/loading-skeleton";
-import { SearchBar } from "@/components/search-bar";
-import { SearchResultsHeader } from "@/components/search-results-header";
+import { SearchBar } from "@/components/search/search-bar";
+import { SearchResultsHeader } from "@/components/search/search-results-header";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Sliders } from "lucide-react";
 import Link from "next/link";

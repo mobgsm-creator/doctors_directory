@@ -22,6 +22,8 @@ import { CityTreatmentPage } from "@/components/cityxTreatmentPage";
 import cityJson from "@/../public/city_data_processed.json"
 import treatment_content from "@//../public/treatments.json";
 import ItemsGrid from "@/components/collectionGrid";
+import { SearchBar } from "@/components/search/search-bar";
+import { CollectionsFilter } from "@/components/filters/collectionsFilterWrapper";
 type TreatmentSlug = keyof typeof treatment_content
 
 const clinicsData = clinicsJson as unknown as Clinic[];
@@ -93,6 +95,7 @@ export default function ProfilePage({ params }: ProfilePageProps) {
   
   return (
     <main className="bg-(--primary-bg-color)">
+      <SearchBar />
       <div className="mx-auto max-w-7xl md:px-4 py-4 md:py-12">
       <div className="flex flex-col pt-2 w-full pb-4 px-4 md:px-0 md:pt-0 md:border-0 border-b border-[#C4C4C4]">
         <div className="sticky top-0 z-10">
@@ -129,7 +132,12 @@ export default function ProfilePage({ params }: ProfilePageProps) {
             Top {treatmentslug.replace("%20", " ").split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")} Providers in {cityslug}
           </h1></div>
       </div>
-        <ItemsGrid items={filteredClinics} />
+        <div className="mx-auto max-w-7xl md:px-4 py-4 md:py-12 flex flex-col sm:flex-row justify-center w-full md:gap-10">
+          <CollectionsFilter pageType="Practitioners" />
+          <div className="flex-1 min-w-0">
+            <ItemsGrid items={filteredClinics} />
+          </div>
+        </div>
       </div>
     </main>
   );

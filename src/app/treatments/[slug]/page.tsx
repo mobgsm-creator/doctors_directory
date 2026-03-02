@@ -224,7 +224,7 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
           __html: JSON.stringify(structuredData),
         }}
       />
-      <main className="bg-[var(--primary-bg-color)]">
+      <main className="bg-(--primary-bg-color)">
         {/* Treatment Detail Section */}
         <div className="bg-white">
           <div className="bg-card/50 backdrop-blur-sm sticky top-0 z-10">

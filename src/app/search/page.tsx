@@ -1,4 +1,4 @@
-import SearchPage from "@/components/searchClient"
+import SearchPage from "@/components/search/searchClient"
 
 
 

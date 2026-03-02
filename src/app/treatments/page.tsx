@@ -1,11 +1,8 @@
-//import { SearchBar } from "@/components/search-bar";
-import { TreatmentFiltersClient } from "@/components/treatment-filters-client";
-import { searchTreatments } from "./actions";
+
 import { TreatmentMap } from "@/lib/data";
 import ItemsGrid from "@/components/collectionGrid";
-import { SearchBar } from "@/components/search-bar";
-import { AdvancedFilterSidebar } from "@/components/filterSidebar";
-import { CollectionsFilter } from "@/components/collectionsFilterWrapper";
+import { SearchBar } from "@/components/search/search-bar";
+import { CollectionsFilter } from "@/components/filters/collectionsFilterWrapper";
 
 export default function HomePage({
   searchParams 

@@ -3,7 +3,6 @@ import Link from "next/link";
 import { Star, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ProfileHeader } from "@/components/Clinic/profile-header";
-import { ReviewCard } from "@/components/review-card";
 import { GoogleMapsEmbed } from "@/components/gmaps-embed";
 import { boxplotDatas_clinic } from "@/lib/data";
 import { BoxPlotDatum, ItemMeta } from "@/lib/types";
