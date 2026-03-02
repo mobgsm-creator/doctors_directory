@@ -123,7 +123,7 @@ export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
           </div>
 
         <div className="mx-auto max-w-7xl md:px-4 py-4 md:py-12 flex flex-col sm:flex-row justify-center w-full md:gap-10">
-          <CollectionsFilter pageType="Clinics" />
+          <CollectionsFilter pageType="Clinic" />
           <div className="flex-1 min-w-0">
             <ItemsGrid items={cityClinics} />
           </div>
