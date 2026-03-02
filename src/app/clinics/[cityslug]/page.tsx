@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { MoreItems } from "@/components/MoreItems";
 import type { Clinic, City,Practitioner } from "@/lib/types";
 import fs from "fs";
 import path from "path";
