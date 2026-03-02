@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/breadcrumb"
 import path from "path";
 import PractitionerTabs from "@/components/Product/ProductTabs";
-import { MoreItems } from "@/components/MoreItems";
+import ItemsGrid from "@/components/collectionGrid";
 
 
 interface ProfilePageProps {
@@ -94,7 +94,7 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
         
         </div>
         <h2 className="text-lg font-semibold text-foreground mb-2">{`Browse more ${clinic.product_category}`}</h2>
-           <MoreItems items={similarProducts} />
+           <ItemsGrid items={similarProducts} />
       
       </div>
       

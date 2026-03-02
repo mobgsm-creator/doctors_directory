@@ -4,7 +4,6 @@ import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import type { Clinic, Practitioner, City } from "@/lib/types";
 import { Badge } from "@/components/ui/badge";
 import { Star, MapPin } from "lucide-react";
-import { MoreItems } from "@/components/MoreItems";
 import fs from "fs";
 import path from "path";
 import clinicsJson from "@/../public/clinics_processed_new_data.json";
@@ -21,6 +20,8 @@ import {
 import { Button } from "@/components/ui/button"
 import { ArrowLeft } from "lucide-react"
 import ItemsGrid from "@/components/collectionGrid";
+import { SearchBar } from "@/components/search/search-bar";
+import { CollectionsFilter } from "@/components/filters/collectionsFilterWrapper";
 const clinicsData = clinicsJson as unknown as Clinic[];
 const clinics = clinicsData
   const clinicIndex = new Map(
@@ -62,7 +63,7 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
   ...new Set(
     cityClinics
       .filter(c => Array.isArray(c.Treatments))
-      .flatMap(c => c.Treatments)
+      .flatMap(c => c.Treatments).filter((t): t is string => typeof t === "string")
   )
 ];
 
@@ -71,7 +72,7 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
   ...new Set(
       defaultClinics
       .filter(c => Array.isArray(c.Treatments))
-      .flatMap(c => c.Treatments)
+      .flatMap(c => c.Treatments).filter((t): t is string => typeof t === "string")
   )
 ];
   if (!cityClinics) {
@@ -80,6 +81,7 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
 
   return (
     <main className="bg-(--primary-bg-color)">
+      <SearchBar />
       <div className="mx-auto max-w-7xl md:px-4 py-4 md:py-12">
       <div className="flex flex-col pt-2 w-full pb-4 px-4 md:px-0 md:pt-0 md:border-0 border-b border-[#C4C4C4]">
         <div className="sticky top-0 z-10">
@@ -107,15 +109,21 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
             </Breadcrumb>
           </div></div>
           
-          <CityPageData cityData={cityData} uniqueTreatments={(uniqueTreatments as string[])} citySlug={citySlug} cityClinics={cityClinics} />
-
+         
           <div className="flex flex-col pt-2 w-full pb-4 px-4 md:px-0">
             <h1 className="text-sm md:text-2xl md:font-semibold mb-1 md:mb-2">Top Practitioners in {citySlug}</h1></div>
-       
-        <ItemsGrid items={cityClinics} />
-             <div className="px-4 md:px-0 space-y-6">
-                          <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Specialities in ${citySlug}`}</h3>
-                          <MoreItems items={uniqueTreatments.length === 0 ? defaultTreatments : uniqueTreatments} />
+
+        <div className="mx-auto max-w-7xl md:px-4 py-4 md:py-12 flex flex-col sm:flex-row justify-center w-full md:gap-10">
+          <CollectionsFilter pageType="Practitioners" />
+          <div className="flex-1 min-w-0">
+            <ItemsGrid items={cityClinics} />
+          </div>
+        </div>
+         <CityPageData cityData={cityData} uniqueTreatments={(uniqueTreatments as string[])} citySlug={citySlug} cityClinics={cityClinics} />
+
+              <div className="px-4 md:px-0 space-y-6">
+                           <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Specialities in ${citySlug}`}</h3>
+                           <ItemsGrid items={uniqueTreatments.length === 0 ? defaultTreatments : uniqueTreatments} />
 
                           
                         </div>

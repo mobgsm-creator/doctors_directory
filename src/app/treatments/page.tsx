@@ -1,11 +1,10 @@
-import { SearchBar } from "@/components/search-bar";
-import { TreatmentFiltersClient } from "@/components/treatment-filters-client";
-import { TreatmentGrid } from "@/components/treatment-grid";
-import { searchTreatments } from "./actions";
-import { TreatmentMap } from "@/lib/data";
 
- 
-export default function HomePage({ 
+import { TreatmentMap } from "@/lib/data";
+import ItemsGrid from "@/components/collectionGrid";
+import { SearchBar } from "@/components/search/search-bar";
+import { CollectionsFilter } from "@/components/filters/collectionsFilterWrapper";
+
+export default function HomePage({
   searchParams 
 }: Readonly<{ 
   searchParams: { 
@@ -17,15 +16,16 @@ export default function HomePage({
     priceRange?: string;
     sort?: string;
   } 
-}>) {
+  }>) {
   const ITEMS_PER_PAGE = 80;
-  const currentPage = Number.parseInt(searchParams.page || '1', 10);
 
   const allTreatments = Object.keys(TreatmentMap).map((name) => ({
     name,
     image: TreatmentMap[name].split("?w")[0] || "/placeholder.svg",
     slug: `/treatments/${name}`,
   }));
+
+  const theTreatments = Object.keys(TreatmentMap);
 
   const searchQuery = searchParams.query;
   
@@ -86,38 +86,26 @@ export default function HomePage({
 
   const totalPages = Math.ceil(filteredTreatments.length / ITEMS_PER_PAGE);
 
-  const getPageUrl = (page: number) => {
-    const params = new URLSearchParams(searchParams as Record<string, string>);
-    if (page === 1) {
-      params.delete("page");
-    } else {
-      params.set("page", page.toString());
-    }
-    const queryString = params.toString();
-    return queryString ? `/treatments?${queryString}` : '/treatments';
-  
-  };
-
 
   return (
     <main className="bg-(--primary-bg-color)">
-      <div className="mx-auto max-w-7xl md:px-4 py-4 md:py-12 flex flex-col justify-center w-full md:gap-10 ">
-        <SearchBar />
+      <SearchBar />
+      <div className="mx-auto max-w-7xl md:px-4 py-4 md:py-12 flex flex-col sm:flex-row justify-center w-full md:gap-10 ">
         
-        <div className="flex md:flex-row flex-col items-start justify-start gap-6">
-          <TreatmentFiltersClient />
+        
+        
+      
+          <CollectionsFilter pageType="Treatments" />
           
-          <div className="flex-1">
-            <TreatmentGrid 
-              treatments={filteredTreatments}
-              searchQuery={searchQuery}
-              currentPage={currentPage}
-              totalPages={totalPages}
-              itemsPerPage={ITEMS_PER_PAGE}
-              getPageUrl={getPageUrl}
-            />
+          <div className="flex-1 min-w-0">
+          <ItemsGrid items={theTreatments} />
           </div>
-        </div>
+         
+            
+      
+
+
+        
       </div>
     </main>
   );

@@ -21,7 +21,7 @@ export function ProductFilters({ filters, onChange, onClear, setIsFilterActive }
     <>
       <h3 className="font-semibold text-xl text-black mb-6">Filters</h3>
 
-       <div className="mb-6">
+       <div className="mb-6 min-w-60">
          <label htmlFor="products-search" className="sr-only">Search</label>
          <input
            id="products-search"

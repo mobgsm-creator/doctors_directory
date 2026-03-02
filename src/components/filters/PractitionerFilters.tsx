@@ -22,7 +22,7 @@ export function PractitionerFilters({ filters, onChange, onClear, setIsFilterAct
     <>
       <h3 className="font-semibold text-xl text-black mb-6">Filters</h3>
 
-       <div className="mb-6">
+       <div className="mb-6 min-w-60">
          <label htmlFor="practitioners-search" className="sr-only">Search</label>
          <input
            id="practitioners-search"

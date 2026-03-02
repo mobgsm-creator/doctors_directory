@@ -11,7 +11,7 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbP
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { MoreItems } from "@/components/MoreItems";
+import ItemsGrid from "@/components/collectionGrid";
 
 type TreatmentContent = Record<string, any>;
 const treatments = treatment_content as TreatmentContent;
@@ -224,7 +224,7 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
           __html: JSON.stringify(structuredData),
         }}
       />
-      <main className="bg-[var(--primary-bg-color)]">
+      <main className="bg-(--primary-bg-color)">
         {/* Treatment Detail Section */}
         <div className="bg-white">
           <div className="bg-card/50 backdrop-blur-sm sticky top-0 z-10">
@@ -266,7 +266,7 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
               <h3 className="text-lg font-semibold text-foreground mb-2">
                 Top Clinics for {treatment.name}
               </h3>
-              <MoreItems items={filteredClinics.slice(0, 6)} />
+              <ItemsGrid items={filteredClinics.slice(0, 6)} />
             </div>
           </div>
         </div>

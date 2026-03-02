@@ -16,7 +16,7 @@ import { flattenObject } from "@/lib/utils";
 import { Section } from "@/components/ui/section";
 import clinicsJson from "@/../public/clinics_processed_new_data.json";
 import { Clinic } from "@/lib/types";
-import { MoreItems } from "@/components/MoreItems";
+import ItemsGrid from "@/components/collectionGrid";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb"
 const clinicsData = clinicsJson as unknown as Clinic[];
 const clinics = clinicsData
@@ -59,7 +59,7 @@ export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
   ...new Set(
     cityClinics
       .filter(c => Array.isArray(c.Treatments))
-      .flatMap(c => c.Treatments)
+      .flatMap(c => c.Treatments).filter((t): t is string => typeof t === "string")
   )
 ];
   
@@ -217,11 +217,11 @@ export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
        
                 
                </div>
-               <div className="px-4 md:px-0 space-y-6">
-                                 <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Practitioners in ${practitioner.City}`}</h3>
-                                 <MoreItems items={cityClinics} />
-                                 <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Specialities in ${practitioner.City}`}</h3>
-                                 <MoreItems items={uniqueTreatments} />
+                <div className="px-4 md:px-0 space-y-6">
+                                  <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Practitioners in ${practitioner.City}`}</h3>
+                                  <ItemsGrid items={cityClinics} />
+                                  <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Specialities in ${practitioner.City}`}</h3>
+                                  <ItemsGrid items={uniqueTreatments} />
                                </div>
              </div>
                        

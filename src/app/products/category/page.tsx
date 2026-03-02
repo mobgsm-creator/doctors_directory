@@ -70,7 +70,7 @@ export default async function ProfilePage() {
               <div className="flex items-start gap-4">
                 <div className="text-center flex-1 min-w-0 items-center flex flex-col">
                   <div className="flex w-full flex-row items-start border-b border-[#C4C4C4] md:border-0 md:flex-col md:items-center">
-                    <div className="w-[80px] h-[80px] md:w-[150px] md:h-[150px] flex items-center justify-center overflow-hidden rounded-lg md:mb-4 mr-0">
+                    <div className="w-20 h-20 md:w-[150px] md:h-[150px] flex items-center justify-center overflow-hidden rounded-lg md:mb-4 mr-0">
                       <img
                         src={
                           itemDetail?.image_url?.replaceAll('"', "") ||
