@@ -12,7 +12,7 @@ import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import ItemsGrid from "@/components/collectionGrid";
-
+import clinicsJSON from "@/../public/clinics_processed_new_data.json";
 type TreatmentContent = Record<string, any>;
 const treatments = treatment_content as TreatmentContent;
 interface ProfilePageProps {
@@ -132,9 +132,7 @@ const getTreatmentCategory = (treatmentName: string): string => {
 };
 
 export default async function ProfilePage({ params }: Readonly<ProfilePageProps>) {
-  const filePath = path.join(process.cwd(), "public", "clinics_processed_new_data.json");
-  const fileContents = fs.readFileSync(filePath, "utf-8");
-  const clinics: Clinic[] = JSON.parse(fileContents);
+  const clinics = clinicsJSON as unknown as Clinic[];
   const { slug } = params;
 
   // Get treatment data from treatment_content

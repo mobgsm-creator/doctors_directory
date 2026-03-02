@@ -22,6 +22,7 @@ import { Item } from "@radix-ui/react-accordion";
 import ItemsGrid from "@/components/collectionGrid";
 import { SearchBar } from "@/components/search/search-bar";
 import { CollectionsFilter } from "@/components/filters/collectionsFilterWrapper";
+import practitionersJSON from "@/../public/derms_processed_new_5403.json";
 const clinicsData = clinicsJson as unknown as Clinic[];
 const clinics = clinicsData
   const clinicIndex = new Map(
@@ -34,9 +35,7 @@ interface ProfilePageProps {
 }
 
 export default async function ProfilePage({ params }: ProfilePageProps) {
-  const filePath = path.join(process.cwd(), "public", "derms_processed_new_5403.json");
-   const fileContents = fs.readFileSync(filePath, "utf-8");
-   const clinics: Practitioner[] = JSON.parse(fileContents);
+  const clinics = practitionersJSON as unknown as Practitioner[];
      const practitioners = clinics
   .map(p => {
     const clinic = clinicIndex.get(JSON.parse(p.Associated_Clinics!)[0])

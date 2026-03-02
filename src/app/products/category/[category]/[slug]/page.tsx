@@ -17,7 +17,7 @@ import {
 import path from "path";
 import PractitionerTabs from "@/components/Product/ProductTabs";
 import ItemsGrid from "@/components/collectionGrid";
-
+import productsJSON from "@/../public/products_processed_new.json";
 
 interface ProfilePageProps {
   params: {
@@ -26,9 +26,7 @@ interface ProfilePageProps {
 }
 
 export default async function ProfilePage({ params }: Readonly<ProfilePageProps>) {
-  const filePath = path.join(process.cwd(), "public", "products_processed_new.json");
-  const fileContents = fs.readFileSync(filePath, "utf-8");
-  const clinics: Product[] = JSON.parse(fileContents);
+  const clinics = productsJSON as unknown as Product[];
   const { slug } = params;
   
   const clinic = clinics.find((p) => p.slug === slug);
