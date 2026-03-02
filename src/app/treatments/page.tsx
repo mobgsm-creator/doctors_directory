@@ -1,10 +1,12 @@
-import { SearchBar } from "@/components/search-bar";
+//import { SearchBar } from "@/components/search-bar";
 import { TreatmentFiltersClient } from "@/components/treatment-filters-client";
 import { searchTreatments } from "./actions";
 import { TreatmentMap } from "@/lib/data";
 import ItemsGrid from "@/components/collectionGrid";
+import { SearchBar } from "@/components/search-bar";
+import { AdvancedFilterSidebar } from "@/components/filterSidebar";
+import { CollectionsFilter } from "@/components/collectionsFilterWrapper";
 
-  
 export default function HomePage({
   searchParams 
 }: Readonly<{ 
@@ -95,8 +97,8 @@ export default function HomePage({
         
         
         
-
-          <TreatmentFiltersClient />
+      
+          <CollectionsFilter pageType="Treatments" />
           
           <div className="flex-1 min-w-0">
           <ItemsGrid items={theTreatments} />

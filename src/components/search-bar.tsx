@@ -46,7 +46,6 @@ export function SearchBar({handlePageChange}: Readonly<SearchBarProps>) {
         <DesktopSearchView
           localFilters={localFilters}
           setLocalFilters={setLocalFilters}
-          filters={filters}
           showResults={showResults}
           setShowResults={setShowResults}
           options={options}

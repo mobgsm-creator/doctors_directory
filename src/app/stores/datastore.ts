@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { SearchFilters } from "@/lib/types";
+
 // -----------------------------
 // Types
 // -----------------------------

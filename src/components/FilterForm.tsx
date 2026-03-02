@@ -18,7 +18,7 @@ export function FilterForm({ filters, onChange, onClear }: FilterFormProps) {
     <>
       <h3 className="font-semibold text-xl text-black mb-6">Filters</h3>
 
-      <div className="mb-6">
+      <div className="mb-6 min-w-60">
         <label className="block text-base font-medium text-black mb-2">
           Concern:
           <Select

@@ -4,11 +4,11 @@ import { Locate } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { SearchDropdown } from "./search-dropdown";
 import { SearchButton } from "./search-button";
+import { useSearchStore } from "@/app/stores/datastore";
 
 interface DesktopSearchViewProps {
   localFilters: any;
   setLocalFilters: (updater: (prev: any) => any) => void;
-  filters: any;
   showResults: boolean;
   setShowResults: (show: boolean) => void;
   options: string[];
@@ -21,7 +21,6 @@ interface DesktopSearchViewProps {
 export function DesktopSearchView({
   localFilters,
   setLocalFilters,
-  filters,
   showResults,
   setShowResults,
   options,
@@ -30,6 +29,7 @@ export function DesktopSearchView({
   isLoading,
   handlePageChange
 }: DesktopSearchViewProps) {
+  const { filters } = useSearchStore();
   return (
     <div className="hidden md:block">
       <div className="flex flex-row items-center mb-2 shadow-sm">

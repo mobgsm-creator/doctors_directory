@@ -31,6 +31,7 @@ export default function SearchPage() {
 };
   const pathname = usePathname();
   const { filters, setFilters } = useSearchStore();
+  console.log("Current filters in Search Page", filters);
   const [currentPage, setCurrentPage] = useState(1);
   const [sortBy, setSortBy] = useState("default");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
@@ -69,16 +70,6 @@ export default function SearchPage() {
   }, [filters, currentPage, sortBy]);
 
 
-  const handleSearch = (newFilters: SearchFilters) => {
-    setFilters(newFilters);
-    setCurrentPage(1);
-  };
-
-  const handleFiltersChange = (newFilters: SearchFilters) => {
-    setFilters(newFilters);
-    setCurrentPage(1);
-  };
-
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -107,15 +98,7 @@ export default function SearchPage() {
       <div className="max-w-6xl mx-auto py-6 border-[#C4C4C4] px-2 md:px-0">
         <SearchBar handlePageChange={handlePageChange} />
         <div className="block md:hidden">
-          <Button
-            onClick={handleToggleFilters}
-            variant={viewMode === "grid" ? "default" : "ghost"}
-            size="sm"
-            className="w-full mt-4 bg-transparent rounded-full border-black border text-black hover:bg-transparent"
-          >
-            Filters
-            <Sliders className="h-4 w-4 ml-2" />
-          </Button>
+          <AdvancedFilterSidebar />
         </div>
       </div>
 
@@ -138,12 +121,11 @@ export default function SearchPage() {
           </div>
           <div className="grid grid-cols-1 md:gap-8 md:grid-cols-12">
             <div className="col-span-1 md:col-span-3">
-              <AdvancedFilterSidebar
-                filters={filters}
-                onFiltersChange={handleFiltersChange}
-                isOpen={showAdvancedFilters}
-                onToggle={() => setShowAdvancedFilters(!showAdvancedFilters)}
-              />
+              <div className="hidden md:block">
+          <AdvancedFilterSidebar />
+        </div>
+               
+            
             </div>
 
             {isPending ? (

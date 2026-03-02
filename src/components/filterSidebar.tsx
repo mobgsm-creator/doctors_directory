@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { X } from "lucide-react";
+import { Sliders, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import type { SearchFilters } from "@/lib/types";
@@ -9,24 +9,26 @@ import { FilterForm } from "./FilterForm";
 import { ClinicFilters } from "./filters/ClinicFilters";
 import { PractitionerFilters } from "./filters/PractitionerFilters";
 import { ProductFilters } from "./filters/ProductFilters";
-
+import { useSearchStore } from "@/app/stores/datastore";
+import {usePathname, useRouter } from "next/navigation";
 interface AdvancedFiltersProps {
-  filters: SearchFilters;
-  onFiltersChange: (filters: SearchFilters) => void;
-  isOpen: boolean;
-  onToggle: () => void;
+  pageType?: string
 }
 
-export function AdvancedFilterSidebar({
-  filters,
-  onFiltersChange,
-  isOpen,
-  onToggle,
-}: Readonly<AdvancedFiltersProps>) {
+
+
+export function AdvancedFilterSidebar({ pageType }: AdvancedFiltersProps) {
+  const [isOpen, setIsOpen] = useState(false);
+  const { filters, setFilters } = useSearchStore();
   const [localFilters, setLocalFilters] = useState<SearchFilters>(filters);
   const [isFilterActive, setIsFilterActive] = useState(false);
-
-
+  const pathname = usePathname();
+  const Router = useRouter();
+  const onToggle = () => {
+    
+  setIsOpen(!isOpen);
+  setIsFilterActive(true); // Reset active state when toggling
+};
   const [treatmentFilters, setTreatmentFilters] = useState({
     concern: "all",
     treatmentType: "all",
@@ -96,7 +98,12 @@ export function AdvancedFilterSidebar({
       updatedFilters.location = productFilters.distributor_cleaned !== "all" ? productFilters.distributor_cleaned : "";
     }
     
-    onFiltersChange(updatedFilters);
+    setFilters(updatedFilters);
+     console.log("Updated filters in treatment Page", updatedFilters);
+    if (pathname !== "/search") {
+      Router.push("/search");
+    }
+   
     onToggle();
   };
 
@@ -110,7 +117,7 @@ export function AdvancedFilterSidebar({
       services: [],
     };
     setLocalFilters(clearedFilters);
-    onFiltersChange(clearedFilters);
+    setFilters(clearedFilters);
     
     setTreatmentFilters({
       concern: "all",
@@ -187,13 +194,25 @@ export function AdvancedFilterSidebar({
 
   return (
     <>
+    
       <aside aria-label="Filter sidebar">
+        <div className="block md:hidden">
+          <Button
+            onClick={onToggle}
+            variant={"ghost"}
+            size="sm"
+            className="w-full mt-4 bg-transparent rounded-full border-black border text-black hover:bg-transparent"
+          >
+            Filters
+            <Sliders className="h-4 w-4 ml-2" />
+          </Button>
+        </div>
         <Card
           className={`
           bg-transparent shadow-none border border-transparent rounded-0 pb-[145px] px-4 md:px-0 md:py-0 relative
           md:relative md:block md:h-auto w-full md:bg-transparent md:translate-x-0
           fixed top-0 left-0 h-screen bg-white z-[1] transition-transform duration-300 ease-in-out
-          ${isFilterActive ? "translate-x-0" : "-translate-x-full"} ${isOpen ? "md: block" : "md: hidden"}
+          ${isFilterActive ? "translate-x-0" : "-translate-x-full"} ${isOpen ? "block" : "hidden"}
         `}
         >
           <CardHeader className="p-0 flex justify-between items-center">
