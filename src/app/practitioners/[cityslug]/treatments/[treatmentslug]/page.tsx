@@ -125,8 +125,7 @@ export default function ProfilePage({ params }: ProfilePageProps) {
               </BreadcrumbList>
             </Breadcrumb>
           </div>
-          <CityTreatmentPage cityData={cityData} treatment={treatment} slug={treatmentslug.replaceAll("%20", " ")} />
-        
+          
           <div className="flex flex-col pt-2 w-full pb-4 px-4 md:px-0">
           <h1 className="text-sm md:text-2xl md:font-semibold mb-1 md:mb-2">
             Top {treatmentslug.replace("%20", " ").split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")} Providers in {cityslug}
@@ -138,6 +137,8 @@ export default function ProfilePage({ params }: ProfilePageProps) {
             <ItemsGrid items={filteredClinics} />
           </div>
         </div>
+        <CityTreatmentPage cityData={cityData} treatment={treatment} slug={treatmentslug.replaceAll("%20", " ")} />
+        
       </div>
     </main>
   );

@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/breadcrumb"
 import { Button } from "@/components/ui/button"
 import { ArrowLeft } from "lucide-react"
-import {cityMap} from "@/lib/data"
+import {cityMap, locations} from "@/lib/data"
 import ItemsGrid from "@/components/collectionGrid"
 import { SearchBar } from "@/components/search/search-bar";
 import { CollectionsFilter } from "@/components/filters/collectionsFilterWrapper";
@@ -46,7 +46,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl md:px-4 py-4 md:py-12 flex flex-col sm:flex-row justify-center w-full md:gap-10">
           <CollectionsFilter pageType="Practitioner" />
           <div className="flex-1 min-w-0">
-            <ItemsGrid items={Object.keys(cityMap)} />
+            <ItemsGrid items={locations} />
           </div>
         </div>
         </div>

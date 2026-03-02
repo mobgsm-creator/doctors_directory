@@ -77,10 +77,10 @@ export default function AdminForm({ entityType, apiBasePath, redirectPath }: Adm
         <h1 className="text-2xl font-bold">
           {isNew ? `New ${entityName}` : `Edit: ${entity.slug ?? entity.practitioner_name}`}
         </h1>
-        <Button onClick={handleSubmit}>Save</Button>
+        
       </div>
 
-      <div className="bg-white border border-gray-200 rounded-lg p-6 space-y-6">
+      <div className="flex flex-col bg-white border border-gray-200 rounded-lg p-6 space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           
           {keys.map((key, index) => (
@@ -94,6 +94,8 @@ export default function AdminForm({ entityType, apiBasePath, redirectPath }: Adm
             </div>
           ))}
         </div>
+        <div className='flex justify-end'>
+        <Button onClick={handleSubmit}>Save</Button></div>
       </div>
     </div>
   )

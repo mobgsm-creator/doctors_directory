@@ -52,22 +52,22 @@ export function CityTreatmentPage({ cityData, treatment, slug }: PageProps) {
   
     <h1 className="text-sm md:text-2xl font-semibold mb-1 md:mb-2 mt-2">{treatmentName} Treatment in {cityData.City}</h1>
     <section className='text-muted-foreground gap-2 space-y-2'>
-      <p>{TreatmentArray[0][1]}</p>
-      <p>
+      <div>{TreatmentArray[0][1]}</div>
+      <div>
       Our dataset currently has {cityData.market_size_indicators_number_of_clinics} clinic(s),
       with approximately {cityData.market_size_indicators_review_volume_total} reviews and
       an average rating of {cityData.market_size_indicators_average_rating_citywide}.
-    </p>
-      <p>
+    </div>
+      <div>
       <strong><h2>Medical Infrastructure:</h2></strong>
-      </p>
+      </div>
       <ul className="list-disc list-inside">
         {createBullets(cityData.city_overview_medical_infrastructure_presence)}
       </ul>
 
-      <p>
+      <div>
       <strong><h2>Local Aethetics Market:</h2></strong>
-      </p>
+      </div>
       <ul className="list-disc list-inside">
         {createBullets(cityData.beauty_spend_indicators_market_maturity_level)}
       </ul>
@@ -123,7 +123,7 @@ export function CityTreatmentPage({ cityData, treatment, slug }: PageProps) {
         <li className="text-sm leading-relaxed pl-6" key={index}>{con}</li>
       ))}
     </ul>
-    {/* <p>{Object.entries(TreatmentArray[10][1]).map(([key, value]) => <p key={key}>{value as string}</p>)}</p> */}
+    {/* <div>{Object.entries(TreatmentArray[10][1]).map(([key, value]) => <p key={key}>{value as string}</div>)}</div> */}
 
   </section>
 
@@ -156,33 +156,33 @@ export function CityTreatmentPage({ cityData, treatment, slug }: PageProps) {
      <h1 className="text-sm md:text-2xl font-semibold mb-1 md:mb-2 mt-2">Accessibility</h1>
           <section className='text-muted-foreground gap-2 space-y-2'>
 
-      <p>
+      <div>
       <strong><h2>Public transport:</h2></strong>
       
       <ul className="list-disc list-inside">
         {createBullets(cityData.accessibility_factors_public_transport_proximity)}
-      </ul></p>
+      </ul></div>
 
-      <p>
+      <div>
       <strong><h2>Parking availability:</h2></strong>
       
       <ul className="list-disc list-inside">
         {createBullets(cityData.accessibility_factors_parking_availability)}
-      </ul></p>
+      </ul></div>
       
-      <p>
+      <div>
       <strong><h2>Clinic distribution:</h2></strong>
       
       <ul className="list-disc list-inside">
         {createBullets(cityData.accessibility_factors_city_centre_vs_suburban_distribution)}
-      </ul></p>
+      </ul></div>
       
-      <p>
+      <div>
       <strong><h2>Airport proximity:</h2></strong>
       
       <ul className="list-disc list-inside">
         {createBullets(cityData.medical_tourism_potential_airport_proximity)}
-      </ul></p>
+      </ul></div>
       
 
   </section>
@@ -198,7 +198,7 @@ export function CityTreatmentPage({ cityData, treatment, slug }: PageProps) {
       ))}
     </ul>
 
-    <p>{TreatmentArray[11][1]}</p>
+    <div>{TreatmentArray[11][1]}</div>
   </section>
 
   {/* ================= SAFETY ================= */}
@@ -207,7 +207,7 @@ export function CityTreatmentPage({ cityData, treatment, slug }: PageProps) {
      <h1 className="text-sm md:text-2xl font-semibold mb-1 md:mb-2 mt-2">Treatment Safety & Local Regulations</h1>
      <section className='text-muted-foreground gap-2 space-y-2'>
       
-    <p>{Object.entries(TreatmentArray[8][1]).map(([key, value]) => <p key={key}>{value as string}</p>)}</p>
+    <div>{Object.entries(TreatmentArray[8][1]).map(([key, value]) => <p key={key}>{value as string}</p>)}</div>
  
 
     <ul className="list-disc list-inside">
@@ -217,27 +217,27 @@ export function CityTreatmentPage({ cityData, treatment, slug }: PageProps) {
         )
       )}
     </ul>
-      <p>{TreatmentArray[14][1]}</p>
+      <div>{TreatmentArray[14][1]}</div>
     
 
-      <p>
+      <div>
       <strong><h2>Local regulatory authority:</h2></strong>
       
       <ul className="list-disc list-inside">
         {createBullets(cityData.regulatory_environment_primary_regulator)}
-      </ul></p>
-    <p>
+      </ul></div>
+    <div>
       <strong><h2>Private insurance usage locally:</h2></strong>
       
       <ul className="list-disc list-inside">
         {createBullets(cityData.insurance_and_financing_private_insurance_usage)}
-      </ul></p>
-      <p>
+      </ul></div>
+      <div>
       <strong><h2>Cosmetic finance availability:</h2></strong>
       
       <ul className="list-disc list-inside">
         {createBullets(cityData.insurance_and_financing_cosmetic_finance_availability)}
-      </ul></p>
+      </ul></div>
    
   </section>
 
@@ -276,10 +276,10 @@ export function CityTreatmentPage({ cityData, treatment, slug }: PageProps) {
       )}
     </ul>
 
-    <p>
+    <div>
       Current average rating citywide:{" "}
       {cityData.market_size_indicators_average_rating_citywide}
-    </p>
+    </div>
   </section>
 
   {/* ================= RECOVERY ================= */}
@@ -300,7 +300,7 @@ export function CityTreatmentPage({ cityData, treatment, slug }: PageProps) {
           </ul>
       </div>
   
-          <p><strong>Aftercare:</strong></p>
+          <div><strong>Aftercare:</strong></div>
     <ul className="list-disc list-inside">
       {Array.isArray(TreatmentArray[9][1]) ? TreatmentArray[9][1].map((item: string, index:number) => (
         <li className="text-sm leading-relaxed pl-6" key={index}>{item}</li>

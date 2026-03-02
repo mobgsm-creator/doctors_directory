@@ -205,7 +205,7 @@ export async function searchPractitioners(
 
       return true
     })
-  } else if (filters.query === 'Practitioner') {
+  } else if (filters.type === 'Practitioner') {
     filtered = ( practitioners).filter((practitioner) => {
       if (filters.query) {
         

@@ -99,7 +99,7 @@ export function AdvancedFilterSidebar({ pageType }: AdvancedFiltersProps) {
     }
     
     setFilters(updatedFilters);
-     console.log("Updated filters in treatment Page", updatedFilters);
+
     if (pathname !== "/search") {
       Router.push("/search");
     }
@@ -209,9 +209,9 @@ export function AdvancedFilterSidebar({ pageType }: AdvancedFiltersProps) {
         </div>
         <Card
           className={`
-          bg-transparent shadow-none border border-transparent rounded-0 pb-[145px] px-4 md:px-0 md:py-0 relative
+          bg-transparent h-[460px] shadow-none border border-transparent rounded-0 pb-[145px] px-4 md:px-0 md:py-0 relative
           md:relative md:block md:h-auto w-full md:bg-transparent md:translate-x-0
-          fixed top-0 left-0 h-screen bg-white z-[1] transition-transform duration-300 ease-in-out
+          fixed top-0 left-0 bg-white z-[1] transition-transform duration-300 ease-in-out
           ${isFilterActive ? "translate-x-0" : "-translate-x-full"} ${isOpen ? "block" : "hidden"}
         `}
         >

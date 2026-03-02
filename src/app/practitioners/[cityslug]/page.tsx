@@ -119,14 +119,15 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
             <ItemsGrid items={cityClinics} />
           </div>
         </div>
-         <CityPageData cityData={cityData} uniqueTreatments={(uniqueTreatments as string[])} citySlug={citySlug} cityClinics={cityClinics} />
-
+        
               <div className="px-4 md:px-0 space-y-6">
-                           <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Specialities in ${citySlug}`}</h3>
+                           <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Treatments in ${citySlug}`}</h3>
                            <ItemsGrid items={uniqueTreatments.length === 0 ? defaultTreatments : uniqueTreatments} />
 
                           
                         </div>
+                         <CityPageData cityData={cityData} uniqueTreatments={(uniqueTreatments as string[])} citySlug={citySlug} cityClinics={cityClinics} />
+
       </div>
     </main>
   );

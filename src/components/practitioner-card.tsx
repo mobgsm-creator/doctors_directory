@@ -6,12 +6,14 @@ import { Badge } from "@/components/ui/badge";
 import type { Practitioner, Clinic, Product } from "@/lib/types";
 import { decodeUnicodeEscapes, fixMojibake, isCity } from "@/lib/utils";
 import ClinicLabels from "./Clinic/clinicLabels";
-import { cityMap, TreatmentMap } from "@/lib/data";
+import { locations, TreatmentMap } from "@/lib/data";
 import { Button } from "./ui/button";
 import practitionersJson from "@/../public/derms_processed_new_5403.json";
 import { isClinic, isPractitioner, isProduct, isTreatment } from "@/lib/utils";
+import { useRouter } from "next/navigation";
 const practitionersData = practitionersJson as unknown as Practitioner[];
 const practitionersIndex = new Map<string, Practitioner[]>();
+
 for (const p of practitionersData) {
   const clinics = JSON.parse(p.Associated_Clinics as string) as string[];
 
@@ -28,8 +30,7 @@ interface PractitionerCardProps {
 
 
 export function PractitionerCard({ practitioner }: PractitionerCardProps) {
-
-
+  const Router = useRouter()
   let practitionerName = ""
   let practitioners : Practitioner[] = []
   if(isPractitioner(practitioner)){
@@ -47,8 +48,9 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
   else if(isClinic(practitioner)){
     practitionerName = practitioner.slug!.split("-").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")
     practitioners = practitionersIndex.get(practitioner.slug as string) ?? []
+    
   } 
-  
+
 
 
   return (
@@ -57,7 +59,9 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
         
 
         <article aria-labelledby={`${isPractitioner(practitioner) ? "practitioner" : "clinic"}-name-${practitioner.slug}`}>
-          <Link
+          
+          <Card asChild className="gap-0 relative px-4 md:px-0 shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border-t rounded-27 md:border md:border-(--alto) cursor-pointer" data-testid="practitioner-card">
+          <><Link
               href={
                 "practitioner_awards" in practitioner &&
                 practitioner.practitioner_name
@@ -71,8 +75,6 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
             prefetch={false}
             className='z-10'
             >
-          <Card className="gap-0 relative px-4 md:px-0 shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border-t rounded-27 md:border md:border-(--alto) cursor-pointer" data-testid="practitioner-card">
-          
           <header>
              <CardHeader className="pb-4 px-2">
             
@@ -83,7 +85,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
             <div className="flex items-start gap-4">
               <div className="flex flex-col flex-1 min-w-0 text-left items-stretch">
 
-                <div className="flex w-full flex-row items-start border-b border-[#C4C4C4] md:border-0 md:flex-col md:items-center">
+                <div className="flex w-full flex-row items-start md:border-0 md:flex-col md:items-center">
                   <div className="relative w-20 h-20 md:w-[150px] md:h-[150px] flex items-center justify-center overflow-hidden rounded-full bg-gray-300 md:mb-3 mr-0">
                     
                     <img
@@ -185,15 +187,20 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
 
              {practitioner.Treatments?.length! > 0 && null}
 
-             <div>
+             
+
+            
+            </CardContent>
+                </Link>
+                <div>
                 <div className="sr-only">Treatments offered</div>
               <ul className="flex flex-wrap gap-1 pt-4" aria-label="Treatments offered">
                 {practitioner.Treatments &&
                   practitioner.Treatments.sort((a,b) => a.length - b.length).slice(0, 2)
                     .map((modality, index) => (
                       <li key={index}>
-                        <Badge asChild variant="outline" className="text-xs">
-                          <a
+                        <Badge variant="outline" className="text-xs">
+                          <Link
                             href={`/directory/treatments/${modality}`}
                             onClick={(e) => e.stopPropagation()}
                           >{modality
@@ -202,7 +209,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                               (word) =>
                                 word.charAt(0).toUpperCase() + word.slice(1)
                             ) // capitalize each
-                            .join(" ")}</a>
+                            .join(" ")}</Link>
                           
                         </Badge>
                       </li>
@@ -210,20 +217,19 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                 {practitioner.Treatments &&
                   practitioner.Treatments.length > 2 && (
                     <li>
-                      <Badge asChild variant="outline" className="text-xs">
-                        <a
+                      <Badge variant="outline" className="text-xs">
+                        <Link
                             href={`/directory/treatments`}
                             onClick={(e) => e.stopPropagation()}
                           >
                         +
                         {practitioner.Treatments.length - 2}{" "}
-                        more</a>
+                        more</Link>
                       </Badge>
                     </li>
                   )}
               </ul>
             </div>
-
             <div className="w-full overflow-x-auto hidden">
             <div className="flex flex-row gap-4">
               {practitioners.map((p: any, idx: number) => (
@@ -254,16 +260,15 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                     
     
                   </Card>))}</div></div>
-            </CardContent>
+            </>
 
-
-        </Card></Link>
+        </Card>
         </article>
       )}
       {isProduct(practitioner) && (
-        <Link href={`/products/${practitioner.category}/${practitioner.slug}`} className="block" prefetch={false}>
-          <Card className="gap-0 h-full relative px-4 md:px-0 shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border-t rounded-27 md:border md:border-(--alto) cursor-pointer" aria-labelledby={`product-name-${practitioner.slug}`} data-testid="practitioner-card">
-            <CardHeader className="pb-2 px-2">
+          <Card asChild className="gap-0 h-full relative px-4 md:px-0 shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border-t rounded-27 md:border md:border-(--alto) cursor-pointer" aria-labelledby={`product-name-${practitioner.slug}`} data-testid="practitioner-card">
+            <Link href={`/products/${practitioner.category}/${practitioner.slug}`} className="block" prefetch={false}>
+        <CardHeader className="pb-2 px-2">
               <h2 id={`product-name-${practitioner.slug}`} className="sr-only">
                 {decodeUnicodeEscapes(practitioner.product_name)}
               </h2>
@@ -317,15 +322,15 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
               
                 </ul>
               </div>
-            </CardContent>
+            </CardContent></Link>
           </Card>
-        </Link>
+        
       )}
       {isTreatment(practitioner) === true && (
       
-        <Link href={`/treatments/${practitioner?.split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ").replace("Hifu", "HIFU").replace("Coolsculpting", "CoolSculpting")}`} className="block border-0" prefetch={false}>
-          <Card className="gap-0 h-full relative bg-transparent px-4 md:px-0 shadow-none md:border-0 duration-300 cursor-pointer" aria-labelledby={`treatment-name-${practitioner}`} data-testid="practitioner-card">
-            <CardHeader className="px-2 border-0">
+          <Card asChild className="gap-0 h-full relative bg-transparent px-4 md:px-0 shadow-none md:border-0 duration-300 cursor-pointer" aria-labelledby={`treatment-name-${practitioner}`} data-testid="practitioner-card">
+            <Link href={`/treatments/${practitioner?.split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ").replace("Hifu", "HIFU").replace("Coolsculpting", "CoolSculpting")}`} className="block border-0" prefetch={false}>
+        <CardHeader className="px-2 border-0">
               <h2 id={`treatment-name-${practitioner?.split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ").replace("Hifu", "HIFU").replace("Coolsculpting", "CoolSculpting")}`} className="sr-only">
                 {practitioner?.split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ").replace("Hifu", "HIFU").replace("Coolsculpting", "CoolSculpting")}
               </h2>
@@ -350,31 +355,32 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                 </div>
               </div>
               
-            </CardHeader>
+            </CardHeader>  </Link>
           </Card>
-        </Link>
+      
       )}
-      {isCity(practitioner) === true && (
+      {isCity(practitioner) === true && 
+        (
 
   
+                        <Card asChild className="gap-0 relative shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border md:border-(--alto) cursor-pointer hover:shadow-lg hover:border-blue-500">
                 <Link href={`/clinics/${practitioner}`}>
-                        <Card className="group hover:shadow-lg transition-all duration-300 hover:scale-[1.02] cursor-pointer border-border/50 hover:border-accent/50">
-                            <CardHeader >
-                            <h2 className='flex justify-center font-semibold text-sm text-foreground group-hover:text-primary/70 transition-colors text-balance'>{practitioner}</h2>
-                            </CardHeader>
-                            <CardContent className='flex items-center justify-center pt-0'>
-                            <img
-                        src={cityMap[practitioner].split("?w")[0] || "/placeholder.svg"}
-                        alt="Profile"
-                        width={240}
-                        height={240}
-                        className="flex items-center justify-center object-cover rounded-bl rounded-ee rounded-tr rounded-tl w-60 h-60"
-                    />
-                            </CardContent>
+                <CardHeader className="pb-4">
+                  <h3 className="mb-2 flex font-semibold text-md md:text-lg transition-colors text-balance group-hover:text-blue-600">
+                    {practitioner}
+                  </h3>
+                </CardHeader>
+                <CardContent className="pt-0">
+          
+                  <Button variant="outline" className="w-full">
+                    View Clinics
+                  </Button>
+                </CardContent></Link>
+              </Card>
 
                         
-                        </Card>
-                        </Link>
+              
+                
    
       )
         }

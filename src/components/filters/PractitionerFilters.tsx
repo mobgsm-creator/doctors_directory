@@ -53,7 +53,7 @@ export function PractitionerFilters({ filters, onChange, onClear, setIsFilterAct
           <SelectContent>
             <SelectItem value="all">All</SelectItem>
             {spec.map((item) => (
-              <SelectItem value={item}>{item}</SelectItem>
+              <SelectItem key={item} value={item}>{item}</SelectItem>
             ))}
             
           </SelectContent>
@@ -79,7 +79,7 @@ export function PractitionerFilters({ filters, onChange, onClear, setIsFilterAct
           <SelectContent>
             <SelectItem value="all">All</SelectItem>
             {edu.map((item) => (
-              <SelectItem value={item}>{item}</SelectItem>
+              <SelectItem key={item} value={item}>{item}</SelectItem>
             ))}
           </SelectContent>
         </Select>
@@ -104,7 +104,7 @@ export function PractitionerFilters({ filters, onChange, onClear, setIsFilterAct
           <SelectContent>
             <SelectItem value="all">All</SelectItem>
             {locations.map((item) => (
-              <SelectItem value={item}>{item}</SelectItem>
+              <SelectItem key={item} value={item}>{item}</SelectItem>
             ))}
           </SelectContent>
         </Select>
@@ -129,7 +129,7 @@ export function PractitionerFilters({ filters, onChange, onClear, setIsFilterAct
           <SelectContent>
             <SelectItem value="all">All</SelectItem>
             {accreditations.map((item) => (
-              <SelectItem value={item}>{item}</SelectItem>
+              <SelectItem key={item} value={item}>{item}</SelectItem>
             ))}
             </SelectContent>
         </Select>
