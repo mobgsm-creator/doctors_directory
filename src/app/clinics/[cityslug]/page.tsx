@@ -21,8 +21,9 @@ import { CollectionsFilter } from "@/components/filters/collectionsFilterWrapper
 import practitionerJson from "../../../../public/derms_processed_new_5403.json"
 import { fixMojibake, decodeUnicodeEscapes } from "@/lib/utils"
 import { CityPageData } from "@/components/cityPageData";
-import { cityMap } from "@/lib/data";
+import { cityMap, locations } from "@/lib/data";
 import clinicsJSON from "@/../public/clinics_processed_new_data.json";
+import { MoreItems } from "@/components/MoreItems";
 interface ProfilePageProps {
   params: {
     cityslug: string;
@@ -128,21 +129,22 @@ export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
           </div>
         </div>
          {/* City Overview */}
-        <CityPageData cityData={cityData} uniqueTreatments={(uniqueTreatments as string[])} cityClinics={cityClinics} citySlug={citySlug} />
         
       
         <div className="px-4 md:px-0 space-y-6">
 
-          <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Specialities in ${citySlug}`}</h3>
-          <ItemsGrid items={uniqueTreatments.length === 0 ? defaultTreatments : uniqueTreatments} />
+          {/* <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Treatments in ${citySlug}`}</h3>
+          <MoreItems items={uniqueTreatments.length === 0 ? defaultTreatments : uniqueTreatments} />
           <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Cities in the UK`}</h3>
-          <ItemsGrid items={Object.keys(cityMap)}/>
+          <MoreItems items={locations}/> */}
 
 
           {/* <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Brands`}</h3>
           <MoreItems items={uniqueTreatments} /> */}
           
         </div>
+        <CityPageData cityData={cityData} uniqueTreatments={(uniqueTreatments as string[])} cityClinics={cityClinics} citySlug={citySlug} />
+        
       </div>
     </main>
   );

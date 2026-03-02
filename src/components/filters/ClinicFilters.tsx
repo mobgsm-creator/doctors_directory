@@ -42,7 +42,7 @@ export function ClinicFilters({ filters, onChange, onClear, setIsFilterActive }:
            value={filters.servicesOffered}
            onValueChange={(v) => onChange("servicesOffered", v)}
            onOpenChange={(open) => {     
-            console.log(open)       
+                
               if (open) setIsFilterActive(true);
             }}
 
@@ -54,7 +54,7 @@ export function ClinicFilters({ filters, onChange, onClear, setIsFilterActive }:
           <SelectContent >
             <SelectItem value="all">All</SelectItem>
             {modalities.map((item) => (
-              <SelectItem value={item}>{item}</SelectItem>
+              <SelectItem key={item} value={item}>{item}</SelectItem>
             ))}
           </SelectContent>
         </Select>
@@ -79,7 +79,7 @@ export function ClinicFilters({ filters, onChange, onClear, setIsFilterActive }:
           <SelectContent>
             <SelectItem value="all">All</SelectItem>
             {locations.map((item) => (
-              <SelectItem value={item}>{item}</SelectItem>
+              <SelectItem key={item} value={item}>{item}</SelectItem>
             ))}
           </SelectContent>
         </Select>
@@ -102,10 +102,10 @@ export function ClinicFilters({ filters, onChange, onClear, setIsFilterActive }:
             <SelectValue placeholder="All" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="all">All</SelectItem>
-            <SelectItem value="4">4+ Stars</SelectItem>
-            <SelectItem value="4.5">4.5+ Stars</SelectItem>
-            <SelectItem value="5">5 Stars</SelectItem>
+            <SelectItem key="all" value="all">All</SelectItem>
+            <SelectItem key="4" value="4">4+ Stars</SelectItem>
+            <SelectItem key="4.5" value="4.5">4.5+ Stars</SelectItem>
+            <SelectItem key="5" value="5">5 Stars</SelectItem>
           </SelectContent>
         </Select>
       </div>

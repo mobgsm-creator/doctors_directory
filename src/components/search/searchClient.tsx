@@ -31,7 +31,7 @@ export default function SearchPage() {
 };
   const pathname = usePathname();
   const { filters, setFilters } = useSearchStore();
-  console.log("Current filters in Search Page", filters);
+
   const [currentPage, setCurrentPage] = useState(1);
   const [sortBy, setSortBy] = useState("default");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
@@ -41,6 +41,7 @@ export default function SearchPage() {
   const [totalCount, setTotalCount] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
   const [isPending, startTransition] = useTransition();
+
 
   // Fetch data when filters, page, or sort changes
   useEffect(() => {
@@ -78,7 +79,7 @@ export default function SearchPage() {
   const handleToggleFilters = () => {
     setShowAdvancedFilters(!showAdvancedFilters);
   };
-
+  console.log(filters)
   return (
     <main className="min-h-screen bg-[var(--primary-bg-color)]">
       <div className="bg-[var(--primary-bg-color)] backdrop-blur-sm sticky top-0 z-10">

@@ -122,7 +122,6 @@ const serviceMatch = categories.some((cat: string) =>
           </div>
         
         </div>
-        <CityTreatmentPage cityData={cityData} treatment={treatment} slug={serviceslug.replaceAll("%20", " ")} />
         <div className="flex flex-col pt-2 w-full pb-4 px-4 md:px-0">
           <h1 className="text-sm md:text-2xl md:font-semibold mb-1 md:mb-2">
             Top {serviceslug.replaceAll("%20", " ")} Providers in {cityslug}
@@ -140,12 +139,14 @@ const serviceMatch = categories.some((cat: string) =>
         <div className="px-4 md:px-0 space-y-6">
                   <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Clinics in ${cityslug}`}</h3>
                   <ItemsGrid items={filteredClinics.length === 0 ? defaultClinics : filteredClinics} />
-                  <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Specialities in ${cityslug}`}</h3>
+                  <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Treatments in ${cityslug}`}</h3>
                   <ItemsGrid items={uniqueTreatments} />
                   <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Brands`}</h3>
                   <ItemsGrid items={uniqueTreatments} />
                   
                 </div>
+                <CityTreatmentPage cityData={cityData} treatment={treatment} slug={serviceslug.replaceAll("%20", " ")} />
+        
       </div>
     </main>
   );

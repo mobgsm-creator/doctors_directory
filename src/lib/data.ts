@@ -1677,7 +1677,6 @@ export const accreditations =
     "Spire",
     "Medical Research Council (MRC)",
     "Wiltshire Prestige Awards",
-    "British Association of Plastic, Reconstructive and Aesthetic Surgeons (BAPRAS)",
     "University of Oxford",
     "Royal College of General Practitioners",
     "UK Dermatology Clinical Trials Network",
@@ -1753,7 +1752,6 @@ export const accreditations =
     "Save Face",
     "WhatClinic Patient Service Award",
     "Good Surgeon Guide",
-    "4T Medical",
     "Queen Mary University of London SEED Award",
     "Alternative Doctor’s Award",
     "MyFaceMyBody Awards",
@@ -1781,7 +1779,6 @@ export const accreditations =
     "EyebrowQueen",
     "K Govind Medical Aesthetics",
     "Hebden Bridge Group Practice",
-    "Care Quality Commission (CQC)",
     "NHS Lanarkshire",
     "Cadzow Health Centre",
     "National Institute for Health Research (NIHR) Academic Clinical Fellowship",
@@ -1792,7 +1789,6 @@ export const accreditations =
     "Lincoln Medical Society Award",
     "Officer of the Order of the British Empire (OBE)",
     "NY Skin Clinic",
-    "Safety in Beauty Awards",
     "BTL Exilis Elite Best Face Treatment Award",
     "BTL Aesthetics Blue Star Awards",
     "Redcar & Cleveland Borough Council",
@@ -1819,8 +1815,6 @@ export const accreditations =
     "BAPRAS/ABS collaborative events",
     "Tatler",
     "CoolSculpting Clinic of the Year",
-    "Aesthetics Awards",
-    "Safety in Beauty Diamond Awards",
     "Sir Archibald Gray Medal",
     "Society of Cosmetic Scientists Medal",
     "American Skin Association Lifetime Achievement Award",
@@ -2055,7 +2049,7 @@ export const edu = [
     "PhD",
     "QIF","Consultant Dermatologist",
     "V300","Level 7","Level 6","Level 5","VTCT",
-    " BHons Nursing", "Surgeon", "Accredited Trainer","Therapist","Trichologist", "Level 7","INP", "BSC Hons", "GMC", "Registered Medical Practitioner", "Aesthetic Practitioner"]
+    " BHons Nursing", "Surgeon", "Accredited Trainer","Therapist","Trichologist","INP", "BSC Hons", "GMC", "Registered Medical Practitioner", "Aesthetic Practitioner"]
 
 export const spec = ["Trichologist","Stylist","Technician","Manager","Admin","Hairdresser","Associate","Therapist","Practitioner","Owner","Coordinator","Pharmacist","Founder","Director","Nurse","Consultant","Specialist"
 ]

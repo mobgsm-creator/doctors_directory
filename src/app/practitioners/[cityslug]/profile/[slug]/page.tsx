@@ -219,7 +219,7 @@ export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
                 <div className="px-4 md:px-0 space-y-6">
                                   <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Practitioners in ${practitioner.City}`}</h3>
                                   <ItemsGrid items={cityClinics} />
-                                  <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Specialities in ${practitioner.City}`}</h3>
+                                  <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Treatments in ${practitioner.City}`}</h3>
                                   <ItemsGrid items={uniqueTreatments} />
                                </div>
              </div>
