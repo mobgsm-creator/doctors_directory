@@ -17,6 +17,7 @@ import { Section } from "@/components/ui/section";
 import clinicsJson from "@/../public/clinics_processed_new_data.json";
 import { Clinic } from "@/lib/types";
 import ItemsGrid from "@/components/collectionGrid";
+import PractitionersJSON from "@/../public/derms_processed_new_5403.json";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb"
 const clinicsData = clinicsJson as unknown as Clinic[];
 const clinics = clinicsData
@@ -42,9 +43,7 @@ interface ProfilePageProps {
 }
 
 export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
-  const filePath = path.join(process.cwd(), "public", "derms_processed_new_5403.json");
-  const fileContents = fs.readFileSync(filePath, "utf-8");
-  const clinics: Practitioner[] = JSON.parse(fileContents);
+  const clinics = PractitionersJSON as unknown as Practitioner[];
   const { slug } = params;
   const clinic = clinics.find((p) => p.practitioner_name === slug);
   const k = clinicIndex.get(JSON.parse(clinic!.Associated_Clinics!)[0])

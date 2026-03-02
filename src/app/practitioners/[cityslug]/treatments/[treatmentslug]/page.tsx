@@ -24,6 +24,7 @@ import treatment_content from "@//../public/treatments.json";
 import ItemsGrid from "@/components/collectionGrid";
 import { SearchBar } from "@/components/search/search-bar";
 import { CollectionsFilter } from "@/components/filters/collectionsFilterWrapper";
+import PractitionersJSON from "@/../public/derms_processed_new_5403.json";
 type TreatmentSlug = keyof typeof treatment_content
 
 const clinicsData = clinicsJson as unknown as Clinic[];
@@ -40,9 +41,8 @@ interface ProfilePageProps {
 
 export default function ProfilePage({ params }: ProfilePageProps) {
   
-  const filePath = path.join(process.cwd(), "public", "derms_processed_new_5403.json");
-   const fileContents = fs.readFileSync(filePath, "utf-8");
-   const clinics: Practitioner[] = JSON.parse(fileContents);
+  const clinics = PractitionersJSON as unknown as Practitioner[];
+
      const practitioners = clinics
   .map(p => {
     const clinic = clinicIndex.get(JSON.parse(p.Associated_Clinics!)[0])

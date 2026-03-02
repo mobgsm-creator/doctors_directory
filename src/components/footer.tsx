@@ -847,7 +847,7 @@ const cityList = ["Aberaeron",
              <ul className="gap-4 max-h-[100px] overflow-auto">
               {cityList.map((city, index) => (
                 <li key={index}>
-                  <Link href={`/clinics/${city}`} className="block text-sm">
+                  <Link href={`/clinics/${city}`} className="block text-sm" prefetch={false}>
                     Top Clinics in {city}
                   </Link>
                 </li>

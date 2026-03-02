@@ -12,11 +12,9 @@ import { decodeUnicodeEscapes } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft} from "lucide-react";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb"
-
+import productsJSON from "@/../public/products_processed_new.json";
 export default async function ProfilePage() {
-  const filePath = path.join(process.cwd(), "public", "products_processed_new.json");
-  const fileContents = fs.readFileSync(filePath, "utf-8");
-  const clinics: Product[] = JSON.parse(fileContents);
+  const clinics = productsJSON as unknown as Product[];
  
 
 

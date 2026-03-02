@@ -16,7 +16,7 @@ import { Clinic } from "@/lib/types"
 import fs from "fs"
 import path from "path"
 import { PractitionerCard } from "@/components/practitioner-card"
-
+import ClinicsJSON from "@/../public/clinics_processed_new_data.json";
 function mapAccreditationToField(accreditation: string): keyof Clinic {
   const mapping: Record<string, keyof Clinic> = {
     cqc: 'isCQC',
@@ -39,9 +39,7 @@ interface AccreditedClinicsPageProps {
 }
 
 export default async function AccreditedClinicsPage({ params }: Readonly<AccreditedClinicsPageProps>) {
-  const filePath = path.join(process.cwd(), "public", "clinics_processed_new_data.json")
-  const fileContents = fs.readFileSync(filePath, "utf-8")
-  const clinics: Clinic[] = JSON.parse(fileContents)
+  const clinics = ClinicsJSON as unknown as Clinic[];
   const { accreditation, cityslug } = params
   const accreditationField = mapAccreditationToField(accreditation)
 

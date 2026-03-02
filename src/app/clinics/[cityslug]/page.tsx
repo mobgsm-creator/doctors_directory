@@ -22,6 +22,7 @@ import practitionerJson from "../../../../public/derms_processed_new_5403.json"
 import { fixMojibake, decodeUnicodeEscapes } from "@/lib/utils"
 import { CityPageData } from "@/components/cityPageData";
 import { cityMap } from "@/lib/data";
+import clinicsJSON from "@/../public/clinics_processed_new_data.json";
 interface ProfilePageProps {
   params: {
     cityslug: string;
@@ -29,9 +30,7 @@ interface ProfilePageProps {
   };
 }
 
-const filePath = path.join(process.cwd(), "public", "clinics_processed_new_data.json");
-  const fileContents = fs.readFileSync(filePath, "utf-8");
-  const clinics: Clinic[] = JSON.parse(fileContents);
+const clinics = clinicsJSON as unknown as Clinic[];
 //   const practitioners = (practitionerJson as unknown as Practitioner[])
 //   const clinicIndex = new Map(
 //   clinics.filter(c=>c.slug !== undefined).map(c => [c.slug!, c])

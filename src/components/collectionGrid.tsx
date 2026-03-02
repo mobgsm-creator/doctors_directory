@@ -10,7 +10,7 @@ interface PractitionerCardProps {
 }
 
 export default function ItemsGrid({ items}:PractitionerCardProps) {
-  const ITEMS_PER_PAGE = 12;
+  const ITEMS_PER_PAGE = 6;
   const [item, setItems] = useState(
     items.slice(0, ITEMS_PER_PAGE)
   );
@@ -47,7 +47,7 @@ export default function ItemsGrid({ items}:PractitionerCardProps) {
         
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:gap-6">
-          {items.map((clinic) => (
+          {item.map((clinic) => (
             <PractitionerCard
                 key={typeof clinic === "string" ? clinic : ("practitioner_name" in clinic ? clinic.practitioner_name!+clinic.practitioner_title : clinic.slug)}
               practitioner={clinic}
