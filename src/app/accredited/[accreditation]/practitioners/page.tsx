@@ -15,6 +15,7 @@ import { Clinic, Practitioner } from "@/lib/types"
 import fs from "fs"
 import path from "path"
 import clinicsJson from "@/../public/clinics_processed_new_data.json";
+import { SearchBar } from "@/components/search/search-bar";
 
 function mapAccreditationToFieldPractitioner(accreditation: string): keyof Practitioner {
   const mapping: Record<string, keyof Practitioner> = {
@@ -101,6 +102,7 @@ export default async function AccreditedPractitionersPage({ params }: Readonly<A
 
   return (
     <main className="bg-(--primary-bg-color)">
+      <SearchBar />
       <div className="mx-auto max-w-7xl md:px-4 py-4 md:py-7 ">
         <div className="flex flex-col pt-2 w-full pb-4 px-4 md:px-0 md:pt-0 md:border-0 border-b border-[#C4C4C4]">
           <div className="sticky top-0 z-10">
