@@ -282,12 +282,12 @@ async function loadFromFileSystem() {
   // console.log("Transformed Practitioners")
   // console.log(practitioners.length)
 
-  const filePath_city = "C:\\Users\\agney\\Documents\\Files\\Projects\\doctor-directory\\public\\city_data.json"
+  const filePath_city = "C:\\Users\\agney\\Documents\\Files\\Projects\\doctor-directory\\public\\products.json"
 
   const fileContents_city = fs.readFileSync(filePath_city, 'utf-8');
   const cityData = JSON.parse(fileContents_city);
   console.log("Loaded")
-  const cityDataData = cityData.map(transformCity);
+  const productsData = cityData.map(transformProduct);
   console.log("Transformed City Data")
 
   // const filePath_p = path.join(process.cwd(), 'public', 'products.json');
@@ -298,9 +298,9 @@ async function loadFromFileSystem() {
 
   // console.log("Transformed Products", productsData.length)
 
-  return { cityDataData}
+  return { productsData}
 }
-const {cityDataData} = await loadFromFileSystem();
+const { productsData} = await loadFromFileSystem();
 
 // fs.writeFileSync(
 //   "derms_processed_new_5403.json",
@@ -315,7 +315,7 @@ const {cityDataData} = await loadFromFileSystem();
 //   JSON.stringify(practitionerData)
 // );
 fs.writeFileSync(
-  "city_data_processed.json",
-  JSON.stringify(cityDataData)
+  "products_processed_new.json",
+  JSON.stringify(productsData)
 );
 console.log("Generated derms_processed.json");
