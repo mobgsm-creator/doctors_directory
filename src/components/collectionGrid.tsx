@@ -11,11 +11,9 @@ interface PractitionerCardProps {
 }
 
 export default function ItemsGrid({ items}:PractitionerCardProps) {
-  let height = 540;
-  if (items.length > 4 ) {
-    height=920
-  }
-  const ITEMS_PER_PAGE = (isCity(items[0]) || isTreatment(items[0])) ? 18 : 6; 
+
+  
+  const ITEMS_PER_PAGE = (isCity(items[0]) || isTreatment(items[0])) ? 18 : 12; 
   const[itemsList,setItemsList] = useState(items.slice(0,ITEMS_PER_PAGE))
   const [hasMore, setHasMore] = useState(
     items.length > ITEMS_PER_PAGE
@@ -35,7 +33,7 @@ export default function ItemsGrid({ items}:PractitionerCardProps) {
   return (
     <div
       id="scrollableDiv"
-      className={`h-[${height}px] overflow-auto`}
+      className={`${items.length > 4 ? "h-[920px]" : "h-[540px]"} overflow-y-auto`}
     >
       <InfiniteScroll
         dataLength={itemsList.length}
