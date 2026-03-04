@@ -58,9 +58,9 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
       {(isPractitioner(practitioner) || isClinic(practitioner)) && (
         
 
-        <article aria-labelledby={`${isPractitioner(practitioner) ? "practitioner" : "clinic"}-name-${practitioner.slug}`}>
+        <article className=' relative mb-12' aria-labelledby={`${isPractitioner(practitioner) ? "practitioner" : "clinic"}-name-${practitioner.slug}`}>
           
-          <Card asChild className="gap-0 relative px-4 md:px-0 shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border-t rounded-27 md:border md:border-(--alto) cursor-pointer" data-testid="practitioner-card">
+          <Card asChild className="gap-4 md:px-0 shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border-t rounded-27 md:border md:border-(--alto) cursor-pointer" data-testid="practitioner-card">
           <><Link
               href={
                 "practitioner_awards" in practitioner &&

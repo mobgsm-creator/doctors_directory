@@ -39,10 +39,10 @@ export function MobileSearchView({
   handlePageChange,
 }: MobileSearchViewProps) {
   return (
-    <div className="block md:hidden">
+    <div className="w-full block md:hidden">
       {!isExpanded ? (
         <button
-          className="flex items-center bg-white border border-gray-300 rounded-lg px-4 py-3 cursor-pointer hover:shadow-md transition-shadow"
+          className="w-full flex items-center bg-white border border-gray-300 rounded-lg px-4 py-3 cursor-pointer hover:shadow-md transition-shadow"
           onClick={() => setIsExpanded(true)}
         >
           <Search className="w-5 h-5 text-gray-400 mr-3" />
@@ -50,7 +50,7 @@ export function MobileSearchView({
           <ChevronDown className="w-5 h-5 text-gray-400" />
         </button>
       ) : (
-        <div className="rounded-lg p-4 shadow-lg">
+        <div className="rounded-lg p-4 shadow-lg z-50">
           <div className="space-y-4">
             <div className="relative">
               <button
