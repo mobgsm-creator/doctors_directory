@@ -1276,7 +1276,6 @@ export const brands = [
 "Zimmer",
 "Zivafert",
 "Zoff",
-0
 ]
 export const accreditations = 
   [
