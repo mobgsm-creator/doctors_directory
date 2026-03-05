@@ -28,7 +28,7 @@ interface ProfilePageProps {
 export default async function ProfilePage({ params }: Readonly<ProfilePageProps>) {
   const clinics = productsJSON as unknown as Product[];
   const { slug } = params;
-  
+  console.log(slug)
   const clinic = clinics.find((p) => p.slug === slug);
 
   const similarProducts = clinics.filter((p) => p.category === clinic?.category && p.slug !== slug);
