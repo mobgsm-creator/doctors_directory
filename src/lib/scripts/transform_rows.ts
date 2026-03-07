@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from 'path';
 import {cleanRouteSlug, parseLabels, safeParse, consolidate, parse_text, parse_addresses, parse_numbers} from "../utils"
-import { Clinic, Practitioner,Product, City } from "../types";
+import { Clinic, Practitioner,Product, City, Accreditation } from "../types";
 import { decodeUnicodeEscapes, fixMojibake } from "../utils";
 function parseCorruptedJson(raw:string) {
   if (!raw) return null;
@@ -43,7 +43,7 @@ function transformProduct(raw: any): Product {
 
 
     // Media
-    image_url: parse_text(raw.image_url),
+    image_url: raw.image_url.replaceAll('[', "").replaceAll(']', ""),//eslint-disable-line
     product_document_pdf_from_manufacturer: raw.product_document_pdf_from_manufacturer,
 
     // Descriptions
@@ -76,6 +76,29 @@ function transformProduct(raw: any): Product {
     all_prices: parseCorruptedJson(raw.all_prices),
     distributor_cleaned: raw.distributor_cleaned,
     category: raw.Category,
+  };
+}
+function transformAccreditation(raw: any): Accreditation {
+  return {
+    slug: cleanRouteSlug(raw.Accreditation),
+
+    image: raw.GoogleImage,
+
+
+    overview: safeParse(raw.overview),
+    governing_body: safeParse(raw.governing_body),
+    eligibility_criteria: safeParse(raw.eligibility_criteria),
+    judging_criteria: safeParse(raw.judging_criteria),
+    categories: safeParse(raw.categories),
+    accreditation_requirements: safeParse(raw.accreditation_requirements),
+    verification_process: safeParse(raw.verification_process),
+    renewal_and_compliance: safeParse(raw.renewal_and_compliance),
+    benefits: safeParse(raw.benefits),
+    patient_safety_impact: safeParse(raw.patient_safety_impact),
+    comparison_with_other_bodies: safeParse(raw.comparison_with_other_bodies),
+    industry_recognition: safeParse(raw.industry_recognition),
+    government_regulation_status: safeParse(raw.government_regulation_status),
+    faqs: safeParse(raw.faqs),
   };
 }
 function transformClinic_2(raw: any): Clinic {
@@ -282,12 +305,12 @@ async function loadFromFileSystem() {
   // console.log("Transformed Practitioners")
   // console.log(practitioners.length)
 
-  const filePath_city = "C:\\Users\\agney\\Documents\\Files\\Projects\\doctor-directory\\public\\products.json"
+  const filePath_city = "C:\\Users\\agney\\Documents\\Files\\Projects\\doctor-directory\\public\\accreditations.json"
 
   const fileContents_city = fs.readFileSync(filePath_city, 'utf-8');
   const cityData = JSON.parse(fileContents_city);
   console.log("Loaded")
-  const productsData = cityData.map(transformProduct);
+  const productsData = cityData.map(transformAccreditation);
   console.log("Transformed City Data")
 
   // const filePath_p = path.join(process.cwd(), 'public', 'products.json');
@@ -315,7 +338,7 @@ const { productsData} = await loadFromFileSystem();
 //   JSON.stringify(practitionerData)
 // );
 fs.writeFileSync(
-  "products_processed_new.json",
+  "accreditations_processed_new.json",
   JSON.stringify(productsData)
 );
 console.log("Generated derms_processed.json");

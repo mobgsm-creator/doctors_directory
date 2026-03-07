@@ -32,6 +32,7 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
 
 
 
+
   if (!similarProducts) {
     notFound();
   }

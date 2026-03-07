@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
-import type { Clinic, Practitioner } from "@/lib/types";
+import type { Clinic, Practitioner, Accreditation } from "@/lib/types";
 import { Badge } from "@/components/ui/badge";
 import { Star, MapPin } from "lucide-react";
 import clinicsJson from "@/../public/clinics_processed_new_data.json";
@@ -23,6 +23,12 @@ import ItemsGrid from "@/components/collectionGrid";
 import { SearchBar } from "@/components/search/search-bar";
 import { CollectionsFilter } from "@/components/filters/collectionsFilterWrapper";
 import practitionersJSON from "@/../public/derms_processed_new_5403.json";
+import { CredentialPageData } from "@/components/credentialPageData";
+import credentialJSON from "@/../public/accreditations_processed_new.json";
+const credentialsData = credentialJSON as unknown as Accreditation[];
+const credentialIndex = new Map(
+  credentialsData.map(c => [c.slug!, c])
+)
 const clinicsData = clinicsJson as unknown as Clinic[];
 const clinics = clinicsData
   const clinicIndex = new Map(
@@ -53,6 +59,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
   .filter((item) => item !==null).filter(Boolean)
 
   const { cred } = params;
+  console.log(cred)
   const credslug = decodeURIComponent(cred).toLowerCase().replace(/\s+/g, "");
   const filteredClinics = practitioners.filter((clinic) => {
     // Filter by city
@@ -60,11 +67,12 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
     const awards = clinic.practitioner_awards
     const qMatch = qualifications?.toLowerCase().replace(/\s+/g, "").includes(credslug)
     const aMatch = awards?.toLowerCase().replace(/\s+/g, "").includes(credslug)
-   
+
 
 
     return qMatch || aMatch
   });
+  console.log(filteredClinics.length)
 
   if (!filteredClinics) {
     notFound();
@@ -113,6 +121,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
             <ItemsGrid items={filteredClinics} />
           </div>
         </div>
+        <CredentialPageData credentialSlug={cred.replaceAll("%20","-")} credentialData={credentialIndex.get(cred.replaceAll("%20","-"))!} />
       </div>
     </main>
   );
