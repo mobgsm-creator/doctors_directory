@@ -98,8 +98,10 @@ export function parseLabels(label: string): [boolean, string] | null {
 
 export function safeParse(v: any) {
   try {
+  
     return JSON.parse(v.replaceAll(/[\u0000-\u001F]/g, ""));
   } catch (err) {
+    console.log(err)
     const msg = String(err)
 
     if (msg.includes("Unterminated string in JSON") || msg.includes("Unexpected end of JSON input")) {
@@ -107,7 +109,7 @@ export function safeParse(v: any) {
       if (typeof v === "string" && v.trim().startsWith("[") ) {
 
         const last = v.lastIndexOf("}")
-        console.log(v)
+  
 
         if (last !== -1) {
           let fixed = v.slice(0, last + 1).replace(/\s*,\s*$/, "") + "]"
@@ -195,6 +197,7 @@ export function isClinic(obj: unknown): obj is Clinic {
 
 export function isProduct(obj: unknown): obj is Product {
   return typeof obj === "object" && obj !== null && "product_name" in obj;
+
 }
 
 

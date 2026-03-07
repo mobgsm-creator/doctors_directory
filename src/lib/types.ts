@@ -192,7 +192,7 @@ export interface Product {
   product_document_pdf_from_manufacturer: string | null;
 
   // Content
-  description: string 
+  description: string
   key_benefits: string[] | null;
   indications: string[] | null;
   composition: string[] | string | null;
@@ -221,7 +221,77 @@ export interface Product {
   source_verified_on?: string | null;                 // ISO date string
   data_confidence_score?: number | null;              // 0–1 or 0–100 depending on your system
   verification_sources?: string[] | null;             // e.g. ["MHRA", "Manufacturer"]
-  sources?: any;   
-  distributor_cleaned: string  
+  sources?: any;
+  distributor_cleaned: string
   category: string                                 // optional JSON blob of raw refs
+}
+export interface Accreditation {
+  slug: string;
+  image: string;
+  overview: {
+    description: string;
+    founded_year: string;
+    founder: string;
+    purpose: string;
+  };
+  governing_body: {
+    organisation_name: string;
+    company_status: string;
+    regulatory_status: string;
+    industry_standing: string;
+  };
+  eligibility_criteria: {
+    who_can_apply: string;
+    requirements: string[];
+    restrictions: string[];
+  };
+  judging_criteria: {
+    evaluation_factors: string[];
+  };
+  categories: {
+    available_categories: string[];
+  };
+  accreditation_requirements: {
+    inspection_required: string;
+    documentation_required: string[];
+    compliance_standards: string[];
+    sources: string[];
+  };
+  verification_process: {
+    public_register: string;
+    certificate_validation_method: string;
+    sources: string[];
+  };
+  renewal_and_compliance: {
+    renewal_frequency: string;
+    cpd_requirements: string;
+    audit_process: string;
+    sources: string[];
+  };
+  benefits: {
+    reputation: string;
+    patient_trust_impact: string;
+  };
+  patient_safety_impact: {
+    mechanisms_of_protection: string[];
+    limitations: string[];
+  };
+  comparison_with_other_bodies: {
+    comparable_entities: string[];
+    key_differences: string[];
+  };
+  industry_recognition: {
+    media_mentions: string[];
+    endorsements: string[];
+    credibility_signals: string[];
+  };
+  government_regulation_status: {
+    statutory_backing: string;
+    regulated_by: string;
+    legal_status: string;
+  };
+  faqs: Array<{
+    question: string;
+    answer: string;
+  }>;
 }

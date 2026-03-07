@@ -16,6 +16,7 @@ import productsJSON from "@/../public/products_processed_new.json";
 export default async function ProfilePage() {
   const clinics = productsJSON as unknown as Product[];
  
+ 
 
 
   return (
