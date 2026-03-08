@@ -79,7 +79,7 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {similarProducts.map((practitioner, index) => (
             <div key={practitioner.slug} style={{ animationDelay: `${index * 50}ms` }}>
-              <Link href={`/products/cateogry/${category}/${practitioner.slug}`} className="block">
+              <Link prefetch={false} href={`/products/category/${category}/${practitioner.slug}`} className="block">
           <Card className="group bg-white hover:shadow-lg transition-all duration-300 cursor-pointer border border-[#BDBDBD] md:border-0 rounded-lg sm:bg-transparent sm:border-0 sm:hover:border-accent/50 sm:flex sm:flex-col sm:gap-5">
             <CardHeader className="pb-2 px-2">
               <h2 id={`product-name-${practitioner.slug}`} className="sr-only">

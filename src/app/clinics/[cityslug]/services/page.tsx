@@ -16,76 +16,74 @@ import {
 } from "@/components/ui/breadcrumb"
 import { Button } from "@/components/ui/button"
 import { ArrowLeft } from "lucide-react"
-import { CityTreatmentPage } from "@/components/cityxTreatmentPage";
-import  ItemsGrid  from "@/components/collectionGrid";
+import ItemsGrid from "@/components/collectionGrid";
 import { MoreItems } from "@/components/MoreItems";
-import treatment_content from "@//../public/treatments.json";
 import { SearchBar } from "@/components/search/search-bar";
 import { CollectionsFilter } from "@/components/filters/collectionsFilterWrapper";
 import cityJson from "@/../public/city_data_processed.json"
 import clinicsJSON from "@/../public/clinics_processed_new_data.json";
+import productsJSON from "@/../public/products_processed_new.json";
 import { locations } from "@/lib/data";
-interface ProfilePageProps {
+
+interface PageProps {
   params: {
     cityslug: string;
-    serviceslug: string;
   };
 }
-type TreatmentSlug = keyof typeof treatment_content
-// Object.keys(treatment_content).forEach(key => {
-//   console.log(Object.entries(treatment_content[key as TreatmentSlug])[10])
-// })
-export default function ProfilePage({ params }: ProfilePageProps) {
+
+export default function CityServicesPage({ params }: PageProps) {
   const clinics = clinicsJSON as unknown as Clinic[];
-  const { cityslug, serviceslug } = params;
+  const products = productsJSON as unknown as Array<{ product_category: string; category: string }>;
+
+  const { cityslug } = params;
   const cityData: City = (cityJson as unknown as City[]).find((p) => p.City === cityslug)!;
-  const treatmentslug = serviceslug.replaceAll("%20", " ").charAt(0).toUpperCase() + serviceslug.replaceAll("%20", " ").slice(1)
-  const treatment = treatment_content[treatmentslug as TreatmentSlug] as Record<string, any>;
   const decodedCitySlug = decodeURIComponent(cityslug)
-  .toLowerCase()
-  .replace(/\s+/g, "");
-  const decodedServiceSlug = decodeURIComponent(serviceslug)
-  .toLowerCase()
-  .replace(/\s+/g, "");
+    .toLowerCase()
+    .replace(/\s+/g, "");
+
+  const aestheticInjectableProducts = products.filter(p => p.category === "Aesthetic Injectables");
+  const aestheticProductCategories = [...new Set(aestheticInjectableProducts.map(p => p.product_category.toLowerCase()))];
+
   const filteredClinics = clinics.filter((clinic) => {
-    // Filter by city
-    
     const cityMatch = clinic.City?.toLowerCase() === decodedCitySlug.toLowerCase();
-    // Filter by offered service category
-    const categories =
-      clinic.Treatments ?? [];
-    
-  
+    const treatments = clinic.Treatments ?? [];
 
-    
-    
+    const aestheticMatch = treatments.some((treatment: string) => {
+      const treatmentLower = treatment.toLowerCase().replace(/\s+/g, "");
+      return aestheticProductCategories.some(productCat =>
+        treatmentLower.includes(productCat.replace(/\s+/g, "")) ||
+        productCat.replace(/\s+/g, "").includes(treatmentLower)
+      );
+    });
 
-const serviceMatch = categories.some((cat: string) =>
-  cat.toLowerCase().replace(/\s+/g, "") === decodedServiceSlug
-);
-
-
-
-    return cityMatch && serviceMatch
+    return cityMatch && aestheticMatch;
   });
+
   const uniqueTreatments = [
-  ...new Set(
-    filteredClinics
-      .filter(c => Array.isArray(c.Treatments))
-      .flatMap(c => c.Treatments).filter((t): t is string => typeof t === "string")
-  )
-];
+    ...new Set(
+      filteredClinics
+        .filter(c => Array.isArray(c.Treatments))
+        .flatMap(c => c.Treatments).filter((t): t is string => typeof t === "string")
+    )
+  ];
 
-  const defaultClinics: Clinic[] = clinics.filter((p) => p.City === "London");
+  const defaultClinics = clinics.filter(c => c.City === "London" && c.Treatments?.some((t: string) => {
+    const treatmentLower = t.toLowerCase().replace(/\s+/g, "");
+    return aestheticProductCategories.some(productCat =>
+      treatmentLower.includes(productCat.replace(/\s+/g, "")) ||
+      productCat.replace(/\s+/g, "").includes(treatmentLower)
+    );
+  }));
+
   const defaultTreatments = [
-  ...new Set(
+    ...new Set(
       defaultClinics
-      .filter(c => Array.isArray(c.Treatments))
-      .flatMap(c => c.Treatments).filter((t): t is string => typeof t === "string")
-  )
-];
+        .filter(c => Array.isArray(c.Treatments))
+        .flatMap(c => c.Treatments || []).filter((t): t is string => typeof t === "string")
+    )
+  ];
 
-  if (!filteredClinics) {
+  if (!cityData) {
     notFound();
   }
 
@@ -93,8 +91,8 @@ const serviceMatch = categories.some((cat: string) =>
     <main className="bg-(--primary-bg-color)">
       <SearchBar />
       <div className="mx-auto max-w-6xl md:px-4 py-4 md:py-12">
-      <div className="flex flex-col pt-2 w-full pb-4 px-4 md:px-0 md:pt-0 md:border-0 border-b border-[#C4C4C4]">
-        <div className="sticky top-0 z-10">
+        <div className="flex flex-col pt-2 w-full pb-4 px-4 md:px-0 md:pt-0 md:border-0 border-b border-[#C4C4C4]">
+          <div className="sticky top-0 z-10">
             <Link href="/" prefetch={false}>
               <Button variant="ghost" size="sm" className="gap-2 hover:cursor-pointer">
                 <ArrowLeft className="h-4 w-4" />
@@ -111,23 +109,23 @@ const serviceMatch = categories.some((cat: string) =>
                   <BreadcrumbLink href="/directory/clinics">All Clinics</BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
-                 <BreadcrumbItem>
+                <BreadcrumbItem>
                   <BreadcrumbLink href={`/directory/clinics/${cityslug}`}>{cityslug.charAt(0).toUpperCase() + cityslug.slice(1)}</BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
-                  <BreadcrumbPage>{serviceslug.charAt(0).toUpperCase() + serviceslug.replaceAll("%20", " ").slice(1)}</BreadcrumbPage>
+                  <BreadcrumbPage>Aesthetic Injectables Services</BreadcrumbPage>
                 </BreadcrumbItem>
-                <BreadcrumbSeparator />
               </BreadcrumbList>
             </Breadcrumb>
           </div>
-        
         </div>
+
         <div className="flex flex-col pt-2 w-full pb-4 px-4 md:px-0">
           <h1 className="text-sm md:text-2xl md:font-semibold mb-1 md:mb-2">
-            Top {serviceslug.replaceAll("%20", " ")} Providers in {cityslug}
-          </h1></div>
+            Aesthetic Injectables Clinics in {cityslug}
+          </h1>
+        </div>
 
         <div className="mx-auto max-w-7xl md:px-4 py-4 md:py-12 flex flex-col sm:flex-row justify-center w-full md:gap-10">
           <CollectionsFilter pageType="Clinic" />
@@ -136,8 +134,6 @@ const serviceMatch = categories.some((cat: string) =>
           </div>
         </div>
 
-
-
         <div className="px-4 md:px-0 space-y-6">
           <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Treatments in ${cityslug}`}</h3>
           <MoreItems items={uniqueTreatments.length === 0 ? defaultTreatments : uniqueTreatments} />
@@ -145,34 +141,7 @@ const serviceMatch = categories.some((cat: string) =>
           <MoreItems items={locations} />
 
         </div>
-                <CityTreatmentPage cityData={cityData} treatment={treatment} slug={serviceslug.replaceAll("%20", " ")} />
-        
       </div>
     </main>
   );
 }
-
-// export async function generateStaticParams() {
-//   const practitioners = await getPractitioners();
-//   return practitioners.map((practitioner) => ({
-//     slug: practitioner.slug,
-//   }))
-// }
-
-// export async function generateMetadata({ params }: ProfilePageProps) {
-//   const clinics = await getClinics();
-//   const clinic = clinics.find((p) => p.slug === params.slug)
-
-//   if (!clinic) {
-//     return {
-//       title: "Practitioner Not Found",
-//     }
-//   }
-
-//   const clinicName = clinic.slug
-
-//   return {
-//     title: `${clinicName} - Healthcare Directory`,
-//     description: `View the profile of ${clinicName}, a qualified ${clinic.category} offering professional healthcare services. Read reviews and book appointments.`,
-//   }
-// }

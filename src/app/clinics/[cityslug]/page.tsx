@@ -136,16 +136,11 @@ export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
         
       
         <div className="px-4 md:px-0 space-y-6">
-
-          {/* <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Treatments in ${citySlug}`}</h3>
+          <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Treatments in ${citySlug}`}</h3>
           <MoreItems items={uniqueTreatments.length === 0 ? defaultTreatments : uniqueTreatments} />
           <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Cities in the UK`}</h3>
-          <MoreItems items={locations}/> */}
+          <MoreItems items={locations} />
 
-
-          {/* <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Brands`}</h3>
-          <MoreItems items={uniqueTreatments} /> */}
-          
         </div>
         <CityPageData cityData={cityData} uniqueTreatments={(uniqueTreatments as string[])} cityClinics={cityClinics} citySlug={citySlug} />
         

@@ -23,6 +23,8 @@ import ItemsGrid from "@/components/collectionGrid";
 import { SearchBar } from "@/components/search/search-bar";
 import { CollectionsFilter } from "@/components/filters/collectionsFilterWrapper";
 import practitionersJSON from "@/../public/derms_processed_new_5403.json";
+import { MoreItems } from "@/components/MoreItems";
+import { locations } from "@/lib/data";
 import { CredentialPageData } from "@/components/credentialPageData";
 import credentialJSON from "@/../public/accreditations_processed_new.json";
 const credentialsData = credentialJSON as unknown as Accreditation[];
@@ -74,6 +76,14 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
   });
   console.log(filteredClinics.length)
 
+  const uniqueTreatments = [
+    ...new Set(
+      filteredClinics
+        .filter(c => Array.isArray(c.Treatments))
+        .flatMap(c => c.Treatments).filter((t): t is string => typeof t === "string")
+    )
+  ];
+
   if (!filteredClinics) {
     notFound();
   }
@@ -122,6 +132,13 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
           </div>
         </div>
         <CredentialPageData credentialSlug={cred.replaceAll("%20","-")} credentialData={credentialIndex.get(cred.replaceAll("%20","-"))!} />
+        <div className="px-4 md:px-0 space-y-6">
+          <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Treatments`}</h3>
+          <MoreItems items={uniqueTreatments} />
+          <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Cities in the UK`}</h3>
+          <MoreItems items={locations} />
+
+        </div>
       </div>
     </main>
   );

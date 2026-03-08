@@ -13,7 +13,7 @@ interface PractitionerCardProps {
 export default function ItemsGrid({ items}:PractitionerCardProps) {
 
   
-  const ITEMS_PER_PAGE = (isCity(items[0]) || isTreatment(items[0])) ? 18 : 12; 
+  const ITEMS_PER_PAGE = (isCity(items[0]) || isTreatment(items[0])) ? 24 : 12; 
   const[itemsList,setItemsList] = useState(items.slice(0,ITEMS_PER_PAGE))
   const [hasMore, setHasMore] = useState(
     items.length > ITEMS_PER_PAGE
@@ -45,7 +45,7 @@ export default function ItemsGrid({ items}:PractitionerCardProps) {
    
         
         
-        <div className="bg-white md: bg--(--primary-bg-color) grid md:gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="md:bg--(--primary-bg-color) grid md:gap-6 md:grid-cols-2 lg:grid-cols-3">
           {itemsList.map((clinic) => 
 
           (

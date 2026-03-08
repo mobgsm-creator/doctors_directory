@@ -107,16 +107,7 @@ import { modalities,edu,accreditations, brands, product_categories,locations } f
              {/* Column 2: Clinics */}
              {/* Quick Links */}
              <div className="space-y-4">
-             <h4 className="font-semibold">Clinics</h4>
-             <ul className="gap-4 max-h-[100px] overflow-auto">
-              {locations.slice(0,5).map((city, index) => (
-                <li key={index}>
-                  <Link prefetch={false}href={`/clinics/${city}`} className="block text-sm">
-                    Top Clinics in {city}
-                  </Link>
-                </li>
-               ))}
-             </ul>
+             
      
              <Link prefetch={false}href="/practitioners" className="block text-sm">
               Top Practitioners in {locations.length} cities</Link>
@@ -145,47 +136,27 @@ import { modalities,edu,accreditations, brands, product_categories,locations } f
                 </li>
                ))})}
              </ul>
-            <h4 className="font-semibold">Qualified Practitioners</h4>
-              <ul className="gap-4 max-h-[100px] overflow-auto">
-              {recognitions.slice(0,5).map((t, index_t) => (
-                <li key={index_t}>
-                  <Link prefetch={false}href={`/practitioners/credentials/${t}`} className="block text-sm">
-                    {t}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-         
-              <ul className="gap-4 max-h-[100px] overflow-auto">
-              
-                <li key={1}>
-                  <Link prefetch={false}href={`/accredited`} className="block text-sm">
+            <h4 className="font-semibold">      <Link prefetch={false}href={`/accredited`} className="block text-sm">
                     Accredited Clinics & Practitioners
                   </Link>
-                </li>
-    
-            </ul>
-            <h4 className="font-semibold">Product Brands</h4>
-              <ul className="gap-4 max-h-[100px] overflow-auto">
-              {brands.slice(0,5).map((t, index_t) => (
-                <li key={index_t}>
-                  <Link prefetch={false}href={`/products/brands/${t}`} className="block text-sm">
-                    {t}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-
-            <h4 className="font-semibold">Product Categories</h4>
-              <ul className="gap-4 max-h-[100px] overflow-auto">
-              {product_categories.slice(0,5).map((t, index_t) => (
-                <li key={index_t}>
-                  <Link prefetch={false}href={`/products/category/${t}`} className="block text-sm">
-                    {t}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+             </h4>
+               <Link prefetch={false}href="/practitioners/credentials" className="block text-sm"> Awards and Acolades</Link>
+         
+            
+            <h4 className="font-semibold">
+              
+            
+                  <Link prefetch={false}href={`/products/brands/`} className="block text-sm">
+                    All Brands
+                  </Link></h4>
+              
+            
+            <h4 className="font-semibold">
+              
+            
+                  <Link prefetch={false}href={`/products/category/`} className="block text-sm">
+                    All Categories
+                  </Link></h4>
             </div>
 
             {/* Column 3: For Practitioners */}

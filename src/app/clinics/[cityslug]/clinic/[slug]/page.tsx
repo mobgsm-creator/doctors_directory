@@ -24,6 +24,8 @@ import ItemsGrid from "@/components/collectionGrid";
 import { flattenObject } from "@/lib/utils";
 import { Section } from "@/components/ui/section";
 import clinicsJson from "@/../public/clinics_processed_new_data.json";
+import { MoreItems } from "@/components/MoreItems";
+import { locations } from "@/lib/data";
 function mergeBoxplotDataFromDict(
   base: BoxPlotDatum[],
   incoming: Record<string, ItemMeta>
@@ -221,10 +223,11 @@ export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
       </div>
         </div>
         <div className="px-4 md:px-0 space-y-6">
-          <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Clinics in ${cityslug}`}</h3>
-          <ItemsGrid items={cityClinics} />
           <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Treatments in ${cityslug}`}</h3>
-          <ItemsGrid items={uniqueTreatments} />
+          <MoreItems items={uniqueTreatments} />
+          <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Cities in the UK`}</h3>
+          <MoreItems items={locations} />
+
         </div>
       </div>
     </main>

@@ -25,6 +25,8 @@ import ItemsGrid from "@/components/collectionGrid";
 import { SearchBar } from "@/components/search/search-bar";
 import { CollectionsFilter } from "@/components/filters/collectionsFilterWrapper";
 import PractitionersJSON from "@/../public/derms_processed_new_5403.json";
+import { MoreItems } from "@/components/MoreItems";
+import { locations } from "@/lib/data";
 type TreatmentSlug = keyof typeof treatment_content
 
 const clinicsData = clinicsJson as unknown as Clinic[];
@@ -86,6 +88,14 @@ export default function ProfilePage({ params }: ProfilePageProps) {
     return cityMatch && serviceMatch
   });
 
+  const uniqueTreatments = [
+    ...new Set(
+      filteredClinics
+        .filter(c => Array.isArray(c.Treatments))
+        .flatMap(c => c.Treatments).filter((t): t is string => typeof t === "string")
+    )
+  ];
+
   if (!filteredClinics) {
     notFound();
   }
@@ -138,7 +148,13 @@ export default function ProfilePage({ params }: ProfilePageProps) {
           </div>
         </div>
         <CityTreatmentPage cityData={cityData} treatment={treatment} slug={treatmentslug.replaceAll("%20", " ")} />
-        
+        <div className="px-4 md:px-0 space-y-6">
+          <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Treatments in ${cityslug}`}</h3>
+          <MoreItems items={uniqueTreatments} />
+          <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Cities in the UK`}</h3>
+          <MoreItems items={locations} />
+
+        </div>
       </div>
     </main>
   );
