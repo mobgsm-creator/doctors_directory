@@ -1,9 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { Card, CardHeader, CardContent } from "@/components/ui/card";
-import type { Clinic, Practitioner } from "@/lib/types";
-import { Badge } from "@/components/ui/badge";
-import { Star, MapPin } from "lucide-react";
+import { getAccreditationImages } from "@/lib/utils";
+import type { Clinic, Practitioner,Accreditation } from "@/lib/types";;
 import {edu, accreditations} from "@/lib/data";
 import { ArrowLeft } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -19,21 +17,8 @@ import {
 } from "@/components/ui/breadcrumb"
 import fs from "fs";
 import path from "path";
+import { PractitionerCard } from "@/components/practitioner-card";
 
-function credentialToSlug(name: string): string {
-  return name
-    .toLowerCase()
-    .replace(/[^a-z0-9\s-]/g, '')
-    .replace(/\s+/g, '-')
-    .replace(/-+/g, '-')
-    .trim();
-}
-
-const accredImagesMap = new Map(
-  (accreditationsJson as Array<{slug: string; image: string}>)
-    .filter(item => item.image)
-    .map(item => [item.slug, item.image])
-);
 
 const clinicsData = clinicsJson as unknown as Clinic[];
 const clinics = clinicsData
@@ -42,17 +27,7 @@ const clinics = clinicsData
 )
 
 export default async function ProfilePage() {
-    const recognitionsWithImages = [...accreditations, ...edu]
-      .map(credential => {
-        const slug = credentialToSlug(credential);
-        const imageUrl = accredImagesMap.get(slug);
-        return imageUrl ? {
-          name: credential,
-          slug,
-          image_url: imageUrl
-        } : null;
-      })
-      .filter((item): item is {name: string; slug: string; image_url: string} => item !== null);
+    const recognitionsWithImages = getAccreditationImages(accreditationsJson as unknown as Accreditation[])
     const filePath = path.join(process.cwd(), "public", "derms_processed_new_5403.json");
        const fileContents = fs.readFileSync(filePath, "utf-8");
        const clinics: Practitioner[] = JSON.parse(fileContents);
@@ -111,36 +86,10 @@ export default async function ProfilePage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 px-4 md:px-0">
           {recognitionsWithImages.map((credential) => {
+       
 
             return (
-            <Link
-              key={credential.slug}
-              href={`/practitioners/credentials/${credential.slug}`}
-              className="block"
-            >
-              <Card className="gap-0 relative shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border md:border-(--alto) cursor-pointer hover:shadow-lg hover:border-blue-500">
-                <CardHeader className="pb-4 px-2">
-                  <div className="flex justify-center mb-4">
-                    <div className="w-20 h-20 md:w-[150px] md:h-[150px] flex items-center justify-center overflow-hidden rounded-lg bg-gray-300">
-                      <img
-                        src={credential.image_url}
-                        alt={`${credential.name} credential`}
-                        className="object-cover w-full h-full"
-                    
-                      />
-                    </div>
-                  </div>
-                  <h3 className="mb-2 flex font-semibold text-md md:text-lg transition-colors text-balance group-hover:text-blue-600 text-center">
-                    {credential.name}
-                  </h3>
-                </CardHeader>
-                <CardContent className="pt-0">
-                  <Button variant="outline" className="w-full">
-                    View Practitioners
-                  </Button>
-                </CardContent>
-              </Card>
-            </Link>
+           <PractitionerCard key={credential.slug} practitioner={credential} />
           )})}
         </div>
       </div>

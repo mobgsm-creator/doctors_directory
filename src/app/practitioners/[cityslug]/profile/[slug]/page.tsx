@@ -17,6 +17,8 @@ import { Section } from "@/components/ui/section";
 import clinicsJson from "@/../public/clinics_processed_new_data.json";
 import { Clinic } from "@/lib/types";
 import ItemsGrid from "@/components/collectionGrid";
+import { MoreItems } from "@/components/MoreItems";
+import { locations } from "@/lib/data";
 import PractitionersJSON from "@/../public/derms_processed_new_5403.json";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb"
 const clinicsData = clinicsJson as unknown as Clinic[];
@@ -103,11 +105,9 @@ export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
           </BreadcrumbList>
         </Breadcrumb>
         </div>
-      </div>
-      
-       <>
-             
-             <div className="container mx-auto max-w-6xl pt-0 md:px-4 py-20 space-y-8">
+       </div>
+
+       <div className="container mx-auto max-w-6xl pt-0 md:px-4 py-20 space-y-8">
                {/* Profile Header */}
                <ProfileHeader clinic={clinic} k_value={k} clinic_list ={JSON.parse(clinic!.Associated_Clinics!)} />
        
@@ -214,18 +214,17 @@ export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
                  </div>
                  
        
-                
-               </div>
-                <div className="px-4 md:px-0 space-y-6">
-                                  <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Practitioners in ${practitioner.City}`}</h3>
-                                  <ItemsGrid items={cityClinics} />
-                                  <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Treatments in ${practitioner.City}`}</h3>
-                                  <ItemsGrid items={uniqueTreatments} />
-                               </div>
-             </div>
-                       
-           </>
-     
+
+                </div>
+                 <div className="px-4 md:px-0 space-y-6">
+                   <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Treatments in ${practitioner.City}`}</h3>
+                   <MoreItems items={uniqueTreatments} />
+                   <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Cities in the UK`}</h3>
+                   <MoreItems items={locations} />
+
+                 </div>
+              </div>
+
     </main>
   );
 }

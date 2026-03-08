@@ -4,7 +4,7 @@ import { Star, MapPin,  } from "lucide-react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import type { Practitioner, Clinic, Product } from "@/lib/types";
-import { decodeUnicodeEscapes, fixMojibake, isCity } from "@/lib/utils";
+import { decodeUnicodeEscapes, fixMojibake, isAward, isCity } from "@/lib/utils";
 import ClinicLabels from "./Clinic/clinicLabels";
 import { locations, TreatmentMap } from "@/lib/data";
 import { Button } from "./ui/button";
@@ -58,9 +58,9 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
       {(isPractitioner(practitioner) || isClinic(practitioner)) && (
         
 
-        <article className=' relative mb-12' aria-labelledby={`${isPractitioner(practitioner) ? "practitioner" : "clinic"}-name-${practitioner.slug}`}>
+        <article className=' relative mb-12 bg-white border-b border-t-0 border-[#C4C4C4] md:border-t rounded-md md:border md:border-(--alto)' aria-labelledby={`${isPractitioner(practitioner) ? "practitioner" : "clinic"}-name-${practitioner.slug}`}>
           
-          <Card asChild className="gap-4 md:px-0 shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border-t rounded-27 md:border md:border-(--alto) cursor-pointer" data-testid="practitioner-card">
+          <Card asChild className="mt-2 gap-4 md:px-0 shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border-t rounded-27 md:border md:border-(--alto) cursor-pointer" data-testid="practitioner-card">
           <><Link
               href={
                 "practitioner_awards" in practitioner &&
@@ -86,7 +86,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
               <div className="flex flex-col flex-1 min-w-0 text-left items-stretch">
 
                 <div className="flex w-full flex-row items-start md:border-0 md:flex-col md:items-center">
-                  <div className="relative w-20 h-20 md:w-[150px] md:h-[150px] flex items-center justify-center overflow-hidden rounded-full bg-gray-300 md:mb-3 mr-0">
+                  <div className="mt-2 relative w-20 h-20 md:w-[150px] md:h-[150px] flex items-center justify-center overflow-hidden rounded-full bg-gray-300 md:mb-3 mr-0">
                     
                     <img
                       src={("practitioner_awards" in practitioner) ? "/directory/images/default-dr-profile-1.webp" : 
@@ -311,13 +311,18 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
               <div>
                 <ul className="flex flex-wrap md:items-center md:justify-center gap-1 text-center" aria-label="Product prices">
                   {practitioner.all_prices &&
-                    practitioner.all_prices.map((value: any, index: number) => (
+                    practitioner.all_prices.slice(0,2).map((value: any, index: number) => (
                       <li key={index}>
                         <Badge variant="outline" className="text-[11px] font-normal text-gray-500">
                           {value.price}
                         </Badge>
                       </li>
                     ))}
+                    {practitioner.all_prices && 
+                    <li>
+                      <Badge variant="outline" className="text-[11px] font-normal text-gray-500">
+                        {practitioner.all_prices.length -2} more
+                      </Badge></li>}
                  
               
                 </ul>
@@ -365,17 +370,17 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
   
                         <Card asChild className="gap-0 relative shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border md:border-(--alto) cursor-pointer hover:shadow-lg hover:border-blue-500">
                 <Link href={`/clinics/${practitioner}`}>
-                <CardHeader className="pb-4">
-                  <h3 className="mb-2 flex font-semibold text-md md:text-lg transition-colors text-balance group-hover:text-blue-600">
-                    {practitioner}
-                  </h3>
-                </CardHeader>
-                <CardContent className="pt-0">
-          
-                  <Button variant="outline" className="w-full">
-                    View Clinics
-                  </Button>
-                </CardContent></Link>
+                <div className='mt-2 flex flex-col items-center gap-2'>
+                  
+                  <Button
+              
+              className="w-1/2 text-center font-semibold text-md md:text-lg transition-colors text-balance bg-black cursor-pointer hover:bg-white hover:text-black"
+        
+            >
+              {practitioner}
+             </Button>
+                </div>
+                </Link>
               </Card>
 
                         
@@ -384,6 +389,34 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
    
       )
         }
+        {isAward(practitioner) && (
+            <Link
+                          key={(practitioner as unknown as {name:string, slug: string; image_url: string}).slug}
+                          href={`/practitioners/credentials/${(practitioner as {slug: string; image_url: string}).slug}`}
+                          className="block"
+                        >
+                          <Card className="gap-0 relative shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border md:border-(--alto) cursor-pointer hover:shadow-lg hover:border-blue-500">
+                            <CardHeader className=" h-55 pb-4 px-2">
+                              <div className="flex justify-center mb-4">
+                                <div className="w-20 h-20 md:w-[150px] md:h-[150px] flex items-center justify-center overflow-hidden rounded-lg bg-gray-300">
+                                  <img
+                                    src={(practitioner as unknown as {name:string, slug: string; image_url: string}).image_url}
+                                    alt={`${(practitioner as unknown as {name:string, slug: string; image_url: string}).name} credential`}
+                                    className="object-cover w-full h-full"
+                                
+                                  />
+                                </div>
+                              </div>
+                              <h3 className="mb-2 font-semibold transition-colors text-balance group-hover:text-blue-600 text-center text-md">
+                                {(practitioner as unknown as {name:string, slug: string; image_url: string}).name}
+                              </h3>
+                            </CardHeader>
+                           
+                          </Card>
+                        </Link>
+        )
+      }
+          
     </>
   );
 }

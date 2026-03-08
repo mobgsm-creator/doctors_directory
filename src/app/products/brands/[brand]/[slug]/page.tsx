@@ -17,6 +17,10 @@ import {
 import path from "path";
 import PractitionerTabs from "@/components/Product/ProductTabs";
 import ItemsGrid from "@/components/collectionGrid";
+import { MoreItems } from "@/components/MoreItems";
+import { locations } from "@/lib/data";
+import clinicsJSON from "@/../public/clinics_processed_new_data.json";
+import { Clinic } from "@/lib/types";
 
 
 interface ProfilePageProps {
@@ -30,10 +34,19 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
   const fileContents = fs.readFileSync(filePath, "utf-8");
   const clinics: Product[] = JSON.parse(fileContents);
   const { slug } = params;
-  
+
   const clinic = clinics.find((p) => p.slug === slug);
 
   const similarProducts = clinics.filter((p) => p.brand === clinic?.brand && p.slug !== slug);
+
+  const allClinics = clinicsJSON as unknown as Clinic[];
+  const uniqueTreatments = [
+    ...new Set(
+      allClinics
+        .filter(c => Array.isArray(c.Treatments))
+        .flatMap(c => c.Treatments).filter((t): t is string => typeof t === "string")
+    )
+  ];
   
 
   if (!clinic) {
@@ -95,9 +108,15 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
         </div>
         <h2 className="text-lg font-semibold text-foreground mb-2">{`Browse more ${clinic.product_category}`}</h2>
            <ItemsGrid items={similarProducts} />
-      
+           <div className="px-4 md:px-0 space-y-6">
+             <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Treatments`}</h3>
+             <MoreItems items={uniqueTreatments} />
+             <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Cities in the UK`}</h3>
+             <MoreItems items={locations} />
+
+           </div>
       </div>
-      
+
     </main>
   );
 }

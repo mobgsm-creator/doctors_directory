@@ -9,6 +9,8 @@ import path from "path";
 import clinicsJson from "@/../public/clinics_processed_new_data.json";
 import cityJson from "@/../public/city_data_processed.json";
 import { CityPageData } from "@/components/cityPageData";
+import { MoreItems } from "@/components/MoreItems";
+import { locations } from "@/lib/data";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -121,11 +123,12 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
         </div>
         
               <div className="px-4 md:px-0 space-y-6">
-                           <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Treatments in ${citySlug}`}</h3>
-                           <ItemsGrid items={uniqueTreatments.length === 0 ? defaultTreatments : uniqueTreatments} />
+                <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Treatments in ${citySlug}`}</h3>
+                <MoreItems items={uniqueTreatments.length === 0 ? defaultTreatments : uniqueTreatments} />
+                <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Cities in the UK`}</h3>
+                <MoreItems items={locations} />
 
-                          
-                        </div>
+              </div>
                          <CityPageData cityData={cityData} uniqueTreatments={(uniqueTreatments as string[])} citySlug={citySlug} cityClinics={cityClinics} />
 
       </div>

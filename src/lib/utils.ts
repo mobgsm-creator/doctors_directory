@@ -1,10 +1,39 @@
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
-import { Clinic, Practitioner, Product } from "./types"
-import { modalities, locations } from "./data"
+import { Accreditation, Clinic, Practitioner, Product } from "./types"
+import { modalities, locations, accreditations } from "./data"
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
+
+function credentialToSlug(name: string): string {
+  return name
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .trim();
+}
+export function getAccreditationImages(accreditationsJson:Array<Accreditation>){
+  const accredImagesMap = new Map(
+    (accreditationsJson as Array<{slug: string; image: string}>)
+      .filter(item => item.image)
+      .map(item => [item.slug, item.image])
+  );
+  const recognitionsWithImages = [...accreditations, ]
+        .map(credential => {
+          const slug = credentialToSlug(credential);
+          const imageUrl = accredImagesMap.get(slug);
+          return imageUrl ? {
+            name: credential,
+            slug,
+            image_url: imageUrl
+          } : null;
+        })
+        .filter((item): item is {name: string; slug: string; image_url: string} => item !== null);
+   
+      return recognitionsWithImages
+       }
 export function consolidate(input: string): string[] {
 
   const arr = input
@@ -178,6 +207,11 @@ export function fixMojibake(str: string) {
   } catch {
     return str;
   }
+}
+
+export function isAward(obj: unknown): obj is {name:string; slug: string; image_url: string} {
+  const flag = typeof obj === "object" && Object.keys(obj!).length === 3;
+  return flag;
 }
 
 export function isCity(obj: unknown): obj is string {
