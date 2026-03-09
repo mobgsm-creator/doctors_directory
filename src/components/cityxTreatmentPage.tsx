@@ -50,7 +50,7 @@ export function CityTreatmentPage({ cityData, treatment, slug }: PageProps) {
   {/* ================= HERO ================= */}
     <div className='bg-white p-4 rounded'> 
   
-    <h1 className="text-sm md:text-2xl font-semibold mb-1 md:mb-2 mt-2">{treatmentName} Treatment in {cityData.City}</h1>
+    <h2 className="text-sm md:text-2xl font-semibold mb-1 md:mb-2 mt-2">{treatmentName} Treatment in {cityData.City}</h2>
     <section className='text-muted-foreground gap-2 space-y-2'>
       <div>{TreatmentArray[0][1]}</div>
       <div>
@@ -59,14 +59,14 @@ export function CityTreatmentPage({ cityData, treatment, slug }: PageProps) {
       an average rating of {cityData.market_size_indicators_average_rating_citywide}.
     </div>
       <div>
-      <strong><h2>Medical Infrastructure:</h2></strong>
+      <strong><h3>Medical Infrastructure:</h3></strong>
       </div>
       <ul className="list-disc list-inside">
         {createBullets(cityData.city_overview_medical_infrastructure_presence)}
       </ul>
 
       <div>
-      <strong><h2>Local Aethetics Market:</h2></strong>
+      <strong><h3>Local Aethetics Market:</h3></strong>
       </div>
       <ul className="list-disc list-inside">
         {createBullets(cityData.beauty_spend_indicators_market_maturity_level)}
@@ -79,7 +79,7 @@ export function CityTreatmentPage({ cityData, treatment, slug }: PageProps) {
   {/* ================= GOALS ================= */}
 
   
-     <h1 className="text-sm md:text-2xl font-semibold mb-1 md:mb-2 mt-2">Goals of {treatmentName} Treatment</h1>
+     <h2 className="text-sm md:text-2xl font-semibold mb-1 md:mb-2 mt-2">Goals of {treatmentName} Treatment</h2>
       <section className='text-muted-foreground gap-2 space-y-2'>
        
     <ul className="list-disc list-inside">
@@ -96,12 +96,12 @@ export function CityTreatmentPage({ cityData, treatment, slug }: PageProps) {
   {/* ================= TREATMENT OPTIONS ================= */}
 
 
-     <h1 className="text-sm md:text-2xl font-semibold mb-1 md:mb-2 mt-2">{treatmentName} Treatment Options</h1>
+     <h2 className="text-sm md:text-2xl font-semibold mb-1 md:mb-2 mt-2">{treatmentName} Treatment Options</h2>
       <section className='text-muted-foreground gap-2 space-y-2'>
       
 
 
-    <h3><strong>Medical & Non-Surgical Approaches</strong></h3>
+    <h4><strong>Medical & Non-Surgical Approaches</strong></h4>
     <ul className="list-disc list-inside">
       {TreatmentArray[5][1].map(
         (item:string, index:number) => (
@@ -110,14 +110,14 @@ export function CityTreatmentPage({ cityData, treatment, slug }: PageProps) {
       )}
     </ul>
 
-    <h3><strong>Pros of {treatmentName} Treatment</strong></h3>
+    <h4><strong>Pros of {treatmentName} Treatment</strong></h4>
     <ul className="list-disc list-inside">
       {TreatmentArray[2][1].Pros.map((pro: string, index:number) => (
         <li className="text-sm leading-relaxed pl-6" key={index}>{pro}</li>
       ))}
     </ul>
 
-    <h3><strong>Cons of {treatmentName} Treatment</strong></h3>
+    <h4><strong>Cons of {treatmentName} Treatment</strong></h4>
     <ul className="list-disc list-inside">
       {TreatmentArray[2][1].Cons.map((con: string, index:number) => (
         <li className="text-sm leading-relaxed pl-6" key={index}>{con}</li>
@@ -132,7 +132,7 @@ export function CityTreatmentPage({ cityData, treatment, slug }: PageProps) {
   {/* ================= COST ================= */}
 
 
-     <h1 className="text-sm md:text-2xl font-semibold mb-1 md:mb-2 mt-2">Cost of {treatmentName} Treatment in {cityData.City}</h1>
+     <h2 className="text-sm md:text-2xl font-semibold mb-1 md:mb-2 mt-2">Cost of {treatmentName} Treatment in {cityData.City}</h2>
       <section className='text-muted-foreground gap-2 space-y-2'>
     <div className='mt-2 space-y-2'>
          <ul className="list-disc list-inside">
@@ -153,32 +153,32 @@ export function CityTreatmentPage({ cityData, treatment, slug }: PageProps) {
   {/* ================= ACCESSIBILITY ================= */}
 
 
-     <h1 className="text-sm md:text-2xl font-semibold mb-1 md:mb-2 mt-2">Accessibility</h1>
+     <h2 className="text-sm md:text-2xl font-semibold mb-1 md:mb-2 mt-2">Accessibility</h2>
           <section className='text-muted-foreground gap-2 space-y-2'>
 
       <div>
-      <strong><h2>Public transport:</h2></strong>
+      <strong><h3>Public transport:</h3></strong>
       
       <ul className="list-disc list-inside">
         {createBullets(cityData.accessibility_factors_public_transport_proximity)}
       </ul></div>
 
       <div>
-      <strong><h2>Parking availability:</h2></strong>
+      <strong><h3>Parking availability:</h3></strong>
       
       <ul className="list-disc list-inside">
         {createBullets(cityData.accessibility_factors_parking_availability)}
       </ul></div>
       
       <div>
-      <strong><h2>Clinic distribution:</h2></strong>
+      <strong><h3>Clinic distribution:</h3></strong>
       
       <ul className="list-disc list-inside">
         {createBullets(cityData.accessibility_factors_city_centre_vs_suburban_distribution)}
       </ul></div>
       
       <div>
-      <strong><h2>Airport proximity:</h2></strong>
+      <strong><h3>Airport proximity:</h3></strong>
       
       <ul className="list-disc list-inside">
         {createBullets(cityData.medical_tourism_potential_airport_proximity)}
@@ -190,7 +190,7 @@ export function CityTreatmentPage({ cityData, treatment, slug }: PageProps) {
   {/* ================= APPOINTMENT PREPARATION ================= */}
 
   
-     <h1 className="text-sm md:text-2xl font-semibold mb-1 md:mb-2 mt-2">Preparing for Your {treatmentName} Appointment</h1>
+     <h2 className="text-sm md:text-2xl font-semibold mb-1 md:mb-2 mt-2">Preparing for Your {treatmentName} Appointment</h2>
           <section className='text-muted-foreground gap-2 space-y-2'>
     <ul className="list-disc list-inside">
       {TreatmentArray[7][1].map((item: string, index:number) => (
@@ -204,7 +204,7 @@ export function CityTreatmentPage({ cityData, treatment, slug }: PageProps) {
   {/* ================= SAFETY ================= */}
 
 
-     <h1 className="text-sm md:text-2xl font-semibold mb-1 md:mb-2 mt-2">Treatment Safety & Local Regulations</h1>
+     <h2 className="text-sm md:text-2xl font-semibold mb-1 md:mb-2 mt-2">Treatment Safety & Local Regulations</h2>
      <section className='text-muted-foreground gap-2 space-y-2'>
       
     <div>{Object.entries(TreatmentArray[8][1]).map(([key, value]) => <p key={key}>{value as string}</p>)}</div>
@@ -221,19 +221,19 @@ export function CityTreatmentPage({ cityData, treatment, slug }: PageProps) {
     
 
       <div>
-      <strong><h2>Local regulatory authority:</h2></strong>
+      <strong><h3>Local regulatory authority:</h3></strong>
       
       <ul className="list-disc list-inside">
         {createBullets(cityData.regulatory_environment_primary_regulator)}
       </ul></div>
     <div>
-      <strong><h2>Private insurance usage locally:</h2></strong>
+      <strong><h3>Private insurance usage locally:</h3></strong>
       
       <ul className="list-disc list-inside">
         {createBullets(cityData.insurance_and_financing_private_insurance_usage)}
       </ul></div>
       <div>
-      <strong><h2>Cosmetic finance availability:</h2></strong>
+      <strong><h3>Cosmetic finance availability:</h3></strong>
       
       <ul className="list-disc list-inside">
         {createBullets(cityData.insurance_and_financing_cosmetic_finance_availability)}
@@ -246,7 +246,7 @@ export function CityTreatmentPage({ cityData, treatment, slug }: PageProps) {
   {/* ================= CANDIDATES ================= */}
 
 
-     <h1 className="text-sm md:text-2xl font-semibold mb-1 md:mb-2 mt-2">Who Is a Good Candidate?</h1>
+     <h2 className="text-sm md:text-2xl font-semibold mb-1 md:mb-2 mt-2">Who Is a Good Candidate?</h2>
       <section className='text-muted-foreground gap-2 space-y-2'>
     <ul className="list-disc list-inside">
       {TreatmentArray[6][1].map(
@@ -260,7 +260,7 @@ export function CityTreatmentPage({ cityData, treatment, slug }: PageProps) {
   {/* ================= PRACTITIONER SELECTION ================= */}
 
 
-     <h1 className="text-sm md:text-2xl font-semibold mb-1 md:mb-2 mt-2">Choosing a Clinic</h1>
+     <h2 className="text-sm md:text-2xl font-semibold mb-1 md:mb-2 mt-2">Choosing a Clinic</h2>
       <section className='text-muted-foreground gap-2 space-y-2'>
     <ul className="list-disc list-inside">
       {TreatmentArray[15][1].map(
@@ -285,7 +285,7 @@ export function CityTreatmentPage({ cityData, treatment, slug }: PageProps) {
   {/* ================= RECOVERY ================= */}
 
 
-     <h1 className="text-sm md:text-2xl font-semibold mb-1 md:mb-2 mt-2">Recovery & Long-Term Results</h1>
+     <h2 className="text-sm md:text-2xl font-semibold mb-1 md:mb-2 mt-2">Recovery & Long-Term Results</h2>
       <section className='text-muted-foreground gap-2 space-y-2'>
         <div className='mt-2 space-y-2'>
          <ul className="list-disc list-inside">

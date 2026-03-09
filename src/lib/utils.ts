@@ -10,7 +10,7 @@ function credentialToSlug(name: string): string {
   return name
     .toLowerCase()
     .replace(/[^a-z0-9\s-]/g, '')
-    .replace(/\s+/g, '-')
+    
     .replace(/-+/g, '-')
     .trim();
 }
@@ -18,7 +18,7 @@ export function getAccreditationImages(accreditationsJson:Array<Accreditation>){
   const accredImagesMap = new Map(
     (accreditationsJson as Array<{slug: string; image: string}>)
       .filter(item => item.image)
-      .map(item => [item.slug, item.image])
+      .map(item => [item.slug.replaceAll("-"," "), item.image])
   );
   const recognitionsWithImages = [...accreditations, ]
         .map(credential => {

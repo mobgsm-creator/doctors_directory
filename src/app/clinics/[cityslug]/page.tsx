@@ -156,20 +156,15 @@ export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
 //   }))
 // }
 
-// export async function generateMetadata({ params }: ProfilePageProps) {
-//   const clinics = await getClinics();
-//   const clinic = clinics.find((p) => p.slug === params.slug)
+export async function generateMetadata({ params }: ProfilePageProps) {
+  const citySlug = params.cityslug;
+  const canonicalUrl = locations.map((location) => `https://staging.consentz.com/direcotry/clinics/${location}`).join(",");
 
-//   if (!clinic) {
-//     return {
-//       title: "Practitioner Not Found",
-//     }
-//   }
-
-//   const clinicName = clinic.slug
-
-//   return {
-//     title: `${clinicName} - Healthcare Directory`,
-//     description: `View the profile of ${clinicName}, a qualified ${clinic.category} offering professional healthcare services. Read reviews and book appointments.`,
-//   }
-// }
+  return {
+    title: `List of Top Aesthetic Clinics in ${citySlug} - Healthcare Directory`,
+    description: `Looking for the best aesthetic clinics in ${citySlug}? Browse our comprehensive guide to top-rated cosmetic clinics, read expert reviews, and book with confidence.`,
+    alternates: {
+      canonical: canonicalUrl,
+    },
+  }
+}

@@ -26,10 +26,10 @@ for (const p of practitionersData) {
 
 interface PractitionerCardProps {
   practitioner: Practitioner | Clinic | Product | string;
+  custom_link?: (item: Practitioner | Clinic | Product | string) => string
 }
 
-
-export function PractitionerCard({ practitioner }: PractitionerCardProps) {
+export function PractitionerCard({ practitioner, custom_link }: PractitionerCardProps) {
   const Router = useRouter()
   let practitionerName = ""
   let practitioners : Practitioner[] = []
@@ -239,11 +239,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
                   className="min-w-full max-h-30 group relative overflow-hidden rounded-xl border border-border/80 bg-card/50 backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:border-primary/60 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 active:scale-[0.98] cursor-pointer">
                       <div className="p-6">
                       <div className="flex items-start gap-4 mb-6">
-                        <div className="h-12 w-12 rounded-full bg-linear-to-br from-primary/10 to-primary/5 ring-2 ring-primary/10 flex items-center justify-center shrink-0">
-                          <h3 className="text-base font-semibold text-primary">
-                            {p.practitioner_name?.charAt(0).toUpperCase()}
-                          </h3>
-                        </div>
+                        
                         <div className="flex-1 min-w-0 pt-1">
                           <h3 className="text-xl font-semibold text-balance leading-tight group-hover:text-primary transition-colors truncate">
                              <a
@@ -267,7 +263,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
       )}
       {isProduct(practitioner) && (
           <Card asChild className="gap-0 h-full relative px-4 md:px-0 shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border-t rounded-27 md:border md:border-(--alto) cursor-pointer" aria-labelledby={`product-name-${practitioner.slug}`} data-testid="practitioner-card">
-            <Link href={`/products/${practitioner.category}/${practitioner.slug}`} className="block" prefetch={false}>
+            <Link href={`/products/category/${practitioner.category}/${practitioner.slug}`} className="block" prefetch={false}>
         <CardHeader className="pb-2 px-2">
               <h2 id={`product-name-${practitioner.slug}`} className="sr-only">
                 {decodeUnicodeEscapes(practitioner.product_name)}
@@ -334,7 +330,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
       {isTreatment(practitioner) === true && (
       
           <Card asChild className="gap-0 h-full relative bg-transparent px-4 md:px-0 shadow-none md:border-0 duration-300 cursor-pointer" aria-labelledby={`treatment-name-${practitioner}`} data-testid="practitioner-card">
-            <Link href={`/treatments/${practitioner?.split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ").replace("Hifu", "HIFU").replace("Coolsculpting", "CoolSculpting")}`} className="block border-0" prefetch={false}>
+            <Link href={custom_link ? custom_link(practitioner) : `/treatments/${practitioner?.split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ").replace("Hifu", "HIFU").replace("Coolsculpting", "CoolSculpting")}`} className="block border-0" prefetch={false}>
         <CardHeader className="px-2 border-0">
               <h2 id={`treatment-name-${practitioner?.split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ").replace("Hifu", "HIFU").replace("Coolsculpting", "CoolSculpting")}`} className="sr-only">
                 {practitioner?.split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ").replace("Hifu", "HIFU").replace("Coolsculpting", "CoolSculpting")}
@@ -369,7 +365,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
 
   
                         <Card asChild className="gap-0 relative shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border md:border-(--alto) cursor-pointer hover:shadow-lg hover:border-blue-500">
-                <Link href={`/clinics/${practitioner}`}>
+                <Link href={custom_link ? custom_link(practitioner) : `/clinics/${practitioner}`}>
                 <div className='mt-2 flex flex-col items-center gap-2'>
                   
                   <Button
