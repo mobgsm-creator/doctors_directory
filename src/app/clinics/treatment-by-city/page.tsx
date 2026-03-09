@@ -51,7 +51,7 @@ export default function TreatmentByCityPage() {
           <div className="flex-1 min-w-0">
             <ItemsGrid 
               items={Object.keys(cityMap)} 
-              customLink={(city) => `/directory/clinics/${city}/services`}
+              
             />
           </div>
         </div>

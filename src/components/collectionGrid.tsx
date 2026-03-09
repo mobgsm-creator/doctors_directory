@@ -7,10 +7,10 @@ import { isCity, isTreatment } from "@/lib/utils";
 
 interface PractitionerCardProps {
   items: (Practitioner | Clinic | Product | string)[];
-  customLink?: (item: Practitioner | Clinic | Product | string) => string
+  
 }
 
-export default function ItemsGrid({ items, customLink }: PractitionerCardProps) {
+export default function ItemsGrid({ items}: PractitionerCardProps) {
 
   
   const ITEMS_PER_PAGE = (isCity(items[0]) || isTreatment(items[0])) ? 24 : 12; 
