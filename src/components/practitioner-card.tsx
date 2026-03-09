@@ -26,10 +26,10 @@ for (const p of practitionersData) {
 
 interface PractitionerCardProps {
   practitioner: Practitioner | Clinic | Product | string;
-  custom_link?: (item: Practitioner | Clinic | Product | string) => string
+  
 }
 
-export function PractitionerCard({ practitioner, custom_link }: PractitionerCardProps) {
+export function PractitionerCard({ practitioner }: PractitionerCardProps) {
   const Router = useRouter()
   let practitionerName = ""
   let practitioners : Practitioner[] = []
@@ -330,7 +330,7 @@ export function PractitionerCard({ practitioner, custom_link }: PractitionerCard
       {isTreatment(practitioner) === true && (
       
           <Card asChild className="gap-0 h-full relative bg-transparent px-4 md:px-0 shadow-none md:border-0 duration-300 cursor-pointer" aria-labelledby={`treatment-name-${practitioner}`} data-testid="practitioner-card">
-            <Link href={custom_link ? custom_link(practitioner) : `/treatments/${practitioner?.split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ").replace("Hifu", "HIFU").replace("Coolsculpting", "CoolSculpting")}`} className="block border-0" prefetch={false}>
+            <Link href={`/treatments/${practitioner?.split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ").replace("Hifu", "HIFU").replace("Coolsculpting", "CoolSculpting")}`} className="block border-0" prefetch={false}>
         <CardHeader className="px-2 border-0">
               <h2 id={`treatment-name-${practitioner?.split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ").replace("Hifu", "HIFU").replace("Coolsculpting", "CoolSculpting")}`} className="sr-only">
                 {practitioner?.split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ").replace("Hifu", "HIFU").replace("Coolsculpting", "CoolSculpting")}
@@ -365,7 +365,7 @@ export function PractitionerCard({ practitioner, custom_link }: PractitionerCard
 
   
                         <Card asChild className="gap-0 relative shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border md:border-(--alto) cursor-pointer hover:shadow-lg hover:border-blue-500">
-                <Link href={custom_link ? custom_link(practitioner) : `/clinics/${practitioner}`}>
+                <Link href={`/clinics/${practitioner}`}>
                 <div className='mt-2 flex flex-col items-center gap-2'>
                   
                   <Button
