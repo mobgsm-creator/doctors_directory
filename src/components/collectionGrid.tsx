@@ -52,7 +52,7 @@ export default function ItemsGrid({ items, customLink }: PractitionerCardProps) 
             <PractitionerCard
                 key={typeof clinic === "string" ? clinic : ("practitioner_name" in clinic ? clinic.practitioner_name!+clinic.practitioner_title : clinic.slug)}
               practitioner={clinic}
-              custom_link={customLink}
+            
              />
           ))}
         </div>
