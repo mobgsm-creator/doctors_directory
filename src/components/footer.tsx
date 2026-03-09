@@ -12,7 +12,7 @@ import { modalities,edu,accreditations, brands, product_categories,locations } f
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center flex-col md:flex-row justify-between">
             <div className="w-full md:w-auto">
-              <h3 className="text-lg md:text-4xl font-bold mb-2">Ready To Get Started?</h3>
+              <section className="text-lg md:text-4xl font-bold mb-2">Ready To Get Started?</section>
               <p className="">Join over 200+ clinics already growing with Consentz.</p>
             </div>
             <div className="flex justify-start w-full md:w-auto pt-10 md:pt-0">
@@ -140,14 +140,13 @@ import { modalities,edu,accreditations, brands, product_categories,locations } f
                     Accredited Clinics & Practitioners
                   </Link>
              </h4>
-               <Link prefetch={false}href="/practitioners/credentials" className="block text-sm"> Awards and Acolades</Link>
-         
+                <h4 className="font-semibold"><Link prefetch={false}href="/practitioners/credentials" className="block text-sm"> Awards and Acolades</Link></h4>
             
             <h4 className="font-semibold">
               
             
                   <Link prefetch={false}href={`/products/brands/`} className="block text-sm">
-                    All Brands
+                    Products by Brand
                   </Link></h4>
               
             
@@ -155,7 +154,7 @@ import { modalities,edu,accreditations, brands, product_categories,locations } f
               
             
                   <Link prefetch={false}href={`/products/category/`} className="block text-sm">
-                    All Categories
+                    Products by Category
                   </Link></h4>
             </div>
 

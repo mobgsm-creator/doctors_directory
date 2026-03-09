@@ -12,12 +12,16 @@ import { decodeUnicodeEscapes } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft} from "lucide-react";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb"
-
+import { CollectionsFilter } from "@/components/filters/collectionsFilterWrapper";
+import ItemsGrid from "@/components/collectionGrid";
 export default async function ProfilePage() {
   const filePath = path.join(process.cwd(), "public", "products_processed_new.json");
   const fileContents = fs.readFileSync(filePath, "utf-8");
   const clinics: Product[] = JSON.parse(fileContents);
- 
+  const allBrands = brands.map((brand, index) => {
+    const itemDetail = clinics.find((clinic) => clinic.brand === brand)
+    return [brand, itemDetail]})
+
 
 
   return (
@@ -55,7 +59,17 @@ export default async function ProfilePage() {
       <div className="container mx-auto max-w-6xl pt-0 md:px-4 py-20 space-y-8">
         {/* Profile Header */}
         
-      <h3 className="text-lg font-semibold text-foreground mb-2">Top Brands</h3>
+     <div className="flex flex-col pt-2 w-full pb-4 px-4 md:px-0">
+          <h1 className="text-sm md:text-2xl md:font-semibold mb-1 md:mb-2">
+            Products by Brand
+          </h1>
+        </div>
+        <div className="mx-auto max-w-7xl md:px-4 py-4 md:py-12 flex flex-col sm:flex-row justify-center w-full md:gap-10">
+                  <CollectionsFilter pageType="Product" />
+                  <div className="flex-1 min-w-0">
+                    <ItemsGrid items={brands} />
+                  </div>
+                </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {brands.map((brand, index) => {
             const itemDetail = clinics.find((clinic) => clinic.brand === brand)

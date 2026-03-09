@@ -19,7 +19,7 @@ interface ProductFiltersProps {
 export function ProductFilters({ filters, onChange, onClear, setIsFilterActive }: Readonly<ProductFiltersProps>) {
   return (
     <>
-      <h3 className="font-semibold text-xl text-black mb-6">Filters</h3>
+      <section className="font-semibold text-xl text-black mb-6">Filters</section>
 
        <div className="mb-6 min-w-60">
          <label htmlFor="products-search" className="sr-only">Search</label>
