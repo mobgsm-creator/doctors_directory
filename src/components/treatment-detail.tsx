@@ -298,8 +298,6 @@ export function TreatmentDetail({ treatment, treatmentData }: Readonly<Treatment
     };
   };
 
-  const regulationData = findProperty("regulation");
-
   const sections = [
     { id: "overview", label: "Overview" },
     { id: "treatment-options", label: "Treatment Options" },
@@ -1008,51 +1006,39 @@ export function TreatmentDetail({ treatment, treatmentData }: Readonly<Treatment
               </div>
             )}
 
-            {regulationData && (
+            {findProperty("regulation") && (
               <div>
                 <h3 className="font-semibold mb-3">
                   What to Do If Something Goes Wrong
                 </h3>
-                {Array.isArray(regulationData) ? (
+                {Array.isArray(findProperty("regulation")) ? (
                   <ul className="space-y-2 text-gray-700 text-sm list-disc ml-6">
-                    {regulationData.map(
+                    {findProperty("regulation").map(
                       (step: string, index: number) => (
                         <li key={index}>{step}</li>
                       ),
                     )}
                   </ul>
-                ) : typeof regulationData === "object" && regulationData !== null ? (
+                ) : findProperty("regulation")?.Regulation ? (
                   <div className="space-y-4">
-                    {((regulationData as Record<string, unknown>).Regulation ||
-                      (regulationData as Record<string, unknown>).regulation) && (
-                      <div>
-                        <h3 className="font-medium mb-1">Regulation</h3>
-                        <p className="text-gray-700 text-sm">
-                          {String(
-                            (regulationData as Record<string, unknown>).Regulation ||
-                              (regulationData as Record<string, unknown>).regulation,
-                          )}
-                        </p>
-                      </div>
-                    )}
-                    {((regulationData as Record<string, unknown>).Complaints ||
-                      (regulationData as Record<string, unknown>)
-                        .ifSomethingGoesWrong) && (
+                    <div>
+                      <h3 className="font-medium mb-1">Regulation</h3>
+                      <p className="text-gray-700 text-sm">
+                        {findProperty("regulation").Regulation}
+                      </p>
+                    </div>
+                    {findProperty("regulation").Complaints && (
                       <div>
                         <h3 className="font-medium mb-1">Complaints</h3>
                         <p className="text-gray-700 text-sm">
-                          {String(
-                            (regulationData as Record<string, unknown>).Complaints ||
-                              (regulationData as Record<string, unknown>)
-                                .ifSomethingGoesWrong,
-                          )}
+                          {findProperty("regulation").Complaints}
                         </p>
                       </div>
                     )}
                   </div>
                 ) : (
                   <p className="text-gray-700 text-sm">
-                    {regulationData}
+                    {findProperty("regulation")}
                   </p>
                 )}
               </div>

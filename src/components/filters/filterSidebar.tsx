@@ -240,14 +240,6 @@ export function AdvancedFilterSidebar({ pageType }: AdvancedFiltersProps) {
                     treatmentArea: "all",
                     priceRange: "all",
                   });
-                  setFilters({
-                    type: filters.type,
-                    query: "",
-                    category: "",
-                    location: "",
-                    rating: 0,
-                    services: [],
-                  });
                 }}
               />
             )}
@@ -263,14 +255,6 @@ export function AdvancedFilterSidebar({ pageType }: AdvancedFiltersProps) {
                     rating: "all",
                     distance: "all",
                     query: "",
-                  });
-                  setFilters({
-                    type: filters.type,
-                    query: "",
-                    category: "",
-                    location: "",
-                    rating: 0,
-                    services: [],
                   });
                 }}
                 setIsFilterActive={setIsFilterActive}
@@ -289,14 +273,6 @@ export function AdvancedFilterSidebar({ pageType }: AdvancedFiltersProps) {
                     rating: "all",
                     query: "",
                   });
-                  setFilters({
-                    type: filters.type,
-                    query: "",
-                    category: "",
-                    location: "",
-                    rating: 0,
-                    services: [],
-                  });
                 }}
                 setIsFilterActive={setIsFilterActive}
               />
@@ -313,14 +289,6 @@ export function AdvancedFilterSidebar({ pageType }: AdvancedFiltersProps) {
                     distributor_cleaned: "all",
                     category: "all",
                     query: "",
-                  });
-                  setFilters({
-                    type: filters.type,
-                    query: "",
-                    category: "",
-                    location: "",
-                    rating: 0,
-                    services: [],
                   });
                 }}
                 setIsFilterActive={setIsFilterActive}

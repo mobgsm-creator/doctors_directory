@@ -802,19 +802,19 @@ const blogs = [
     id: 1,
     title: "10 Best HIPAA Compliant Medical Spa Software in 2025",
     img: "directory/images/HIPAA-Compliant-Medical-Spa-Software-768x432.webp",
-    link: "https://www.consentz.com/hipaa-compliant-medical-spa-software",
+    link: "https://www.consentz.com/hipaa-compliant-medical-spa-software/ ",
   },
   {
     id: 2,
-    title: "Top 10 Clinical Data Management Software Solutions in the USA",
-    img: "directory/images/Top-Clinical-Data-Management-Software-in-the-USA.webp",
-    link: "https://www.consentz.com/clinical-data-management-software",
+    title: "Top 10 Best Aesthetic Clinic Software in USA [2025]",
+    img: "directory/images/Aesthetic-Clinic-Software-in-the-USA-1536x864.webp",
+    link: "https://www.consentz.com/aesthetic-clinic-software-in-usa/",
   },
   {
     id: 3,
     title: "Aesthetic Clinic Marketing: Complete Guide [2025]",
     img: "directory/images/Aesthetic-Clinic-Marketing-Guide-1536x864.webp",
-    link: "https://www.consentz.com/aesthetic-clinic-marketing",
+    link: "https://www.consentz.com/aesthetic-clinic-marketing/",
   },
 ];
 
