@@ -7,10 +7,10 @@ import { isCity, isTreatment } from "@/lib/utils";
 
 interface PractitionerCardProps {
   items: (Practitioner | Clinic | Product | string)[];
-  
+  customLink?:string
 }
 
-export default function ItemsGrid({ items}: PractitionerCardProps) {
+export default function ItemsGrid({ items, customLink}: PractitionerCardProps) {
 
   
   const ITEMS_PER_PAGE = (isCity(items[0]) || isTreatment(items[0])) ? 24 : 12; 
@@ -52,6 +52,7 @@ export default function ItemsGrid({ items}: PractitionerCardProps) {
             <PractitionerCard
                 key={typeof clinic === "string" ? clinic : ("practitioner_name" in clinic ? clinic.practitioner_name!+clinic.practitioner_title : clinic.slug)}
               practitioner={clinic}
+              customLink={customLink}
             
              />
           ))}
