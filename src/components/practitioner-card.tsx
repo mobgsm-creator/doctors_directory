@@ -192,7 +192,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
             
             </CardContent>
                 </Link>
-                <div>
+                <div className="md:px-4 space-y-4 pb-4">
                 <div className="sr-only">Treatments offered</div>
               <ul className="flex flex-wrap gap-1 pt-4" aria-label="Treatments offered">
                 {practitioner.Treatments &&
