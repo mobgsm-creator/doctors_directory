@@ -55,7 +55,7 @@ export default async function ProfilePage() {
         {/* Profile Header */}
         
       <h3 className="text-lg font-semibold text-foreground mb-2">Top Categories</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="bg--(--primary-bg-color) grid grid-cols-1 md:grid-cols-3 gap-6">
           {product_categories.map((brand, index) => {
             const itemDetail = clinics.find((clinic) => clinic.category === brand)
             return (

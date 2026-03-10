@@ -35,7 +35,7 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
   }
 
   return (
-    <main className="min-h-screen bg-var(--primary-bg-color)">
+    <main className="min-h-screen bg-(--primary-bg-color)">
       {/* Navigation */}
       <div className="sticky top-0 z-10">
         <div className="container mx-auto max-w-6xl px-4 py-4">
@@ -117,13 +117,21 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
               <div>
                 <ul className="flex flex-wrap md:items-center md:justify-center gap-1 text-center" aria-label="Product prices">
                   {practitioner &&
-                    practitioner?.all_prices?.map((value: any, index: number) => (
+                    practitioner?.all_prices?.slice(0,3).map((value: any, index: number) => (
                       <li key={index}>
                         <Badge variant="outline" className="text-[11px] font-normal text-gray-500">
                           {value.price}
                         </Badge>
                       </li>
+                      
                     ))}
+                  
+                  {practitioner && (
+                      <li key={index}>
+                        <Badge variant="outline" className="text-[11px] font-normal text-gray-500">
+                          + {practitioner?.all_prices?.length - 3} more
+                        </Badge></li>
+                    )}
                   
                 </ul>
               </div>
