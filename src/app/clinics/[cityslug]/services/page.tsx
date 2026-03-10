@@ -128,19 +128,13 @@ export default function CityServicesPage({ params }: PageProps) {
         </div>
 
         <div className="mx-auto max-w-7xl md:px-4 py-4 md:py-12 flex flex-col sm:flex-row justify-center w-full md:gap-10">
-          <CollectionsFilter pageType="Clinic" />
+          <CollectionsFilter pageType="Treatments" />
           <div className="flex-1 min-w-0">
-            <ItemsGrid items={filteredClinics} />
+            <ItemsGrid items={uniqueTreatments.length === 0 ? defaultTreatments : uniqueTreatments} customLink={`/clinics/${cityslug}/services`} />
           </div>
         </div>
 
-        <div className="px-4 md:px-0 space-y-6">
-          <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Treatments in ${cityslug}`}</h3>
-          <MoreItems items={uniqueTreatments.length === 0 ? defaultTreatments : uniqueTreatments} />
-          <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Cities in the UK`}</h3>
-          <MoreItems items={locations} />
-
-        </div>
+      
       </div>
     </main>
   );

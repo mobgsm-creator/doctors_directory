@@ -113,19 +113,15 @@ import { modalities,edu,accreditations, brands, product_categories,locations } f
               Top Practitioners in {locations.length} cities</Link>
              
              <Link prefetch={false}href="/clinics" className="block text-sm"> Top Clinics in {locations.length} cities</Link>
-             
-             <h4 className="font-semibold">Treatments by City (Clinics)</h4>
-             <ul className="gap-4 max-h-[100px] overflow-auto">
-              {locations.slice(0,1).map((city, index) => {
-                return modalities.slice(0,5).map((treatment, index_t) => (
-                <li key={index_t}>
-                  <Link prefetch={false}href={`/clinics/${city}/services/${treatment}`} className="block text-sm">
-                    {treatment} in {city}
+             <h4 className="font-semibold">      <Link prefetch={false}href={`/clinics/treatment-by-city`} className="block text-sm">
+                    Treatments by City (Clinics)
                   </Link>
-                </li>
-               ))})}
-             </ul>
-             <h4 className="font-semibold">Treatments by City (Practitioner)</h4>
+             </h4>
+             <h4 className="font-semibold">      <Link prefetch={false}href={`/practitioners/treatment-by-city`} className="block text-sm">
+                    Treatments by City (Practitioner)
+                  </Link>
+             </h4>
+             
              <ul className="gap-4 max-h-[100px] overflow-auto">
               {locations.slice(0,1).map((city, index) => {
                 return modalities.slice(0,5).map((treatment, index_t) => (

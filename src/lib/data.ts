@@ -1626,9 +1626,23 @@ export const edu = [
     "PGDip MH",
     "PGDip Cosmetic Medicine",
     "PhD",
-    "QIF","Consultant Dermatologist",
-    "V300","Level 7","Level 6","Level 5","VTCT",
-    " BHons Nursing", "Surgeon", "Accredited Trainer","Therapist","Trichologist","INP", "BSC Hons", "GMC", "Registered Medical Practitioner", "Aesthetic Practitioner"]
+    "QIF",
+    "Consultant Dermatologist",
+    "V300",
+    "Level 7",
+    "Level 6",
+    "Level 5",
+    "VTCT",
+    "BHons Nursing",
+    "Surgeon", 
+    "Accredited Trainer",
+    "Therapist",
+    "Trichologist",
+    "INP",
+    "BSC Hons", 
+    "GMC", 
+    "Registered Medical Practitioner", 
+    "Aesthetic Practitioner"]
 
 export const spec = ["Trichologist","Stylist","Technician","Manager","Admin","Hairdresser","Associate","Therapist","Practitioner","Owner","Coordinator","Pharmacist","Founder","Director","Nurse","Consultant","Specialist"
 ]

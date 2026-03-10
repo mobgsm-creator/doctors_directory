@@ -11,6 +11,7 @@ import { Button } from "./ui/button";
 import practitionersJson from "@/../public/derms_processed_new_5403.json";
 import { isClinic, isPractitioner, isProduct, isTreatment } from "@/lib/utils";
 import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 const practitionersData = practitionersJson as unknown as Practitioner[];
 const practitionersIndex = new Map<string, Practitioner[]>();
 
@@ -26,11 +27,14 @@ for (const p of practitionersData) {
 
 interface PractitionerCardProps {
   practitioner: Practitioner | Clinic | Product | string;
+  customLink?:string
   
 }
 
-export function PractitionerCard({ practitioner }: PractitionerCardProps) {
+export function PractitionerCard({ practitioner, customLink }: PractitionerCardProps) {
   const Router = useRouter()
+  const path = usePathname()
+  
   let practitionerName = ""
   let practitioners : Practitioner[] = []
   if(isPractitioner(practitioner)){
@@ -62,7 +66,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
           
           <Card asChild className="mt-2 gap-4 md:px-0 shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border-t rounded-27 md:border md:border-(--alto) cursor-pointer" data-testid="practitioner-card">
           <><Link
-              href={
+              href={customLink ? customLink :
                 "practitioner_awards" in practitioner &&
                 practitioner.practitioner_name
                   ? `/practitioners/${practitioner.City}/profile/${
@@ -263,7 +267,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
       )}
       {isProduct(practitioner) && (
           <Card asChild className="gap-0 h-full relative px-4 md:px-0 shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border-t rounded-27 md:border md:border-(--alto) cursor-pointer" aria-labelledby={`product-name-${practitioner.slug}`} data-testid="practitioner-card">
-            <Link href={`/products/category/${practitioner.category}/${practitioner.slug}`} className="block" prefetch={false}>
+            <Link href={customLink ? customLink :`/products/category/${practitioner.category}/${practitioner.slug}`} className="block" prefetch={false}>
         <CardHeader className="pb-2 px-2">
               <h2 id={`product-name-${practitioner.slug}`} className="sr-only">
                 {decodeUnicodeEscapes(practitioner.product_name)}
@@ -330,7 +334,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
       {isTreatment(practitioner) === true && (
       
           <Card asChild className="gap-0 h-full relative bg-transparent px-4 md:px-0 shadow-none md:border-0 duration-300 cursor-pointer" aria-labelledby={`treatment-name-${practitioner}`} data-testid="practitioner-card">
-            <Link href={`/treatments/${practitioner?.split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ").replace("Hifu", "HIFU").replace("Coolsculpting", "CoolSculpting")}`} className="block border-0" prefetch={false}>
+            <Link href={customLink ? customLink+`/${practitioner}` :`/treatments/${practitioner?.split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ").replace("Hifu", "HIFU").replace("Coolsculpting", "CoolSculpting")}`} className="block border-0" prefetch={false}>
         <CardHeader className="px-2 border-0">
               <h2 id={`treatment-name-${practitioner?.split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ").replace("Hifu", "HIFU").replace("Coolsculpting", "CoolSculpting")}`} className="sr-only">
                 {practitioner?.split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ").replace("Hifu", "HIFU").replace("Coolsculpting", "CoolSculpting")}
@@ -365,7 +369,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
 
   
                         <Card asChild className="gap-0 relative shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border md:border-(--alto) cursor-pointer hover:shadow-lg hover:border-blue-500">
-                <Link href={`/clinics/${practitioner}`}>
+                <Link href={customLink ? customLink+`/${practitioner}/services` :`/clinics/${practitioner}`}>
                 <div className='mt-2 flex flex-col items-center gap-2'>
                   
                   <Button
@@ -388,7 +392,7 @@ export function PractitionerCard({ practitioner }: PractitionerCardProps) {
         {isAward(practitioner) && (
             <Link
                           key={(practitioner as unknown as {name:string, slug: string; image_url: string}).slug}
-                          href={`/practitioners/credentials/${(practitioner as {slug: string; image_url: string}).slug}`}
+                          href={customLink ? customLink :`/practitioners/credentials/${(practitioner as {slug: string; image_url: string}).slug}`}
                           className="block"
                         >
                           <Card className="gap-0 relative shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border md:border-(--alto) cursor-pointer hover:shadow-lg hover:border-blue-500">
