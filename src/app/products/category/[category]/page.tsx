@@ -38,7 +38,7 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
   }
 
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen bg-(--primary-bg-color)">
       {/* Navigation */}
       <div className="sticky top-0 z-10">
         <div className="container mx-auto max-w-6xl px-4 py-4">
@@ -75,7 +75,7 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
       <div className="container mx-auto max-w-6xl pt-0 md:px-4 py-20 space-y-8">
         {/* Profile Header */}
         
-      <h3 className="text-lg font-semibold text-foreground mb-2">{`${category}`}</h3>
+      <h3 className="bg--(--primary-bg-color) text-lg font-semibold text-foreground mb-2">{`${category}`}</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {similarProducts.map((practitioner, index) => (
             <div key={practitioner.slug} style={{ animationDelay: `${index * 50}ms` }}>
@@ -124,13 +124,21 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
               <div>
                 <ul className="flex flex-wrap md:items-center md:justify-center gap-1 text-center" aria-label="Product prices">
                   {practitioner &&
-                    practitioner?.all_prices?.map((value: any, index: number) => (
+                    practitioner?.all_prices?.slice(0,3).map((value: any, index: number) => (
                       <li key={index}>
                         <Badge variant="outline" className="text-[11px] font-normal text-gray-500">
                           {value.price}
                         </Badge>
                       </li>
-                    ))}
+                      
+                    ))
+                    }
+                    {practitioner && (
+                      <li key={index}>
+                        <Badge variant="outline" className="text-[11px] font-normal text-gray-500">
+                          + {practitioner?.all_prices?.length - 3} more
+                        </Badge></li>
+                    )}
                   
                 </ul>
               </div>
