@@ -5,28 +5,18 @@ export interface VisxDonutChartProps {
   data: BoxPlotDatum[];
 }
 
-interface DonutSegment {
-  label: string;
-  value: number;
-  color: string;
-  isActive: boolean;
-}
-
 export function Stats({ data }: Readonly<VisxDonutChartProps>) {
-  const screenwidth = typeof window !== "undefined" ? window.innerWidth : 0;
-  const height = screenwidth > 640 ? 200 : 400;
-
   const categoryColorByLabel: Record<string, string> = {
-    "Clinical Expertise": "#C7EAEF",
+    "Clinic Visibility": "#C7EAEF",
     Communication: "#F2B26E",
-    "Treatment Results": "#C4DFA7",
+    "Pricing Transparency": "#C4DFA7",
     "Bedside Manner": "#D3A9CF",
     "Trust & Safety": "#F5D1CC",
-    Environment: "#E8D6F7",
+    "Safety and Trust": "#E8D6F7",
     Personalization: "#F7E3A1",
     "Post-Care": "#C9F2E7",
     Professionalism: "#F8C8DC",
-    "Staff Support": "#D0E4F5",
+    "Overall Aggregation": "#D0E4F5",
     "Value & Transparency": "#F6E8C5",
     "Pain Management & Comfort": "#DFE8C9",
     "Anxiety & Nervousness Management": "#F4CBB7",
@@ -39,25 +29,12 @@ export function Stats({ data }: Readonly<VisxDonutChartProps>) {
   const categoryColorFor = (label: string) =>
     categoryColorByLabel[label] ?? "#888888";
   const skip = [
-    "Clinical Expertise",
-    "Treatment Results",
-    "Environment",
-    "Staff Support",
+    "Clinic Visibility",
+    "Pricing Transparency",
+    "Safety and Trust",
+    "Overall Aggregation",
   ];
-  const getDonutSegments = (d: BoxPlotDatum): DonutSegment[] => {
-    const percentage = (30 * d.item.weighted_score) / d.stats.max + 70;
-    const baseColor = categoryColorFor(d.label);
 
-    return [
-      { label: d.label, value: percentage, color: baseColor, isActive: true },
-      {
-        label: d.label,
-        value: 100 - percentage,
-        color: "#E5E7EB",
-        isActive: false,
-      },
-    ];
-  };
   const filtered = useMemo(
     () => data.filter((d) => skip.includes(d.label)),
     [data]
