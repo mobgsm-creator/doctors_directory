@@ -782,11 +782,31 @@ const imageLogos = [
 ];
 
 const specialists = [
-  { name: "Facial Aesthetics", image: "directory/images/Facial Aesthetics Specialist.webp" },
-  { name: "Cosmetology", image: "directory/images/Cosmetology Specialist.webp" },
-  { name: "Hair & Scalp", image: "directory/images/Hair & Scalp Specialist.webp" },
-  { name: "Skin Technology & Laser", image: "directory/images/Skin Technology & Laser Specialist.webp" },
-  { name: "Wellness", image: "directory/images/Wellness Specialist.webp" },
+  {
+    name: "Facial Aesthetics",
+    image: "directory/images/Facial Aesthetics Specialist.webp",
+    url: "/treatments/Facial%20Treatments",
+  },
+  {
+    name: "Cosmetology",
+    image: "directory/images/Cosmetology Specialist.webp",
+    url: "/treatments/Lips",
+  },
+  {
+    name: "Hair & Scalp",
+    image: "directory/images/Hair & Scalp Specialist.webp",
+    url: "/treatments/Hair%20Treatments",
+  },
+  {
+    name: "Skin Technology & Laser",
+    image: "directory/images/Skin Technology & Laser Specialist.webp",
+    url: "/treatments/Skin%20Booster",
+  },
+  {
+    name: "Wellness",
+    image: "directory/images/Wellness Specialist.webp",
+    url: "/treatments/Massage",
+  },
 ];
 
 const treatments = [
@@ -862,16 +882,23 @@ export default function HomePage() {
           <div className="grid grid-cols-2 md:grid-cols-5 gap-8 align-items-center">
             {specialists.map((specialist, index) => (
               <article key={index} className="flex flex-col items-center gap-4">
-                <div className="flex items-center justify-center transition">
-                  <img
-                    src={`/${specialist.image || "placeholder.svg"}`}
-                    alt={specialist.name || "Placeholder"}
-                    className="w-[100px] h-[100px] object-cover rounded-lg"
-                  />
-                </div>
-                <p className="text-base font-medium text-center">
-                  {specialist.name}
-                </p>
+                <Link
+                  href={specialist.url}
+                  className="flex flex-col items-center gap-4 hover:opacity-90"
+                  title={`Explore ${specialist.name} treatments`}
+                  aria-label={`Explore ${specialist.name} treatments`}
+                >
+                  <div className="flex items-center justify-center transition">
+                    <img
+                      src={`/${specialist.image || "placeholder.svg"}`}
+                      alt={specialist.name || "Placeholder"}
+                      className="w-[100px] h-[100px] object-cover rounded-lg"
+                    />
+                  </div>
+                  <p className="text-base font-medium text-center">
+                    {specialist.name}
+                  </p>
+                </Link>
               </article>
             ))}
           </div>
