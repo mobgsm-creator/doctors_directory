@@ -50,7 +50,7 @@ export interface BoxPlotDatum {
 export const boxplotDatas_clinic: BoxPlotDatum[] = [
   {
     key: "Clinical",
-    label: "Clinical Expertise",
+    label: "Clinic Visibility",
     stats: {
       min: 0,
       q1: 4.343109428882599,
@@ -87,7 +87,7 @@ export const boxplotDatas_clinic: BoxPlotDatum[] = [
   },
   {
     key: "Treatment",
-    label: "Treatment Results",
+    label: "Pricing Transparency",
     stats: {
       min: 0,
       q1: 7.847011610865593,
@@ -141,7 +141,7 @@ export const boxplotDatas_clinic: BoxPlotDatum[] = [
   },
   {
     key: "Environment",
-    label: "Environment",
+    label: "Safety and Trust",
     stats: {
       min: 0,
       q1: 7.066807150840759,
@@ -213,7 +213,7 @@ export const boxplotDatas_clinic: BoxPlotDatum[] = [
   },
   {
     key: "Staff",
-    label: "Staff Support",
+    label: "Overall Aggregation",
     stats: {
       min: 0,
       q1: 5.289367660880089,

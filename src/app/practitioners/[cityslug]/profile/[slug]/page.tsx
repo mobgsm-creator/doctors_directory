@@ -32,8 +32,8 @@ function mergeBoxplotDataFromDict(
   incoming: Record<string, ItemMeta>
 ): BoxPlotDatum[] {
   return base.map((datum) => {
-    const match = incoming[datum.label];
-    const result = { ...datum, item: { ...datum.item, ...match } };
+    const matchItem = incoming[datum.label];
+    const result = { ...datum, item: { ...datum.item, ...matchItem } };
     return result;
   });
 }
@@ -69,6 +69,12 @@ export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
     boxplotDatas_clinic,
     clinic?.weighted_analysis ?? {}
   );
+
+  const overallScore = Math.round(
+    boxplotData.find((datum) => datum.label === "Overall Aggregation")?.item.weighted_score ?? 0
+  );
+  const rankingSubtitle =
+    practitioner?.ranking?.subtitle_text ?? `${overallScore}/100 in ${practitioner?.City ?? "City"}`;
 
   if (!clinic) {
     notFound();
@@ -144,6 +150,7 @@ export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
                        </div>
                        <div className="border-t border-gray-300 my-6"></div>
                        <Stats data={boxplotData} />
+                       <p className="mt-3 text-xs text-gray-600">{rankingSubtitle}</p>
                      </div>
                      {/* HOURS */}
               {flatHours && (

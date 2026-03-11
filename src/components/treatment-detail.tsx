@@ -1023,36 +1023,38 @@ export function TreatmentDetail({ treatment, treatmentData }: Readonly<Treatment
                   </ul>
                 ) : typeof regulationData === "object" && regulationData !== null ? (
                   <div className="space-y-4">
-                    {((regulationData as Record<string, unknown>).Regulation ||
-                      (regulationData as Record<string, unknown>).regulation) && (
-                      <div>
-                        <h3 className="font-medium mb-1">Regulation</h3>
-                        <p className="text-gray-700 text-sm">
-                          {String(
-                            (regulationData as Record<string, unknown>).Regulation ||
-                              (regulationData as Record<string, unknown>).regulation,
+                    {(() => {
+                      const regulationRecord = regulationData as Record<string, unknown>;
+                      const regulationText = String(
+                        regulationRecord.Regulation ?? regulationRecord.regulation ?? "",
+                      ).trim();
+                      const complaintsText = String(
+                        regulationRecord.Complaints ??
+                          regulationRecord.ifSomethingGoesWrong ??
+                          "",
+                      ).trim();
+
+                      return (
+                        <>
+                          {Boolean(regulationText) && (
+                            <div>
+                              <h3 className="font-medium mb-1">Regulation</h3>
+                              <p className="text-gray-700 text-sm">{regulationText}</p>
+                            </div>
                           )}
-                        </p>
-                      </div>
-                    )}
-                    {((regulationData as Record<string, unknown>).Complaints ||
-                      (regulationData as Record<string, unknown>)
-                        .ifSomethingGoesWrong) && (
-                      <div>
-                        <h3 className="font-medium mb-1">Complaints</h3>
-                        <p className="text-gray-700 text-sm">
-                          {String(
-                            (regulationData as Record<string, unknown>).Complaints ||
-                              (regulationData as Record<string, unknown>)
-                                .ifSomethingGoesWrong,
+                          {Boolean(complaintsText) && (
+                            <div>
+                              <h3 className="font-medium mb-1">Complaints</h3>
+                              <p className="text-gray-700 text-sm">{complaintsText}</p>
+                            </div>
                           )}
-                        </p>
-                      </div>
-                    )}
+                        </>
+                      );
+                    })()}
                   </div>
                 ) : (
                   <p className="text-gray-700 text-sm">
-                    {regulationData}
+                    {String(regulationData)}
                   </p>
                 )}
               </div>
