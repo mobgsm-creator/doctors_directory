@@ -113,7 +113,7 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
           
          
           <div className="flex flex-col pt-2 w-full pb-4 px-4 md:px-0">
-            <h1 className="text-sm md:text-2xl md:font-semibold mb-1 md:mb-2">Top Practitioners in {citySlug}</h1></div>
+            <h1 className="text-sm md:text-2xl md:font-semibold mb-1 md:mb-2">Top Aesthetic Practitioners in {citySlug}</h1></div>
 
         <div className="mx-auto max-w-7xl md:px-4 py-4 md:py-12 flex flex-col sm:flex-row justify-center w-full md:gap-10">
           <CollectionsFilter pageType="Practitioner" />

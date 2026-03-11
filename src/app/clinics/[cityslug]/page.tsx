@@ -122,7 +122,7 @@ export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
         </div>
        
         <div className="flex flex-col pt-2 w-full pb-4 px-4 md:px-0">
-          <h1 className="text-sm md:text-2xl md:font-semibold mb-1 md:mb-2">Top Clinics in {citySlug}</h1>
+          <h1 className="text-sm md:text-2xl md:font-semibold mb-1 md:mb-2">Top Aesthetic Clinics in {citySlug}</h1>
           </div>
 
         <div className="mx-auto max-w-7xl md:px-4 py-4 md:py-12 flex flex-col sm:flex-row justify-center w-full md:gap-10">
@@ -158,7 +158,7 @@ export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
 
 export async function generateMetadata({ params }: ProfilePageProps) {
   const citySlug = params.cityslug;
-  const canonicalUrl = locations.map((location) => `https://staging.consentz.com/direcotry/clinics/${location}`).join(",");
+  const canonicalUrl = 'https://staging.consentz.com/directory/clinics/' + citySlug;
 
   return {
     title: `List of Top Aesthetic Clinics in ${citySlug} - Healthcare Directory`,

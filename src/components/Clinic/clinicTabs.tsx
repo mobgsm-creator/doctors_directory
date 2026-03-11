@@ -14,9 +14,11 @@ export default function ClinicTabs() {
     { id: "fees", label: "Estimated Fees" },
   ];
 
+  const defaultTab = sections[0]?.id;
+
   return (
     <Tabs
-      defaultValue="roles"
+      defaultValue={defaultTab}
       className="w-full sticky top-0 bg-white z-20 pb-4 mb-6 border-b overflow-x-auto"
     >
       <TabsList className="flex flex-nowrap gap-2 overflow-x-auto">
