@@ -1145,7 +1145,7 @@ export default function HomePage() {
           ))}
         </div>
         <div className="flex align-items-center justify-center pt-6 mt-6 mb-4">
-          <Button className="font-base text-lg border-1 px-4 py-3 md:px-7 md:py-3 w-auto h-auto border-black bg-transparent text-black hover:bg-black hover:text-white">
+          <Button onClick={() => window.location.href='https://www.consentz.com/blog'} className="font-base text-lg border-1 px-4 py-3 md:px-7 md:py-3 w-auto h-auto border-black bg-transparent text-black hover:bg-black hover:text-white cursor-pointer">
             View All Blogs
           </Button>
         </div>
