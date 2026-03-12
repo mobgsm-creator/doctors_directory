@@ -754,7 +754,7 @@ const cityItems: {
 }[] = cityList.map((city) => ({
   node: (
     <Link
-      href={`/clinics/${city}`}
+      href={`/clinics/${city.toLowerCase()}`}
       className="flex items-center justify-center bg-[var(--alabaster)] border border-gray-300 rounded-full w-44 h-44 text-lg text-center font-medium hover:border-black transition-shadow"
       title={`Find Top-Rated Aesthetic clinics in ${city}`}
       aria-label={`Find Top-Rated Aesthetic clinics in ${city}`}

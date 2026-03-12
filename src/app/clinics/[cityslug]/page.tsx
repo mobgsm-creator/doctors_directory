@@ -62,9 +62,14 @@ const clinics = clinicsJSON as unknown as Clinic[];
 
 export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
   const citySlug = params.cityslug;
+  const normalizedCitySlug = decodeURIComponent(citySlug).toLowerCase();
   // const city_practitioners: Practitioner[] = all_practitioners.filter(p=>p.City === citySlug) 
-  const cityClinics: Clinic[] = clinics.filter((p) => p.City === citySlug);
-  const cityData: City = (cityJson as unknown as City[]).find((p) => p.City === citySlug)!;
+  const cityClinics: Clinic[] = clinics.filter(
+    (p) => p.City?.toLowerCase() === normalizedCitySlug
+  );
+  const cityData: City = (cityJson as unknown as City[]).find(
+    (p) => p.City?.toLowerCase() === normalizedCitySlug
+  )!;
   const uniqueTreatments = [
   ...new Set(
     cityClinics
@@ -114,7 +119,6 @@ export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
                 <BreadcrumbItem>
                   <BreadcrumbPage>{citySlug.charAt(0).toUpperCase() + citySlug.slice(1)}</BreadcrumbPage>
                 </BreadcrumbItem>
-                <BreadcrumbSeparator />
               </BreadcrumbList>
             </Breadcrumb>
           </div>
@@ -157,8 +161,9 @@ export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
 // }
 
 export async function generateMetadata({ params }: ProfilePageProps) {
-  const citySlug = params.cityslug;
-  const canonicalUrl = 'https://staging.consentz.com/directory/clinics/' + citySlug;
+  const citySlug = decodeURIComponent(params.cityslug).toLowerCase();
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://staging.consentz.com'
+  const canonicalUrl = `${baseUrl}/directory/clinics/${citySlug}`;
 
   return {
     title: `List of Top Aesthetic Clinics in ${citySlug} - Healthcare Directory`,

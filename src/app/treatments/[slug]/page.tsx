@@ -13,6 +13,9 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import ItemsGrid from "@/components/collectionGrid";
 import clinicsJSON from "@/../public/clinics_processed_new_data.json";
+
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://staging.consentz.com'
+
 type TreatmentContent = Record<string, any>;
 const treatments = treatment_content as TreatmentContent;
 interface ProfilePageProps {
@@ -186,7 +189,7 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
     description:
       treatmentData?.[whatIsPropertyName] ||
       `${treatment.name} is a medical treatment that helps address various skin and aesthetic concerns.`,
-    url: `https://staging.consentz.com/directory/treatments/${params.slug}`,
+    url: `${baseUrl}/directory/treatments/${params.slug}`,
     image: treatment.image,
     medicalSpecialty: "Dermatology",
     bodyLocation: "Skin",
@@ -196,7 +199,7 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
     provider: {
       "@type": "Organization",
       name: "Healthcare Directory",
-      url: "https://staging.consentz.com/directory",
+      url: `${baseUrl}/directory`,
     },
     aggregateRating: {
       "@type": "AggregateRating",
@@ -294,7 +297,7 @@ export async function generateMetadata({ params }: ProfilePageProps): Promise<Me
   
   const title = `${treatmentName} Treatment - Find Qualified Practitioners | Healthcare Directory`;
   const image = TreatmentMap[treatmentSlug] || '/directory/treatments/default-treatment.webp';
-  const url = `https://staging.consentz.com/directory/treatments/${slug}`;
+  const url = `${baseUrl}/directory/treatments/${slug}`;
 
   return {
     title,

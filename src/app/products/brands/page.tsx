@@ -64,12 +64,9 @@ export default async function ProfilePage() {
             Products by Brand
           </h1>
         </div>
-        <div className="mx-auto max-w-7xl md:px-4 py-4 md:py-12 flex flex-col sm:flex-row justify-center w-full md:gap-10">
+        <div className="mx-auto max-w-7xl  flex flex-col sm:flex-row justify-center w-full md:gap-10">
                   <CollectionsFilter pageType="Product" />
                   <div className="flex-1 min-w-0">
-                    <ItemsGrid items={brands} />
-                  </div>
-                </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {brands.map((brand, index) => {
             const itemDetail = clinics.find((clinic) => clinic.brand === brand)
@@ -114,6 +111,8 @@ export default async function ProfilePage() {
             </div>
           )})}
         </div>
+                  </div>
+                </div>
       </div>
       
     </main>

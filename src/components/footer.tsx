@@ -126,7 +126,7 @@ import { modalities,edu,accreditations, brands, product_categories,locations } f
               {locations.slice(0,1).map((city, index) => {
                 return modalities.slice(0,5).map((treatment, index_t) => (
                 <li key={index_t}>
-                  <Link prefetch={false}href={`/practitioners/${city}/treatments/${treatment}`} className="block text-sm">
+                  <Link prefetch={false}href={`/practitioners/${city.toLowerCase()}/treatments/${treatment}`} className="block text-sm">
                     {treatment} in {city}
                   </Link>
                 </li>

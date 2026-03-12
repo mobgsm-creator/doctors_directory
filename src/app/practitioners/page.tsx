@@ -36,7 +36,7 @@ export default function HomePage() {
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
-                  <BreadcrumbLink href="/directory/clinics">All Clinics</BreadcrumbLink>
+                  <BreadcrumbLink href="/directory/practitioners">All Practitioners</BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
               </BreadcrumbList>
@@ -46,7 +46,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl md:px-4 py-4 md:py-12 flex flex-col sm:flex-row justify-center w-full md:gap-10">
           <CollectionsFilter pageType="Practitioner" />
           <div className="flex-1 min-w-0">
-            <ItemsGrid items={locations} />
+            <ItemsGrid items={locations} customLink="/practitioners" />
           </div>
         </div>
         </div>

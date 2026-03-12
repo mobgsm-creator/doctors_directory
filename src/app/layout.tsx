@@ -9,6 +9,9 @@ import { Footer } from "@/components/footer";
 import { ScrollToTop } from "@/components/scroll-to-top";
 
 import "./globals.css";
+
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://staging.consentz.com'
+
 export const metadata: Metadata = {
   title: "Aesthetic Directory - List Your Clinic & Grow Your Practice",
   description:
@@ -24,7 +27,7 @@ export const metadata: Metadata = {
   },
 
   alternates: {
-    canonical: "https://staging.consentz.com/directory",
+    canonical: `${baseUrl}/directory`,
   },
 };
 export default async function RootLayout({

@@ -69,10 +69,10 @@ export function PractitionerCard({ practitioner, customLink }: PractitionerCardP
               href={customLink ? customLink :
                 "practitioner_awards" in practitioner &&
                 practitioner.practitioner_name
-                  ? `/practitioners/${practitioner.City}/profile/${
+                  ? `/practitioners/${(practitioner.City ?? "").toLowerCase()}/profile/${
                       practitioner.practitioner_name
                     }`
-                  : `/clinics/${practitioner.City}/clinic/${
+                  : `/clinics/${(practitioner.City ?? "").toLowerCase()}/clinic/${
                       practitioner.slug
                     }`
               }
@@ -247,7 +247,7 @@ export function PractitionerCard({ practitioner, customLink }: PractitionerCardP
                         <div className="flex-1 min-w-0 pt-1">
                           <h3 className="text-xl font-semibold text-balance leading-tight group-hover:text-primary transition-colors truncate">
                              <a
-                            href={`/directory/practitioners/${practitioner.City}/profile/${p.practitioner_name}`}
+                            href={`/directory/practitioners/${(practitioner.City ?? "").toLowerCase()}/profile/${p.practitioner_name}`}
                             onClick={(e) => e.stopPropagation()}
                           >
                             {p.practitioner_name.split('-').map((word:string) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
@@ -369,7 +369,17 @@ export function PractitionerCard({ practitioner, customLink }: PractitionerCardP
 
   
                         <Card asChild className="gap-0 relative shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border md:border-(--alto) cursor-pointer hover:shadow-lg hover:border-blue-500">
-                <Link href={customLink ? customLink+`/${practitioner}/services` :`/clinics/${practitioner}`}>
+                <Link href={
+                  customLink
+                    ? customLink.includes("/practitioners")
+                      ? path.includes("/practitioners/treatment-by-city")
+                        ? `${customLink}/${practitioner.toLowerCase()}/treatments`
+                        : `${customLink}/${practitioner.toLowerCase()}`
+                      : `${customLink}/${practitioner.toLowerCase()}/services`
+                    : path.includes("/practitioners")
+                      ? `/practitioners/${practitioner.toLowerCase()}`
+                      : `/clinics/${practitioner.toLowerCase()}`
+                }>
                 <div className='mt-2 flex flex-col items-center gap-2'>
                   
                   <Button

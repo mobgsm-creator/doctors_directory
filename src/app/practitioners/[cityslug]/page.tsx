@@ -59,8 +59,13 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
   
   
   const citySlug = params.cityslug;
-  const cityData: City = (cityJson as unknown as City[]).find((p) => p.City === citySlug)!;
-  const cityClinics: Practitioner[] = practitioners.filter((p) => p.City === citySlug);
+  const normalizedCitySlug = decodeURIComponent(citySlug).toLowerCase();
+  const cityData: City = (cityJson as unknown as City[]).find(
+    (p) => p.City?.toLowerCase() === normalizedCitySlug
+  )!;
+  const cityClinics: Practitioner[] = practitioners.filter(
+    (p) => p.City?.toLowerCase() === normalizedCitySlug
+  );
     const uniqueTreatments = [
   ...new Set(
     cityClinics
@@ -104,10 +109,9 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
-                  <BreadcrumbLink href={`/directory/practitioners/${citySlug}`}>{citySlug.charAt(0).toUpperCase() + citySlug.slice(1)}</BreadcrumbLink>
+                  <BreadcrumbLink href={`/directory/practitioners/${normalizedCitySlug}`}>{citySlug.charAt(0).toUpperCase() + citySlug.slice(1)}</BreadcrumbLink>
                 </BreadcrumbItem>
-                <BreadcrumbSeparator />
-\              </BreadcrumbList>
+              </BreadcrumbList>
             </Breadcrumb>
           </div></div>
           
