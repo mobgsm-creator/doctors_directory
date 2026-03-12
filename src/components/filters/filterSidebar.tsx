@@ -38,7 +38,7 @@ export function AdvancedFilterSidebar({ pageType }: AdvancedFiltersProps) {
 
   const [clinicFilters, setClinicFilters] = useState({
     servicesOffered: "all",
-    location: "",
+    location: "all",
     rating: "all",
     distance: "all",
     query: ""
@@ -84,12 +84,12 @@ export function AdvancedFilterSidebar({ pageType }: AdvancedFiltersProps) {
       updatedFilters.query = clinicFilters.query || "";
       updatedFilters.services = clinicFilters.servicesOffered !== "all" ? [clinicFilters.servicesOffered] : [];
       updatedFilters.location = clinicFilters.location !== "all" ? clinicFilters.location : "";
-      updatedFilters.rating = clinicFilters.rating !== "all" ? Number.parseInt(clinicFilters.rating) : 0;
+      updatedFilters.rating = clinicFilters.rating !== "all" ? Number(clinicFilters.rating) : 0;
     } else if (filters.type === "Practitioner") {
       updatedFilters.query = practitionerFilters.query || "";
       updatedFilters.services = practitionerFilters.practitioner_specialty !== "all" ? [practitionerFilters.practitioner_specialty] : [];
       updatedFilters.location = practitionerFilters.City !== "all" ? practitionerFilters.City : "";
-      updatedFilters.rating = practitionerFilters.rating !== "all" ? Number.parseInt(practitionerFilters.rating) : 0;
+      updatedFilters.rating = practitionerFilters.rating !== "all" ? Number(practitionerFilters.rating) : 0;
       updatedFilters.category = practitionerFilters.practitioner_qualifications !== "all" ? practitionerFilters.practitioner_qualifications : "";
     } else if (filters.type === "Product") {
       updatedFilters.query = productFilters.query || "";
@@ -127,7 +127,7 @@ export function AdvancedFilterSidebar({ pageType }: AdvancedFiltersProps) {
     });
     setClinicFilters({
       servicesOffered: "all",
-      location: "",
+      location: "all",
       rating: "all",
       distance: "all",
       query: ""
@@ -163,9 +163,9 @@ export function AdvancedFilterSidebar({ pageType }: AdvancedFiltersProps) {
     setLocalFilters(prev => ({
       ...prev,
       query: key === "query" ? value : prev.query,
-      services: key === "servicesOffered" && value !== "all" ? [value] : prev.services,
-      location: key === "distance" ? value : prev.location,
-      rating: key === "rating" && value !== "all" ? Number.parseInt(value) : prev.rating,
+      services: key === "servicesOffered" ? (value !== "all" ? [value] : []) : prev.services,
+      location: key === "location" ? (value !== "all" ? value : "") : prev.location,
+      rating: key === "rating" ? (value !== "all" ? Number(value) : 0) : prev.rating,
     }));
   };
 
@@ -174,10 +174,15 @@ export function AdvancedFilterSidebar({ pageType }: AdvancedFiltersProps) {
     setLocalFilters(prev => ({
       ...prev,
       query: key === "query" ? value : prev.query,
-      services: key === "practitioner_specialty" && value !== "all" ? [value] : prev.services,
-      location: key === "City" ? value : prev.location,
-      rating: key === "rating" && value !== "all" ? Number.parseInt(value) : prev.rating,
-      category: key === "practitioner_qualifications" ? value : prev.category,
+      services: key === "practitioner_specialty" ? (value !== "all" ? [value] : []) : prev.services,
+      location: key === "City" ? (value !== "all" ? value : "") : prev.location,
+      rating: key === "rating" ? (value !== "all" ? Number(value) : 0) : prev.rating,
+      category:
+        key === "practitioner_qualifications"
+          ? value !== "all"
+            ? value
+            : ""
+          : prev.category,
     }));
   };
 
@@ -186,9 +191,9 @@ export function AdvancedFilterSidebar({ pageType }: AdvancedFiltersProps) {
     setLocalFilters(prev => ({
       ...prev,
       query: key === "query" ? value : prev.query,
-      services: key === "product_category" && value !== "all" ? [value] : prev.services,
-      category: key === "brand" ? value : prev.category,
-      location: key === "distributor_cleaned" ? value : prev.location,
+      services: key === "product_category" ? (value !== "all" ? [value] : []) : prev.services,
+      category: key === "brand" ? (value !== "all" ? value : "") : prev.category,
+      location: key === "distributor_cleaned" ? (value !== "all" ? value : "") : prev.location,
     }));
   };
 

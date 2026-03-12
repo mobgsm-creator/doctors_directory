@@ -147,7 +147,7 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
     name: treatmentSlug.charAt(0).toUpperCase() + treatmentSlug.slice(1),
     image: TreatmentMap[treatmentSlug], // You can map this to actual images
     satisfaction: 82,
-    averageCost: "$200-$800+",
+    averageCost: "£300-£1,200+",
     reviews: 47,
     downtime: "Minimal",
     practitioners: 101,
@@ -211,7 +211,7 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
     offers: {
       "@type": "Offer",
       price: treatment.averageCost,
-      priceCurrency: "USD",
+      priceCurrency: "GBP",
       availability: "https://schema.org/InStock",
     },
   };
