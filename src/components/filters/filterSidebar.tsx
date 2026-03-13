@@ -171,19 +171,21 @@ export function AdvancedFilterSidebar({ pageType }: AdvancedFiltersProps) {
 
   const handlePractitionerFilterChange = (key: string, value: string) => {
     setPractitionerFilters(prev => ({ ...prev, [key]: value }));
-    setLocalFilters(prev => ({
-      ...prev,
-      query: key === "query" ? value : prev.query,
-      services: key === "practitioner_specialty" ? (value !== "all" ? [value] : []) : prev.services,
-      location: key === "City" ? (value !== "all" ? value : "") : prev.location,
-      rating: key === "rating" ? (value !== "all" ? Number(value) : 0) : prev.rating,
-      category:
-        key === "practitioner_qualifications"
-          ? value !== "all"
-            ? value
-            : ""
-          : prev.category,
-    }));
+    setLocalFilters(prev => {
+      let nextCategory = prev.category;
+      if (key === "practitioner_qualifications") {
+        nextCategory = value !== "all" ? value : "";
+      }
+
+      return {
+        ...prev,
+        query: key === "query" ? value : prev.query,
+        services: key === "practitioner_specialty" ? (value !== "all" ? [value] : []) : prev.services,
+        location: key === "City" ? (value !== "all" ? value : "") : prev.location,
+        rating: key === "rating" ? (value !== "all" ? Number(value) : 0) : prev.rating,
+        category: nextCategory,
+      };
+    });
   };
 
   const handleProductFilterChange = (key: string, value: string) => {

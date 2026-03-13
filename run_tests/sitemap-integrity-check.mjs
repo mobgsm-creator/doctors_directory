@@ -107,7 +107,9 @@ const main = async () => {
   console.log(`Sitemap integrity passed: ${uniquePageUrls.length} URL(s) checked in ${elapsedSec}s`)
 }
 
-main().catch((error) => {
+try {
+  await main()
+} catch (error) {
   console.error(error)
   process.exit(1)
-})
+}

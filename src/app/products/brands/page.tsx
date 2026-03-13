@@ -1,19 +1,13 @@
-import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import type { Product } from "@/lib/types";
-import { Badge } from "@/components/ui/badge";
-import { Star, MapPin } from "lucide-react";
-import clinicsJson from "@/../public/clinics_processed_new_data.json";
 import fs from "fs";
 import path from "path";
 import { brands } from "@/lib/data";
-import { decodeUnicodeEscapes } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft} from "lucide-react";
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb"
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator } from "@/components/ui/breadcrumb"
 import { CollectionsFilter } from "@/components/filters/collectionsFilterWrapper";
-import ItemsGrid from "@/components/collectionGrid";
 export default async function ProfilePage() {
   const filePath = path.join(process.cwd(), "public", "products_processed_new.json");
   const fileContents = fs.readFileSync(filePath, "utf-8");

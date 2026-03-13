@@ -1,7 +1,6 @@
 import {
   buildUrlSetXml,
   encodeCitySegment,
-  encodeSegment,
   mapPathsToSitemapUrls,
   uniqueStrings,
   xmlResponse,
