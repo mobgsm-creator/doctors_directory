@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronDown, Locate } from "lucide-react";
+import { ChevronDown, Locate, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Loader2, Search } from "lucide-react";
@@ -38,6 +38,16 @@ export function MobileSearchView({
   isLoading,
   handlePageChange,
 }: MobileSearchViewProps) {
+  const clearQuery = () => {
+    setLocalFilters((prev) => ({ ...prev, query: "" }));
+    setActiveDropdown(null);
+  };
+
+  const clearLocation = () => {
+    setLocalFilters((prev) => ({ ...prev, location: "" }));
+    setActiveDropdown(null);
+  };
+
   return (
     <div className="w-full block md:hidden">
       {!isExpanded ? (
@@ -88,11 +98,22 @@ export function MobileSearchView({
                 onChange={(e) =>
                   setLocalFilters((prev) => ({ ...prev, query: e.target.value }))
                 }
-                className="w-full bg-white border border-gray-300 px-4 py-3 rounded-lg h-12"
+                className="w-full bg-white border border-gray-300 px-4 py-3 pr-10 rounded-lg h-12"
                 onFocus={() => setActiveDropdown('category')}
                 onClick={() => setActiveDropdown('category')}
                 onBlur={() => setTimeout(() => setActiveDropdown(null), 350)}
               />
+              {localFilters.query && (
+                <button
+                  type="button"
+                  aria-label="Clear search query"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 transition-colors hover:text-gray-700"
+                  onMouseDown={(e) => e.preventDefault()}
+                  onClick={clearQuery}
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              )}
               {activeDropdown === 'category' && (
                 <SearchDropdown
                   isMobile={true}
@@ -117,11 +138,22 @@ export function MobileSearchView({
                   onChange={(e) =>
                     setLocalFilters((prev) => ({ ...prev, location: e.target.value }))
                   }
-                  className="w-full bg-white border border-gray-300 px-4 py-3 rounded-lg pl-10 h-12"
+                  className="w-full bg-white border border-gray-300 px-4 py-3 rounded-lg pl-10 pr-10 h-12"
                   onFocus={() => setActiveDropdown('location')}
                   onClick={() => setActiveDropdown('location')}
                   onBlur={() => setTimeout(() => setActiveDropdown(null), 350)}
                 />
+                {localFilters.location && (
+                  <button
+                    type="button"
+                    aria-label="Clear location"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 transition-colors hover:text-gray-700"
+                    onMouseDown={(e) => e.preventDefault()}
+                    onClick={clearLocation}
+                  >
+                    <X className="h-4 w-4" />
+                  </button>
+                )}
               </div>
               {activeDropdown === 'location' && (
                 <SearchDropdown

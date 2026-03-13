@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useTransition } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { searchPractitioners } from "@/app/actions/search";
 import { SearchBar } from "@/components/search/search-bar";
 import { PractitionerCard } from "@/components/practitioner-card";
@@ -8,77 +8,162 @@ import { AdvancedFilterSidebar } from "@/components/filters/filterSidebar";
 import {
   PractitionerCardSkeleton,
 } from "@/components/loading-skeleton";
-import type { SearchFilters } from "@/lib/types";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useSearchStore } from "@/app/stores/datastore";
 import {
-  Sliders, ArrowLeft
+  ArrowLeft
 } from "lucide-react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 
 const ITEMS_PER_PAGE = 9;
+type SearchType = "Clinic" | "Practitioner" | "Product" | "Treatments";
 
-export default function SearchPage() {
-  const treatmentFilters = {
-  type: "Treatments",
-  query: "",
-  category: "",
-  location: "",
-  rating: 0,
-  services: [],
-};
-  const pathname = usePathname();
+interface SearchPageProps {
+  forcedType?: SearchType;
+}
+
+export default function SearchPage({ forcedType }: Readonly<SearchPageProps>) {
   const { filters, setFilters } = useSearchStore();
 
   const [currentPage, setCurrentPage] = useState(1);
   const [sortBy, setSortBy] = useState("default");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
-  const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
-
   const [data, setData] = useState<(any|string)[]>([]);
   const [totalCount, setTotalCount] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
-  const [isPending, startTransition] = useTransition();
+  const [isInitialLoading, setIsInitialLoading] = useState(false);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
+  const sentinelRef = useRef<HTMLDivElement | null>(null);
+  const isAppendingRef = useRef(false);
+  const requestIdRef = useRef(0);
+  const isTypeReady = !forcedType || filters.type === forcedType;
 
-
-  // Fetch data when filters, page, or sort changes
   useEffect(() => {
-    // Clear previous data when starting new search
-    setData([]);
-    
-    startTransition(() => {
-      (async () => {
-        const start = performance.now();
+    if (!forcedType) {
+      return;
+    }
 
+    setFilters((prev) => {
+      if (prev.type === forcedType) {
+        return prev;
+      }
+
+      return {
+        ...prev,
+        type: forcedType,
+      };
+    });
+  }, [forcedType, setFilters]);
+
+  const loadResults = useCallback(
+    async (page: number, mode: "replace" | "append") => {
+      if (mode === "append" && isAppendingRef.current) {
+        return;
+      }
+
+      if (!isTypeReady) {
+        return;
+      }
+
+      if (mode === "append") {
+        isAppendingRef.current = true;
+      }
+      const requestId = ++requestIdRef.current;
+      if (mode === "replace") {
+        setIsInitialLoading(true);
+      } else {
+        setIsLoadingMore(true);
+      }
+
+      try {
+        const start = performance.now();
         const result = await searchPractitioners(
-          pathname.includes("treatments") ? treatmentFilters : filters,
-          currentPage,
+          filters,
+          page,
           sortBy
         );
 
-      const end = performance.now();
-      console.log(`Search took ${end - start} ms`);
+        // Ignore results from stale requests after type/filter transitions.
+        if (requestId !== requestIdRef.current) {
+          return;
+        }
 
+        const end = performance.now();
+        console.log(`Search took ${end - start} ms`);
 
-        setData(result.data);
-     
+        setData((prev) =>
+          mode === "replace" ? result.data : [...prev, ...result.data]
+        );
         setTotalCount(result.totalCount);
         setTotalPages(result.totalPages);
-      })();
-    });
-  }, [filters, currentPage, sortBy]);
+      } finally {
+        isAppendingRef.current = false;
+        setIsInitialLoading(false);
+        setIsLoadingMore(false);
+      }
+    },
+    [filters, isTypeReady, sortBy]
+  );
+
+  useEffect(() => {
+    if (!isTypeReady) {
+      return;
+    }
+
+    setCurrentPage(1);
+    setData([]);
+    setTotalPages(0);
+    setTotalCount(0);
+    // Invalidate any in-flight response before starting a fresh search request.
+    requestIdRef.current += 1;
+    void loadResults(1, "replace");
+  }, [filters, isTypeReady, loadResults, sortBy]);
+
+  useEffect(() => {
+    if (!isTypeReady) {
+      return;
+    }
+
+    const node = sentinelRef.current;
+    if (!node) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (!entries[0]?.isIntersecting || isAppendingRef.current) {
+          return;
+        }
+
+        if (currentPage >= totalPages) {
+          return;
+        }
+
+        const nextPage = currentPage + 1;
+        setCurrentPage(nextPage);
+        void loadResults(nextPage, "append");
+      },
+      {
+        root: null,
+        rootMargin: "200px 0px",
+        threshold: 0,
+      }
+    );
+
+    observer.observe(node);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [currentPage, isTypeReady, loadResults, totalPages]);
 
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
     window.scrollTo({ top: 0, behavior: "smooth" });
+    void loadResults(page, "replace");
   };
 
-  const handleToggleFilters = () => {
-    setShowAdvancedFilters(!showAdvancedFilters);
-  };
   console.log(filters)
   return (
     <main className="min-h-screen bg-[var(--primary-bg-color)]">
@@ -114,9 +199,7 @@ export default function SearchPage() {
               onSortChange={setSortBy}
               viewMode={viewMode}
               onViewModeChange={setViewMode}
-              onToggleFilters={() =>
-                setShowAdvancedFilters(!showAdvancedFilters)
-              }
+              onToggleFilters={() => {}}
               filters={filters}
             />
           </div>
@@ -127,7 +210,7 @@ export default function SearchPage() {
               </div>
             </div>
 
-            {isPending ? (
+            {isInitialLoading && data.length === 0 ? (
               <div className="col-span-1 md:col-span-9 flex w-full flex-col justify-items-center ">
                 <div
                   className="grid md:gap-6 md:grid-cols-2 lg:grid-cols-3"
@@ -182,52 +265,9 @@ export default function SearchPage() {
                     }
                   })}
                 </div>
-                {/* Pagination */}
-                {totalPages > 1 && (
-                  <div className="flex justify-center gap-2 mt-8">
-                    <Button
-                      variant="outline"
-                      className="hover:cursor-pointer"
-                      onClick={() => handlePageChange(currentPage - 1)}
-                      disabled={currentPage === 1 || isPending}
-                    >
-                      <ChevronLeft className="h-4 w-4" />
-                    </Button>
-                    {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
-                      let pageNumber;
-
-                      if (totalPages <= 5) {
-                        pageNumber = i + 1;
-                      } else if (currentPage <= 3) {
-                        pageNumber = i + 1;
-                      } else if (currentPage >= totalPages - 2) {
-                        pageNumber = totalPages - 4 + i;
-                      } else {
-                        pageNumber = currentPage - 2 + i;
-                      }
-
-                      return (
-                        <Button
-                          key={pageNumber}
-                          className="hover:cursor-pointer"
-                          variant={
-                            pageNumber === currentPage ? "default" : "outline"
-                          }
-                          onClick={() => handlePageChange(pageNumber)}
-                          disabled={isPending}
-                        >
-                          {pageNumber}
-                        </Button>
-                      );
-                    })}
-                    <Button
-                      variant="outline"
-                      className="hover:cursor-pointer"
-                      onClick={() => handlePageChange(currentPage + 1)}
-                      disabled={currentPage === totalPages || isPending}
-                    >
-                      <ChevronRight className="h-4 w-4" />
-                    </Button>
+                {currentPage < totalPages && (
+                  <div ref={sentinelRef} className="py-6 text-center text-sm text-gray-600">
+                    {isLoadingMore ? "Loading more results..." : ""}
                   </div>
                 )}
               </div>

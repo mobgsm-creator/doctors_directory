@@ -2323,7 +2323,7 @@ export const locations: string[] = [
 "Clogher",
 "Longhope",
 "Llanfairfechan",
-]
+].sort((left, right) => left.localeCompare(right, undefined, { sensitivity: "base" }))
 
 export const cityMap: Record<string, string> = {'Aberaeron': 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/17/a3/dc/ef/20190515-115045-largejpg.jpg?w=500&h=500&s=1', 
     'Aberdare': 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/25/cf/fb/1a/capti_r.jpg?w=500&h=500&s=1', 
