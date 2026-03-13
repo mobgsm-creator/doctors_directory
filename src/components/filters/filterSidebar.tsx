@@ -160,13 +160,30 @@ export function AdvancedFilterSidebar({ pageType }: AdvancedFiltersProps) {
 
   const handleClinicFilterChange = (key: string, value: string) => {
     setClinicFilters(prev => ({ ...prev, [key]: value }));
-    setLocalFilters(prev => ({
-      ...prev,
-      query: key === "query" ? value : prev.query,
-      services: key === "servicesOffered" ? (value !== "all" ? [value] : []) : prev.services,
-      location: key === "location" ? (value !== "all" ? value : "") : prev.location,
-      rating: key === "rating" ? (value !== "all" ? Number(value) : 0) : prev.rating,
-    }));
+    setLocalFilters(prev => {
+      let nextServices = prev.services;
+      if (key === "servicesOffered") {
+        nextServices = value !== "all" ? [value] : [];
+      }
+
+      let nextLocation = prev.location;
+      if (key === "location") {
+        nextLocation = value !== "all" ? value : "";
+      }
+
+      let nextRating = prev.rating;
+      if (key === "rating") {
+        nextRating = value !== "all" ? Number(value) : 0;
+      }
+
+      return {
+        ...prev,
+        query: key === "query" ? value : prev.query,
+        services: nextServices,
+        location: nextLocation,
+        rating: nextRating,
+      };
+    });
   };
 
   const handlePractitionerFilterChange = (key: string, value: string) => {
@@ -177,12 +194,27 @@ export function AdvancedFilterSidebar({ pageType }: AdvancedFiltersProps) {
         nextCategory = value !== "all" ? value : "";
       }
 
+      let nextServices = prev.services;
+      if (key === "practitioner_specialty") {
+        nextServices = value !== "all" ? [value] : [];
+      }
+
+      let nextLocation = prev.location;
+      if (key === "City") {
+        nextLocation = value !== "all" ? value : "";
+      }
+
+      let nextRating = prev.rating;
+      if (key === "rating") {
+        nextRating = value !== "all" ? Number(value) : 0;
+      }
+
       return {
         ...prev,
         query: key === "query" ? value : prev.query,
-        services: key === "practitioner_specialty" ? (value !== "all" ? [value] : []) : prev.services,
-        location: key === "City" ? (value !== "all" ? value : "") : prev.location,
-        rating: key === "rating" ? (value !== "all" ? Number(value) : 0) : prev.rating,
+        services: nextServices,
+        location: nextLocation,
+        rating: nextRating,
         category: nextCategory,
       };
     });
@@ -190,13 +222,30 @@ export function AdvancedFilterSidebar({ pageType }: AdvancedFiltersProps) {
 
   const handleProductFilterChange = (key: string, value: string) => {
     setProductFilters(prev => ({ ...prev, [key]: value }));
-    setLocalFilters(prev => ({
-      ...prev,
-      query: key === "query" ? value : prev.query,
-      services: key === "product_category" ? (value !== "all" ? [value] : []) : prev.services,
-      category: key === "brand" ? (value !== "all" ? value : "") : prev.category,
-      location: key === "distributor_cleaned" ? (value !== "all" ? value : "") : prev.location,
-    }));
+    setLocalFilters(prev => {
+      let nextServices = prev.services;
+      if (key === "product_category") {
+        nextServices = value !== "all" ? [value] : [];
+      }
+
+      let nextCategory = prev.category;
+      if (key === "brand") {
+        nextCategory = value !== "all" ? value : "";
+      }
+
+      let nextLocation = prev.location;
+      if (key === "distributor_cleaned") {
+        nextLocation = value !== "all" ? value : "";
+      }
+
+      return {
+        ...prev,
+        query: key === "query" ? value : prev.query,
+        services: nextServices,
+        category: nextCategory,
+        location: nextLocation,
+      };
+    });
   };
 
   return (

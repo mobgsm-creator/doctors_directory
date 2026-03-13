@@ -72,9 +72,9 @@ export const hasAccreditationArrayFlag = (
 
 export const normalizeCredentialToken = (value: string): string => {
   try {
-    return decodeURIComponent(value).toLowerCase().replace(/[\s-]/g, '')
+    return decodeURIComponent(value).toLowerCase().replaceAll(/[\s-]/g, '')
   } catch {
-    return value.toLowerCase().replace(/[\s-]/g, '')
+    return value.toLowerCase().replaceAll(/[\s-]/g, '')
   }
 }
 

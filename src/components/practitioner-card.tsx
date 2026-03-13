@@ -24,9 +24,9 @@ for (const p of practitionersData) {
     practitionersIndex.set(clinic, bucket);
   }
 }
-
+type PractitionerOrClinic = Practitioner | Clinic | Product | string
 interface PractitionerCardProps {
-  practitioner: Practitioner | Clinic | Product | string;
+  practitioner: PractitionerOrClinic;
   customLink?:string
   
 }
