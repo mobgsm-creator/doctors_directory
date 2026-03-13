@@ -51,6 +51,136 @@ const defaultProductFilters = {
   query: "",
 };
 
+type LocalFilterTarget = "services" | "location" | "rating" | "category";
+
+interface LocalFilterRule {
+  readonly key: string;
+  readonly target: LocalFilterTarget;
+  readonly whenSet: (value: string) => SearchFilters[LocalFilterTarget];
+  readonly whenAll: SearchFilters[LocalFilterTarget];
+}
+
+const clinicLocalFilterRules: readonly LocalFilterRule[] = [
+  {
+    key: "servicesOffered",
+    target: "services",
+    whenSet: (value) => [value],
+    whenAll: [],
+  },
+  {
+    key: "location",
+    target: "location",
+    whenSet: (value) => value,
+    whenAll: "",
+  },
+  {
+    key: "rating",
+    target: "rating",
+    whenSet: (value) => Number(value),
+    whenAll: 0,
+  },
+];
+
+const practitionerLocalFilterRules: readonly LocalFilterRule[] = [
+  {
+    key: "practitioner_specialty",
+    target: "services",
+    whenSet: (value) => [value],
+    whenAll: [],
+  },
+  {
+    key: "City",
+    target: "location",
+    whenSet: (value) => value,
+    whenAll: "",
+  },
+  {
+    key: "rating",
+    target: "rating",
+    whenSet: (value) => Number(value),
+    whenAll: 0,
+  },
+  {
+    key: "practitioner_qualifications",
+    target: "category",
+    whenSet: (value) => value,
+    whenAll: "",
+  },
+];
+
+const productLocalFilterRules: readonly LocalFilterRule[] = [
+  {
+    key: "product_category",
+    target: "services",
+    whenSet: (value) => [value],
+    whenAll: [],
+  },
+  {
+    key: "brand",
+    target: "category",
+    whenSet: (value) => value,
+    whenAll: "",
+  },
+  {
+    key: "distributor_cleaned",
+    target: "location",
+    whenSet: (value) => value,
+    whenAll: "",
+  },
+];
+
+const applyLocalFilterRules = (
+  prev: SearchFilters,
+  key: string,
+  value: string,
+  rules: readonly LocalFilterRule[]
+): SearchFilters => {
+  const nextQuery = key === "query" ? value : prev.query;
+
+  for (const rule of rules) {
+    if (rule.key !== key) {
+      continue;
+    }
+
+    const resolvedValue = value !== "all" ? rule.whenSet(value) : rule.whenAll;
+
+    if (rule.target === "services") {
+      return {
+        ...prev,
+        query: nextQuery,
+        services: resolvedValue as SearchFilters["services"],
+      };
+    }
+
+    if (rule.target === "location") {
+      return {
+        ...prev,
+        query: nextQuery,
+        location: resolvedValue as SearchFilters["location"],
+      };
+    }
+
+    if (rule.target === "rating") {
+      return {
+        ...prev,
+        query: nextQuery,
+        rating: resolvedValue as SearchFilters["rating"],
+      };
+    }
+
+    return {
+      ...prev,
+      query: nextQuery,
+      category: resolvedValue as SearchFilters["category"],
+    };
+  }
+
+  return {
+    ...prev,
+    query: nextQuery,
+  };
+};
+
 
 
 export function AdvancedFilterSidebar({ pageType }: AdvancedFiltersProps) {
@@ -81,6 +211,16 @@ export function AdvancedFilterSidebar({ pageType }: AdvancedFiltersProps) {
   const [practitionerFilters, setPractitionerFilters] = useState(defaultPractitionerFilters);
 
   const [productFilters, setProductFilters] = useState(defaultProductFilters);
+
+  const createFilterChangeHandler = <T extends Record<string, string>>(
+    setFilterState: React.Dispatch<React.SetStateAction<T>>,
+    rules: readonly LocalFilterRule[]
+  ) => {
+    return (key: string, value: string) => {
+      setFilterState((prev) => ({ ...prev, [key]: value }));
+      setLocalFilters((prev) => applyLocalFilterRules(prev, key, value, rules));
+    };
+  };
 
   useEffect(() => {
     setLocalFilters(filters);
@@ -143,95 +283,20 @@ export function AdvancedFilterSidebar({ pageType }: AdvancedFiltersProps) {
     }));
   };
 
-  const handleClinicFilterChange = (key: string, value: string) => {
-    setClinicFilters(prev => ({ ...prev, [key]: value }));
-    setLocalFilters(prev => {
-      let nextServices = prev.services;
-      if (key === "servicesOffered") {
-        nextServices = value !== "all" ? [value] : [];
-      }
+  const handleClinicFilterChange = createFilterChangeHandler(
+    setClinicFilters,
+    clinicLocalFilterRules
+  );
 
-      let nextLocation = prev.location;
-      if (key === "location") {
-        nextLocation = value !== "all" ? value : "";
-      }
+  const handlePractitionerFilterChange = createFilterChangeHandler(
+    setPractitionerFilters,
+    practitionerLocalFilterRules
+  );
 
-      let nextRating = prev.rating;
-      if (key === "rating") {
-        nextRating = value !== "all" ? Number(value) : 0;
-      }
-
-      return {
-        ...prev,
-        query: key === "query" ? value : prev.query,
-        services: nextServices,
-        location: nextLocation,
-        rating: nextRating,
-      };
-    });
-  };
-
-  const handlePractitionerFilterChange = (key: string, value: string) => {
-    setPractitionerFilters(prev => ({ ...prev, [key]: value }));
-    setLocalFilters(prev => {
-      let nextCategory = prev.category;
-      if (key === "practitioner_qualifications") {
-        nextCategory = value !== "all" ? value : "";
-      }
-
-      let nextServices = prev.services;
-      if (key === "practitioner_specialty") {
-        nextServices = value !== "all" ? [value] : [];
-      }
-
-      let nextLocation = prev.location;
-      if (key === "City") {
-        nextLocation = value !== "all" ? value : "";
-      }
-
-      let nextRating = prev.rating;
-      if (key === "rating") {
-        nextRating = value !== "all" ? Number(value) : 0;
-      }
-
-      return {
-        ...prev,
-        query: key === "query" ? value : prev.query,
-        services: nextServices,
-        location: nextLocation,
-        rating: nextRating,
-        category: nextCategory,
-      };
-    });
-  };
-
-  const handleProductFilterChange = (key: string, value: string) => {
-    setProductFilters(prev => ({ ...prev, [key]: value }));
-    setLocalFilters(prev => {
-      let nextServices = prev.services;
-      if (key === "product_category") {
-        nextServices = value !== "all" ? [value] : [];
-      }
-
-      let nextCategory = prev.category;
-      if (key === "brand") {
-        nextCategory = value !== "all" ? value : "";
-      }
-
-      let nextLocation = prev.location;
-      if (key === "distributor_cleaned") {
-        nextLocation = value !== "all" ? value : "";
-      }
-
-      return {
-        ...prev,
-        query: key === "query" ? value : prev.query,
-        services: nextServices,
-        category: nextCategory,
-        location: nextLocation,
-      };
-    });
-  };
+  const handleProductFilterChange = createFilterChangeHandler(
+    setProductFilters,
+    productLocalFilterRules
+  );
 
   return (
     <>
