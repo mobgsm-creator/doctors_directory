@@ -15,6 +15,42 @@ interface AdvancedFiltersProps {
   pageType?: string
 }
 
+const defaultTreatmentFilters = {
+  concern: "all",
+  treatmentType: "all",
+  treatmentArea: "all",
+  priceRange: "all",
+};
+
+const defaultClinicFilters = {
+  servicesOffered: "all",
+  location: "all",
+  rating: "all",
+  distance: "all",
+  query: "",
+};
+
+const defaultClinicOnClearFilters = {
+  ...defaultClinicFilters,
+  location: "",
+};
+
+const defaultPractitionerFilters = {
+  practitioner_specialty: "all",
+  practitioner_qualifications: "all",
+  City: "all",
+  rating: "all",
+  query: "",
+};
+
+const defaultProductFilters = {
+  product_category: "all",
+  brand: "all",
+  distributor_cleaned: "all",
+  category: "all",
+  query: "",
+};
+
 
 
 export function AdvancedFilterSidebar({ pageType }: AdvancedFiltersProps) {
@@ -29,50 +65,29 @@ export function AdvancedFilterSidebar({ pageType }: AdvancedFiltersProps) {
   setIsOpen(!isOpen);
   setIsFilterActive(true); // Reset active state when toggling
 };
-  const [treatmentFilters, setTreatmentFilters] = useState({
-    concern: "all",
-    treatmentType: "all",
-    treatmentArea: "all",
-    priceRange: "all"
+  const createEmptySearchFilters = (): SearchFilters => ({
+    type: filters.type,
+    query: "",
+    category: "",
+    location: "",
+    rating: 0,
+    services: [],
   });
 
-  const [clinicFilters, setClinicFilters] = useState({
-    servicesOffered: "all",
-    location: "all",
-    rating: "all",
-    distance: "all",
-    query: ""
-  });
+  const [treatmentFilters, setTreatmentFilters] = useState(defaultTreatmentFilters);
 
-  const [practitionerFilters, setPractitionerFilters] = useState({
-    practitioner_specialty: "all",
-    practitioner_qualifications: "all",
-    City: "all",
-    rating: "all",
-    query: ""
-  });
+  const [clinicFilters, setClinicFilters] = useState(defaultClinicFilters);
 
-  const [productFilters, setProductFilters] = useState({
-    product_category: "all",
-    brand: "all",
-    distributor_cleaned: "all",
-    category: "all",
-    query: ""
-  });
+  const [practitionerFilters, setPractitionerFilters] = useState(defaultPractitionerFilters);
+
+  const [productFilters, setProductFilters] = useState(defaultProductFilters);
 
   useEffect(() => {
     setLocalFilters(filters);
   }, [filters]);
 
   const handleApplyFilters = () => {
-    let updatedFilters: SearchFilters = {
-      type: filters.type,
-      query: "",
-      category: "",
-      location: "",
-      rating: 0,
-      services: [],
-    };
+    let updatedFilters: SearchFilters = createEmptySearchFilters();
     
     if (filters.type === "Treatments") {
       updatedFilters.category = treatmentFilters.concern !== "all" ? treatmentFilters.concern : "";
@@ -108,44 +123,14 @@ export function AdvancedFilterSidebar({ pageType }: AdvancedFiltersProps) {
   };
 
   const handleClearFilters = () => {
-    const clearedFilters: SearchFilters = {
-      type: filters.type,
-      query: "",
-      category: "",
-      location: "",
-      rating: 0,
-      services: [],
-    };
+    const clearedFilters: SearchFilters = createEmptySearchFilters();
     setLocalFilters(clearedFilters);
     setFilters(clearedFilters);
     
-    setTreatmentFilters({
-      concern: "all",
-      treatmentType: "all",
-      treatmentArea: "all",
-      priceRange: "all"
-    });
-    setClinicFilters({
-      servicesOffered: "all",
-      location: "all",
-      rating: "all",
-      distance: "all",
-      query: ""
-    });
-    setPractitionerFilters({
-      practitioner_specialty: "all",
-      practitioner_qualifications: "all",
-      City: "all",
-      rating: "all",
-      query: ""
-    });
-    setProductFilters({
-      product_category: "all",
-      brand: "all",
-      distributor_cleaned: "all",
-      category: "all",
-      query: ""
-    });
+    setTreatmentFilters(defaultTreatmentFilters);
+    setClinicFilters(defaultClinicFilters);
+    setPractitionerFilters(defaultPractitionerFilters);
+    setProductFilters(defaultProductFilters);
     
     onToggle();
   };
@@ -290,20 +275,8 @@ export function AdvancedFilterSidebar({ pageType }: AdvancedFiltersProps) {
                 filters={treatmentFilters}
                 onChange={handleTreatmentFilterChange}
                 onClear={() => {
-                  setTreatmentFilters({
-                    concern: "all",
-                    treatmentType: "all",
-                    treatmentArea: "all",
-                    priceRange: "all",
-                  });
-                  setFilters({
-                    type: filters.type,
-                    query: "",
-                    category: "",
-                    location: "",
-                    rating: 0,
-                    services: [],
-                  });
+                  setTreatmentFilters(defaultTreatmentFilters);
+                  setFilters(createEmptySearchFilters());
                 }}
               />
             )}
@@ -313,21 +286,8 @@ export function AdvancedFilterSidebar({ pageType }: AdvancedFiltersProps) {
                 filters={clinicFilters}
                 onChange={handleClinicFilterChange}
                 onClear={() => {
-                  setClinicFilters({
-                    servicesOffered: "all",
-                    location: "",
-                    rating: "all",
-                    distance: "all",
-                    query: "",
-                  });
-                  setFilters({
-                    type: filters.type,
-                    query: "",
-                    category: "",
-                    location: "",
-                    rating: 0,
-                    services: [],
-                  });
+                  setClinicFilters(defaultClinicOnClearFilters);
+                  setFilters(createEmptySearchFilters());
                 }}
                 setIsFilterActive={setIsFilterActive}
               />
@@ -338,21 +298,8 @@ export function AdvancedFilterSidebar({ pageType }: AdvancedFiltersProps) {
                 filters={practitionerFilters}
                 onChange={handlePractitionerFilterChange}
                 onClear={() => {
-                  setPractitionerFilters({
-                    practitioner_specialty: "all",
-                    practitioner_qualifications: "all",
-                    City: "all",
-                    rating: "all",
-                    query: "",
-                  });
-                  setFilters({
-                    type: filters.type,
-                    query: "",
-                    category: "",
-                    location: "",
-                    rating: 0,
-                    services: [],
-                  });
+                  setPractitionerFilters(defaultPractitionerFilters);
+                  setFilters(createEmptySearchFilters());
                 }}
                 setIsFilterActive={setIsFilterActive}
               />
@@ -363,21 +310,8 @@ export function AdvancedFilterSidebar({ pageType }: AdvancedFiltersProps) {
                 filters={productFilters}
                 onChange={handleProductFilterChange}
                 onClear={() => {
-                  setProductFilters({
-                    product_category: "all",
-                    brand: "all",
-                    distributor_cleaned: "all",
-                    category: "all",
-                    query: "",
-                  });
-                  setFilters({
-                    type: filters.type,
-                    query: "",
-                    category: "",
-                    location: "",
-                    rating: 0,
-                    services: [],
-                  });
+                  setProductFilters(defaultProductFilters);
+                  setFilters(createEmptySearchFilters());
                 }}
                 setIsFilterActive={setIsFilterActive}
               />
