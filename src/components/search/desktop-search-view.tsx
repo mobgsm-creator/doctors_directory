@@ -32,7 +32,7 @@ export function DesktopSearchView({
   const { filters } = useSearchStore();
   return (
     <div className="hidden md:block">
-      <div className="flex flex-row items-center mb-2 shadow-sm">
+      <div className="flex flex-row items-center mb-2">
         <div className="relative">
           <button
             className="flex-1 bg-white border border-r-0 border-gray-300 px-4 py-3 rounded-l-lg"
@@ -48,7 +48,7 @@ export function DesktopSearchView({
           </button>
         </div>
 
-        <div className="flex-1 bg-white shadow-sm border rounded-r-lg sm:rounded-r-none border-gray-300 px-4 py-3">
+        <div className="flex-1 bg-white border rounded-r-lg sm:rounded-r-none border-gray-300 px-4 py-3">
           <Input
             placeholder="I'm searching for"
             value={localFilters.query}
@@ -62,7 +62,7 @@ export function DesktopSearchView({
           />
         </div>
 
-        <div className="hidden sm:flex bg-white rounded-r-lg shadow-sm border border-gray-300 px-4 py-3 flex items-center gap-2">
+        <div className="hidden sm:flex bg-white rounded-r-lg border border-gray-300 px-4 py-3 flex items-center gap-2">
           <Locate className="w-5 h-5 text-gray-600" />
           <Input
             placeholder="Location"

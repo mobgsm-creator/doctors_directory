@@ -14,7 +14,7 @@ export default function Loading() {
             <Button
               variant="ghost"
               size="sm"
-              className="gap-2 hover:cursor-pointer"
+              className="gap-2 hover:cursor-pointer hover:bg-white hover:text-black"
             >
               <ArrowLeft className="h-4 w-4" />
               Back to Directory
@@ -23,18 +23,14 @@ export default function Loading() {
         </div>
       </div>
       <div className="max-w-6xl mx-auto py-6  border-[#C4C4C4]">
-        <SearchBar  />
+        <SearchBar />
       </div>
 
       <section className="pt-2 py-10 md:px-4 bg-white md:bg-[var(--primary-bg-color)]">
         <div className="container mx-auto max-w-6xl space-y-8">
-          <div className="m-0 md:mb-4">
-            
-          </div>
+          <div className="m-0 md:mb-4"></div>
           <div className="grid grid-cols-1 md:gap-8 md:grid-cols-12">
-            <div className="col-span-1 md:col-span-3">
-              
-            </div>
+            <div className="col-span-1 md:col-span-3"></div>
 
             {
               <div className="col-span-1 md:col-span-8">

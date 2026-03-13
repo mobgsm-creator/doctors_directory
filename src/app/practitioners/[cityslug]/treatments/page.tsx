@@ -125,7 +125,11 @@ export default function CityTreatmentsPage({ params }: PageProps) {
         <div className="flex flex-col pt-2 w-full pb-4 px-4 md:px-0 md:pt-0 md:border-0 border-b border-[#C4C4C4]">
           <div className="sticky top-0 z-10">
             <Link href="/" prefetch={false}>
-              <Button variant="ghost" size="sm" className="gap-2 hover:cursor-pointer">
+              <Button
+                variant="ghost"
+                size="sm"
+                className="gap-2 hover:cursor-pointer hover:bg-white hover:text-black"
+              >
                 <ArrowLeft className="h-4 w-4" />
                 Back to Directory
               </Button>
@@ -137,7 +141,9 @@ export default function CityTreatmentsPage({ params }: PageProps) {
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
-                  <BreadcrumbLink href="/directory/practitioners">All Practitioners</BreadcrumbLink>
+                  <BreadcrumbLink href="/directory/practitioners">
+                    All Practitioners
+                  </BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
@@ -145,7 +151,9 @@ export default function CityTreatmentsPage({ params }: PageProps) {
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
-                  <BreadcrumbPage>Aesthetic Injectables Treatments</BreadcrumbPage>
+                  <BreadcrumbPage>
+                    Aesthetic Injectables Treatments
+                  </BreadcrumbPage>
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>
@@ -164,7 +172,6 @@ export default function CityTreatmentsPage({ params }: PageProps) {
             <ItemsGrid items={uniqueTreatments.length === 0 ? defaultTreatments : uniqueTreatments} customLink={`/practitioners/${normalizedCitySlug}/treatments`} />
           </div>
         </div>
-
       </div>
     </main>
   );
