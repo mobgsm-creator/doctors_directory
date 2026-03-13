@@ -28,8 +28,20 @@ export function SearchResultsHeader({
   const startIndex = (currentPage - 1) * itemsPerPage + 1;
   const endIndex = Math.min(currentPage * itemsPerPage, totalResults);
 
+  const hasQuery = typeof filters.query === "string" && filters.query.trim().length > 0;
+  const hasCategory =
+    typeof filters.category === "string" &&
+    filters.category.trim().length > 0 &&
+    filters.category !== "All Categories";
+  const hasLocation =
+    typeof filters.location === "string" &&
+    filters.location.trim().length > 0 &&
+    filters.location.toLowerCase() !== "all";
+
   const activeFiltersCount =
-    (filters.category && filters.category !== "All Categories" ? 1 : 0) +
+    (hasQuery ? 1 : 0) +
+    (hasCategory ? 1 : 0) +
+    (hasLocation ? 1 : 0) +
     (filters.rating > 0 ? 1 : 0) +
     filters.services.length;
 
