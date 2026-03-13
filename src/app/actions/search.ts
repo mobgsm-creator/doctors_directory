@@ -180,27 +180,41 @@ export async function searchPractitioners(
       }
 
       if (filters.services.length > 0) {
-        const serviceMapping = {
+        const treatmentTypeMapping = {
           "surgical": ["Surgery", "Liposuction", "Breast Augmentation", "Rhinoplasty"],
           "non-surgical": ["Botox", "Fillers", "Chemical Peel", "Microneedling", "HIFU", "CoolSculpting", "Profhilo"],
           "laser": ["Laser Treatments", "IPL Treatment", "Tattoo Removal", "Aviclear"],
           "injectable": ["Botox", "Fillers", "Aqualyx", "B12 Injection", "Profhilo", "Platelet Rich Plasma"],
           "skincare": ["Chemical Peel", "Microneedling", "Facial Treatments", "Obagi"],
+        }
+
+        const treatmentType = filters.services[0]
+        const mappedTreatments = treatmentTypeMapping[treatmentType as keyof typeof treatmentTypeMapping] || []
+        const hasMatchingType = mappedTreatments.some((mappedTreatment) =>
+          treatment.toLowerCase().includes(mappedTreatment.toLowerCase()) ||
+          mappedTreatment.toLowerCase().includes(treatment.toLowerCase())
+        ) || treatment.toLowerCase().includes(treatmentType.toLowerCase())
+
+        if (!hasMatchingType) return false
+      }
+
+      if (filters.location) {
+        const treatmentAreaMapping = {
           "face": ["Anti Wrinkle Treatment", "Botox", "Fillers", "Chemical Peel", "Cheek Enhancement", "Chin Enhancement", "Lips", "Marionettes", "Tear Trough Treatment"],
           "body": ["CoolSculpting", "Liposuction", "Breast Augmentation", "Aqualyx", "Lymphatic Drainage"],
           "hair": ["Alopecia", "Hair Treatments"],
           "skin": ["Acne", "Pigmentation Treatment", "Melasma Treatment", "Rosacea Treatment", "Eczema Treatment"],
-          "lips": ["Lips", "Fillers"]
+          "lips": ["Lips", "Fillers"],
         }
 
-        const hasMatchingService = filters.services.some((service) => {
-          const mappedTreatments = serviceMapping[service as keyof typeof serviceMapping] || []
-          return mappedTreatments.some(mappedTreatment => 
-            treatment.toLowerCase().includes(mappedTreatment.toLowerCase()) ||
-            mappedTreatment.toLowerCase().includes(treatment.toLowerCase())
-          ) || treatment.toLowerCase().includes(service.toLowerCase())
-        })
-        if (!hasMatchingService) return false
+        const area = filters.location.toLowerCase()
+        const mappedTreatments = treatmentAreaMapping[area as keyof typeof treatmentAreaMapping] || []
+        const hasMatchingArea = mappedTreatments.some((mappedTreatment) =>
+          treatment.toLowerCase().includes(mappedTreatment.toLowerCase()) ||
+          mappedTreatment.toLowerCase().includes(treatment.toLowerCase())
+        ) || treatment.toLowerCase().includes(area)
+
+        if (!hasMatchingArea) return false
       }
 
       return true

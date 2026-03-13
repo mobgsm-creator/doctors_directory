@@ -14,6 +14,8 @@ export default function Header() {
     }
   }, [menuOpen]);
 
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://staging.consentz.com'
+
   return (
     <header className="bg-[var(--primary-bg-color)]">
       <div className="max-w-7xl mx-auto px-6 py-6 flex items-center justify-center md:justify-between">
@@ -23,18 +25,18 @@ export default function Header() {
 
         <div className="nav-drop hidden md:flex gap-8 items-center w-full justify-between">
           <nav className="flex gap-8 items-center mx-auto">
-            <button type="button" className="font-medium hover:text-black">
+            <a href={`${baseUrl}/directory`} className="font-medium hover:text-black">
               HOME
-            </button>
-            <button type="button" className="font-medium hover:text-black">
+            </a>
+            <a href={`${baseUrl}/features`} className="font-medium hover:text-black">
               FEATURES
-            </button>
-            <button type="button" className="font-medium hover:text-black">
+            </a>
+            <a href={`${baseUrl}/blog`} className="font-medium hover:text-black">
               BLOG
-            </button>
-            <button type="button" className="font-medium hover:text-black">
+            </a>
+            <a href={`${baseUrl}/faqs`} className="font-medium hover:text-black">
               FAQS
-            </button>
+            </a>
           </nav>
           <Button className="font-bold border-2 py-2 px-5 w-auto h-auto border-black bg-transparent text-black hover:bg-black hover:text-white">
             BOOK DEMO
