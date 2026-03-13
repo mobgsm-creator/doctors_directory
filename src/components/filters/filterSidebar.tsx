@@ -51,6 +51,38 @@ const defaultProductFilters = {
   query: "",
 };
 
+const createClinicFiltersFromSearchFilters = (filters: SearchFilters) => ({
+  ...defaultClinicFilters,
+  servicesOffered: filters.services[0] || "all",
+  location: filters.location || "all",
+  rating: filters.rating > 0 ? String(filters.rating) : "all",
+  query: filters.query || "",
+});
+
+const createPractitionerFiltersFromSearchFilters = (filters: SearchFilters) => ({
+  ...defaultPractitionerFilters,
+  practitioner_specialty: filters.services[0] || "all",
+  practitioner_qualifications: filters.category || "all",
+  City: filters.location || "all",
+  rating: filters.rating > 0 ? String(filters.rating) : "all",
+  query: filters.query || "",
+});
+
+const createProductFiltersFromSearchFilters = (filters: SearchFilters) => ({
+  ...defaultProductFilters,
+  product_category: filters.services[0] || "all",
+  brand: filters.category || "all",
+  distributor_cleaned: filters.location || "all",
+  query: filters.query || "",
+});
+
+const createTreatmentFiltersFromSearchFilters = (filters: SearchFilters) => ({
+  ...defaultTreatmentFilters,
+  concern: filters.category || "all",
+  treatmentType: filters.services[0] || "all",
+  treatmentArea: filters.location || "all",
+});
+
 type LocalFilterTarget = "services" | "location" | "rating" | "category";
 
 interface LocalFilterRule {
@@ -204,13 +236,21 @@ export function AdvancedFilterSidebar({ pageType }: AdvancedFiltersProps) {
     services: [],
   });
 
-  const [treatmentFilters, setTreatmentFilters] = useState(defaultTreatmentFilters);
+  const [treatmentFilters, setTreatmentFilters] = useState(
+    createTreatmentFiltersFromSearchFilters(filters)
+  );
 
-  const [clinicFilters, setClinicFilters] = useState(defaultClinicFilters);
+  const [clinicFilters, setClinicFilters] = useState(
+    createClinicFiltersFromSearchFilters(filters)
+  );
 
-  const [practitionerFilters, setPractitionerFilters] = useState(defaultPractitionerFilters);
+  const [practitionerFilters, setPractitionerFilters] = useState(
+    createPractitionerFiltersFromSearchFilters(filters)
+  );
 
-  const [productFilters, setProductFilters] = useState(defaultProductFilters);
+  const [productFilters, setProductFilters] = useState(
+    createProductFiltersFromSearchFilters(filters)
+  );
 
   const createFilterChangeHandler = <T extends Record<string, string>>(
     setFilterState: React.Dispatch<React.SetStateAction<T>>,
@@ -224,6 +264,25 @@ export function AdvancedFilterSidebar({ pageType }: AdvancedFiltersProps) {
 
   useEffect(() => {
     setLocalFilters(filters);
+
+    if (filters.type === "Treatments") {
+      setTreatmentFilters(createTreatmentFiltersFromSearchFilters(filters));
+      return;
+    }
+
+    if (filters.type === "Clinic") {
+      setClinicFilters(createClinicFiltersFromSearchFilters(filters));
+      return;
+    }
+
+    if (filters.type === "Practitioner") {
+      setPractitionerFilters(createPractitionerFiltersFromSearchFilters(filters));
+      return;
+    }
+
+    if (filters.type === "Product") {
+      setProductFilters(createProductFiltersFromSearchFilters(filters));
+    }
   }, [filters]);
 
   const handleApplyFilters = () => {
@@ -231,10 +290,10 @@ export function AdvancedFilterSidebar({ pageType }: AdvancedFiltersProps) {
     
     if (filters.type === "Treatments") {
       updatedFilters.category = treatmentFilters.concern !== "all" ? treatmentFilters.concern : "";
-      const activeFilters = [];
-      if (treatmentFilters.treatmentType !== "all") activeFilters.push(treatmentFilters.treatmentType);
-      if (treatmentFilters.treatmentArea !== "all") activeFilters.push(treatmentFilters.treatmentArea);
-      updatedFilters.services = activeFilters;
+      updatedFilters.services =
+        treatmentFilters.treatmentType !== "all" ? [treatmentFilters.treatmentType] : [];
+      updatedFilters.location =
+        treatmentFilters.treatmentArea !== "all" ? treatmentFilters.treatmentArea : "";
     } else if (filters.type === "Clinic") {
       updatedFilters.query = clinicFilters.query || "";
       updatedFilters.services = clinicFilters.servicesOffered !== "all" ? [clinicFilters.servicesOffered] : [];

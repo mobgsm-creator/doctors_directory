@@ -15,25 +15,25 @@ export default function ClinicLabels({ clinic }: Readonly<{ readonly clinic: Cli
         {clinic.isCQC?.[0] && (
           
             <img
-              src="/directory/qcc.jpg"
+              src="/directory/qcc_logo.jpg"
               alt="CQC"
-              className="w-14 h-auto rounded-full inline"
+              className="w-12 h-auto rounded-full inline"
             />
  
         )}
         {clinic.isHIW?.[0] && (
        
             <img
-              src="/directory/HIW.jpg"
+              src="/directory/HIW_logo.jpg"
               alt="HIW"
-              className="w-20 h-auto inline"
+              className="w-12 h-auto inline"
             />
 
         )}
         {clinic.isHIS?.[0] && (
         
             <img
-              src="/directory/HIS.jpg"
+              src="/directory/HIS_logo.jpg"
               alt="HIS"
               className="w-12 h-auto inline"
             />
@@ -49,9 +49,9 @@ export default function ClinicLabels({ clinic }: Readonly<{ readonly clinic: Cli
 
         {clinic.isRQIA?.[0] && (
           <img
-            src="/directory/rqia.jpg"
+            src="/directory/rqia_logo.jpg"
             alt="RQIA"
-            className="w-16 h-auto inline"
+            className="w-12 h-auto inline"
           />
         )}
         {clinic.isSaveFace && (

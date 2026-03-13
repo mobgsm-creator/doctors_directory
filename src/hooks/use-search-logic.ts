@@ -22,6 +22,15 @@ export function useSearchLogic() {
     return filters;
   });
 
+  useEffect(() => {
+    if (pathname.includes("/treatments")) {
+      setLocalFilters({ ...filters, type: "Treatments" });
+      return;
+    }
+
+    setLocalFilters(filters);
+  }, [filters, pathname]);
+
   const options = pathname.includes("/treatments") ? ["Treatments"] : ["Practitioner", "Clinic", "Product", "Treatments"];
 
   const getDynamicPlaceholderText = () => {
