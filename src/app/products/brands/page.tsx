@@ -24,17 +24,11 @@ export default async function ProfilePage() {
       <div className="sticky top-0 z-10">
         <div className="container mx-auto max-w-6xl px-4 py-4">
           <Link href="/" prefetch={false}>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="gap-2 hover:cursor-pointer hover:bg-white hover:text-black"
-            >
+            <Button variant="ghost" size="sm" className="gap-2 hover:cursor-pointer">
               <ArrowLeft className="h-4 w-4" />
               Back to Directory
             </Button>
           </Link>
-        </div>
-        <div className="container mx-auto max-w-6xl px-4 py-2">
           <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem>
@@ -42,83 +36,79 @@ export default async function ProfilePage() {
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbLink href="/directory/products">
-                Products
-              </BreadcrumbLink>
+              <BreadcrumbLink href="/directory/products">Products</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbLink href={`/directory/products/brands`}>
-                Brands
-              </BreadcrumbLink>
+              <BreadcrumbLink href={`/directory/products/brands`}>Brands</BreadcrumbLink>
             </BreadcrumbItem>
+      
+            
           </BreadcrumbList>
-          </Breadcrumb>
+        </Breadcrumb>
         </div>
+
       </div>
 
       <div className="container mx-auto max-w-6xl pt-0 md:px-4 py-20 space-y-8">
         {/* Profile Header */}
-
-        <div className="flex flex-col pt-2 w-full pb-4 px-4 md:px-0">
+        
+     <div className="flex flex-col pt-2 w-full pb-4 px-4 md:px-0">
           <h1 className="text-sm md:text-2xl md:font-semibold mb-1 md:mb-2">
             Products by Brand
           </h1>
-        </div>
-        <div className="mx-auto max-w-7xl md:px-4 py-4 md:py-12 flex flex-col sm:flex-row justify-center w-full md:gap-10">
-          <CollectionsFilter pageType="Product" />
-          <div className="flex-1 min-w-0">
-            <ItemsGrid items={brands} />
-          </div>
         </div>
         <div className="mx-auto max-w-7xl  flex flex-col sm:flex-row justify-center w-full md:gap-10">
                   <CollectionsFilter pageType="Product" />
                   <div className="flex-1 min-w-0">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {brands.map((brand, index) => {
-            const itemDetail = clinics.find((clinic) => clinic.brand === brand);
+            const itemDetail = clinics.find((clinic) => clinic.brand === brand)
             return (
-              <div key={brand} style={{ animationDelay: `${index * 50}ms` }}>
-                <Link href={`/products/brands/${brand}`} className="block">
-                  <Card className="group bg-white hover:shadow-lg transition-all duration-300 cursor-pointer border border-[#BDBDBD] md:border-0 rounded-lg sm:bg-transparent sm:border-0 sm:hover:border-accent/50 sm:flex sm:flex-col sm:gap-5">
-                    <CardHeader className="pb-2 px-2">
-                      <h2 id={`brand-${brand}`} className="text-center">
-                        {brand}
-                      </h2>
-                      <div className="flex items-start gap-4">
-                        <div className="text-center flex-1 min-w-0 items-center flex flex-col">
-                          <div className="flex w-full flex-row items-start border-b border-[#C4C4C4] md:border-0 md:flex-col md:items-center">
-                            <div className="w-20 h-20 md:w-[150px] md:h-[150px] flex items-center justify-center overflow-hidden md:mb-4 mr-0">
-                              <img
-                                src={
-                                  itemDetail?.image_url?.replaceAll('"', "") ||
-                                  "/placeholder.svg"
-                                }
-                                alt="Product"
-                                className="object-cover rounded-full min-w-full min-h-full"
-                              />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </CardHeader>
+            <div key={brand} style={{ animationDelay: `${index * 50}ms` }}>
+              <Link href={`/products/brands/${brand}`} className="block">
+          <Card className="group bg-white hover:shadow-lg transition-all duration-300 cursor-pointer border border-[#BDBDBD] md:border-0 rounded-lg sm:bg-transparent sm:border-0 sm:hover:border-accent/50 sm:flex sm:flex-col sm:gap-5">
+            <CardHeader className="pb-2 px-2">
+              <h2 id={`brand-${brand}`} className='text-center'>
+                {brand}
+              </h2>
+              <div className="flex items-start gap-4">
+                <div className="text-center flex-1 min-w-0 items-center flex flex-col">
+                  <div className="flex w-full flex-row items-start border-b border-[#C4C4C4] md:border-0 md:flex-col md:items-center">
+                    <div className="w-20 h-20 md:w-[150px] md:h-[150px] flex items-center justify-center overflow-hidden md:mb-4 mr-0">
+                      <img
+                        src={
+                          itemDetail?.image_url?.replaceAll('"', "") ||
+                          "/placeholder.svg"
+                        }
+                        alt="Product"
+                        className="object-cover rounded-full min-w-full min-h-full"
+                      />
+                    </div>
 
-                    <CardContent className="pt-0 px-0 md:px-4 space-y-4">
-                      <div className="flex md:items-center md:justify-center gap-2 text-[11px] text-gray-600">
-                        <span className="text-pretty text-center">
-                          {(itemDetail as Product)?.category.trim()}
-                        </span>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </Link>
+                    
+                  </div>
+                </div>
               </div>
-            );
-          })}
+            </CardHeader>
+
+            <CardContent className="pt-0 px-0 md:px-4 space-y-4">
+              <div className="flex md:items-center md:justify-center gap-2 text-[11px] text-gray-600">
+                <span className="text-pretty text-center">
+                  {(itemDetail as Product)?.category.trim()}
+                </span>
+              </div>
+              
+            </CardContent>
+          </Card>
+        </Link>
+            </div>
+          )})}
         </div>
                   </div>
                 </div>
       </div>
+      
     </main>
   );
 }

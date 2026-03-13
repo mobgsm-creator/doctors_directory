@@ -86,17 +86,11 @@ export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
       <div className="sticky top-0 z-10">
         <div className="container mx-auto max-w-6xl px-4 py-4">
           <Link href="/" prefetch={false}>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="gap-2 hover:cursor-pointer hover:bg-white hover:text-black hover:bg-white hover:text-black"
-            >
+            <Button variant="ghost" size="sm" className="gap-2 hover:cursor-pointer">
               <ArrowLeft className="h-4 w-4" />
               Back to Directory
             </Button>
           </Link>
-        </div>
-        <div className="container mx-auto max-w-6xl px-4 py-2">
           <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem>
@@ -104,68 +98,21 @@ export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbLink href="/directory/practitioners">
-                Practitioners
-              </BreadcrumbLink>
+              <BreadcrumbLink href="/directory/practitioners">Practitioners</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbLink
-                href={`/directory/practitioners/${practitioner.City}`}
-              >{`${practitioner.City}`}</BreadcrumbLink>
+              <BreadcrumbLink href={`/directory/practitioners/${practitioner.City}`}>{`${practitioner.City}`}</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
               <BreadcrumbPage>{`${practitioner.practitioner_name}`}</BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
-          </Breadcrumb>
+        </Breadcrumb>
         </div>
-      </div>
+       </div>
 
-      <div className="container mx-auto max-w-6xl pt-0 md:px-4 py-20 space-y-8">
-        {/* Profile Header */}
-        <ProfileHeader
-          clinic={clinic}
-          k_value={k}
-          clinic_list={JSON.parse(clinic!.Associated_Clinics!)}
-        />
-
-        <div className="px-4 md:px-0">
-          <PractitionerTabs />
-
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-10 mb-4">
-            <div className="order-2 lg:order-1 col-span-1 lg:col-span-6">
-              <ClinicDetailsMarkdown clinic={practitioner} />
-            </div>
-            <div className="order-1 lg:order-2 col-span-1 lg:col-span-4">
-              <div className="border border-gray-300 rounded-xl p-6">
-                <div className="flex flex-row gap-2 pt-2 mb-4 items-center justify-center text-sm">
-                  <div className="inline-flex items-center gap-1">
-                    <div className="flex items-center">
-                      {Array.from({ length: 5 }, (_, i) => (
-                        <Star
-                          key={i}
-                          className={`h-4 w-4 ${
-                            i < k!.rating ? "fill-black text-black" : "/30"
-                          }`}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                  <span
-                    className="border-l border-black pl-2 underline"
-                    aria-label={`${practitioner.reviewCount} reviews`}
-                  >
-                    {practitioner.reviewCount
-                      ? practitioner.reviewCount + "+ Reviews Analysed"
-                      : "0"}
-                  </span>
-                </div>
-                <div className="border-t border-gray-300 my-6"></div>
-                <Stats data={boxplotData} />
-              </div>
-              {/* HOURS */}
        <div className="container mx-auto max-w-6xl pt-0 md:px-4 py-20 space-y-8">
                {/* Profile Header */}
                <ProfileHeader clinic={clinic} k_value={k} clinic_list ={JSON.parse(clinic!.Associated_Clinics!)} />
@@ -209,25 +156,18 @@ export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
               {flatHours && (
                 <Section title="Hours" id="hours">
                   <div className="overflow-x-auto shadow-none">
-                    <table
-                      className="w-full align-top text-sm bg-white border-collapse"
-                      data-testid="hours"
-                    >
+                    <table className="w-full align-top text-sm bg-white border-collapse" data-testid='hours'>
                       <tbody>
-                        {typeof flatHours === "object" ? (
-                          Object.entries(flatHours).map(([day, time]) => (
-                            <tr key={day}>
-                              <td className="align-top border-0 px-1 py-1 font-medium">
-                                {day?.toString()}
-                              </td>
-                              <td className="align-top border-0 px-1 py-1">
-                                {time?.toString()}
-                              </td>
-                            </tr>
-                          ))
-                        ) : (
-                          <tr>Not listed</tr>
-                        )}
+                        {typeof flatHours === 'object' ? Object.entries(flatHours).map(([day, time]) => (
+                          <tr key={day}>
+                            <td className="align-top border-0 px-1 py-1 font-medium">
+                              {day?.toString()}
+                            </td>
+                            <td className="align-top border-0 px-1 py-1">
+                              {time?.toString()}
+                            </td>
+                          </tr>
+                        )):<tr>Not listed</tr>}
                       </tbody>
                     </table>
                   </div>
@@ -235,57 +175,63 @@ export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
               )}
               {/* PAYMENTS */}
               {k?.Payments && (
-                <Section title="Payment Options" id="payments">
-                  {Array.isArray(k?.Payments) ? (
-                    <ul
-                      className="list-disc ml-6 space-y-1"
-                      data-testid="payments"
-                    >
-                      {k?.Payments.map((p: any, idx: number) => (
-                        <li key={idx}>{p}</li>
-                      ))}
-                    </ul>
-                  ) : k?.Payments && typeof k?.Payments === "object" ? (
-                    <div className="overflow-x-auto shadow-none">
-                      <table className="w-full text-sm bg-white">
-                        <tbody>
-                          {Object.entries(k?.Payments).map(
-                            ([k, v]) =>
-                              k !== "Source" && (
-                                <tr key={k}>
-                                  <td className="border-0 px-4 py-2 font-medium">
-                                    {k?.toString()}
-                                  </td>
-                                  <td className="border-0 px-4 py-2">
-                                    {v?.toString()}
-                                  </td>
-                                </tr>
-                              ),
-                          )}
-                        </tbody>
-                      </table>
-                    </div>
-                  ) : (
-                    k?.Payments || "Not listed"
-                  )}
-                </Section>
-              )}
-              <div className="flex flex-col sm:flex-row gap-2">
-                <GoogleMapsEmbed
-                  url={practitioner.url}
-                  className="w-full h-auto md:h-80"
-                />
+              <Section title="Payment Options" id="payments">
+                {Array.isArray(k?.Payments) ? (
+                  <ul className="list-disc ml-6 space-y-1" data-testid="payments">
+                    {k?.Payments.map((p: any, idx: number) => (
+                      <li key={idx}>{p}</li>
+                    ))}
+                  </ul>
+                ) : k?.Payments && typeof k?.Payments === "object" ? (
+                  <div className="overflow-x-auto shadow-none">
+                    <table className="w-full text-sm bg-white">
+                      <tbody>
+                        {Object.entries(k?.Payments).map(
+                          ([k, v]) =>
+                            k !== "Source" && (
+                              <tr key={k}>
+                                <td className="border-0 px-4 py-2 font-medium">
+                                  {k?.toString()}
+                                </td>
+                                <td className="border-0 px-4 py-2">
+                                  {v?.toString()}
+                                </td>
+                              </tr>
+                            )
+                        )}
+                      </tbody>
+                    </table>
+                  </div>
+                ) : (
+                  k?.Payments || "Not listed"
+                )}
+              </Section>)}
+              <div className='flex flex-col sm:flex-row gap-2'>
+                   
+                
+                     <GoogleMapsEmbed
+                 url={practitioner.url}
+                 
+                 className="w-full h-auto md:h-80"
+               />  
+               
+             </div>
+                   
+                   </div>
+                 </div>
+                 
+       
+
+                </div>
+                 <div className="px-4 md:px-0 space-y-6">
+                   <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Treatments in ${practitioner.City}`}</h3>
+                   <MoreItems items={uniqueTreatments} />
+                   <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Cities in the UK`}</h3>
+                   <MoreItems items={locations} />
+
+                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-        <div className="px-4 md:px-0 space-y-6">
-          <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Treatments in ${practitioner.City}`}</h3>
-          <MoreItems items={uniqueTreatments} />
-          <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Cities in the UK`}</h3>
-          <MoreItems items={locations} />
-        </div>
-      </div>
+
     </main>
   );
 }

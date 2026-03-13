@@ -7,7 +7,7 @@ import { modalities,edu,accreditations, brands, product_categories,locations } f
  export function Footer() {
   const recognitions = [...accreditations, ...edu]
    return (
-     <>
+      <>
        <footer className="bg-[var(--dune)] py-16 text-white">
          <div className="max-w-7xl mx-auto px-6">
            <div className="flex items-center flex-col md:flex-row justify-between">
@@ -431,112 +431,5 @@ import { modalities,edu,accreditations, brands, product_categories,locations } f
          </div>
     </footer>
       </>
-
-               <h4 className="font-semibold">
-                 <Link
-                   prefetch={false}
-                   href={`/products/category/`}
-                   className="block text-sm"
-                 >
-                   Products by Category
-                 </Link>
-               </h4>
-             </div>
-
-             {/* Column 3: For Practitioners */}
-             <div>
-               <h4 className="font-bold text-white mb-4">For Practitioners</h4>
-               <ul className="space-y-2">
-                 <li>
-                   <button
-                     className="text-left w-full hover:text-white transition"
-                     type="button"
-                   >
-                     Join Directory
-                   </button>
-                 </li>
-                 <li>
-                   <button
-                     className="text-left w-full hover:text-white transition"
-                     type="button"
-                   >
-                     Update Profile
-                   </button>
-                 </li>
-                 <li>
-                   <button
-                     className="text-left w-full hover:text-white transition"
-                     type="button"
-                   >
-                     Verification Process
-                   </button>
-                 </li>
-                 <li>
-                   <button
-                     className="text-left w-full hover:text-white transition"
-                     type="button"
-                   >
-                     Support
-                   </button>
-                 </li>
-               </ul>
-             </div>
-
-             {/* Column 4: Contact */}
-             <div>
-               <h4 className="font-bold text-white mb-4">Contact</h4>
-               <ul className="space-y-2">
-                 <li>
-                   <button
-                     className="text-left w-full hover:text-white transition"
-                     type="button"
-                   >
-                     Info@healthdirectory.com
-                   </button>
-                 </li>
-                 <li>
-                   <button
-                     className="text-left w-full hover:text-white transition"
-                     type="button"
-                   >
-                     +44 208 050 3372
-                   </button>
-                 </li>
-                 <li>
-                   <button
-                     className="text-left w-full hover:text-white transition"
-                     type="button"
-                   >
-                     Contact@consentz.com
-                   </button>
-                 </li>
-               </ul>
-             </div>
-
-             {/* Column 4: Contact */}
-             <div>
-               <h4 className="font-bold text-white mb-4">Contact</h4>
-               <ul className="space-y-2">
-                 <li>
-                   <div className="hover:text-white transition">
-                     Info@healthdirectory.com
-                   </div>
-                 </li>
-                 <li>
-                   <div className="hover:text-white transition">
-                     +44 208 050 3372
-                   </div>
-                 </li>
-                 <li>
-                   <div className="hover:text-white transition">
-                     Contact@consentz.com
-                   </div>
-                 </li>
-               </ul>
-             </div>
-           </div>
-         </div>
-       </footer>
-     </>
    );
 }
