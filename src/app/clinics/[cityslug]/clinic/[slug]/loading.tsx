@@ -21,16 +21,18 @@ export default async function Loading({ params }: { params: { cityslug: string; 
             <Button
               variant="ghost"
               size="sm"
-              className="gap-2 hover:cursor-pointer"
+              className="gap-2 hover:cursor-pointer hover:bg-white hover:text-black"
             >
               <ArrowLeft className="h-4 w-4" />
               Back to Directory
             </Button>
           </Link>
-          <BreadcrumbSkeleton 
+        </div>
+        <div className="container mx-auto max-w-6xl px-4 py-2">
+          <BreadcrumbSkeleton
             items={[
               { label: "Home", href: "/" },
-              { label: "Clinics", href: "/clinics" }
+              { label: "Clinics", href: "/clinics" },
             ]}
           />
         </div>
@@ -51,7 +53,7 @@ export default async function Loading({ params }: { params: { cityslug: string; 
             <Skeleton className="h-6 w-40" />
             <div className="flex flex-col sm:flex-row gap-2">
               <ReviewsSkeleton />
-              
+
               <div className="w-full sm:w-80">
                 <Skeleton className="w-full h-80 rounded-lg" />
               </div>

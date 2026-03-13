@@ -107,10 +107,14 @@ export default function ProfilePage({ params }: ProfilePageProps) {
     <main className="bg-(--primary-bg-color)">
       <SearchBar />
       <div className="mx-auto max-w-6xl md:px-4 py-4 md:py-12">
-      <div className="flex flex-col pt-2 w-full pb-4 px-4 md:px-0 md:pt-0 md:border-0 border-b border-[#C4C4C4]">
-        <div className="sticky top-0 z-10">
+        <div className="flex flex-col pt-2 w-full pb-4 px-4 md:px-0 md:pt-0 md:border-0 border-b border-[#C4C4C4]">
+          <div className="sticky top-0 z-10">
             <Link href="/" prefetch={false}>
-              <Button variant="ghost" size="sm" className="gap-2 hover:cursor-pointer">
+              <Button
+                variant="ghost"
+                size="sm"
+                className="gap-2 hover:cursor-pointer hover:bg-white hover:text-black"
+              >
                 <ArrowLeft className="h-4 w-4" />
                 Back to Directory
               </Button>
@@ -122,38 +126,62 @@ export default function ProfilePage({ params }: ProfilePageProps) {
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
-                  <BreadcrumbLink href="/directory/practitioners">Practitioners</BreadcrumbLink>
+                  <BreadcrumbLink href="/directory/practitioners">
+                    Practitioners
+                  </BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
-                  <BreadcrumbLink href={`/directory/practitioners/${cityslug}`}>{cityslug.charAt(0).toUpperCase() + cityslug.slice(1)}</BreadcrumbLink>
+                  <BreadcrumbLink href={`/directory/practitioners/${cityslug}`}>
+                    {cityslug.charAt(0).toUpperCase() + cityslug.slice(1)}
+                  </BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
-                  <BreadcrumbLink href={`/directory/practitioners/${cityslug}/treatments/${treatmentslug}`}>{treatmentslug.replace("%20", " ").split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")}</BreadcrumbLink>
+                  <BreadcrumbLink
+                    href={`/directory/practitioners/${cityslug}/treatments/${treatmentslug}`}
+                  >
+                    {treatmentslug
+                      .replace("%20", " ")
+                      .split(" ")
+                      .map(
+                        (word) => word.charAt(0).toUpperCase() + word.slice(1),
+                      )
+                      .join(" ")}
+                  </BreadcrumbLink>
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>
           </div>
-          
+
           <div className="flex flex-col pt-2 w-full pb-4 px-4 md:px-0">
-          <h1 className="text-sm md:text-2xl md:font-semibold mb-1 md:mb-2">
-            Top {treatmentslug.replace("%20", " ").split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")} Providers in {cityslug}
-          </h1></div>
-      </div>
+            <h1 className="text-sm md:text-2xl md:font-semibold mb-1 md:mb-2">
+              Top{" "}
+              {treatmentslug
+                .replace("%20", " ")
+                .split(" ")
+                .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                .join(" ")}{" "}
+              Providers in {cityslug}
+            </h1>
+          </div>
+        </div>
         <div className="mx-auto max-w-7xl md:px-4 py-4 md:py-12 flex flex-col sm:flex-row justify-center w-full md:gap-10">
           <CollectionsFilter pageType="Practitioner" />
           <div className="flex-1 min-w-0">
             <ItemsGrid items={filteredClinics} />
           </div>
         </div>
-        <CityTreatmentPage cityData={cityData} treatment={treatment} slug={treatmentslug.replaceAll("%20", " ")} />
+        <CityTreatmentPage
+          cityData={cityData}
+          treatment={treatment}
+          slug={treatmentslug.replaceAll("%20", " ")}
+        />
         <div className="px-4 md:px-0 space-y-6">
           <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Treatments in ${cityslug}`}</h3>
           <MoreItems items={uniqueTreatments} />
           <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Cities in the UK`}</h3>
           <MoreItems items={locations} />
-
         </div>
       </div>
     </main>

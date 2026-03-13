@@ -52,7 +52,11 @@ export default async function ProfilePage() {
         <div className="flex flex-col pt-2 w-full pb-4 px-4 md:px-0 md:pt-0 md:border-0 border-b border-[#C4C4C4]">
           <div className="sticky top-0 z-10">
             <Link href="/" prefetch={false}>
-              <Button variant="ghost" size="sm" className="gap-2 hover:cursor-pointer">
+              <Button
+                variant="ghost"
+                size="sm"
+                className="gap-2 hover:cursor-pointer hover:bg-white hover:text-black"
+              >
                 <ArrowLeft className="h-4 w-4" />
                 Back to Directory
               </Button>
@@ -64,11 +68,15 @@ export default async function ProfilePage() {
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
-                  <BreadcrumbLink href="/practitioners">Practitioners</BreadcrumbLink>
+                  <BreadcrumbLink href="/practitioners">
+                    Practitioners
+                  </BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
-                  <BreadcrumbLink href="/credentials">Credentialed Providers</BreadcrumbLink>
+                  <BreadcrumbLink href="/credentials">
+                    Credentialed Providers
+                  </BreadcrumbLink>
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>
@@ -86,15 +94,17 @@ export default async function ProfilePage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 px-4 md:px-0">
           {recognitionsWithImages.map((credential) => {
-       
-
             return (
-           <PractitionerCard key={credential.slug} practitioner={credential} />
-          )})}
+              <PractitionerCard
+                key={credential.slug}
+                practitioner={credential}
+              />
+            );
+          })}
         </div>
       </div>
     </main>
-  )
+  );
 }
 
 // export async function generateStaticParams() {

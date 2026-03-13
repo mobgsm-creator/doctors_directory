@@ -77,7 +77,11 @@ export default async function AccreditedClinicsPage({ params }: Readonly<Accredi
         <div className="flex flex-col pt-2 w-full pb-4 px-4 md:px-0 md:pt-0 md:border-0 border-b border-[#C4C4C4]">
           <div className="sticky top-0 z-10">
             <Link href="/" prefetch={false}>
-              <Button variant="ghost" size="sm" className="gap-2 hover:cursor-pointer">
+              <Button
+                variant="ghost"
+                size="sm"
+                className="gap-2 hover:cursor-pointer hover:bg-white hover:text-black"
+              >
                 <ArrowLeft className="h-4 w-4" />
                 Back to Directory
               </Button>
@@ -89,11 +93,17 @@ export default async function AccreditedClinicsPage({ params }: Readonly<Accredi
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
-                  <BreadcrumbLink href="/directory/accredited">Accredited Clinics & Practitioners</BreadcrumbLink>
+                  <BreadcrumbLink href="/directory/accredited">
+                    Accredited Clinics & Practitioners
+                  </BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
-                  <BreadcrumbLink href={`/directory/accredited/${accreditationSlug}/clinics`}>{accreditationSlug}</BreadcrumbLink>
+                  <BreadcrumbLink
+                    href={`/directory/accredited/${accreditationSlug}/clinics`}
+                  >
+                    {accreditationSlug}
+                  </BreadcrumbLink>
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>
@@ -124,7 +134,12 @@ export default async function AccreditedClinicsPage({ params }: Readonly<Accredi
                 </CardHeader>
                 <CardContent className="pt-0">
                   <p className="text-sm text-gray-600 mb-4">
-                    {filteredClinics.filter(c => c.City === city).length} clinic{filteredClinics.filter(c => c.City === city).length !== 1 ? 's' : ''} found
+                    {filteredClinics.filter((c) => c.City === city).length}{" "}
+                    clinic
+                    {filteredClinics.filter((c) => c.City === city).length !== 1
+                      ? "s"
+                      : ""}{" "}
+                    found
                   </p>
                   <Button variant="outline" className="w-full">
                     View Clinics
@@ -136,7 +151,7 @@ export default async function AccreditedClinicsPage({ params }: Readonly<Accredi
         </div>
       </div>
     </main>
-  )
+  );
 }
 
 export async function generateMetadata({ params }: AccreditedClinicsPageProps) {

@@ -114,7 +114,11 @@ export default function CityTreatmentsPage({ params }: PageProps) {
         <div className="flex flex-col pt-2 w-full pb-4 px-4 md:px-0 md:pt-0 md:border-0 border-b border-[#C4C4C4]">
           <div className="sticky top-0 z-10">
             <Link href="/" prefetch={false}>
-              <Button variant="ghost" size="sm" className="gap-2 hover:cursor-pointer">
+              <Button
+                variant="ghost"
+                size="sm"
+                className="gap-2 hover:cursor-pointer hover:bg-white hover:text-black"
+              >
                 <ArrowLeft className="h-4 w-4" />
                 Back to Directory
               </Button>
@@ -126,15 +130,21 @@ export default function CityTreatmentsPage({ params }: PageProps) {
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
-                  <BreadcrumbLink href="/directory/practitioners">All Practitioners</BreadcrumbLink>
+                  <BreadcrumbLink href="/directory/practitioners">
+                    All Practitioners
+                  </BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
-                  <BreadcrumbLink href={`/directory/practitioners/${cityslug}`}>{cityslug.charAt(0).toUpperCase() + cityslug.slice(1)}</BreadcrumbLink>
+                  <BreadcrumbLink href={`/directory/practitioners/${cityslug}`}>
+                    {cityslug.charAt(0).toUpperCase() + cityslug.slice(1)}
+                  </BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
-                  <BreadcrumbPage>Aesthetic Injectables Treatments</BreadcrumbPage>
+                  <BreadcrumbPage>
+                    Aesthetic Injectables Treatments
+                  </BreadcrumbPage>
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>
@@ -150,10 +160,16 @@ export default function CityTreatmentsPage({ params }: PageProps) {
         <div className="mx-auto max-w-7xl md:px-4 py-4 md:py-12 flex flex-col sm:flex-row justify-center w-full md:gap-10">
           <CollectionsFilter pageType="Treatments" />
           <div className="flex-1 min-w-0">
-            <ItemsGrid items={uniqueTreatments.length === 0 ? defaultTreatments : uniqueTreatments} customLink={`/practitioners/${cityslug}/services`} />
+            <ItemsGrid
+              items={
+                uniqueTreatments.length === 0
+                  ? defaultTreatments
+                  : uniqueTreatments
+              }
+              customLink={`/practitioners/${cityslug}/services`}
+            />
           </div>
         </div>
-
       </div>
     </main>
   );

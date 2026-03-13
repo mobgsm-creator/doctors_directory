@@ -83,12 +83,12 @@ export default function SearchPage() {
   return (
     <main className="min-h-screen bg-[var(--primary-bg-color)]">
       <div className="bg-[var(--primary-bg-color)] backdrop-blur-sm sticky top-0 z-10">
-        <div className="container mx-auto max-w-6xl px-4 py-4">
+        <div className="container mx-auto max-w-6xl px-0 py-2">
           <Link href="/" prefetch={false}>
             <Button
               variant="ghost"
               size="sm"
-              className="gap-2 hover:cursor-pointer"
+              className="gap-2 hover:cursor-pointer hover:bg-white hover:text-black"
             >
               <ArrowLeft className="h-4 w-4" />
               Back to Directory
@@ -96,7 +96,7 @@ export default function SearchPage() {
           </Link>
         </div>
       </div>
-      <div className="max-w-6xl mx-auto py-6 border-[#C4C4C4] px-2 md:px-0">
+      <div className="max-w-6xl mx-auto py-2 border-[#C4C4C4] px-2 md:px-0">
         <SearchBar handlePageChange={handlePageChange} />
         <div className="block md:hidden">
           <AdvancedFilterSidebar />
@@ -123,17 +123,14 @@ export default function SearchPage() {
           <div className="grid grid-cols-1 md:gap-8 md:grid-cols-12">
             <div className="col-span-1 md:col-span-3">
               <div className="hidden md:block">
-          <AdvancedFilterSidebar />
-        </div>
-               
-            
+                <AdvancedFilterSidebar />
+              </div>
             </div>
 
             {isPending ? (
-              <div className="col-span-1 md:col-span-8">
+              <div className="col-span-1 md:col-span-9 flex w-full flex-col justify-items-center ">
                 <div
-                  className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3
-              gap-4"
+                  className="grid md:gap-6 md:grid-cols-2 lg:grid-cols-3"
                 >
                   {Array.from({ length: ITEMS_PER_PAGE }).map((_, i) => (
                     <PractitionerCardSkeleton key={i} />
@@ -155,32 +152,35 @@ export default function SearchPage() {
                       No results found.
                     </p>
                   )}
-                  {data.map((item) =>
-                    {
-                      
-                      if(typeof item === "string") {
-                        return (
+                  {data.map((item) => {
+                    if (typeof item === "string") {
+                      return (
                         <PractitionerCard key={item} practitioner={item} />
-                      ) 
+                      );
                     }
-                  
-                      if ("product_name" in item){
-                        return (
-                          <PractitionerCard key={item.product_name} practitioner={item} />
-                        )
-                      }
-                      if(!("practitioner_name" in item)){
-                        return (
-                          <PractitionerCard key={item.slug} practitioner={item} />
-                        )
-                      }
-                      if("practitioner_name" in item){
-                        return (
-                        <PractitionerCard key={item.practitioner_name+item.practitioner_title} practitioner={item} />
-                        )
-                      }
-                      
-                    })}
+
+                    if ("product_name" in item) {
+                      return (
+                        <PractitionerCard
+                          key={item.product_name}
+                          practitioner={item}
+                        />
+                      );
+                    }
+                    if (!("practitioner_name" in item)) {
+                      return (
+                        <PractitionerCard key={item.slug} practitioner={item} />
+                      );
+                    }
+                    if ("practitioner_name" in item) {
+                      return (
+                        <PractitionerCard
+                          key={item.practitioner_name + item.practitioner_title}
+                          practitioner={item}
+                        />
+                      );
+                    }
+                  })}
                 </div>
                 {/* Pagination */}
                 {totalPages > 1 && (

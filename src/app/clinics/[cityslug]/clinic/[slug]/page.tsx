@@ -83,11 +83,17 @@ export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
       <div className="bg-card/50 backdrop-blur-sm sticky top-0 z-10">
         <div className="container mx-auto max-w-6xl px-4 py-4">
           <Link href="/" prefetch={false}>
-            <Button variant="ghost" size="sm" className="gap-2 hover:cursor-pointer">
+            <Button
+              variant="ghost"
+              size="sm"
+              className="gap-2 hover:cursor-pointer hover:bg-white hover:text-black"
+            >
               <ArrowLeft className="h-4 w-4" />
               Back to Directory
             </Button>
           </Link>
+        </div>
+        <div className="container mx-auto max-w-6xl px-4 py-2">
           <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem>
@@ -99,16 +105,17 @@ export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbLink href={`/directory/clinics/${cityslug}`}>{`${cityslug}`}</BreadcrumbLink>
+              <BreadcrumbLink
+                href={`/directory/clinics/${cityslug}`}
+              >{`${cityslug}`}</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
               <BreadcrumbPage>{`${clinic.slug}`}</BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
-        </Breadcrumb>
+          </Breadcrumb>
         </div>
-        
       </div>
 
       <div className="container mx-auto max-w-6xl pt-0 md:px-4 py-20 space-y-8">
@@ -131,9 +138,7 @@ export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
                         <Star
                           key={i}
                           className={`h-4 w-4 ${
-                            i < clinic.rating
-                              ? "fill-black text-black"
-                              : "/30"
+                            i < clinic.rating ? "fill-black text-black" : "/30"
                           }`}
                         />
                       ))}
@@ -143,10 +148,9 @@ export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
                     className="border-l border-black pl-2 underline"
                     aria-label={`${clinic.reviewCount} reviews`}
                   >
-                    {clinic.reviewCount ? clinic.reviewCount+"+ Reviews Analysed" : "0"}
-                     
-              
-
+                    {clinic.reviewCount
+                      ? clinic.reviewCount + "+ Reviews Analysed"
+                      : "0"}
                   </span>
                 </div>
                 <div className="border-t border-gray-300 my-6"></div>
@@ -156,18 +160,25 @@ export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
               {flatHours && (
                 <Section title="Hours" id="hours">
                   <div className="overflow-x-auto shadow-none">
-                    <table className="w-full align-top text-sm bg-white border-collapse" data-testid='hours'>
+                    <table
+                      className="w-full align-top text-sm bg-white border-collapse"
+                      data-testid="hours"
+                    >
                       <tbody>
-                        {typeof flatHours === 'object' ? Object.entries(flatHours).map(([day, time]) => (
-                          <tr key={day}>
-                            <td className="align-top border-0 px-1 py-1 font-medium">
-                              {day?.toString()}
-                            </td>
-                            <td className="align-top border-0 px-1 py-1">
-                              {time?.toString()}
-                            </td>
-                          </tr>
-                        )):<tr>Not listed</tr>}
+                        {typeof flatHours === "object" ? (
+                          Object.entries(flatHours).map(([day, time]) => (
+                            <tr key={day}>
+                              <td className="align-top border-0 px-1 py-1 font-medium">
+                                {day?.toString()}
+                              </td>
+                              <td className="align-top border-0 px-1 py-1">
+                                {time?.toString()}
+                              </td>
+                            </tr>
+                          ))
+                        ) : (
+                          <tr>Not listed</tr>
+                        )}
                       </tbody>
                     </table>
                   </div>
@@ -175,59 +186,55 @@ export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
               )}
               {/* PAYMENTS */}
               {clinic.Payments && (
-              <Section title="Payment Options" id="payments">
-                {Array.isArray(clinic.Payments) ? (
-                  <ul className="list-disc ml-6 space-y-1" data-testid="payments">
-                    {clinic.Payments.map((p: any, idx: number) => (
-                      <li key={idx}>{p}</li>
-                    ))}
-                  </ul>
-                ) : clinic.Payments && typeof clinic.Payments === "object" ? (
-                  <div className="overflow-x-auto shadow-none">
-                    <table className="w-full text-sm bg-white">
-                      <tbody>
-                        {Object.entries(clinic.Payments).map(
-                          ([k, v]) =>
-                            k !== "Source" && (
-                              <tr key={k}>
-                                <td className="border-0 px-4 py-2 font-medium">
-                                  {k?.toString()}
-                                </td>
-                                <td className="border-0 px-4 py-2">
-                                  {v?.toString()}
-                                </td>
-                              </tr>
-                            )
-                        )}
-                      </tbody>
-                    </table>
-                  </div>
-                ) : (
-                  clinic.Payments || "Not listed"
-                )}
-              </Section>)}
-              <div className='flex flex-col sm:flex-row gap-2'>
-              <GoogleMapsEmbed
-          url={clinic.url}
-          
-          className="w-full h-auto md:h-80"
-        />
-          </div>
-              
+                <Section title="Payment Options" id="payments">
+                  {Array.isArray(clinic.Payments) ? (
+                    <ul
+                      className="list-disc ml-6 space-y-1"
+                      data-testid="payments"
+                    >
+                      {clinic.Payments.map((p: any, idx: number) => (
+                        <li key={idx}>{p}</li>
+                      ))}
+                    </ul>
+                  ) : clinic.Payments && typeof clinic.Payments === "object" ? (
+                    <div className="overflow-x-auto shadow-none">
+                      <table className="w-full text-sm bg-white">
+                        <tbody>
+                          {Object.entries(clinic.Payments).map(
+                            ([k, v]) =>
+                              k !== "Source" && (
+                                <tr key={k}>
+                                  <td className="border-0 px-4 py-2 font-medium">
+                                    {k?.toString()}
+                                  </td>
+                                  <td className="border-0 px-4 py-2">
+                                    {v?.toString()}
+                                  </td>
+                                </tr>
+                              ),
+                          )}
+                        </tbody>
+                      </table>
+                    </div>
+                  ) : (
+                    clinic.Payments || "Not listed"
+                  )}
+                </Section>
+              )}
+              <div className="flex flex-col sm:flex-row gap-2">
+                <GoogleMapsEmbed
+                  url={clinic.url}
+                  className="w-full h-auto md:h-80"
+                />
+              </div>
             </div>
-            
-          
-          
-            
-        
-      </div>
+          </div>
         </div>
         <div className="px-4 md:px-0 space-y-6">
           <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Treatments in ${cityslug}`}</h3>
           <MoreItems items={uniqueTreatments} />
           <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Cities in the UK`}</h3>
           <MoreItems items={locations} />
-
         </div>
       </div>
     </main>

@@ -10,16 +10,22 @@ export default async function Loading({ params }: { params: { category: string }
       <div className="sticky top-0 z-10">
         <div className="container mx-auto max-w-6xl px-4 py-4">
           <Link href="/" prefetch={false}>
-            <Button variant="ghost" size="sm" className="gap-2 hover:cursor-pointer">
+            <Button
+              variant="ghost"
+              size="sm"
+              className="gap-2 hover:cursor-pointer hover:bg-white hover:text-black"
+            >
               <ArrowLeft className="h-4 w-4" />
               Back to Directory
             </Button>
           </Link>
-          <BreadcrumbSkeleton 
+        </div>
+        <div className="24">
+          <BreadcrumbSkeleton
             items={[
               { label: "Home", href: "/" },
               { label: "Products", href: "/products" },
-              { isLoading: true, skeletonWidth: "w-24" }
+              { isLoading: true, skeletonWidth: "w-24" },
             ]}
           />
         </div>
