@@ -96,7 +96,11 @@ export default async function AccreditedPractitionersPage({ params }: Readonly<A
         <div className="flex flex-col pt-2 w-full pb-4 px-4 md:px-0 md:pt-0 md:border-0 border-b border-[#C4C4C4]">
           <div className="sticky top-0 z-10">
             <Link href="/" prefetch={false}>
-              <Button variant="ghost" size="sm" className="gap-2 hover:cursor-pointer">
+              <Button
+                variant="ghost"
+                size="sm"
+                className="gap-2 hover:cursor-pointer hover:bg-white hover:text-black"
+              >
                 <ArrowLeft className="h-4 w-4" />
                 Back to Directory
               </Button>
@@ -108,16 +112,24 @@ export default async function AccreditedPractitionersPage({ params }: Readonly<A
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
-                  <BreadcrumbLink href="/directory/accredited">Accredited Clinics & Practitioners</BreadcrumbLink>
+                  <BreadcrumbLink href="/directory/accredited">
+                    Accredited Clinics & Practitioners
+                  </BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
-                
+
                 <BreadcrumbItem>
-                  <BreadcrumbLink href={`/directory/accredited/${accreditationSlug}/practitioners`}>{accreditationSlug}</BreadcrumbLink>
+                  <BreadcrumbLink
+                    href={`/directory/accredited/${accreditationSlug}/practitioners`}
+                  >
+                    {accreditationSlug}
+                  </BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
-                  <BreadcrumbPage>{cityslug.charAt(0).toUpperCase() + cityslug.slice(1)}</BreadcrumbPage>
+                  <BreadcrumbPage>
+                    {cityslug.charAt(0).toUpperCase() + cityslug.slice(1)}
+                  </BreadcrumbPage>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
               </BreadcrumbList>
@@ -127,21 +139,30 @@ export default async function AccreditedPractitionersPage({ params }: Readonly<A
 
         <div className="flex flex-col pt-2 w-full pb-4 px-4 md:px-0">
           <h1 className="text-sm md:text-2xl md:font-semibold mb-1 md:mb-2">
-            Accredited {accreditationName} Practitioners in {cityslug.charAt(0).toUpperCase() + cityslug.slice(1)}
+            Accredited {accreditationName} Practitioners in{" "}
+            {cityslug.charAt(0).toUpperCase() + cityslug.slice(1)}
           </h1>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:gap-6 animate-fade-in">
-          {filteredPractitioners.map((practitioner, index) => {
-            if (!practitioner) return null
-            return (
-            <PractitionerCard key={practitioner.practitioner_name!+practitioner.practitioner_title} practitioner={practitioner} />
-            )
-          }).filter(Boolean)}
+          {filteredPractitioners
+            .map((practitioner, index) => {
+              if (!practitioner) return null;
+              return (
+                <PractitionerCard
+                  key={
+                    practitioner.practitioner_name! +
+                    practitioner.practitioner_title
+                  }
+                  practitioner={practitioner}
+                />
+              );
+            })
+            .filter(Boolean)}
         </div>
       </div>
     </main>
-  )
+  );
 }
 
 export async function generateMetadata({ params }: AccreditedPractitionersPageProps) {

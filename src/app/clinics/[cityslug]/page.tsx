@@ -94,14 +94,18 @@ export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
   return (
     <main className="bg-(--primary-bg-color)">
       <SearchBar />
-      <div className='sm:hidden'>
-            <CollectionsFilter pageType="Clinic" />
-          </div>
+      <div className="sm:hidden">
+        <CollectionsFilter pageType="Clinic" />
+      </div>
       <div className="mx-auto max-w-6xl md:px-4 py-4 md:py-12">
-      <div className="flex flex-col pt-2 w-full pb-4 px-4 md:px-0 md:pt-0 md:border-0 border-b border-[#C4C4C4]">
-        <div className="sticky top-0 z-10">
+        <div className="flex flex-col pt-2 w-full pb-4 px-4 md:px-0 md:pt-0 md:border-0 border-b border-[#C4C4C4]">
+          <div className="sticky top-0 z-10">
             <Link href="/" prefetch={false}>
-              <Button variant="ghost" size="sm" className="gap-2 hover:cursor-pointer">
+              <Button
+                variant="ghost"
+                size="sm"
+                className="gap-2 hover:cursor-pointer hover:bg-white hover:text-black"
+              >
                 <ArrowLeft className="h-4 w-4" />
                 Back to Directory
               </Button>
@@ -113,41 +117,53 @@ export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
-                  <BreadcrumbLink href="/directory/clinics">All Clinics</BreadcrumbLink>
+                  <BreadcrumbLink href="/directory/clinics">
+                    All Clinics
+                  </BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
-                  <BreadcrumbPage>{citySlug.charAt(0).toUpperCase() + citySlug.slice(1)}</BreadcrumbPage>
+                  <BreadcrumbPage>
+                    {citySlug.charAt(0).toUpperCase() + citySlug.slice(1)}
+                  </BreadcrumbPage>
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>
           </div>
-        
         </div>
-       
+
         <div className="flex flex-col pt-2 w-full pb-4 px-4 md:px-0">
           <h1 className="text-sm md:text-2xl md:font-semibold mb-1 md:mb-2">Top Aesthetic Clinics in {citySlug}</h1>
           </div>
 
         <div className="mx-auto max-w-7xl md:px-4 py-4 md:py-12 flex flex-col sm:flex-row justify-center w-full md:gap-10">
-          <div className='hidden sm:block'>
+          <div className="hidden sm:block">
             <CollectionsFilter pageType="Clinic" />
-          </div><div className="flex-1 min-w-0">
+          </div>
+          <div className="flex-1 min-w-0">
             <ItemsGrid items={cityClinics} />
           </div>
         </div>
-         {/* City Overview */}
-        
-      
+        {/* City Overview */}
+
         <div className="px-4 md:px-0 space-y-6">
           <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Treatments in ${citySlug}`}</h3>
-          <MoreItems items={uniqueTreatments.length === 0 ? defaultTreatments : uniqueTreatments} />
+          <MoreItems
+            items={
+              uniqueTreatments.length === 0
+                ? defaultTreatments
+                : uniqueTreatments
+            }
+          />
           <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Cities in the UK`}</h3>
           <MoreItems items={locations} />
-
         </div>
-        <CityPageData cityData={cityData} uniqueTreatments={(uniqueTreatments as string[])} cityClinics={cityClinics} citySlug={citySlug} />
-        
+        <CityPageData
+          cityData={cityData}
+          uniqueTreatments={uniqueTreatments as string[]}
+          cityClinics={cityClinics}
+          citySlug={citySlug}
+        />
       </div>
     </main>
   );

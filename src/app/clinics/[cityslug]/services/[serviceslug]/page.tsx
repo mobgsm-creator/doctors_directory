@@ -96,10 +96,14 @@ const serviceMatch = categories.some((cat: string) =>
     <main className="bg-(--primary-bg-color)">
       <SearchBar />
       <div className="mx-auto max-w-6xl md:px-4 py-4 md:py-12">
-      <div className="flex flex-col pt-2 w-full pb-4 px-4 md:px-0 md:pt-0 md:border-0 border-b border-[#C4C4C4]">
-        <div className="sticky top-0 z-10">
+        <div className="flex flex-col pt-2 w-full pb-4 px-4 md:px-0 md:pt-0 md:border-0 border-b border-[#C4C4C4]">
+          <div className="sticky top-0 z-10">
             <Link href="/" prefetch={false}>
-              <Button variant="ghost" size="sm" className="gap-2 hover:cursor-pointer">
+              <Button
+                variant="ghost"
+                size="sm"
+                className="gap-2 hover:cursor-pointer hover:bg-white hover:text-black"
+              >
                 <ArrowLeft className="h-4 w-4" />
                 Back to Directory
               </Button>
@@ -111,7 +115,9 @@ const serviceMatch = categories.some((cat: string) =>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
-                  <BreadcrumbLink href="/directory/clinics">All Clinics</BreadcrumbLink>
+                  <BreadcrumbLink href="/directory/clinics">
+                    All Clinics
+                  </BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                  <BreadcrumbItem>
@@ -119,18 +125,21 @@ const serviceMatch = categories.some((cat: string) =>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
-                  <BreadcrumbPage>{serviceslug.charAt(0).toUpperCase() + serviceslug.replaceAll("%20", " ").slice(1)}</BreadcrumbPage>
+                  <BreadcrumbPage>
+                    {serviceslug.charAt(0).toUpperCase() +
+                      serviceslug.replaceAll("%20", " ").slice(1)}
+                  </BreadcrumbPage>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
               </BreadcrumbList>
             </Breadcrumb>
           </div>
-        
         </div>
         <div className="flex flex-col pt-2 w-full pb-4 px-4 md:px-0">
           <h1 className="text-sm md:text-2xl md:font-semibold mb-1 md:mb-2">
             Top {serviceslug.replaceAll("%20", " ")} Providers in {cityslug}
-          </h1></div>
+          </h1>
+        </div>
 
         <div className="mx-auto max-w-7xl md:px-4 py-4 md:py-12 flex flex-col sm:flex-row justify-center w-full md:gap-10">
           <CollectionsFilter pageType="Clinic" />
@@ -139,17 +148,23 @@ const serviceMatch = categories.some((cat: string) =>
           </div>
         </div>
 
-
-
         <div className="px-4 md:px-0 space-y-6">
           <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Treatments in ${cityslug}`}</h3>
-          <MoreItems items={uniqueTreatments.length === 0 ? defaultTreatments : uniqueTreatments} />
+          <MoreItems
+            items={
+              uniqueTreatments.length === 0
+                ? defaultTreatments
+                : uniqueTreatments
+            }
+          />
           <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Cities in the UK`}</h3>
           <MoreItems items={locations} />
-
         </div>
-                <CityTreatmentPage cityData={cityData} treatment={treatment} slug={serviceslug.replaceAll("%20", " ")} />
-        
+        <CityTreatmentPage
+          cityData={cityData}
+          treatment={treatment}
+          slug={serviceslug.replaceAll("%20", " ")}
+        />
       </div>
     </main>
   );

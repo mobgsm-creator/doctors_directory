@@ -97,7 +97,11 @@ export default function CityServicesPage({ params }: PageProps) {
         <div className="flex flex-col pt-2 w-full pb-4 px-4 md:px-0 md:pt-0 md:border-0 border-b border-[#C4C4C4]">
           <div className="sticky top-0 z-10">
             <Link href="/" prefetch={false}>
-              <Button variant="ghost" size="sm" className="gap-2 hover:cursor-pointer">
+              <Button
+                variant="ghost"
+                size="sm"
+                className="gap-2 hover:cursor-pointer hover:bg-white hover:text-black"
+              >
                 <ArrowLeft className="h-4 w-4" />
                 Back to Directory
               </Button>
@@ -109,7 +113,9 @@ export default function CityServicesPage({ params }: PageProps) {
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
-                  <BreadcrumbLink href="/directory/clinics">All Clinics</BreadcrumbLink>
+                  <BreadcrumbLink href="/directory/clinics">
+                    All Clinics
+                  </BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
@@ -117,7 +123,9 @@ export default function CityServicesPage({ params }: PageProps) {
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
-                  <BreadcrumbPage>Aesthetic Injectables Services</BreadcrumbPage>
+                  <BreadcrumbPage>
+                    Aesthetic Injectables Services
+                  </BreadcrumbPage>
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>
@@ -136,8 +144,6 @@ export default function CityServicesPage({ params }: PageProps) {
             <ItemsGrid items={uniqueTreatments.length === 0 ? defaultTreatments : uniqueTreatments} customLink={`/clinics/${normalizedCitySlug}/services`} />
           </div>
         </div>
-
-      
       </div>
     </main>
   );

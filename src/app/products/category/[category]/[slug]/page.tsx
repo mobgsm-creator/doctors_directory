@@ -57,11 +57,17 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
       <div className="sticky top-0 z-10">
         <div className="container mx-auto max-w-6xl px-4 py-4">
           <Link href="/" prefetch={false}>
-            <Button variant="ghost" size="sm" className="gap-2 hover:cursor-pointer">
+            <Button
+              variant="ghost"
+              size="sm"
+              className="gap-2 hover:cursor-pointer hover:bg-white hover:text-black"
+            >
               <ArrowLeft className="h-4 w-4" />
               Back to Directory
             </Button>
           </Link>
+        </div>
+        <div className="container mx-auto max-w-6xl px-4 py-2">
           <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem>
@@ -69,25 +75,29 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbLink href="/directory/products">Products</BreadcrumbLink>
+              <BreadcrumbLink href="/directory/products">
+                Products
+              </BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbLink href={`/directory/products/category`}>Categories</BreadcrumbLink>
+              <BreadcrumbLink href={`/directory/products/category`}>
+                Categories
+              </BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbLink href={`/directory/products/category/${clinic.category}`} >{`${clinic.category}`}</BreadcrumbLink>
-       
+              <BreadcrumbLink
+                href={`/directory/products/category/${clinic.category}`}
+              >{`${clinic.category}`}</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
               <BreadcrumbPage>{`${clinic.slug}`}</BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
-        </Breadcrumb>
+          </Breadcrumb>
         </div>
-
       </div>
 
       <div className="container mx-auto max-w-6xl pt-0 md:px-4 py-20 space-y-8">
@@ -95,30 +105,23 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
         <ProfileHeader clinic={clinic} />
 
         <div className="px-4 md:px-0">
-        
           <PractitionerTabs />
 
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
             <div className="order-2 lg:order-1 col-span-1 lg:col-span-12">
               <ClinicDetailsMarkdown clinic={clinic} />
             </div>
-            
           </div>
-
-         
-        
         </div>
         <h2 className="text-lg font-semibold text-foreground mb-2">{`Browse more ${clinic.product_category}`}</h2>
-           <ItemsGrid items={similarProducts} />
-           <div className="px-4 md:px-0 space-y-6">
-             <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Treatments`}</h3>
-             <MoreItems items={uniqueTreatments} />
-             <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Cities in the UK`}</h3>
-             <MoreItems items={locations} />
-
-           </div>
+        <ItemsGrid items={similarProducts} />
+        <div className="px-4 md:px-0 space-y-6">
+          <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Treatments`}</h3>
+          <MoreItems items={uniqueTreatments} />
+          <h3 className="text-lg font-semibold text-foreground mb-2">{`Top Cities in the UK`}</h3>
+          <MoreItems items={locations} />
+        </div>
       </div>
-      
     </main>
   );
 }

@@ -16,17 +16,21 @@ export default async function Loading({ params }: { params: { slug: string } }) 
         <div className="bg-card/50 backdrop-blur-sm sticky top-0 z-10">
           <div className="container mx-auto max-w-7xl px-4 py-4">
             <Link href="/" prefetch={false}>
-              <Button variant="ghost" size="sm" className="gap-2 hover:cursor-pointer">
+              <Button
+                variant="ghost"
+                size="sm"
+                className="gap-2 hover:cursor-pointer hover:bg-white hover:text-black"
+              >
                 <ArrowLeft className="h-4 w-4" />
                 Back to Directory
               </Button>
             </Link>
-            <BreadcrumbSkeleton 
+            <BreadcrumbSkeleton
               items={[
                 { label: "Home", href: "/" },
                 { label: "Treatments", href: "/directory/treatments" },
                 { isLoading: true, skeletonWidth: "w-20" },
-                { isLoading: true, skeletonWidth: "w-32" }
+                { isLoading: true, skeletonWidth: "w-32" },
               ]}
             />
           </div>

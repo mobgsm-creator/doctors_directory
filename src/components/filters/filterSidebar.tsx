@@ -301,7 +301,6 @@ export function AdvancedFilterSidebar({ pageType }: AdvancedFiltersProps) {
   
   return (
     <>
-    
       <aside aria-label="Filter sidebar">
         <div className="block md:hidden">
           <Button
@@ -323,7 +322,6 @@ export function AdvancedFilterSidebar({ pageType }: AdvancedFiltersProps) {
         `}
         >
           <CardHeader className="p-0 flex justify-between items-center">
-            
             <Button
               type="button"
               variant="ghost"
@@ -387,7 +385,7 @@ export function AdvancedFilterSidebar({ pageType }: AdvancedFiltersProps) {
               <Button
                 variant="default"
                 onClick={handleApplyFilters}
-                className="w-full bg-black hover:bg-black text-white hover:cursor-pointer"
+                className="w-full bg-black border border-black hover:bg-black text-white hover:cursor-pointer hover:bg-white hover:text-black"
               >
                 Apply Filters
               </Button>
