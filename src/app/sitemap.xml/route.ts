@@ -1,20 +1,39 @@
-import { NextResponse } from 'next/server'
+import { buildSitemapIndexXml, toDirectoryUrl, xmlResponse } from '@/lib/sitemap'
 
 export async function GET() {
-  const baseUrl =
-    process.env.NEXT_PUBLIC_BASE_URL || 'https://staging.consentz.com'
+  const files = [
+    'products-brands-base.xml', // ui
+    'products-brands-list.xml',
+    'products-brands-items.xml',
+    'products-categories-base.xml',
+    'products-categories-list.xml',
+    'products-categories-items.xml',
+    'treatments-base.xml',
+    'all-treatments.xml',
+    'practitioners-base.xml',
+    'practitioners-cities.xml',
+    'all-practitioners.xml',
+    'practitioners-treatments.xml',
+    'practitioners-treatments-details.xml',
+    'practitioners-credentials-base.xml',
+    'practitioners-credentials-details.xml',
+    'practitioners-treatment-by-city.xml',
+    'clinics-base.xml',
+    'clinics-cities.xml',
+    'all-clinics.xml',
+    'clinics-services.xml',
+    'clinics-services-details.xml',
+    'clinics-treatment-by-city.xml',
+    'accredited-base.xml',
+    'accredited-clinics.xml',
+    'accredited-clinics-cities.xml',
+    'accredited-practitioners.xml',
+    'accredited-practitioners-cities.xml',
+  ]
 
-  const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <sitemap>
-    <loc>${baseUrl}/directory/all-clinics.xml</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
-  </sitemap>
-</sitemapindex>`
+  const xml = buildSitemapIndexXml(
+    files.map((file) => toDirectoryUrl(`/${file}`))
+  )
 
-  return new NextResponse(xml, {
-    headers: {
-      'Content-Type': 'application/xml',
-    },
-  })
+  return xmlResponse(xml)
 }

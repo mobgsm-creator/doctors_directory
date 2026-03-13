@@ -29,18 +29,199 @@ for (const p of practitionersData) {
     practitionersIndex.set(clinic, bucket);
   }
 }
-
+type PractitionerOrClinic = Practitioner | Clinic | Product | string
 interface PractitionerCardProps {
-  practitioner: Practitioner | Clinic | Product | string;
-  customLink?: string;
+  practitioner: PractitionerOrClinic;
+  customLink?:string
+  
 }
 
-export function PractitionerCard({
-  practitioner,
-  customLink,
-}: PractitionerCardProps) {
-  const Router = useRouter();
-  const path = usePathname();
+const formatSlugText = (value: string): string =>
+  value
+    .split("-")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+
+const formatTreatmentText = (value: string): string =>
+  value
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ")
+    .replace("Hifu", "HIFU")
+    .replace("Coolsculpting", "CoolSculpting");
+
+function getPractitionerName(practitioner: Practitioner | Clinic | Product | string): string {
+  if (isPractitioner(practitioner)) {
+    if (practitioner.practitioner_name) {
+      return formatSlugText(practitioner.practitioner_name);
+    }
+
+    return formatSlugText(practitioner.slug!);
+  }
+
+  if (isClinic(practitioner)) {
+    return formatSlugText(practitioner.slug!);
+  }
+
+  return "";
+}
+
+function getClinicPractitioners(practitioner: Practitioner | Clinic | Product | string): Practitioner[] {
+  if (!isClinic(practitioner)) {
+    return [];
+  }
+
+  return practitionersIndex.get(practitioner.slug as string) ?? [];
+}
+
+function getPractitionerOrClinicAriaPrefix(practitioner: Practitioner | Clinic | Product | string): string {
+  if (isPractitioner(practitioner)) {
+    return "practitioner";
+  }
+
+  if (isClinic(practitioner)) {
+    return "clinic";
+  }
+
+  return "";
+}
+
+function getPractitionerOrClinicHref(
+  practitioner: Practitioner | Clinic | Product | string,
+  customLink?: string
+): string {
+  if (customLink) {
+    return customLink;
+  }
+
+  if (isPractitioner(practitioner) && practitioner.practitioner_name) {
+    return `/practitioners/${(practitioner.City ?? "").toLowerCase()}/profile/${
+      practitioner.practitioner_name
+    }`;
+  }
+
+  if (isPractitioner(practitioner) || isClinic(practitioner)) {
+    return `/clinics/${(practitioner.City ?? "").toLowerCase()}/clinic/${practitioner.slug}`;
+  }
+
+  return "#";
+}
+
+function getProfileImageSrc(practitioner: Practitioner | Clinic | Product | string): string {
+  if (isPractitioner(practitioner)) {
+    return "/directory/images/default-dr-profile-1.webp";
+  }
+
+  if ((isPractitioner(practitioner) || isClinic(practitioner)) && practitioner.image) {
+    return practitioner.image.replace("&w=256&q=75", "") || "/placeholder.svg";
+  }
+
+  return "/placeholder.svg";
+}
+
+function getCityHref(
+  practitioner: Practitioner | Clinic | Product | string,
+  customLink: string | undefined,
+  path: string
+): string {
+  if (!isCity(practitioner)) {
+    return "";
+  }
+
+  const citySlug = practitioner.toLowerCase();
+
+  if (customLink) {
+    if (customLink.includes("/practitioners")) {
+      return path.includes("/practitioners/treatment-by-city")
+        ? `${customLink}/${citySlug}/treatments`
+        : `${customLink}/${citySlug}`;
+    }
+
+    return `${customLink}/${citySlug}/services`;
+  }
+
+  return path.includes("/practitioners")
+    ? `/practitioners/${citySlug}`
+    : `/clinics/${citySlug}`;
+}
+
+function getProductHref(
+  practitioner: Practitioner | Clinic | Product | string,
+  customLink?: string
+): string {
+  if (customLink) {
+    return customLink;
+  }
+
+  if (isProduct(practitioner)) {
+    return `/products/category/${practitioner.category}/${practitioner.slug}`;
+  }
+
+  return "#";
+}
+
+function getTreatmentName(practitioner: Practitioner | Clinic | Product | string): string {
+  if (!isTreatment(practitioner)) {
+    return "";
+  }
+
+  return formatTreatmentText(practitioner);
+}
+
+function getTreatmentHref(
+  practitioner: Practitioner | Clinic | Product | string,
+  customLink: string | undefined,
+  treatmentName: string
+): string {
+  if (!isTreatment(practitioner)) {
+    return "#";
+  }
+
+  if (customLink) {
+    return `${customLink}/${practitioner}`;
+  }
+
+  return `/treatments/${treatmentName}`;
+}
+
+function getTreatmentImageSrc(treatmentName: string): string {
+  if (!treatmentName) {
+    return "/placeholder.svg";
+  }
+
+  return TreatmentMap[treatmentName] || "/placeholder.svg";
+}
+
+function getAwardHref(
+  practitioner: Practitioner | Clinic | Product | string,
+  customLink?: string
+): string {
+  if (customLink) {
+    return customLink;
+  }
+
+  if (isAward(practitioner)) {
+    return `/practitioners/credentials/${(practitioner as {slug: string; image_url: string}).slug}`;
+  }
+
+  return "#";
+}
+
+export function PractitionerCard({ practitioner, customLink }: PractitionerCardProps) {
+  const Router = useRouter()
+  const path = usePathname()
+  const practitionerName = getPractitionerName(practitioner)
+  const practitioners = getClinicPractitioners(practitioner)
+  const cityHref = getCityHref(practitioner, customLink, path)
+  const practitionerOrClinicHref = getPractitionerOrClinicHref(practitioner, customLink)
+  const practitionerOrClinicAriaPrefix = getPractitionerOrClinicAriaPrefix(practitioner)
+  const profileImageSrc = getProfileImageSrc(practitioner)
+  const productHref = getProductHref(practitioner, customLink)
+  const treatmentName = getTreatmentName(practitioner)
+  const treatmentHref = getTreatmentHref(practitioner, customLink, treatmentName)
+  const treatmentImageSrc = getTreatmentImageSrc(treatmentName)
+  const awardHref = getAwardHref(practitioner, customLink)
+
 
   let practitionerName = "";
   let practitioners: Practitioner[] = [];
@@ -83,6 +264,52 @@ export function PractitionerCard({
                   >
                     {practitionerName}
                   </h2>
+        
+
+        <article className=' relative mb-12 bg-white border-b border-t-0 border-[#C4C4C4] md:border-t rounded-md md:border md:border-(--alto)' aria-labelledby={`${practitionerOrClinicAriaPrefix}-name-${practitioner.slug}`}>
+          
+          <Card asChild className="mt-2 gap-4 md:px-0 shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border-t rounded-27 md:border md:border-(--alto) cursor-pointer" data-testid="practitioner-card">
+          <><Link
+              href={practitionerOrClinicHref}
+            prefetch={false}
+            className='z-10'
+            >
+          <header>
+             <CardHeader className="pb-4 px-2">
+            
+            <h2 id={`practitioner-name-${practitioner.slug} `} className="sr-only">
+              {practitionerName}
+            </h2>
+            
+            <div className="flex items-start gap-4">
+              <div className="flex flex-col flex-1 min-w-0 text-left items-stretch">
+
+                <div className="flex w-full flex-row items-start md:border-0 md:flex-col md:items-center">
+                  <div className="mt-2 relative w-20 h-20 md:w-[150px] md:h-[150px] flex items-center justify-center overflow-hidden rounded-full bg-gray-300 md:mb-3 mr-0">
+                    
+                    <img
+                      src={profileImageSrc}
+                      alt="Profile"
+                      className="object-cover rounded-full min-w-full min-h-full"
+                      onError={(e) => {
+                        e.currentTarget.onerror = null; // prevent infinite loop
+                        e.currentTarget.src = "/directory/images/default-dr-profile-1.webp"
+                      }}
+                    />
+                  </div>
+
+                  <div className="text-center flex-1 min-w-0 items-start sm:items-center flex flex-col">
+
+
+                    <div className="text-base font-semibold text-primary truncate ml-4 sm:ml-0">
+                      {practitionerName.split(" ").slice(0,4).map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")}
+                    </div>
+
+                  
+                  <div className="absolute top-2 -right-4 text-white text-xs font-semibold px-6 py-1">
+                    <ClinicLabels clinic={practitioner as Clinic} />
+                  </div>
+             
 
                   <div className="flex items-start gap-4">
                     <div className="flex flex-col flex-1 min-w-0 text-left items-stretch">
@@ -218,6 +445,7 @@ export function PractitionerCard({
                 {practitioner.Treatments?.length! > 0 && null}
               </CardContent>
               <div>
+                <div className="md:px-4 space-y-4 pb-4">
                 <div className="sr-only">Treatments offered</div>
                 <ul
                   className="flex flex-wrap gap-1 px-2 py-4 md:px-4"
@@ -298,6 +526,19 @@ export function PractitionerCard({
                                 .join(" ")}
                             </p>
                           </div>
+                      <div className="flex items-start gap-4 mb-6">
+                        
+                        <div className="flex-1 min-w-0 pt-1">
+                          <h3 className="text-xl font-semibold text-balance leading-tight group-hover:text-primary transition-colors truncate">
+                             <a
+                            href={`/directory/practitioners/${(practitioner.City ?? "").toLowerCase()}/profile/${p.practitioner_name}`}
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            {p.practitioner_name.split('-').map((word:string) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
+                          </a></h3>
+                          <p className="text-sm font-medium text-secondary-foreground mt-1 truncate">
+                            {p.Title.split(",")[0].split(" ").slice(0,4).map((word:string) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")}
+                          </p>
                         </div>
                       </div>
                     </Card>
@@ -325,6 +566,9 @@ export function PractitionerCard({
             prefetch={false}
           >
             <CardHeader className="pb-2 px-2">
+          <Card asChild className="gap-0 h-full relative px-4 md:px-0 shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border-t rounded-27 md:border md:border-(--alto) cursor-pointer" aria-labelledby={`product-name-${practitioner.slug}`} data-testid="practitioner-card">
+            <Link href={productHref} className="block" prefetch={false}>
+        <CardHeader className="pb-2 px-2">
               <h2 id={`product-name-${practitioner.slug}`} className="sr-only">
                 {decodeUnicodeEscapes(practitioner.product_name)}
               </h2>
@@ -437,6 +681,12 @@ export function PractitionerCard({
                   .join(" ")
                   .replace("Hifu", "HIFU")
                   .replace("Coolsculpting", "CoolSculpting")}
+      
+          <Card asChild className="gap-0 h-full relative bg-transparent px-4 md:px-0 shadow-none md:border-0 duration-300 cursor-pointer" aria-labelledby={`treatment-name-${practitioner}`} data-testid="practitioner-card">
+            <Link href={treatmentHref} className="block border-0" prefetch={false}>
+        <CardHeader className="px-2 border-0">
+              <h2 id={`treatment-name-${treatmentName}`} className="sr-only">
+                {treatmentName}
               </h2>
               <div className="flex items-start gap-4">
                 <div className="text-center flex-1 min-w-0 items-center flex flex-col">
@@ -455,6 +705,7 @@ export function PractitionerCard({
                               .replace("Hifu", "HIFU")
                               .replace("Coolsculpting", "CoolSculpting")
                           ] || "/placeholder.svg"
+                          treatmentImageSrc
                         }
                         alt="Treatment"
                         className="object-cover rounded-full w-full h-full"
@@ -471,6 +722,7 @@ export function PractitionerCard({
                         .join(" ")
                         .replace("Hifu", "HIFU")
                         .replace("Coolsculpting", "CoolSculpting")}
+                      {treatmentName}
                     </div>
                   </Card>
                 </div>
@@ -551,6 +803,59 @@ export function PractitionerCard({
           </Card>
         </Link>
       )}
+      {isCity(practitioner) === true && 
+        (
+
+  
+                        <Card asChild className="gap-0 relative shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border md:border-(--alto) cursor-pointer hover:shadow-lg hover:border-blue-500">
+                <Link href={cityHref}>
+                <div className='mt-2 flex flex-col items-center gap-2'>
+                  
+                  <Button
+              
+              className="w-1/2 text-center font-semibold text-md md:text-lg transition-colors text-balance bg-black cursor-pointer hover:bg-white hover:text-black"
+        
+            >
+              {practitioner}
+             </Button>
+                </div>
+                </Link>
+              </Card>
+
+                        
+              
+                
+   
+      )
+        }
+        {isAward(practitioner) && (
+            <Link
+                          key={(practitioner as unknown as {name:string, slug: string; image_url: string}).slug}
+                          href={awardHref}
+                          className="block"
+                        >
+                          <Card className="gap-0 relative shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border md:border-(--alto) cursor-pointer hover:shadow-lg hover:border-blue-500">
+                            <CardHeader className=" h-55 pb-4 px-2">
+                              <div className="flex justify-center mb-4">
+                                <div className="w-20 h-20 md:w-[150px] md:h-[150px] flex items-center justify-center overflow-hidden rounded-lg bg-gray-300">
+                                  <img
+                                    src={(practitioner as unknown as {name:string, slug: string; image_url: string}).image_url}
+                                    alt={`${(practitioner as unknown as {name:string, slug: string; image_url: string}).name} credential`}
+                                    className="object-cover w-full h-full"
+                                
+                                  />
+                                </div>
+                              </div>
+                              <h3 className="mb-2 font-semibold transition-colors text-balance group-hover:text-blue-600 text-center text-md">
+                                {(practitioner as unknown as {name:string, slug: string; image_url: string}).name}
+                              </h3>
+                            </CardHeader>
+                           
+                          </Card>
+                        </Link>
+        )
+      }
+          
     </>
   );
 }

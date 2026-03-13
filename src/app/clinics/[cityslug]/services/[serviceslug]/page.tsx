@@ -38,7 +38,10 @@ type TreatmentSlug = keyof typeof treatment_content
 export default function ProfilePage({ params }: ProfilePageProps) {
   const clinics = clinicsJSON as unknown as Clinic[];
   const { cityslug, serviceslug } = params;
-  const cityData: City = (cityJson as unknown as City[]).find((p) => p.City === cityslug)!;
+  const normalizedCitySlug = decodeURIComponent(cityslug).toLowerCase();
+  const cityData: City = (cityJson as unknown as City[]).find(
+    (p) => p.City?.toLowerCase() === normalizedCitySlug
+  )!;
   const treatmentslug = serviceslug.replaceAll("%20", " ").charAt(0).toUpperCase() + serviceslug.replaceAll("%20", " ").slice(1)
   const treatment = treatment_content[treatmentslug as TreatmentSlug] as Record<string, any>;
   const decodedCitySlug = decodeURIComponent(cityslug)
@@ -117,10 +120,8 @@ const serviceMatch = categories.some((cat: string) =>
                   </BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
-                <BreadcrumbItem>
-                  <BreadcrumbLink href={`/directory/clinics/${cityslug}`}>
-                    {cityslug.charAt(0).toUpperCase() + cityslug.slice(1)}
-                  </BreadcrumbLink>
+                 <BreadcrumbItem>
+                  <BreadcrumbLink href={`/directory/clinics/${normalizedCitySlug}`}>{cityslug.charAt(0).toUpperCase() + cityslug.slice(1)}</BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>

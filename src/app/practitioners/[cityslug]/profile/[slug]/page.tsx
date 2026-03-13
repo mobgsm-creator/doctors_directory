@@ -32,8 +32,8 @@ function mergeBoxplotDataFromDict(
   incoming: Record<string, ItemMeta>
 ): BoxPlotDatum[] {
   return base.map((datum) => {
-    const match = incoming[datum.label];
-    const result = { ...datum, item: { ...datum.item, ...match } };
+    const matchItem = incoming[datum.label];
+    const result = { ...datum, item: { ...datum.item, ...matchItem } };
     return result;
   });
 }
@@ -69,6 +69,12 @@ export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
     boxplotDatas_clinic,
     clinic?.weighted_analysis ?? {}
   );
+
+  const overallScore = Math.round(
+    boxplotData.find((datum) => datum.label === "Overall Aggregation")?.item.weighted_score ?? 0
+  );
+  const rankingSubtitle =
+    practitioner?.ranking?.subtitle_text ?? `${overallScore}/100 in ${practitioner?.City ?? "City"}`;
 
   if (!clinic) {
     notFound();
@@ -160,6 +166,46 @@ export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
                 <Stats data={boxplotData} />
               </div>
               {/* HOURS */}
+       <div className="container mx-auto max-w-6xl pt-0 md:px-4 py-20 space-y-8">
+               {/* Profile Header */}
+               <ProfileHeader clinic={clinic} k_value={k} clinic_list ={JSON.parse(clinic!.Associated_Clinics!)} />
+       
+               <div className="px-4 md:px-0">
+                 <PractitionerTabs />
+       
+                 <div className="grid grid-cols-1 gap-8 lg:grid-cols-10 mb-4">
+                   <div className="order-2 lg:order-1 col-span-1 lg:col-span-6">
+                     <ClinicDetailsMarkdown clinic={practitioner} />
+                   </div>
+                   <div className="order-1 lg:order-2 col-span-1 lg:col-span-4">
+                     <div className="border border-gray-300 rounded-xl p-6">
+                       <div className="flex flex-row gap-2 pt-2 mb-4 items-center justify-center text-sm">
+                         <div className="inline-flex items-center gap-1">
+                           <div className="flex items-center">
+                             {Array.from({ length: 5 }, (_, i) => (
+                               <Star
+                                 key={i}
+                                 className={`h-4 w-4 ${
+                                   i < k!.rating
+                                     ? "fill-black text-black"
+                                     : "/30"
+                                 }`}
+                               />
+                             ))}
+                           </div>
+                         </div>
+                         <span
+                           className="border-l border-black pl-2 underline"
+                           aria-label={`${practitioner.reviewCount} reviews`}
+                         >
+                           {practitioner.reviewCount ? practitioner.reviewCount+"+ Reviews Analysed" : "0"}
+                         </span>
+                       </div>
+                       <div className="border-t border-gray-300 my-6"></div>
+                       <Stats data={boxplotData} />
+                       <p className="mt-3 text-xs text-gray-600">{rankingSubtitle}</p>
+                     </div>
+                     {/* HOURS */}
               {flatHours && (
                 <Section title="Hours" id="hours">
                   <div className="overflow-x-auto shadow-none">

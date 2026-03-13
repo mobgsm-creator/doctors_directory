@@ -1,29 +1,17 @@
 import { Clinic } from '@/lib/types'
 import clinicsJson from "@/../public/clinics_processed_new_data.json"
-import { NextResponse } from 'next/server'
+import { buildUrlSetXml, encodeCitySegment, encodeSegment, mapPathsToSitemapUrls, xmlResponse } from '@/lib/sitemap'
+
 export async function GET() {
   const clinics = clinicsJson as unknown as Clinic[]
 
-  const urls = clinics
+  const paths = clinics
+    .filter((clinic) => Boolean(clinic.slug) && Boolean(clinic.City))
     .map(
-      (post) => `
-  <url>
-    <loc>https://staging.consentz.com/clinics/${post.City}/clinic/${post.slug}</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>`
+      (clinic) =>
+        `/clinics/${encodeCitySegment(clinic.City)}/clinic/${encodeSegment(clinic.slug as string)}`
     )
-    .join("")
 
-  const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urls}
-</urlset>`
-
-  return new NextResponse(xml, {
-    headers: {
-      "Content-Type": "application/xml",
-    },
-  })
+  const xml = buildUrlSetXml(mapPathsToSitemapUrls(paths))
+  return xmlResponse(xml)
 }

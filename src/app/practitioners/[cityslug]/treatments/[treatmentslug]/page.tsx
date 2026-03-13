@@ -62,7 +62,10 @@ export default function ProfilePage({ params }: ProfilePageProps) {
   .filter((item) => item !==null).filter(Boolean)
 
   const { cityslug, treatmentslug } = params;
-  const cityData: City = (cityJson as unknown as City[]).find((p) => p.City === cityslug)!;
+  const normalizedCitySlug = decodeURIComponent(cityslug).toLowerCase();
+  const cityData: City = (cityJson as unknown as City[]).find(
+    (p) => p.City?.toLowerCase() === normalizedCitySlug
+  )!;
    const decodedCitySlug = decodeURIComponent(cityslug)
   .toLowerCase()
   .replace(/\s+/g, "");
@@ -132,23 +135,11 @@ export default function ProfilePage({ params }: ProfilePageProps) {
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
-                  <BreadcrumbLink href={`/directory/practitioners/${cityslug}`}>
-                    {cityslug.charAt(0).toUpperCase() + cityslug.slice(1)}
-                  </BreadcrumbLink>
+                  <BreadcrumbLink href={`/directory/practitioners/${normalizedCitySlug}`}>{cityslug.charAt(0).toUpperCase() + cityslug.slice(1)}</BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
-                  <BreadcrumbLink
-                    href={`/directory/practitioners/${cityslug}/treatments/${treatmentslug}`}
-                  >
-                    {treatmentslug
-                      .replace("%20", " ")
-                      .split(" ")
-                      .map(
-                        (word) => word.charAt(0).toUpperCase() + word.slice(1),
-                      )
-                      .join(" ")}
-                  </BreadcrumbLink>
+                  <BreadcrumbLink href={`/directory/practitioners/${normalizedCitySlug}/treatments/${treatmentslug}`}>{treatmentslug.replace("%20", " ").split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")}</BreadcrumbLink>
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>

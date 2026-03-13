@@ -62,9 +62,14 @@ const clinics = clinicsJSON as unknown as Clinic[];
 
 export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
   const citySlug = params.cityslug;
+  const normalizedCitySlug = decodeURIComponent(citySlug).toLowerCase();
   // const city_practitioners: Practitioner[] = all_practitioners.filter(p=>p.City === citySlug) 
-  const cityClinics: Clinic[] = clinics.filter((p) => p.City === citySlug);
-  const cityData: City = (cityJson as unknown as City[]).find((p) => p.City === citySlug)!;
+  const cityClinics: Clinic[] = clinics.filter(
+    (p) => p.City?.toLowerCase() === normalizedCitySlug
+  );
+  const cityData: City = (cityJson as unknown as City[]).find(
+    (p) => p.City?.toLowerCase() === normalizedCitySlug
+  )!;
   const uniqueTreatments = [
   ...new Set(
     cityClinics
@@ -122,17 +127,14 @@ export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
                     {citySlug.charAt(0).toUpperCase() + citySlug.slice(1)}
                   </BreadcrumbPage>
                 </BreadcrumbItem>
-                <BreadcrumbSeparator />
               </BreadcrumbList>
             </Breadcrumb>
           </div>
         </div>
 
         <div className="flex flex-col pt-2 w-full pb-4 px-4 md:px-0">
-          <h1 className="text-sm md:text-2xl md:font-semibold mb-1 md:mb-2">
-            Top Clinics in {citySlug}
-          </h1>
-        </div>
+          <h1 className="text-sm md:text-2xl md:font-semibold mb-1 md:mb-2">Top Aesthetic Clinics in {citySlug}</h1>
+          </div>
 
         <div className="mx-auto max-w-7xl md:px-4 py-4 md:py-12 flex flex-col sm:flex-row justify-center w-full md:gap-10">
           <div className="hidden sm:block">
@@ -175,8 +177,9 @@ export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
 // }
 
 export async function generateMetadata({ params }: ProfilePageProps) {
-  const citySlug = params.cityslug;
-  const canonicalUrl = locations.map((location) => `https://staging.consentz.com/direcotry/clinics/${location}`).join(",");
+  const citySlug = decodeURIComponent(params.cityslug).toLowerCase();
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://staging.consentz.com'
+  const canonicalUrl = `${baseUrl}/directory/clinics/${citySlug}`;
 
   return {
     title: `List of Top Aesthetic Clinics in ${citySlug} - Healthcare Directory`,

@@ -38,7 +38,10 @@ export default function CityTreatmentsPage({ params }: PageProps) {
   const products = productsJSON as unknown as Array<{ product_category: string; category: string }>;
 
   const { cityslug } = params;
-  const cityData: City = (cityJson as unknown as City[]).find((p) => p.City === cityslug)!;
+  const normalizedCitySlug = decodeURIComponent(cityslug).toLowerCase();
+  const cityData: City = (cityJson as unknown as City[]).find(
+    (p) => p.City?.toLowerCase() === normalizedCitySlug
+  )!;
   const decodedCitySlug = decodeURIComponent(cityslug)
     .toLowerCase()
     .replace(/\s+/g, "");
@@ -52,15 +55,23 @@ export default function CityTreatmentsPage({ params }: PageProps) {
 
   const enrichedPractitioners = practitioners
     .map(p => {
-      const clinic = clinicIndex.get(JSON.parse(p.Associated_Clinics![0]));
-      if (!clinic) return null;
-      return {
-        ...clinic,
-        practitioner_name: p.practitioner_name,
-        practitioner_title: p.practitioner_title,
-        practitioner_qualifications: p.practitioner_qualifications,
-        practitioner_awards: p.practitioner_awards,
-      };
+      try {
+        const clinicSlugs = JSON.parse(p.Associated_Clinics || '[]') as string[];
+        const clinicSlug = clinicSlugs?.[0];
+        if (!clinicSlug) return null;
+        const clinic = clinicIndex.get(clinicSlug);
+        if (!clinic) return null;
+        return {
+          ...clinic,
+          practitioner_name: p.practitioner_name,
+          practitioner_title: p.practitioner_title,
+          practitioner_qualifications: p.practitioner_qualifications,
+          practitioner_awards: p.practitioner_awards,
+        };
+      } catch (error) {
+        console.error('Failed to parse Associated_Clinics:', p.Associated_Clinics, error);
+        return null;
+      }
     })
     .filter(Boolean);
 
@@ -136,9 +147,7 @@ export default function CityTreatmentsPage({ params }: PageProps) {
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
-                  <BreadcrumbLink href={`/directory/practitioners/${cityslug}`}>
-                    {cityslug.charAt(0).toUpperCase() + cityslug.slice(1)}
-                  </BreadcrumbLink>
+                  <BreadcrumbLink href={`/directory/practitioners/${normalizedCitySlug}`}>{cityslug.charAt(0).toUpperCase() + cityslug.slice(1)}</BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
@@ -160,14 +169,7 @@ export default function CityTreatmentsPage({ params }: PageProps) {
         <div className="mx-auto max-w-7xl md:px-4 py-4 md:py-12 flex flex-col sm:flex-row justify-center w-full md:gap-10">
           <CollectionsFilter pageType="Treatments" />
           <div className="flex-1 min-w-0">
-            <ItemsGrid
-              items={
-                uniqueTreatments.length === 0
-                  ? defaultTreatments
-                  : uniqueTreatments
-              }
-              customLink={`/practitioners/${cityslug}/services`}
-            />
+            <ItemsGrid items={uniqueTreatments.length === 0 ? defaultTreatments : uniqueTreatments} customLink={`/practitioners/${normalizedCitySlug}/treatments`} />
           </div>
         </div>
       </div>

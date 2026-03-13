@@ -50,6 +50,7 @@ export interface Clinic {
   gmapsReviews?: Review[]
   reviewAnalysis?: ReviewAnalysis
   weighted_analysis?: WeightedAnalysis
+  ranking?: RankingMeta
   City: string
   facebook: string
   twitter: string	
@@ -78,6 +79,13 @@ export interface Clinic {
   Treatments?: string[]
 
 
+}
+
+export interface RankingMeta {
+  city_rank?: number
+  city_total?: number
+  score_out_of_100?: number
+  subtitle_text?: string
 }
 interface WeightedAnalysis {
   [category: string]: ItemMeta

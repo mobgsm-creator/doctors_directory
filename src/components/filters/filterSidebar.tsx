@@ -15,6 +15,172 @@ interface AdvancedFiltersProps {
   pageType?: string
 }
 
+const defaultTreatmentFilters = {
+  concern: "all",
+  treatmentType: "all",
+  treatmentArea: "all",
+  priceRange: "all",
+};
+
+const defaultClinicFilters = {
+  servicesOffered: "all",
+  location: "all",
+  rating: "all",
+  distance: "all",
+  query: "",
+};
+
+const defaultClinicOnClearFilters = {
+  ...defaultClinicFilters,
+  location: "",
+};
+
+const defaultPractitionerFilters = {
+  practitioner_specialty: "all",
+  practitioner_qualifications: "all",
+  City: "all",
+  rating: "all",
+  query: "",
+};
+
+const defaultProductFilters = {
+  product_category: "all",
+  brand: "all",
+  distributor_cleaned: "all",
+  category: "all",
+  query: "",
+};
+
+type LocalFilterTarget = "services" | "location" | "rating" | "category";
+
+interface LocalFilterRule {
+  readonly key: string;
+  readonly target: LocalFilterTarget;
+  readonly whenSet: (value: string) => SearchFilters[LocalFilterTarget];
+  readonly whenAll: SearchFilters[LocalFilterTarget];
+}
+
+const clinicLocalFilterRules: readonly LocalFilterRule[] = [
+  {
+    key: "servicesOffered",
+    target: "services",
+    whenSet: (value) => [value],
+    whenAll: [],
+  },
+  {
+    key: "location",
+    target: "location",
+    whenSet: (value) => value,
+    whenAll: "",
+  },
+  {
+    key: "rating",
+    target: "rating",
+    whenSet: (value) => Number(value),
+    whenAll: 0,
+  },
+];
+
+const practitionerLocalFilterRules: readonly LocalFilterRule[] = [
+  {
+    key: "practitioner_specialty",
+    target: "services",
+    whenSet: (value) => [value],
+    whenAll: [],
+  },
+  {
+    key: "City",
+    target: "location",
+    whenSet: (value) => value,
+    whenAll: "",
+  },
+  {
+    key: "rating",
+    target: "rating",
+    whenSet: (value) => Number(value),
+    whenAll: 0,
+  },
+  {
+    key: "practitioner_qualifications",
+    target: "category",
+    whenSet: (value) => value,
+    whenAll: "",
+  },
+];
+
+const productLocalFilterRules: readonly LocalFilterRule[] = [
+  {
+    key: "product_category",
+    target: "services",
+    whenSet: (value) => [value],
+    whenAll: [],
+  },
+  {
+    key: "brand",
+    target: "category",
+    whenSet: (value) => value,
+    whenAll: "",
+  },
+  {
+    key: "distributor_cleaned",
+    target: "location",
+    whenSet: (value) => value,
+    whenAll: "",
+  },
+];
+
+const applyLocalFilterRules = (
+  prev: SearchFilters,
+  key: string,
+  value: string,
+  rules: readonly LocalFilterRule[]
+): SearchFilters => {
+  const nextQuery = key === "query" ? value : prev.query;
+
+  for (const rule of rules) {
+    if (rule.key !== key) {
+      continue;
+    }
+
+    const resolvedValue = value !== "all" ? rule.whenSet(value) : rule.whenAll;
+
+    if (rule.target === "services") {
+      return {
+        ...prev,
+        query: nextQuery,
+        services: resolvedValue as SearchFilters["services"],
+      };
+    }
+
+    if (rule.target === "location") {
+      return {
+        ...prev,
+        query: nextQuery,
+        location: resolvedValue as SearchFilters["location"],
+      };
+    }
+
+    if (rule.target === "rating") {
+      return {
+        ...prev,
+        query: nextQuery,
+        rating: resolvedValue as SearchFilters["rating"],
+      };
+    }
+
+    return {
+      ...prev,
+      query: nextQuery,
+      category: resolvedValue as SearchFilters["category"],
+    };
+  }
+
+  return {
+    ...prev,
+    query: nextQuery,
+  };
+};
+
 
 
 export function AdvancedFilterSidebar({ pageType }: AdvancedFiltersProps) {
@@ -29,50 +195,39 @@ export function AdvancedFilterSidebar({ pageType }: AdvancedFiltersProps) {
   setIsOpen(!isOpen);
   setIsFilterActive(true); // Reset active state when toggling
 };
-  const [treatmentFilters, setTreatmentFilters] = useState({
-    concern: "all",
-    treatmentType: "all",
-    treatmentArea: "all",
-    priceRange: "all"
-  });
-
-  const [clinicFilters, setClinicFilters] = useState({
-    servicesOffered: "all",
+  const createEmptySearchFilters = (): SearchFilters => ({
+    type: filters.type,
+    query: "",
+    category: "",
     location: "",
-    rating: "all",
-    distance: "all",
-    query: ""
+    rating: 0,
+    services: [],
   });
 
-  const [practitionerFilters, setPractitionerFilters] = useState({
-    practitioner_specialty: "all",
-    practitioner_qualifications: "all",
-    City: "all",
-    rating: "all",
-    query: ""
-  });
+  const [treatmentFilters, setTreatmentFilters] = useState(defaultTreatmentFilters);
 
-  const [productFilters, setProductFilters] = useState({
-    product_category: "all",
-    brand: "all",
-    distributor_cleaned: "all",
-    category: "all",
-    query: ""
-  });
+  const [clinicFilters, setClinicFilters] = useState(defaultClinicFilters);
+
+  const [practitionerFilters, setPractitionerFilters] = useState(defaultPractitionerFilters);
+
+  const [productFilters, setProductFilters] = useState(defaultProductFilters);
+
+  const createFilterChangeHandler = <T extends Record<string, string>>(
+    setFilterState: React.Dispatch<React.SetStateAction<T>>,
+    rules: readonly LocalFilterRule[]
+  ) => {
+    return (key: string, value: string) => {
+      setFilterState((prev) => ({ ...prev, [key]: value }));
+      setLocalFilters((prev) => applyLocalFilterRules(prev, key, value, rules));
+    };
+  };
 
   useEffect(() => {
     setLocalFilters(filters);
   }, [filters]);
 
   const handleApplyFilters = () => {
-    let updatedFilters: SearchFilters = {
-      type: filters.type,
-      query: "",
-      category: "",
-      location: "",
-      rating: 0,
-      services: [],
-    };
+    let updatedFilters: SearchFilters = createEmptySearchFilters();
     
     if (filters.type === "Treatments") {
       updatedFilters.category = treatmentFilters.concern !== "all" ? treatmentFilters.concern : "";
@@ -84,12 +239,12 @@ export function AdvancedFilterSidebar({ pageType }: AdvancedFiltersProps) {
       updatedFilters.query = clinicFilters.query || "";
       updatedFilters.services = clinicFilters.servicesOffered !== "all" ? [clinicFilters.servicesOffered] : [];
       updatedFilters.location = clinicFilters.location !== "all" ? clinicFilters.location : "";
-      updatedFilters.rating = clinicFilters.rating !== "all" ? Number.parseInt(clinicFilters.rating) : 0;
+      updatedFilters.rating = clinicFilters.rating !== "all" ? Number(clinicFilters.rating) : 0;
     } else if (filters.type === "Practitioner") {
       updatedFilters.query = practitionerFilters.query || "";
       updatedFilters.services = practitionerFilters.practitioner_specialty !== "all" ? [practitionerFilters.practitioner_specialty] : [];
       updatedFilters.location = practitionerFilters.City !== "all" ? practitionerFilters.City : "";
-      updatedFilters.rating = practitionerFilters.rating !== "all" ? Number.parseInt(practitionerFilters.rating) : 0;
+      updatedFilters.rating = practitionerFilters.rating !== "all" ? Number(practitionerFilters.rating) : 0;
       updatedFilters.category = practitionerFilters.practitioner_qualifications !== "all" ? practitionerFilters.practitioner_qualifications : "";
     } else if (filters.type === "Product") {
       updatedFilters.query = productFilters.query || "";
@@ -108,44 +263,14 @@ export function AdvancedFilterSidebar({ pageType }: AdvancedFiltersProps) {
   };
 
   const handleClearFilters = () => {
-    const clearedFilters: SearchFilters = {
-      type: filters.type,
-      query: "",
-      category: "",
-      location: "",
-      rating: 0,
-      services: [],
-    };
+    const clearedFilters: SearchFilters = createEmptySearchFilters();
     setLocalFilters(clearedFilters);
     setFilters(clearedFilters);
     
-    setTreatmentFilters({
-      concern: "all",
-      treatmentType: "all",
-      treatmentArea: "all",
-      priceRange: "all"
-    });
-    setClinicFilters({
-      servicesOffered: "all",
-      location: "",
-      rating: "all",
-      distance: "all",
-      query: ""
-    });
-    setPractitionerFilters({
-      practitioner_specialty: "all",
-      practitioner_qualifications: "all",
-      City: "all",
-      rating: "all",
-      query: ""
-    });
-    setProductFilters({
-      product_category: "all",
-      brand: "all",
-      distributor_cleaned: "all",
-      category: "all",
-      query: ""
-    });
+    setTreatmentFilters(defaultTreatmentFilters);
+    setClinicFilters(defaultClinicFilters);
+    setPractitionerFilters(defaultPractitionerFilters);
+    setProductFilters(defaultProductFilters);
     
     onToggle();
   };
@@ -158,40 +283,22 @@ export function AdvancedFilterSidebar({ pageType }: AdvancedFiltersProps) {
     }));
   };
 
-  const handleClinicFilterChange = (key: string, value: string) => {
-    setClinicFilters(prev => ({ ...prev, [key]: value }));
-    setLocalFilters(prev => ({
-      ...prev,
-      query: key === "query" ? value : prev.query,
-      services: key === "servicesOffered" && value !== "all" ? [value] : prev.services,
-      location: key === "distance" ? value : prev.location,
-      rating: key === "rating" && value !== "all" ? Number.parseInt(value) : prev.rating,
-    }));
-  };
+  const handleClinicFilterChange = createFilterChangeHandler(
+    setClinicFilters,
+    clinicLocalFilterRules
+  );
 
-  const handlePractitionerFilterChange = (key: string, value: string) => {
-    setPractitionerFilters(prev => ({ ...prev, [key]: value }));
-    setLocalFilters(prev => ({
-      ...prev,
-      query: key === "query" ? value : prev.query,
-      services: key === "practitioner_specialty" && value !== "all" ? [value] : prev.services,
-      location: key === "City" ? value : prev.location,
-      rating: key === "rating" && value !== "all" ? Number.parseInt(value) : prev.rating,
-      category: key === "practitioner_qualifications" ? value : prev.category,
-    }));
-  };
+  const handlePractitionerFilterChange = createFilterChangeHandler(
+    setPractitionerFilters,
+    practitionerLocalFilterRules
+  );
 
-  const handleProductFilterChange = (key: string, value: string) => {
-    setProductFilters(prev => ({ ...prev, [key]: value }));
-    setLocalFilters(prev => ({
-      ...prev,
-      query: key === "query" ? value : prev.query,
-      services: key === "product_category" && value !== "all" ? [value] : prev.services,
-      category: key === "brand" ? value : prev.category,
-      location: key === "distributor_cleaned" ? value : prev.location,
-    }));
-  };
+  const handleProductFilterChange = createFilterChangeHandler(
+    setProductFilters,
+    productLocalFilterRules
+  );
 
+  
   return (
     <>
       <aside aria-label="Filter sidebar">
@@ -232,12 +339,8 @@ export function AdvancedFilterSidebar({ pageType }: AdvancedFiltersProps) {
                 filters={treatmentFilters}
                 onChange={handleTreatmentFilterChange}
                 onClear={() => {
-                  setTreatmentFilters({
-                    concern: "all",
-                    treatmentType: "all",
-                    treatmentArea: "all",
-                    priceRange: "all",
-                  });
+                  setTreatmentFilters(defaultTreatmentFilters);
+                  setFilters(createEmptySearchFilters());
                 }}
               />
             )}
@@ -247,13 +350,8 @@ export function AdvancedFilterSidebar({ pageType }: AdvancedFiltersProps) {
                 filters={clinicFilters}
                 onChange={handleClinicFilterChange}
                 onClear={() => {
-                  setClinicFilters({
-                    servicesOffered: "all",
-                    location: "",
-                    rating: "all",
-                    distance: "all",
-                    query: "",
-                  });
+                  setClinicFilters(defaultClinicOnClearFilters);
+                  setFilters(createEmptySearchFilters());
                 }}
                 setIsFilterActive={setIsFilterActive}
               />
@@ -264,13 +362,8 @@ export function AdvancedFilterSidebar({ pageType }: AdvancedFiltersProps) {
                 filters={practitionerFilters}
                 onChange={handlePractitionerFilterChange}
                 onClear={() => {
-                  setPractitionerFilters({
-                    practitioner_specialty: "all",
-                    practitioner_qualifications: "all",
-                    City: "all",
-                    rating: "all",
-                    query: "",
-                  });
+                  setPractitionerFilters(defaultPractitionerFilters);
+                  setFilters(createEmptySearchFilters());
                 }}
                 setIsFilterActive={setIsFilterActive}
               />
@@ -281,13 +374,8 @@ export function AdvancedFilterSidebar({ pageType }: AdvancedFiltersProps) {
                 filters={productFilters}
                 onChange={handleProductFilterChange}
                 onClear={() => {
-                  setProductFilters({
-                    product_category: "all",
-                    brand: "all",
-                    distributor_cleaned: "all",
-                    category: "all",
-                    query: "",
-                  });
+                  setProductFilters(defaultProductFilters);
+                  setFilters(createEmptySearchFilters());
                 }}
                 setIsFilterActive={setIsFilterActive}
               />

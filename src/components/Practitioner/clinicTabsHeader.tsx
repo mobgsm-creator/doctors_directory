@@ -24,7 +24,7 @@ export default function ClinicTabsHeader({k_value, clinic_list, selected, onSele
     >
       <TabsList className="bg-(--primary-bg-color) flex flex-nowrap gap-2 overflow-x-auto">
         {sections.map((s) => (
-          <Link href={`/clinics/${k_value.City}/clinic/${s.id}`} className="text-xs text-white hover:text-gray-700 transition-colors">
+          <Link href={`/clinics/${k_value.City.toLowerCase()}/clinic/${s.id}`} className="text-xs text-white hover:text-gray-700 transition-colors">
        
           <div key={s.id} className=" bg-(--primary-bg-color) flex flex-colmin-w-max">
             

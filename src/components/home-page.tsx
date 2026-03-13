@@ -754,7 +754,7 @@ const cityItems: {
 }[] = cityList.map((city) => ({
   node: (
     <Link
-      href={`/clinics/${city}`}
+      href={`/clinics/${city.toLowerCase()}`}
       className="flex items-center justify-center bg-[var(--alabaster)] border border-gray-300 rounded-full w-44 h-44 text-lg text-center font-medium hover:border-black transition-shadow"
       title={`Find Top-Rated Aesthetic clinics in ${city}`}
       aria-label={`Find Top-Rated Aesthetic clinics in ${city}`}
@@ -782,11 +782,31 @@ const imageLogos = [
 ];
 
 const specialists = [
-  { name: "Facial Aesthetics", image: "directory/images/Facial Aesthetics Specialist.webp" },
-  { name: "Cosmetology", image: "directory/images/Cosmetology Specialist.webp" },
-  { name: "Hair & Scalp", image: "directory/images/Hair & Scalp Specialist.webp" },
-  { name: "Skin Technology & Laser", image: "directory/images/Skin Technology & Laser Specialist.webp" },
-  { name: "Wellness", image: "directory/images/Wellness Specialist.webp" },
+  {
+    name: "Facial Aesthetics",
+    image: "directory/images/Facial Aesthetics Specialist.webp",
+    url: "/treatments/Facial%20Treatments",
+  },
+  {
+    name: "Cosmetology",
+    image: "directory/images/Cosmetology Specialist.webp",
+    url: "/treatments/Lips",
+  },
+  {
+    name: "Hair & Scalp",
+    image: "directory/images/Hair & Scalp Specialist.webp",
+    url: "/treatments/Hair%20Treatments",
+  },
+  {
+    name: "Skin Technology & Laser",
+    image: "directory/images/Skin Technology & Laser Specialist.webp",
+    url: "/treatments/Skin%20Booster",
+  },
+  {
+    name: "Wellness",
+    image: "directory/images/Wellness Specialist.webp",
+    url: "/treatments/Massage",
+  },
 ];
 
 const treatments = [
@@ -802,19 +822,19 @@ const blogs = [
     id: 1,
     title: "10 Best HIPAA Compliant Medical Spa Software in 2025",
     img: "directory/images/HIPAA-Compliant-Medical-Spa-Software-768x432.webp",
-    link: "https://www.consentz.com/hipaa-compliant-medical-spa-software/ ",
+    link: "https://www.consentz.com/hipaa-compliant-medical-spa-software",
   },
   {
     id: 2,
-    title: "Top 10 Best Aesthetic Clinic Software in USA [2025]",
-    img: "directory/images/Aesthetic-Clinic-Software-in-the-USA-1536x864.webp",
-    link: "https://www.consentz.com/aesthetic-clinic-software-in-usa/",
+    title: "Top 10 Clinical Data Management Software Solutions in the USA",
+    img: "directory/images/Top-Clinical-Data-Management-Software-in-the-USA.webp",
+    link: "https://www.consentz.com/clinical-data-management-software",
   },
   {
     id: 3,
     title: "Aesthetic Clinic Marketing: Complete Guide [2025]",
     img: "directory/images/Aesthetic-Clinic-Marketing-Guide-1536x864.webp",
-    link: "https://www.consentz.com/aesthetic-clinic-marketing/",
+    link: "https://www.consentz.com/aesthetic-clinic-marketing",
   },
 ];
 
@@ -862,16 +882,23 @@ export default function HomePage() {
           <div className="grid grid-cols-2 md:grid-cols-5 gap-8 align-items-center">
             {specialists.map((specialist, index) => (
               <article key={index} className="flex flex-col items-center gap-4">
-                <div className="flex items-center justify-center transition">
-                  <img
-                    src={`/${specialist.image || "placeholder.svg"}`}
-                    alt={specialist.name || "Placeholder"}
-                    className="w-[100px] h-[100px] object-cover rounded-lg"
-                  />
-                </div>
-                <p className="text-base font-medium text-center">
-                  {specialist.name}
-                </p>
+                <Link
+                  href={specialist.url}
+                  className="flex flex-col items-center gap-4 hover:opacity-90"
+                  title={`Explore ${specialist.name} treatments`}
+                  aria-label={`Explore ${specialist.name} treatments`}
+                >
+                  <div className="flex items-center justify-center transition">
+                    <img
+                      src={`/${specialist.image || "placeholder.svg"}`}
+                      alt={specialist.name || "Placeholder"}
+                      className="w-[100px] h-[100px] object-cover rounded-lg"
+                    />
+                  </div>
+                  <p className="text-base font-medium text-center">
+                    {specialist.name}
+                  </p>
+                </Link>
               </article>
             ))}
           </div>
@@ -1118,7 +1145,7 @@ export default function HomePage() {
           ))}
         </div>
         <div className="flex align-items-center justify-center pt-6 mt-6 mb-4">
-          <Button className="font-base text-lg border-1 px-4 py-3 md:px-7 md:py-3 w-auto h-auto border-black bg-transparent text-black hover:bg-black hover:text-white">
+          <Button onClick={() => globalThis.location.href='https://www.consentz.com/blog'} className="font-base text-lg border-1 px-4 py-3 md:px-7 md:py-3 w-auto h-auto border-black bg-transparent text-black hover:bg-black hover:text-white cursor-pointer">
             View All Blogs
           </Button>
         </div>

@@ -1,6 +1,7 @@
 import { City } from "@/lib/types"
 import { fixMojibake, decodeUnicodeEscapes } from "@/lib/utils"
 type PageProps = {cityData: City, treatment: Record<string, any>, slug: string}
+type TreatmentSection = Record<string, unknown>
 
 function cleanText(text: string) {
   return decodeUnicodeEscapes(fixMojibake(fixMojibake(fixMojibake(text.trim()))))
@@ -42,8 +43,95 @@ function deepClean<T>(obj: T): T {
 
   return obj
 }
+
+function asRecord(value: unknown): TreatmentSection {
+  if (typeof value === "object" && value !== null && !Array.isArray(value)) {
+    return value as TreatmentSection
+  }
+  return {}
+}
+
+function getRecordValueByKey(section: TreatmentSection, key: string): unknown {
+  const matchedKey = Object.keys(section).find(
+    (sectionKey) => sectionKey.toLowerCase() === key.toLowerCase()
+  )
+  return matchedKey ? section[matchedKey] : undefined
+}
+
+function toList(value: unknown, preferredKeys: readonly string[] = []): string[] {
+  if (Array.isArray(value)) {
+    return value.filter((item): item is string => typeof item === "string")
+  }
+
+  if (typeof value === "string") {
+    return [value]
+  }
+
+  const section = asRecord(value)
+
+  for (const key of preferredKeys) {
+    const preferredValue = getRecordValueByKey(section, key)
+    if (Array.isArray(preferredValue)) {
+      return preferredValue.filter((item): item is string => typeof item === "string")
+    }
+    if (typeof preferredValue === "string") {
+      return [preferredValue]
+    }
+  }
+
+  const discoveredLists = Object.values(section).filter(Array.isArray)
+  if (discoveredLists.length > 0) {
+    const firstList = discoveredLists[0]
+    return firstList.filter((item): item is string => typeof item === "string")
+  }
+
+  return Object.values(section).filter((item): item is string => typeof item === "string")
+}
+
+function toText(value: unknown, preferredKeys: readonly string[] = []): string {
+  if (typeof value === "string") {
+    return value
+  }
+
+  const listValue = toList(value, preferredKeys)
+  if (listValue.length > 0) {
+    return listValue[0]
+  }
+
+  return ""
+}
+
 export function CityTreatmentPage({ cityData, treatment, slug }: PageProps) {
-    const TreatmentArray = Object.entries(deepClean(treatment))
+    const sections = Object.entries(deepClean(treatment))
+    const getSection = (...phrases: readonly string[]) =>
+      sections.find(([key]) =>
+        phrases.some((phrase) => key.toLowerCase().includes(phrase.toLowerCase()))
+      )?.[1]
+
+    const description = toText(getSection("what is", "how does it work"), ["description"])
+    const goals = toList(getSection("goals"), ["goals"])
+    const pros = toList(getSection("pros and cons"), ["pros", "Pros"])
+    const cons = toList(getSection("pros and cons"), ["cons", "Cons"])
+    const costSection = asRecord(getSection("cost"))
+    const alternatives = toList(
+      getSection("non-surgical", "alternative options", "compare"),
+      ["comparison"]
+    )
+    const candidateSection = getSection("good candidate")
+    const candidates = toList(candidateSection, ["typical", "notIdeal"])
+    const preparation = toList(getSection("prepare for"), ["advice"])
+    const maintenanceText = toText(getSection("maintenance sessions"), ["maintenance", "notes"])
+    const safetySection = asRecord(getSection("safety considerations", "painful"))
+    const qualifications = toList(
+      getSection("qualifications should a practitioner", "what qualifications"),
+      ["whatToSeek"]
+    )
+    const guidelinesText = toText(getSection("guidelines for", "mhra"), ["guidelines"])
+    const recoverySection = asRecord(getSection("recovery process", "downtime", "side effects"))
+    const clinicAdvice = toList(
+      getSection("look for when choosing a doctor", "look for when choosing"),
+      ["advice"]
+    )
     const treatmentName = slug.split("%20").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")
     return (
         <>
@@ -52,7 +140,7 @@ export function CityTreatmentPage({ cityData, treatment, slug }: PageProps) {
   
     <h2 className="text-sm md:text-2xl font-semibold mb-1 md:mb-2 mt-2">{treatmentName} Treatment in {cityData.City}</h2>
     <section className='text-muted-foreground gap-2 space-y-2'>
-      <div>{TreatmentArray[0][1]}</div>
+      <div>{description}</div>
       <div>
       Our dataset currently has {cityData.market_size_indicators_number_of_clinics} clinic(s),
       with approximately {cityData.market_size_indicators_review_volume_total} reviews and
@@ -83,7 +171,7 @@ export function CityTreatmentPage({ cityData, treatment, slug }: PageProps) {
       <section className='text-muted-foreground gap-2 space-y-2'>
        
     <ul className="list-disc list-inside">
-      {TreatmentArray[1][1].map((goal: string, index:number) => (
+      {goals.map((goal: string, index:number) => (
         <li className="text-sm leading-relaxed pl-6" key={index}>{goal}</li>
       ))}
     </ul>
@@ -103,7 +191,7 @@ export function CityTreatmentPage({ cityData, treatment, slug }: PageProps) {
 
     <h4><strong>Medical & Non-Surgical Approaches</strong></h4>
     <ul className="list-disc list-inside">
-      {TreatmentArray[5][1].map(
+      {alternatives.map(
         (item:string, index:number) => (
           <li className="text-sm leading-relaxed pl-6" key={index}>{item}</li>
         )
@@ -112,18 +200,17 @@ export function CityTreatmentPage({ cityData, treatment, slug }: PageProps) {
 
     <h4><strong>Pros of {treatmentName} Treatment</strong></h4>
     <ul className="list-disc list-inside">
-      {TreatmentArray[2][1].Pros.map((pro: string, index:number) => (
+      {pros.map((pro: string, index:number) => (
         <li className="text-sm leading-relaxed pl-6" key={index}>{pro}</li>
       ))}
     </ul>
 
     <h4><strong>Cons of {treatmentName} Treatment</strong></h4>
     <ul className="list-disc list-inside">
-      {TreatmentArray[2][1].Cons.map((con: string, index:number) => (
+      {cons.map((con: string, index:number) => (
         <li className="text-sm leading-relaxed pl-6" key={index}>{con}</li>
       ))}
     </ul>
-    {/* <div>{Object.entries(TreatmentArray[10][1]).map(([key, value]) => <p key={key}>{value as string}</div>)}</div> */}
 
   </section>
 
@@ -136,7 +223,7 @@ export function CityTreatmentPage({ cityData, treatment, slug }: PageProps) {
       <section className='text-muted-foreground gap-2 space-y-2'>
     <div className='mt-2 space-y-2'>
          <ul className="list-disc list-inside">
-          {Object.entries(TreatmentArray[3][1]).map(([key, value]) => {
+          {Object.entries(costSection).map(([key, value]) => {
             if(Array.isArray(value)) {
               return value.map((item:string, index:number) => (
                 <li className="text-sm leading-relaxed pl-6" key={`${key}-${index}`} >{cleanText(item)}</li>
@@ -193,12 +280,12 @@ export function CityTreatmentPage({ cityData, treatment, slug }: PageProps) {
      <h2 className="text-sm md:text-2xl font-semibold mb-1 md:mb-2 mt-2">Preparing for Your {treatmentName} Appointment</h2>
           <section className='text-muted-foreground gap-2 space-y-2'>
     <ul className="list-disc list-inside">
-      {TreatmentArray[7][1].map((item: string, index:number) => (
+      {preparation.map((item: string, index:number) => (
         <li className="text-sm leading-relaxed pl-6" key={index}>{item}</li>
       ))}
     </ul>
 
-    <div>{TreatmentArray[11][1]}</div>
+    <div>{maintenanceText}</div>
   </section>
 
   {/* ================= SAFETY ================= */}
@@ -207,17 +294,17 @@ export function CityTreatmentPage({ cityData, treatment, slug }: PageProps) {
      <h2 className="text-sm md:text-2xl font-semibold mb-1 md:mb-2 mt-2">Treatment Safety & Local Regulations</h2>
      <section className='text-muted-foreground gap-2 space-y-2'>
       
-    <div>{Object.entries(TreatmentArray[8][1]).map(([key, value]) => <p key={key}>{value as string}</p>)}</div>
+    <div>{Object.entries(safetySection).map(([key, value]) => <p key={key}>{value as string}</p>)}</div>
  
 
     <ul className="list-disc list-inside">
-      {TreatmentArray[13][1].map(
+      {qualifications.map(
         (item: string, index:number) => (
           <li className="text-sm leading-relaxed pl-6" key={index}>{item}</li>
         )
       )}
     </ul>
-      <div>{TreatmentArray[14][1]}</div>
+      <div>{guidelinesText}</div>
     
 
       <div>
@@ -249,7 +336,7 @@ export function CityTreatmentPage({ cityData, treatment, slug }: PageProps) {
      <h2 className="text-sm md:text-2xl font-semibold mb-1 md:mb-2 mt-2">Who Is a Good Candidate?</h2>
       <section className='text-muted-foreground gap-2 space-y-2'>
     <ul className="list-disc list-inside">
-      {TreatmentArray[6][1].map(
+      {candidates.map(
         (candidate: string, index:number) => (
           <li className="text-sm leading-relaxed pl-6" key={index}>{candidate}</li>
         )
@@ -263,13 +350,13 @@ export function CityTreatmentPage({ cityData, treatment, slug }: PageProps) {
      <h2 className="text-sm md:text-2xl font-semibold mb-1 md:mb-2 mt-2">Choosing a Clinic</h2>
       <section className='text-muted-foreground gap-2 space-y-2'>
     <ul className="list-disc list-inside">
-      {TreatmentArray[15][1].map(
+      {qualifications.map(
         (qual: string, index:number) => (
           <li className="text-sm leading-relaxed pl-6" key={index}>{qual}</li>
         )
       )}
 
-      {TreatmentArray[4][1].map(
+      {clinicAdvice.map(
         (item: string, index:number) => (
           <li className="text-sm leading-relaxed pl-6" key={`look-${index}`}>{item}</li>
         )
@@ -289,7 +376,7 @@ export function CityTreatmentPage({ cityData, treatment, slug }: PageProps) {
       <section className='text-muted-foreground gap-2 space-y-2'>
         <div className='mt-2 space-y-2'>
          <ul className="list-disc list-inside">
-          {Object.entries(TreatmentArray[12][1]).map(([key, value]) => {
+          {Object.entries(recoverySection).map(([key, value]) => {
             if(Array.isArray(value)) {
               return value.map((item:string, index:number) => (
                 <li className="text-sm leading-relaxed pl-6" key={`${key}-${index}`} >{cleanText(item)}</li>
@@ -302,9 +389,9 @@ export function CityTreatmentPage({ cityData, treatment, slug }: PageProps) {
   
           <div><strong>Aftercare:</strong></div>
     <ul className="list-disc list-inside">
-      {Array.isArray(TreatmentArray[9][1]) ? TreatmentArray[9][1].map((item: string, index:number) => (
+      {alternatives.length > 0 ? alternatives.map((item: string, index:number) => (
         <li className="text-sm leading-relaxed pl-6" key={index}>{item}</li>
-      )) : <li className="text-sm leading-relaxed pl-6">{TreatmentArray[9][1]}</li>}
+      )) : <li className="text-sm leading-relaxed pl-6">{toText(getSection("compare", "alternative options"))}</li>}
     </ul>
   </section></div>
 </>

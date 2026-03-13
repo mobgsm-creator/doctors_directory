@@ -350,6 +350,87 @@ import { modalities,edu,accreditations, brands, product_categories,locations } f
                    Products by Brand
                  </Link>
                </h4>
+             
+     
+             <Link prefetch={false}href="/practitioners" className="block text-sm">
+              Top Practitioners in {locations.length} cities</Link>
+             
+             <Link prefetch={false}href="/clinics" className="block text-sm"> Top Clinics in {locations.length} cities</Link>
+             <h4 className="font-semibold">      <Link prefetch={false}href={`/clinics/treatment-by-city`} className="block text-sm">
+                    Treatments by City (Clinics)
+                  </Link>
+             </h4>
+             <h4 className="font-semibold">      <Link prefetch={false}href={`/practitioners/treatment-by-city`} className="block text-sm">
+                    Treatments by City (Practitioner)
+                  </Link>
+             </h4>
+             
+             <ul className="gap-4 max-h-[100px] overflow-auto">
+              {locations.slice(0,1).map((city, index) => {
+                return modalities.slice(0,5).map((treatment, index_t) => (
+                <li key={index_t}>
+                  <Link prefetch={false}href={`/practitioners/${city.toLowerCase()}/treatments/${treatment}`} className="block text-sm">
+                    {treatment} in {city}
+                  </Link>
+                </li>
+               ))})}
+             </ul>
+            <h4 className="font-semibold">      <Link prefetch={false}href={`/accredited`} className="block text-sm">
+                    Accredited Clinics & Practitioners
+                  </Link>
+             </h4>
+                <h4 className="font-semibold"><Link prefetch={false}href="/practitioners/credentials" className="block text-sm"> Awards and Acolades</Link></h4>
+            
+            <h4 className="font-semibold">
+              
+            
+                  <Link prefetch={false}href={`/products/brands/`} className="block text-sm">
+                    Products by Brand
+                  </Link></h4>
+              
+            
+            <h4 className="font-semibold">
+              
+            
+                  <Link prefetch={false}href={`/products/category/`} className="block text-sm">
+                    Products by Category
+                  </Link></h4>
+            </div>
+
+            {/* Column 3: For Practitioners */}
+            <div>
+              <h4 className="font-bold text-white mb-4">For Practitioners</h4>
+              <ul className="space-y-2">
+                <li><button className="text-left w-full hover:text-white transition" type="button">Join Directory</button></li>
+                <li><button className="text-left w-full hover:text-white transition" type="button">Update Profile</button></li>
+                <li><button className="text-left w-full hover:text-white transition" type="button">Verification Process</button></li>
+                <li><button className="text-left w-full hover:text-white transition" type="button">Support</button></li>
+              </ul>
+            </div>
+
+            {/* Column 4: Contact */}
+            <div>
+              <h4 className="font-bold text-white mb-4">Contact</h4>
+              <ul className="space-y-2">
+                <li><button className="text-left w-full hover:text-white transition" type="button">Info@healthdirectory.com</button></li>
+                <li><button className="text-left w-full hover:text-white transition" type="button">+44 208 050 3372</button></li>
+                <li><button className="text-left w-full hover:text-white transition" type="button">Contact@consentz.com</button></li>
+              </ul>
+            </div>
+
+            {/* Column 4: Contact */}
+            <div>
+              <h4 className="font-bold text-white mb-4">Contact</h4>
+              <ul className="space-y-2">
+                <li><div className="hover:text-white transition">Info@healthdirectory.com</div></li>
+                <li><div className="hover:text-white transition">+44 208 050 3372</div></li>
+                <li><div className="hover:text-white transition">Contact@consentz.com</div></li>
+              </ul>
+            </div>
+           </div>
+         </div>
+    </footer>
+      </>
 
                <h4 className="font-semibold">
                  <Link

@@ -31,8 +31,8 @@ function mergeBoxplotDataFromDict(
   incoming: Record<string, ItemMeta>
 ): BoxPlotDatum[] {
   return base.map((datum) => {
-    const match = incoming[datum.label];
-    const result = { ...datum, item: { ...datum.item, ...match } };
+    const matchItem = incoming[datum.label];
+    const result = { ...datum, item: { ...datum.item, ...matchItem } };
     return result;
   });
 }
@@ -48,7 +48,10 @@ interface ProfilePageProps {
 export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
   const clinics = clinicsJson as unknown as Clinic[];
   const { cityslug,slug } = params;
-  const cityClinics: Clinic[] = clinics.filter((p) => p.City === cityslug);
+  const normalizedCitySlug = decodeURIComponent(cityslug).toLowerCase();
+  const cityClinics: Clinic[] = clinics.filter(
+    (p) => p.City?.toLowerCase() === normalizedCitySlug
+  );
   const uniqueTreatments = [
   ...new Set(
     cityClinics
@@ -72,6 +75,12 @@ export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
     boxplotDatas_clinic,
     clinic?.weighted_analysis ?? {}
   );
+
+  const overallScore = Math.round(
+    boxplotData.find((datum) => datum.label === "Overall Aggregation")?.item.weighted_score ?? 0
+  );
+  const rankingSubtitle =
+    clinic?.ranking?.subtitle_text ?? `${overallScore}/100 in ${clinic?.City ?? cityslug}`;
 
   if (!clinic) {
     notFound();
@@ -105,9 +114,7 @@ export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbLink
-                href={`/directory/clinics/${cityslug}`}
-              >{`${cityslug}`}</BreadcrumbLink>
+              <BreadcrumbLink href={`/directory/clinics/${normalizedCitySlug}`}>{`${cityslug}`}</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
@@ -155,6 +162,7 @@ export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
                 </div>
                 <div className="border-t border-gray-300 my-6"></div>
                 <Stats data={boxplotData} />
+                <p className="mt-3 text-xs text-gray-600">{rankingSubtitle}</p>
               </div>
               {/* HOURS */}
               {flatHours && (

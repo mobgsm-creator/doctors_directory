@@ -1,19 +1,13 @@
-import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import type { Product } from "@/lib/types";
-import { Badge } from "@/components/ui/badge";
-import { Star, MapPin } from "lucide-react";
-import clinicsJson from "@/../public/clinics_processed_new_data.json";
 import fs from "fs";
 import path from "path";
 import { brands } from "@/lib/data";
-import { decodeUnicodeEscapes } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft} from "lucide-react";
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb"
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator } from "@/components/ui/breadcrumb"
 import { CollectionsFilter } from "@/components/filters/collectionsFilterWrapper";
-import ItemsGrid from "@/components/collectionGrid";
 export default async function ProfilePage() {
   const filePath = path.join(process.cwd(), "public", "products_processed_new.json");
   const fileContents = fs.readFileSync(filePath, "utf-8");
@@ -77,6 +71,9 @@ export default async function ProfilePage() {
             <ItemsGrid items={brands} />
           </div>
         </div>
+        <div className="mx-auto max-w-7xl  flex flex-col sm:flex-row justify-center w-full md:gap-10">
+                  <CollectionsFilter pageType="Product" />
+                  <div className="flex-1 min-w-0">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {brands.map((brand, index) => {
             const itemDetail = clinics.find((clinic) => clinic.brand === brand);
@@ -119,6 +116,8 @@ export default async function ProfilePage() {
             );
           })}
         </div>
+                  </div>
+                </div>
       </div>
     </main>
   );

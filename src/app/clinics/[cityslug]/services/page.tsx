@@ -36,7 +36,10 @@ export default function CityServicesPage({ params }: PageProps) {
   const products = productsJSON as unknown as Array<{ product_category: string; category: string }>;
 
   const { cityslug } = params;
-  const cityData: City = (cityJson as unknown as City[]).find((p) => p.City === cityslug)!;
+  const normalizedCitySlug = decodeURIComponent(cityslug).toLowerCase();
+  const cityData: City = (cityJson as unknown as City[]).find(
+    (p) => p.City?.toLowerCase() === normalizedCitySlug
+  )!;
   const decodedCitySlug = decodeURIComponent(cityslug)
     .toLowerCase()
     .replace(/\s+/g, "");
@@ -116,9 +119,7 @@ export default function CityServicesPage({ params }: PageProps) {
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
-                  <BreadcrumbLink href={`/directory/clinics/${cityslug}`}>
-                    {cityslug.charAt(0).toUpperCase() + cityslug.slice(1)}
-                  </BreadcrumbLink>
+                  <BreadcrumbLink href={`/directory/clinics/${normalizedCitySlug}`}>{cityslug.charAt(0).toUpperCase() + cityslug.slice(1)}</BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
@@ -140,14 +141,7 @@ export default function CityServicesPage({ params }: PageProps) {
         <div className="mx-auto max-w-7xl md:px-4 py-4 md:py-12 flex flex-col sm:flex-row justify-center w-full md:gap-10">
           <CollectionsFilter pageType="Treatments" />
           <div className="flex-1 min-w-0">
-            <ItemsGrid
-              items={
-                uniqueTreatments.length === 0
-                  ? defaultTreatments
-                  : uniqueTreatments
-              }
-              customLink={`/clinics/${cityslug}/services`}
-            />
+            <ItemsGrid items={uniqueTreatments.length === 0 ? defaultTreatments : uniqueTreatments} customLink={`/clinics/${normalizedCitySlug}/services`} />
           </div>
         </div>
       </div>

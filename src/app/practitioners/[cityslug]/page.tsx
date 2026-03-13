@@ -59,8 +59,13 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
   
   
   const citySlug = params.cityslug;
-  const cityData: City = (cityJson as unknown as City[]).find((p) => p.City === citySlug)!;
-  const cityClinics: Practitioner[] = practitioners.filter((p) => p.City === citySlug);
+  const normalizedCitySlug = decodeURIComponent(citySlug).toLowerCase();
+  const cityData: City = (cityJson as unknown as City[]).find(
+    (p) => p.City?.toLowerCase() === normalizedCitySlug
+  )!;
+  const cityClinics: Practitioner[] = practitioners.filter(
+    (p) => p.City?.toLowerCase() === normalizedCitySlug
+  );
     const uniqueTreatments = [
   ...new Set(
     cityClinics
@@ -110,21 +115,15 @@ export default async function ProfilePage({ params }: Readonly<ProfilePageProps>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
-                  <BreadcrumbLink href={`/directory/practitioners/${citySlug}`}>
-                    {citySlug.charAt(0).toUpperCase() + citySlug.slice(1)}
-                  </BreadcrumbLink>
+                  <BreadcrumbLink href={`/directory/practitioners/${normalizedCitySlug}`}>{citySlug.charAt(0).toUpperCase() + citySlug.slice(1)}</BreadcrumbLink>
                 </BreadcrumbItem>
-                <BreadcrumbSeparator />\{" "}
               </BreadcrumbList>
             </Breadcrumb>
-          </div>
-        </div>
-
-        <div className="flex flex-col pt-2 w-full pb-4 px-4 md:px-0">
-          <h1 className="text-sm md:text-2xl md:font-semibold mb-1 md:mb-2">
-            Top Practitioners in {citySlug}
-          </h1>
-        </div>
+          </div></div>
+          
+         
+          <div className="flex flex-col pt-2 w-full pb-4 px-4 md:px-0">
+            <h1 className="text-sm md:text-2xl md:font-semibold mb-1 md:mb-2">Top Aesthetic Practitioners in {citySlug}</h1></div>
 
         <div className="mx-auto max-w-7xl md:px-4 py-4 md:py-12 flex flex-col sm:flex-row justify-center w-full md:gap-10">
           <CollectionsFilter pageType="Practitioner" />
