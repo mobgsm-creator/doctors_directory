@@ -298,6 +298,7 @@ export function AdvancedFilterSidebar({ pageType }: AdvancedFiltersProps) {
     productLocalFilterRules
   );
 
+  
   return (
     <>
     
