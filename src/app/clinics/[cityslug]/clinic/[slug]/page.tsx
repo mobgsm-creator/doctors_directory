@@ -48,7 +48,10 @@ interface ProfilePageProps {
 export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
   const clinics = clinicsJson as unknown as Clinic[];
   const { cityslug,slug } = params;
-  const cityClinics: Clinic[] = clinics.filter((p) => p.City === cityslug);
+  const normalizedCitySlug = decodeURIComponent(cityslug).toLowerCase();
+  const cityClinics: Clinic[] = clinics.filter(
+    (p) => p.City?.toLowerCase() === normalizedCitySlug
+  );
   const uniqueTreatments = [
   ...new Set(
     cityClinics
@@ -105,7 +108,7 @@ export default function ProfilePage({ params }: Readonly<ProfilePageProps>) {
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbLink href={`/directory/clinics/${cityslug}`}>{`${cityslug}`}</BreadcrumbLink>
+              <BreadcrumbLink href={`/directory/clinics/${normalizedCitySlug}`}>{`${cityslug}`}</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>

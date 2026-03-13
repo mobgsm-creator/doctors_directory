@@ -24,36 +24,198 @@ for (const p of practitionersData) {
     practitionersIndex.set(clinic, bucket);
   }
 }
-
+type PractitionerOrClinic = Practitioner | Clinic | Product | string
 interface PractitionerCardProps {
-  practitioner: Practitioner | Clinic | Product | string;
+  practitioner: PractitionerOrClinic;
   customLink?:string
   
+}
+
+const formatSlugText = (value: string): string =>
+  value
+    .split("-")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+
+const formatTreatmentText = (value: string): string =>
+  value
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ")
+    .replace("Hifu", "HIFU")
+    .replace("Coolsculpting", "CoolSculpting");
+
+function getPractitionerName(practitioner: Practitioner | Clinic | Product | string): string {
+  if (isPractitioner(practitioner)) {
+    if (practitioner.practitioner_name) {
+      return formatSlugText(practitioner.practitioner_name);
+    }
+
+    return formatSlugText(practitioner.slug!);
+  }
+
+  if (isClinic(practitioner)) {
+    return formatSlugText(practitioner.slug!);
+  }
+
+  return "";
+}
+
+function getClinicPractitioners(practitioner: Practitioner | Clinic | Product | string): Practitioner[] {
+  if (!isClinic(practitioner)) {
+    return [];
+  }
+
+  return practitionersIndex.get(practitioner.slug as string) ?? [];
+}
+
+function getPractitionerOrClinicAriaPrefix(practitioner: Practitioner | Clinic | Product | string): string {
+  if (isPractitioner(practitioner)) {
+    return "practitioner";
+  }
+
+  if (isClinic(practitioner)) {
+    return "clinic";
+  }
+
+  return "";
+}
+
+function getPractitionerOrClinicHref(
+  practitioner: Practitioner | Clinic | Product | string,
+  customLink?: string
+): string {
+  if (customLink) {
+    return customLink;
+  }
+
+  if (isPractitioner(practitioner) && practitioner.practitioner_name) {
+    return `/practitioners/${(practitioner.City ?? "").toLowerCase()}/profile/${
+      practitioner.practitioner_name
+    }`;
+  }
+
+  if (isPractitioner(practitioner) || isClinic(practitioner)) {
+    return `/clinics/${(practitioner.City ?? "").toLowerCase()}/clinic/${practitioner.slug}`;
+  }
+
+  return "#";
+}
+
+function getProfileImageSrc(practitioner: Practitioner | Clinic | Product | string): string {
+  if (isPractitioner(practitioner)) {
+    return "/directory/images/default-dr-profile-1.webp";
+  }
+
+  if ((isPractitioner(practitioner) || isClinic(practitioner)) && practitioner.image) {
+    return practitioner.image.replace("&w=256&q=75", "") || "/placeholder.svg";
+  }
+
+  return "/placeholder.svg";
+}
+
+function getCityHref(
+  practitioner: Practitioner | Clinic | Product | string,
+  customLink: string | undefined,
+  path: string
+): string {
+  if (!isCity(practitioner)) {
+    return "";
+  }
+
+  const citySlug = practitioner.toLowerCase();
+
+  if (customLink) {
+    if (customLink.includes("/practitioners")) {
+      return path.includes("/practitioners/treatment-by-city")
+        ? `${customLink}/${citySlug}/treatments`
+        : `${customLink}/${citySlug}`;
+    }
+
+    return `${customLink}/${citySlug}/services`;
+  }
+
+  return path.includes("/practitioners")
+    ? `/practitioners/${citySlug}`
+    : `/clinics/${citySlug}`;
+}
+
+function getProductHref(
+  practitioner: Practitioner | Clinic | Product | string,
+  customLink?: string
+): string {
+  if (customLink) {
+    return customLink;
+  }
+
+  if (isProduct(practitioner)) {
+    return `/products/category/${practitioner.category}/${practitioner.slug}`;
+  }
+
+  return "#";
+}
+
+function getTreatmentName(practitioner: Practitioner | Clinic | Product | string): string {
+  if (!isTreatment(practitioner)) {
+    return "";
+  }
+
+  return formatTreatmentText(practitioner);
+}
+
+function getTreatmentHref(
+  practitioner: Practitioner | Clinic | Product | string,
+  customLink: string | undefined,
+  treatmentName: string
+): string {
+  if (!isTreatment(practitioner)) {
+    return "#";
+  }
+
+  if (customLink) {
+    return `${customLink}/${practitioner}`;
+  }
+
+  return `/treatments/${treatmentName}`;
+}
+
+function getTreatmentImageSrc(treatmentName: string): string {
+  if (!treatmentName) {
+    return "/placeholder.svg";
+  }
+
+  return TreatmentMap[treatmentName] || "/placeholder.svg";
+}
+
+function getAwardHref(
+  practitioner: Practitioner | Clinic | Product | string,
+  customLink?: string
+): string {
+  if (customLink) {
+    return customLink;
+  }
+
+  if (isAward(practitioner)) {
+    return `/practitioners/credentials/${(practitioner as {slug: string; image_url: string}).slug}`;
+  }
+
+  return "#";
 }
 
 export function PractitionerCard({ practitioner, customLink }: PractitionerCardProps) {
   const Router = useRouter()
   const path = usePathname()
-  
-  let practitionerName = ""
-  let practitioners : Practitioner[] = []
-  if(isPractitioner(practitioner)){
-  practitionerName = practitioner.practitioner_name
-    ? practitioner.practitioner_name
-        .split("-")
-        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(" ")
-    : practitioner.slug!
-        .split("-")
-        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(" ");
-  }
-  
-  else if(isClinic(practitioner)){
-    practitionerName = practitioner.slug!.split("-").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")
-    practitioners = practitionersIndex.get(practitioner.slug as string) ?? []
-    
-  } 
+  const practitionerName = getPractitionerName(practitioner)
+  const practitioners = getClinicPractitioners(practitioner)
+  const cityHref = getCityHref(practitioner, customLink, path)
+  const practitionerOrClinicHref = getPractitionerOrClinicHref(practitioner, customLink)
+  const practitionerOrClinicAriaPrefix = getPractitionerOrClinicAriaPrefix(practitioner)
+  const profileImageSrc = getProfileImageSrc(practitioner)
+  const productHref = getProductHref(practitioner, customLink)
+  const treatmentName = getTreatmentName(practitioner)
+  const treatmentHref = getTreatmentHref(practitioner, customLink, treatmentName)
+  const treatmentImageSrc = getTreatmentImageSrc(treatmentName)
+  const awardHref = getAwardHref(practitioner, customLink)
 
 
 
@@ -62,20 +224,11 @@ export function PractitionerCard({ practitioner, customLink }: PractitionerCardP
       {(isPractitioner(practitioner) || isClinic(practitioner)) && (
         
 
-        <article className=' relative mb-12 bg-white border-b border-t-0 border-[#C4C4C4] md:border-t rounded-md md:border md:border-(--alto)' aria-labelledby={`${isPractitioner(practitioner) ? "practitioner" : "clinic"}-name-${practitioner.slug}`}>
+        <article className=' relative mb-12 bg-white border-b border-t-0 border-[#C4C4C4] md:border-t rounded-md md:border md:border-(--alto)' aria-labelledby={`${practitionerOrClinicAriaPrefix}-name-${practitioner.slug}`}>
           
           <Card asChild className="mt-2 gap-4 md:px-0 shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border-t rounded-27 md:border md:border-(--alto) cursor-pointer" data-testid="practitioner-card">
           <><Link
-              href={customLink ? customLink :
-                "practitioner_awards" in practitioner &&
-                practitioner.practitioner_name
-                  ? `/practitioners/${practitioner.City}/profile/${
-                      practitioner.practitioner_name
-                    }`
-                  : `/clinics/${practitioner.City}/clinic/${
-                      practitioner.slug
-                    }`
-              }
+              href={practitionerOrClinicHref}
             prefetch={false}
             className='z-10'
             >
@@ -93,10 +246,7 @@ export function PractitionerCard({ practitioner, customLink }: PractitionerCardP
                   <div className="mt-2 relative w-20 h-20 md:w-[150px] md:h-[150px] flex items-center justify-center overflow-hidden rounded-full bg-gray-300 md:mb-3 mr-0">
                     
                     <img
-                      src={("practitioner_awards" in practitioner) ? "/directory/images/default-dr-profile-1.webp" : 
-                        practitioner.image!.replace("&w=256&q=75", "") ||
-                        "/placeholder.svg"
-                      }
+                      src={profileImageSrc}
                       alt="Profile"
                       className="object-cover rounded-full min-w-full min-h-full"
                       onError={(e) => {
@@ -247,7 +397,7 @@ export function PractitionerCard({ practitioner, customLink }: PractitionerCardP
                         <div className="flex-1 min-w-0 pt-1">
                           <h3 className="text-xl font-semibold text-balance leading-tight group-hover:text-primary transition-colors truncate">
                              <a
-                            href={`/directory/practitioners/${practitioner.City}/profile/${p.practitioner_name}`}
+                            href={`/directory/practitioners/${(practitioner.City ?? "").toLowerCase()}/profile/${p.practitioner_name}`}
                             onClick={(e) => e.stopPropagation()}
                           >
                             {p.practitioner_name.split('-').map((word:string) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
@@ -267,7 +417,7 @@ export function PractitionerCard({ practitioner, customLink }: PractitionerCardP
       )}
       {isProduct(practitioner) && (
           <Card asChild className="gap-0 h-full relative px-4 md:px-0 shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border-t rounded-27 md:border md:border-(--alto) cursor-pointer" aria-labelledby={`product-name-${practitioner.slug}`} data-testid="practitioner-card">
-            <Link href={customLink ? customLink :`/products/category/${practitioner.category}/${practitioner.slug}`} className="block" prefetch={false}>
+            <Link href={productHref} className="block" prefetch={false}>
         <CardHeader className="pb-2 px-2">
               <h2 id={`product-name-${practitioner.slug}`} className="sr-only">
                 {decodeUnicodeEscapes(practitioner.product_name)}
@@ -334,10 +484,10 @@ export function PractitionerCard({ practitioner, customLink }: PractitionerCardP
       {isTreatment(practitioner) === true && (
       
           <Card asChild className="gap-0 h-full relative bg-transparent px-4 md:px-0 shadow-none md:border-0 duration-300 cursor-pointer" aria-labelledby={`treatment-name-${practitioner}`} data-testid="practitioner-card">
-            <Link href={customLink ? customLink+`/${practitioner}` :`/treatments/${practitioner?.split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ").replace("Hifu", "HIFU").replace("Coolsculpting", "CoolSculpting")}`} className="block border-0" prefetch={false}>
+            <Link href={treatmentHref} className="block border-0" prefetch={false}>
         <CardHeader className="px-2 border-0">
-              <h2 id={`treatment-name-${practitioner?.split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ").replace("Hifu", "HIFU").replace("Coolsculpting", "CoolSculpting")}`} className="sr-only">
-                {practitioner?.split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ").replace("Hifu", "HIFU").replace("Coolsculpting", "CoolSculpting")}
+              <h2 id={`treatment-name-${treatmentName}`} className="sr-only">
+                {treatmentName}
               </h2>
               <div className="flex items-start gap-4">
                 <div className="text-center flex-1 min-w-0 items-center flex flex-col">
@@ -345,8 +495,7 @@ export function PractitionerCard({ practitioner, customLink }: PractitionerCardP
                     <div className="w-20 h-20 md:w-[150px] md:h-[150px] flex items-center justify-center overflow-hidden md:mb-3 mr-0">
                       <img
                         src={
-                          TreatmentMap[practitioner?.split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ").replace("Hifu", "HIFU").replace("Coolsculpting", "CoolSculpting")] ||
-                          "/placeholder.svg"
+                          treatmentImageSrc
                         }
                         alt="Treatment"
                         className="object-cover rounded-full w-full h-full"
@@ -354,7 +503,7 @@ export function PractitionerCard({ practitioner, customLink }: PractitionerCardP
                     </div>
 
                     <div className="mb-3 md:mb-0 flex text-left md:text-center md:align-items-center md:justify-center font-semibold text-md md:text-lg transition-colors text-balance">
-                      {practitioner?.split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ").replace("Hifu", "HIFU").replace("Coolsculpting", "CoolSculpting")}
+                      {treatmentName}
                     </div>
                   </div>
                 </div>
@@ -369,7 +518,7 @@ export function PractitionerCard({ practitioner, customLink }: PractitionerCardP
 
   
                         <Card asChild className="gap-0 relative shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border md:border-(--alto) cursor-pointer hover:shadow-lg hover:border-blue-500">
-                <Link href={customLink ? customLink+`/${practitioner}/services` :`/clinics/${practitioner}`}>
+                <Link href={cityHref}>
                 <div className='mt-2 flex flex-col items-center gap-2'>
                   
                   <Button
@@ -392,7 +541,7 @@ export function PractitionerCard({ practitioner, customLink }: PractitionerCardP
         {isAward(practitioner) && (
             <Link
                           key={(practitioner as unknown as {name:string, slug: string; image_url: string}).slug}
-                          href={customLink ? customLink :`/practitioners/credentials/${(practitioner as {slug: string; image_url: string}).slug}`}
+                          href={awardHref}
                           className="block"
                         >
                           <Card className="gap-0 relative shadow-none group transition-all duration-300 border-b border-t-0 border-[#C4C4C4] md:border md:border-(--alto) cursor-pointer hover:shadow-lg hover:border-blue-500">

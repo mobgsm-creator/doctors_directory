@@ -35,7 +35,7 @@ export default function TreatmentByCityPage() {
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
-                  <BreadcrumbLink href="/directory/clinics">All Clinics</BreadcrumbLink>
+                  <BreadcrumbLink href="/directory/practitioners">All Practitioners</BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
@@ -47,7 +47,7 @@ export default function TreatmentByCityPage() {
          </div>
 
         <div className="mx-auto max-w-7xl md:px-4 py-4 md:py-12 flex flex-col sm:flex-row justify-center w-full md:gap-10">
-          <CollectionsFilter pageType="Clinic" />
+          <CollectionsFilter pageType="Practitioner" />
           <div className="flex-1 min-w-0">
             <ItemsGrid 
               items={Object.keys(cityMap)} 

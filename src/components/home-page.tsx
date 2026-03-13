@@ -754,7 +754,7 @@ const cityItems: {
 }[] = cityList.map((city) => ({
   node: (
     <Link
-      href={`/clinics/${city}`}
+      href={`/clinics/${city.toLowerCase()}`}
       className="flex items-center justify-center bg-[var(--alabaster)] border border-gray-300 rounded-full w-44 h-44 text-lg text-center font-medium hover:border-black transition-shadow"
       title={`Find Top-Rated Aesthetic clinics in ${city}`}
       aria-label={`Find Top-Rated Aesthetic clinics in ${city}`}
@@ -1145,7 +1145,7 @@ export default function HomePage() {
           ))}
         </div>
         <div className="flex align-items-center justify-center pt-6 mt-6 mb-4">
-          <Button className="font-base text-lg border-1 px-4 py-3 md:px-7 md:py-3 w-auto h-auto border-black bg-transparent text-black hover:bg-black hover:text-white">
+          <Button onClick={() => globalThis.location.href='https://www.consentz.com/blog'} className="font-base text-lg border-1 px-4 py-3 md:px-7 md:py-3 w-auto h-auto border-black bg-transparent text-black hover:bg-black hover:text-white cursor-pointer">
             View All Blogs
           </Button>
         </div>
