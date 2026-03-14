@@ -36,7 +36,7 @@ export function SearchDropdown({
     ? "absolute top-full left-0 w-full bg-white rounded-lg shadow-lg border border-gray-200 p-4 z-50 mt-1"
     : "flex bg-white rounded-lg shadow-lg border border-gray-200 p-6";
 
-  const clsgrd = isSearchPage ? "gap-x-60" : "gap-6";
+  const clsgrd = "gap-x-60";
   const gridClasses = isMobile
     ? "w-full"
     : `grid grid-cols-1 sm:grid-cols-3 ${clsgrd}`;
@@ -49,15 +49,12 @@ export function SearchDropdown({
       )
     : search_categories;
 
-  const filteredLocations = locations.filter((loc) =>
-    typeof loc === "string" &&
-    loc.toLowerCase().includes((localFilters.location || "").toLowerCase())
-  ).length > 0
-    ? locations.filter((loc) =>
-        typeof loc === "string" &&
-        loc.toLowerCase().includes((localFilters.location || "").toLowerCase())
-      )
-    : locations;
+  const locationQuery = (localFilters.location || "").trim().toLowerCase();
+  const filteredLocations = locations.filter(
+    (loc): loc is string =>
+      typeof loc === "string" &&
+      (locationQuery.length === 0 || loc.toLowerCase().includes(locationQuery))
+  );
 
   const handleTypeClick = (opt: string) => {
     setLocalFilters((prev) => ({ ...prev, type: opt }));
@@ -119,15 +116,19 @@ export function SearchDropdown({
           <div className="w-full">
             <h3 className="font-semibold text-left text-gray-900 mb-4">Location</h3>
             <div className="space-y-2 overflow-auto max-h-50 md:max-h-100">
-              {filteredLocations.map((loc: string) => (
-                <button
-                  key={loc}
-                  onClick={() => handleLocationClick(loc)}
-                  className="text-left text-sm font-medium w-full flex items-center gap-3 hover:bg-blue-50 hover:text-blue-700 active:bg-blue-100 p-2 rounded"
-                >
-                  {loc}
-                </button>
-              ))}
+              {filteredLocations.length > 0 ? (
+                filteredLocations.map((loc: string) => (
+                  <button
+                    key={loc}
+                    onClick={() => handleLocationClick(loc)}
+                    className="text-left text-sm font-medium w-full flex items-center gap-3 hover:bg-blue-50 hover:text-blue-700 active:bg-blue-100 p-2 rounded"
+                  >
+                    {loc}
+                  </button>
+                ))
+              ) : (
+                <p className="text-sm text-gray-500 p-2">No results found.</p>
+              )}
             </div>
           </div>
         )}
