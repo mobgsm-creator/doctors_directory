@@ -39,6 +39,7 @@ export default function ProfilePage({ params }: ProfilePageProps) {
   const clinics = clinicsJSON as unknown as Clinic[];
   const { cityslug, serviceslug } = params;
   const normalizedCitySlug = decodeURIComponent(cityslug).toLowerCase();
+  const normalizedServiceName = serviceslug.replaceAll("%20", " ");
   const cityData: City = (cityJson as unknown as City[]).find(
     (p) => p.City?.toLowerCase() === normalizedCitySlug
   )!;
@@ -71,6 +72,9 @@ const serviceMatch = categories.some((cat: string) =>
 
     return cityMatch && serviceMatch
   });
+  const cityClinics = clinics.filter(
+    (clinic) => clinic.City?.toLowerCase() === decodedCitySlug.toLowerCase()
+  );
   const uniqueTreatments = [
   ...new Set(
     filteredClinics
@@ -78,6 +82,14 @@ const serviceMatch = categories.some((cat: string) =>
       .flatMap(c => c.Treatments).filter((t): t is string => typeof t === "string")
   )
 ];
+  const cityTreatments = [
+    ...new Set(
+      cityClinics
+        .filter((c) => Array.isArray(c.Treatments))
+        .flatMap((c) => c.Treatments)
+        .filter((t): t is string => typeof t === "string")
+    ),
+  ];
 
   const defaultClinics: Clinic[] = clinics.filter((p) => p.City === "London");
   const defaultTreatments = [
@@ -144,7 +156,30 @@ const serviceMatch = categories.some((cat: string) =>
         <div className="mx-auto max-w-7xl md:px-4 py-4 md:py-12 flex flex-col sm:flex-row justify-center w-full md:gap-10">
           <CollectionsFilter pageType="Clinic" />
           <div className="flex-1 min-w-0">
-            <ItemsGrid items={filteredClinics} />
+            {filteredClinics.length > 0 ? (
+              <ItemsGrid items={filteredClinics} />
+            ) : (
+              <Card className="border-dashed">
+                <CardHeader>
+                  <h2 className="text-lg font-semibold">No clinics listed yet</h2>
+                  <p className="text-sm text-muted-foreground">
+                    We do not have any clinics for {normalizedServiceName} in {cityslug} right now.
+                    You can still explore nearby and popular options below.
+                  </p>
+                </CardHeader>
+                <CardContent className="flex flex-wrap gap-3">
+                  <Link href={`/clinics/${normalizedCitySlug}`} prefetch={false}>
+                    <Button variant="outline">Browse clinics in {cityslug}</Button>
+                  </Link>
+                  <Link href={`/practitioners/${normalizedCitySlug}`} prefetch={false}>
+                    <Button variant="outline">Browse practitioners in {cityslug}</Button>
+                  </Link>
+                  <Link href="/clinics" prefetch={false}>
+                    <Button>View all clinics</Button>
+                  </Link>
+                </CardContent>
+              </Card>
+            )}
           </div>
         </div>
 
@@ -153,7 +188,9 @@ const serviceMatch = categories.some((cat: string) =>
           <MoreItems
             items={
               uniqueTreatments.length === 0
-                ? defaultTreatments
+                ? cityTreatments.length > 0
+                  ? cityTreatments
+                  : defaultTreatments
                 : uniqueTreatments
             }
           />
